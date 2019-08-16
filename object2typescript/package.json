@@ -1,7 +1,7 @@
 {
-  "name": "doxygen2dts",
+  "name": "object2typescript",
   "version": "0.0.1",
-  "description": "creates TypeScript dts from doxygen xml output ",
+  "description": "creates TypeScript dts JSON and JavaScript objects",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -26,23 +26,25 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^12.7.1",
-    "@types/shelljs": "^0.8.5",
-    "@types/xml2js": "^0.4.4",
+    "@types/node": "^12.7.2",
+    "ava": "^2.2.0",
+    "jimp": "^0.6.4",
+    "markdown-toc": "^1.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.1",
     "typescript": "^3.5.3"
   },
   "dependencies": {
     "misc-utils-of-mine-generic": "^0.2.18",
-    "shelljs": "^0.8.3",
-    "xml2js": "^0.4.19"
+    "ts-simple-ast-extra": "^0.2.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine.git"
+    "url": "https://github.com/cancerberoSgx/mirada.git"
   },
   "bugs": {
-    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine"
+    "url": "https://github.com/cancerberoSgx/mirada"
   }
 }

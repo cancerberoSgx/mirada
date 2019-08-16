@@ -1,4 +1,3 @@
-let astTypes;
 export interface Class extends Node {
   methods: Method[];
   attributes: Attribute[];

@@ -31,6 +31,9 @@ See [Reference API docs](api). Important types:
 
 See [mirada-cli project page](../mirada-cli).
 
+## TODO
+
+- [ ] don't waste more time manually porting docs. build the doxygen2typescript thing
 
 ## Initial design notes
 

@@ -17,7 +17,7 @@ if(!existsSync('tmp/all.xml')){
 }
 var parser = new Parser({
   explicitChildren: true,
-  // preserveChildrenOrder: true,
+  preserveChildrenOrder: true,
   // charsAsChildren: true,
   // includeWhiteChars: true
 });
@@ -95,8 +95,8 @@ function parseClass(def: any):Class{
   }
   return r
 }
-function buildDescription() {
-  
+function buildDescription(def: any) {
+  return 'TODO'
 }
 function getTypes(def: any) {
   // console.log(JSON.stringify(def, null, 2));
