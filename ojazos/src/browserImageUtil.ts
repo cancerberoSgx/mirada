@@ -49,9 +49,7 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
   return canvas
 }
 
-
 export async function createFileFromUrl(path: string, url: string, callback?: (error?:Error) => void) {
-
   return new Promise((resolve, reject) => {
     let request = new XMLHttpRequest()
     request.open('GET', url, true)
@@ -65,7 +63,6 @@ export async function createFileFromUrl(path: string, url: string, callback?: (e
           resolve()
         } else {
           var e = new Error('Failed to load ' + url + ' status: ' + request.status)
-          // this.printError('Failed to load ' + url + ' status: ' + request.status)
           console.error(e);  
          callback&& callback(e)        
           reject(e)

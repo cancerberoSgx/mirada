@@ -1,6 +1,7 @@
 import test from 'ava'
 
-test('identify', async t => {
+test('load data', async t => {
+  
   // const r = execSync('node bin/magica --input test/assets/n.png --command "identify n.png"')
   t.true(true)
 })
