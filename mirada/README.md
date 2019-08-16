@@ -1,4 +1,6 @@
-High level opencv API for Node.js and Browser. Based on OpenCv.js, supporting npm and same code running in Node.js and Browser.
+High level opencv API for Node.js and Browser. Built on top of OpenCv.js, supporting npm, TypeScript, Node.js and Browser.
+
+## Contents
 
 <!-- toc -->
 
@@ -20,12 +22,14 @@ TODO
 
 ## Reference API
 
-TODO
+See [Reference API docs](api). Important types:
+
+ * [opencvTypes](mirada/api/modules/_types_opencvtypes_.md)
+ * [File](mirada/api/classes/_file_.file.md)
 
 ## Command line
 
-TODO: other project provides a CLI with semantic semantics to this API
-
+See [mirada-cli project page](../mirada-cli).
 
 
 ## Initial design notes

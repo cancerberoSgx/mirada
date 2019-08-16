@@ -5,7 +5,7 @@ import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeFor
 import { arrayBufferToBase64, urlToBase64 } from './base64'
 import { formatProxy } from './format'
 import { imageData } from './imageUtil'
-import { ImageData, Mat } from './types/opencvTypes'
+import { ImageData, Mat } from './types/opencv'
 
 export class File {
 
@@ -116,7 +116,7 @@ export class File {
         return f
       }
     }))
-    return result.filter(notUndefined)//.map(File.asFile)
+    return result.filter(notUndefined)
   }
 
   public static isFile(f: any): f is File {

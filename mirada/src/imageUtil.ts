@@ -1,6 +1,8 @@
-// generic utilities for Mat (Images) that can be used in browser and node
-import { Mat } from './types/opencvTypes'
+import { Mat } from './types/opencv'
 
+/**
+ * Creates an CV ImageData object from given image.
+ */
 export function imageData(img: Mat) {
   return {
     data: new Uint8ClampedArray(img.data),
@@ -8,8 +10,10 @@ export function imageData(img: Mat) {
     height: img.rows
   }
 }
+
 /**
- * Returns a new image that is ideantical to given (1, 3 or 4 channels) but has 4 RGBA channels.
+ * Returns a new image that is identical to given (1, 3 or 4 channels) 
+ * but has 4 RGBA channels.
  */
 export function toRgba(mat: Mat) {
   const img = new cv.Mat()

@@ -2,6 +2,10 @@ import { existsSync } from 'fs'
 import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
 import { relative, resolve as pathResolve } from 'path'
 
+/**
+ * An exposed promise that is resolved when the library is ready to be used. 
+ * At that time the global variable 'cv' should be available and ready.
+ */
 export const opencvReady = new Deferred<void>()
 
 opencvReady.then(() => {
@@ -15,6 +19,16 @@ interface LoadOptions {
   opencvUrl?: string
 }
 
+/**
+ * Loads opencv.js file. It will do it only once no matter if called multiple times. 
+ * In the browser a new script element is created to load the file while in Node.js
+ * the file is loaded using a require() call.
+ * 
+ * Returns a promise resolved when the library is ready or rejected if there's a problem.
+ * 
+ * Notice that among the options users can define the location of opencv.js file, which 
+ * in the case of the browser it could be in an external server.
+ */
 export function loadOpencv(o: LoadOptions = {}) {
   if (opencvLoaded) {
     o.onloadCallback && o.onloadCallback()
@@ -79,7 +93,7 @@ function loadOpencvBrowser(o: LoadOptions = {}) {
         o.onloadCallback && o.onloadCallback()
         resolve()
       }
-      else { // WASM
+      else {
         g.cv = typeof g.cv === 'undefined' ? {} : g.cv
         g.cv.onRuntimeInitialized = () => {
           opencvReady.resolve()

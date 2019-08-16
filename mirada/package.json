@@ -16,7 +16,7 @@
     "prepare": "npm run build ",
     "copy": "cp -r static/opencv.js dist/src",
     "docs": "npm run docs-readme-toc && npm run docs-api",
-    "docs-api": "rm -rf ../docs/mirada && mkdir -p ../docs/mirada && typedoc  --ignoreCompilerErrors --theme markdown --out ../docs/mirada --readme none --excludeNotExported src/index.ts ",
+    "docs-api": "rm -rf ./api && mkdir -p ./api && typedoc  --ignoreCompilerErrors --theme markdown --out ./api --readme none --excludeNotExported src/index.ts ",
     "docs-readme-toc": "npx markdown-toc README.md -i",
     "build": "npm run clean && npx tsc&& npm run copy",
     "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run test-browser && npm run docs",
