@@ -1,0 +1,50 @@
+{
+  "name": "ojos",
+  "version": "0.0.1",
+  "description": "Command line tool for opencv unique image processing filters and effects, based on ojazos which is an easy to use API for opencv.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist docs",
+    "clean-npm": " rm -rf node_modules/ package-lock.json",
+    "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
+    "test-js": "npm run build && npx ava --serial --concurrency 1 --config ava.config-js.js",
+    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "lint": " npm run organizeImports && npm run format",
+    "prepare": "npm run build ",
+    "build": "npm run clean && npx tsc",
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"
+  },
+  "keywords": [
+    "typescript",
+    "opencv.js",
+    "opencv"
+  ],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/node": "^12.7.1",
+    "@types/shelljs": "^0.8.5",
+    "ava": "^2.2.0",
+    "ts-node": "^8.3.0",
+    "ts-refactor": "0.0.9",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "glob": "^7.1.4",
+    "magica": "^0.2.14",
+    "minimist": "^1.2.0",
+    "misc-utils-of-mine-generic": "^0.2.18",
+    "ojazos": "file:../ojazos",
+    "shelljs": "^0.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine"
+  }
+}
