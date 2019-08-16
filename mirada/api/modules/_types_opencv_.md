@@ -18,3 +18,24 @@
 
 * [CV](../interfaces/_types_opencv_.cv.md)
 * [ImageData](../interfaces/_types_opencv_.imagedata.md)
+
+### Type aliases
+
+* [InputArray](_types_opencv_.md#inputarray)
+* [OutputArray](_types_opencv_.md#outputarray)
+
+## Type aliases
+
+###  InputArray
+
+Ƭ **InputArray**: *[Mat](../classes/_types_opencv_.mat.md)*
+
+*Defined in [types/opencv.ts:39](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L39)*
+
+___
+
+###  OutputArray
+
+Ƭ **OutputArray**: *[Mat](../classes/_types_opencv_.mat.md)*
+
+*Defined in [types/opencv.ts:40](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L40)*

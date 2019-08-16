@@ -20,7 +20,7 @@
 
 • **formatProxy**: *[FormatProxy](../interfaces/_types_mirada_.formatproxy.md) | undefined*
 
-*Defined in [format.ts:12](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/format.ts#L12)*
+*Defined in [format.ts:12](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/format.ts#L12)*
 
 ## Functions
 
@@ -28,7 +28,7 @@
 
 ▸ **installFormatProxy**(`proxy`: [FormatProxy](../interfaces/_types_mirada_.formatproxy.md)): *void*
 
-*Defined in [format.ts:8](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/format.ts#L8)*
+*Defined in [format.ts:8](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/format.ts#L8)*
 
 Nor or opencv.js or this library implement any image format so users are
 responsible of providing a FormatProxy using some library.

@@ -20,7 +20,7 @@
 
 • **opencvReady**: *`Deferred<void, any>`* =  new Deferred<void>()
 
-*Defined in [opencvReady.ts:9](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/opencvReady.ts#L9)*
+*Defined in [opencvReady.ts:9](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/opencvReady.ts#L9)*
 
 An exposed promise that is resolved when the library is ready to be used.
 At that time the global variable 'cv' should be available and ready.
@@ -31,7 +31,7 @@ At that time the global variable 'cv' should be available and ready.
 
 ▸ **loadOpencv**(`o`: `LoadOptions`): *`Promise<unknown>`*
 
-*Defined in [opencvReady.ts:32](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/opencvReady.ts#L32)*
+*Defined in [opencvReady.ts:32](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/opencvReady.ts#L32)*
 
 Loads opencv.js file. It will do it only once no matter if called multiple times.
 In the browser a new script element is created to load the file while in Node.js

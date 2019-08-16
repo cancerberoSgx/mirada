@@ -1250,7 +1250,7 @@ ___
 
 ▸ **all**(...`v`: number[]): *[Scalar](_types_opencv_.scalar.md)*
 
-Defined in types/opencv.ts:53
+*Defined in [types/opencv.ts:61](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L61)*
 
 **Parameters:**
 

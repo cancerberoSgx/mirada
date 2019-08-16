@@ -22,7 +22,7 @@
 
 • **data**: *`ArrayBufferView`*
 
-Defined in types/opencv.ts:35
+*Defined in [types/opencv.ts:43](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L43)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **height**: *number*
 
-Defined in types/opencv.ts:37
+*Defined in [types/opencv.ts:45](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L45)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **width**: *number*
 
-Defined in types/opencv.ts:36
+*Defined in [types/opencv.ts:44](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L44)*

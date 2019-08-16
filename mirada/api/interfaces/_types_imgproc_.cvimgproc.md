@@ -1,388 +1,250 @@
 > **[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [CV](_types_opencv_.cv.md) /
+[Globals](../README.md) / ["types/imgproc"](../modules/_types_imgproc_.md) / [CVImgProc](_types_imgproc_.cvimgproc.md) /
 
-# Interface: CV
+# Interface: CVImgProc
 
 ## Hierarchy
 
-* `CV_WASM`
+* [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md)
 
-  * [CVImgProc](_types_imgproc_.cvimgproc.md)
+* [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md)
 
-* [CVCoreBorder](_types_coreboder_.cvcoreborder.md)
+* [CVImgProcLine](_types_imgproc_.cvimgprocline.md)
 
-  * **CV**
+  * **CVImgProc**
+
+  * [CV](_types_opencv_.cv.md)
 
 ## Index
 
 ### Properties
 
-* [BORDER_CONSTANT](_types_opencv_.cv.md#border_constant)
-* [BORDER_DEFAULT](_types_opencv_.cv.md#border_default)
-* [BORDER_ISOLATED](_types_opencv_.cv.md#border_isolated)
-* [BORDER_REFLECT](_types_opencv_.cv.md#border_reflect)
-* [BORDER_REFLECT101](_types_opencv_.cv.md#border_reflect101)
-* [BORDER_REFLECT_101](_types_opencv_.cv.md#border_reflect_101)
-* [BORDER_REPLICATE](_types_opencv_.cv.md#border_replicate)
-* [BORDER_TRANSPARENT](_types_opencv_.cv.md#border_transparent)
-* [BORDER_WRAP](_types_opencv_.cv.md#border_wrap)
-* [COLOR_BGR2BGR555](_types_opencv_.cv.md#color_bgr2bgr555)
-* [COLOR_BGR2BGR565](_types_opencv_.cv.md#color_bgr2bgr565)
-* [COLOR_BGR2BGRA](_types_opencv_.cv.md#color_bgr2bgra)
-* [COLOR_BGR2GRAY](_types_opencv_.cv.md#color_bgr2gray)
-* [COLOR_BGR2HLS](_types_opencv_.cv.md#color_bgr2hls)
-* [COLOR_BGR2HLS_FULL](_types_opencv_.cv.md#color_bgr2hls_full)
-* [COLOR_BGR2HSV](_types_opencv_.cv.md#color_bgr2hsv)
-* [COLOR_BGR2HSV_FULL](_types_opencv_.cv.md#color_bgr2hsv_full)
-* [COLOR_BGR2Lab](_types_opencv_.cv.md#color_bgr2lab)
-* [COLOR_BGR2Luv](_types_opencv_.cv.md#color_bgr2luv)
-* [COLOR_BGR2RGB](_types_opencv_.cv.md#color_bgr2rgb)
-* [COLOR_BGR2RGBA](_types_opencv_.cv.md#color_bgr2rgba)
-* [COLOR_BGR2XYZ](_types_opencv_.cv.md#color_bgr2xyz)
-* [COLOR_BGR2YCrCb](_types_opencv_.cv.md#color_bgr2ycrcb)
-* [COLOR_BGR2YUV](_types_opencv_.cv.md#color_bgr2yuv)
-* [COLOR_BGR2YUV_I420](_types_opencv_.cv.md#color_bgr2yuv_i420)
-* [COLOR_BGR2YUV_IYUV](_types_opencv_.cv.md#color_bgr2yuv_iyuv)
-* [COLOR_BGR2YUV_YV12](_types_opencv_.cv.md#color_bgr2yuv_yv12)
-* [COLOR_BGR5552BGR](_types_opencv_.cv.md#color_bgr5552bgr)
-* [COLOR_BGR5552BGRA](_types_opencv_.cv.md#color_bgr5552bgra)
-* [COLOR_BGR5552GRAY](_types_opencv_.cv.md#color_bgr5552gray)
-* [COLOR_BGR5552RGB](_types_opencv_.cv.md#color_bgr5552rgb)
-* [COLOR_BGR5552RGBA](_types_opencv_.cv.md#color_bgr5552rgba)
-* [COLOR_BGR5652BGR](_types_opencv_.cv.md#color_bgr5652bgr)
-* [COLOR_BGR5652BGRA](_types_opencv_.cv.md#color_bgr5652bgra)
-* [COLOR_BGR5652GRAY](_types_opencv_.cv.md#color_bgr5652gray)
-* [COLOR_BGR5652RGB](_types_opencv_.cv.md#color_bgr5652rgb)
-* [COLOR_BGR5652RGBA](_types_opencv_.cv.md#color_bgr5652rgba)
-* [COLOR_BGRA2BGR](_types_opencv_.cv.md#color_bgra2bgr)
-* [COLOR_BGRA2BGR555](_types_opencv_.cv.md#color_bgra2bgr555)
-* [COLOR_BGRA2BGR565](_types_opencv_.cv.md#color_bgra2bgr565)
-* [COLOR_BGRA2GRAY](_types_opencv_.cv.md#color_bgra2gray)
-* [COLOR_BGRA2RGB](_types_opencv_.cv.md#color_bgra2rgb)
-* [COLOR_BGRA2RGBA](_types_opencv_.cv.md#color_bgra2rgba)
-* [COLOR_BGRA2YUV_I420](_types_opencv_.cv.md#color_bgra2yuv_i420)
-* [COLOR_BGRA2YUV_IYUV](_types_opencv_.cv.md#color_bgra2yuv_iyuv)
-* [COLOR_BGRA2YUV_YV12](_types_opencv_.cv.md#color_bgra2yuv_yv12)
-* [COLOR_BayerBG2BGR](_types_opencv_.cv.md#color_bayerbg2bgr)
-* [COLOR_BayerBG2BGRA](_types_opencv_.cv.md#color_bayerbg2bgra)
-* [COLOR_BayerBG2BGR_EA](_types_opencv_.cv.md#color_bayerbg2bgr_ea)
-* [COLOR_BayerBG2BGR_VNG](_types_opencv_.cv.md#color_bayerbg2bgr_vng)
-* [COLOR_BayerBG2GRAY](_types_opencv_.cv.md#color_bayerbg2gray)
-* [COLOR_BayerBG2RGB](_types_opencv_.cv.md#color_bayerbg2rgb)
-* [COLOR_BayerBG2RGBA](_types_opencv_.cv.md#color_bayerbg2rgba)
-* [COLOR_BayerBG2RGB_EA](_types_opencv_.cv.md#color_bayerbg2rgb_ea)
-* [COLOR_BayerBG2RGB_VNG](_types_opencv_.cv.md#color_bayerbg2rgb_vng)
-* [COLOR_BayerGB2BGR](_types_opencv_.cv.md#color_bayergb2bgr)
-* [COLOR_BayerGB2BGRA](_types_opencv_.cv.md#color_bayergb2bgra)
-* [COLOR_BayerGB2BGR_EA](_types_opencv_.cv.md#color_bayergb2bgr_ea)
-* [COLOR_BayerGB2BGR_VNG](_types_opencv_.cv.md#color_bayergb2bgr_vng)
-* [COLOR_BayerGB2GRAY](_types_opencv_.cv.md#color_bayergb2gray)
-* [COLOR_BayerGB2RGB](_types_opencv_.cv.md#color_bayergb2rgb)
-* [COLOR_BayerGB2RGBA](_types_opencv_.cv.md#color_bayergb2rgba)
-* [COLOR_BayerGB2RGB_EA](_types_opencv_.cv.md#color_bayergb2rgb_ea)
-* [COLOR_BayerGB2RGB_VNG](_types_opencv_.cv.md#color_bayergb2rgb_vng)
-* [COLOR_BayerGR2BGR](_types_opencv_.cv.md#color_bayergr2bgr)
-* [COLOR_BayerGR2BGRA](_types_opencv_.cv.md#color_bayergr2bgra)
-* [COLOR_BayerGR2BGR_EA](_types_opencv_.cv.md#color_bayergr2bgr_ea)
-* [COLOR_BayerGR2BGR_VNG](_types_opencv_.cv.md#color_bayergr2bgr_vng)
-* [COLOR_BayerGR2GRAY](_types_opencv_.cv.md#color_bayergr2gray)
-* [COLOR_BayerGR2RGB](_types_opencv_.cv.md#color_bayergr2rgb)
-* [COLOR_BayerGR2RGBA](_types_opencv_.cv.md#color_bayergr2rgba)
-* [COLOR_BayerGR2RGB_EA](_types_opencv_.cv.md#color_bayergr2rgb_ea)
-* [COLOR_BayerGR2RGB_VNG](_types_opencv_.cv.md#color_bayergr2rgb_vng)
-* [COLOR_BayerRG2BGR](_types_opencv_.cv.md#color_bayerrg2bgr)
-* [COLOR_BayerRG2BGRA](_types_opencv_.cv.md#color_bayerrg2bgra)
-* [COLOR_BayerRG2BGR_EA](_types_opencv_.cv.md#color_bayerrg2bgr_ea)
-* [COLOR_BayerRG2BGR_VNG](_types_opencv_.cv.md#color_bayerrg2bgr_vng)
-* [COLOR_BayerRG2GRAY](_types_opencv_.cv.md#color_bayerrg2gray)
-* [COLOR_BayerRG2RGB](_types_opencv_.cv.md#color_bayerrg2rgb)
-* [COLOR_BayerRG2RGBA](_types_opencv_.cv.md#color_bayerrg2rgba)
-* [COLOR_BayerRG2RGB_EA](_types_opencv_.cv.md#color_bayerrg2rgb_ea)
-* [COLOR_BayerRG2RGB_VNG](_types_opencv_.cv.md#color_bayerrg2rgb_vng)
-* [COLOR_COLORCVT_MAX](_types_opencv_.cv.md#color_colorcvt_max)
-* [COLOR_GRAY2BGR](_types_opencv_.cv.md#color_gray2bgr)
-* [COLOR_GRAY2BGR555](_types_opencv_.cv.md#color_gray2bgr555)
-* [COLOR_GRAY2BGR565](_types_opencv_.cv.md#color_gray2bgr565)
-* [COLOR_GRAY2BGRA](_types_opencv_.cv.md#color_gray2bgra)
-* [COLOR_GRAY2RGB](_types_opencv_.cv.md#color_gray2rgb)
-* [COLOR_GRAY2RGBA](_types_opencv_.cv.md#color_gray2rgba)
-* [COLOR_HLS2BGR](_types_opencv_.cv.md#color_hls2bgr)
-* [COLOR_HLS2BGR_FULL](_types_opencv_.cv.md#color_hls2bgr_full)
-* [COLOR_HLS2RGB](_types_opencv_.cv.md#color_hls2rgb)
-* [COLOR_HLS2RGB_FULL](_types_opencv_.cv.md#color_hls2rgb_full)
-* [COLOR_HSV2BGR](_types_opencv_.cv.md#color_hsv2bgr)
-* [COLOR_HSV2BGR_FULL](_types_opencv_.cv.md#color_hsv2bgr_full)
-* [COLOR_HSV2RGB](_types_opencv_.cv.md#color_hsv2rgb)
-* [COLOR_HSV2RGB_FULL](_types_opencv_.cv.md#color_hsv2rgb_full)
-* [COLOR_LBGR2Lab](_types_opencv_.cv.md#color_lbgr2lab)
-* [COLOR_LBGR2Luv](_types_opencv_.cv.md#color_lbgr2luv)
-* [COLOR_LRGB2Lab](_types_opencv_.cv.md#color_lrgb2lab)
-* [COLOR_LRGB2Luv](_types_opencv_.cv.md#color_lrgb2luv)
-* [COLOR_Lab2BGR](_types_opencv_.cv.md#color_lab2bgr)
-* [COLOR_Lab2LBGR](_types_opencv_.cv.md#color_lab2lbgr)
-* [COLOR_Lab2LRGB](_types_opencv_.cv.md#color_lab2lrgb)
-* [COLOR_Lab2RGB](_types_opencv_.cv.md#color_lab2rgb)
-* [COLOR_Luv2BGR](_types_opencv_.cv.md#color_luv2bgr)
-* [COLOR_Luv2LBGR](_types_opencv_.cv.md#color_luv2lbgr)
-* [COLOR_Luv2LRGB](_types_opencv_.cv.md#color_luv2lrgb)
-* [COLOR_Luv2RGB](_types_opencv_.cv.md#color_luv2rgb)
-* [COLOR_RGB2BGR](_types_opencv_.cv.md#color_rgb2bgr)
-* [COLOR_RGB2BGR555](_types_opencv_.cv.md#color_rgb2bgr555)
-* [COLOR_RGB2BGR565](_types_opencv_.cv.md#color_rgb2bgr565)
-* [COLOR_RGB2BGRA](_types_opencv_.cv.md#color_rgb2bgra)
-* [COLOR_RGB2GRAY](_types_opencv_.cv.md#color_rgb2gray)
-* [COLOR_RGB2HLS](_types_opencv_.cv.md#color_rgb2hls)
-* [COLOR_RGB2HLS_FULL](_types_opencv_.cv.md#color_rgb2hls_full)
-* [COLOR_RGB2HSV](_types_opencv_.cv.md#color_rgb2hsv)
-* [COLOR_RGB2HSV_FULL](_types_opencv_.cv.md#color_rgb2hsv_full)
-* [COLOR_RGB2Lab](_types_opencv_.cv.md#color_rgb2lab)
-* [COLOR_RGB2Luv](_types_opencv_.cv.md#color_rgb2luv)
-* [COLOR_RGB2RGBA](_types_opencv_.cv.md#color_rgb2rgba)
-* [COLOR_RGB2XYZ](_types_opencv_.cv.md#color_rgb2xyz)
-* [COLOR_RGB2YCrCb](_types_opencv_.cv.md#color_rgb2ycrcb)
-* [COLOR_RGB2YUV](_types_opencv_.cv.md#color_rgb2yuv)
-* [COLOR_RGB2YUV_I420](_types_opencv_.cv.md#color_rgb2yuv_i420)
-* [COLOR_RGB2YUV_IYUV](_types_opencv_.cv.md#color_rgb2yuv_iyuv)
-* [COLOR_RGB2YUV_YV12](_types_opencv_.cv.md#color_rgb2yuv_yv12)
-* [COLOR_RGBA2BGR](_types_opencv_.cv.md#color_rgba2bgr)
-* [COLOR_RGBA2BGR555](_types_opencv_.cv.md#color_rgba2bgr555)
-* [COLOR_RGBA2BGR565](_types_opencv_.cv.md#color_rgba2bgr565)
-* [COLOR_RGBA2BGRA](_types_opencv_.cv.md#color_rgba2bgra)
-* [COLOR_RGBA2GRAY](_types_opencv_.cv.md#color_rgba2gray)
-* [COLOR_RGBA2RGB](_types_opencv_.cv.md#color_rgba2rgb)
-* [COLOR_RGBA2YUV_I420](_types_opencv_.cv.md#color_rgba2yuv_i420)
-* [COLOR_RGBA2YUV_IYUV](_types_opencv_.cv.md#color_rgba2yuv_iyuv)
-* [COLOR_RGBA2YUV_YV12](_types_opencv_.cv.md#color_rgba2yuv_yv12)
-* [COLOR_RGBA2mRGBA](_types_opencv_.cv.md#color_rgba2mrgba)
-* [COLOR_XYZ2BGR](_types_opencv_.cv.md#color_xyz2bgr)
-* [COLOR_XYZ2RGB](_types_opencv_.cv.md#color_xyz2rgb)
-* [COLOR_YCrCb2BGR](_types_opencv_.cv.md#color_ycrcb2bgr)
-* [COLOR_YCrCb2RGB](_types_opencv_.cv.md#color_ycrcb2rgb)
-* [COLOR_YUV2BGR](_types_opencv_.cv.md#color_yuv2bgr)
-* [COLOR_YUV2BGRA_I420](_types_opencv_.cv.md#color_yuv2bgra_i420)
-* [COLOR_YUV2BGRA_IYUV](_types_opencv_.cv.md#color_yuv2bgra_iyuv)
-* [COLOR_YUV2BGRA_NV12](_types_opencv_.cv.md#color_yuv2bgra_nv12)
-* [COLOR_YUV2BGRA_NV21](_types_opencv_.cv.md#color_yuv2bgra_nv21)
-* [COLOR_YUV2BGRA_UYNV](_types_opencv_.cv.md#color_yuv2bgra_uynv)
-* [COLOR_YUV2BGRA_UYVY](_types_opencv_.cv.md#color_yuv2bgra_uyvy)
-* [COLOR_YUV2BGRA_Y422](_types_opencv_.cv.md#color_yuv2bgra_y422)
-* [COLOR_YUV2BGRA_YUNV](_types_opencv_.cv.md#color_yuv2bgra_yunv)
-* [COLOR_YUV2BGRA_YUY2](_types_opencv_.cv.md#color_yuv2bgra_yuy2)
-* [COLOR_YUV2BGRA_YUYV](_types_opencv_.cv.md#color_yuv2bgra_yuyv)
-* [COLOR_YUV2BGRA_YV12](_types_opencv_.cv.md#color_yuv2bgra_yv12)
-* [COLOR_YUV2BGRA_YVYU](_types_opencv_.cv.md#color_yuv2bgra_yvyu)
-* [COLOR_YUV2BGR_I420](_types_opencv_.cv.md#color_yuv2bgr_i420)
-* [COLOR_YUV2BGR_IYUV](_types_opencv_.cv.md#color_yuv2bgr_iyuv)
-* [COLOR_YUV2BGR_NV12](_types_opencv_.cv.md#color_yuv2bgr_nv12)
-* [COLOR_YUV2BGR_NV21](_types_opencv_.cv.md#color_yuv2bgr_nv21)
-* [COLOR_YUV2BGR_UYNV](_types_opencv_.cv.md#color_yuv2bgr_uynv)
-* [COLOR_YUV2BGR_UYVY](_types_opencv_.cv.md#color_yuv2bgr_uyvy)
-* [COLOR_YUV2BGR_Y422](_types_opencv_.cv.md#color_yuv2bgr_y422)
-* [COLOR_YUV2BGR_YUNV](_types_opencv_.cv.md#color_yuv2bgr_yunv)
-* [COLOR_YUV2BGR_YUY2](_types_opencv_.cv.md#color_yuv2bgr_yuy2)
-* [COLOR_YUV2BGR_YUYV](_types_opencv_.cv.md#color_yuv2bgr_yuyv)
-* [COLOR_YUV2BGR_YV12](_types_opencv_.cv.md#color_yuv2bgr_yv12)
-* [COLOR_YUV2BGR_YVYU](_types_opencv_.cv.md#color_yuv2bgr_yvyu)
-* [COLOR_YUV2GRAY_420](_types_opencv_.cv.md#color_yuv2gray_420)
-* [COLOR_YUV2GRAY_I420](_types_opencv_.cv.md#color_yuv2gray_i420)
-* [COLOR_YUV2GRAY_IYUV](_types_opencv_.cv.md#color_yuv2gray_iyuv)
-* [COLOR_YUV2GRAY_NV12](_types_opencv_.cv.md#color_yuv2gray_nv12)
-* [COLOR_YUV2GRAY_NV21](_types_opencv_.cv.md#color_yuv2gray_nv21)
-* [COLOR_YUV2GRAY_UYNV](_types_opencv_.cv.md#color_yuv2gray_uynv)
-* [COLOR_YUV2GRAY_UYVY](_types_opencv_.cv.md#color_yuv2gray_uyvy)
-* [COLOR_YUV2GRAY_Y422](_types_opencv_.cv.md#color_yuv2gray_y422)
-* [COLOR_YUV2GRAY_YUNV](_types_opencv_.cv.md#color_yuv2gray_yunv)
-* [COLOR_YUV2GRAY_YUY2](_types_opencv_.cv.md#color_yuv2gray_yuy2)
-* [COLOR_YUV2GRAY_YUYV](_types_opencv_.cv.md#color_yuv2gray_yuyv)
-* [COLOR_YUV2GRAY_YV12](_types_opencv_.cv.md#color_yuv2gray_yv12)
-* [COLOR_YUV2GRAY_YVYU](_types_opencv_.cv.md#color_yuv2gray_yvyu)
-* [COLOR_YUV2RGB](_types_opencv_.cv.md#color_yuv2rgb)
-* [COLOR_YUV2RGBA_I420](_types_opencv_.cv.md#color_yuv2rgba_i420)
-* [COLOR_YUV2RGBA_IYUV](_types_opencv_.cv.md#color_yuv2rgba_iyuv)
-* [COLOR_YUV2RGBA_NV12](_types_opencv_.cv.md#color_yuv2rgba_nv12)
-* [COLOR_YUV2RGBA_NV21](_types_opencv_.cv.md#color_yuv2rgba_nv21)
-* [COLOR_YUV2RGBA_UYNV](_types_opencv_.cv.md#color_yuv2rgba_uynv)
-* [COLOR_YUV2RGBA_UYVY](_types_opencv_.cv.md#color_yuv2rgba_uyvy)
-* [COLOR_YUV2RGBA_Y422](_types_opencv_.cv.md#color_yuv2rgba_y422)
-* [COLOR_YUV2RGBA_YUNV](_types_opencv_.cv.md#color_yuv2rgba_yunv)
-* [COLOR_YUV2RGBA_YUY2](_types_opencv_.cv.md#color_yuv2rgba_yuy2)
-* [COLOR_YUV2RGBA_YUYV](_types_opencv_.cv.md#color_yuv2rgba_yuyv)
-* [COLOR_YUV2RGBA_YV12](_types_opencv_.cv.md#color_yuv2rgba_yv12)
-* [COLOR_YUV2RGBA_YVYU](_types_opencv_.cv.md#color_yuv2rgba_yvyu)
-* [COLOR_YUV2RGB_I420](_types_opencv_.cv.md#color_yuv2rgb_i420)
-* [COLOR_YUV2RGB_IYUV](_types_opencv_.cv.md#color_yuv2rgb_iyuv)
-* [COLOR_YUV2RGB_NV12](_types_opencv_.cv.md#color_yuv2rgb_nv12)
-* [COLOR_YUV2RGB_NV21](_types_opencv_.cv.md#color_yuv2rgb_nv21)
-* [COLOR_YUV2RGB_UYNV](_types_opencv_.cv.md#color_yuv2rgb_uynv)
-* [COLOR_YUV2RGB_UYVY](_types_opencv_.cv.md#color_yuv2rgb_uyvy)
-* [COLOR_YUV2RGB_Y422](_types_opencv_.cv.md#color_yuv2rgb_y422)
-* [COLOR_YUV2RGB_YUNV](_types_opencv_.cv.md#color_yuv2rgb_yunv)
-* [COLOR_YUV2RGB_YUY2](_types_opencv_.cv.md#color_yuv2rgb_yuy2)
-* [COLOR_YUV2RGB_YUYV](_types_opencv_.cv.md#color_yuv2rgb_yuyv)
-* [COLOR_YUV2RGB_YV12](_types_opencv_.cv.md#color_yuv2rgb_yv12)
-* [COLOR_YUV2RGB_YVYU](_types_opencv_.cv.md#color_yuv2rgb_yvyu)
-* [COLOR_YUV420p2BGR](_types_opencv_.cv.md#color_yuv420p2bgr)
-* [COLOR_YUV420p2BGRA](_types_opencv_.cv.md#color_yuv420p2bgra)
-* [COLOR_YUV420p2GRAY](_types_opencv_.cv.md#color_yuv420p2gray)
-* [COLOR_YUV420p2RGB](_types_opencv_.cv.md#color_yuv420p2rgb)
-* [COLOR_YUV420p2RGBA](_types_opencv_.cv.md#color_yuv420p2rgba)
-* [COLOR_YUV420sp2BGR](_types_opencv_.cv.md#color_yuv420sp2bgr)
-* [COLOR_YUV420sp2BGRA](_types_opencv_.cv.md#color_yuv420sp2bgra)
-* [COLOR_YUV420sp2GRAY](_types_opencv_.cv.md#color_yuv420sp2gray)
-* [COLOR_YUV420sp2RGB](_types_opencv_.cv.md#color_yuv420sp2rgb)
-* [COLOR_YUV420sp2RGBA](_types_opencv_.cv.md#color_yuv420sp2rgba)
-* [COLOR_mRGBA2RGBA](_types_opencv_.cv.md#color_mrgba2rgba)
-* [CV_16S](_types_opencv_.cv.md#cv_16s)
-* [CV_32S](_types_opencv_.cv.md#cv_32s)
-* [CV_8S](_types_opencv_.cv.md#cv_8s)
-* [CV_8U](_types_opencv_.cv.md#cv_8u)
-* [CV_8UC1](_types_opencv_.cv.md#cv_8uc1)
-* [CV_8UC3](_types_opencv_.cv.md#cv_8uc3)
-* [CV_8UC4](_types_opencv_.cv.md#cv_8uc4)
-* [FILLED](_types_opencv_.cv.md#filled)
-* [FS](_types_opencv_.cv.md#fs)
-* [GC_BGD](_types_opencv_.cv.md#gc_bgd)
-* [GC_EVAL](_types_opencv_.cv.md#gc_eval)
-* [GC_EVAL_FREEZE_MODEL](_types_opencv_.cv.md#gc_eval_freeze_model)
-* [GC_FGD](_types_opencv_.cv.md#gc_fgd)
-* [GC_INIT_WITH_MASK](_types_opencv_.cv.md#gc_init_with_mask)
-* [GC_INIT_WITH_RECT](_types_opencv_.cv.md#gc_init_with_rect)
-* [GC_PR_BGD](_types_opencv_.cv.md#gc_pr_bgd)
-* [GC_PR_FGD](_types_opencv_.cv.md#gc_pr_fgd)
-* [LINE_4](_types_opencv_.cv.md#line_4)
-* [LINE_8](_types_opencv_.cv.md#line_8)
-* [LINE_AA](_types_opencv_.cv.md#line_aa)
-* [Mat](_types_opencv_.cv.md#mat)
-* [Point](_types_opencv_.cv.md#point)
-* [Rect](_types_opencv_.cv.md#rect)
-* [Scalar](_types_opencv_.cv.md#scalar)
-* [Size](_types_opencv_.cv.md#size)
-* [onRuntimeInitialized](_types_opencv_.cv.md#onruntimeinitialized)
+* [COLOR_BGR2BGR555](_types_imgproc_.cvimgproc.md#color_bgr2bgr555)
+* [COLOR_BGR2BGR565](_types_imgproc_.cvimgproc.md#color_bgr2bgr565)
+* [COLOR_BGR2BGRA](_types_imgproc_.cvimgproc.md#color_bgr2bgra)
+* [COLOR_BGR2GRAY](_types_imgproc_.cvimgproc.md#color_bgr2gray)
+* [COLOR_BGR2HLS](_types_imgproc_.cvimgproc.md#color_bgr2hls)
+* [COLOR_BGR2HLS_FULL](_types_imgproc_.cvimgproc.md#color_bgr2hls_full)
+* [COLOR_BGR2HSV](_types_imgproc_.cvimgproc.md#color_bgr2hsv)
+* [COLOR_BGR2HSV_FULL](_types_imgproc_.cvimgproc.md#color_bgr2hsv_full)
+* [COLOR_BGR2Lab](_types_imgproc_.cvimgproc.md#color_bgr2lab)
+* [COLOR_BGR2Luv](_types_imgproc_.cvimgproc.md#color_bgr2luv)
+* [COLOR_BGR2RGB](_types_imgproc_.cvimgproc.md#color_bgr2rgb)
+* [COLOR_BGR2RGBA](_types_imgproc_.cvimgproc.md#color_bgr2rgba)
+* [COLOR_BGR2XYZ](_types_imgproc_.cvimgproc.md#color_bgr2xyz)
+* [COLOR_BGR2YCrCb](_types_imgproc_.cvimgproc.md#color_bgr2ycrcb)
+* [COLOR_BGR2YUV](_types_imgproc_.cvimgproc.md#color_bgr2yuv)
+* [COLOR_BGR2YUV_I420](_types_imgproc_.cvimgproc.md#color_bgr2yuv_i420)
+* [COLOR_BGR2YUV_IYUV](_types_imgproc_.cvimgproc.md#color_bgr2yuv_iyuv)
+* [COLOR_BGR2YUV_YV12](_types_imgproc_.cvimgproc.md#color_bgr2yuv_yv12)
+* [COLOR_BGR5552BGR](_types_imgproc_.cvimgproc.md#color_bgr5552bgr)
+* [COLOR_BGR5552BGRA](_types_imgproc_.cvimgproc.md#color_bgr5552bgra)
+* [COLOR_BGR5552GRAY](_types_imgproc_.cvimgproc.md#color_bgr5552gray)
+* [COLOR_BGR5552RGB](_types_imgproc_.cvimgproc.md#color_bgr5552rgb)
+* [COLOR_BGR5552RGBA](_types_imgproc_.cvimgproc.md#color_bgr5552rgba)
+* [COLOR_BGR5652BGR](_types_imgproc_.cvimgproc.md#color_bgr5652bgr)
+* [COLOR_BGR5652BGRA](_types_imgproc_.cvimgproc.md#color_bgr5652bgra)
+* [COLOR_BGR5652GRAY](_types_imgproc_.cvimgproc.md#color_bgr5652gray)
+* [COLOR_BGR5652RGB](_types_imgproc_.cvimgproc.md#color_bgr5652rgb)
+* [COLOR_BGR5652RGBA](_types_imgproc_.cvimgproc.md#color_bgr5652rgba)
+* [COLOR_BGRA2BGR](_types_imgproc_.cvimgproc.md#color_bgra2bgr)
+* [COLOR_BGRA2BGR555](_types_imgproc_.cvimgproc.md#color_bgra2bgr555)
+* [COLOR_BGRA2BGR565](_types_imgproc_.cvimgproc.md#color_bgra2bgr565)
+* [COLOR_BGRA2GRAY](_types_imgproc_.cvimgproc.md#color_bgra2gray)
+* [COLOR_BGRA2RGB](_types_imgproc_.cvimgproc.md#color_bgra2rgb)
+* [COLOR_BGRA2RGBA](_types_imgproc_.cvimgproc.md#color_bgra2rgba)
+* [COLOR_BGRA2YUV_I420](_types_imgproc_.cvimgproc.md#color_bgra2yuv_i420)
+* [COLOR_BGRA2YUV_IYUV](_types_imgproc_.cvimgproc.md#color_bgra2yuv_iyuv)
+* [COLOR_BGRA2YUV_YV12](_types_imgproc_.cvimgproc.md#color_bgra2yuv_yv12)
+* [COLOR_BayerBG2BGR](_types_imgproc_.cvimgproc.md#color_bayerbg2bgr)
+* [COLOR_BayerBG2BGRA](_types_imgproc_.cvimgproc.md#color_bayerbg2bgra)
+* [COLOR_BayerBG2BGR_EA](_types_imgproc_.cvimgproc.md#color_bayerbg2bgr_ea)
+* [COLOR_BayerBG2BGR_VNG](_types_imgproc_.cvimgproc.md#color_bayerbg2bgr_vng)
+* [COLOR_BayerBG2GRAY](_types_imgproc_.cvimgproc.md#color_bayerbg2gray)
+* [COLOR_BayerBG2RGB](_types_imgproc_.cvimgproc.md#color_bayerbg2rgb)
+* [COLOR_BayerBG2RGBA](_types_imgproc_.cvimgproc.md#color_bayerbg2rgba)
+* [COLOR_BayerBG2RGB_EA](_types_imgproc_.cvimgproc.md#color_bayerbg2rgb_ea)
+* [COLOR_BayerBG2RGB_VNG](_types_imgproc_.cvimgproc.md#color_bayerbg2rgb_vng)
+* [COLOR_BayerGB2BGR](_types_imgproc_.cvimgproc.md#color_bayergb2bgr)
+* [COLOR_BayerGB2BGRA](_types_imgproc_.cvimgproc.md#color_bayergb2bgra)
+* [COLOR_BayerGB2BGR_EA](_types_imgproc_.cvimgproc.md#color_bayergb2bgr_ea)
+* [COLOR_BayerGB2BGR_VNG](_types_imgproc_.cvimgproc.md#color_bayergb2bgr_vng)
+* [COLOR_BayerGB2GRAY](_types_imgproc_.cvimgproc.md#color_bayergb2gray)
+* [COLOR_BayerGB2RGB](_types_imgproc_.cvimgproc.md#color_bayergb2rgb)
+* [COLOR_BayerGB2RGBA](_types_imgproc_.cvimgproc.md#color_bayergb2rgba)
+* [COLOR_BayerGB2RGB_EA](_types_imgproc_.cvimgproc.md#color_bayergb2rgb_ea)
+* [COLOR_BayerGB2RGB_VNG](_types_imgproc_.cvimgproc.md#color_bayergb2rgb_vng)
+* [COLOR_BayerGR2BGR](_types_imgproc_.cvimgproc.md#color_bayergr2bgr)
+* [COLOR_BayerGR2BGRA](_types_imgproc_.cvimgproc.md#color_bayergr2bgra)
+* [COLOR_BayerGR2BGR_EA](_types_imgproc_.cvimgproc.md#color_bayergr2bgr_ea)
+* [COLOR_BayerGR2BGR_VNG](_types_imgproc_.cvimgproc.md#color_bayergr2bgr_vng)
+* [COLOR_BayerGR2GRAY](_types_imgproc_.cvimgproc.md#color_bayergr2gray)
+* [COLOR_BayerGR2RGB](_types_imgproc_.cvimgproc.md#color_bayergr2rgb)
+* [COLOR_BayerGR2RGBA](_types_imgproc_.cvimgproc.md#color_bayergr2rgba)
+* [COLOR_BayerGR2RGB_EA](_types_imgproc_.cvimgproc.md#color_bayergr2rgb_ea)
+* [COLOR_BayerGR2RGB_VNG](_types_imgproc_.cvimgproc.md#color_bayergr2rgb_vng)
+* [COLOR_BayerRG2BGR](_types_imgproc_.cvimgproc.md#color_bayerrg2bgr)
+* [COLOR_BayerRG2BGRA](_types_imgproc_.cvimgproc.md#color_bayerrg2bgra)
+* [COLOR_BayerRG2BGR_EA](_types_imgproc_.cvimgproc.md#color_bayerrg2bgr_ea)
+* [COLOR_BayerRG2BGR_VNG](_types_imgproc_.cvimgproc.md#color_bayerrg2bgr_vng)
+* [COLOR_BayerRG2GRAY](_types_imgproc_.cvimgproc.md#color_bayerrg2gray)
+* [COLOR_BayerRG2RGB](_types_imgproc_.cvimgproc.md#color_bayerrg2rgb)
+* [COLOR_BayerRG2RGBA](_types_imgproc_.cvimgproc.md#color_bayerrg2rgba)
+* [COLOR_BayerRG2RGB_EA](_types_imgproc_.cvimgproc.md#color_bayerrg2rgb_ea)
+* [COLOR_BayerRG2RGB_VNG](_types_imgproc_.cvimgproc.md#color_bayerrg2rgb_vng)
+* [COLOR_COLORCVT_MAX](_types_imgproc_.cvimgproc.md#color_colorcvt_max)
+* [COLOR_GRAY2BGR](_types_imgproc_.cvimgproc.md#color_gray2bgr)
+* [COLOR_GRAY2BGR555](_types_imgproc_.cvimgproc.md#color_gray2bgr555)
+* [COLOR_GRAY2BGR565](_types_imgproc_.cvimgproc.md#color_gray2bgr565)
+* [COLOR_GRAY2BGRA](_types_imgproc_.cvimgproc.md#color_gray2bgra)
+* [COLOR_GRAY2RGB](_types_imgproc_.cvimgproc.md#color_gray2rgb)
+* [COLOR_GRAY2RGBA](_types_imgproc_.cvimgproc.md#color_gray2rgba)
+* [COLOR_HLS2BGR](_types_imgproc_.cvimgproc.md#color_hls2bgr)
+* [COLOR_HLS2BGR_FULL](_types_imgproc_.cvimgproc.md#color_hls2bgr_full)
+* [COLOR_HLS2RGB](_types_imgproc_.cvimgproc.md#color_hls2rgb)
+* [COLOR_HLS2RGB_FULL](_types_imgproc_.cvimgproc.md#color_hls2rgb_full)
+* [COLOR_HSV2BGR](_types_imgproc_.cvimgproc.md#color_hsv2bgr)
+* [COLOR_HSV2BGR_FULL](_types_imgproc_.cvimgproc.md#color_hsv2bgr_full)
+* [COLOR_HSV2RGB](_types_imgproc_.cvimgproc.md#color_hsv2rgb)
+* [COLOR_HSV2RGB_FULL](_types_imgproc_.cvimgproc.md#color_hsv2rgb_full)
+* [COLOR_LBGR2Lab](_types_imgproc_.cvimgproc.md#color_lbgr2lab)
+* [COLOR_LBGR2Luv](_types_imgproc_.cvimgproc.md#color_lbgr2luv)
+* [COLOR_LRGB2Lab](_types_imgproc_.cvimgproc.md#color_lrgb2lab)
+* [COLOR_LRGB2Luv](_types_imgproc_.cvimgproc.md#color_lrgb2luv)
+* [COLOR_Lab2BGR](_types_imgproc_.cvimgproc.md#color_lab2bgr)
+* [COLOR_Lab2LBGR](_types_imgproc_.cvimgproc.md#color_lab2lbgr)
+* [COLOR_Lab2LRGB](_types_imgproc_.cvimgproc.md#color_lab2lrgb)
+* [COLOR_Lab2RGB](_types_imgproc_.cvimgproc.md#color_lab2rgb)
+* [COLOR_Luv2BGR](_types_imgproc_.cvimgproc.md#color_luv2bgr)
+* [COLOR_Luv2LBGR](_types_imgproc_.cvimgproc.md#color_luv2lbgr)
+* [COLOR_Luv2LRGB](_types_imgproc_.cvimgproc.md#color_luv2lrgb)
+* [COLOR_Luv2RGB](_types_imgproc_.cvimgproc.md#color_luv2rgb)
+* [COLOR_RGB2BGR](_types_imgproc_.cvimgproc.md#color_rgb2bgr)
+* [COLOR_RGB2BGR555](_types_imgproc_.cvimgproc.md#color_rgb2bgr555)
+* [COLOR_RGB2BGR565](_types_imgproc_.cvimgproc.md#color_rgb2bgr565)
+* [COLOR_RGB2BGRA](_types_imgproc_.cvimgproc.md#color_rgb2bgra)
+* [COLOR_RGB2GRAY](_types_imgproc_.cvimgproc.md#color_rgb2gray)
+* [COLOR_RGB2HLS](_types_imgproc_.cvimgproc.md#color_rgb2hls)
+* [COLOR_RGB2HLS_FULL](_types_imgproc_.cvimgproc.md#color_rgb2hls_full)
+* [COLOR_RGB2HSV](_types_imgproc_.cvimgproc.md#color_rgb2hsv)
+* [COLOR_RGB2HSV_FULL](_types_imgproc_.cvimgproc.md#color_rgb2hsv_full)
+* [COLOR_RGB2Lab](_types_imgproc_.cvimgproc.md#color_rgb2lab)
+* [COLOR_RGB2Luv](_types_imgproc_.cvimgproc.md#color_rgb2luv)
+* [COLOR_RGB2RGBA](_types_imgproc_.cvimgproc.md#color_rgb2rgba)
+* [COLOR_RGB2XYZ](_types_imgproc_.cvimgproc.md#color_rgb2xyz)
+* [COLOR_RGB2YCrCb](_types_imgproc_.cvimgproc.md#color_rgb2ycrcb)
+* [COLOR_RGB2YUV](_types_imgproc_.cvimgproc.md#color_rgb2yuv)
+* [COLOR_RGB2YUV_I420](_types_imgproc_.cvimgproc.md#color_rgb2yuv_i420)
+* [COLOR_RGB2YUV_IYUV](_types_imgproc_.cvimgproc.md#color_rgb2yuv_iyuv)
+* [COLOR_RGB2YUV_YV12](_types_imgproc_.cvimgproc.md#color_rgb2yuv_yv12)
+* [COLOR_RGBA2BGR](_types_imgproc_.cvimgproc.md#color_rgba2bgr)
+* [COLOR_RGBA2BGR555](_types_imgproc_.cvimgproc.md#color_rgba2bgr555)
+* [COLOR_RGBA2BGR565](_types_imgproc_.cvimgproc.md#color_rgba2bgr565)
+* [COLOR_RGBA2BGRA](_types_imgproc_.cvimgproc.md#color_rgba2bgra)
+* [COLOR_RGBA2GRAY](_types_imgproc_.cvimgproc.md#color_rgba2gray)
+* [COLOR_RGBA2RGB](_types_imgproc_.cvimgproc.md#color_rgba2rgb)
+* [COLOR_RGBA2YUV_I420](_types_imgproc_.cvimgproc.md#color_rgba2yuv_i420)
+* [COLOR_RGBA2YUV_IYUV](_types_imgproc_.cvimgproc.md#color_rgba2yuv_iyuv)
+* [COLOR_RGBA2YUV_YV12](_types_imgproc_.cvimgproc.md#color_rgba2yuv_yv12)
+* [COLOR_RGBA2mRGBA](_types_imgproc_.cvimgproc.md#color_rgba2mrgba)
+* [COLOR_XYZ2BGR](_types_imgproc_.cvimgproc.md#color_xyz2bgr)
+* [COLOR_XYZ2RGB](_types_imgproc_.cvimgproc.md#color_xyz2rgb)
+* [COLOR_YCrCb2BGR](_types_imgproc_.cvimgproc.md#color_ycrcb2bgr)
+* [COLOR_YCrCb2RGB](_types_imgproc_.cvimgproc.md#color_ycrcb2rgb)
+* [COLOR_YUV2BGR](_types_imgproc_.cvimgproc.md#color_yuv2bgr)
+* [COLOR_YUV2BGRA_I420](_types_imgproc_.cvimgproc.md#color_yuv2bgra_i420)
+* [COLOR_YUV2BGRA_IYUV](_types_imgproc_.cvimgproc.md#color_yuv2bgra_iyuv)
+* [COLOR_YUV2BGRA_NV12](_types_imgproc_.cvimgproc.md#color_yuv2bgra_nv12)
+* [COLOR_YUV2BGRA_NV21](_types_imgproc_.cvimgproc.md#color_yuv2bgra_nv21)
+* [COLOR_YUV2BGRA_UYNV](_types_imgproc_.cvimgproc.md#color_yuv2bgra_uynv)
+* [COLOR_YUV2BGRA_UYVY](_types_imgproc_.cvimgproc.md#color_yuv2bgra_uyvy)
+* [COLOR_YUV2BGRA_Y422](_types_imgproc_.cvimgproc.md#color_yuv2bgra_y422)
+* [COLOR_YUV2BGRA_YUNV](_types_imgproc_.cvimgproc.md#color_yuv2bgra_yunv)
+* [COLOR_YUV2BGRA_YUY2](_types_imgproc_.cvimgproc.md#color_yuv2bgra_yuy2)
+* [COLOR_YUV2BGRA_YUYV](_types_imgproc_.cvimgproc.md#color_yuv2bgra_yuyv)
+* [COLOR_YUV2BGRA_YV12](_types_imgproc_.cvimgproc.md#color_yuv2bgra_yv12)
+* [COLOR_YUV2BGRA_YVYU](_types_imgproc_.cvimgproc.md#color_yuv2bgra_yvyu)
+* [COLOR_YUV2BGR_I420](_types_imgproc_.cvimgproc.md#color_yuv2bgr_i420)
+* [COLOR_YUV2BGR_IYUV](_types_imgproc_.cvimgproc.md#color_yuv2bgr_iyuv)
+* [COLOR_YUV2BGR_NV12](_types_imgproc_.cvimgproc.md#color_yuv2bgr_nv12)
+* [COLOR_YUV2BGR_NV21](_types_imgproc_.cvimgproc.md#color_yuv2bgr_nv21)
+* [COLOR_YUV2BGR_UYNV](_types_imgproc_.cvimgproc.md#color_yuv2bgr_uynv)
+* [COLOR_YUV2BGR_UYVY](_types_imgproc_.cvimgproc.md#color_yuv2bgr_uyvy)
+* [COLOR_YUV2BGR_Y422](_types_imgproc_.cvimgproc.md#color_yuv2bgr_y422)
+* [COLOR_YUV2BGR_YUNV](_types_imgproc_.cvimgproc.md#color_yuv2bgr_yunv)
+* [COLOR_YUV2BGR_YUY2](_types_imgproc_.cvimgproc.md#color_yuv2bgr_yuy2)
+* [COLOR_YUV2BGR_YUYV](_types_imgproc_.cvimgproc.md#color_yuv2bgr_yuyv)
+* [COLOR_YUV2BGR_YV12](_types_imgproc_.cvimgproc.md#color_yuv2bgr_yv12)
+* [COLOR_YUV2BGR_YVYU](_types_imgproc_.cvimgproc.md#color_yuv2bgr_yvyu)
+* [COLOR_YUV2GRAY_420](_types_imgproc_.cvimgproc.md#color_yuv2gray_420)
+* [COLOR_YUV2GRAY_I420](_types_imgproc_.cvimgproc.md#color_yuv2gray_i420)
+* [COLOR_YUV2GRAY_IYUV](_types_imgproc_.cvimgproc.md#color_yuv2gray_iyuv)
+* [COLOR_YUV2GRAY_NV12](_types_imgproc_.cvimgproc.md#color_yuv2gray_nv12)
+* [COLOR_YUV2GRAY_NV21](_types_imgproc_.cvimgproc.md#color_yuv2gray_nv21)
+* [COLOR_YUV2GRAY_UYNV](_types_imgproc_.cvimgproc.md#color_yuv2gray_uynv)
+* [COLOR_YUV2GRAY_UYVY](_types_imgproc_.cvimgproc.md#color_yuv2gray_uyvy)
+* [COLOR_YUV2GRAY_Y422](_types_imgproc_.cvimgproc.md#color_yuv2gray_y422)
+* [COLOR_YUV2GRAY_YUNV](_types_imgproc_.cvimgproc.md#color_yuv2gray_yunv)
+* [COLOR_YUV2GRAY_YUY2](_types_imgproc_.cvimgproc.md#color_yuv2gray_yuy2)
+* [COLOR_YUV2GRAY_YUYV](_types_imgproc_.cvimgproc.md#color_yuv2gray_yuyv)
+* [COLOR_YUV2GRAY_YV12](_types_imgproc_.cvimgproc.md#color_yuv2gray_yv12)
+* [COLOR_YUV2GRAY_YVYU](_types_imgproc_.cvimgproc.md#color_yuv2gray_yvyu)
+* [COLOR_YUV2RGB](_types_imgproc_.cvimgproc.md#color_yuv2rgb)
+* [COLOR_YUV2RGBA_I420](_types_imgproc_.cvimgproc.md#color_yuv2rgba_i420)
+* [COLOR_YUV2RGBA_IYUV](_types_imgproc_.cvimgproc.md#color_yuv2rgba_iyuv)
+* [COLOR_YUV2RGBA_NV12](_types_imgproc_.cvimgproc.md#color_yuv2rgba_nv12)
+* [COLOR_YUV2RGBA_NV21](_types_imgproc_.cvimgproc.md#color_yuv2rgba_nv21)
+* [COLOR_YUV2RGBA_UYNV](_types_imgproc_.cvimgproc.md#color_yuv2rgba_uynv)
+* [COLOR_YUV2RGBA_UYVY](_types_imgproc_.cvimgproc.md#color_yuv2rgba_uyvy)
+* [COLOR_YUV2RGBA_Y422](_types_imgproc_.cvimgproc.md#color_yuv2rgba_y422)
+* [COLOR_YUV2RGBA_YUNV](_types_imgproc_.cvimgproc.md#color_yuv2rgba_yunv)
+* [COLOR_YUV2RGBA_YUY2](_types_imgproc_.cvimgproc.md#color_yuv2rgba_yuy2)
+* [COLOR_YUV2RGBA_YUYV](_types_imgproc_.cvimgproc.md#color_yuv2rgba_yuyv)
+* [COLOR_YUV2RGBA_YV12](_types_imgproc_.cvimgproc.md#color_yuv2rgba_yv12)
+* [COLOR_YUV2RGBA_YVYU](_types_imgproc_.cvimgproc.md#color_yuv2rgba_yvyu)
+* [COLOR_YUV2RGB_I420](_types_imgproc_.cvimgproc.md#color_yuv2rgb_i420)
+* [COLOR_YUV2RGB_IYUV](_types_imgproc_.cvimgproc.md#color_yuv2rgb_iyuv)
+* [COLOR_YUV2RGB_NV12](_types_imgproc_.cvimgproc.md#color_yuv2rgb_nv12)
+* [COLOR_YUV2RGB_NV21](_types_imgproc_.cvimgproc.md#color_yuv2rgb_nv21)
+* [COLOR_YUV2RGB_UYNV](_types_imgproc_.cvimgproc.md#color_yuv2rgb_uynv)
+* [COLOR_YUV2RGB_UYVY](_types_imgproc_.cvimgproc.md#color_yuv2rgb_uyvy)
+* [COLOR_YUV2RGB_Y422](_types_imgproc_.cvimgproc.md#color_yuv2rgb_y422)
+* [COLOR_YUV2RGB_YUNV](_types_imgproc_.cvimgproc.md#color_yuv2rgb_yunv)
+* [COLOR_YUV2RGB_YUY2](_types_imgproc_.cvimgproc.md#color_yuv2rgb_yuy2)
+* [COLOR_YUV2RGB_YUYV](_types_imgproc_.cvimgproc.md#color_yuv2rgb_yuyv)
+* [COLOR_YUV2RGB_YV12](_types_imgproc_.cvimgproc.md#color_yuv2rgb_yv12)
+* [COLOR_YUV2RGB_YVYU](_types_imgproc_.cvimgproc.md#color_yuv2rgb_yvyu)
+* [COLOR_YUV420p2BGR](_types_imgproc_.cvimgproc.md#color_yuv420p2bgr)
+* [COLOR_YUV420p2BGRA](_types_imgproc_.cvimgproc.md#color_yuv420p2bgra)
+* [COLOR_YUV420p2GRAY](_types_imgproc_.cvimgproc.md#color_yuv420p2gray)
+* [COLOR_YUV420p2RGB](_types_imgproc_.cvimgproc.md#color_yuv420p2rgb)
+* [COLOR_YUV420p2RGBA](_types_imgproc_.cvimgproc.md#color_yuv420p2rgba)
+* [COLOR_YUV420sp2BGR](_types_imgproc_.cvimgproc.md#color_yuv420sp2bgr)
+* [COLOR_YUV420sp2BGRA](_types_imgproc_.cvimgproc.md#color_yuv420sp2bgra)
+* [COLOR_YUV420sp2GRAY](_types_imgproc_.cvimgproc.md#color_yuv420sp2gray)
+* [COLOR_YUV420sp2RGB](_types_imgproc_.cvimgproc.md#color_yuv420sp2rgb)
+* [COLOR_YUV420sp2RGBA](_types_imgproc_.cvimgproc.md#color_yuv420sp2rgba)
+* [COLOR_mRGBA2RGBA](_types_imgproc_.cvimgproc.md#color_mrgba2rgba)
+* [FILLED](_types_imgproc_.cvimgproc.md#filled)
+* [GC_BGD](_types_imgproc_.cvimgproc.md#gc_bgd)
+* [GC_EVAL](_types_imgproc_.cvimgproc.md#gc_eval)
+* [GC_EVAL_FREEZE_MODEL](_types_imgproc_.cvimgproc.md#gc_eval_freeze_model)
+* [GC_FGD](_types_imgproc_.cvimgproc.md#gc_fgd)
+* [GC_INIT_WITH_MASK](_types_imgproc_.cvimgproc.md#gc_init_with_mask)
+* [GC_INIT_WITH_RECT](_types_imgproc_.cvimgproc.md#gc_init_with_rect)
+* [GC_PR_BGD](_types_imgproc_.cvimgproc.md#gc_pr_bgd)
+* [GC_PR_FGD](_types_imgproc_.cvimgproc.md#gc_pr_fgd)
+* [LINE_4](_types_imgproc_.cvimgproc.md#line_4)
+* [LINE_8](_types_imgproc_.cvimgproc.md#line_8)
+* [LINE_AA](_types_imgproc_.cvimgproc.md#line_aa)
 
 ### Methods
 
-* [FS_createDataFile](_types_opencv_.cv.md#fs_createdatafile)
-* [cvtColor](_types_opencv_.cv.md#cvtcolor)
-* [dilate](_types_opencv_.cv.md#dilate)
-* [exceptionFromPtr](_types_opencv_.cv.md#exceptionfromptr)
-* [getBuildInformation](_types_opencv_.cv.md#getbuildinformation)
-* [grabCut](_types_opencv_.cv.md#grabcut)
-* [imread](_types_opencv_.cv.md#imread)
-* [imshow](_types_opencv_.cv.md#imshow)
-* [matFromImageData](_types_opencv_.cv.md#matfromimagedata)
-* [morphologyDefaultBorderValue](_types_opencv_.cv.md#morphologydefaultbordervalue)
-* [rectangle](_types_opencv_.cv.md#rectangle)
+* [cvtColor](_types_imgproc_.cvimgproc.md#cvtcolor)
+* [grabCut](_types_imgproc_.cvimgproc.md#grabcut)
 
 ## Properties
-
-###  BORDER_CONSTANT
-
-• **BORDER_CONSTANT**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_CONSTANT](_types_coreboder_.cvcoreborder.md#border_constant)*
-
-Defined in types/coreBoder.ts:5
-
-iiiiii|abcdefgh|iiiiiii with some specified i
-
-___
-
-###  BORDER_DEFAULT
-
-• **BORDER_DEFAULT**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_DEFAULT](_types_coreboder_.cvcoreborder.md#border_default)*
-
-Defined in types/coreBoder.ts:33
-
-same as BORDER_REFLECT_101
-
-___
-
-###  BORDER_ISOLATED
-
-• **BORDER_ISOLATED**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_ISOLATED](_types_coreboder_.cvcoreborder.md#border_isolated)*
-
-Defined in types/coreBoder.ts:37
-
-do not look outside of ROI
-
-___
-
-###  BORDER_REFLECT
-
-• **BORDER_REFLECT**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT](_types_coreboder_.cvcoreborder.md#border_reflect)*
-
-Defined in types/coreBoder.ts:13
-
-fedcba|abcdefgh|hgfedcb
-
-___
-
-###  BORDER_REFLECT101
-
-• **BORDER_REFLECT101**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT101](_types_coreboder_.cvcoreborder.md#border_reflect101)*
-
-Defined in types/coreBoder.ts:29
-
-same as BORDER_REFLECT_101
-
-___
-
-###  BORDER_REFLECT_101
-
-• **BORDER_REFLECT_101**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT_101](_types_coreboder_.cvcoreborder.md#border_reflect_101)*
-
-Defined in types/coreBoder.ts:21
-
-gfedcb|abcdefgh|gfedcba
-
-___
-
-###  BORDER_REPLICATE
-
-• **BORDER_REPLICATE**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REPLICATE](_types_coreboder_.cvcoreborder.md#border_replicate)*
-
-Defined in types/coreBoder.ts:9
-
-aaaaaa|abcdefgh|hhhhhhh
-
-___
-
-###  BORDER_TRANSPARENT
-
-• **BORDER_TRANSPARENT**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_TRANSPARENT](_types_coreboder_.cvcoreborder.md#border_transparent)*
-
-Defined in types/coreBoder.ts:25
-
-uvwxyz|abcdefgh|ijklmno
-
-___
-
-###  BORDER_WRAP
-
-• **BORDER_WRAP**: *number*
-
-*Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_WRAP](_types_coreboder_.cvcoreborder.md#border_wrap)*
-
-Defined in types/coreBoder.ts:17
-
-cdefgh|abcdefgh|abcdefg
-
-___
 
 ###  COLOR_BGR2BGR555
 
@@ -2444,62 +2306,6 @@ Defined in types/imgProcColor.ts:163
 
 ___
 
-###  CV_16S
-
-• **CV_16S**: *number*
-
-*Defined in [types/opencv.ts:17](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L17)*
-
-___
-
-###  CV_32S
-
-• **CV_32S**: *number*
-
-*Defined in [types/opencv.ts:19](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L19)*
-
-___
-
-###  CV_8S
-
-• **CV_8S**: *number*
-
-*Defined in [types/opencv.ts:20](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L20)*
-
-___
-
-###  CV_8U
-
-• **CV_8U**: *number*
-
-*Defined in [types/opencv.ts:16](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L16)*
-
-___
-
-###  CV_8UC1
-
-• **CV_8UC1**: *number*
-
-*Defined in [types/opencv.ts:15](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L15)*
-
-___
-
-###  CV_8UC3
-
-• **CV_8UC3**: *`TODO`*
-
-*Defined in [types/opencv.ts:18](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L18)*
-
-___
-
-###  CV_8UC4
-
-• **CV_8UC4**: *number*
-
-*Defined in [types/opencv.ts:21](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L21)*
-
-___
-
 ###  FILLED
 
 • **FILLED**: *number*
@@ -2507,16 +2313,6 @@ ___
 *Inherited from [CVImgProcLine](_types_imgproc_.cvimgprocline.md).[FILLED](_types_imgproc_.cvimgprocline.md#filled)*
 
 Defined in types/imgproc.ts:9
-
-___
-
-###  FS
-
-• **FS**: *[FS](_types_emscripten_.fs.md)*
-
-*Inherited from void*
-
-*Defined in [types/opencv.ts:87](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L87)*
 
 ___
 
@@ -2644,84 +2440,7 @@ ___
 
 Defined in types/imgproc.ts:12
 
-___
-
-###  Mat
-
-• **Mat**: *[Mat](../classes/_types_opencv_.mat.md)*
-
-*Defined in [types/opencv.ts:35](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L35)*
-
-___
-
-###  Point
-
-• **Point**: *[Point](../classes/_types_opencv_.point.md)*
-
-*Defined in [types/opencv.ts:12](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L12)*
-
-___
-
-###  Rect
-
-• **Rect**: *[Rect](../classes/_types_opencv_.rect.md)*
-
-*Defined in [types/opencv.ts:8](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L8)*
-
-___
-
-###  Scalar
-
-• **Scalar**: *[Scalar](../classes/_types_opencv_.scalar.md)*
-
-*Defined in [types/opencv.ts:7](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L7)*
-
-___
-
-###  Size
-
-• **Size**: *[Size](../classes/_types_opencv_.size.md)*
-
-*Defined in [types/opencv.ts:13](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L13)*
-
-___
-
-###  onRuntimeInitialized
-
-• **onRuntimeInitialized**: *function*
-
-*Inherited from void*
-
-*Defined in [types/opencv.ts:86](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L86)*
-
-#### Type declaration:
-
-▸ (): *void*
-
 ## Methods
-
-###  FS_createDataFile
-
-▸ **FS_createDataFile**(`arg0`: string, `path`: string, `data`: `Uint8Array`, `arg3`: boolean, `arg4`: boolean, `arg5`: boolean): *`TODO`*
-
-*Inherited from void*
-
-*Defined in [types/opencv.ts:88](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L88)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`arg0` | string |
-`path` | string |
-`data` | `Uint8Array` |
-`arg3` | boolean |
-`arg4` | boolean |
-`arg5` | boolean |
-
-**Returns:** *`TODO`*
-
-___
 
 ###  cvtColor
 
@@ -2741,56 +2460,6 @@ Name | Type |
 `dstCn?` | undefined \| number |
 
 **Returns:** *void*
-
-___
-
-###  dilate
-
-▸ **dilate**(`src`: [Mat](../classes/_types_opencv_.mat.md), `dst`: [Mat](../classes/_types_opencv_.mat.md), `M`: [Mat](../classes/_types_opencv_.mat.md), `anchor`: [Point](../classes/_types_opencv_.point.md), `iterations`: number, `borderType`: [BorderTypes](../modules/_types_coreboder_.md#bordertypes), `borderValue`: [Scalar](../classes/_types_opencv_.scalar.md)): *`TODO`*
-
-*Defined in [types/opencv.ts:10](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L10)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | [Mat](../classes/_types_opencv_.mat.md) |
-`dst` | [Mat](../classes/_types_opencv_.mat.md) |
-`M` | [Mat](../classes/_types_opencv_.mat.md) |
-`anchor` | [Point](../classes/_types_opencv_.point.md) |
-`iterations` | number |
-`borderType` | [BorderTypes](../modules/_types_coreboder_.md#bordertypes) |
-`borderValue` | [Scalar](../classes/_types_opencv_.scalar.md) |
-
-**Returns:** *`TODO`*
-
-___
-
-###  exceptionFromPtr
-
-▸ **exceptionFromPtr**(`err`: number): *`TODO`*
-
-*Inherited from void*
-
-*Defined in [types/opencv.ts:85](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L85)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`err` | number |
-
-**Returns:** *`TODO`*
-
-___
-
-###  getBuildInformation
-
-▸ **getBuildInformation**(): *string*
-
-*Defined in [types/opencv.ts:33](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L33)*
-
-**Returns:** *string*
 
 ___
 
@@ -2815,88 +2484,3 @@ Name | Type |
 `mode` | [GrabCutModes](../modules/_types_imgprocgrabcut_.md#grabcutmodes) |
 
 **Returns:** *`TODO`*
-
-___
-
-###  imread
-
-▸ **imread**(`canvasOrImgId`: string): *[Mat](../classes/_types_opencv_.mat.md)*
-
-*Defined in [types/opencv.ts:31](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L31)*
-
-Important, this method was modified by OpenCv.js and only works on the browser accepting an html canvas or image element id
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`canvasOrImgId` | string |
-
-**Returns:** *[Mat](../classes/_types_opencv_.mat.md)*
-
-___
-
-###  imshow
-
-▸ **imshow**(`canvasOrImgId`: string, `dst`: [Mat](../classes/_types_opencv_.mat.md)): *`TODO`*
-
-*Defined in [types/opencv.ts:26](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L26)*
-
-Important, this method was modified by OpenCv.js and only works on the browser accepting an html canvas or image element id
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`canvasOrImgId` | string |
-`dst` | [Mat](../classes/_types_opencv_.mat.md) |
-
-**Returns:** *`TODO`*
-
-___
-
-###  matFromImageData
-
-▸ **matFromImageData**(`imageData`: [ImageData](_types_opencv_.imagedata.md)): *[Mat](../classes/_types_opencv_.mat.md)*
-
-*Defined in [types/opencv.ts:37](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L37)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`imageData` | [ImageData](_types_opencv_.imagedata.md) |
-
-**Returns:** *[Mat](../classes/_types_opencv_.mat.md)*
-
-___
-
-###  morphologyDefaultBorderValue
-
-▸ **morphologyDefaultBorderValue**(): *`TODO`*
-
-*Defined in [types/opencv.ts:11](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L11)*
-
-**Returns:** *`TODO`*
-
-___
-
-###  rectangle
-
-▸ **rectangle**(`src`: [Mat](../classes/_types_opencv_.mat.md), `point1`: [Point](../classes/_types_opencv_.point.md), `point2`: [Point](../classes/_types_opencv_.point.md), `color`: [Scalar](../classes/_types_opencv_.scalar.md), `thickness?`: undefined | number, `lineType?`: [LineTypes](../modules/_types_imgproc_.md#linetypes), `shift?`: undefined | number): *void*
-
-*Defined in [types/opencv.ts:9](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L9)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | [Mat](../classes/_types_opencv_.mat.md) |
-`point1` | [Point](../classes/_types_opencv_.point.md) |
-`point2` | [Point](../classes/_types_opencv_.point.md) |
-`color` | [Scalar](../classes/_types_opencv_.scalar.md) |
-`thickness?` | undefined \| number |
-`lineType?` | [LineTypes](../modules/_types_imgproc_.md#linetypes) |
-`shift?` | undefined \| number |
-
-**Returns:** *void*

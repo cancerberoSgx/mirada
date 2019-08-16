@@ -29,7 +29,7 @@
 
 \+ **new Rect**(`x`: number, `y`: number, `width`: number, `height`: number): *[Rect](_types_opencv_.rect.md)*
 
-Defined in types/opencv.ts:68
+*Defined in [types/opencv.ts:76](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L76)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Name | Type |
 
 • **height**: *number*
 
-Defined in types/opencv.ts:73
+*Defined in [types/opencv.ts:81](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L81)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **width**: *number*
 
-Defined in types/opencv.ts:72
+*Defined in [types/opencv.ts:80](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L80)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **x**: *number*
 
-Defined in types/opencv.ts:70
+*Defined in [types/opencv.ts:78](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L78)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **y**: *number*
 
-Defined in types/opencv.ts:71
+*Defined in [types/opencv.ts:79](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L79)*

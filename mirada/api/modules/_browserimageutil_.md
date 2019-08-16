@@ -19,7 +19,7 @@
 
 ▸ **createFileFromUrl**(`path`: string, `url`: string, `callback?`: undefined | function): *`Promise<unknown>`*
 
-*Defined in [browserImageUtil.ts:45](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/browserImageUtil.ts#L45)*
+*Defined in [browserImageUtil.ts:45](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/browserImageUtil.ts#L45)*
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **getImageData**(`url`: string): *`Promise<ImageData>`*
 
-*Defined in [browserImageUtil.ts:4](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/browserImageUtil.ts#L4)*
+*Defined in [browserImageUtil.ts:4](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/browserImageUtil.ts#L4)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **htmlImageData**(`img`: [Mat](../classes/_types_opencv_.mat.md)): *`ImageData`*
 
-*Defined in [browserImageUtil.ts:39](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/browserImageUtil.ts#L39)*
+*Defined in [browserImageUtil.ts:39](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/browserImageUtil.ts#L39)*
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **renderInCanvas**(`mat`: [Mat](../classes/_types_opencv_.mat.md), `canvas?`: `HTMLCanvasElement`, `appendToBody`: boolean): *`HTMLCanvasElement`*
 
-*Defined in [browserImageUtil.ts:21](https://github.com/cancerberoSgx/mirada/blob/b359ba5/mirada/src/browserImageUtil.ts#L21)*
+*Defined in [browserImageUtil.ts:21](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/browserImageUtil.ts#L21)*
 
 **Parameters:**
 

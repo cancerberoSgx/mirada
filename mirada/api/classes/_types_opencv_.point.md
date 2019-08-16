@@ -25,7 +25,7 @@
 
 \+ **new Point**(`x`: number, `y`: number): *[Point](_types_opencv_.point.md)*
 
-Defined in types/opencv.ts:56
+*Defined in [types/opencv.ts:64](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L64)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ Name | Type |
 
 • **x**: *number*
 
-Defined in types/opencv.ts:58
+*Defined in [types/opencv.ts:66](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L66)*
 
 ___
 
@@ -50,4 +50,4 @@ ___
 
 • **y**: *number*
 
-Defined in types/opencv.ts:59
+*Defined in [types/opencv.ts:67](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L67)*
