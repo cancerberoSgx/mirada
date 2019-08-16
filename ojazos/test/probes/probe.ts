@@ -34,7 +34,7 @@ testMain()
 
 async function testGrabCut() {
   await loadOpencv()
-  var src = cv.matFromImageData(await getImageData('lena.jpg'))
+  var src = cv.matFromImageData(await getImageData('lenna.jpg'))
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
   let mask = new cv.Mat()
   let bgdModel = new cv.Mat()

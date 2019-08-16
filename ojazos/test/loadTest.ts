@@ -1,6 +1,9 @@
 import test from 'ava'
 import { distance, read } from 'jimp'
+import { loadOjazos } from './testUtil';
 import { loadOpencv } from '../src'
+
+test.before(loadOjazos)
 
 test('library loads', async t => {
   await loadOpencv()

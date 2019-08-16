@@ -31,7 +31,7 @@ export interface CV extends CV_WASM {
   matFromImageData(imageData: ImageData): Mat
 }
 
-interface ImageData {
+export interface ImageData {
   data: ArrayBufferView
   width: number;
   height: number;
@@ -49,28 +49,33 @@ export declare class Mat {
   public delete(): void
 }
 
-declare class Scalar extends Array<number> {
+export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar
 }
 
-declare class Point {
+export declare class Point {
   public constructor(x: number, y: number)
   public x: number
   public y: number
 }
 
-declare class Size {
+export declare class Size {
   public constructor(width: number, height: number)
   public width: number
   public height: number
 }
 
-declare class Rect {
+export declare class Rect {
   public constructor(x: number, y: number, width: number, height: number)
   public x: number
   public y: number
   public width: number
   public height: number
+}
+
+export interface FormatProxy {
+  decode(buffer:ArrayBuffer, format?:string):Promise<ImageData>
+  encode(data:ImageData, format:string):Promise<ArrayBuffer>
 }
 
 interface CV_WASM {

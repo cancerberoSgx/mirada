@@ -1,4 +1,4 @@
-import { Mat } from './types/opencvTypes'
+import {Mat, imageData} from '.'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -39,7 +39,7 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
     default:
       throw new Error('Bad number of channels (Source image must have 1, 3 or 4 channels)')
   }
-  var imgData = new ImageData(new Uint8ClampedArray(img.data), img.cols, img.rows)
+  var imgData = imageData(img)
   var ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   canvas.width = imgData.width
@@ -48,6 +48,7 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
   img.delete()
   return canvas
 }
+
 
 export async function createFileFromUrl(path: string, url: string, callback?: (error?: Error) => void) {
   return new Promise((resolve, reject) => {

@@ -23,39 +23,24 @@ export class OpenCvBrowserUtils {
       return Promise.resolve()
     }
     return new Promise((resolve, reject) => {
-      // Module = {
-      //   preRun: function() {
-      //     debugger
-      //     if (isNode) {
-      //       FS.mount(NODEFS, { root: nodeFsLocalRoot }, emscriptenNodeFsRoot);
-      //     }
-      //   },
-      //   // onRuntimeInitialized: function(){
-      //   //   opencvReady.resolve(cv)
-      //   // }
-      // }
       let script = document.createElement('script')!
       script.setAttribute('async', '')
       script.setAttribute('type', 'text/javascript')
       script.addEventListener('load', async () => {
-        // const cv = await opencvReady
-        const g = getGlobal()
-
-        if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
+        const cv = getGlobal().cv
+        if (typeof cv !== 'undefined' && typeof cv.getBuildInformation !== 'undefined') {
           this.opencvLoaded = true
           opencvReady.resolve()
-          console.log(g.cv.getBuildInformation())
+          console.log(cv.getBuildInformation())
           onloadCallback && onloadCallback()
-          resolve(g.cv)
+          resolve(cv)
         }
         else { // WASM
-          // debugger
-          g.cv = typeof g.cv === 'undefined' ? {} : g.cv
-          g.cv.onRuntimeInitialized = () => {
-            // debugger  
+          getGlobal().cv = typeof cv === 'undefined' ? {} : cv
+          cv.onRuntimeInitialized = () => {
             this.opencvLoaded = true
             opencvReady.resolve()
-            console.log(g.cv.getBuildInformation())
+            console.log(cv.getBuildInformation())
             onloadCallback && onloadCallback()
             resolve()
           }

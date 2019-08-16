@@ -1,5 +1,5 @@
 {
-  "name": "ojazos",
+  "name": "ojos",
   "version": "0.0.1",
   "description": "opencv.js proposal for npm package and node.js and CLI API",
   "main": "dist/src/index.js",
@@ -26,15 +26,19 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {
+    "@types/js-base64": "^2.3.1",
     "@types/node": "^12.7.1",
     "ava": "^2.2.0",
     "babel-polyfill": "^6.26.0",
+    "file-type": "^12.1.0",
     "jimp": "^0.6.4",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "js-base64": "^2.5.1",
     "misc-utils-of-mine-generic": "^0.2.18"
   },
   "repository": {
