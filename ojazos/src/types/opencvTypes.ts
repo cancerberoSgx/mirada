@@ -1,11 +1,11 @@
+import { TODO } from 'misc-utils-of-mine-generic'
 import { FS } from './emscriptenTypes'
-import { TODO } from 'misc-utils-of-mine-generic';
 
 export interface CV extends CV_WASM {
   rectangle(src: Mat, point1: Point, point2: Point, color: Scalar): TODO;
   GC_INIT_WITH_RECT: TODO;
   Scalar: typeof Scalar;
-  Rect:typeof Rect
+  Rect: typeof Rect
   COLOR_RGBA2RGB: string;
   dilate(src: Mat, dst: Mat, M: Mat, anchor: Point, arg4: number, BORDER_CONSTANT: CV['BORDER_CONSTANT'], arg6: TODO): TODO
   grabCut(src: Mat, mask: Mat, rect: TODO, bgdModel: Mat, fgdModel: Mat, arg5: number, GC_INIT_WITH_RECT: TODO): TODO;
@@ -26,13 +26,13 @@ export interface CV extends CV_WASM {
   COLOR_RGBA2GRAY: string
   imshow(canvasOrImgId: string, dst: Mat): TODO
   imread(canvasOrImgId: string): Mat
-  cvtColor(src: TODO, dst: Mat, color: string, arg?:number): TODO
+  cvtColor(src: TODO, dst: Mat, color: string, arg?: number): TODO
   getBuildInformation(): string
   matFromImageData(imageData: ImageData): Mat
 }
 
 interface ImageData {
-  data:ArrayBufferView
+  data: ArrayBufferView
   width: number;
   height: number;
 }
@@ -42,35 +42,35 @@ export declare class Mat {
   public cols: number
   public rows: number
   public data: Uint8ClampedArray
-  public ucharPtr(i: number, j: number): TODO 
-  static ones(arg0: number, arg1: number, CV_8U: number): Mat 
+  public ucharPtr(i: number, j: number): TODO
+  static ones(arg0: number, arg1: number, CV_8U: number): Mat
   public convertTo(img: Mat, CV_8U: number, scale: number, shift: number): void
   public type(): number
   public delete(): void
 }
 
-declare class  Scalar extends Array<number> {
-  public static all(...v:number[]):Scalar
+declare class Scalar extends Array<number> {
+  public static all(...v: number[]): Scalar
 }
 
 declare class Point {
-  public constructor(x:number,y:number)
-  public x:number
-  public y:number
+  public constructor(x: number, y: number)
+  public x: number
+  public y: number
 }
 
 declare class Size {
-  public constructor(width:number,height:number)
-  public width:number
-  public height:number
+  public constructor(width: number, height: number)
+  public width: number
+  public height: number
 }
 
-declare class Rect  {
-  public constructor(x:number,y:number,width:number,height:number)
-  public x:number
-  public y:number  
-  public width:number
-  public height:number
+declare class Rect {
+  public constructor(x: number, y: number, width: number, height: number)
+  public x: number
+  public y: number
+  public width: number
+  public height: number
 }
 
 interface CV_WASM {
@@ -81,5 +81,5 @@ interface CV_WASM {
 }
 
 declare global {
-  var cv:CV
+  var cv: CV
 }

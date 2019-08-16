@@ -10,9 +10,9 @@ utils.addFileInputHandler('fileInput', 'canvasInput')
 
 let tryIt = document.getElementById('tryIt')!
 tryIt.addEventListener('click', () => {
-    utils.executeCode('codeEditor')
+  utils.executeCode('codeEditor')
 })
 
 utils.loadOpenCv(() => {
-    tryIt.removeAttribute('disabled')
+  tryIt.removeAttribute('disabled')
 })

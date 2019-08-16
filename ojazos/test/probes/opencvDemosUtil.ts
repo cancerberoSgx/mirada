@@ -1,11 +1,11 @@
-import {opencvReady} from '../../src/opencvReady'
-import {getGlobal} from 'misc-utils-of-mine-generic'
+import { getGlobal } from 'misc-utils-of-mine-generic'
+import { opencvReady } from '../../src/opencvReady'
 
 /**
  * Ported from doc/js_tutorials/js_assets/utils.js - only useful in tests
  */
 export class OpenCvBrowserUtils {
-public opencvLoaded=false
+  public opencvLoaded = false
   protected errorOutput: HTMLElement | undefined
   protected OPENCV_URL: string
   protected video?: HTMLVideoElement
@@ -16,10 +16,10 @@ public opencvLoaded=false
     this.errorOutput = o.errorOutputId ? document.getElementById(o.errorOutputId) || undefined : undefined
     this.OPENCV_URL = o.OPENCV_URL || 'opencv.js'
   }
-  
+
   public loadOpenCv(onloadCallback?: (...args: any[]) => void) {
-    if(this.opencvLoaded){
-      onloadCallback&&onloadCallback()
+    if (this.opencvLoaded) {
+      onloadCallback && onloadCallback()
       return Promise.resolve()
     }
     return new Promise((resolve, reject) => {
@@ -40,21 +40,21 @@ public opencvLoaded=false
       script.addEventListener('load', async () => {
         // const cv = await opencvReady
         const g = getGlobal()
-        
-        if (typeof g.cv!=='undefined'&&typeof g.cv.getBuildInformation !== 'undefined') {
+
+        if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
           this.opencvLoaded = true
-          opencvReady.resolve( )
-          console.log(g.cv .getBuildInformation())
+          opencvReady.resolve()
+          console.log(g.cv.getBuildInformation())
           onloadCallback && onloadCallback()
           resolve(g.cv)
         }
         else { // WASM
           // debugger
-          g.cv = typeof g.cv==='undefined' ? {} : g.cv
+          g.cv = typeof g.cv === 'undefined' ? {} : g.cv
           g.cv.onRuntimeInitialized = () => {
-          // debugger  
-          this.opencvLoaded = true
-          opencvReady.resolve()
+            // debugger  
+            this.opencvLoaded = true
+            opencvReady.resolve()
             console.log(g.cv.getBuildInformation())
             onloadCallback && onloadCallback()
             resolve()
@@ -113,7 +113,7 @@ public opencvLoaded=false
     let ctx = canvas.getContext('2d')!
     let img = new Image()
     img.crossOrigin = 'anonymous'
-    img.onload = function () {
+    img.onload = function() {
       canvas.width = img.width
       canvas.height = img.height
       ctx.drawImage(img, 0, 0, img.width, img.height)

@@ -1,10 +1,10 @@
 import test from 'ava'
-import { read, clone, distance } from 'jimp'
-import { opencvReady, getImageData, loadOpencv } from '../src';
+import { distance, read } from 'jimp'
+import { loadOpencv } from '../src'
 
 test('library loads', async t => {
   await loadOpencv()
-  t.true( cv.getBuildInformation().includes('General configuration for OpenCV'))
+  t.true(cv.getBuildInformation().includes('General configuration for OpenCV'))
 })
 
 test('load data', async t => {

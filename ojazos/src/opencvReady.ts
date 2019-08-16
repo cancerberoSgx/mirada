@@ -1,6 +1,6 @@
+import { existsSync } from 'fs'
 import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
-import { existsSync } from 'fs';
-import { relative, resolve as pathResolve } from 'path';
+import { relative, resolve as pathResolve } from 'path'
 
 export const opencvReady = new Deferred<void>()
 
@@ -45,7 +45,7 @@ function loadOpencvNode(o: LoadOptions = {}) {
       preRun: () => {
         if (isNode) {
           g.Module.FS.mkdir('/work')
-          g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: pathResolve('.') }, '/work');
+          g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: pathResolve('.') }, '/work')
         }
       },
       onRuntimeInitialized: () => {
@@ -59,10 +59,10 @@ function loadOpencvNode(o: LoadOptions = {}) {
   })
 }
 
-function resolveNodeModule(p: string){
-  var r =  withoutExtension(relative(__dirname, pathResolve(p)))
-  if(!r.startsWith('.')){
-    r='./'+r
+function resolveNodeModule(p: string) {
+  var r = withoutExtension(relative(__dirname, pathResolve(p)))
+  if (!r.startsWith('.')) {
+    r = './' + r
   }
   return r
 }
