@@ -1,5 +1,5 @@
 {
-  "name": "ojazos-playground",
+  "name": "mirada-playground",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,9 +8,9 @@
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\"  ../formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": "npm run organizeImports && npm run format",
     "start": " npm run build-only && npx parcel serve src/index.html -d docs ",
-    "copy": "mkdir -p docs; cp node_modules/ojazos/dist/src/opencv.js docs",
-    "build": "npm run clean  && npm run build-only && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/index.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && rm -rf ../../demos/docs/ojazos-playground && mkdir -p ../../demos/docs/ojazos-playground &&  mv docs/* ../../demos/docs/ojazos-playground/",
-    "build-only": "P=$PWD &&  cd ../ojazos && npm run build && npm run copy && cd \"$P\" && npx tsc && npm run copy ",
+    "copy": "mkdir -p docs; cp node_modules/mirada/dist/src/opencv.js docs",
+    "build": "npm run clean  && npm run build-only && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/index.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && rm -rf ../../demos/docs/mirada-playground && mkdir -p ../../demos/docs/mirada-playground &&  mv docs/* ../../demos/docs/mirada-playground/",
+    "build-only": "P=$PWD &&  cd ../mirada && npm run build && npm run copy && cd \"$P\" && npx tsc && npm run copy ",
     "all": "npm run clean && npm run lint && npm run build"
   },
   "keywords": [
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "misc-utils-of-mine-generic": "^0.2.15",
-    "ojazos": "file:../ojazos",
+    "mirada": "file:../mirada",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "semantic-ui-css": "^2.4.1",
@@ -41,9 +41,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cancerberoSgx/magica.git"
+    "url": "https://github.com/cancerberoSgx/mirada.git"
   },
   "bugs": {
-    "url": "https://github.com/cancerberoSgx/magica"
+    "url": "https://github.com/cancerberoSgx/mirada"
   }
 }

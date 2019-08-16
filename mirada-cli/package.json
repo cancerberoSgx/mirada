@@ -1,7 +1,7 @@
 {
-  "name": "ojos",
+  "name": "mirada-cli",
   "version": "0.0.1",
-  "description": "Command line tool for opencv unique image processing filters and effects, based on ojazos which is an easy to use API for opencv.js",
+  "description": "Command line tool for opencv unique image processing filters and effects, based on mirada which is an easy to use API for opencv.js",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -37,7 +37,7 @@
     "magica": "^0.2.14",
     "minimist": "^1.2.0",
     "misc-utils-of-mine-generic": "^0.2.18",
-    "ojazos": "file:../ojazos",
+    "mirada": "file:../mirada",
     "shelljs": "^0.8.3"
   },
   "repository": {

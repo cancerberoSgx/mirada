@@ -18,7 +18,7 @@ class JimpFormatProxy implements FormatProxy {
   }
 }
 
-export async function loadOjazos() {
+export async function loadMirada() {
   await loadOpencv()
   installFormatProxy(new JimpFormatProxy())
 }

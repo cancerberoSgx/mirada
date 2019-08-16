@@ -1,9 +1,9 @@
 import test from 'ava'
 import { File } from '../src'
-import { loadOjazos } from './testUtil'
+import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 
-test.before(loadOjazos)
+test.before(loadMirada)
 
 test('fromFile', async t => {
   const file = await File.fromFile('test/assets/lenna.jpg')

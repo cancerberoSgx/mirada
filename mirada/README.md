@@ -12,7 +12,7 @@ High level opencv API for Node.js and Browser. Based on OpenCv.js, supporting np
 
 ## Install
 
-npm i ../docs/mirada
+npm i mirada
 
 ## Usage
 

@@ -32,14 +32,14 @@ function loadOpencvNode(o: LoadOptions = {}) {
   return new Promise(resolve => {
     var path: string
     const g = getGlobal()
-    if (existsSync('./node_modules/ojazos/dist/src/opencv.js')) {
-      path = resolveNodeModule('./node_modules/ojazos/dist/src/opencv.js')
+    if (existsSync('./node_modules/mirada/dist/src/opencv.js')) {
+      path = resolveNodeModule('./node_modules/mirada/dist/src/opencv.js')
     }
     else if (existsSync('./dist/src/opencv.js')) {
       path = resolveNodeModule('./dist/src/opencv.js')
     }
     else {
-      throw new Error('opencv.js not found. Locations tried: ./node_modules/ojazos/dist/src/opencv.js and ./dist/src/opencv.js')
+      throw new Error('opencv.js not found. Locations tried: ./node_modules/mirada/dist/src/opencv.js and ./dist/src/opencv.js')
     }
     g.Module = {
       preRun: () => {
