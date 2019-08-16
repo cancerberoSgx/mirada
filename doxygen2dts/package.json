@@ -1,0 +1,48 @@
+{
+  "name": "doxygen2dts",
+  "version": "0.0.1",
+  "description": "creates TypeScript dts from doxygen xml output ",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist docs",
+    "clean-npm": " rm -rf node_modules/ package-lock.json",
+    "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
+    "test-js": "npm run build && npx ava --serial --concurrency 1 --config ava.config-js.js",
+    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "lint": " npm run organizeImports && npm run format",
+    "prepare": "npm run build ",
+    "run": "npm run build && rm -rf tmp && node --max-old-space-size=5000  dist/src/test.js",
+    "copy": "exit 0; cp -r static/opencv.js dist/src",
+    "build": "npm run clean && npx tsc&& npm run copy",
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"
+  },
+  "keywords": [
+    "typescript",
+    "opencv.js",
+    "opencv"
+  ],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.7.1",
+    "@types/shelljs": "^0.8.5",
+    "@types/xml2js": "^0.4.4",
+    "ts-node": "^8.3.0",
+    "ts-refactor": "0.0.9",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "misc-utils-of-mine-generic": "^0.2.18",
+    "shelljs": "^0.8.3",
+    "xml2js": "^0.4.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/opencv.js-projects-of-mine"
+  }
+}
