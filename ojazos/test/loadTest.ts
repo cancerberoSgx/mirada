@@ -1,18 +1,24 @@
 import test from 'ava'
+import { read, clone, distance } from 'jimp'
+import { opencvReady, getImageData, loadOpencv } from '../src';
 
-test('load data', async t => {
-  
-  // const r = execSync('node bin/magica --input test/assets/n.png --command "identify n.png"')
-  t.true(true)
+test('library loads', async t => {
+  await loadOpencv()
+  t.true( cv.getBuildInformation().includes('General configuration for OpenCV'))
 })
 
-// test('convert should generate files in local dir by default', async t => {
-//   if (existsSync('tmp_cli_2.gif')) {
-//     unlinkSync('tmp_cli_2.gif')
-//   }
-//   execSync('node bin/magica --input test/assets/n.png --command "convert n.png -scale 144% tmp_cli_2.gif"')
-//   t.deepEqual(fileType(readFileSync('tmp_cli_2.gif')), { ext: 'gif', mime: 'image/gif' })
-// })
-
-// test.todo('should accept several input images')
-// test.todo('should mkdir-p if output dir doesnt exists')
+test('load data', async t => {
+  await loadOpencv()
+  var img = await read('test/assets/shape.jpg')
+  t.deepEqual([img.bitmap.width, img.bitmap.height, img.bitmap.data.byteLength], [125, 146, 73000])
+  var src = cv.matFromImageData(img.bitmap)
+  let dst = new cv!.Mat()
+  let M = cv.Mat.ones(5, 5, cv.CV_8U)
+  let anchor = new cv.Point(-1, -1)
+  cv.dilate(src, dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue())
+  img.bitmap.data = Buffer.from(dst.data)
+  src.delete()
+  M.delete()
+  dst.delete()
+  t.deepEqual(distance(img, await read('test/assets/shape2.jpg')), 0.015625)
+})

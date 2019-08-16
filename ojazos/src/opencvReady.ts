@@ -1,4 +1,8 @@
-import { Deferred, getGlobal, isNode } from 'misc-utils-of-mine-generic'
+import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
+import { existsSync } from 'fs';
+import { relative, resolve as pathResolve } from 'path';
+import { CV } from '.'
+
 export const opencvReady = new Deferred<void>()
 
 let opencvLoaded = false
@@ -11,16 +15,58 @@ interface LoadOptions {
   opencvUrl?: string
 }
 export function loadOpencv(o: LoadOptions = {}) {
-  if (isNode()) { throw 'TODO' }
-  else {
-    return loadOpencvBrowser(o)
-  }
-}
-function loadOpencvBrowser(o: LoadOptions = {}) {
   if (opencvLoaded) {
     o.onloadCallback && o.onloadCallback()
     return Promise.resolve()
   }
+  if (isNode()) {
+    return loadOpencvNode(o)
+  }
+  else {
+    return loadOpencvBrowser(o)
+  }
+}
+
+function loadOpencvNode(o: LoadOptions = {}) {
+  return new Promise(resolve => {
+    var path: string
+    const g = getGlobal()
+    if (existsSync('./node_modules/ojazos/dist/src/opencv.js')) {
+      path = resolveNodeModule('./node_modules/ojazos/dist/src/opencv.js')
+    }
+    else if (existsSync('./dist/src/opencv.js')) {
+      path = resolveNodeModule('./dist/src/opencv.js')
+    }
+    else {
+      throw new Error('opencv.js not found. Locations tried: ./node_modules/ojazos/dist/src/opencv.js and ./dist/src/opencv.js')
+    }
+    g.Module = {
+      preRun: () => {
+        if (isNode) {
+          g.Module.FS.mkdir('/work')
+          g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: pathResolve('.') }, '/work');
+        }
+      },
+      onRuntimeInitialized: () => {
+        opencvLoaded = true
+        opencvReady.resolve()
+        o.onloadCallback && o.onloadCallback()
+        resolve()
+      }
+    }
+    g.cv = require(path)
+
+  })
+}
+function resolveNodeModule(p: string){
+  var r =  withoutExtension(relative(__dirname, pathResolve(p)))
+  if(!r.startsWith('.')){
+    r='./'+r
+  }
+  return r
+}
+function loadOpencvBrowser(o: LoadOptions = {}) {
+
   return new Promise((resolve, reject) => {
     let script = document.createElement('script')!
     script.setAttribute('async', '')
@@ -29,15 +75,13 @@ function loadOpencvBrowser(o: LoadOptions = {}) {
       const g = getGlobal()
       if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
         opencvReady.resolve()
-        console.log(g.cv.getBuildInformation())
         o.onloadCallback && o.onloadCallback()
-        resolve(g.cv)
+        resolve()
       }
       else { // WASM
         g.cv = typeof g.cv === 'undefined' ? {} : g.cv
         g.cv.onRuntimeInitialized = () => {
           opencvReady.resolve()
-          console.log(g.cv.getBuildInformation())
           o.onloadCallback && o.onloadCallback()
           resolve()
         }

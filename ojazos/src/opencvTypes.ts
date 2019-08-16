@@ -30,6 +30,11 @@ export interface CV extends CV_WASM {
   getBuildInformation(): string
   matFromImageData(imageData: ImageData): Mat
 }
+interface ImageData {
+  data:ArrayBufferView
+  width: number;
+  height: number;
+}
 export declare class Mat {
   ucharPtr(i: number, j: number): TODO 
   static ones(arg0: number, arg1: number, CV_8U: number): Mat 
