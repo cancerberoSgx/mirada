@@ -1,9 +1,8 @@
 
-// import { createFileFromUrl, getImageData, renderInCanvas } from '../../src/browserImageUtil'
-import { loadOpencv, imageData, File } from '.'
-import { Rect, ImageData, Scalar } from './types/opencvTypes';
+import { File, imageData, loadOpencv } from '.'
+import { ImageData, Rect, Scalar } from './types/opencvTypes'
 
-export interface GrabCutOptions extends Rect{
+export interface GrabCutOptions extends Rect {
   image: File
   /** 
    * If given a rectangle frame will be drawn on given coordinates with that color.
@@ -15,7 +14,7 @@ interface GrabCutResult {
   image: ImageData
 }
 
-export async function grabCut(o: GrabCutOptions):Promise<GrabCutResult> {
+export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
   await loadOpencv()
   var src = o.image.asMat()
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
@@ -33,7 +32,7 @@ export async function grabCut(o: GrabCutOptions):Promise<GrabCutResult> {
       }
     }
   }
-  if(o.frameColor){
+  if (o.frameColor) {
     let point1 = new cv.Point(rect.x, rect.y)
     let point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height)
     cv.rectangle(src, point1, point2, o.frameColor)

@@ -1,4 +1,4 @@
-import {Mat, imageData} from '.'
+import { imageData, Mat } from '.'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {

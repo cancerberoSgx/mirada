@@ -1,28 +1,28 @@
-import { ImageData, Mat } from './types/opencvTypes';
+import { ok } from 'assert'
 import fetch from 'cross-fetch'
-import { getFileNameFromUrl, isNode, basename, getMimeTypeForExtension, getFileExtension, inBrowser, asArray, notUndefined, serial } from 'misc-utils-of-mine-generic';
-import { formatProxy } from './format';
-import { readFileSync, existsSync } from 'fs';
-import {arrayBufferToBase64, urlToBase64} from './base64'
-import { imageData } from './imageUtil';
-import { ok } from 'assert';
+import { existsSync, readFileSync } from 'fs'
+import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, isNode, notUndefined, serial } from 'misc-utils-of-mine-generic'
+import { arrayBufferToBase64, urlToBase64 } from './base64'
+import { formatProxy } from './format'
+import { imageData } from './imageUtil'
+import { ImageData, Mat } from './types/opencvTypes'
 
 export class File {
   // protected mime: string | undefined;
 
   constructor(public readonly name: string, protected mat: Mat) {
- 
+
   }
 
-  size(){
+  size() {
     return {
-      width: this.mat.cols, 
+      width: this.mat.cols,
       height: this.mat.rows
     }
   }
 
   getMimeType() {
-    return getMimeTypeForExtension(this.getExtension());
+    return getMimeTypeForExtension(this.getExtension())
   }
 
   getExtension() {
@@ -31,7 +31,7 @@ export class File {
 
   asMat(): Mat {
     return this.mat
-  }  
+  }
 
   asImageData(): ImageData {
     return imageData(this.mat)
@@ -44,11 +44,11 @@ export class File {
   /**
    * returns an array buffer containing the image encoded in given format or inferring format from its name.
    */
-  async asArrayBuffer(format=this.getExtension()){
+  async asArrayBuffer(format = this.getExtension()) {
     return await File.verifyFormatProxy().encode(this.asImageData(), format)
   }
 
-  async asBase64(format=this.getExtension()) {
+  async asBase64(format = this.getExtension()) {
     var encoded = await this.asArrayBuffer(format)
     return arrayBufferToBase64(encoded)
   }
@@ -66,8 +66,8 @@ export class File {
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name: string) {
     var data = await File.verifyFormatProxy().decode(buffer)
-  return File.fromData(data, name)
-}
+    return File.fromData(data, name)
+  }
 
   /** 
    * Loads file from given data url string containing an encoded image.
@@ -80,7 +80,7 @@ export class File {
 	 * Loads files from files in html input element of type "file".
 	 */
   public static fromHtmlFileInputElement(el: HTMLInputElement): Promise<Array<File>> {
-    if(!inBrowser()){
+    if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
     return Promise.all(Array.from(el.files!).map(file => new Promise<File>((resolve, reject) => {
@@ -158,7 +158,7 @@ export class File {
 
   protected static verifyFormatProxy() {
     if (!formatProxy) {
-      throw new Error('A format proxy must be installed in order to perform this operation');
+      throw new Error('A format proxy must be installed in order to perform this operation')
     }
     return formatProxy
   }

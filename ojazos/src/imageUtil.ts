@@ -3,8 +3,8 @@ import { Mat } from './types/opencvTypes'
 
 export function imageData(img: Mat) {
   return {
-    data: new Uint8ClampedArray(img.data), 
-    width: img.cols, 
+    data: new Uint8ClampedArray(img.data),
+    width: img.cols,
     height: img.rows
   }
 }

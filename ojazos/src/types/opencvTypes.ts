@@ -74,8 +74,8 @@ export declare class Rect {
 }
 
 export interface FormatProxy {
-  decode(buffer:ArrayBuffer, format?:string):Promise<ImageData>
-  encode(data:ImageData, format:string):Promise<ArrayBuffer>
+  decode(buffer: ArrayBuffer, format?: string): Promise<ImageData>
+  encode(data: ImageData, format: string): Promise<ArrayBuffer>
 }
 
 interface CV_WASM {

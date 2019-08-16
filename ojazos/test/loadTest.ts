@@ -1,7 +1,7 @@
 import test from 'ava'
 import { distance, read } from 'jimp'
-import { loadOjazos } from './testUtil';
 import { loadOpencv } from '../src'
+import { loadOjazos } from './testUtil'
 
 test.before(loadOjazos)
 
