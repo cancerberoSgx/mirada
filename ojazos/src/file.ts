@@ -8,7 +8,6 @@ import { imageData } from './imageUtil'
 import { ImageData, Mat } from './types/opencvTypes'
 
 export class File {
-  // protected mime: string | undefined;
 
   constructor(public readonly name: string, protected mat: Mat) {
 

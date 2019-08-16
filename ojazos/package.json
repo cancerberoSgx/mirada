@@ -15,8 +15,12 @@
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
     "copy": "cp -r static/opencv.js dist/src",
+    "docs": "npm run docs-readme-toc && npm run docs-api",
+    "docs-api": "rm -rf docs && typedoc  --ignoreCompilerErrors --theme markdown --out docs --readme none --excludeNotExported src/index.ts ",
+    "docs-readme-toc": "npx markdown-toc README.md -i",
     "build": "npm run clean && npx tsc&& npm run copy",
-    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run test-browser"
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run test-browser && npm run docs",
+    "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish"
   },
   "keywords": [
     "typescript",
@@ -27,13 +31,16 @@
   "license": "MIT",
   "devDependencies": {
     "@types/js-base64": "^2.3.1",
-    "@types/node": "^12.7.1",
+    "@types/node": "^12.7.2",
     "ava": "^2.2.0",
     "babel-polyfill": "^6.26.0",
     "file-type": "^12.1.0",
     "jimp": "^0.6.4",
+    "markdown-toc": "^1.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.1",
     "typescript": "^3.5.3"
   },
   "dependencies": {

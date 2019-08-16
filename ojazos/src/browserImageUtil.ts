@@ -1,4 +1,5 @@
 import { imageData, Mat } from '.'
+import { toRgba } from './imageUtil';
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -22,24 +23,8 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
     canvas = document.createElement('canvas')
     appendToBody && document.body.append(canvas)
   }
-  var img = new cv.Mat()
-  var depth = mat.type() % 8
-  var scale = depth <= cv.CV_8S ? 1.0 : (depth <= cv.CV_32S ? 1.0 / 256.0 : 255.0)
-  var shift = (depth === cv.CV_8S || depth === cv.CV_16S) ? 128.0 : 0.0
-  mat.convertTo(img, cv.CV_8U, scale, shift)
-  switch (img.type()) {
-    case cv.CV_8UC1:
-      cv.cvtColor(img, img, cv.COLOR_GRAY2RGBA)
-      break
-    case cv.CV_8UC3:
-      cv.cvtColor(img, img, cv.COLOR_RGB2RGBA)
-      break
-    case cv.CV_8UC4:
-      break
-    default:
-      throw new Error('Bad number of channels (Source image must have 1, 3 or 4 channels)')
-  }
-  var imgData = imageData(img)
+  var img = toRgba(mat);
+  var imgData = htmlImageData(img)
   var ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   canvas.width = imgData.width
@@ -49,6 +34,13 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
   return canvas
 }
 
+
+
+export function htmlImageData(img: Mat) {
+  var imgData = imageData(img)
+  const htmlImageData = new ImageData(imgData.data, imgData.width, imgData.height)
+  return htmlImageData
+}
 
 export async function createFileFromUrl(path: string, url: string, callback?: (error?: Error) => void) {
   return new Promise((resolve, reject) => {

@@ -31,7 +31,6 @@ async function testMain() {
 }
 testMain()
 
-
 async function testGrabCut() {
   await loadOpencv()
   var src = cv.matFromImageData(await getImageData('lenna.jpg'))

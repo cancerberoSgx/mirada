@@ -1,6 +1,7 @@
 
 import { File, imageData, loadOpencv } from '.'
 import { ImageData, Rect, Scalar } from './types/opencvTypes'
+import { toRgba } from './imageUtil';
 
 export interface GrabCutOptions extends Rect {
   image: File
@@ -21,7 +22,7 @@ export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
   let mask = new cv.Mat()
   let bgdModel = new cv.Mat()
   let fgdModel = new cv.Mat()
-  let rect = new cv.Rect(50, 50, 260, 280)
+  let rect = new cv.Rect(o.x, o.y, o.width, o.height)
   cv.grabCut(src, mask, rect, bgdModel, fgdModel, 1, cv.GC_INIT_WITH_RECT)
   for (let i = 0; i < src.rows; i++) {
     for (let j = 0; j < src.cols; j++) {
@@ -37,9 +38,11 @@ export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
     let point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height)
     cv.rectangle(src, point1, point2, o.frameColor)
   }
-  const image = imageData(src)
+  const rgbaImg = toRgba(src)
+  const image = imageData(rgbaImg)
   src.delete()
   mask.delete()
+  rgbaImg.delete()
   bgdModel.delete()
   fgdModel.delete()
   return {
