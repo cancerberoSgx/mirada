@@ -1,19 +1,20 @@
 import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
 import { existsSync } from 'fs';
 import { relative, resolve as pathResolve } from 'path';
-import { CV } from '.'
 
 export const opencvReady = new Deferred<void>()
-
-let opencvLoaded = false
 
 opencvReady.then(() => {
   opencvLoaded = true
 })
+
+let opencvLoaded = false
+
 interface LoadOptions {
   onloadCallback?: (...args: any[]) => void
   opencvUrl?: string
 }
+
 export function loadOpencv(o: LoadOptions = {}) {
   if (opencvLoaded) {
     o.onloadCallback && o.onloadCallback()
@@ -55,9 +56,9 @@ function loadOpencvNode(o: LoadOptions = {}) {
       }
     }
     g.cv = require(path)
-
   })
 }
+
 function resolveNodeModule(p: string){
   var r =  withoutExtension(relative(__dirname, pathResolve(p)))
   if(!r.startsWith('.')){
@@ -65,8 +66,8 @@ function resolveNodeModule(p: string){
   }
   return r
 }
-function loadOpencvBrowser(o: LoadOptions = {}) {
 
+function loadOpencvBrowser(o: LoadOptions = {}) {
   return new Promise((resolve, reject) => {
     let script = document.createElement('script')!
     script.setAttribute('async', '')

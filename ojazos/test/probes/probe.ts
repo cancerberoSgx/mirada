@@ -1,4 +1,4 @@
-// npm run build && rm -rf docs && mkdir -p docs && cp static/* docs &&  npx parcel -d docs test/probes/probe.html
+// npm run build && rm -rf docs && mkdir -p docs && cp static/opencv.js test/assets/* docs && npx parcel -d docs test/probes/probe.html
 import { ok } from 'assert'
 import 'babel-polyfill'
 import { getImageData, renderInCanvas, createFileFromUrl } from '../../src/browserImageUtil'

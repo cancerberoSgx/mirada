@@ -1,4 +1,4 @@
 export * from './browserImageUtil'
-export * from './emscriptenFs'
-export * from './opencvTypes'
+export * from './types/emscriptenTypes'
+export * from './types/opencvTypes'
 export * from './opencvReady'

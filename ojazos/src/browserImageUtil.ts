@@ -1,4 +1,4 @@
-import { Mat } from './opencvTypes';
+import { Mat } from './types/opencvTypes';
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
