@@ -1,5 +1,5 @@
 import { imageData, Mat } from '.'
-import { toRgba } from './imageUtil';
+import { toRgba } from './imageUtil'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -23,7 +23,7 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
     canvas = document.createElement('canvas')
     appendToBody && document.body.append(canvas)
   }
-  var img = toRgba(mat);
+  var img = toRgba(mat)
   var imgData = htmlImageData(img)
   var ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, canvas.width, canvas.height)

@@ -1,34 +1,18 @@
-High level opencv API for Node.js and Browser. Based on OpenCv.js, supporting npm and same code running in Node.js and Browser. 
-
+High level opencv API for Node.js and Browser. Based on OpenCv.js, supporting npm and same code running in Node.js and Browser.
 
 <!-- toc -->
 
-- [Playground & demos](#playground--demos)
-- [Summary](#summary)
-- [Status](#status)
-  * [WebAssembly build](#webassembly-build)
 - [Install](#install)
-- [Command line](#command-line)
-- [JavaScript API](#javascript-api)
-  * [Node.js](#nodejs)
-  * [Browser](#browser)
-    + [Browser setup](#browser-setup)
-    + [WASM file in different location](#wasm-file-in-different-location)
-    + [Web Worker](#web-worker)
-  * [`run()`: command script/template syntax](#run-command-scripttemplate-syntax)
-    + [Commands Sequence](#commands-sequence)
-    + [JavaScript templates](#javascript-templates)
-    + [Commands pre processors](#commands-pre-processors)
-- [Options](#options)
+- [Usage](#usage)
 - [Reference API](#reference-api)
-- [Why?](#why)
-- [TODO / Road map](#todo--road-map)
+- [Command line](#command-line)
+- [Initial design notes](#initial-design-notes)
 
 <!-- tocstop -->
 
 ## Install
 
-npm i ojos
+npm i ../docs/mirada
 
 ## Usage
 
