@@ -9,7 +9,9 @@
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
-    "declaration": true
+    "declaration": true,
+    "allowJs": false,
+    "checkJs": false
   },
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "static"]
