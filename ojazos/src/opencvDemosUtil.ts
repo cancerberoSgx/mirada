@@ -1,8 +1,11 @@
-import { CV } from './opencvTypes'
-declare var cv: CV
+import {opencvReady} from './opencvReady'
+import {getGlobal} from 'misc-utils-of-mine-generic'
 
+/**
+ * Ported from doc/js_tutorials/js_assets/utils.js
+ */
 export class OpenCvBrowserUtils {
-
+public opencvLoaded=false
   protected errorOutput: HTMLElement | undefined
   protected OPENCV_URL: string
   protected video?: HTMLVideoElement
@@ -15,19 +18,44 @@ export class OpenCvBrowserUtils {
   }
   
   public loadOpenCv(onloadCallback?: (...args: any[]) => void) {
+    if(this.opencvLoaded){
+      onloadCallback&&onloadCallback()
+      return Promise.resolve()
+    }
     return new Promise((resolve, reject) => {
+      // Module = {
+      //   preRun: function() {
+      //     debugger
+      //     if (isNode) {
+      //       FS.mount(NODEFS, { root: nodeFsLocalRoot }, emscriptenNodeFsRoot);
+      //     }
+      //   },
+      //   // onRuntimeInitialized: function(){
+      //   //   opencvReady.resolve(cv)
+      //   // }
+      // }
       let script = document.createElement('script')!
       script.setAttribute('async', '')
       script.setAttribute('type', 'text/javascript')
-      script.addEventListener('load', () => {
-        if (typeof cv.getBuildInformation !== 'undefined') {
-          console.log(cv.getBuildInformation())
+      script.addEventListener('load', async () => {
+        // const cv = await opencvReady
+        const g = getGlobal()
+        
+        if (typeof g.cv!=='undefined'&&typeof g.cv.getBuildInformation !== 'undefined') {
+          this.opencvLoaded = true
+          opencvReady.resolve( )
+          console.log(g.cv .getBuildInformation())
           onloadCallback && onloadCallback()
-          resolve()
+          resolve(g.cv)
         }
         else { // WASM
-          cv.onRuntimeInitialized = () => {
-            console.log(cv.getBuildInformation())
+          // debugger
+          g.cv = typeof g.cv==='undefined' ? {} : g.cv
+          g.cv.onRuntimeInitialized = () => {
+          // debugger  
+          this.opencvLoaded = true
+          opencvReady.resolve()
+            console.log(g.cv.getBuildInformation())
             onloadCallback && onloadCallback()
             resolve()
           }
@@ -75,28 +103,6 @@ export class OpenCvBrowserUtils {
     else {
       console.error(err)
     }
-  }
-
-  public createFileFromUrl(path: string, url: string, callback?: () => void) {
-    return new Promise((resolve, reject) => {
-      let request = new XMLHttpRequest()
-      request.open('GET', url, true)
-      request.responseType = 'arraybuffer'
-      request.onload = (ev) => {
-        if (request.readyState === 4) {
-          if (request.status === 200) {
-            let data = new Uint8Array(request.response)
-            cv.FS_createDataFile('/', path, data, true, false, false)
-            callback && callback()
-            resolve()
-          } else {
-            this.printError('Failed to load ' + url + ' status: ' + request.status)
-            reject()
-          }
-        }
-      }
-      request.send()
-    })
   }
 
   public loadImageToCanvas(url: string, canvasId: string) {
@@ -160,12 +166,10 @@ export class OpenCvBrowserUtils {
     if (!video) {
       video = document.createElement('video')!
     }
-
     let videoConstraint: any = constraints[resolution]
     if (!videoConstraint) {
       videoConstraint = true
     }
-
     navigator.mediaDevices.getUserMedia({ video: videoConstraint, audio: false })
       .then((stream) => {
         video.srcObject = stream
