@@ -4,6 +4,9 @@
   "description": "creates TypeScript dts JSON and JavaScript objects",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "bin": {
+    "object2typescript": "bin/object2typescript.js"
+  },
   "scripts": {
     "clean": "rm -rf dist docs",
     "clean-npm": " rm -rf node_modules/ package-lock.json",
@@ -15,13 +18,15 @@
     "prepare": "npm run build ",
     "run": "npm run build && rm -rf tmp && node --max-old-space-size=5000  dist/src/test.js",
     "copy": "exit 0; cp -r static/opencv.js dist/src",
+    "docs": "npx markdown-toc README.md -i",
     "build": "npm run clean && npx tsc&& npm run copy",
-    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"
+    "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish",
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run docs"
   },
   "keywords": [
     "typescript",
-    "opencv.js",
-    "opencv"
+    "types",
+    "json"
   ],
   "author": "Sebastián Gurin",
   "license": "MIT",
@@ -37,8 +42,10 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "minimist": "^1.2.0",
     "misc-utils-of-mine-generic": "^0.2.18",
-    "ts-simple-ast-extra": "^0.2.1"
+    "ts-simple-ast-extra": "^0.2.3"
   },
   "repository": {
     "type": "git",
