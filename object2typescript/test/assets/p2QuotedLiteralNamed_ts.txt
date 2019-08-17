@@ -1,0 +1,46 @@
+export interface BolsoCampeon {
+    "name"?: string
+    "version"?: string
+    "description"?: string
+    "main"?: string
+    "types"?: string
+    "scripts"?: {
+        "clean"?: string
+        "clean-npm"?: string
+        "test"?: string
+        "test-js"?: string
+        "format"?: string
+        "organizeImports"?: string
+        "lint"?: string
+        "prepare"?: string
+        "run"?: string
+        "copy"?: string
+        "build"?: string
+        "all"?: string
+    }
+    "keywords"?: string[]
+    "author"?: string
+    "license"?: string
+    "devDependencies"?: {
+        "@types/node"?: string
+        "ava"?: string
+        "jimp"?: string
+        "markdown-toc"?: string
+        "ts-node"?: string
+        "ts-refactor"?: string
+        "typedoc"?: string
+        "typedoc-plugin-markdown"?: string
+        "typescript"?: string
+    }
+    "dependencies"?: {
+        "misc-utils-of-mine-generic"?: string
+        "ts-simple-ast-extra"?: string
+    }
+    "repository"?: {
+        "type"?: string
+        "url"?: string
+    }
+    "bugs"?: {
+        "url"?: string
+    }
+}
