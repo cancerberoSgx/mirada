@@ -15,7 +15,7 @@ test('literal objects defaults should print std if no --output given', async t =
 test('load urls', async t => {
   const url = 'https://raw.githubusercontent.com/cancerberoSgx/mirada/7d2761bea82e3e7718fc5c6885eb1aab1bd3eba1/object2typescript/package.json'
   let b: Buffer
-  t.notThrows(() => { b = execSync(`node bin/object2typescript --input "${url}" --nodeName BolsoCampeon --quotePropertyNames --optionalProperties`) })
+  t.notThrows(() => { b = execSync(`node bin/object2typescript --input "${url}" --nodeName BolsoCampeon --propertyNames --optionalProperties`) })
   writeFileSync('tmp.ts', b)
   t.deepEqual(b.toString(), readFileSync('test/assets/p2QuotedLiteralNamed_ts.txt').toString())
 })

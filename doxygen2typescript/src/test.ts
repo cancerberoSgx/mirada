@@ -8,6 +8,7 @@ import { Parser } from 'xml2js'
 import { stringify, parseJson } from './json';
 import { Class } from './astTypes';
 import { ParsedDef } from './xmlTypes';
+import { ClassTest } from '../test/probes/aClass';
 async function parse() {
 if(!existsSync('tmp/all.xml')){
   // rm('-rf', 'tmp')
@@ -61,43 +62,50 @@ async function classTest() {
   // var compounddef = parseJson()
   var compounddef = await parse()
   // var compounddef = JSON.parse(readFileSync('tmp/all-100.json').toString())
-  var defs = compounddef.map(d => {
-    var r :ParsedDef = {
-      name: d.$$.compoundname[0],
-      kind: d.$.kind,
-      extends: {name: d.derivedcompoundref && d.derivedcompoundref[0] && d.derivedcompoundref[0]._, ref: d.derivedcompoundref && d.derivedcompoundref[0] && d.derivedcompoundref[0].$.refid},
-      public: d.$.prot === 'public',
-      data: d,
-    }
-    return r
-  })
-  defs = defs.filter(d => d.data.$.language === 'C++').filter(d => d.public)
-  console.log(
-    'Total: ' + defs.length + 
-    '. Public: ' + defs.filter(d => d.public).length + 
-    '. Classes: ' + defs.filter(d => d.kind === 'class').length + 
-    '. Kinds: ' + defs.map(d => d.kind).filter(notSame) + 
-    '. Languages: ' + defs.map(d => d.data.$.language).filter(notSame))    
-  writeFileSync('tmp/aStruct.json', JSON.stringify(defs.find(d => d.data.$.kind === 'struct'), null, 2))
-  writeFileSync('tmp/aUnion.json', JSON.stringify(defs.find(d => d.data.$.kind === 'union'), null, 2))
-  writeFileSync('tmp/aClass.json', JSON.stringify(defs.find(d => d.data.$.kind === 'class'), null, 2))
+  testParse1(compounddef);
   // writeFileSync('tmp/aClass2.json', JSON.stringify(defs.find(d => d.data.$.kind === 'class' && d.name === 'cv::Mat'), null, 2))
-  // getTypes(defs[0])
+  getTypes(compounddef[0])
+  parseClass(compounddef.find(d => d.data.$.kind === 'class' ).data)
 }
-
-function parseClass(def: any):Class{
+function parseClass(def: ClassTest['data']):Class{
   var r = {
-    name: def.name,
+    name: def.$$.compoundname[0],
     description: buildDescription(def),
     methods: [],
     attributes: [],
     id: ''
   }
-  return r
+  throw 'todo'
+  // return r
 }
-function buildDescription(def: any) {
-  return 'TODO'
+
+function buildDescription(def: ClassTest['data']) {
+  // var s = def.$$.detaileddescription[0].$$.para.
 }
+
+function testParse1(compounddef: any) {
+  var defs = compounddef.map(d => {
+    var r: ParsedDef = {
+      name: d.$$.compoundname[0],
+      kind: d.$.kind,
+      extends: { name: d.derivedcompoundref && d.derivedcompoundref[0] && d.derivedcompoundref[0]._, ref: d.derivedcompoundref && d.derivedcompoundref[0] && d.derivedcompoundref[0].$.refid },
+      public: d.$.prot === 'public',
+      data: d,
+    };
+    return r;
+  });
+  defs = defs.filter(d => d.data.$.language === 'C++').filter(d => d.public);
+  console.log('Total: ' + defs.length +
+    '. Public: ' + defs.filter(d => d.public).length +
+    '. Classes: ' + defs.filter(d => d.kind === 'class').length +
+    '. Kinds: ' + defs.map(d => d.kind).filter(notSame) +
+    '. Languages: ' + defs.map(d => d.data.$.language).filter(notSame));
+  writeFileSync('tmp/aStruct.json', JSON.stringify(defs.find(d => d.data.$.kind === 'struct'), null, 2));
+  writeFileSync('tmp/aUnion.json', JSON.stringify(defs.find(d => d.data.$.kind === 'union'), null, 2));
+  writeFileSync('tmp/aClass.json', JSON.stringify(defs.find(d => d.data.$.kind === 'class'), null, 2));
+  return defs;
+}
+
 function getTypes(def: any) {
   // console.log(JSON.stringify(def, null, 2));
   // def.data.sectiondef.filter(d => d.$.kind === 'public-type').map(s => {

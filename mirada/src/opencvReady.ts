@@ -1,21 +1,25 @@
 import { existsSync } from 'fs'
 import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
 import { relative, resolve as pathResolve } from 'path'
+import { FS } from './types/emscripten';
 
 /**
  * An exposed promise that is resolved when the library is ready to be used. 
  * At that time the global variable 'cv' should be available and ready.
  */
-export const opencvReady = new Deferred<void>()
-
-opencvReady.then(() => {
+export const opencvReady = new Deferred<FS>()
+export let FS_ : FS 
+opencvReady.then(FS => {
   opencvLoaded = true
+  FS_=FS
 })
-
+export function getFS (){
+  return FS_
+}
 let opencvLoaded = false
 
 interface LoadOptions {
-  onloadCallback?: (...args: any[]) => void
+  onloadCallback?: (FS:FS) => void
   opencvUrl?: string
 }
 
@@ -31,8 +35,8 @@ interface LoadOptions {
  */
 export function loadOpencv(o: LoadOptions = {}) {
   if (opencvLoaded) {
-    o.onloadCallback && o.onloadCallback()
-    return Promise.resolve()
+    o.onloadCallback && o.onloadCallback(FS_)
+    return Promise.resolve(FS_)
   }
   if (isNode()) {
     return loadOpencvNode(o)
@@ -43,7 +47,7 @@ export function loadOpencv(o: LoadOptions = {}) {
 }
 
 function loadOpencvNode(o: LoadOptions = {}) {
-  return new Promise(resolve => {
+  return new Promise<FS>(resolve => {
     var path: string
     const g = getGlobal()
     if (existsSync('./node_modules/mirada/dist/src/opencv.js')) {
@@ -64,9 +68,9 @@ function loadOpencvNode(o: LoadOptions = {}) {
       },
       onRuntimeInitialized: () => {
         opencvLoaded = true
-        opencvReady.resolve()
-        o.onloadCallback && o.onloadCallback()
-        resolve()
+        opencvReady.resolve(g.Module)
+        o.onloadCallback && o.onloadCallback(FS_)
+        resolve(g.Module)
       }
     }
     g.cv = require(path)
@@ -82,22 +86,22 @@ function resolveNodeModule(p: string) {
 }
 
 function loadOpencvBrowser(o: LoadOptions = {}) {
-  return new Promise((resolve, reject) => {
+  return new Promise<FS>((resolve, reject) => {
     let script = document.createElement('script')!
     script.setAttribute('async', '')
     script.setAttribute('type', 'text/javascript')
     script.addEventListener('load', async () => {
       const g = getGlobal()
       if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
-        opencvReady.resolve()
-        o.onloadCallback && o.onloadCallback()
+        opencvReady.resolve(g.cv.FS)
+        o.onloadCallback && o.onloadCallback(FS_)
         resolve()
       }
       else {
         g.cv = typeof g.cv === 'undefined' ? {} : g.cv
         g.cv.onRuntimeInitialized = () => {
-          opencvReady.resolve()
-          o.onloadCallback && o.onloadCallback()
+          opencvReady.resolve(g.cv.FS)
+          o.onloadCallback && o.onloadCallback(FS_)
           resolve()
         }
       }

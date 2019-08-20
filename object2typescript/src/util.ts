@@ -1,5 +1,9 @@
 import { format, FormatOptions, tsMorph } from 'ts-simple-ast-extra'
+import { quote } from 'misc-utils-of-mine-generic';
 
+export function resolvePropertyName({s,propertyNames=false}: {s: string, propertyNames?:boolean, quotes?:string}) {
+    return s.match(/^\d/) || s.match(/[^a-zA-Z_0-9]/) || propertyNames ? quote(s) : s
+  }
 export function formatCode(code: string, formatOptions: Partial<FormatOptions>) {
   const project = new tsMorph.Project()
   const file = project.createSourceFile('f1.ts', code)

@@ -7,15 +7,16 @@ import { formatCode } from './util'
 const defaultParseOptions: Partial<ParseOptions> = {
   onTypeScriptErrorPolicy: 'warning',
   nodeName: 'RootType',
-  arrayPolicy: 'first',// TODO: implement merge and make it default
-  objectRenderPolicy: 'literalObject', // TODO: implement interfaces and make it default
+  arrayType: 'first',// TODO: implement merge and make it default
+  objectType: 'literal', // TODO: implement interfaces and make it default
 }
+
 export function json2typescript(o: ParseOptions) {
-  if (o.arrayPolicy && o.arrayPolicy !== 'first') {
-    throw `o.arrayPolicy !== 'first' TODO`
+  if (o.arrayType && o.arrayType !== 'first') {
+    throw `o.arrayType !== 'first' TODO`
   }
-  if (o.objectRenderPolicy && o.objectRenderPolicy !== 'literalObject') {
-    throw 'o.objectRenderPolicy!==\'literalObject\' TODO'
+  if (o.objectType && o.objectType !== 'literal') {
+    throw 'o.objectTypePolicy!==\'literal\' TODO'
   }
   if (o.jsdoc) {
     throw 'jsdoc TODO'
@@ -40,8 +41,8 @@ export function json2typescript(o: ParseOptions) {
 
 function _parse(o: ParseOptions): Parsed {
   if (isArray(o.node)) {
-    const el = o.node.length ? _parse({ ...o, node: o.node[0] }) : new ParsedTextual(o, 'any')
-    return new ParsedArray(o, el)
+    const els = o.node.length&&o.arrayType==='first' ? [_parse({ ...o, node: o.node[0]})] :  o.node.map(node=>_parse({ ...o, node}))
+    return new ParsedArray(o, els)
   }
   else if (typeof o.node === 'object') {
     var props = Object.keys(o.node).map(name => ({

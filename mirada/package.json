@@ -36,6 +36,7 @@
     "babel-polyfill": "^6.26.0",
     "file-type": "^12.1.0",
     "jimp": "^0.6.4",
+    "magica": "^0.2.14",
     "markdown-toc": "^1.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",

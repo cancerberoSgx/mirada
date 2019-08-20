@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "esnext",
     "module": "commonjs",
     "lib": ["esnext", "dom"], 
     // "strict": true, 
     "esModuleInterop": true,
-    "jsx": "react",
+    // "jsx": "react",
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
     "declaration": true,
     "allowJs": false,
+    // "skipLibCheck": true,
     "checkJs": false
   },
   "include": ["src", "test"],

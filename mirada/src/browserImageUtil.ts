@@ -34,8 +34,6 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
   return canvas
 }
 
-
-
 export function htmlImageData(img: Mat) {
   var imgData = imageData(img)
   const htmlImageData = new ImageData(imgData.data, imgData.width, imgData.height)
