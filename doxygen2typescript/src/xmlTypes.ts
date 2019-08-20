@@ -1,4 +1,4 @@
-var xmlTypes;
+var xmlTypes
 export interface ParsedDef {
   name: string;
   kind: "class" | 'struct' | 'union';

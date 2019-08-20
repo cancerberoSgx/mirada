@@ -1,22 +1,22 @@
-import { JSONValue } from './json';
-import { isArray } from 'util';
-import {repeat} from 'misc-utils-of-mine-generic'
+import { repeat } from 'misc-utils-of-mine-generic'
+import { isArray } from 'util'
+import { JSONValue } from './json'
 
 export function render(o: ParseOptions) {
   if (o.arrayPolicy && o.arrayPolicy !== 'first') {
     throw `o.arrayPolicy !== 'first' TODO`
   }
-  if(o.objectRenderPolicy && o.objectRenderPolicy!=='literalObject'){
+  if (o.objectRenderPolicy && o.objectRenderPolicy !== 'literalObject') {
     throw 'o.objectRenderPolicy!==\'literalObject\' TODO'
   }
-  if(o.jsdoc){
+  if (o.jsdoc) {
     throw 'jsdoc TODO'
   }
-  if(o.semicolons){
+  if (o.semicolons) {
     throw 'semicolons TODO'
   }
-  o.tab=o.tab||'  '
-  o.semicolons = typeof o.semicolons==='undefined' ? '':o.semicolons
+  o.tab = o.tab || '  '
+  o.semicolons = typeof o.semicolons === 'undefined' ? '' : o.semicolons
   var parsed = _parse(o)
   return `
 export ${parsed instanceof ParsedObject ? 'interface ' : 'type = '} ${parsed.render()}
@@ -24,55 +24,55 @@ export ${parsed instanceof ParsedObject ? 'interface ' : 'type = '} ${parsed.ren
 }
 
 interface Parsed {
-  render( tabLevel?:number): string 
+  render(tabLevel?: number): string
 }
 abstract class AbstractParsed implements Parsed {
-  constructor( protected options:_ParseOptions){}
-  public tabLevel=0
-  render( tabLevel:number=0): string { throw 'abstract' }
+  constructor(protected options: _ParseOptions) { }
+  public tabLevel = 0
+  render(tabLevel: number = 0): string { throw 'abstract' }
 }
 class Textual extends AbstractParsed {
-  constructor ( protected options:_ParseOptions, protected text:string){
+  constructor(protected options: _ParseOptions, protected text: string) {
     super(options)
   }
   render() { return this.text }
 }
 class ParsedArray extends AbstractParsed {
-constructor( protected options:_ParseOptions, protected el:Parsed) {
-  super(options)
-}
-render( tabLevel:number=0){
-  return this.el.render()+'[]'
-}
-}
-class ParsedObject extends AbstractParsed {
-  constructor( protected options:_ParseOptions, protected props:{name:string,type:Parsed}[],) {
+  constructor(protected options: _ParseOptions, protected el: Parsed) {
     super(options)
   }
-  render( tabLevel:number=0){
-    if(this.options.objectRenderPolicy && this.options.objectRenderPolicy!=='literalObject'){
+  render(tabLevel: number = 0) {
+    return this.el.render() + '[]'
+  }
+}
+class ParsedObject extends AbstractParsed {
+  constructor(protected options: _ParseOptions, protected props: { name: string, type: Parsed }[], ) {
+    super(options)
+  }
+  render(tabLevel: number = 0) {
+    if (this.options.objectRenderPolicy && this.options.objectRenderPolicy !== 'literalObject') {
       throw `this.options.objectRenderPolicy!=='literalObject'`
     }
     return `{
-${this.options.tab}${this.props.map(p=>{
-  return `${repeat(tabLevel+1, this.options.tab)}${p.name}${this.options.optionalProperties?'?':''}: ${p.type.render(this.tabLevel+1)}`
-}).join(`\n${repeat(tabLevel+1, this.options.tab)}`)}
+${this.options.tab}${this.props.map(p => {
+      return `${repeat(tabLevel + 1, this.options.tab)}${p.name}${this.options.optionalProperties ? '?' : ''}: ${p.type.render(this.tabLevel + 1)}`
+    }).join(`\n${repeat(tabLevel + 1, this.options.tab)}`)}
 ${repeat(tabLevel, this.options.tab)}}`
   }
-  }
+}
 function _parse(o: _ParseOptions): Parsed {
   if (isArray(o.node)) {
-    
-    const el= o.node.length ? _parse({ ...o, node: o.node[0] }) : new Textual(o, 'any')
+
+    const el = o.node.length ? _parse({ ...o, node: o.node[0] }) : new Textual(o, 'any')
     return new ParsedArray(o, el)
   }
   else if (typeof o.node === 'object') {
-    var props = Object.keys(o.node).map(name=>({
-      name, 
-      type: _parse({...o, node:o.node[name]})
+    var props = Object.keys(o.node).map(name => ({
+      name,
+      type: _parse({ ...o, node: o.node[name] })
     }))
-    return new ParsedObject( o, props)
-  } 
+    return new ParsedObject(o, props)
+  }
   else {
     return new Textual(o, typeof o.node)
     // let type = 'undefined'
@@ -90,7 +90,7 @@ function _parse(o: _ParseOptions): Parsed {
 
 interface ParseOptions {
   node: JSONValue
-  nodeName:string
+  nodeName: string
   /** 
    * first: only the first element will be examined and the output type will be T[] where T describe the first element
    * 
@@ -102,13 +102,13 @@ interface ParseOptions {
   */
   arrayPolicy?: 'each' | 'first' | 'merge'
 
-  objectRenderPolicy?: 'interface'|'declareClass'|'literalObject'
+  objectRenderPolicy?: 'interface' | 'declareClass' | 'literalObject'
 
   export?: boolean
   optionalProperties?: boolean
-  tab?:string
-  semicolons?:string
-  jsdoc?:(parsed:Parsed, options:ParseOptions)=>string
+  tab?: string
+  semicolons?: string
+  jsdoc?: (parsed: Parsed, options: ParseOptions) => string
 }
 
 interface _ParseOptions extends ParseOptions {
@@ -119,12 +119,12 @@ interface _ParseOptions extends ParseOptions {
 
 function test() {
   const s = render({
-    node:{
-      a:1, b: ['ed']
+    node: {
+      a: 1, b: ['ed']
     },
     nodeName: 'foo'
   })
-  console.log(s);
-  
+  console.log(s)
+
 }
 test()

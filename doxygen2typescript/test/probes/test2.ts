@@ -1,4 +1,4 @@
-import { isArray, asArray } from 'misc-utils-of-mine-generic';
+import { asArray, isArray } from 'misc-utils-of-mine-generic'
 
 
 class Text {
@@ -285,24 +285,24 @@ export class docRefTextType extends Text {
 
 }
 
-export type DoxBool = "yes" | "no";
-export type DoxGraphRelation = "include" | "usage" | "template-instance" | "public-inheritance" | "protected-inheritance" | "private-inheritance" | "type-constraint";
-export type DoxRefKind = "compound" | "member";
-export type DoxMemberKind = "define" | "property" | "event" | "variable" | "typedef" | "enum" | "function" | "signal" | "prototype" | "friend" | "dcop" | "slot" | "interface" | "service";
-export type DoxProtectionKind = "public" | "protected" | "private" | "package";
-export type DoxRefQualifierKind = "lvalue" | "rvalue";
-export type DoxLanguage = "Unknown" | "IDL" | "Java" | "C#" | "D" | "PHP" | "Objective-C" | "C++" | "Javascript" | "Python" | "Fortran" | "VHDL" | "XML" | "SQL" | "Tcl" | "Markdown";
-export type DoxVirtualKind = "non-virtual" | "virtual" | "pure-virtual";
-export type DoxCompoundKind = "class" | "struct" | "union" | "interface" | "protocol" | "category" | "exception" | "service" | "singleton" | "module" | "type" | "file" | "namespace" | "group" | "page" | "example" | "dir";
-export type DoxSectionKind = "user-defined" | "public-type" | "public-func" | "public-attrib" | "public-slot" | "signal" | "dcop-func" | "property" | "event" | "public-static-func" | "public-static-attrib" | "protected-type" | "protected-func" | "protected-attrib" | "protected-slot" | "protected-static-func" | "protected-static-attrib" | "package-type" | "package-func" | "package-attrib" | "package-static-func" | "package-static-attrib" | "private-type" | "private-func" | "private-attrib" | "private-slot" | "private-static-func" | "private-static-attrib" | "friend" | "related" | "define" | "prototype" | "typedef" | "enum" | "func" | "var";
-export type DoxHighlightClass = "comment" | "normal" | "preprocessor" | "keyword" | "keywordtype" | "keywordflow" | "stringliteral" | "charliteral";
-export type DoxSimpleSectKind = "see" | "return" | "author" | "authors" | "version" | "since" | "date" | "note" | "warning" | "pre" | "post" | "copyright" | "invariant" | "remark" | "attention" | "par" | "rcs";
-export type DoxVersionNumber = string;
-export type DoxImageKind = "html" | "latex" | "rtf";
-export type DoxParamListKind = "param" | "retval" | "exception" | "templateparam";
-export type DoxCharRange = string;
-export type DoxParamDir = "in" | "out" | "inout";
-export type DoxAccessor = "retain" | "copy" | "assign" | "weak" | "strong" | "unretained";
+export type DoxBool = "yes" | "no"
+export type DoxGraphRelation = "include" | "usage" | "template-instance" | "public-inheritance" | "protected-inheritance" | "private-inheritance" | "type-constraint"
+export type DoxRefKind = "compound" | "member"
+export type DoxMemberKind = "define" | "property" | "event" | "variable" | "typedef" | "enum" | "function" | "signal" | "prototype" | "friend" | "dcop" | "slot" | "interface" | "service"
+export type DoxProtectionKind = "public" | "protected" | "private" | "package"
+export type DoxRefQualifierKind = "lvalue" | "rvalue"
+export type DoxLanguage = "Unknown" | "IDL" | "Java" | "C#" | "D" | "PHP" | "Objective-C" | "C++" | "Javascript" | "Python" | "Fortran" | "VHDL" | "XML" | "SQL" | "Tcl" | "Markdown"
+export type DoxVirtualKind = "non-virtual" | "virtual" | "pure-virtual"
+export type DoxCompoundKind = "class" | "struct" | "union" | "interface" | "protocol" | "category" | "exception" | "service" | "singleton" | "module" | "type" | "file" | "namespace" | "group" | "page" | "example" | "dir"
+export type DoxSectionKind = "user-defined" | "public-type" | "public-func" | "public-attrib" | "public-slot" | "signal" | "dcop-func" | "property" | "event" | "public-static-func" | "public-static-attrib" | "protected-type" | "protected-func" | "protected-attrib" | "protected-slot" | "protected-static-func" | "protected-static-attrib" | "package-type" | "package-func" | "package-attrib" | "package-static-func" | "package-static-attrib" | "private-type" | "private-func" | "private-attrib" | "private-slot" | "private-static-func" | "private-static-attrib" | "friend" | "related" | "define" | "prototype" | "typedef" | "enum" | "func" | "var"
+export type DoxHighlightClass = "comment" | "normal" | "preprocessor" | "keyword" | "keywordtype" | "keywordflow" | "stringliteral" | "charliteral"
+export type DoxSimpleSectKind = "see" | "return" | "author" | "authors" | "version" | "since" | "date" | "note" | "warning" | "pre" | "post" | "copyright" | "invariant" | "remark" | "attention" | "par" | "rcs"
+export type DoxVersionNumber = string
+export type DoxImageKind = "html" | "latex" | "rtf"
+export type DoxParamListKind = "param" | "retval" | "exception" | "templateparam"
+export type DoxCharRange = string
+export type DoxParamDir = "in" | "out" | "inout"
+export type DoxAccessor = "retain" | "copy" | "assign" | "weak" | "strong" | "unretained"
 
 
 
@@ -369,12 +369,12 @@ export class descriptionType {
 
   public constructor(p?: descriptionType) {
     if (!p) { return }
-      this.title = p.title
-      unArray(this, 'title')
-      this.para =( p.para||[]).map(p=>new docParaType(p))
-     this.sect1 =( p.sect1||[]).map(p=>new docSect1Type(p))
-     this.internal = new docInternalType(p.internal)
-    }
+    this.title = p.title
+    unArray(this, 'title')
+    this.para = (p.para || []).map(p => new docParaType(p))
+    this.sect1 = (p.sect1 || []).map(p => new docSect1Type(p))
+    this.internal = new docInternalType(p.internal)
+  }
 
 }
 
@@ -620,11 +620,11 @@ export class docParaType extends Text {
   copydoc: docCopyType;
   blockquote: docBlockQuoteType;
   parblock: docParBlockType;
-_:string
+  _: string
   public constructor(p?: any) {
     if (!p) { return }
     super(p)
-    this._ = p._||''
+    this._ = p._ || ''
     docCmdGroup(this, p)
   }
 }
@@ -640,7 +640,7 @@ export class docParBlockType {
 
 export class docTocListType {
   tocitems: docTocItemType[];
-  constructor(p?: docTocListType) { 
+  constructor(p?: docTocListType) {
 
     if (!p) { return }
 
@@ -710,8 +710,8 @@ export class docSimpleSectType {
   public constructor(p?: docSimpleSectType) {
     if (!p) { return }
     // (this as any).seba='sdjsdhjfhjsdfhjshjfhjsdhjfsd'+p
-    this.para = p.para.map(p=>new docParaType(p))
-    this.title = (p.title||[])[0]
+    this.para = p.para.map(p => new docParaType(p))
+    this.title = (p.title || [])[0]
   }
 }
 
@@ -815,7 +815,7 @@ export class linkedTextType {
 
   public constructor(p?: linkedTextType) {
     if (!p) { return }
-    this.refs = (p.refs||[]).map(r=>new refTextType(r))
+    this.refs = (p.refs || []).map(r => new refTextType(r))
   }
 }
 
@@ -875,52 +875,52 @@ export class memberdefType {
   public referencess: referenceType[];
   public referencedbys: referenceType[];
 
-    readable?: boolean
-    writable?: boolean
-    initonly?: boolean
-    settable?: boolean
-    gettable?: boolean
-    final?: boolean
-    sealed?: boolean
-    new?: boolean
-    add?: boolean
-    remove?: boolean
-    raise?: boolean
-    optional?: boolean
-    required?: boolean
-    accessor?: boolean
-    attribute?: boolean
-    property?: boolean
-    readonly?: boolean
-    bound?: boolean
-    removable?: boolean
-    contrained?: boolean
-    transient?: boolean
-    maybevoid?: boolean
-    maybedefault?: boolean
-    maybeambiguous?: boolean
-     kind : string
-  id : string
-  prot : string
-  static : boolean
-  const : boolean
-  explicit : boolean
-  inline : boolean
-  refqual : string
-  virt : string
-  volatile : string
-  mutable : string
+  readable?: boolean
+  writable?: boolean
+  initonly?: boolean
+  settable?: boolean
+  gettable?: boolean
+  final?: boolean
+  sealed?: boolean
+  new?: boolean
+  add?: boolean
+  remove?: boolean
+  raise?: boolean
+  optional?: boolean
+  required?: boolean
+  accessor?: boolean
+  attribute?: boolean
+  property?: boolean
+  readonly?: boolean
+  bound?: boolean
+  removable?: boolean
+  contrained?: boolean
+  transient?: boolean
+  maybevoid?: boolean
+  maybedefault?: boolean
+  maybeambiguous?: boolean
+  kind: string
+  id: string
+  prot: string
+  static: boolean
+  const: boolean
+  explicit: boolean
+  inline: boolean
+  refqual: string
+  virt: string
+  volatile: string
+  mutable: string
 
   public constructor(p?: any) {
     if (!p) { return }
     // Object.assign(this, p||{})
-    Object.assign(this, p.$||{})
-    unArray(this, 'name', 'definition', 'argsstring', 'location', 'read', 'write','bitfield')
-    this.param = (this.param||[]).map(p=>new paramType(p))
-    this.type=new linkedTextType(p.type)
+    Object.assign(this, p.$ || {})
+    unArray(this, 'name', 'definition', 'argsstring', 'location', 'read', 'write', 'bitfield')
+    this.param = (this.param || []).map(p => new paramType(p))
+    this.type = new linkedTextType(p.type)
     this.briefdescription = new descriptionType(p.briefdescription)
     this.inbodydescription = new descriptionType(p.inbodydescription)
-    this.detaileddescription = p.detaileddescription.map(d=>new descriptionType(d))
+    this.detaileddescription = p.detaileddescription.map(d => new descriptionType(d))
 
   }
 }
@@ -932,9 +932,9 @@ export class memberRefType {
     if (!p) { return }
   }
 }
-function unArray(o:any, ...a:string[]){
-  a.forEach(a=>{
-    if(isArray(o[a])&& o[a].length===1){
+function unArray(o: any, ...a: string[]) {
+  a.forEach(a => {
+    if (isArray(o[a]) && o[a].length === 1) {
       return o[a][0]
     }
   })
@@ -961,14 +961,14 @@ export class paramType {
 
   public constructor(p?: any) {
     if (!p) { return }
-Object.assign(this, {sssssss: p||{}})
-this.type = new linkedTextType(p.defval)
-      this.declname = unArray(this, 'declname')
-      this.defname = unArray(this, 'defname')
-      this.array = unArray(this, 'array')
-      this.defval = new linkedTextType(p.defval)
-      this.typeconstraint =  new linkedTextType(p.linkedTextType)
-      this.briefdescription = new descriptionType(p.briefdescription)
+    Object.assign(this, { sssssss: p || {} })
+    this.type = new linkedTextType(p.defval)
+    this.declname = unArray(this, 'declname')
+    this.defname = unArray(this, 'defname')
+    this.array = unArray(this, 'array')
+    this.defval = new linkedTextType(p.defval)
+    this.typeconstraint = new linkedTextType(p.linkedTextType)
+    this.briefdescription = new descriptionType(p.briefdescription)
   }
 }
 
@@ -1008,7 +1008,7 @@ export class templateparamlistType {
 export class compoundRefType extends String {
   public constructor(p?: compoundRefType) {
     if (!p) { return }
-    super();
+    super()
 
 
   }
@@ -1017,7 +1017,7 @@ export class compoundRefType extends String {
 export class incType extends String {
   public constructor(p?: incType) {
     if (!p) { return }
-    super();
+    super()
 
 
   }
@@ -1026,7 +1026,7 @@ export class incType extends String {
 export class refTextType extends String {
   public constructor(p?: refTextType) {
     if (!p) { return }
-    super();
+    super()
     Object.assign(this, p)
   }
 }
@@ -1034,7 +1034,7 @@ export class refTextType extends String {
 export class refType extends String {
   public constructor(p?: refType) {
     if (!p) { return }
-    super();
+    super()
 
 
   }
@@ -1043,49 +1043,49 @@ export class refType extends String {
 export class reimplementType extends String {
   public constructor(p?: reimplementType) {
     if (!p) { return }
-    super();
+    super()
 
 
   }
 }
 
 
-function docCmdGroup(o:any, p?:any) {
-    // if (!p) { return }
-    // var r:any = {}
-    asArray(p).map(p=>    Object.keys(p||{}).map(i=>{
-    if(i==='linebreak') {o[i] = new docEmptyType(p[i])}
-     else if(i==='hruler') {o[i] = new docEmptyType(p[i])}
-     else if(i==='preformatted') {o[i] = new docMarkupType(p[i])}
-     else if(i==='programlisting') {o[i] = new listingType(p[i])}
+function docCmdGroup(o: any, p?: any) {
+  // if (!p) { return }
+  // var r:any = {}
+  asArray(p).map(p => Object.keys(p || {}).map(i => {
+    if (i === 'linebreak') { o[i] = new docEmptyType(p[i]) }
+    else if (i === 'hruler') { o[i] = new docEmptyType(p[i]) }
+    else if (i === 'preformatted') { o[i] = new docMarkupType(p[i]) }
+    else if (i === 'programlisting') { o[i] = new listingType(p[i]) }
     //  else if(i==='verbatim') {o[i] = new xsd(p[i])}
-     else if(i==='indexentry') {o[i] = new docIndexEntryType(p[i])}
-     else if(i==='orderedlist') {o[i] = new docListType(p[i])}
-     else if(i==='itemizedlist') {o[i] = new docListType(p[i])}
-     else if(i==='simplesect') {o[i] = new docSimpleSectType(p[i][0])}
-     else if(i==='title') {o[i] = new docTitleType(p[i])}
-     else if(i==='variablelist') {o[i] = new docVariableListType(p[i])}
-     else if(i==='table') {o[i] = new docTableType(p[i])}
-     else if(i==='heading') {o[i] = new docHeadingType(p[i])}
-     else if(i==='image') {o[i] = new docImageType(p[i])}
-     else if(i==='dotfile') {o[i] = new docFileType(p[i])}
-     else if(i==='mscfile') {o[i] = new docFileType(p[i])}
-     else if(i==='diafile') {o[i] = new docFileType(p[i])}
-     else if(i==='toclist') {o[i] = new docTocListType(p[i])}
-     else if(i==='language') {o[i] = new docLanguageType(p[i])}
-     else if(i==='parameterlist') {o[i] = new docParamListType(p[i])}
-     else if(i==='xrefsect') {o[i] = new docXRefSectType(p[i])}
-     else if(i==='copydoc') {o[i] = new docCopyType(p[i])}
-     else if(i==='blockquote') {o[i] = new docBlockQuoteType(p[i])}
-     else if(i==='parblock') {o[i] = new docParBlockType(p[i])}
-     else if(i==='ref') {o[i] = new refType(p[i])}
-     else if(i==='_') {o[i] = p[i]}
-      else {
-        throw 'not supported docCmdGroup '+i
-      }
-    })).flat()
-    // return r
+    else if (i === 'indexentry') { o[i] = new docIndexEntryType(p[i]) }
+    else if (i === 'orderedlist') { o[i] = new docListType(p[i]) }
+    else if (i === 'itemizedlist') { o[i] = new docListType(p[i]) }
+    else if (i === 'simplesect') { o[i] = new docSimpleSectType(p[i][0]) }
+    else if (i === 'title') { o[i] = new docTitleType(p[i]) }
+    else if (i === 'variablelist') { o[i] = new docVariableListType(p[i]) }
+    else if (i === 'table') { o[i] = new docTableType(p[i]) }
+    else if (i === 'heading') { o[i] = new docHeadingType(p[i]) }
+    else if (i === 'image') { o[i] = new docImageType(p[i]) }
+    else if (i === 'dotfile') { o[i] = new docFileType(p[i]) }
+    else if (i === 'mscfile') { o[i] = new docFileType(p[i]) }
+    else if (i === 'diafile') { o[i] = new docFileType(p[i]) }
+    else if (i === 'toclist') { o[i] = new docTocListType(p[i]) }
+    else if (i === 'language') { o[i] = new docLanguageType(p[i]) }
+    else if (i === 'parameterlist') { o[i] = new docParamListType(p[i]) }
+    else if (i === 'xrefsect') { o[i] = new docXRefSectType(p[i]) }
+    else if (i === 'copydoc') { o[i] = new docCopyType(p[i]) }
+    else if (i === 'blockquote') { o[i] = new docBlockQuoteType(p[i]) }
+    else if (i === 'parblock') { o[i] = new docParBlockType(p[i]) }
+    else if (i === 'ref') { o[i] = new refType(p[i]) }
+    else if (i === '_') { o[i] = p[i] }
+    else {
+      throw 'not supported docCmdGroup ' + i
     }
+  })).flat()
+  // return r
+}
 
 
 
