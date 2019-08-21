@@ -1,6 +1,5 @@
-import { repeat } from 'misc-utils-of-mine-generic'
-import { isArray } from 'util'
-import { JSONValue } from './json'
+import { isArray, repeat } from 'misc-utils-of-mine-generic'
+import { Parsed, ParseOptions } from './types'
 
 export function render(o: ParseOptions) {
   if (o.arrayPolicy && o.arrayPolicy !== 'first') {
@@ -23,22 +22,19 @@ export ${parsed instanceof ParsedObject ? 'interface ' : 'type = '} ${parsed.ren
   `
 }
 
-interface Parsed {
-  render(tabLevel?: number): string
-}
 abstract class AbstractParsed implements Parsed {
-  constructor(protected options: _ParseOptions) { }
+  constructor(protected options: ParseOptions) { }
   public tabLevel = 0
   render(tabLevel: number = 0): string { throw 'abstract' }
 }
 class Textual extends AbstractParsed {
-  constructor(protected options: _ParseOptions, protected text: string) {
+  constructor(protected options: ParseOptions, protected text: string) {
     super(options)
   }
   render() { return this.text }
 }
 class ParsedArray extends AbstractParsed {
-  constructor(protected options: _ParseOptions, protected el: Parsed) {
+  constructor(protected options: ParseOptions, protected el: Parsed) {
     super(options)
   }
   render(tabLevel: number = 0) {
@@ -46,7 +42,7 @@ class ParsedArray extends AbstractParsed {
   }
 }
 class ParsedObject extends AbstractParsed {
-  constructor(protected options: _ParseOptions, protected props: { name: string, type: Parsed }[], ) {
+  constructor(protected options: ParseOptions, protected props: { name: string, type: Parsed }[], ) {
     super(options)
   }
   render(tabLevel: number = 0) {
@@ -60,9 +56,8 @@ ${this.options.tab}${this.props.map(p => {
 ${repeat(tabLevel, this.options.tab)}}`
   }
 }
-function _parse(o: _ParseOptions): Parsed {
+function _parse(o: ParseOptions): Parsed {
   if (isArray(o.node)) {
-
     const el = o.node.length ? _parse({ ...o, node: o.node[0] }) : new Textual(o, 'any')
     return new ParsedArray(o, el)
   }
@@ -88,43 +83,16 @@ function _parse(o: _ParseOptions): Parsed {
   }
 }
 
-interface ParseOptions {
-  node: JSONValue
-  nodeName: string
-  /** 
-   * first: only the first element will be examined and the output type will be T[] where T describe the first element
-   * 
-   * merge: similar to first, but all elements of the array are examined and their types will be merged according to these rules: 
-   *   1) if incompatible types are found [1, {a:2}] then union types are generated (number|{a:number})
-   *   2) for object elements, their properties will be merged recursively: [{a:{b:'s'}}, {x:1,a:{c:new Date()}}] will generate {a:{b:string,c:Date},x:number}[]
-   * 
-   * each: will generate a the exact tuple: [1, {a:2}] generates [number, {a:number}]
-  */
-  arrayPolicy?: 'each' | 'first' | 'merge'
-
-  objectRenderPolicy?: 'interface' | 'declareClass' | 'literalObject'
-
-  export?: boolean
-  optionalProperties?: boolean
-  tab?: string
-  semicolons?: string
-  jsdoc?: (parsed: Parsed, options: ParseOptions) => string
-}
-
-interface _ParseOptions extends ParseOptions {
-
-}
 
 
+// function test() {
+//   const s = render({
+//     node: {
+//       a: 1, b: ['ed']
+//     },
+//     nodeName: 'foo'
+//   })
+//   console.log(s)
 
-function test() {
-  const s = render({
-    node: {
-      a: 1, b: ['ed']
-    },
-    nodeName: 'foo'
-  })
-  console.log(s)
-
-}
-test()
+// }
+// test()

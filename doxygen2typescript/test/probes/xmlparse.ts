@@ -9,7 +9,6 @@ const { window } = new JSDOM("", { virtualConsole: vc })
 
 const { DOMParser, Node } = window
 
-
 const parser = new DOMParser()
 const doc = parser.parseFromString(
   `

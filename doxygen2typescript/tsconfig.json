@@ -3,16 +3,16 @@
     "target": "esnext",
     "module": "commonjs",
     "lib": ["esnext", "dom"], 
-    // "strict": true, 
     "esModuleInterop": true,
-    // "jsx": "react",
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
     "declaration": true,
-    "allowJs": false,
-    // "skipLibCheck": true,
-    "checkJs": false
+    // "allowJs": false,
+    // "checkJs": false,
+     "plugins": [{
+        "name": "typescript-plugin-proactive-code-fixes"
+    }]
   },
   "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "static", "docs"]

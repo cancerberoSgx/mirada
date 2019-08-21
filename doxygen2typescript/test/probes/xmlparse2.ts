@@ -1,18 +1,16 @@
 import { readFileSync } from 'fs'
-import { dummyTreeView } from '../../src/dom/domDebug'
-import { createXMLDom, doc } from "../../src/dom/jsdom";
-import { extractCompoundDef } from '../../src/dom/extractCompoundDef'
+import { createXMLDom, doxygen2json, dummyTreeView } from '../../src'
 
 function dummyTreeViewTest() {
-  createXMLDom(readFileSync('/Users/sebastiangurin/git/opencv/build/doc/doxygen/xml/d3/d63/classcv_1_1Mat.xml').toString())
+  const { doc } = createXMLDom(readFileSync('/Users/sebastiangurin/git/opencv/build/doc/doxygen/xml/d3/d63/classcv_1_1Mat.xml').toString())
   const s = dummyTreeView(doc)
   process.stdout.write(s)
 }
-
+dummyTreeViewTest()
 test2()
 
 function test2() {
-  var a = extractCompoundDef({xml: readFileSync('/Users/sebastiangurin/git/opencv/build/doc/doxygen/xml/d3/d63/classcv_1_1Mat.xml').toString()})
+  var a = doxygen2json({ xml: readFileSync('/Users/sebastiangurin/git/opencv/build/doc/doxygen/xml/d3/d63/classcv_1_1Mat.xml').toString() })
   console.log(JSON.stringify(a, null, 2))
 }
 

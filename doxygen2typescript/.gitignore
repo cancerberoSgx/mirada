@@ -14,3 +14,4 @@ test-browser-outdir
 playground
 /tmp*
 bkps
+report.*.json

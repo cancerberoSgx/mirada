@@ -1,13 +1,17 @@
-import { attrs, Q, Q1, text } from './domUtil'
-import { createXMLDom } from "./jsdom";
-import { Options } from './types';
+import { attrs, Q, Q1, text } from '../dom/domUtil'
+import { createXMLDom } from "../dom/jsdom"
+import { doxygen2JsonOptions, CompoundDef } from './types'
 
-export let _currentOptions:Options = {xml: ''}
+export let _currentOptions: doxygen2JsonOptions = { xml: '' }
 
-export function extractCompoundDef(options:Options) {
-  _currentOptions=options
-  createXMLDom(options.xml)
-  return Q('compounddef').map(c => ({
+/**
+ * Transform a single doxygen XML source file in a more or less equivalent .json
+ * TODO: type return value
+ */
+export function doxygen2json(options: doxygen2JsonOptions) {
+  _currentOptions = options
+  createXMLDom(options.xml, options.debug)
+  var r =  Q('compounddef').map(c => ({
     ...getDescribed(c),
     derivedcompoundref: Q('derivedcompoundref', c).map(d => ({
       ...attrs(d, ['refid', 'prot', 'virt']),
@@ -18,9 +22,9 @@ export function extractCompoundDef(options:Options) {
       ...getDescribed(s),
       enumValues: Q('enumvalue', s).map(v => ({
         ...getDescribed(v),
-        initializer: Q1('initializer', v).textContent,
+        initializer: Q1('initializer', v, {}).textContent,
       }))
-    })),
+    })),    
 
     publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(s => ({
       ...getMember(s)
@@ -30,10 +34,12 @@ export function extractCompoundDef(options:Options) {
       ...getMember(s),
       params: Q('param', s).map(p => ({
         ...getType(p),
-        declname: text('declname', p)
+        declname: text('declname', p) ,
+        description: getParamDescription(s, p)
       })),
-      templateparamlist:  Q('templateparamlist param', s).map(p => ({
-        ...getType(p)
+      templateparamlist: Q('templateparamlist param', s).map(p => ({
+        ...getType(p),
+         description: getParamDescription(s, p)
       })),
     })),
 
@@ -42,7 +48,7 @@ export function extractCompoundDef(options:Options) {
       params: Q('param', s).map(p => ({
         ...getType(p),
         declname: text('declname', p),
-        ...getParamDescriptions(s)
+        description: getParamDescription(s, p)
       }))
     })),
 
@@ -51,29 +57,34 @@ export function extractCompoundDef(options:Options) {
       params: Q('param', s).map(p => ({
         ...getType(p),
         declname: text('declname', p),
-        ...getParamDescriptions(s)
+        description: getParamDescription(s, p)
       }))
     })),
-
     inheritancegraph: 'TODO',
     collaborationgraph: 'TODO',
     listofallmembers: 'TODO'
 
   }))
+  return r
 }
 
-function getParamDescriptions(s: Element) {
-  return Q('detaileddescription parameterlist[kind="param"]>parameteritem', s).map(i => ({
-    parameternamelist: Q('parameternamelist', i).map(n => text('parametername', n)),
-    parameterdescription: text('parameterdescription', i)
-  }))
+
+function getParamDescription(s: Element, p:Element) {
+  var pi = Q('detaileddescription parameterlist[kind="param"] parameteritem', s).find(pi=>text('parametername', pi).trim()===text('declname', p))
+  if(pi) {
+    return text('parameterdescription', pi).trim()
+  }
+  else{
+    return undefined
+  }
 }
 
 function getDescribed(c: Element) {
   return {
-    name: (Q1('name', c) || Q1('compoundname', c) || Q1('name', c)|| { textContent: c.getAttribute('name') || undefined }).textContent,
+    name: (Q1('name', c) || Q1('compoundname', c) || { textContent: c.getAttribute('name')}).textContent,
     location: attrs(Q1('location', c, {})),
-    ...attrs(c, ['id', 'kind'])
+    ...attrs(c, ['id', 'kind']),
+    ...getDescriptions(c)
   }
 }
 function getDescriptions(c: Element) {
@@ -89,11 +100,10 @@ function getMember(s: Element) {
     ...getDescribed(s),
     ...attrs(s, ['prot', 'static', 'mutable', 'implicit', 'inline', 'const', 'version']),
     ...getType(s),
-    ...getDescriptions(s),
     definition: text('definition', s),
     argsstring: text('argsstring', s),
-    references: Q('references', s).map(r=>({...attrs(s, []), text: text('references', s)})),
-    referencedby: Q('referencedby', s).map(r=>({...attrs(s, []), text: text('referencedby', s)})),
+    references: Q('references', s).map(r => ({ ...attrs(s, []), text: text('references', s) })),
+    referencedby: Q('referencedby', s).map(r => ({ ...attrs(s, []), text: text('referencedby', s) })),
   }
 }
 

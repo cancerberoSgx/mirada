@@ -28,3 +28,6 @@ FROM trzeci/emscripten:latest
 RUN apt-get update -y
 RUN apt-get install -y doxygen
 ```
+
+## TODO 
+- [ ] move json2dts to own repo

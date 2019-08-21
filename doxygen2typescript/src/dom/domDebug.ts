@@ -1,20 +1,20 @@
 import { removeWhites, shorter } from 'misc-utils-of-mine-generic'
-import { append, isElement, Q, Q1 } from './domUtil'
+import { Q } from './domUtil'
 
-//TODO
-function tree(e: Element, parentBox: Element = undefined) {
-  function f(e: Element, parent: Element) {
-    var p = append(`<li><label>${print(e)}</label><ul></ul></li>`, parent)
-    var ul = Q1<Element>('ul', parent)
-    Q<Element>(e.childNodes).filter(isElement).forEach(c => {
-      f(c, ul)
-    })
-  }
-  function print(e: Element) {
-    return e.tagName
-  }
-  return f(e, parentBox || append('<ul></ul>')[0])
-}
+// //TODO
+// function tree(e: Element, parentBox: Element = undefined) {
+//   function f(e: Element, parent: Element) {
+//     var p = append(`<li><label>${print(e)}</label><ul></ul></li>`, parent)
+//     var ul = Q1<Element>('ul', parent)
+//     Q<Element>(e.childNodes).filter(isElement).forEach(c => {
+//       f(c, ul)
+//     })
+//   }
+//   function print(e: Element) {
+//     return e.tagName
+//   }
+//   return f(e, parentBox || append('<ul></ul>')[0])
+// }
 
 export function dummyTreeView(document: Document) {
   return `
