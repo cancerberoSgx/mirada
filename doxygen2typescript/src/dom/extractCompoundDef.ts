@@ -1,76 +1,108 @@
-import { createXMLDom, Q, Q1, attrs } from './domUtil';
-import { TODO } from 'misc-utils-of-mine-generic';
-interface Named {
-  name: string, 
-}
-interface Described extends Named { 
-  briefdescription: string; 
-  detaileddescription: string; 
-  inbodydescription?: string
-  location?: Location
-  }
-export interface CompoundDef extends Described {
-  kind: Kind
-  prot: Prot
-  id: string
-  name: string 
-  publicTypes: PublicType[]
-  version: string
-  static: string
-  derivedcompoundref: Derivedcompoundref[]
-}
-interface Derivedcompoundref {
-  prot: Prot
-  refid: string
-  virt: string
-  name: string
-}
-interface Location {
-  "file": string
-  "line": string
-  "column": string
-  "bodyfile": string
-  "bodystart": string
-  "bodyend": string
-}
-type Kind ='emun'|'class'|'function'
-type Prot = 'public'|'protected'|'private'
+import { attrs, Q, Q1, text } from './domUtil'
+import { createXMLDom } from "./jsdom";
+import { Options } from './types';
 
-interface PublicType extends Described {
-  enumValues: { initializer: string; } & [];
-}
-export function extractCompoundDef(xml: string) {
-  createXMLDom(xml);
+export let _currentOptions:Options = {xml: ''}
+
+export function extractCompoundDef(options:Options) {
+  _currentOptions=options
+  createXMLDom(options.xml)
   return Q('compounddef').map(c => ({
-...getDescribed(c),
-    ...attrs(c, ['kind', 'prot',  'version']),
+    ...getDescribed(c),
     derivedcompoundref: Q('derivedcompoundref', c).map(d => ({
       ...attrs(d, ['refid', 'prot', 'virt']),
       name: d.textContent
     })),
 
     publicTypes: Q('sectiondef[kind="public-type"] memberdef', c).map(s => ({
-      ...attrs(s, ['kind', 'prot', 'static', 'mutable']),
-...getDescribed(s),
+      ...getDescribed(s),
       enumValues: Q('enumvalue', s).map(v => ({
-        ...attrs(v, ['prot']),
         ...getDescribed(v),
         initializer: Q1('initializer', v).textContent,
       }))
     })),
 
-inheritancegraph: 'TODO',
-collaborationgraph: 'TODO',
- listofallmembers: 'TODO'
+    publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(s => ({
+      ...getMember(s)
+    })),
 
-  }));
+    publicFuncs: Q('sectiondef[kind="public-func"] memberdef', c).map(s => ({
+      ...getMember(s),
+      params: Q('param', s).map(p => ({
+        ...getType(p),
+        declname: text('declname', p)
+      })),
+      templateparamlist:  Q('templateparamlist param', s).map(p => ({
+        ...getType(p)
+      })),
+    })),
+
+    publicStaticFuncs: Q('sectiondef[kind="public-static-func"] memberdef', c).map(s => ({
+      ...getMember(s),
+      params: Q('param', s).map(p => ({
+        ...getType(p),
+        declname: text('declname', p),
+        ...getParamDescriptions(s)
+      }))
+    })),
+
+    protectedFuncs: Q('sectiondef[kind="protected-func"] memberdef', c).map(s => ({
+      ...getMember(s),
+      params: Q('param', s).map(p => ({
+        ...getType(p),
+        declname: text('declname', p),
+        ...getParamDescriptions(s)
+      }))
+    })),
+
+    inheritancegraph: 'TODO',
+    collaborationgraph: 'TODO',
+    listofallmembers: 'TODO'
+
+  }))
 }
-function getDescribed(c:Element){
+
+function getParamDescriptions(s: Element) {
+  return Q('detaileddescription parameterlist[kind="param"]>parameteritem', s).map(i => ({
+    parameternamelist: Q('parameternamelist', i).map(n => text('parametername', n)),
+    parameterdescription: text('parameterdescription', i)
+  }))
+}
+
+function getDescribed(c: Element) {
   return {
-        name: (Q1('name', c) || Q1('compoundname', c)|| {textContent:c.getAttribute('name')||undefined}) .textContent,
+    name: (Q1('name', c) || Q1('compoundname', c) || Q1('name', c)|| { textContent: c.getAttribute('name') || undefined }).textContent,
     location: attrs(Q1('location', c, {})),
-    briefdescription: Q1('briefdescription', c, {textContent: ''}).textContent.trim(),
-    detaileddescription: Q1('detaileddescription', c, {textContent: ''}).textContent.trim(),
-    inbodydescription: Q1('inbodydescription', c, {textContent: ''}).textContent.trim(),
+    ...attrs(c, ['id', 'kind'])
+  }
+}
+function getDescriptions(c: Element) {
+  return {
+    briefdescription: text('briefdescription', c),
+    detaileddescription: text('detaileddescription', c),
+    inbodydescription: text('inbodydescription', c),
+  }
+}
+
+function getMember(s: Element) {
+  return {
+    ...getDescribed(s),
+    ...attrs(s, ['prot', 'static', 'mutable', 'implicit', 'inline', 'const', 'version']),
+    ...getType(s),
+    ...getDescriptions(s),
+    definition: text('definition', s),
+    argsstring: text('argsstring', s),
+    references: Q('references', s).map(r=>({...attrs(s, []), text: text('references', s)})),
+    referencedby: Q('referencedby', s).map(r=>({...attrs(s, []), text: text('referencedby', s)})),
+  }
+}
+
+function getType(s: Element) {
+  return {
+    type: {
+      ...attrs(Q1('type>ref', s), []),
+      name: text('type>ref', s, ''),
+      text: text('type', s),
+    }
   }
 }

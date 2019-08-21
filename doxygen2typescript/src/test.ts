@@ -1,12 +1,8 @@
 
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
-import { notSame, notUndefined } from 'misc-utils-of-mine-generic'
-import { cp, exec, mkdir, ls } from 'shelljs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
+import { cp, exec, ls, mkdir } from 'shelljs'
 import { Parser } from 'xml2js'
-import { ClassTest } from '../test/probes/aClass'
-import { Class } from './astTypes'
-import { ParsedDef } from './xmlTypes'
 
 async function parse() {
   if (!existsSync('tmp/all.xml')) {
@@ -29,7 +25,7 @@ async function parse() {
     // mergeAttrs: true
   })
 
-  
+
   return new Promise<any>((resolve, reject) => {
     var xml = readFileSync('tmp/all.xml').toString()
 
@@ -42,7 +38,7 @@ async function parse() {
       // console.log(result.doxygen.compounddef[9]);
       // var c = result.doxygen.compounddef
       // .filter(d=>d.$.kind==='function')
-      console.log(result.doxygen.compounddef[0].compoundname[0]);
+      console.log(result.doxygen.compounddef[0].compoundname[0])
 
       const c = result.doxygen.compounddef.map(s => {
         var name = `tmp/xml/${s.compoundname[0].replace(/[^a-z0-9_]/gi, '_')}.json`

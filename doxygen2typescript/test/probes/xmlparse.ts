@@ -1,18 +1,18 @@
+import { writeFileSync } from 'fs'
 import { JSDOM, VirtualConsole } from "jsdom"
-import { serial, tryTo, unEscapeHtmlAttribute } from 'misc-utils-of-mine-generic';
-import { writeFileSync } from 'fs';
+import { serial } from 'misc-utils-of-mine-generic'
 
-const vc = new VirtualConsole();
-vc.sendTo(console);
+const vc = new VirtualConsole()
+vc.sendTo(console)
 
-const { window } = new JSDOM("", { virtualConsole: vc });
+const { window } = new JSDOM("", { virtualConsole: vc })
 
-const { DOMParser, Node } = window;
+const { DOMParser, Node } = window
 
 
-const parser = new DOMParser();
+const parser = new DOMParser()
 const doc = parser.parseFromString(
-`
+  `
 <detaileddescription>
   <para>It represents a 4x4 homogeneous transformation matrix <formula id="0">$T$</formula>
   </para>
@@ -96,7 +96,7 @@ const doc = parser.parseFromString(
   </para>
 </detaileddescription>
 `,
-  "text/xml");
+  "text/xml")
 // const de = doc.documentElement.childNodes;
 
 // function check() {
@@ -108,23 +108,23 @@ const doc = parser.parseFromString(
 
 // check();
 
-var MathJax = require("mathjax-node"); 
+var MathJax = require("mathjax-node")
 
 // ?config=TeX-MML-AM_CHTML
 
 // import MathJax from 'mathjax' 
 // node_modules/mathjax/MathJax.js
 const document = doc.documentElement
-async function f(){
+async function f() {
   // MathJax.config(
-// {
+  // {
   // MathJax: {
   // jax: 'svg',
   // singleDollars:true,
-    // tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
+  // tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
   // extensions: 'TeX/AMSmath',
   // TeX: {
-    //  tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
+  //  tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
   //     Macros: {
   //         matTT: [ "\\[ \\left|\\begin{array}{ccc} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{array}\\right| \\]", 9],
   //         fork: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ \\end{array} \\right.", 4],
@@ -140,62 +140,62 @@ async function f(){
   // },
   //   tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
 
-// }
-// );
-// node_modules/mathjax/extensions/TeX/AMSmath.js
+  // }
+  // );
+  // node_modules/mathjax/extensions/TeX/AMSmath.js
 
-await MathJax.config({
-  MathJax: {
-  jax: 'svg',
+  await MathJax.config({
+    MathJax: {
+      jax: 'svg',
+    }
+  })
+  await MathJax.start()
+  // var yourMath = 'E = mc^2';
+
+
+  await serial(Array.from(document.querySelectorAll('formula')).map(f => async () => {
+    // document.querySelectorAll('formula').forEach(async f=>{
+    try {
+      var r = await MathJax.typeset({
+        //   // jax: 'HTML-CSS',
+        // jax: ["input/TeX","input/MathML","input/AsciiMath","output/CommonHTML"],
+        // tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
+
+        // extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "a11y/accessibility-menu.js"],
+        //   // TeX: {
+        //   //   extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+        // },
+
+        math: unescapeHtmlEntitiesInBrowser(f.innerHTML).trim().replace(/^\$/, '').replace(/\$$/g, ''),//.replace(/\<sp\s*\/\>/g, ' '),
+        // format: 'inline-TeX',
+        // format: "MathML", // or "inline-TeX", "MathML"
+        svg: true,      // or svg:true, or html:true
+      })
+
+      // f.outerHTML=`<script type="math/tex; mode=display" >${f.innerHTML}</script>`
+      // console.log(r);
+      // f.replaceWith(r)
+      f.outerHTML = r.svg
+    } catch (error) {
+      console.error(f.innerHTML, error);
+
+    }
+    // })
+  }))
+  // document.querySelectorAll('para').forEach(f=>replace(f, 'p', f.innerHTML))//  (`<p>${f.innerHTML}</p>`))
+  document.querySelectorAll('detaileddescription').forEach(f => f.outerHTML = `<article>w${f.innerHTML}</article>`)
+  document.querySelectorAll('para').forEach(f => { f.outerHTML = `<p>${f.innerHTML}</p>` })//  (`<p>${f.innerHTML}</p>`))
+  document.querySelectorAll('programlisting').forEach(f => f.outerHTML = `<pre>${f.innerHTML}</pre>`)
+  document.querySelectorAll('highlight').forEach(f => f.outerHTML = `${f.innerHTML}`)
+  document.querySelectorAll('codeline').forEach(f => f.outerHTML = `${f.innerHTML}`)
+  document.querySelectorAll('sp').forEach(f => f.outerHTML = `${f.innerHTML}`)
+
+
+  function unescapeHtmlEntitiesInBrowser(input: string) {
+    var doc = new DOMParser().parseFromString(input, "text/html")
+    return doc.documentElement.textContent
   }
-});
-await MathJax.start();
-// var yourMath = 'E = mc^2';
-
-  
-await serial(Array.from(document.querySelectorAll('formula')).map(f=>async ()=>{
-// document.querySelectorAll('formula').forEach(async f=>{
-try {
-var r =  await MathJax.typeset({
-//   // jax: 'HTML-CSS',
-  // jax: ["input/TeX","input/MathML","input/AsciiMath","output/CommonHTML"],
-  // tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] },
-
-  // extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "a11y/accessibility-menu.js"],
-//   // TeX: {
-//   //   extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-  // },
-
-  math: unescapeHtmlEntitiesInBrowser(f.innerHTML).trim().replace(/^\$/, '').replace(/\$$/g, ''),//.replace(/\<sp\s*\/\>/g, ' '),
-  // format: 'inline-TeX',
-  // format: "MathML", // or "inline-TeX", "MathML"
-  svg:true,      // or svg:true, or html:true
-})  
-
-// f.outerHTML=`<script type="math/tex; mode=display" >${f.innerHTML}</script>`
-// console.log(r);
-// f.replaceWith(r)
-f.outerHTML=r.svg
-} catch (error) {
-  console.error(f.innerHTML, error);
-  
-}
-// })
-}))
-// document.querySelectorAll('para').forEach(f=>replace(f, 'p', f.innerHTML))//  (`<p>${f.innerHTML}</p>`))
-document.querySelectorAll('detaileddescription').forEach(f=>f.outerHTML = `<article>w${f.innerHTML}</article>`)
-document.querySelectorAll('para').forEach(f=>{f.outerHTML=`<p>${f.innerHTML}</p>`})//  (`<p>${f.innerHTML}</p>`))
-document.querySelectorAll('programlisting').forEach(f=>f.outerHTML = `<pre>${f.innerHTML}</pre>`)
-document.querySelectorAll('highlight').forEach(f=>f.outerHTML = `${f.innerHTML}`)
-document.querySelectorAll('codeline').forEach(f=>f.outerHTML = `${f.innerHTML}`)
-document.querySelectorAll('sp').forEach(f=>f.outerHTML = `${f.innerHTML}`)
-
-
-function unescapeHtmlEntitiesInBrowser(input:string){
-  var doc = new DOMParser().parseFromString(input, "text/html");
-  return doc.documentElement.textContent;
-}
-writeFileSync('tmp.html', `
+  writeFileSync('tmp.html', `
 <html>
 <head>
 </head>
@@ -205,7 +205,7 @@ ${document.outerHTML}
 </html>
 `)
 }
-function replace(el: Element, t:string,c:string) {
+function replace(el: Element, t: string, c: string) {
   var e = doc.createElement(t)
   e.innerHTML = c
   el.replaceWith(e)
