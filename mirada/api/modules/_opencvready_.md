@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["opencvReady"](_opencvready_.md) /
+[Globals](../README.md) › ["opencvReady"](_opencvready_.md)
 
 # External module: "opencvReady"
 
@@ -12,26 +12,39 @@
 
 ### Functions
 
+* [getFS](_opencvready_.md#getfs)
 * [loadOpencv](_opencvready_.md#loadopencv)
 
 ## Variables
 
 ### `Const` opencvReady
 
-• **opencvReady**: *`Deferred<void, any>`* =  new Deferred<void>()
+• **opencvReady**: *Deferred‹void, any›* =  new Deferred<void>()
 
-*Defined in [opencvReady.ts:9](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/opencvReady.ts#L9)*
+*Defined in [opencvReady.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/opencvReady.ts#L11)*
 
 An exposed promise that is resolved when the library is ready to be used.
 At that time the global variable 'cv' should be available and ready.
 
 ## Functions
 
+###  getFS
+
+▸ **getFS**(): *[FS](../interfaces/_types_emscripten_.fs.md)*
+
+*Defined in [opencvReady.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/opencvReady.ts#L17)*
+
+gets the emscripten FS API
+
+**Returns:** *[FS](../interfaces/_types_emscripten_.fs.md)*
+
+___
+
 ###  loadOpencv
 
-▸ **loadOpencv**(`o`: `LoadOptions`): *`Promise<unknown>`*
+▸ **loadOpencv**(`o`: LoadOptions): *Promise‹void› | Promise‹[FS](../interfaces/_types_emscripten_.fs.md)›*
 
-*Defined in [opencvReady.ts:32](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/opencvReady.ts#L32)*
+*Defined in [opencvReady.ts:40](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/opencvReady.ts#L40)*
 
 Loads opencv.js file. It will do it only once no matter if called multiple times.
 In the browser a new script element is created to load the file while in Node.js
@@ -46,6 +59,6 @@ in the case of the browser it could be in an external server.
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`o` | `LoadOptions` |  {} |
+`o` | LoadOptions |  {} |
 
-**Returns:** *`Promise<unknown>`*
+**Returns:** *Promise‹void› | Promise‹[FS](../interfaces/_types_emscripten_.fs.md)›*

@@ -1,5 +1,5 @@
 import { existsSync } from 'fs'
-import { Deferred, getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
+import { getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
 import { relative, resolve as pathResolve } from 'path'
 
 // /**
@@ -8,10 +8,10 @@ import { relative, resolve as pathResolve } from 'path'
 //  */
 // export const opencvReady = new Deferred<void>()
 // const  promise =opencvReady()
-let isLoaded=true
+let isLoaded = true
 
 export function opencvReady() {
-  if(isLoaded){
+  if (isLoaded) {
     return Promise.resolve(true)
   }
   return new Promise(resolve => {

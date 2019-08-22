@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [Point](_types_opencv_.point.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [Point](_types_opencv_.point.md)
 
 # Class: Point
 
@@ -25,7 +25,7 @@
 
 \+ **new Point**(`x`: number, `y`: number): *[Point](_types_opencv_.point.md)*
 
-*Defined in [types/opencv.ts:64](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L64)*
+*Defined in [types/opencv.ts:64](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L64)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ Name | Type |
 
 • **x**: *number*
 
-*Defined in [types/opencv.ts:66](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L66)*
+*Defined in [types/opencv.ts:66](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L66)*
 
 ___
 
@@ -50,4 +50,4 @@ ___
 
 • **y**: *number*
 
-*Defined in [types/opencv.ts:67](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L67)*
+*Defined in [types/opencv.ts:67](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L67)*

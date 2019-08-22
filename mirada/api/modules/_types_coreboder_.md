@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/coreBoder"](_types_coreboder_.md) /
+[Globals](../README.md) › ["types/coreBoder"](_types_coreboder_.md)
 
 # External module: "types/coreBoder"
 
@@ -20,6 +20,6 @@
 
 Ƭ **BorderTypes**: *number | number | number | number | number | number | number | number | number | number*
 
-Defined in types/coreBoder.ts:42
+*Defined in [types/coreBoder.ts:42](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L42)*
 
 Various border types, image boundaries are denoted with |.

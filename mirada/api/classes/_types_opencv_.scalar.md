@@ -1,12 +1,12 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [Scalar](_types_opencv_.scalar.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [Scalar](_types_opencv_.scalar.md)
 
 # Class: Scalar
 
 ## Hierarchy
 
-* `Array<number>`
+* Array‹number›
 
   * **Scalar**
 
@@ -74,7 +74,7 @@ ___
 
 ### `Static` Array
 
-▪ **Array**: *`ArrayConstructor`*
+▪ **Array**: *ArrayConstructor*
 
 Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/lib.es5.d.ts:1368
 
@@ -82,7 +82,7 @@ Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/l
 
 ###  __@iterator
 
-▸ **__@iterator**(): *`IterableIterator<number>`*
+▸ **__@iterator**(): *IterableIterator‹number›*
 
 *Inherited from void*
 
@@ -90,7 +90,7 @@ Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/l
 
 Iterator
 
-**Returns:** *`IterableIterator<number>`*
+**Returns:** *IterableIterator‹number›*
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 ###  concat
 
-▸ **concat**(...`items`: `ConcatArray<number>`[]): *number[]*
+▸ **concat**(...`items`: ConcatArray‹number›[]): *number[]*
 
 *Inherited from void*
 
@@ -123,11 +123,11 @@ Combines two or more arrays.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`...items` | `ConcatArray<number>`[] | Additional items to add to the end of array1.  |
+`...items` | ConcatArray‹number›[] | Additional items to add to the end of array1.  |
 
 **Returns:** *number[]*
 
-▸ **concat**(...`items`: `T` | `ConcatArray<T>`[]): *number[]*
+▸ **concat**(...`items`: T | ConcatArray‹T›[]): *number[]*
 
 *Inherited from void*
 
@@ -139,7 +139,7 @@ Combines two or more arrays.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`...items` | `T` \| `ConcatArray<T>`[] | Additional items to add to the end of array1.  |
+`...items` | T \| ConcatArray‹T›[] | Additional items to add to the end of array1.  |
 
 **Returns:** *number[]*
 
@@ -170,7 +170,7 @@ ___
 
 ###  entries
 
-▸ **entries**(): *`IterableIterator<[number, number]>`*
+▸ **entries**(): *IterableIterator‹[number, number]›*
 
 *Inherited from void*
 
@@ -178,7 +178,7 @@ Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/l
 
 Returns an iterable of key, value pairs for every entry in the array
 
-**Returns:** *`IterableIterator<[number, number]>`*
+**Returns:** *IterableIterator‹[number, number]›*
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 ###  filter
 
-▸ **filter**<**S**>(`callbackfn`: function, `thisArg?`: any): *`S`[]*
+▸ **filter**<**S**>(`callbackfn`: function, `thisArg?`: any): *S[]*
 
 *Inherited from void*
 
@@ -272,7 +272,7 @@ Name | Type |
 
 An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.
 
-**Returns:** *`S`[]*
+**Returns:** *S[]*
 
 ▸ **filter**(`callbackfn`: function, `thisArg?`: any): *number[]*
 
@@ -308,7 +308,7 @@ ___
 
 ###  find
 
-▸ **find**<**S**>(`predicate`: function, `thisArg?`: any): *`S` | undefined*
+▸ **find**<**S**>(`predicate`: function, `thisArg?`: any): *S | undefined*
 
 *Inherited from void*
 
@@ -345,7 +345,7 @@ Name | Type |
 If provided, it will be used as the this value for each invocation of
 predicate. If it is not provided, undefined is used instead.
 
-**Returns:** *`S` | undefined*
+**Returns:** *S | undefined*
 
 ▸ **find**(`predicate`: function, `thisArg?`: any): *number | undefined*
 
@@ -413,7 +413,7 @@ ___
 
 ###  flat
 
-▸ **flat**<**U**>(`this`: `U`[][][][][][][][], `depth`: `7`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][][][][][][], `depth`: 7): *U[]*
 
 *Inherited from void*
 
@@ -430,12 +430,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][][][][][][] | - |
-`depth` | `7` | The maximum recursion depth  |
+`this` | U[][][][][][][][] | - |
+`depth` | 7 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][][][][][][], `depth`: `6`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][][][][][], `depth`: 6): *U[]*
 
 *Inherited from void*
 
@@ -452,12 +452,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][][][][][] | - |
-`depth` | `6` | The maximum recursion depth  |
+`this` | U[][][][][][][] | - |
+`depth` | 6 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][][][][][], `depth`: `5`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][][][][], `depth`: 5): *U[]*
 
 *Inherited from void*
 
@@ -474,12 +474,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][][][][] | - |
-`depth` | `5` | The maximum recursion depth  |
+`this` | U[][][][][][] | - |
+`depth` | 5 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][][][][], `depth`: `4`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][][][], `depth`: 4): *U[]*
 
 *Inherited from void*
 
@@ -496,12 +496,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][][][] | - |
-`depth` | `4` | The maximum recursion depth  |
+`this` | U[][][][][] | - |
+`depth` | 4 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][][][], `depth`: `3`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][][], `depth`: 3): *U[]*
 
 *Inherited from void*
 
@@ -518,12 +518,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][][] | - |
-`depth` | `3` | The maximum recursion depth  |
+`this` | U[][][][] | - |
+`depth` | 3 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][][], `depth`: `2`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][][], `depth`: 2): *U[]*
 
 *Inherited from void*
 
@@ -540,12 +540,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][][] | - |
-`depth` | `2` | The maximum recursion depth  |
+`this` | U[][][] | - |
+`depth` | 2 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[][], `depth?`: undefined | `1`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[][], `depth?`: undefined | 1): *U[]*
 
 *Inherited from void*
 
@@ -562,12 +562,12 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[][] | - |
-`depth?` | undefined \| `1` | The maximum recursion depth  |
+`this` | U[][] | - |
+`depth?` | undefined \| 1 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
-▸ **flat**<**U**>(`this`: `U`[], `depth`: `0`): *`U`[]*
+▸ **flat**<**U**>(`this`: U[], `depth`: 0): *U[]*
 
 *Inherited from void*
 
@@ -584,10 +584,10 @@ specified depth.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`this` | `U`[] | - |
-`depth` | `0` | The maximum recursion depth  |
+`this` | U[] | - |
+`depth` | 0 | The maximum recursion depth  |
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
 ▸ **flat**<**U**>(`depth?`: undefined | number): *any[]*
 
@@ -614,7 +614,7 @@ ___
 
 ###  flatMap
 
-▸ **flatMap**<**U**, **This**>(`callback`: function, `thisArg?`: [This]()): *`U`[]*
+▸ **flatMap**<**U**, **This**>(`callback`: function, `thisArg?`: [This]()): *U[]*
 
 *Inherited from void*
 
@@ -637,13 +637,13 @@ This is identical to a map followed by flat with depth 1.
 A function that accepts up to three arguments. The flatMap method calls the
 callback function one time for each element in the array.
 
-▸ (`this`: `This`, `value`: number, `index`: number, `array`: number[]): *`U` | `ReadonlyArray<U>`*
+▸ (`this`: This, `value`: number, `index`: number, `array`: number[]): *U | ReadonlyArray‹U›*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | `This` |
+`this` | This |
 `value` | number |
 `index` | number |
 `array` | number[] |
@@ -653,7 +653,7 @@ Name | Type |
 An object to which the this keyword can refer in the callback function. If
 thisArg is omitted, undefined is used as the this value.
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
 ___
 
@@ -755,7 +755,7 @@ ___
 
 ###  keys
 
-▸ **keys**(): *`IterableIterator<number>`*
+▸ **keys**(): *IterableIterator‹number›*
 
 *Inherited from void*
 
@@ -763,7 +763,7 @@ Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/l
 
 Returns an iterable of keys in the array
 
-**Returns:** *`IterableIterator<number>`*
+**Returns:** *IterableIterator‹number›*
 
 ___
 
@@ -790,7 +790,7 @@ ___
 
 ###  map
 
-▸ **map**<**U**>(`callbackfn`: function, `thisArg?`: any): *`U`[]*
+▸ **map**<**U**>(`callbackfn`: function, `thisArg?`: any): *U[]*
 
 *Inherited from void*
 
@@ -808,7 +808,7 @@ Calls a defined callback function on each element of an array, and returns an ar
 
 A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
 
-▸ (`value`: number, `index`: number, `array`: number[]): *`U`*
+▸ (`value`: number, `index`: number, `array`: number[]): *U*
 
 **Parameters:**
 
@@ -822,7 +822,7 @@ Name | Type |
 
 An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.
 
-**Returns:** *`U`[]*
+**Returns:** *U[]*
 
 ___
 
@@ -914,7 +914,7 @@ Name | Type |
 
 **Returns:** *number*
 
-▸ **reduce**<**U**>(`callbackfn`: function, `initialValue`: `U`): *`U`*
+▸ **reduce**<**U**>(`callbackfn`: function, `initialValue`: U): *U*
 
 *Inherited from void*
 
@@ -932,22 +932,22 @@ Calls the specified callback function for all the elements in an array. The retu
 
 A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
 
-▸ (`previousValue`: `U`, `currentValue`: number, `currentIndex`: number, `array`: number[]): *`U`*
+▸ (`previousValue`: U, `currentValue`: number, `currentIndex`: number, `array`: number[]): *U*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`previousValue` | `U` |
+`previousValue` | U |
 `currentValue` | number |
 `currentIndex` | number |
 `array` | number[] |
 
-▪ **initialValue**: *`U`*
+▪ **initialValue**: *U*
 
 If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.
 
-**Returns:** *`U`*
+**Returns:** *U*
 
 ___
 
@@ -1005,7 +1005,7 @@ Name | Type |
 
 **Returns:** *number*
 
-▸ **reduceRight**<**U**>(`callbackfn`: function, `initialValue`: `U`): *`U`*
+▸ **reduceRight**<**U**>(`callbackfn`: function, `initialValue`: U): *U*
 
 *Inherited from void*
 
@@ -1023,22 +1023,22 @@ Calls the specified callback function for all the elements in an array, in desce
 
 A function that accepts up to four arguments. The reduceRight method calls the callbackfn function one time for each element in the array.
 
-▸ (`previousValue`: `U`, `currentValue`: number, `currentIndex`: number, `array`: number[]): *`U`*
+▸ (`previousValue`: U, `currentValue`: number, `currentIndex`: number, `array`: number[]): *U*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`previousValue` | `U` |
+`previousValue` | U |
 `currentValue` | number |
 `currentIndex` | number |
 `array` | number[] |
 
-▪ **initialValue**: *`U`*
+▪ **initialValue**: *U*
 
 If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.
 
-**Returns:** *`U`*
+**Returns:** *U*
 
 ___
 
@@ -1234,7 +1234,7 @@ ___
 
 ###  values
 
-▸ **values**(): *`IterableIterator<number>`*
+▸ **values**(): *IterableIterator‹number›*
 
 *Inherited from void*
 
@@ -1242,7 +1242,7 @@ Defined in /Users/sebastiangurin/git/mirada/mirada/node_modules/typescript/lib/l
 
 Returns an iterable of values in the array
 
-**Returns:** *`IterableIterator<number>`*
+**Returns:** *IterableIterator‹number›*
 
 ___
 
@@ -1250,7 +1250,7 @@ ___
 
 ▸ **all**(...`v`: number[]): *[Scalar](_types_opencv_.scalar.md)*
 
-*Defined in [types/opencv.ts:61](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L61)*
+*Defined in [types/opencv.ts:61](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L61)*
 
 **Parameters:**
 

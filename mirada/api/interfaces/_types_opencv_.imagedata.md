@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [ImageData](_types_opencv_.imagedata.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [ImageData](_types_opencv_.imagedata.md)
 
 # Interface: ImageData
 
@@ -20,9 +20,9 @@
 
 ###  data
 
-• **data**: *`ArrayBufferView`*
+• **data**: *ArrayBufferView*
 
-*Defined in [types/opencv.ts:43](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L43)*
+*Defined in [types/opencv.ts:43](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L43)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **height**: *number*
 
-*Defined in [types/opencv.ts:45](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L45)*
+*Defined in [types/opencv.ts:45](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L45)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **width**: *number*
 
-*Defined in [types/opencv.ts:44](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L44)*
+*Defined in [types/opencv.ts:44](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L44)*

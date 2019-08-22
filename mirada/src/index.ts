@@ -1,6 +1,6 @@
 export * from './browserImageUtil'
 export { File } from './file'
-export { installFormatProxy } from './format'
+export { getDefaultCodec, installFormatProxy, JimpFormatCodec } from './format/'
 export { grabCut } from './grabCut'
 export * from './imageUtil'
 export * from './opencvReady'

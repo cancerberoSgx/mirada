@@ -3,6 +3,7 @@ import { create, distance, read } from 'jimp'
 import { File, grabCut } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
+
 test.before(loadMirada)
 
 test('simple', async t => {

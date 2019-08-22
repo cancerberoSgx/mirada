@@ -30,7 +30,7 @@ export class OpenCvBrowserUtils {
         const cv = getGlobal().cv
         if (typeof cv !== 'undefined' && typeof cv.getBuildInformation !== 'undefined') {
           this.opencvLoaded = true
-          opencvReady.resolve()
+          opencvReady.resolve(cv.Module)
           console.log(cv.getBuildInformation())
           onloadCallback && onloadCallback()
           resolve(cv)
@@ -39,7 +39,7 @@ export class OpenCvBrowserUtils {
           getGlobal().cv = typeof cv === 'undefined' ? {} : cv
           cv.onRuntimeInitialized = () => {
             this.opencvLoaded = true
-            opencvReady.resolve()
+            opencvReady.resolve(cv.Module)
             console.log(cv.getBuildInformation())
             onloadCallback && onloadCallback()
             resolve()

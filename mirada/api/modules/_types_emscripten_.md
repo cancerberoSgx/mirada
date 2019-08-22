@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/emscripten"](_types_emscripten_.md) /
+[Globals](../README.md) › ["types/emscripten"](_types_emscripten_.md)
 
 # External module: "types/emscripten"
 

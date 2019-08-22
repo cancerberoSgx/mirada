@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["file"](_file_.md) /
+[Globals](../README.md) › ["file"](_file_.md)
 
 # External module: "file"
 

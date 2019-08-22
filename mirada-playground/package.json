@@ -32,8 +32,8 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "misc-utils-of-mine-generic": "^0.2.15",
     "mirada": "file:../mirada",
+    "misc-utils-of-mine-generic": "^0.2.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "semantic-ui-css": "^2.4.1",

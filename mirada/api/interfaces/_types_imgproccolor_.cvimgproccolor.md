@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/imgProcColor"](../modules/_types_imgproccolor_.md) / [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md) /
+[Globals](../README.md) › ["types/imgProcColor"](../modules/_types_imgproccolor_.md) › [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md)
 
 # Interface: CVImgProcColor
 
@@ -231,7 +231,7 @@
 
 • **COLOR_BGR2BGR555**: *number*
 
-Defined in types/imgProcColor.ts:37
+*Defined in [types/imgProcColor.ts:37](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L37)*
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 • **COLOR_BGR2BGR565**: *number*
 
-Defined in types/imgProcColor.ts:27
+*Defined in [types/imgProcColor.ts:27](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L27)*
 
 ___
 
@@ -247,7 +247,7 @@ ___
 
 • **COLOR_BGR2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:7
+*Defined in [types/imgProcColor.ts:7](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L7)*
 
 ___
 
@@ -255,7 +255,7 @@ ___
 
 • **COLOR_BGR2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:19
+*Defined in [types/imgProcColor.ts:19](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L19)*
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 • **COLOR_BGR2HLS**: *number*
 
-Defined in types/imgProcColor.ts:61
+*Defined in [types/imgProcColor.ts:61](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L61)*
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 • **COLOR_BGR2HLS_FULL**: *number*
 
-Defined in types/imgProcColor.ts:73
+*Defined in [types/imgProcColor.ts:73](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L73)*
 
 ___
 
@@ -279,7 +279,7 @@ ___
 
 • **COLOR_BGR2HSV**: *number*
 
-Defined in types/imgProcColor.ts:55
+*Defined in [types/imgProcColor.ts:55](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L55)*
 
 ___
 
@@ -287,7 +287,7 @@ ___
 
 • **COLOR_BGR2HSV_FULL**: *number*
 
-Defined in types/imgProcColor.ts:71
+*Defined in [types/imgProcColor.ts:71](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L71)*
 
 ___
 
@@ -295,7 +295,7 @@ ___
 
 • **COLOR_BGR2Lab**: *number*
 
-Defined in types/imgProcColor.ts:57
+*Defined in [types/imgProcColor.ts:57](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L57)*
 
 ___
 
@@ -303,7 +303,7 @@ ___
 
 • **COLOR_BGR2Luv**: *number*
 
-Defined in types/imgProcColor.ts:59
+*Defined in [types/imgProcColor.ts:59](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L59)*
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 • **COLOR_BGR2RGB**: *number*
 
-Defined in types/imgProcColor.ts:15
+*Defined in [types/imgProcColor.ts:15](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L15)*
 
 ___
 
@@ -319,7 +319,7 @@ ___
 
 • **COLOR_BGR2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:11
+*Defined in [types/imgProcColor.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L11)*
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 • **COLOR_BGR2XYZ**: *number*
 
-Defined in types/imgProcColor.ts:47
+*Defined in [types/imgProcColor.ts:47](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L47)*
 
 ___
 
@@ -335,7 +335,7 @@ ___
 
 • **COLOR_BGR2YCrCb**: *number*
 
-Defined in types/imgProcColor.ts:51
+*Defined in [types/imgProcColor.ts:51](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L51)*
 
 ___
 
@@ -343,7 +343,7 @@ ___
 
 • **COLOR_BGR2YUV**: *number*
 
-Defined in types/imgProcColor.ts:87
+*Defined in [types/imgProcColor.ts:87](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L87)*
 
 ___
 
@@ -351,7 +351,7 @@ ___
 
 • **COLOR_BGR2YUV_I420**: *number*
 
-Defined in types/imgProcColor.ts:165
+*Defined in [types/imgProcColor.ts:165](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L165)*
 
 ___
 
@@ -359,7 +359,7 @@ ___
 
 • **COLOR_BGR2YUV_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:167
+*Defined in [types/imgProcColor.ts:167](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L167)*
 
 ___
 
@@ -367,7 +367,7 @@ ___
 
 • **COLOR_BGR2YUV_YV12**: *number*
 
-Defined in types/imgProcColor.ts:173
+*Defined in [types/imgProcColor.ts:173](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L173)*
 
 ___
 
@@ -375,7 +375,7 @@ ___
 
 • **COLOR_BGR5552BGR**: *number*
 
-Defined in types/imgProcColor.ts:39
+*Defined in [types/imgProcColor.ts:39](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L39)*
 
 ___
 
@@ -383,7 +383,7 @@ ___
 
 • **COLOR_BGR5552BGRA**: *number*
 
-Defined in types/imgProcColor.ts:43
+*Defined in [types/imgProcColor.ts:43](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L43)*
 
 ___
 
@@ -391,7 +391,7 @@ ___
 
 • **COLOR_BGR5552GRAY**: *number*
 
-Defined in types/imgProcColor.ts:46
+*Defined in [types/imgProcColor.ts:46](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L46)*
 
 ___
 
@@ -399,7 +399,7 @@ ___
 
 • **COLOR_BGR5552RGB**: *number*
 
-Defined in types/imgProcColor.ts:40
+*Defined in [types/imgProcColor.ts:40](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L40)*
 
 ___
 
@@ -407,7 +407,7 @@ ___
 
 • **COLOR_BGR5552RGBA**: *number*
 
-Defined in types/imgProcColor.ts:44
+*Defined in [types/imgProcColor.ts:44](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L44)*
 
 ___
 
@@ -415,7 +415,7 @@ ___
 
 • **COLOR_BGR5652BGR**: *number*
 
-Defined in types/imgProcColor.ts:29
+*Defined in [types/imgProcColor.ts:29](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L29)*
 
 ___
 
@@ -423,7 +423,7 @@ ___
 
 • **COLOR_BGR5652BGRA**: *number*
 
-Defined in types/imgProcColor.ts:33
+*Defined in [types/imgProcColor.ts:33](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L33)*
 
 ___
 
@@ -431,7 +431,7 @@ ___
 
 • **COLOR_BGR5652GRAY**: *number*
 
-Defined in types/imgProcColor.ts:36
+*Defined in [types/imgProcColor.ts:36](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L36)*
 
 ___
 
@@ -439,7 +439,7 @@ ___
 
 • **COLOR_BGR5652RGB**: *number*
 
-Defined in types/imgProcColor.ts:30
+*Defined in [types/imgProcColor.ts:30](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L30)*
 
 ___
 
@@ -447,7 +447,7 @@ ___
 
 • **COLOR_BGR5652RGBA**: *number*
 
-Defined in types/imgProcColor.ts:34
+*Defined in [types/imgProcColor.ts:34](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L34)*
 
 ___
 
@@ -455,7 +455,7 @@ ___
 
 • **COLOR_BGRA2BGR**: *number*
 
-Defined in types/imgProcColor.ts:9
+*Defined in [types/imgProcColor.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L9)*
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 • **COLOR_BGRA2BGR555**: *number*
 
-Defined in types/imgProcColor.ts:41
+*Defined in [types/imgProcColor.ts:41](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L41)*
 
 ___
 
@@ -471,7 +471,7 @@ ___
 
 • **COLOR_BGRA2BGR565**: *number*
 
-Defined in types/imgProcColor.ts:31
+*Defined in [types/imgProcColor.ts:31](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L31)*
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 • **COLOR_BGRA2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:25
+*Defined in [types/imgProcColor.ts:25](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L25)*
 
 ___
 
@@ -487,7 +487,7 @@ ___
 
 • **COLOR_BGRA2RGB**: *number*
 
-Defined in types/imgProcColor.ts:14
+*Defined in [types/imgProcColor.ts:14](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L14)*
 
 ___
 
@@ -495,7 +495,7 @@ ___
 
 • **COLOR_BGRA2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:17
+*Defined in [types/imgProcColor.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L17)*
 
 ___
 
@@ -503,7 +503,7 @@ ___
 
 • **COLOR_BGRA2YUV_I420**: *number*
 
-Defined in types/imgProcColor.ts:169
+*Defined in [types/imgProcColor.ts:169](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L169)*
 
 ___
 
@@ -511,7 +511,7 @@ ___
 
 • **COLOR_BGRA2YUV_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:171
+*Defined in [types/imgProcColor.ts:171](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L171)*
 
 ___
 
@@ -519,7 +519,7 @@ ___
 
 • **COLOR_BGRA2YUV_YV12**: *number*
 
-Defined in types/imgProcColor.ts:175
+*Defined in [types/imgProcColor.ts:175](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L175)*
 
 ___
 
@@ -527,7 +527,7 @@ ___
 
 • **COLOR_BayerBG2BGR**: *number*
 
-Defined in types/imgProcColor.ts:176
+*Defined in [types/imgProcColor.ts:176](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L176)*
 
 ___
 
@@ -535,7 +535,7 @@ ___
 
 • **COLOR_BayerBG2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:204
+*Defined in [types/imgProcColor.ts:204](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L204)*
 
 ___
 
@@ -543,7 +543,7 @@ ___
 
 • **COLOR_BayerBG2BGR_EA**: *number*
 
-Defined in types/imgProcColor.ts:196
+*Defined in [types/imgProcColor.ts:196](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L196)*
 
 ___
 
@@ -551,7 +551,7 @@ ___
 
 • **COLOR_BayerBG2BGR_VNG**: *number*
 
-Defined in types/imgProcColor.ts:188
+*Defined in [types/imgProcColor.ts:188](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L188)*
 
 ___
 
@@ -559,7 +559,7 @@ ___
 
 • **COLOR_BayerBG2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:184
+*Defined in [types/imgProcColor.ts:184](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L184)*
 
 ___
 
@@ -567,7 +567,7 @@ ___
 
 • **COLOR_BayerBG2RGB**: *number*
 
-Defined in types/imgProcColor.ts:180
+*Defined in [types/imgProcColor.ts:180](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L180)*
 
 ___
 
@@ -575,7 +575,7 @@ ___
 
 • **COLOR_BayerBG2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:208
+*Defined in [types/imgProcColor.ts:208](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L208)*
 
 ___
 
@@ -583,7 +583,7 @@ ___
 
 • **COLOR_BayerBG2RGB_EA**: *number*
 
-Defined in types/imgProcColor.ts:200
+*Defined in [types/imgProcColor.ts:200](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L200)*
 
 ___
 
@@ -591,7 +591,7 @@ ___
 
 • **COLOR_BayerBG2RGB_VNG**: *number*
 
-Defined in types/imgProcColor.ts:192
+*Defined in [types/imgProcColor.ts:192](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L192)*
 
 ___
 
@@ -599,7 +599,7 @@ ___
 
 • **COLOR_BayerGB2BGR**: *number*
 
-Defined in types/imgProcColor.ts:177
+*Defined in [types/imgProcColor.ts:177](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L177)*
 
 ___
 
@@ -607,7 +607,7 @@ ___
 
 • **COLOR_BayerGB2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:205
+*Defined in [types/imgProcColor.ts:205](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L205)*
 
 ___
 
@@ -615,7 +615,7 @@ ___
 
 • **COLOR_BayerGB2BGR_EA**: *number*
 
-Defined in types/imgProcColor.ts:197
+*Defined in [types/imgProcColor.ts:197](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L197)*
 
 ___
 
@@ -623,7 +623,7 @@ ___
 
 • **COLOR_BayerGB2BGR_VNG**: *number*
 
-Defined in types/imgProcColor.ts:189
+*Defined in [types/imgProcColor.ts:189](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L189)*
 
 ___
 
@@ -631,7 +631,7 @@ ___
 
 • **COLOR_BayerGB2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:185
+*Defined in [types/imgProcColor.ts:185](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L185)*
 
 ___
 
@@ -639,7 +639,7 @@ ___
 
 • **COLOR_BayerGB2RGB**: *number*
 
-Defined in types/imgProcColor.ts:181
+*Defined in [types/imgProcColor.ts:181](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L181)*
 
 ___
 
@@ -647,7 +647,7 @@ ___
 
 • **COLOR_BayerGB2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:209
+*Defined in [types/imgProcColor.ts:209](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L209)*
 
 ___
 
@@ -655,7 +655,7 @@ ___
 
 • **COLOR_BayerGB2RGB_EA**: *number*
 
-Defined in types/imgProcColor.ts:201
+*Defined in [types/imgProcColor.ts:201](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L201)*
 
 ___
 
@@ -663,7 +663,7 @@ ___
 
 • **COLOR_BayerGB2RGB_VNG**: *number*
 
-Defined in types/imgProcColor.ts:193
+*Defined in [types/imgProcColor.ts:193](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L193)*
 
 ___
 
@@ -671,7 +671,7 @@ ___
 
 • **COLOR_BayerGR2BGR**: *number*
 
-Defined in types/imgProcColor.ts:179
+*Defined in [types/imgProcColor.ts:179](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L179)*
 
 ___
 
@@ -679,7 +679,7 @@ ___
 
 • **COLOR_BayerGR2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:207
+*Defined in [types/imgProcColor.ts:207](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L207)*
 
 ___
 
@@ -687,7 +687,7 @@ ___
 
 • **COLOR_BayerGR2BGR_EA**: *number*
 
-Defined in types/imgProcColor.ts:199
+*Defined in [types/imgProcColor.ts:199](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L199)*
 
 ___
 
@@ -695,7 +695,7 @@ ___
 
 • **COLOR_BayerGR2BGR_VNG**: *number*
 
-Defined in types/imgProcColor.ts:191
+*Defined in [types/imgProcColor.ts:191](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L191)*
 
 ___
 
@@ -703,7 +703,7 @@ ___
 
 • **COLOR_BayerGR2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:187
+*Defined in [types/imgProcColor.ts:187](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L187)*
 
 ___
 
@@ -711,7 +711,7 @@ ___
 
 • **COLOR_BayerGR2RGB**: *number*
 
-Defined in types/imgProcColor.ts:183
+*Defined in [types/imgProcColor.ts:183](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L183)*
 
 ___
 
@@ -719,7 +719,7 @@ ___
 
 • **COLOR_BayerGR2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:211
+*Defined in [types/imgProcColor.ts:211](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L211)*
 
 ___
 
@@ -727,7 +727,7 @@ ___
 
 • **COLOR_BayerGR2RGB_EA**: *number*
 
-Defined in types/imgProcColor.ts:203
+*Defined in [types/imgProcColor.ts:203](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L203)*
 
 ___
 
@@ -735,7 +735,7 @@ ___
 
 • **COLOR_BayerGR2RGB_VNG**: *number*
 
-Defined in types/imgProcColor.ts:195
+*Defined in [types/imgProcColor.ts:195](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L195)*
 
 ___
 
@@ -743,7 +743,7 @@ ___
 
 • **COLOR_BayerRG2BGR**: *number*
 
-Defined in types/imgProcColor.ts:178
+*Defined in [types/imgProcColor.ts:178](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L178)*
 
 ___
 
@@ -751,7 +751,7 @@ ___
 
 • **COLOR_BayerRG2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:206
+*Defined in [types/imgProcColor.ts:206](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L206)*
 
 ___
 
@@ -759,7 +759,7 @@ ___
 
 • **COLOR_BayerRG2BGR_EA**: *number*
 
-Defined in types/imgProcColor.ts:198
+*Defined in [types/imgProcColor.ts:198](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L198)*
 
 ___
 
@@ -767,7 +767,7 @@ ___
 
 • **COLOR_BayerRG2BGR_VNG**: *number*
 
-Defined in types/imgProcColor.ts:190
+*Defined in [types/imgProcColor.ts:190](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L190)*
 
 ___
 
@@ -775,7 +775,7 @@ ___
 
 • **COLOR_BayerRG2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:186
+*Defined in [types/imgProcColor.ts:186](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L186)*
 
 ___
 
@@ -783,7 +783,7 @@ ___
 
 • **COLOR_BayerRG2RGB**: *number*
 
-Defined in types/imgProcColor.ts:182
+*Defined in [types/imgProcColor.ts:182](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L182)*
 
 ___
 
@@ -791,7 +791,7 @@ ___
 
 • **COLOR_BayerRG2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:210
+*Defined in [types/imgProcColor.ts:210](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L210)*
 
 ___
 
@@ -799,7 +799,7 @@ ___
 
 • **COLOR_BayerRG2RGB_EA**: *number*
 
-Defined in types/imgProcColor.ts:202
+*Defined in [types/imgProcColor.ts:202](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L202)*
 
 ___
 
@@ -807,7 +807,7 @@ ___
 
 • **COLOR_BayerRG2RGB_VNG**: *number*
 
-Defined in types/imgProcColor.ts:194
+*Defined in [types/imgProcColor.ts:194](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L194)*
 
 ___
 
@@ -815,7 +815,7 @@ ___
 
 • **COLOR_COLORCVT_MAX**: *number*
 
-Defined in types/imgProcColor.ts:212
+*Defined in [types/imgProcColor.ts:212](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L212)*
 
 ___
 
@@ -823,7 +823,7 @@ ___
 
 • **COLOR_GRAY2BGR**: *number*
 
-Defined in types/imgProcColor.ts:21
+*Defined in [types/imgProcColor.ts:21](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L21)*
 
 ___
 
@@ -831,7 +831,7 @@ ___
 
 • **COLOR_GRAY2BGR555**: *number*
 
-Defined in types/imgProcColor.ts:45
+*Defined in [types/imgProcColor.ts:45](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L45)*
 
 ___
 
@@ -839,7 +839,7 @@ ___
 
 • **COLOR_GRAY2BGR565**: *number*
 
-Defined in types/imgProcColor.ts:35
+*Defined in [types/imgProcColor.ts:35](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L35)*
 
 ___
 
@@ -847,7 +847,7 @@ ___
 
 • **COLOR_GRAY2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:23
+*Defined in [types/imgProcColor.ts:23](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L23)*
 
 ___
 
@@ -855,7 +855,7 @@ ___
 
 • **COLOR_GRAY2RGB**: *number*
 
-Defined in types/imgProcColor.ts:22
+*Defined in [types/imgProcColor.ts:22](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L22)*
 
 ___
 
@@ -863,7 +863,7 @@ ___
 
 • **COLOR_GRAY2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:24
+*Defined in [types/imgProcColor.ts:24](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L24)*
 
 ___
 
@@ -871,7 +871,7 @@ ___
 
 • **COLOR_HLS2BGR**: *number*
 
-Defined in types/imgProcColor.ts:69
+*Defined in [types/imgProcColor.ts:69](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L69)*
 
 ___
 
@@ -879,7 +879,7 @@ ___
 
 • **COLOR_HLS2BGR_FULL**: *number*
 
-Defined in types/imgProcColor.ts:77
+*Defined in [types/imgProcColor.ts:77](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L77)*
 
 ___
 
@@ -887,7 +887,7 @@ ___
 
 • **COLOR_HLS2RGB**: *number*
 
-Defined in types/imgProcColor.ts:70
+*Defined in [types/imgProcColor.ts:70](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L70)*
 
 ___
 
@@ -895,7 +895,7 @@ ___
 
 • **COLOR_HLS2RGB_FULL**: *number*
 
-Defined in types/imgProcColor.ts:78
+*Defined in [types/imgProcColor.ts:78](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L78)*
 
 ___
 
@@ -903,7 +903,7 @@ ___
 
 • **COLOR_HSV2BGR**: *number*
 
-Defined in types/imgProcColor.ts:63
+*Defined in [types/imgProcColor.ts:63](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L63)*
 
 ___
 
@@ -911,7 +911,7 @@ ___
 
 • **COLOR_HSV2BGR_FULL**: *number*
 
-Defined in types/imgProcColor.ts:75
+*Defined in [types/imgProcColor.ts:75](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L75)*
 
 ___
 
@@ -919,7 +919,7 @@ ___
 
 • **COLOR_HSV2RGB**: *number*
 
-Defined in types/imgProcColor.ts:64
+*Defined in [types/imgProcColor.ts:64](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L64)*
 
 ___
 
@@ -927,7 +927,7 @@ ___
 
 • **COLOR_HSV2RGB_FULL**: *number*
 
-Defined in types/imgProcColor.ts:76
+*Defined in [types/imgProcColor.ts:76](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L76)*
 
 ___
 
@@ -935,7 +935,7 @@ ___
 
 • **COLOR_LBGR2Lab**: *number*
 
-Defined in types/imgProcColor.ts:79
+*Defined in [types/imgProcColor.ts:79](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L79)*
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 • **COLOR_LBGR2Luv**: *number*
 
-Defined in types/imgProcColor.ts:81
+*Defined in [types/imgProcColor.ts:81](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L81)*
 
 ___
 
@@ -951,7 +951,7 @@ ___
 
 • **COLOR_LRGB2Lab**: *number*
 
-Defined in types/imgProcColor.ts:80
+*Defined in [types/imgProcColor.ts:80](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L80)*
 
 ___
 
@@ -959,7 +959,7 @@ ___
 
 • **COLOR_LRGB2Luv**: *number*
 
-Defined in types/imgProcColor.ts:82
+*Defined in [types/imgProcColor.ts:82](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L82)*
 
 ___
 
@@ -967,7 +967,7 @@ ___
 
 • **COLOR_Lab2BGR**: *number*
 
-Defined in types/imgProcColor.ts:65
+*Defined in [types/imgProcColor.ts:65](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L65)*
 
 ___
 
@@ -975,7 +975,7 @@ ___
 
 • **COLOR_Lab2LBGR**: *number*
 
-Defined in types/imgProcColor.ts:83
+*Defined in [types/imgProcColor.ts:83](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L83)*
 
 ___
 
@@ -983,7 +983,7 @@ ___
 
 • **COLOR_Lab2LRGB**: *number*
 
-Defined in types/imgProcColor.ts:84
+*Defined in [types/imgProcColor.ts:84](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L84)*
 
 ___
 
@@ -991,7 +991,7 @@ ___
 
 • **COLOR_Lab2RGB**: *number*
 
-Defined in types/imgProcColor.ts:66
+*Defined in [types/imgProcColor.ts:66](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L66)*
 
 ___
 
@@ -999,7 +999,7 @@ ___
 
 • **COLOR_Luv2BGR**: *number*
 
-Defined in types/imgProcColor.ts:67
+*Defined in [types/imgProcColor.ts:67](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L67)*
 
 ___
 
@@ -1007,7 +1007,7 @@ ___
 
 • **COLOR_Luv2LBGR**: *number*
 
-Defined in types/imgProcColor.ts:85
+*Defined in [types/imgProcColor.ts:85](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L85)*
 
 ___
 
@@ -1015,7 +1015,7 @@ ___
 
 • **COLOR_Luv2LRGB**: *number*
 
-Defined in types/imgProcColor.ts:86
+*Defined in [types/imgProcColor.ts:86](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L86)*
 
 ___
 
@@ -1023,7 +1023,7 @@ ___
 
 • **COLOR_Luv2RGB**: *number*
 
-Defined in types/imgProcColor.ts:68
+*Defined in [types/imgProcColor.ts:68](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L68)*
 
 ___
 
@@ -1031,7 +1031,7 @@ ___
 
 • **COLOR_RGB2BGR**: *number*
 
-Defined in types/imgProcColor.ts:16
+*Defined in [types/imgProcColor.ts:16](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L16)*
 
 ___
 
@@ -1039,7 +1039,7 @@ ___
 
 • **COLOR_RGB2BGR555**: *number*
 
-Defined in types/imgProcColor.ts:38
+*Defined in [types/imgProcColor.ts:38](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L38)*
 
 ___
 
@@ -1047,7 +1047,7 @@ ___
 
 • **COLOR_RGB2BGR565**: *number*
 
-Defined in types/imgProcColor.ts:28
+*Defined in [types/imgProcColor.ts:28](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L28)*
 
 ___
 
@@ -1055,7 +1055,7 @@ ___
 
 • **COLOR_RGB2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:12
+*Defined in [types/imgProcColor.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L12)*
 
 ___
 
@@ -1063,7 +1063,7 @@ ___
 
 • **COLOR_RGB2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:20
+*Defined in [types/imgProcColor.ts:20](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L20)*
 
 ___
 
@@ -1071,7 +1071,7 @@ ___
 
 • **COLOR_RGB2HLS**: *number*
 
-Defined in types/imgProcColor.ts:62
+*Defined in [types/imgProcColor.ts:62](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L62)*
 
 ___
 
@@ -1079,7 +1079,7 @@ ___
 
 • **COLOR_RGB2HLS_FULL**: *number*
 
-Defined in types/imgProcColor.ts:74
+*Defined in [types/imgProcColor.ts:74](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L74)*
 
 ___
 
@@ -1087,7 +1087,7 @@ ___
 
 • **COLOR_RGB2HSV**: *number*
 
-Defined in types/imgProcColor.ts:56
+*Defined in [types/imgProcColor.ts:56](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L56)*
 
 ___
 
@@ -1095,7 +1095,7 @@ ___
 
 • **COLOR_RGB2HSV_FULL**: *number*
 
-Defined in types/imgProcColor.ts:72
+*Defined in [types/imgProcColor.ts:72](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L72)*
 
 ___
 
@@ -1103,7 +1103,7 @@ ___
 
 • **COLOR_RGB2Lab**: *number*
 
-Defined in types/imgProcColor.ts:58
+*Defined in [types/imgProcColor.ts:58](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L58)*
 
 ___
 
@@ -1111,7 +1111,7 @@ ___
 
 • **COLOR_RGB2Luv**: *number*
 
-Defined in types/imgProcColor.ts:60
+*Defined in [types/imgProcColor.ts:60](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L60)*
 
 ___
 
@@ -1119,7 +1119,7 @@ ___
 
 • **COLOR_RGB2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:8
+*Defined in [types/imgProcColor.ts:8](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L8)*
 
 ___
 
@@ -1127,7 +1127,7 @@ ___
 
 • **COLOR_RGB2XYZ**: *number*
 
-Defined in types/imgProcColor.ts:48
+*Defined in [types/imgProcColor.ts:48](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L48)*
 
 ___
 
@@ -1135,7 +1135,7 @@ ___
 
 • **COLOR_RGB2YCrCb**: *number*
 
-Defined in types/imgProcColor.ts:52
+*Defined in [types/imgProcColor.ts:52](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L52)*
 
 ___
 
@@ -1143,7 +1143,7 @@ ___
 
 • **COLOR_RGB2YUV**: *number*
 
-Defined in types/imgProcColor.ts:88
+*Defined in [types/imgProcColor.ts:88](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L88)*
 
 ___
 
@@ -1151,7 +1151,7 @@ ___
 
 • **COLOR_RGB2YUV_I420**: *number*
 
-Defined in types/imgProcColor.ts:164
+*Defined in [types/imgProcColor.ts:164](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L164)*
 
 ___
 
@@ -1159,7 +1159,7 @@ ___
 
 • **COLOR_RGB2YUV_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:166
+*Defined in [types/imgProcColor.ts:166](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L166)*
 
 ___
 
@@ -1167,7 +1167,7 @@ ___
 
 • **COLOR_RGB2YUV_YV12**: *number*
 
-Defined in types/imgProcColor.ts:172
+*Defined in [types/imgProcColor.ts:172](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L172)*
 
 ___
 
@@ -1175,7 +1175,7 @@ ___
 
 • **COLOR_RGBA2BGR**: *number*
 
-Defined in types/imgProcColor.ts:13
+*Defined in [types/imgProcColor.ts:13](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L13)*
 
 ___
 
@@ -1183,7 +1183,7 @@ ___
 
 • **COLOR_RGBA2BGR555**: *number*
 
-Defined in types/imgProcColor.ts:42
+*Defined in [types/imgProcColor.ts:42](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L42)*
 
 ___
 
@@ -1191,7 +1191,7 @@ ___
 
 • **COLOR_RGBA2BGR565**: *number*
 
-Defined in types/imgProcColor.ts:32
+*Defined in [types/imgProcColor.ts:32](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L32)*
 
 ___
 
@@ -1199,7 +1199,7 @@ ___
 
 • **COLOR_RGBA2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:18
+*Defined in [types/imgProcColor.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L18)*
 
 ___
 
@@ -1207,7 +1207,7 @@ ___
 
 • **COLOR_RGBA2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:26
+*Defined in [types/imgProcColor.ts:26](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L26)*
 
 ___
 
@@ -1215,7 +1215,7 @@ ___
 
 • **COLOR_RGBA2RGB**: *number*
 
-Defined in types/imgProcColor.ts:10
+*Defined in [types/imgProcColor.ts:10](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L10)*
 
 ___
 
@@ -1223,7 +1223,7 @@ ___
 
 • **COLOR_RGBA2YUV_I420**: *number*
 
-Defined in types/imgProcColor.ts:168
+*Defined in [types/imgProcColor.ts:168](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L168)*
 
 ___
 
@@ -1231,7 +1231,7 @@ ___
 
 • **COLOR_RGBA2YUV_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:170
+*Defined in [types/imgProcColor.ts:170](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L170)*
 
 ___
 
@@ -1239,7 +1239,7 @@ ___
 
 • **COLOR_RGBA2YUV_YV12**: *number*
 
-Defined in types/imgProcColor.ts:174
+*Defined in [types/imgProcColor.ts:174](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L174)*
 
 ___
 
@@ -1247,7 +1247,7 @@ ___
 
 • **COLOR_RGBA2mRGBA**: *number*
 
-Defined in types/imgProcColor.ts:162
+*Defined in [types/imgProcColor.ts:162](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L162)*
 
 ___
 
@@ -1255,7 +1255,7 @@ ___
 
 • **COLOR_XYZ2BGR**: *number*
 
-Defined in types/imgProcColor.ts:49
+*Defined in [types/imgProcColor.ts:49](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L49)*
 
 ___
 
@@ -1263,7 +1263,7 @@ ___
 
 • **COLOR_XYZ2RGB**: *number*
 
-Defined in types/imgProcColor.ts:50
+*Defined in [types/imgProcColor.ts:50](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L50)*
 
 ___
 
@@ -1271,7 +1271,7 @@ ___
 
 • **COLOR_YCrCb2BGR**: *number*
 
-Defined in types/imgProcColor.ts:53
+*Defined in [types/imgProcColor.ts:53](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L53)*
 
 ___
 
@@ -1279,7 +1279,7 @@ ___
 
 • **COLOR_YCrCb2RGB**: *number*
 
-Defined in types/imgProcColor.ts:54
+*Defined in [types/imgProcColor.ts:54](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L54)*
 
 ___
 
@@ -1287,7 +1287,7 @@ ___
 
 • **COLOR_YUV2BGR**: *number*
 
-Defined in types/imgProcColor.ts:89
+*Defined in [types/imgProcColor.ts:89](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L89)*
 
 ___
 
@@ -1295,7 +1295,7 @@ ___
 
 • **COLOR_YUV2BGRA_I420**: *number*
 
-Defined in types/imgProcColor.ts:116
+*Defined in [types/imgProcColor.ts:116](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L116)*
 
 ___
 
@@ -1303,7 +1303,7 @@ ___
 
 • **COLOR_YUV2BGRA_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:114
+*Defined in [types/imgProcColor.ts:114](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L114)*
 
 ___
 
@@ -1311,7 +1311,7 @@ ___
 
 • **COLOR_YUV2BGRA_NV12**: *number*
 
-Defined in types/imgProcColor.ts:98
+*Defined in [types/imgProcColor.ts:98](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L98)*
 
 ___
 
@@ -1319,7 +1319,7 @@ ___
 
 • **COLOR_YUV2BGRA_NV21**: *number*
 
-Defined in types/imgProcColor.ts:100
+*Defined in [types/imgProcColor.ts:100](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L100)*
 
 ___
 
@@ -1327,7 +1327,7 @@ ___
 
 • **COLOR_YUV2BGRA_UYNV**: *number*
 
-Defined in types/imgProcColor.ts:138
+*Defined in [types/imgProcColor.ts:138](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L138)*
 
 ___
 
@@ -1335,7 +1335,7 @@ ___
 
 • **COLOR_YUV2BGRA_UYVY**: *number*
 
-Defined in types/imgProcColor.ts:134
+*Defined in [types/imgProcColor.ts:134](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L134)*
 
 ___
 
@@ -1343,7 +1343,7 @@ ___
 
 • **COLOR_YUV2BGRA_Y422**: *number*
 
-Defined in types/imgProcColor.ts:136
+*Defined in [types/imgProcColor.ts:136](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L136)*
 
 ___
 
@@ -1351,7 +1351,7 @@ ___
 
 • **COLOR_YUV2BGRA_YUNV**: *number*
 
-Defined in types/imgProcColor.ts:154
+*Defined in [types/imgProcColor.ts:154](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L154)*
 
 ___
 
@@ -1359,7 +1359,7 @@ ___
 
 • **COLOR_YUV2BGRA_YUY2**: *number*
 
-Defined in types/imgProcColor.ts:148
+*Defined in [types/imgProcColor.ts:148](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L148)*
 
 ___
 
@@ -1367,7 +1367,7 @@ ___
 
 • **COLOR_YUV2BGRA_YUYV**: *number*
 
-Defined in types/imgProcColor.ts:152
+*Defined in [types/imgProcColor.ts:152](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L152)*
 
 ___
 
@@ -1375,7 +1375,7 @@ ___
 
 • **COLOR_YUV2BGRA_YV12**: *number*
 
-Defined in types/imgProcColor.ts:112
+*Defined in [types/imgProcColor.ts:112](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L112)*
 
 ___
 
@@ -1383,7 +1383,7 @@ ___
 
 • **COLOR_YUV2BGRA_YVYU**: *number*
 
-Defined in types/imgProcColor.ts:150
+*Defined in [types/imgProcColor.ts:150](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L150)*
 
 ___
 
@@ -1391,7 +1391,7 @@ ___
 
 • **COLOR_YUV2BGR_I420**: *number*
 
-Defined in types/imgProcColor.ts:108
+*Defined in [types/imgProcColor.ts:108](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L108)*
 
 ___
 
@@ -1399,7 +1399,7 @@ ___
 
 • **COLOR_YUV2BGR_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:106
+*Defined in [types/imgProcColor.ts:106](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L106)*
 
 ___
 
@@ -1407,7 +1407,7 @@ ___
 
 • **COLOR_YUV2BGR_NV12**: *number*
 
-Defined in types/imgProcColor.ts:92
+*Defined in [types/imgProcColor.ts:92](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L92)*
 
 ___
 
@@ -1415,7 +1415,7 @@ ___
 
 • **COLOR_YUV2BGR_NV21**: *number*
 
-Defined in types/imgProcColor.ts:94
+*Defined in [types/imgProcColor.ts:94](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L94)*
 
 ___
 
@@ -1423,7 +1423,7 @@ ___
 
 • **COLOR_YUV2BGR_UYNV**: *number*
 
-Defined in types/imgProcColor.ts:132
+*Defined in [types/imgProcColor.ts:132](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L132)*
 
 ___
 
@@ -1431,7 +1431,7 @@ ___
 
 • **COLOR_YUV2BGR_UYVY**: *number*
 
-Defined in types/imgProcColor.ts:128
+*Defined in [types/imgProcColor.ts:128](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L128)*
 
 ___
 
@@ -1439,7 +1439,7 @@ ___
 
 • **COLOR_YUV2BGR_Y422**: *number*
 
-Defined in types/imgProcColor.ts:130
+*Defined in [types/imgProcColor.ts:130](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L130)*
 
 ___
 
@@ -1447,7 +1447,7 @@ ___
 
 • **COLOR_YUV2BGR_YUNV**: *number*
 
-Defined in types/imgProcColor.ts:146
+*Defined in [types/imgProcColor.ts:146](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L146)*
 
 ___
 
@@ -1455,7 +1455,7 @@ ___
 
 • **COLOR_YUV2BGR_YUY2**: *number*
 
-Defined in types/imgProcColor.ts:140
+*Defined in [types/imgProcColor.ts:140](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L140)*
 
 ___
 
@@ -1463,7 +1463,7 @@ ___
 
 • **COLOR_YUV2BGR_YUYV**: *number*
 
-Defined in types/imgProcColor.ts:144
+*Defined in [types/imgProcColor.ts:144](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L144)*
 
 ___
 
@@ -1471,7 +1471,7 @@ ___
 
 • **COLOR_YUV2BGR_YV12**: *number*
 
-Defined in types/imgProcColor.ts:104
+*Defined in [types/imgProcColor.ts:104](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L104)*
 
 ___
 
@@ -1479,7 +1479,7 @@ ___
 
 • **COLOR_YUV2BGR_YVYU**: *number*
 
-Defined in types/imgProcColor.ts:142
+*Defined in [types/imgProcColor.ts:142](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L142)*
 
 ___
 
@@ -1487,7 +1487,7 @@ ___
 
 • **COLOR_YUV2GRAY_420**: *number*
 
-Defined in types/imgProcColor.ts:119
+*Defined in [types/imgProcColor.ts:119](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L119)*
 
 ___
 
@@ -1495,7 +1495,7 @@ ___
 
 • **COLOR_YUV2GRAY_I420**: *number*
 
-Defined in types/imgProcColor.ts:124
+*Defined in [types/imgProcColor.ts:124](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L124)*
 
 ___
 
@@ -1503,7 +1503,7 @@ ___
 
 • **COLOR_YUV2GRAY_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:123
+*Defined in [types/imgProcColor.ts:123](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L123)*
 
 ___
 
@@ -1511,7 +1511,7 @@ ___
 
 • **COLOR_YUV2GRAY_NV12**: *number*
 
-Defined in types/imgProcColor.ts:121
+*Defined in [types/imgProcColor.ts:121](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L121)*
 
 ___
 
@@ -1519,7 +1519,7 @@ ___
 
 • **COLOR_YUV2GRAY_NV21**: *number*
 
-Defined in types/imgProcColor.ts:120
+*Defined in [types/imgProcColor.ts:120](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L120)*
 
 ___
 
@@ -1527,7 +1527,7 @@ ___
 
 • **COLOR_YUV2GRAY_UYNV**: *number*
 
-Defined in types/imgProcColor.ts:158
+*Defined in [types/imgProcColor.ts:158](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L158)*
 
 ___
 
@@ -1535,7 +1535,7 @@ ___
 
 • **COLOR_YUV2GRAY_UYVY**: *number*
 
-Defined in types/imgProcColor.ts:155
+*Defined in [types/imgProcColor.ts:155](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L155)*
 
 ___
 
@@ -1543,7 +1543,7 @@ ___
 
 • **COLOR_YUV2GRAY_Y422**: *number*
 
-Defined in types/imgProcColor.ts:157
+*Defined in [types/imgProcColor.ts:157](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L157)*
 
 ___
 
@@ -1551,7 +1551,7 @@ ___
 
 • **COLOR_YUV2GRAY_YUNV**: *number*
 
-Defined in types/imgProcColor.ts:161
+*Defined in [types/imgProcColor.ts:161](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L161)*
 
 ___
 
@@ -1559,7 +1559,7 @@ ___
 
 • **COLOR_YUV2GRAY_YUY2**: *number*
 
-Defined in types/imgProcColor.ts:156
+*Defined in [types/imgProcColor.ts:156](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L156)*
 
 ___
 
@@ -1567,7 +1567,7 @@ ___
 
 • **COLOR_YUV2GRAY_YUYV**: *number*
 
-Defined in types/imgProcColor.ts:160
+*Defined in [types/imgProcColor.ts:160](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L160)*
 
 ___
 
@@ -1575,7 +1575,7 @@ ___
 
 • **COLOR_YUV2GRAY_YV12**: *number*
 
-Defined in types/imgProcColor.ts:122
+*Defined in [types/imgProcColor.ts:122](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L122)*
 
 ___
 
@@ -1583,7 +1583,7 @@ ___
 
 • **COLOR_YUV2GRAY_YVYU**: *number*
 
-Defined in types/imgProcColor.ts:159
+*Defined in [types/imgProcColor.ts:159](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L159)*
 
 ___
 
@@ -1591,7 +1591,7 @@ ___
 
 • **COLOR_YUV2RGB**: *number*
 
-Defined in types/imgProcColor.ts:90
+*Defined in [types/imgProcColor.ts:90](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L90)*
 
 ___
 
@@ -1599,7 +1599,7 @@ ___
 
 • **COLOR_YUV2RGBA_I420**: *number*
 
-Defined in types/imgProcColor.ts:115
+*Defined in [types/imgProcColor.ts:115](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L115)*
 
 ___
 
@@ -1607,7 +1607,7 @@ ___
 
 • **COLOR_YUV2RGBA_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:113
+*Defined in [types/imgProcColor.ts:113](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L113)*
 
 ___
 
@@ -1615,7 +1615,7 @@ ___
 
 • **COLOR_YUV2RGBA_NV12**: *number*
 
-Defined in types/imgProcColor.ts:97
+*Defined in [types/imgProcColor.ts:97](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L97)*
 
 ___
 
@@ -1623,7 +1623,7 @@ ___
 
 • **COLOR_YUV2RGBA_NV21**: *number*
 
-Defined in types/imgProcColor.ts:99
+*Defined in [types/imgProcColor.ts:99](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L99)*
 
 ___
 
@@ -1631,7 +1631,7 @@ ___
 
 • **COLOR_YUV2RGBA_UYNV**: *number*
 
-Defined in types/imgProcColor.ts:137
+*Defined in [types/imgProcColor.ts:137](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L137)*
 
 ___
 
@@ -1639,7 +1639,7 @@ ___
 
 • **COLOR_YUV2RGBA_UYVY**: *number*
 
-Defined in types/imgProcColor.ts:133
+*Defined in [types/imgProcColor.ts:133](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L133)*
 
 ___
 
@@ -1647,7 +1647,7 @@ ___
 
 • **COLOR_YUV2RGBA_Y422**: *number*
 
-Defined in types/imgProcColor.ts:135
+*Defined in [types/imgProcColor.ts:135](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L135)*
 
 ___
 
@@ -1655,7 +1655,7 @@ ___
 
 • **COLOR_YUV2RGBA_YUNV**: *number*
 
-Defined in types/imgProcColor.ts:153
+*Defined in [types/imgProcColor.ts:153](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L153)*
 
 ___
 
@@ -1663,7 +1663,7 @@ ___
 
 • **COLOR_YUV2RGBA_YUY2**: *number*
 
-Defined in types/imgProcColor.ts:147
+*Defined in [types/imgProcColor.ts:147](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L147)*
 
 ___
 
@@ -1671,7 +1671,7 @@ ___
 
 • **COLOR_YUV2RGBA_YUYV**: *number*
 
-Defined in types/imgProcColor.ts:151
+*Defined in [types/imgProcColor.ts:151](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L151)*
 
 ___
 
@@ -1679,7 +1679,7 @@ ___
 
 • **COLOR_YUV2RGBA_YV12**: *number*
 
-Defined in types/imgProcColor.ts:111
+*Defined in [types/imgProcColor.ts:111](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L111)*
 
 ___
 
@@ -1687,7 +1687,7 @@ ___
 
 • **COLOR_YUV2RGBA_YVYU**: *number*
 
-Defined in types/imgProcColor.ts:149
+*Defined in [types/imgProcColor.ts:149](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L149)*
 
 ___
 
@@ -1695,7 +1695,7 @@ ___
 
 • **COLOR_YUV2RGB_I420**: *number*
 
-Defined in types/imgProcColor.ts:107
+*Defined in [types/imgProcColor.ts:107](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L107)*
 
 ___
 
@@ -1703,7 +1703,7 @@ ___
 
 • **COLOR_YUV2RGB_IYUV**: *number*
 
-Defined in types/imgProcColor.ts:105
+*Defined in [types/imgProcColor.ts:105](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L105)*
 
 ___
 
@@ -1711,7 +1711,7 @@ ___
 
 • **COLOR_YUV2RGB_NV12**: *number*
 
-Defined in types/imgProcColor.ts:91
+*Defined in [types/imgProcColor.ts:91](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L91)*
 
 ___
 
@@ -1719,7 +1719,7 @@ ___
 
 • **COLOR_YUV2RGB_NV21**: *number*
 
-Defined in types/imgProcColor.ts:93
+*Defined in [types/imgProcColor.ts:93](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L93)*
 
 ___
 
@@ -1727,7 +1727,7 @@ ___
 
 • **COLOR_YUV2RGB_UYNV**: *number*
 
-Defined in types/imgProcColor.ts:131
+*Defined in [types/imgProcColor.ts:131](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L131)*
 
 ___
 
@@ -1735,7 +1735,7 @@ ___
 
 • **COLOR_YUV2RGB_UYVY**: *number*
 
-Defined in types/imgProcColor.ts:127
+*Defined in [types/imgProcColor.ts:127](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L127)*
 
 ___
 
@@ -1743,7 +1743,7 @@ ___
 
 • **COLOR_YUV2RGB_Y422**: *number*
 
-Defined in types/imgProcColor.ts:129
+*Defined in [types/imgProcColor.ts:129](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L129)*
 
 ___
 
@@ -1751,7 +1751,7 @@ ___
 
 • **COLOR_YUV2RGB_YUNV**: *number*
 
-Defined in types/imgProcColor.ts:145
+*Defined in [types/imgProcColor.ts:145](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L145)*
 
 ___
 
@@ -1759,7 +1759,7 @@ ___
 
 • **COLOR_YUV2RGB_YUY2**: *number*
 
-Defined in types/imgProcColor.ts:139
+*Defined in [types/imgProcColor.ts:139](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L139)*
 
 ___
 
@@ -1767,7 +1767,7 @@ ___
 
 • **COLOR_YUV2RGB_YUYV**: *number*
 
-Defined in types/imgProcColor.ts:143
+*Defined in [types/imgProcColor.ts:143](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L143)*
 
 ___
 
@@ -1775,7 +1775,7 @@ ___
 
 • **COLOR_YUV2RGB_YV12**: *number*
 
-Defined in types/imgProcColor.ts:103
+*Defined in [types/imgProcColor.ts:103](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L103)*
 
 ___
 
@@ -1783,7 +1783,7 @@ ___
 
 • **COLOR_YUV2RGB_YVYU**: *number*
 
-Defined in types/imgProcColor.ts:141
+*Defined in [types/imgProcColor.ts:141](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L141)*
 
 ___
 
@@ -1791,7 +1791,7 @@ ___
 
 • **COLOR_YUV420p2BGR**: *number*
 
-Defined in types/imgProcColor.ts:110
+*Defined in [types/imgProcColor.ts:110](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L110)*
 
 ___
 
@@ -1799,7 +1799,7 @@ ___
 
 • **COLOR_YUV420p2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:118
+*Defined in [types/imgProcColor.ts:118](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L118)*
 
 ___
 
@@ -1807,7 +1807,7 @@ ___
 
 • **COLOR_YUV420p2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:126
+*Defined in [types/imgProcColor.ts:126](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L126)*
 
 ___
 
@@ -1815,7 +1815,7 @@ ___
 
 • **COLOR_YUV420p2RGB**: *number*
 
-Defined in types/imgProcColor.ts:109
+*Defined in [types/imgProcColor.ts:109](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L109)*
 
 ___
 
@@ -1823,7 +1823,7 @@ ___
 
 • **COLOR_YUV420p2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:117
+*Defined in [types/imgProcColor.ts:117](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L117)*
 
 ___
 
@@ -1831,7 +1831,7 @@ ___
 
 • **COLOR_YUV420sp2BGR**: *number*
 
-Defined in types/imgProcColor.ts:96
+*Defined in [types/imgProcColor.ts:96](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L96)*
 
 ___
 
@@ -1839,7 +1839,7 @@ ___
 
 • **COLOR_YUV420sp2BGRA**: *number*
 
-Defined in types/imgProcColor.ts:102
+*Defined in [types/imgProcColor.ts:102](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L102)*
 
 ___
 
@@ -1847,7 +1847,7 @@ ___
 
 • **COLOR_YUV420sp2GRAY**: *number*
 
-Defined in types/imgProcColor.ts:125
+*Defined in [types/imgProcColor.ts:125](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L125)*
 
 ___
 
@@ -1855,7 +1855,7 @@ ___
 
 • **COLOR_YUV420sp2RGB**: *number*
 
-Defined in types/imgProcColor.ts:95
+*Defined in [types/imgProcColor.ts:95](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L95)*
 
 ___
 
@@ -1863,7 +1863,7 @@ ___
 
 • **COLOR_YUV420sp2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:101
+*Defined in [types/imgProcColor.ts:101](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L101)*
 
 ___
 
@@ -1871,7 +1871,7 @@ ___
 
 • **COLOR_mRGBA2RGBA**: *number*
 
-Defined in types/imgProcColor.ts:163
+*Defined in [types/imgProcColor.ts:163](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L163)*
 
 ## Methods
 
@@ -1879,7 +1879,7 @@ Defined in types/imgProcColor.ts:163
 
 ▸ **cvtColor**(`src`: [InputArray](../modules/_types_opencv_.md#inputarray), `dst`: [OutputArray](../modules/_types_opencv_.md#outputarray), `color?`: [ColorConversionCodes](../modules/_types_imgproccolor_.md#colorconversioncodes), `dstCn?`: undefined | number): *void*
 
-Defined in types/imgProcColor.ts:5
+*Defined in [types/imgProcColor.ts:5](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L5)*
 
 **Parameters:**
 

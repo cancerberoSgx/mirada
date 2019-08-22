@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/imgproc"](_types_imgproc_.md) /
+[Globals](../README.md) › ["types/imgproc"](_types_imgproc_.md)
 
 # External module: "types/imgproc"
 
@@ -21,4 +21,4 @@
 
 Ƭ **LineTypes**: *number | number | number | number*
 
-Defined in types/imgproc.ts:14
+*Defined in [types/imgproc.ts:14](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L14)*

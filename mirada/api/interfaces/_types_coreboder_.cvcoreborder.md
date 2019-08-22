@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/coreBoder"](../modules/_types_coreboder_.md) / [CVCoreBorder](_types_coreboder_.cvcoreborder.md) /
+[Globals](../README.md) › ["types/coreBoder"](../modules/_types_coreboder_.md) › [CVCoreBorder](_types_coreboder_.cvcoreborder.md)
 
 # Interface: CVCoreBorder
 
@@ -30,7 +30,7 @@
 
 • **BORDER_CONSTANT**: *number*
 
-Defined in types/coreBoder.ts:5
+*Defined in [types/coreBoder.ts:5](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L5)*
 
 iiiiii|abcdefgh|iiiiiii with some specified i
 
@@ -40,7 +40,7 @@ ___
 
 • **BORDER_DEFAULT**: *number*
 
-Defined in types/coreBoder.ts:33
+*Defined in [types/coreBoder.ts:33](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L33)*
 
 same as BORDER_REFLECT_101
 
@@ -50,7 +50,7 @@ ___
 
 • **BORDER_ISOLATED**: *number*
 
-Defined in types/coreBoder.ts:37
+*Defined in [types/coreBoder.ts:37](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L37)*
 
 do not look outside of ROI
 
@@ -60,7 +60,7 @@ ___
 
 • **BORDER_REFLECT**: *number*
 
-Defined in types/coreBoder.ts:13
+*Defined in [types/coreBoder.ts:13](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L13)*
 
 fedcba|abcdefgh|hgfedcb
 
@@ -70,7 +70,7 @@ ___
 
 • **BORDER_REFLECT101**: *number*
 
-Defined in types/coreBoder.ts:29
+*Defined in [types/coreBoder.ts:29](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L29)*
 
 same as BORDER_REFLECT_101
 
@@ -80,7 +80,7 @@ ___
 
 • **BORDER_REFLECT_101**: *number*
 
-Defined in types/coreBoder.ts:21
+*Defined in [types/coreBoder.ts:21](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L21)*
 
 gfedcb|abcdefgh|gfedcba
 
@@ -90,7 +90,7 @@ ___
 
 • **BORDER_REPLICATE**: *number*
 
-Defined in types/coreBoder.ts:9
+*Defined in [types/coreBoder.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L9)*
 
 aaaaaa|abcdefgh|hhhhhhh
 
@@ -100,7 +100,7 @@ ___
 
 • **BORDER_TRANSPARENT**: *number*
 
-Defined in types/coreBoder.ts:25
+*Defined in [types/coreBoder.ts:25](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L25)*
 
 uvwxyz|abcdefgh|ijklmno
 
@@ -110,6 +110,6 @@ ___
 
 • **BORDER_WRAP**: *number*
 
-Defined in types/coreBoder.ts:17
+*Defined in [types/coreBoder.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L17)*
 
 cdefgh|abcdefgh|abcdefg

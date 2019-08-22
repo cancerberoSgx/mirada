@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [Size](_types_opencv_.size.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [Size](_types_opencv_.size.md)
 
 # Class: Size
 
@@ -25,7 +25,7 @@
 
 \+ **new Size**(`width`: number, `height`: number): *[Size](_types_opencv_.size.md)*
 
-*Defined in [types/opencv.ts:70](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L70)*
+*Defined in [types/opencv.ts:70](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L70)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ Name | Type |
 
 • **height**: *number*
 
-*Defined in [types/opencv.ts:73](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L73)*
+*Defined in [types/opencv.ts:73](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L73)*
 
 ___
 
@@ -50,4 +50,4 @@ ___
 
 • **width**: *number*
 
-*Defined in [types/opencv.ts:72](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L72)*
+*Defined in [types/opencv.ts:72](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L72)*

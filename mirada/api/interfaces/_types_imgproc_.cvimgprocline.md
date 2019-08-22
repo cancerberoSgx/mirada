@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/imgproc"](../modules/_types_imgproc_.md) / [CVImgProcLine](_types_imgproc_.cvimgprocline.md) /
+[Globals](../README.md) › ["types/imgproc"](../modules/_types_imgproc_.md) › [CVImgProcLine](_types_imgproc_.cvimgprocline.md)
 
 # Interface: CVImgProcLine
 
@@ -25,7 +25,7 @@
 
 • **FILLED**: *number*
 
-Defined in types/imgproc.ts:9
+*Defined in [types/imgproc.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L9)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **LINE_4**: *number*
 
-Defined in types/imgproc.ts:10
+*Defined in [types/imgproc.ts:10](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L10)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **LINE_8**: *number*
 
-Defined in types/imgproc.ts:11
+*Defined in [types/imgproc.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L11)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **LINE_AA**: *number*
 
-Defined in types/imgproc.ts:12
+*Defined in [types/imgproc.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L12)*

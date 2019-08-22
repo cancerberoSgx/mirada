@@ -1,6 +1,6 @@
-> **[mirada](README.md)**
+**[mirada](README.md)**
 
-[Globals](README.md) /
+[Globals](README.md)
 
 ## Index
 
@@ -9,10 +9,13 @@
 * ["base64"](modules/_base64_.md)
 * ["browserImageUtil"](modules/_browserimageutil_.md)
 * ["file"](modules/_file_.md)
-* ["format"](modules/_format_.md)
+* ["format/format"](modules/_format_format_.md)
+* ["format/index"](modules/_format_index_.md)
+* ["format/jimpFormatCodec"](modules/_format_jimpformatcodec_.md)
 * ["grabCut"](modules/_grabcut_.md)
 * ["imageUtil"](modules/_imageutil_.md)
 * ["index"](modules/_index_.md)
+* ["mist"](modules/_mist_.md)
 * ["opencvReady"](modules/_opencvready_.md)
 * ["types/coreBoder"](modules/_types_coreboder_.md)
 * ["types/emscripten"](modules/_types_emscripten_.md)

@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](_types_opencv_.md) /
+[Globals](../README.md) › ["types/opencv"](_types_opencv_.md)
 
 # External module: "types/opencv"
 
@@ -30,7 +30,7 @@
 
 Ƭ **InputArray**: *[Mat](../classes/_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:39](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L39)*
+*Defined in [types/opencv.ts:39](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L39)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 Ƭ **OutputArray**: *[Mat](../classes/_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:40](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L40)*
+*Defined in [types/opencv.ts:40](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L40)*

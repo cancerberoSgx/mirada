@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["grabCut"](../modules/_grabcut_.md) / [GrabCutOptions](_grabcut_.grabcutoptions.md) /
+[Globals](../README.md) › ["grabCut"](../modules/_grabcut_.md) › [GrabCutOptions](_grabcut_.grabcutoptions.md)
 
 # Interface: GrabCutOptions
 
@@ -33,7 +33,7 @@
 
 *Inherited from [Rect](../classes/_types_opencv_.rect.md).[constructor](../classes/_types_opencv_.rect.md#constructor)*
 
-*Defined in [types/opencv.ts:76](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L76)*
+*Defined in [types/opencv.ts:76](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L76)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Name | Type |
 
 • **frameColor**? : *[Scalar](_types_opencv_.cv.md#scalar)*
 
-*Defined in [grabCut.ts:11](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/grabCut.ts#L11)*
+*Defined in [grabCut.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/grabCut.ts#L11)*
 
 If given a rectangle frame will be drawn on given coordinates with that color.
 
@@ -64,7 +64,7 @@ ___
 
 *Inherited from [Rect](../classes/_types_opencv_.rect.md).[height](../classes/_types_opencv_.rect.md#height)*
 
-*Defined in [types/opencv.ts:81](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L81)*
+*Defined in [types/opencv.ts:81](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L81)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **image**: *[File](../classes/_file_.file.md)*
 
-*Defined in [grabCut.ts:7](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/grabCut.ts#L7)*
+*Defined in [grabCut.ts:7](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/grabCut.ts#L7)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 *Inherited from [Rect](../classes/_types_opencv_.rect.md).[width](../classes/_types_opencv_.rect.md#width)*
 
-*Defined in [types/opencv.ts:80](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L80)*
+*Defined in [types/opencv.ts:80](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L80)*
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 *Inherited from [Rect](../classes/_types_opencv_.rect.md).[x](../classes/_types_opencv_.rect.md#x)*
 
-*Defined in [types/opencv.ts:78](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L78)*
+*Defined in [types/opencv.ts:78](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L78)*
 
 ___
 
@@ -102,4 +102,4 @@ ___
 
 *Inherited from [Rect](../classes/_types_opencv_.rect.md).[y](../classes/_types_opencv_.rect.md#y)*
 
-*Defined in [types/opencv.ts:79](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L79)*
+*Defined in [types/opencv.ts:79](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L79)*

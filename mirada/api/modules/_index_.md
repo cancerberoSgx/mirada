@@ -1,5 +1,5 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["index"](_index_.md) /
+[Globals](../README.md) › ["index"](_index_.md)
 
 # External module: "index"

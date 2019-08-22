@@ -79,7 +79,7 @@ function getParamDescription(s: Element, p:Element) {
   }
 }
 
-function getDescribed(c: Element) {
+function getDescribed(c: Element) : Described {
   return {
     name: (Q1('name', c) || Q1('compoundname', c) || { textContent: c.getAttribute('name')}).textContent,
     location: attrs(Q1('location', c, {})),
@@ -87,7 +87,7 @@ function getDescribed(c: Element) {
     ...getDescriptions(c)
   }
 }
-function getDescriptions(c: Element) {
+function getDescriptions(c: Element) :  Descriptions {
   return {
     briefdescription: text('briefdescription', c),
     detaileddescription: text('detaileddescription', c),

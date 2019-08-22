@@ -3,7 +3,7 @@ import fetch from 'cross-fetch'
 import { existsSync, readFileSync } from 'fs'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, isNode, notUndefined, serial } from 'misc-utils-of-mine-generic'
 import { arrayBufferToBase64, urlToBase64 } from './base64'
-import { formatProxy } from './format'
+import { getDefaultCodec } from './format'
 import { imageData } from './imageUtil'
 import { ImageData, Mat } from './types/opencv'
 
@@ -44,7 +44,7 @@ export class File {
    * returns an array buffer containing the image encoded in given format or inferring format from its name.
    */
   async asArrayBuffer(format = this.getExtension()) {
-    return await File.verifyFormatProxy().encode(this.asImageData(), format)
+    return await getDefaultCodec().encode(this.asImageData(), format)
   }
 
   async asBase64(format = this.getExtension()) {
@@ -64,7 +64,7 @@ export class File {
    * Loads file from given array buffer containing an encoded image.
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name: string) {
-    var data = await File.verifyFormatProxy().decode(buffer)
+    var data = await getDefaultCodec().decode(buffer)
     return File.fromData(data, name)
   }
 
@@ -140,7 +140,7 @@ export class File {
   }
 
   public static async fromUrl(url: string, o: RequestInit & FileOptions = {}) {
-    const p = File.verifyFormatProxy()
+    const p = getDefaultCodec()
     const response = await fetch(url)
     const buffer = await response.arrayBuffer()
     var data = await p.decode(buffer)
@@ -151,16 +151,17 @@ export class File {
     if (!isNode()) {
       throw new Error('This operation is not supported in the browser.')
     }
-    const data = await File.verifyFormatProxy().decode(readFileSync(path))
+    const data = await getDefaultCodec().decode(readFileSync(path))
     return File.fromData(data, o.name || basename(path))
   }
 
-  protected static verifyFormatProxy() {
-    if (!formatProxy) {
-      throw new Error('A format proxy must be installed in order to perform this operation')
-    }
-    return formatProxy
-  }
+  // protected static verifyFormatProxy() {
+  // getDefaultCodec()
+  //   if (!formatProxy) {
+  //     throw new Error('A format proxy must be installed in order to perform this operation')
+  //   }
+  //   return formatProxy
+  // }
 }
 
 interface FileOptions { name?: string }

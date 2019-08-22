@@ -17,6 +17,38 @@ export function getImageData(url: string) {
     img.src = url
   })
 }
+// function getAuxImg(){
+//   if(auxImg)
+// }
+/**
+ * A subptimal method to load a image array buffer (encoded in jpg, png) wihtout knowing its format or size. 
+  * 1) creates a blob and a url object 
+  * * loads the url in a HTML Image (to know its dimentions )
+  * * draw the image in a canvas ().
+  * 
+  * This method is useful as a decoder for the browser without libraries
+ */
+export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasElement, appendToBody = true): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
+
+  var blob = new Blob([new Uint8ClampedArray(a)])
+  var url = URL.createObjectURL(blob)
+  var img = new Image()
+  return new Promise(resolve => {
+    img.onload = () => {
+      if (!canvas) {
+        canvas = document.createElement('canvas')
+        appendToBody && document.body.append(canvas)
+      }
+      canvas!.setAttribute('width', img.naturalWidth + '')
+      canvas!.setAttribute('height', img.naturalHeight + '')
+
+      canvas!.getContext('2d')!.drawImage(img, 0, 0)
+      resolve({ canvas, width: img.naturalWidth, height: img.naturalHeight })
+    }
+    img.src = url
+    URL.revokeObjectURL(url)
+  })
+}
 
 export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = true): HTMLCanvasElement {
   if (!canvas) {
@@ -38,28 +70,4 @@ export function htmlImageData(img: Mat) {
   var imgData = imageData(img)
   const htmlImageData = new ImageData(imgData.data, imgData.width, imgData.height)
   return htmlImageData
-}
-
-export async function createFileFromUrl(path: string, url: string, callback?: (error?: Error) => void) {
-  return new Promise((resolve, reject) => {
-    let request = new XMLHttpRequest()
-    request.open('GET', url, true)
-    request.responseType = 'arraybuffer'
-    request.onload = (ev) => {
-      if (request.readyState === 4) {
-        if (request.status === 200) {
-          let data = new Uint8Array(request.response)
-          cv.FS_createDataFile('/', path, data, true, false, false)
-          callback && callback()
-          resolve()
-        } else {
-          var e = new Error('Failed to load ' + url + ' status: ' + request.status)
-          console.error(e)
-          callback && callback(e)
-          reject(e)
-        }
-      }
-    }
-    request.send()
-  })
 }

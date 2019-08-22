@@ -1,12 +1,12 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [CV](_types_opencv_.cv.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [CV](_types_opencv_.cv.md)
 
 # Interface: CV
 
 ## Hierarchy
 
-* `CV_WASM`
+* CV_WASM
 
   * [CVImgProc](_types_imgproc_.cvimgproc.md)
 
@@ -282,7 +282,7 @@
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_CONSTANT](_types_coreboder_.cvcoreborder.md#border_constant)*
 
-Defined in types/coreBoder.ts:5
+*Defined in [types/coreBoder.ts:5](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L5)*
 
 iiiiii|abcdefgh|iiiiiii with some specified i
 
@@ -294,7 +294,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_DEFAULT](_types_coreboder_.cvcoreborder.md#border_default)*
 
-Defined in types/coreBoder.ts:33
+*Defined in [types/coreBoder.ts:33](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L33)*
 
 same as BORDER_REFLECT_101
 
@@ -306,7 +306,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_ISOLATED](_types_coreboder_.cvcoreborder.md#border_isolated)*
 
-Defined in types/coreBoder.ts:37
+*Defined in [types/coreBoder.ts:37](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L37)*
 
 do not look outside of ROI
 
@@ -318,7 +318,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT](_types_coreboder_.cvcoreborder.md#border_reflect)*
 
-Defined in types/coreBoder.ts:13
+*Defined in [types/coreBoder.ts:13](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L13)*
 
 fedcba|abcdefgh|hgfedcb
 
@@ -330,7 +330,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT101](_types_coreboder_.cvcoreborder.md#border_reflect101)*
 
-Defined in types/coreBoder.ts:29
+*Defined in [types/coreBoder.ts:29](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L29)*
 
 same as BORDER_REFLECT_101
 
@@ -342,7 +342,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REFLECT_101](_types_coreboder_.cvcoreborder.md#border_reflect_101)*
 
-Defined in types/coreBoder.ts:21
+*Defined in [types/coreBoder.ts:21](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L21)*
 
 gfedcb|abcdefgh|gfedcba
 
@@ -354,7 +354,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_REPLICATE](_types_coreboder_.cvcoreborder.md#border_replicate)*
 
-Defined in types/coreBoder.ts:9
+*Defined in [types/coreBoder.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L9)*
 
 aaaaaa|abcdefgh|hhhhhhh
 
@@ -366,7 +366,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_TRANSPARENT](_types_coreboder_.cvcoreborder.md#border_transparent)*
 
-Defined in types/coreBoder.ts:25
+*Defined in [types/coreBoder.ts:25](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L25)*
 
 uvwxyz|abcdefgh|ijklmno
 
@@ -378,7 +378,7 @@ ___
 
 *Inherited from [CVCoreBorder](_types_coreboder_.cvcoreborder.md).[BORDER_WRAP](_types_coreboder_.cvcoreborder.md#border_wrap)*
 
-Defined in types/coreBoder.ts:17
+*Defined in [types/coreBoder.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/coreBoder.ts#L17)*
 
 cdefgh|abcdefgh|abcdefg
 
@@ -390,7 +390,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2BGR555](_types_imgproccolor_.cvimgproccolor.md#color_bgr2bgr555)*
 
-Defined in types/imgProcColor.ts:37
+*Defined in [types/imgProcColor.ts:37](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L37)*
 
 ___
 
@@ -400,7 +400,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2BGR565](_types_imgproccolor_.cvimgproccolor.md#color_bgr2bgr565)*
 
-Defined in types/imgProcColor.ts:27
+*Defined in [types/imgProcColor.ts:27](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L27)*
 
 ___
 
@@ -410,7 +410,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bgr2bgra)*
 
-Defined in types/imgProcColor.ts:7
+*Defined in [types/imgProcColor.ts:7](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L7)*
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bgr2gray)*
 
-Defined in types/imgProcColor.ts:19
+*Defined in [types/imgProcColor.ts:19](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L19)*
 
 ___
 
@@ -430,7 +430,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2HLS](_types_imgproccolor_.cvimgproccolor.md#color_bgr2hls)*
 
-Defined in types/imgProcColor.ts:61
+*Defined in [types/imgProcColor.ts:61](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L61)*
 
 ___
 
@@ -440,7 +440,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2HLS_FULL](_types_imgproccolor_.cvimgproccolor.md#color_bgr2hls_full)*
 
-Defined in types/imgProcColor.ts:73
+*Defined in [types/imgProcColor.ts:73](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L73)*
 
 ___
 
@@ -450,7 +450,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2HSV](_types_imgproccolor_.cvimgproccolor.md#color_bgr2hsv)*
 
-Defined in types/imgProcColor.ts:55
+*Defined in [types/imgProcColor.ts:55](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L55)*
 
 ___
 
@@ -460,7 +460,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2HSV_FULL](_types_imgproccolor_.cvimgproccolor.md#color_bgr2hsv_full)*
 
-Defined in types/imgProcColor.ts:71
+*Defined in [types/imgProcColor.ts:71](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L71)*
 
 ___
 
@@ -470,7 +470,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2Lab](_types_imgproccolor_.cvimgproccolor.md#color_bgr2lab)*
 
-Defined in types/imgProcColor.ts:57
+*Defined in [types/imgProcColor.ts:57](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L57)*
 
 ___
 
@@ -480,7 +480,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2Luv](_types_imgproccolor_.cvimgproccolor.md#color_bgr2luv)*
 
-Defined in types/imgProcColor.ts:59
+*Defined in [types/imgProcColor.ts:59](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L59)*
 
 ___
 
@@ -490,7 +490,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bgr2rgb)*
 
-Defined in types/imgProcColor.ts:15
+*Defined in [types/imgProcColor.ts:15](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L15)*
 
 ___
 
@@ -500,7 +500,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bgr2rgba)*
 
-Defined in types/imgProcColor.ts:11
+*Defined in [types/imgProcColor.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L11)*
 
 ___
 
@@ -510,7 +510,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2XYZ](_types_imgproccolor_.cvimgproccolor.md#color_bgr2xyz)*
 
-Defined in types/imgProcColor.ts:47
+*Defined in [types/imgProcColor.ts:47](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L47)*
 
 ___
 
@@ -520,7 +520,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2YCrCb](_types_imgproccolor_.cvimgproccolor.md#color_bgr2ycrcb)*
 
-Defined in types/imgProcColor.ts:51
+*Defined in [types/imgProcColor.ts:51](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L51)*
 
 ___
 
@@ -530,7 +530,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2YUV](_types_imgproccolor_.cvimgproccolor.md#color_bgr2yuv)*
 
-Defined in types/imgProcColor.ts:87
+*Defined in [types/imgProcColor.ts:87](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L87)*
 
 ___
 
@@ -540,7 +540,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2YUV_I420](_types_imgproccolor_.cvimgproccolor.md#color_bgr2yuv_i420)*
 
-Defined in types/imgProcColor.ts:165
+*Defined in [types/imgProcColor.ts:165](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L165)*
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2YUV_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_bgr2yuv_iyuv)*
 
-Defined in types/imgProcColor.ts:167
+*Defined in [types/imgProcColor.ts:167](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L167)*
 
 ___
 
@@ -560,7 +560,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR2YUV_YV12](_types_imgproccolor_.cvimgproccolor.md#color_bgr2yuv_yv12)*
 
-Defined in types/imgProcColor.ts:173
+*Defined in [types/imgProcColor.ts:173](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L173)*
 
 ___
 
@@ -570,7 +570,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5552BGR](_types_imgproccolor_.cvimgproccolor.md#color_bgr5552bgr)*
 
-Defined in types/imgProcColor.ts:39
+*Defined in [types/imgProcColor.ts:39](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L39)*
 
 ___
 
@@ -580,7 +580,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5552BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bgr5552bgra)*
 
-Defined in types/imgProcColor.ts:43
+*Defined in [types/imgProcColor.ts:43](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L43)*
 
 ___
 
@@ -590,7 +590,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5552GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bgr5552gray)*
 
-Defined in types/imgProcColor.ts:46
+*Defined in [types/imgProcColor.ts:46](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L46)*
 
 ___
 
@@ -600,7 +600,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5552RGB](_types_imgproccolor_.cvimgproccolor.md#color_bgr5552rgb)*
 
-Defined in types/imgProcColor.ts:40
+*Defined in [types/imgProcColor.ts:40](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L40)*
 
 ___
 
@@ -610,7 +610,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5552RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bgr5552rgba)*
 
-Defined in types/imgProcColor.ts:44
+*Defined in [types/imgProcColor.ts:44](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L44)*
 
 ___
 
@@ -620,7 +620,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5652BGR](_types_imgproccolor_.cvimgproccolor.md#color_bgr5652bgr)*
 
-Defined in types/imgProcColor.ts:29
+*Defined in [types/imgProcColor.ts:29](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L29)*
 
 ___
 
@@ -630,7 +630,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5652BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bgr5652bgra)*
 
-Defined in types/imgProcColor.ts:33
+*Defined in [types/imgProcColor.ts:33](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L33)*
 
 ___
 
@@ -640,7 +640,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5652GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bgr5652gray)*
 
-Defined in types/imgProcColor.ts:36
+*Defined in [types/imgProcColor.ts:36](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L36)*
 
 ___
 
@@ -650,7 +650,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5652RGB](_types_imgproccolor_.cvimgproccolor.md#color_bgr5652rgb)*
 
-Defined in types/imgProcColor.ts:30
+*Defined in [types/imgProcColor.ts:30](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L30)*
 
 ___
 
@@ -660,7 +660,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGR5652RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bgr5652rgba)*
 
-Defined in types/imgProcColor.ts:34
+*Defined in [types/imgProcColor.ts:34](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L34)*
 
 ___
 
@@ -670,7 +670,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2BGR](_types_imgproccolor_.cvimgproccolor.md#color_bgra2bgr)*
 
-Defined in types/imgProcColor.ts:9
+*Defined in [types/imgProcColor.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L9)*
 
 ___
 
@@ -680,7 +680,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2BGR555](_types_imgproccolor_.cvimgproccolor.md#color_bgra2bgr555)*
 
-Defined in types/imgProcColor.ts:41
+*Defined in [types/imgProcColor.ts:41](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L41)*
 
 ___
 
@@ -690,7 +690,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2BGR565](_types_imgproccolor_.cvimgproccolor.md#color_bgra2bgr565)*
 
-Defined in types/imgProcColor.ts:31
+*Defined in [types/imgProcColor.ts:31](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L31)*
 
 ___
 
@@ -700,7 +700,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bgra2gray)*
 
-Defined in types/imgProcColor.ts:25
+*Defined in [types/imgProcColor.ts:25](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L25)*
 
 ___
 
@@ -710,7 +710,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bgra2rgb)*
 
-Defined in types/imgProcColor.ts:14
+*Defined in [types/imgProcColor.ts:14](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L14)*
 
 ___
 
@@ -720,7 +720,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bgra2rgba)*
 
-Defined in types/imgProcColor.ts:17
+*Defined in [types/imgProcColor.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L17)*
 
 ___
 
@@ -730,7 +730,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2YUV_I420](_types_imgproccolor_.cvimgproccolor.md#color_bgra2yuv_i420)*
 
-Defined in types/imgProcColor.ts:169
+*Defined in [types/imgProcColor.ts:169](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L169)*
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2YUV_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_bgra2yuv_iyuv)*
 
-Defined in types/imgProcColor.ts:171
+*Defined in [types/imgProcColor.ts:171](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L171)*
 
 ___
 
@@ -750,7 +750,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BGRA2YUV_YV12](_types_imgproccolor_.cvimgproccolor.md#color_bgra2yuv_yv12)*
 
-Defined in types/imgProcColor.ts:175
+*Defined in [types/imgProcColor.ts:175](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L175)*
 
 ___
 
@@ -760,7 +760,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2BGR](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2bgr)*
 
-Defined in types/imgProcColor.ts:176
+*Defined in [types/imgProcColor.ts:176](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L176)*
 
 ___
 
@@ -770,7 +770,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2bgra)*
 
-Defined in types/imgProcColor.ts:204
+*Defined in [types/imgProcColor.ts:204](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L204)*
 
 ___
 
@@ -780,7 +780,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2BGR_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2bgr_ea)*
 
-Defined in types/imgProcColor.ts:196
+*Defined in [types/imgProcColor.ts:196](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L196)*
 
 ___
 
@@ -790,7 +790,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2BGR_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2bgr_vng)*
 
-Defined in types/imgProcColor.ts:188
+*Defined in [types/imgProcColor.ts:188](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L188)*
 
 ___
 
@@ -800,7 +800,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2gray)*
 
-Defined in types/imgProcColor.ts:184
+*Defined in [types/imgProcColor.ts:184](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L184)*
 
 ___
 
@@ -810,7 +810,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2rgb)*
 
-Defined in types/imgProcColor.ts:180
+*Defined in [types/imgProcColor.ts:180](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L180)*
 
 ___
 
@@ -820,7 +820,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2rgba)*
 
-Defined in types/imgProcColor.ts:208
+*Defined in [types/imgProcColor.ts:208](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L208)*
 
 ___
 
@@ -830,7 +830,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2RGB_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2rgb_ea)*
 
-Defined in types/imgProcColor.ts:200
+*Defined in [types/imgProcColor.ts:200](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L200)*
 
 ___
 
@@ -840,7 +840,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerBG2RGB_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayerbg2rgb_vng)*
 
-Defined in types/imgProcColor.ts:192
+*Defined in [types/imgProcColor.ts:192](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L192)*
 
 ___
 
@@ -850,7 +850,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2BGR](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2bgr)*
 
-Defined in types/imgProcColor.ts:177
+*Defined in [types/imgProcColor.ts:177](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L177)*
 
 ___
 
@@ -860,7 +860,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2bgra)*
 
-Defined in types/imgProcColor.ts:205
+*Defined in [types/imgProcColor.ts:205](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L205)*
 
 ___
 
@@ -870,7 +870,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2BGR_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2bgr_ea)*
 
-Defined in types/imgProcColor.ts:197
+*Defined in [types/imgProcColor.ts:197](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L197)*
 
 ___
 
@@ -880,7 +880,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2BGR_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2bgr_vng)*
 
-Defined in types/imgProcColor.ts:189
+*Defined in [types/imgProcColor.ts:189](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L189)*
 
 ___
 
@@ -890,7 +890,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2gray)*
 
-Defined in types/imgProcColor.ts:185
+*Defined in [types/imgProcColor.ts:185](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L185)*
 
 ___
 
@@ -900,7 +900,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2rgb)*
 
-Defined in types/imgProcColor.ts:181
+*Defined in [types/imgProcColor.ts:181](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L181)*
 
 ___
 
@@ -910,7 +910,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2rgba)*
 
-Defined in types/imgProcColor.ts:209
+*Defined in [types/imgProcColor.ts:209](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L209)*
 
 ___
 
@@ -920,7 +920,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2RGB_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2rgb_ea)*
 
-Defined in types/imgProcColor.ts:201
+*Defined in [types/imgProcColor.ts:201](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L201)*
 
 ___
 
@@ -930,7 +930,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGB2RGB_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayergb2rgb_vng)*
 
-Defined in types/imgProcColor.ts:193
+*Defined in [types/imgProcColor.ts:193](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L193)*
 
 ___
 
@@ -940,7 +940,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2BGR](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2bgr)*
 
-Defined in types/imgProcColor.ts:179
+*Defined in [types/imgProcColor.ts:179](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L179)*
 
 ___
 
@@ -950,7 +950,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2bgra)*
 
-Defined in types/imgProcColor.ts:207
+*Defined in [types/imgProcColor.ts:207](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L207)*
 
 ___
 
@@ -960,7 +960,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2BGR_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2bgr_ea)*
 
-Defined in types/imgProcColor.ts:199
+*Defined in [types/imgProcColor.ts:199](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L199)*
 
 ___
 
@@ -970,7 +970,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2BGR_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2bgr_vng)*
 
-Defined in types/imgProcColor.ts:191
+*Defined in [types/imgProcColor.ts:191](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L191)*
 
 ___
 
@@ -980,7 +980,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2gray)*
 
-Defined in types/imgProcColor.ts:187
+*Defined in [types/imgProcColor.ts:187](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L187)*
 
 ___
 
@@ -990,7 +990,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2rgb)*
 
-Defined in types/imgProcColor.ts:183
+*Defined in [types/imgProcColor.ts:183](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L183)*
 
 ___
 
@@ -1000,7 +1000,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2rgba)*
 
-Defined in types/imgProcColor.ts:211
+*Defined in [types/imgProcColor.ts:211](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L211)*
 
 ___
 
@@ -1010,7 +1010,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2RGB_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2rgb_ea)*
 
-Defined in types/imgProcColor.ts:203
+*Defined in [types/imgProcColor.ts:203](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L203)*
 
 ___
 
@@ -1020,7 +1020,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerGR2RGB_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayergr2rgb_vng)*
 
-Defined in types/imgProcColor.ts:195
+*Defined in [types/imgProcColor.ts:195](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L195)*
 
 ___
 
@@ -1030,7 +1030,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2BGR](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2bgr)*
 
-Defined in types/imgProcColor.ts:178
+*Defined in [types/imgProcColor.ts:178](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L178)*
 
 ___
 
@@ -1040,7 +1040,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2bgra)*
 
-Defined in types/imgProcColor.ts:206
+*Defined in [types/imgProcColor.ts:206](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L206)*
 
 ___
 
@@ -1050,7 +1050,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2BGR_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2bgr_ea)*
 
-Defined in types/imgProcColor.ts:198
+*Defined in [types/imgProcColor.ts:198](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L198)*
 
 ___
 
@@ -1060,7 +1060,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2BGR_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2bgr_vng)*
 
-Defined in types/imgProcColor.ts:190
+*Defined in [types/imgProcColor.ts:190](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L190)*
 
 ___
 
@@ -1070,7 +1070,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2gray)*
 
-Defined in types/imgProcColor.ts:186
+*Defined in [types/imgProcColor.ts:186](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L186)*
 
 ___
 
@@ -1080,7 +1080,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2RGB](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2rgb)*
 
-Defined in types/imgProcColor.ts:182
+*Defined in [types/imgProcColor.ts:182](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L182)*
 
 ___
 
@@ -1090,7 +1090,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2rgba)*
 
-Defined in types/imgProcColor.ts:210
+*Defined in [types/imgProcColor.ts:210](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L210)*
 
 ___
 
@@ -1100,7 +1100,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2RGB_EA](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2rgb_ea)*
 
-Defined in types/imgProcColor.ts:202
+*Defined in [types/imgProcColor.ts:202](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L202)*
 
 ___
 
@@ -1110,7 +1110,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_BayerRG2RGB_VNG](_types_imgproccolor_.cvimgproccolor.md#color_bayerrg2rgb_vng)*
 
-Defined in types/imgProcColor.ts:194
+*Defined in [types/imgProcColor.ts:194](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L194)*
 
 ___
 
@@ -1120,7 +1120,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_COLORCVT_MAX](_types_imgproccolor_.cvimgproccolor.md#color_colorcvt_max)*
 
-Defined in types/imgProcColor.ts:212
+*Defined in [types/imgProcColor.ts:212](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L212)*
 
 ___
 
@@ -1130,7 +1130,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2BGR](_types_imgproccolor_.cvimgproccolor.md#color_gray2bgr)*
 
-Defined in types/imgProcColor.ts:21
+*Defined in [types/imgProcColor.ts:21](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L21)*
 
 ___
 
@@ -1140,7 +1140,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2BGR555](_types_imgproccolor_.cvimgproccolor.md#color_gray2bgr555)*
 
-Defined in types/imgProcColor.ts:45
+*Defined in [types/imgProcColor.ts:45](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L45)*
 
 ___
 
@@ -1150,7 +1150,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2BGR565](_types_imgproccolor_.cvimgproccolor.md#color_gray2bgr565)*
 
-Defined in types/imgProcColor.ts:35
+*Defined in [types/imgProcColor.ts:35](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L35)*
 
 ___
 
@@ -1160,7 +1160,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_gray2bgra)*
 
-Defined in types/imgProcColor.ts:23
+*Defined in [types/imgProcColor.ts:23](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L23)*
 
 ___
 
@@ -1170,7 +1170,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2RGB](_types_imgproccolor_.cvimgproccolor.md#color_gray2rgb)*
 
-Defined in types/imgProcColor.ts:22
+*Defined in [types/imgProcColor.ts:22](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L22)*
 
 ___
 
@@ -1180,7 +1180,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_GRAY2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_gray2rgba)*
 
-Defined in types/imgProcColor.ts:24
+*Defined in [types/imgProcColor.ts:24](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L24)*
 
 ___
 
@@ -1190,7 +1190,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HLS2BGR](_types_imgproccolor_.cvimgproccolor.md#color_hls2bgr)*
 
-Defined in types/imgProcColor.ts:69
+*Defined in [types/imgProcColor.ts:69](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L69)*
 
 ___
 
@@ -1200,7 +1200,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HLS2BGR_FULL](_types_imgproccolor_.cvimgproccolor.md#color_hls2bgr_full)*
 
-Defined in types/imgProcColor.ts:77
+*Defined in [types/imgProcColor.ts:77](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L77)*
 
 ___
 
@@ -1210,7 +1210,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HLS2RGB](_types_imgproccolor_.cvimgproccolor.md#color_hls2rgb)*
 
-Defined in types/imgProcColor.ts:70
+*Defined in [types/imgProcColor.ts:70](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L70)*
 
 ___
 
@@ -1220,7 +1220,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HLS2RGB_FULL](_types_imgproccolor_.cvimgproccolor.md#color_hls2rgb_full)*
 
-Defined in types/imgProcColor.ts:78
+*Defined in [types/imgProcColor.ts:78](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L78)*
 
 ___
 
@@ -1230,7 +1230,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HSV2BGR](_types_imgproccolor_.cvimgproccolor.md#color_hsv2bgr)*
 
-Defined in types/imgProcColor.ts:63
+*Defined in [types/imgProcColor.ts:63](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L63)*
 
 ___
 
@@ -1240,7 +1240,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HSV2BGR_FULL](_types_imgproccolor_.cvimgproccolor.md#color_hsv2bgr_full)*
 
-Defined in types/imgProcColor.ts:75
+*Defined in [types/imgProcColor.ts:75](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L75)*
 
 ___
 
@@ -1250,7 +1250,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HSV2RGB](_types_imgproccolor_.cvimgproccolor.md#color_hsv2rgb)*
 
-Defined in types/imgProcColor.ts:64
+*Defined in [types/imgProcColor.ts:64](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L64)*
 
 ___
 
@@ -1260,7 +1260,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_HSV2RGB_FULL](_types_imgproccolor_.cvimgproccolor.md#color_hsv2rgb_full)*
 
-Defined in types/imgProcColor.ts:76
+*Defined in [types/imgProcColor.ts:76](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L76)*
 
 ___
 
@@ -1270,7 +1270,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_LBGR2Lab](_types_imgproccolor_.cvimgproccolor.md#color_lbgr2lab)*
 
-Defined in types/imgProcColor.ts:79
+*Defined in [types/imgProcColor.ts:79](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L79)*
 
 ___
 
@@ -1280,7 +1280,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_LBGR2Luv](_types_imgproccolor_.cvimgproccolor.md#color_lbgr2luv)*
 
-Defined in types/imgProcColor.ts:81
+*Defined in [types/imgProcColor.ts:81](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L81)*
 
 ___
 
@@ -1290,7 +1290,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_LRGB2Lab](_types_imgproccolor_.cvimgproccolor.md#color_lrgb2lab)*
 
-Defined in types/imgProcColor.ts:80
+*Defined in [types/imgProcColor.ts:80](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L80)*
 
 ___
 
@@ -1300,7 +1300,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_LRGB2Luv](_types_imgproccolor_.cvimgproccolor.md#color_lrgb2luv)*
 
-Defined in types/imgProcColor.ts:82
+*Defined in [types/imgProcColor.ts:82](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L82)*
 
 ___
 
@@ -1310,7 +1310,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Lab2BGR](_types_imgproccolor_.cvimgproccolor.md#color_lab2bgr)*
 
-Defined in types/imgProcColor.ts:65
+*Defined in [types/imgProcColor.ts:65](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L65)*
 
 ___
 
@@ -1320,7 +1320,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Lab2LBGR](_types_imgproccolor_.cvimgproccolor.md#color_lab2lbgr)*
 
-Defined in types/imgProcColor.ts:83
+*Defined in [types/imgProcColor.ts:83](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L83)*
 
 ___
 
@@ -1330,7 +1330,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Lab2LRGB](_types_imgproccolor_.cvimgproccolor.md#color_lab2lrgb)*
 
-Defined in types/imgProcColor.ts:84
+*Defined in [types/imgProcColor.ts:84](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L84)*
 
 ___
 
@@ -1340,7 +1340,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Lab2RGB](_types_imgproccolor_.cvimgproccolor.md#color_lab2rgb)*
 
-Defined in types/imgProcColor.ts:66
+*Defined in [types/imgProcColor.ts:66](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L66)*
 
 ___
 
@@ -1350,7 +1350,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Luv2BGR](_types_imgproccolor_.cvimgproccolor.md#color_luv2bgr)*
 
-Defined in types/imgProcColor.ts:67
+*Defined in [types/imgProcColor.ts:67](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L67)*
 
 ___
 
@@ -1360,7 +1360,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Luv2LBGR](_types_imgproccolor_.cvimgproccolor.md#color_luv2lbgr)*
 
-Defined in types/imgProcColor.ts:85
+*Defined in [types/imgProcColor.ts:85](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L85)*
 
 ___
 
@@ -1370,7 +1370,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Luv2LRGB](_types_imgproccolor_.cvimgproccolor.md#color_luv2lrgb)*
 
-Defined in types/imgProcColor.ts:86
+*Defined in [types/imgProcColor.ts:86](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L86)*
 
 ___
 
@@ -1380,7 +1380,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_Luv2RGB](_types_imgproccolor_.cvimgproccolor.md#color_luv2rgb)*
 
-Defined in types/imgProcColor.ts:68
+*Defined in [types/imgProcColor.ts:68](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L68)*
 
 ___
 
@@ -1390,7 +1390,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2BGR](_types_imgproccolor_.cvimgproccolor.md#color_rgb2bgr)*
 
-Defined in types/imgProcColor.ts:16
+*Defined in [types/imgProcColor.ts:16](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L16)*
 
 ___
 
@@ -1400,7 +1400,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2BGR555](_types_imgproccolor_.cvimgproccolor.md#color_rgb2bgr555)*
 
-Defined in types/imgProcColor.ts:38
+*Defined in [types/imgProcColor.ts:38](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L38)*
 
 ___
 
@@ -1410,7 +1410,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2BGR565](_types_imgproccolor_.cvimgproccolor.md#color_rgb2bgr565)*
 
-Defined in types/imgProcColor.ts:28
+*Defined in [types/imgProcColor.ts:28](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L28)*
 
 ___
 
@@ -1420,7 +1420,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_rgb2bgra)*
 
-Defined in types/imgProcColor.ts:12
+*Defined in [types/imgProcColor.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L12)*
 
 ___
 
@@ -1430,7 +1430,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_rgb2gray)*
 
-Defined in types/imgProcColor.ts:20
+*Defined in [types/imgProcColor.ts:20](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L20)*
 
 ___
 
@@ -1440,7 +1440,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2HLS](_types_imgproccolor_.cvimgproccolor.md#color_rgb2hls)*
 
-Defined in types/imgProcColor.ts:62
+*Defined in [types/imgProcColor.ts:62](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L62)*
 
 ___
 
@@ -1450,7 +1450,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2HLS_FULL](_types_imgproccolor_.cvimgproccolor.md#color_rgb2hls_full)*
 
-Defined in types/imgProcColor.ts:74
+*Defined in [types/imgProcColor.ts:74](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L74)*
 
 ___
 
@@ -1460,7 +1460,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2HSV](_types_imgproccolor_.cvimgproccolor.md#color_rgb2hsv)*
 
-Defined in types/imgProcColor.ts:56
+*Defined in [types/imgProcColor.ts:56](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L56)*
 
 ___
 
@@ -1470,7 +1470,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2HSV_FULL](_types_imgproccolor_.cvimgproccolor.md#color_rgb2hsv_full)*
 
-Defined in types/imgProcColor.ts:72
+*Defined in [types/imgProcColor.ts:72](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L72)*
 
 ___
 
@@ -1480,7 +1480,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2Lab](_types_imgproccolor_.cvimgproccolor.md#color_rgb2lab)*
 
-Defined in types/imgProcColor.ts:58
+*Defined in [types/imgProcColor.ts:58](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L58)*
 
 ___
 
@@ -1490,7 +1490,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2Luv](_types_imgproccolor_.cvimgproccolor.md#color_rgb2luv)*
 
-Defined in types/imgProcColor.ts:60
+*Defined in [types/imgProcColor.ts:60](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L60)*
 
 ___
 
@@ -1500,7 +1500,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_rgb2rgba)*
 
-Defined in types/imgProcColor.ts:8
+*Defined in [types/imgProcColor.ts:8](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L8)*
 
 ___
 
@@ -1510,7 +1510,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2XYZ](_types_imgproccolor_.cvimgproccolor.md#color_rgb2xyz)*
 
-Defined in types/imgProcColor.ts:48
+*Defined in [types/imgProcColor.ts:48](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L48)*
 
 ___
 
@@ -1520,7 +1520,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2YCrCb](_types_imgproccolor_.cvimgproccolor.md#color_rgb2ycrcb)*
 
-Defined in types/imgProcColor.ts:52
+*Defined in [types/imgProcColor.ts:52](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L52)*
 
 ___
 
@@ -1530,7 +1530,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2YUV](_types_imgproccolor_.cvimgproccolor.md#color_rgb2yuv)*
 
-Defined in types/imgProcColor.ts:88
+*Defined in [types/imgProcColor.ts:88](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L88)*
 
 ___
 
@@ -1540,7 +1540,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2YUV_I420](_types_imgproccolor_.cvimgproccolor.md#color_rgb2yuv_i420)*
 
-Defined in types/imgProcColor.ts:164
+*Defined in [types/imgProcColor.ts:164](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L164)*
 
 ___
 
@@ -1550,7 +1550,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2YUV_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_rgb2yuv_iyuv)*
 
-Defined in types/imgProcColor.ts:166
+*Defined in [types/imgProcColor.ts:166](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L166)*
 
 ___
 
@@ -1560,7 +1560,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGB2YUV_YV12](_types_imgproccolor_.cvimgproccolor.md#color_rgb2yuv_yv12)*
 
-Defined in types/imgProcColor.ts:172
+*Defined in [types/imgProcColor.ts:172](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L172)*
 
 ___
 
@@ -1570,7 +1570,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2BGR](_types_imgproccolor_.cvimgproccolor.md#color_rgba2bgr)*
 
-Defined in types/imgProcColor.ts:13
+*Defined in [types/imgProcColor.ts:13](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L13)*
 
 ___
 
@@ -1580,7 +1580,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2BGR555](_types_imgproccolor_.cvimgproccolor.md#color_rgba2bgr555)*
 
-Defined in types/imgProcColor.ts:42
+*Defined in [types/imgProcColor.ts:42](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L42)*
 
 ___
 
@@ -1590,7 +1590,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2BGR565](_types_imgproccolor_.cvimgproccolor.md#color_rgba2bgr565)*
 
-Defined in types/imgProcColor.ts:32
+*Defined in [types/imgProcColor.ts:32](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L32)*
 
 ___
 
@@ -1600,7 +1600,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_rgba2bgra)*
 
-Defined in types/imgProcColor.ts:18
+*Defined in [types/imgProcColor.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L18)*
 
 ___
 
@@ -1610,7 +1610,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_rgba2gray)*
 
-Defined in types/imgProcColor.ts:26
+*Defined in [types/imgProcColor.ts:26](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L26)*
 
 ___
 
@@ -1620,7 +1620,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2RGB](_types_imgproccolor_.cvimgproccolor.md#color_rgba2rgb)*
 
-Defined in types/imgProcColor.ts:10
+*Defined in [types/imgProcColor.ts:10](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L10)*
 
 ___
 
@@ -1630,7 +1630,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2YUV_I420](_types_imgproccolor_.cvimgproccolor.md#color_rgba2yuv_i420)*
 
-Defined in types/imgProcColor.ts:168
+*Defined in [types/imgProcColor.ts:168](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L168)*
 
 ___
 
@@ -1640,7 +1640,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2YUV_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_rgba2yuv_iyuv)*
 
-Defined in types/imgProcColor.ts:170
+*Defined in [types/imgProcColor.ts:170](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L170)*
 
 ___
 
@@ -1650,7 +1650,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2YUV_YV12](_types_imgproccolor_.cvimgproccolor.md#color_rgba2yuv_yv12)*
 
-Defined in types/imgProcColor.ts:174
+*Defined in [types/imgProcColor.ts:174](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L174)*
 
 ___
 
@@ -1660,7 +1660,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_RGBA2mRGBA](_types_imgproccolor_.cvimgproccolor.md#color_rgba2mrgba)*
 
-Defined in types/imgProcColor.ts:162
+*Defined in [types/imgProcColor.ts:162](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L162)*
 
 ___
 
@@ -1670,7 +1670,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_XYZ2BGR](_types_imgproccolor_.cvimgproccolor.md#color_xyz2bgr)*
 
-Defined in types/imgProcColor.ts:49
+*Defined in [types/imgProcColor.ts:49](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L49)*
 
 ___
 
@@ -1680,7 +1680,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_XYZ2RGB](_types_imgproccolor_.cvimgproccolor.md#color_xyz2rgb)*
 
-Defined in types/imgProcColor.ts:50
+*Defined in [types/imgProcColor.ts:50](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L50)*
 
 ___
 
@@ -1690,7 +1690,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YCrCb2BGR](_types_imgproccolor_.cvimgproccolor.md#color_ycrcb2bgr)*
 
-Defined in types/imgProcColor.ts:53
+*Defined in [types/imgProcColor.ts:53](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L53)*
 
 ___
 
@@ -1700,7 +1700,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YCrCb2RGB](_types_imgproccolor_.cvimgproccolor.md#color_ycrcb2rgb)*
 
-Defined in types/imgProcColor.ts:54
+*Defined in [types/imgProcColor.ts:54](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L54)*
 
 ___
 
@@ -1710,7 +1710,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr)*
 
-Defined in types/imgProcColor.ts:89
+*Defined in [types/imgProcColor.ts:89](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L89)*
 
 ___
 
@@ -1720,7 +1720,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_I420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_i420)*
 
-Defined in types/imgProcColor.ts:116
+*Defined in [types/imgProcColor.ts:116](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L116)*
 
 ___
 
@@ -1730,7 +1730,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_iyuv)*
 
-Defined in types/imgProcColor.ts:114
+*Defined in [types/imgProcColor.ts:114](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L114)*
 
 ___
 
@@ -1740,7 +1740,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_NV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_nv12)*
 
-Defined in types/imgProcColor.ts:98
+*Defined in [types/imgProcColor.ts:98](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L98)*
 
 ___
 
@@ -1750,7 +1750,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_NV21](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_nv21)*
 
-Defined in types/imgProcColor.ts:100
+*Defined in [types/imgProcColor.ts:100](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L100)*
 
 ___
 
@@ -1760,7 +1760,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_UYNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_uynv)*
 
-Defined in types/imgProcColor.ts:138
+*Defined in [types/imgProcColor.ts:138](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L138)*
 
 ___
 
@@ -1770,7 +1770,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_UYVY](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_uyvy)*
 
-Defined in types/imgProcColor.ts:134
+*Defined in [types/imgProcColor.ts:134](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L134)*
 
 ___
 
@@ -1780,7 +1780,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_Y422](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_y422)*
 
-Defined in types/imgProcColor.ts:136
+*Defined in [types/imgProcColor.ts:136](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L136)*
 
 ___
 
@@ -1790,7 +1790,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_YUNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_yunv)*
 
-Defined in types/imgProcColor.ts:154
+*Defined in [types/imgProcColor.ts:154](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L154)*
 
 ___
 
@@ -1800,7 +1800,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_YUY2](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_yuy2)*
 
-Defined in types/imgProcColor.ts:148
+*Defined in [types/imgProcColor.ts:148](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L148)*
 
 ___
 
@@ -1810,7 +1810,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_YUYV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_yuyv)*
 
-Defined in types/imgProcColor.ts:152
+*Defined in [types/imgProcColor.ts:152](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L152)*
 
 ___
 
@@ -1820,7 +1820,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_YV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_yv12)*
 
-Defined in types/imgProcColor.ts:112
+*Defined in [types/imgProcColor.ts:112](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L112)*
 
 ___
 
@@ -1830,7 +1830,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGRA_YVYU](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgra_yvyu)*
 
-Defined in types/imgProcColor.ts:150
+*Defined in [types/imgProcColor.ts:150](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L150)*
 
 ___
 
@@ -1840,7 +1840,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_I420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_i420)*
 
-Defined in types/imgProcColor.ts:108
+*Defined in [types/imgProcColor.ts:108](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L108)*
 
 ___
 
@@ -1850,7 +1850,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_iyuv)*
 
-Defined in types/imgProcColor.ts:106
+*Defined in [types/imgProcColor.ts:106](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L106)*
 
 ___
 
@@ -1860,7 +1860,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_NV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_nv12)*
 
-Defined in types/imgProcColor.ts:92
+*Defined in [types/imgProcColor.ts:92](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L92)*
 
 ___
 
@@ -1870,7 +1870,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_NV21](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_nv21)*
 
-Defined in types/imgProcColor.ts:94
+*Defined in [types/imgProcColor.ts:94](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L94)*
 
 ___
 
@@ -1880,7 +1880,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_UYNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_uynv)*
 
-Defined in types/imgProcColor.ts:132
+*Defined in [types/imgProcColor.ts:132](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L132)*
 
 ___
 
@@ -1890,7 +1890,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_UYVY](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_uyvy)*
 
-Defined in types/imgProcColor.ts:128
+*Defined in [types/imgProcColor.ts:128](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L128)*
 
 ___
 
@@ -1900,7 +1900,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_Y422](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_y422)*
 
-Defined in types/imgProcColor.ts:130
+*Defined in [types/imgProcColor.ts:130](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L130)*
 
 ___
 
@@ -1910,7 +1910,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_YUNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_yunv)*
 
-Defined in types/imgProcColor.ts:146
+*Defined in [types/imgProcColor.ts:146](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L146)*
 
 ___
 
@@ -1920,7 +1920,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_YUY2](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_yuy2)*
 
-Defined in types/imgProcColor.ts:140
+*Defined in [types/imgProcColor.ts:140](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L140)*
 
 ___
 
@@ -1930,7 +1930,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_YUYV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_yuyv)*
 
-Defined in types/imgProcColor.ts:144
+*Defined in [types/imgProcColor.ts:144](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L144)*
 
 ___
 
@@ -1940,7 +1940,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_YV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_yv12)*
 
-Defined in types/imgProcColor.ts:104
+*Defined in [types/imgProcColor.ts:104](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L104)*
 
 ___
 
@@ -1950,7 +1950,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2BGR_YVYU](_types_imgproccolor_.cvimgproccolor.md#color_yuv2bgr_yvyu)*
 
-Defined in types/imgProcColor.ts:142
+*Defined in [types/imgProcColor.ts:142](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L142)*
 
 ___
 
@@ -1960,7 +1960,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_420)*
 
-Defined in types/imgProcColor.ts:119
+*Defined in [types/imgProcColor.ts:119](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L119)*
 
 ___
 
@@ -1970,7 +1970,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_I420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_i420)*
 
-Defined in types/imgProcColor.ts:124
+*Defined in [types/imgProcColor.ts:124](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L124)*
 
 ___
 
@@ -1980,7 +1980,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_iyuv)*
 
-Defined in types/imgProcColor.ts:123
+*Defined in [types/imgProcColor.ts:123](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L123)*
 
 ___
 
@@ -1990,7 +1990,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_NV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_nv12)*
 
-Defined in types/imgProcColor.ts:121
+*Defined in [types/imgProcColor.ts:121](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L121)*
 
 ___
 
@@ -2000,7 +2000,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_NV21](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_nv21)*
 
-Defined in types/imgProcColor.ts:120
+*Defined in [types/imgProcColor.ts:120](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L120)*
 
 ___
 
@@ -2010,7 +2010,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_UYNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_uynv)*
 
-Defined in types/imgProcColor.ts:158
+*Defined in [types/imgProcColor.ts:158](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L158)*
 
 ___
 
@@ -2020,7 +2020,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_UYVY](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_uyvy)*
 
-Defined in types/imgProcColor.ts:155
+*Defined in [types/imgProcColor.ts:155](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L155)*
 
 ___
 
@@ -2030,7 +2030,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_Y422](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_y422)*
 
-Defined in types/imgProcColor.ts:157
+*Defined in [types/imgProcColor.ts:157](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L157)*
 
 ___
 
@@ -2040,7 +2040,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_YUNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_yunv)*
 
-Defined in types/imgProcColor.ts:161
+*Defined in [types/imgProcColor.ts:161](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L161)*
 
 ___
 
@@ -2050,7 +2050,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_YUY2](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_yuy2)*
 
-Defined in types/imgProcColor.ts:156
+*Defined in [types/imgProcColor.ts:156](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L156)*
 
 ___
 
@@ -2060,7 +2060,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_YUYV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_yuyv)*
 
-Defined in types/imgProcColor.ts:160
+*Defined in [types/imgProcColor.ts:160](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L160)*
 
 ___
 
@@ -2070,7 +2070,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_YV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_yv12)*
 
-Defined in types/imgProcColor.ts:122
+*Defined in [types/imgProcColor.ts:122](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L122)*
 
 ___
 
@@ -2080,7 +2080,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2GRAY_YVYU](_types_imgproccolor_.cvimgproccolor.md#color_yuv2gray_yvyu)*
 
-Defined in types/imgProcColor.ts:159
+*Defined in [types/imgProcColor.ts:159](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L159)*
 
 ___
 
@@ -2090,7 +2090,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb)*
 
-Defined in types/imgProcColor.ts:90
+*Defined in [types/imgProcColor.ts:90](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L90)*
 
 ___
 
@@ -2100,7 +2100,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_I420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_i420)*
 
-Defined in types/imgProcColor.ts:115
+*Defined in [types/imgProcColor.ts:115](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L115)*
 
 ___
 
@@ -2110,7 +2110,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_iyuv)*
 
-Defined in types/imgProcColor.ts:113
+*Defined in [types/imgProcColor.ts:113](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L113)*
 
 ___
 
@@ -2120,7 +2120,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_NV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_nv12)*
 
-Defined in types/imgProcColor.ts:97
+*Defined in [types/imgProcColor.ts:97](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L97)*
 
 ___
 
@@ -2130,7 +2130,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_NV21](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_nv21)*
 
-Defined in types/imgProcColor.ts:99
+*Defined in [types/imgProcColor.ts:99](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L99)*
 
 ___
 
@@ -2140,7 +2140,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_UYNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_uynv)*
 
-Defined in types/imgProcColor.ts:137
+*Defined in [types/imgProcColor.ts:137](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L137)*
 
 ___
 
@@ -2150,7 +2150,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_UYVY](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_uyvy)*
 
-Defined in types/imgProcColor.ts:133
+*Defined in [types/imgProcColor.ts:133](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L133)*
 
 ___
 
@@ -2160,7 +2160,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_Y422](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_y422)*
 
-Defined in types/imgProcColor.ts:135
+*Defined in [types/imgProcColor.ts:135](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L135)*
 
 ___
 
@@ -2170,7 +2170,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_YUNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_yunv)*
 
-Defined in types/imgProcColor.ts:153
+*Defined in [types/imgProcColor.ts:153](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L153)*
 
 ___
 
@@ -2180,7 +2180,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_YUY2](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_yuy2)*
 
-Defined in types/imgProcColor.ts:147
+*Defined in [types/imgProcColor.ts:147](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L147)*
 
 ___
 
@@ -2190,7 +2190,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_YUYV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_yuyv)*
 
-Defined in types/imgProcColor.ts:151
+*Defined in [types/imgProcColor.ts:151](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L151)*
 
 ___
 
@@ -2200,7 +2200,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_YV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_yv12)*
 
-Defined in types/imgProcColor.ts:111
+*Defined in [types/imgProcColor.ts:111](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L111)*
 
 ___
 
@@ -2210,7 +2210,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGBA_YVYU](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgba_yvyu)*
 
-Defined in types/imgProcColor.ts:149
+*Defined in [types/imgProcColor.ts:149](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L149)*
 
 ___
 
@@ -2220,7 +2220,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_I420](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_i420)*
 
-Defined in types/imgProcColor.ts:107
+*Defined in [types/imgProcColor.ts:107](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L107)*
 
 ___
 
@@ -2230,7 +2230,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_IYUV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_iyuv)*
 
-Defined in types/imgProcColor.ts:105
+*Defined in [types/imgProcColor.ts:105](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L105)*
 
 ___
 
@@ -2240,7 +2240,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_NV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_nv12)*
 
-Defined in types/imgProcColor.ts:91
+*Defined in [types/imgProcColor.ts:91](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L91)*
 
 ___
 
@@ -2250,7 +2250,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_NV21](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_nv21)*
 
-Defined in types/imgProcColor.ts:93
+*Defined in [types/imgProcColor.ts:93](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L93)*
 
 ___
 
@@ -2260,7 +2260,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_UYNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_uynv)*
 
-Defined in types/imgProcColor.ts:131
+*Defined in [types/imgProcColor.ts:131](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L131)*
 
 ___
 
@@ -2270,7 +2270,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_UYVY](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_uyvy)*
 
-Defined in types/imgProcColor.ts:127
+*Defined in [types/imgProcColor.ts:127](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L127)*
 
 ___
 
@@ -2280,7 +2280,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_Y422](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_y422)*
 
-Defined in types/imgProcColor.ts:129
+*Defined in [types/imgProcColor.ts:129](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L129)*
 
 ___
 
@@ -2290,7 +2290,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_YUNV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_yunv)*
 
-Defined in types/imgProcColor.ts:145
+*Defined in [types/imgProcColor.ts:145](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L145)*
 
 ___
 
@@ -2300,7 +2300,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_YUY2](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_yuy2)*
 
-Defined in types/imgProcColor.ts:139
+*Defined in [types/imgProcColor.ts:139](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L139)*
 
 ___
 
@@ -2310,7 +2310,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_YUYV](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_yuyv)*
 
-Defined in types/imgProcColor.ts:143
+*Defined in [types/imgProcColor.ts:143](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L143)*
 
 ___
 
@@ -2320,7 +2320,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_YV12](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_yv12)*
 
-Defined in types/imgProcColor.ts:103
+*Defined in [types/imgProcColor.ts:103](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L103)*
 
 ___
 
@@ -2330,7 +2330,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV2RGB_YVYU](_types_imgproccolor_.cvimgproccolor.md#color_yuv2rgb_yvyu)*
 
-Defined in types/imgProcColor.ts:141
+*Defined in [types/imgProcColor.ts:141](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L141)*
 
 ___
 
@@ -2340,7 +2340,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420p2BGR](_types_imgproccolor_.cvimgproccolor.md#color_yuv420p2bgr)*
 
-Defined in types/imgProcColor.ts:110
+*Defined in [types/imgProcColor.ts:110](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L110)*
 
 ___
 
@@ -2350,7 +2350,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420p2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_yuv420p2bgra)*
 
-Defined in types/imgProcColor.ts:118
+*Defined in [types/imgProcColor.ts:118](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L118)*
 
 ___
 
@@ -2360,7 +2360,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420p2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_yuv420p2gray)*
 
-Defined in types/imgProcColor.ts:126
+*Defined in [types/imgProcColor.ts:126](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L126)*
 
 ___
 
@@ -2370,7 +2370,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420p2RGB](_types_imgproccolor_.cvimgproccolor.md#color_yuv420p2rgb)*
 
-Defined in types/imgProcColor.ts:109
+*Defined in [types/imgProcColor.ts:109](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L109)*
 
 ___
 
@@ -2380,7 +2380,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420p2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_yuv420p2rgba)*
 
-Defined in types/imgProcColor.ts:117
+*Defined in [types/imgProcColor.ts:117](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L117)*
 
 ___
 
@@ -2390,7 +2390,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420sp2BGR](_types_imgproccolor_.cvimgproccolor.md#color_yuv420sp2bgr)*
 
-Defined in types/imgProcColor.ts:96
+*Defined in [types/imgProcColor.ts:96](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L96)*
 
 ___
 
@@ -2400,7 +2400,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420sp2BGRA](_types_imgproccolor_.cvimgproccolor.md#color_yuv420sp2bgra)*
 
-Defined in types/imgProcColor.ts:102
+*Defined in [types/imgProcColor.ts:102](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L102)*
 
 ___
 
@@ -2410,7 +2410,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420sp2GRAY](_types_imgproccolor_.cvimgproccolor.md#color_yuv420sp2gray)*
 
-Defined in types/imgProcColor.ts:125
+*Defined in [types/imgProcColor.ts:125](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L125)*
 
 ___
 
@@ -2420,7 +2420,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420sp2RGB](_types_imgproccolor_.cvimgproccolor.md#color_yuv420sp2rgb)*
 
-Defined in types/imgProcColor.ts:95
+*Defined in [types/imgProcColor.ts:95](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L95)*
 
 ___
 
@@ -2430,7 +2430,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_YUV420sp2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_yuv420sp2rgba)*
 
-Defined in types/imgProcColor.ts:101
+*Defined in [types/imgProcColor.ts:101](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L101)*
 
 ___
 
@@ -2440,7 +2440,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[COLOR_mRGBA2RGBA](_types_imgproccolor_.cvimgproccolor.md#color_mrgba2rgba)*
 
-Defined in types/imgProcColor.ts:163
+*Defined in [types/imgProcColor.ts:163](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L163)*
 
 ___
 
@@ -2448,7 +2448,7 @@ ___
 
 • **CV_16S**: *number*
 
-*Defined in [types/opencv.ts:17](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L17)*
+*Defined in [types/opencv.ts:17](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L17)*
 
 ___
 
@@ -2456,7 +2456,7 @@ ___
 
 • **CV_32S**: *number*
 
-*Defined in [types/opencv.ts:19](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L19)*
+*Defined in [types/opencv.ts:19](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L19)*
 
 ___
 
@@ -2464,7 +2464,7 @@ ___
 
 • **CV_8S**: *number*
 
-*Defined in [types/opencv.ts:20](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L20)*
+*Defined in [types/opencv.ts:20](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L20)*
 
 ___
 
@@ -2472,7 +2472,7 @@ ___
 
 • **CV_8U**: *number*
 
-*Defined in [types/opencv.ts:16](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L16)*
+*Defined in [types/opencv.ts:16](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L16)*
 
 ___
 
@@ -2480,15 +2480,15 @@ ___
 
 • **CV_8UC1**: *number*
 
-*Defined in [types/opencv.ts:15](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L15)*
+*Defined in [types/opencv.ts:15](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L15)*
 
 ___
 
 ###  CV_8UC3
 
-• **CV_8UC3**: *`TODO`*
+• **CV_8UC3**: *TODO*
 
-*Defined in [types/opencv.ts:18](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L18)*
+*Defined in [types/opencv.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L18)*
 
 ___
 
@@ -2496,7 +2496,7 @@ ___
 
 • **CV_8UC4**: *number*
 
-*Defined in [types/opencv.ts:21](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L21)*
+*Defined in [types/opencv.ts:21](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L21)*
 
 ___
 
@@ -2506,7 +2506,7 @@ ___
 
 *Inherited from [CVImgProcLine](_types_imgproc_.cvimgprocline.md).[FILLED](_types_imgproc_.cvimgprocline.md#filled)*
 
-Defined in types/imgproc.ts:9
+*Defined in [types/imgproc.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L9)*
 
 ___
 
@@ -2516,7 +2516,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv.ts:87](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L87)*
+*Defined in [types/opencv.ts:87](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L87)*
 
 ___
 
@@ -2526,7 +2526,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_BGD](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_bgd)*
 
-Defined in types/imgProcGrabCut.ts:24
+*Defined in [types/imgProcGrabCut.ts:24](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L24)*
 
 an obvious background pixels
 
@@ -2538,7 +2538,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_EVAL](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_eval)*
 
-Defined in types/imgProcGrabCut.ts:16
+*Defined in [types/imgProcGrabCut.ts:16](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L16)*
 
 The value means that the algorithm should just resume.
 
@@ -2550,7 +2550,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_EVAL_FREEZE_MODEL](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_eval_freeze_model)*
 
-Defined in types/imgProcGrabCut.ts:20
+*Defined in [types/imgProcGrabCut.ts:20](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L20)*
 
 The value means that the algorithm should just run the grabCut algorithm (a single iteration) with the fixed model
 
@@ -2562,7 +2562,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_FGD](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_fgd)*
 
-Defined in types/imgProcGrabCut.ts:28
+*Defined in [types/imgProcGrabCut.ts:28](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L28)*
 
 an obvious foreground (object) pixel
 
@@ -2574,7 +2574,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_INIT_WITH_MASK](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_init_with_mask)*
 
-Defined in types/imgProcGrabCut.ts:12
+*Defined in [types/imgProcGrabCut.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L12)*
 
 The function initializes the state using the provided mask. Note that GC_INIT_WITH_RECT and GC_INIT_WITH_MASK can be combined. Then, all the pixels outside of the ROI are automatically initialized with GC_BGD
 
@@ -2586,7 +2586,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_INIT_WITH_RECT](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_init_with_rect)*
 
-Defined in types/imgProcGrabCut.ts:8
+*Defined in [types/imgProcGrabCut.ts:8](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L8)*
 
 The function initializes the state and the mask using the provided rectangle. After that it runs iterCount iterations of the algorithm.
 
@@ -2598,7 +2598,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_PR_BGD](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_pr_bgd)*
 
-Defined in types/imgProcGrabCut.ts:32
+*Defined in [types/imgProcGrabCut.ts:32](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L32)*
 
 a possible background pixel
 
@@ -2610,7 +2610,7 @@ ___
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[GC_PR_FGD](_types_imgprocgrabcut_.cvimgprocgrabcut.md#gc_pr_fgd)*
 
-Defined in types/imgProcGrabCut.ts:36
+*Defined in [types/imgProcGrabCut.ts:36](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L36)*
 
 a possible foreground pixel
 
@@ -2622,7 +2622,7 @@ ___
 
 *Inherited from [CVImgProcLine](_types_imgproc_.cvimgprocline.md).[LINE_4](_types_imgproc_.cvimgprocline.md#line_4)*
 
-Defined in types/imgproc.ts:10
+*Defined in [types/imgproc.ts:10](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L10)*
 
 ___
 
@@ -2632,7 +2632,7 @@ ___
 
 *Inherited from [CVImgProcLine](_types_imgproc_.cvimgprocline.md).[LINE_8](_types_imgproc_.cvimgprocline.md#line_8)*
 
-Defined in types/imgproc.ts:11
+*Defined in [types/imgproc.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L11)*
 
 ___
 
@@ -2642,7 +2642,7 @@ ___
 
 *Inherited from [CVImgProcLine](_types_imgproc_.cvimgprocline.md).[LINE_AA](_types_imgproc_.cvimgprocline.md#line_aa)*
 
-Defined in types/imgproc.ts:12
+*Defined in [types/imgproc.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgproc.ts#L12)*
 
 ___
 
@@ -2650,7 +2650,7 @@ ___
 
 • **Mat**: *[Mat](../classes/_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:35](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L35)*
+*Defined in [types/opencv.ts:35](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L35)*
 
 ___
 
@@ -2658,7 +2658,7 @@ ___
 
 • **Point**: *[Point](../classes/_types_opencv_.point.md)*
 
-*Defined in [types/opencv.ts:12](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L12)*
+*Defined in [types/opencv.ts:12](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L12)*
 
 ___
 
@@ -2666,7 +2666,7 @@ ___
 
 • **Rect**: *[Rect](../classes/_types_opencv_.rect.md)*
 
-*Defined in [types/opencv.ts:8](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L8)*
+*Defined in [types/opencv.ts:8](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L8)*
 
 ___
 
@@ -2674,7 +2674,7 @@ ___
 
 • **Scalar**: *[Scalar](../classes/_types_opencv_.scalar.md)*
 
-*Defined in [types/opencv.ts:7](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L7)*
+*Defined in [types/opencv.ts:7](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L7)*
 
 ___
 
@@ -2682,7 +2682,7 @@ ___
 
 • **Size**: *[Size](../classes/_types_opencv_.size.md)*
 
-*Defined in [types/opencv.ts:13](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L13)*
+*Defined in [types/opencv.ts:13](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L13)*
 
 ___
 
@@ -2692,7 +2692,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv.ts:86](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L86)*
+*Defined in [types/opencv.ts:86](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L86)*
 
 #### Type declaration:
 
@@ -2702,11 +2702,11 @@ ___
 
 ###  FS_createDataFile
 
-▸ **FS_createDataFile**(`arg0`: string, `path`: string, `data`: `Uint8Array`, `arg3`: boolean, `arg4`: boolean, `arg5`: boolean): *`TODO`*
+▸ **FS_createDataFile**(`arg0`: string, `path`: string, `data`: Uint8Array, `arg3`: boolean, `arg4`: boolean, `arg5`: boolean): *TODO*
 
 *Inherited from void*
 
-*Defined in [types/opencv.ts:88](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L88)*
+*Defined in [types/opencv.ts:88](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L88)*
 
 **Parameters:**
 
@@ -2714,12 +2714,12 @@ Name | Type |
 ------ | ------ |
 `arg0` | string |
 `path` | string |
-`data` | `Uint8Array` |
+`data` | Uint8Array |
 `arg3` | boolean |
 `arg4` | boolean |
 `arg5` | boolean |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -2729,7 +2729,7 @@ ___
 
 *Inherited from [CVImgProcColor](_types_imgproccolor_.cvimgproccolor.md).[cvtColor](_types_imgproccolor_.cvimgproccolor.md#cvtcolor)*
 
-Defined in types/imgProcColor.ts:5
+*Defined in [types/imgProcColor.ts:5](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L5)*
 
 **Parameters:**
 
@@ -2746,9 +2746,9 @@ ___
 
 ###  dilate
 
-▸ **dilate**(`src`: [Mat](../classes/_types_opencv_.mat.md), `dst`: [Mat](../classes/_types_opencv_.mat.md), `M`: [Mat](../classes/_types_opencv_.mat.md), `anchor`: [Point](../classes/_types_opencv_.point.md), `iterations`: number, `borderType`: [BorderTypes](../modules/_types_coreboder_.md#bordertypes), `borderValue`: [Scalar](../classes/_types_opencv_.scalar.md)): *`TODO`*
+▸ **dilate**(`src`: [Mat](../classes/_types_opencv_.mat.md), `dst`: [Mat](../classes/_types_opencv_.mat.md), `M`: [Mat](../classes/_types_opencv_.mat.md), `anchor`: [Point](../classes/_types_opencv_.point.md), `iterations`: number, `borderType`: [BorderTypes](../modules/_types_coreboder_.md#bordertypes), `borderValue`: [Scalar](../classes/_types_opencv_.scalar.md)): *TODO*
 
-*Defined in [types/opencv.ts:10](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L10)*
+*Defined in [types/opencv.ts:10](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L10)*
 
 **Parameters:**
 
@@ -2762,17 +2762,17 @@ Name | Type |
 `borderType` | [BorderTypes](../modules/_types_coreboder_.md#bordertypes) |
 `borderValue` | [Scalar](../classes/_types_opencv_.scalar.md) |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
 ###  exceptionFromPtr
 
-▸ **exceptionFromPtr**(`err`: number): *`TODO`*
+▸ **exceptionFromPtr**(`err`: number): *TODO*
 
 *Inherited from void*
 
-*Defined in [types/opencv.ts:85](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L85)*
+*Defined in [types/opencv.ts:85](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L85)*
 
 **Parameters:**
 
@@ -2780,7 +2780,7 @@ Name | Type |
 ------ | ------ |
 `err` | number |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -2788,7 +2788,7 @@ ___
 
 ▸ **getBuildInformation**(): *string*
 
-*Defined in [types/opencv.ts:33](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L33)*
+*Defined in [types/opencv.ts:33](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L33)*
 
 **Returns:** *string*
 
@@ -2796,11 +2796,11 @@ ___
 
 ###  grabCut
 
-▸ **grabCut**(`src`: [Mat](../classes/_types_opencv_.mat.md), `mask`: [Mat](../classes/_types_opencv_.mat.md), `rect`: [Rect](../classes/_types_opencv_.rect.md), `bgdModel`: [Mat](../classes/_types_opencv_.mat.md), `fgdModel`: [Mat](../classes/_types_opencv_.mat.md), `iterCount`: number, `mode`: [GrabCutModes](../modules/_types_imgprocgrabcut_.md#grabcutmodes)): *`TODO`*
+▸ **grabCut**(`src`: [Mat](../classes/_types_opencv_.mat.md), `mask`: [Mat](../classes/_types_opencv_.mat.md), `rect`: [Rect](../classes/_types_opencv_.rect.md), `bgdModel`: [Mat](../classes/_types_opencv_.mat.md), `fgdModel`: [Mat](../classes/_types_opencv_.mat.md), `iterCount`: number, `mode`: [GrabCutModes](../modules/_types_imgprocgrabcut_.md#grabcutmodes)): *TODO*
 
 *Inherited from [CVImgProcGrabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md).[grabCut](_types_imgprocgrabcut_.cvimgprocgrabcut.md#grabcut)*
 
-Defined in types/imgProcGrabCut.ts:38
+*Defined in [types/imgProcGrabCut.ts:38](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L38)*
 
 **Parameters:**
 
@@ -2814,7 +2814,7 @@ Name | Type |
 `iterCount` | number |
 `mode` | [GrabCutModes](../modules/_types_imgprocgrabcut_.md#grabcutmodes) |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -2822,7 +2822,7 @@ ___
 
 ▸ **imread**(`canvasOrImgId`: string): *[Mat](../classes/_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:31](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L31)*
+*Defined in [types/opencv.ts:31](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L31)*
 
 Important, this method was modified by OpenCv.js and only works on the browser accepting an html canvas or image element id
 
@@ -2838,9 +2838,9 @@ ___
 
 ###  imshow
 
-▸ **imshow**(`canvasOrImgId`: string, `dst`: [Mat](../classes/_types_opencv_.mat.md)): *`TODO`*
+▸ **imshow**(`canvasOrImgId`: string, `dst`: [Mat](../classes/_types_opencv_.mat.md)): *TODO*
 
-*Defined in [types/opencv.ts:26](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L26)*
+*Defined in [types/opencv.ts:26](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L26)*
 
 Important, this method was modified by OpenCv.js and only works on the browser accepting an html canvas or image element id
 
@@ -2851,7 +2851,7 @@ Name | Type |
 `canvasOrImgId` | string |
 `dst` | [Mat](../classes/_types_opencv_.mat.md) |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -2859,7 +2859,7 @@ ___
 
 ▸ **matFromImageData**(`imageData`: [ImageData](_types_opencv_.imagedata.md)): *[Mat](../classes/_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:37](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L37)*
+*Defined in [types/opencv.ts:37](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L37)*
 
 **Parameters:**
 
@@ -2873,11 +2873,11 @@ ___
 
 ###  morphologyDefaultBorderValue
 
-▸ **morphologyDefaultBorderValue**(): *`TODO`*
+▸ **morphologyDefaultBorderValue**(): *TODO*
 
-*Defined in [types/opencv.ts:11](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L11)*
+*Defined in [types/opencv.ts:11](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L11)*
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -2885,7 +2885,7 @@ ___
 
 ▸ **rectangle**(`src`: [Mat](../classes/_types_opencv_.mat.md), `point1`: [Point](../classes/_types_opencv_.point.md), `point2`: [Point](../classes/_types_opencv_.point.md), `color`: [Scalar](../classes/_types_opencv_.scalar.md), `thickness?`: undefined | number, `lineType?`: [LineTypes](../modules/_types_imgproc_.md#linetypes), `shift?`: undefined | number): *void*
 
-*Defined in [types/opencv.ts:9](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L9)*
+*Defined in [types/opencv.ts:9](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L9)*
 
 **Parameters:**
 

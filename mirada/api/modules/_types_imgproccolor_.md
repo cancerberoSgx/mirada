@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/imgProcColor"](_types_imgproccolor_.md) /
+[Globals](../README.md) › ["types/imgProcColor"](_types_imgproccolor_.md)
 
 # External module: "types/imgProcColor"
 
@@ -20,4 +20,4 @@
 
 Ƭ **ColorConversionCodes**: *number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number | number*
 
-Defined in types/imgProcColor.ts:214
+*Defined in [types/imgProcColor.ts:214](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcColor.ts#L214)*

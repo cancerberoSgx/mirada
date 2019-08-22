@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/imgProcGrabCut"](_types_imgprocgrabcut_.md) /
+[Globals](../README.md) › ["types/imgProcGrabCut"](_types_imgprocgrabcut_.md)
 
 # External module: "types/imgProcGrabCut"
 
@@ -21,7 +21,7 @@
 
 Ƭ **GrabCutClasses**: *number | number | number | number*
 
-Defined in types/imgProcGrabCut.ts:46
+*Defined in [types/imgProcGrabCut.ts:46](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L46)*
 
 class of the pixel in GrabCut algorithm
 
@@ -31,4 +31,4 @@ ___
 
 Ƭ **GrabCutModes**: *number | number | number | number*
 
-Defined in types/imgProcGrabCut.ts:41
+*Defined in [types/imgProcGrabCut.ts:41](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/imgProcGrabCut.ts#L41)*

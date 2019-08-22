@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["types/opencv"](../modules/_types_opencv_.md) / [Mat](_types_opencv_.mat.md) /
+[Globals](../README.md) › ["types/opencv"](../modules/_types_opencv_.md) › [Mat](_types_opencv_.mat.md)
 
 # Class: Mat
 
@@ -34,7 +34,7 @@
 
 \+ **new Mat**(`rows?`: undefined | number, `cols?`: undefined | number, `type?`: undefined | number): *[Mat](_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:48](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L48)*
+*Defined in [types/opencv.ts:48](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L48)*
 
 **Parameters:**
 
@@ -52,15 +52,15 @@ Name | Type |
 
 • **cols**: *number*
 
-*Defined in [types/opencv.ts:50](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L50)*
+*Defined in [types/opencv.ts:50](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L50)*
 
 ___
 
 ###  data
 
-• **data**: *`Uint8ClampedArray`*
+• **data**: *Uint8ClampedArray*
 
-*Defined in [types/opencv.ts:52](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L52)*
+*Defined in [types/opencv.ts:52](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L52)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 • **rows**: *number*
 
-*Defined in [types/opencv.ts:51](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L51)*
+*Defined in [types/opencv.ts:51](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L51)*
 
 ## Methods
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **convertTo**(`img`: [Mat](_types_opencv_.mat.md), `CV_8U`: number, `scale`: number, `shift`: number): *void*
 
-*Defined in [types/opencv.ts:55](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L55)*
+*Defined in [types/opencv.ts:55](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L55)*
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **delete**(): *void*
 
-*Defined in [types/opencv.ts:57](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L57)*
+*Defined in [types/opencv.ts:57](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L57)*
 
 **Returns:** *void*
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **type**(): *number*
 
-*Defined in [types/opencv.ts:56](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L56)*
+*Defined in [types/opencv.ts:56](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L56)*
 
 **Returns:** *number*
 
@@ -113,9 +113,9 @@ ___
 
 ###  ucharPtr
 
-▸ **ucharPtr**(`i`: number, `j`: number): *`TODO`*
+▸ **ucharPtr**(`i`: number, `j`: number): *TODO*
 
-*Defined in [types/opencv.ts:53](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L53)*
+*Defined in [types/opencv.ts:53](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L53)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ Name | Type |
 `i` | number |
 `j` | number |
 
-**Returns:** *`TODO`*
+**Returns:** *TODO*
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **ones**(`arg0`: number, `arg1`: number, `CV_8U`: number): *[Mat](_types_opencv_.mat.md)*
 
-*Defined in [types/opencv.ts:54](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/types/opencv.ts#L54)*
+*Defined in [types/opencv.ts:54](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/types/opencv.ts#L54)*
 
 **Parameters:**
 

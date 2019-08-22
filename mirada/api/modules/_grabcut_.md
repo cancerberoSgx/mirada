@@ -1,6 +1,6 @@
-> **[mirada](../README.md)**
+**[mirada](../README.md)**
 
-[Globals](../README.md) / ["grabCut"](_grabcut_.md) /
+[Globals](../README.md) › ["grabCut"](_grabcut_.md)
 
 # External module: "grabCut"
 
@@ -18,9 +18,9 @@
 
 ###  grabCut
 
-▸ **grabCut**(`o`: [GrabCutOptions](../interfaces/_grabcut_.grabcutoptions.md)): *`Promise<GrabCutResult>`*
+▸ **grabCut**(`o`: [GrabCutOptions](../interfaces/_grabcut_.grabcutoptions.md)): *Promise‹GrabCutResult›*
 
-*Defined in [grabCut.ts:18](https://github.com/cancerberoSgx/mirada/blob/22ee850/mirada/src/grabCut.ts#L18)*
+*Defined in [grabCut.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/grabCut.ts#L18)*
 
 **Parameters:**
 
@@ -28,4 +28,4 @@ Name | Type |
 ------ | ------ |
 `o` | [GrabCutOptions](../interfaces/_grabcut_.grabcutoptions.md) |
 
-**Returns:** *`Promise<GrabCutResult>`*
+**Returns:** *Promise‹GrabCutResult›*
