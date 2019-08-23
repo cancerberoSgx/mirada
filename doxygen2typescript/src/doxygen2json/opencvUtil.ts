@@ -4,8 +4,7 @@ import { join } from 'path'
 import { Q, Q1 } from '../dom/domUtil'
 import { loadXmlDom } from '../dom/jsdom'
 
-
-interface Options {
+export interface GetBindingsCppCompoundRefsOptions {
   opencvBuildFolder: string
 }
 
@@ -24,12 +23,13 @@ interface Ref {
 interface RefFile extends Ref {
   filePath: string
 }
+
 interface RefMemberdef extends Ref {
   memberdef: Element
 }
 
 
-export function parseBindingsCpp(code: string) {
+ function parseBindingsCpp(code: string) {
   const functionsRe = /\s+function\("([^"]+)"/g
   let r: any
   const functions: string[] = []
@@ -53,7 +53,7 @@ export function parseBindingsCpp(code: string) {
   }
 }
 
-export function getBindingsCppCompoundRefs(o: Options): RefsResult<Ref> {
+ function getBindingsCppCompoundRefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<Ref> {
   const bindingsPath = join(o.opencvBuildFolder, 'modules/js/bindings.cpp')
   var parsed = parseBindingsCpp(readFileSync(bindingsPath).toString())
   const index = join(o.opencvBuildFolder, 'doc/doxygen/xml/index.xml')
@@ -71,7 +71,7 @@ export function getBindingsCppCompoundRefs(o: Options): RefsResult<Ref> {
 }
 
 // const bigString = repeat(999, ' ')
-export function getBindingsCppCompoundFiles(o: Options): RefsResult<RefFile> {
+ function getBindingsCppCompoundFiles(o: GetBindingsCppCompoundRefsOptions): RefsResult<RefFile> {
   var parsed = getBindingsCppCompoundRefs(o)
   const fn = (r: Ref[]) => r.map(ref => ({
     ...ref,
@@ -88,7 +88,7 @@ export function getBindingsCppCompoundFiles(o: Options): RefsResult<RefFile> {
   }
 }
 
-export function getBindingsCppMemberdefs(o: Options): RefsResult<RefMemberdef> {
+export function getBindingsCppMemberdefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<RefMemberdef> {
   const parsed = getBindingsCppCompoundFiles(o)
   const fn = (r: RefFile[]) => r.map(ref => {
     loadXmlDom(readFileSync(ref.filePath).toString());
@@ -122,3 +122,4 @@ export function getBindingsCppMemberdefs(o: Options): RefsResult<RefMemberdef> {
 // }
 // /Users/sebastiangurin/git/opencv/build_js
 // build_js/modules/js/bindings.cpp
+
