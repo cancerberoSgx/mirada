@@ -46,8 +46,8 @@ export interface Member extends Described {
   inline: DoxBool,
   const: DoxBool,
   kind: DoxMemberKind
-    params: Param[]
-    templateparamlist: TemplateParam[]
+  params: Param[]
+  templateparamlist: TemplateParam[]
 }
 
 // export interface Method extends Member {

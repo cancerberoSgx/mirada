@@ -1,8 +1,8 @@
 import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
 import { getGlobal } from 'misc-utils-of-mine-generic'
 
-const REUSE_JSDOM=true
-const CACHE_DOM=true
+const REUSE_JSDOM = true
+const CACHE_DOM = true
 
 interface DomRepresentation {
   doc: Document;
@@ -62,10 +62,10 @@ function getJSDOM() {
  * @param {string} s a string
  * @return {number} a hash code value for the given string.
  */
- function hashCode(s: string) {
-  var h = 0, l = s.length, i = 0;
-  if ( l > 0 )
+function hashCode(s: string) {
+  var h = 0, l = s.length, i = 0
+  if (l > 0)
     while (i < l)
-      h = (h << 5) - h + s.charCodeAt(i++) | 0;
-  return h;
-};
+      h = (h << 5) - h + s.charCodeAt(i++) | 0
+  return h
+}

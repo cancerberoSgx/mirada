@@ -32,9 +32,9 @@ export function parseDoxygen(options: Options): CompoundDef[] {
     publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(getMember),
 
     publicFuncs: [...Q('sectiondef[kind="public-func"] memberdef', c), ...Q('sectiondef[kind="public-static-func"] memberdef', c)].map(getMember),
-    
+
     functions: Q('sectiondef[kind="func"] memberdef', c).map(getMember),
-    
+
     // publicStaticFuncs: Q('sectiondef[kind="public-static-func"] memberdef', c).map(s => ({
     //   ...getMember(s),
     //   // params: Q('param', s).map(p => ({
@@ -72,7 +72,7 @@ export function getMember(s: Element): Member {
   return {
     ...getDescribed(s),
     ...attrs<{ static: DoxBool, prot: DoxProtectionKind, kind: DoxMemberKind, mutable: DoxBool, implicit: DoxBool, inline: DoxBool, const: DoxBool }>(s,
-     ['prot', 'kind', 'static', 'mutable', 'implicit', 'inline', 'const']),
+      ['prot', 'kind', 'static', 'mutable', 'implicit', 'inline', 'const']),
     type: getType(s),
     definition: text('definition', s),
     name: text('name', s),
@@ -86,7 +86,7 @@ export function getMember(s: Element): Member {
 }
 
 function getCompoundDefPublicTypes(s: Element): PublicType {
-return {
+  return {
     ...getDescribed(s),
     ...attrs<{ kind: DoxSectionKind }>(s, ['kind']),
     enumValues: Q('enumvalue', s).map(v => ({
@@ -94,7 +94,7 @@ return {
       initializer: text('initializer', v, ''),
       name: text('name', v, '')
     }))
-}
+  }
 }
 
 function getParamDescription(s: Element, p: Element) {

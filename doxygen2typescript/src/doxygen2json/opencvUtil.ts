@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { notSameNotFalsy, notUndefined } from 'misc-utils-of-mine-generic'
 import { join } from 'path'
 import { Q, Q1 } from '../dom/domUtil'
-import { loadXmlDom, getCurrentDom } from '../dom/jsdom'
+import { loadXmlDom } from '../dom/jsdom'
 
 export interface GetBindingsCppCompoundRefsOptions {
   opencvBuildFolder: string
@@ -29,7 +29,7 @@ interface RefMemberdef extends Ref {
 }
 
 
- function parseBindingsCpp(code: string) {
+function parseBindingsCpp(code: string) {
   const functionsRe = /\s+function\("([^"]+)"/g
   let r: any
   const functions: string[] = []
@@ -53,7 +53,7 @@ interface RefMemberdef extends Ref {
   }
 }
 
- function getBindingsCppCompoundRefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<Ref> {
+function getBindingsCppCompoundRefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<Ref> {
   const bindingsPath = join(o.opencvBuildFolder, 'modules/js/bindings.cpp')
   var parsed = parseBindingsCpp(readFileSync(bindingsPath).toString())
   const index = join(o.opencvBuildFolder, 'doc/doxygen/xml/index.xml')
@@ -71,7 +71,7 @@ interface RefMemberdef extends Ref {
 }
 
 // const bigString = repeat(999, ' ')
- function getBindingsCppCompoundFiles(o: GetBindingsCppCompoundRefsOptions): RefsResult<RefFile> {
+function getBindingsCppCompoundFiles(o: GetBindingsCppCompoundRefsOptions): RefsResult<RefFile> {
   var parsed = getBindingsCppCompoundRefs(o)
   const fn = (r: Ref[]) => r.map(ref => ({
     ...ref,
@@ -90,11 +90,11 @@ interface RefMemberdef extends Ref {
 
 export function getBindingsCppMemberdefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<RefMemberdef> {
   const fn = (r: RefFile[]) => r.map(ref => {
-     loadXmlDom(readFileSync(ref.filePath).toString());
+    loadXmlDom(readFileSync(ref.filePath).toString());
     // const {document} = getCurrentDom()
     const refIdSelector = `memberdef[id="${ref.indexMember.getAttribute('refid')}"]`
     // const refIdSelector = `#${ref.indexMember.getAttribute('refid')}`
-      // Q('compound').forEach(compound => {})
+    // Q('compound').forEach(compound => {})
     const memberdef = Q1(refIdSelector);// getMemberdefElement(ref);
     // console.log(refIdSelector, ref.filePath, !!document, Q('memberdef').length,  !!memberdef);    
     return {
@@ -102,7 +102,7 @@ export function getBindingsCppMemberdefs(o: GetBindingsCppCompoundRefsOptions): 
       memberdef
     }
   })
-  .filter(r=>!!r.memberdef)
+    .filter(r => !!r.memberdef)
   // deduplicate names by selecting the ones with shorter compound names
   // .filter((n,i,a)=>!!n && !a.find(c=>c!==n && c.name===n.name && (()=>{console.log(text('definition', c.memberdef, bigString),  text('definition', n.memberdef, bigString)); return true})() && text('definition', c.memberdef, bigString).length < text('definition', n.memberdef, bigString).length))
   // .filter((n,i,a)=>i===a.findIndex((a, j)=> a.name===n.name ? text('name', a.compound).length > text('name', n.compound).length ? i : j: i))

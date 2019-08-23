@@ -9,7 +9,7 @@ import { buildDts } from './buildTs'
 import { parseDoxygen } from './parseDoxygen'
 
 export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
-    opencvBuildFolder: string
+  opencvBuildFolder: string
   tsOutputFolder: string
 }
 
@@ -32,24 +32,24 @@ export function doxygen2ts(options: Doxygen2tsOptions) {
   mkdirSync(options.tsOutputFolder, { recursive: true })
   loadXmlDom(readFileSync(index).toString())
   Q('compound').forEach(compound => {
-    var r = parseDoxygen({ 
-      xml: readFileSync(join(options.opencvBuildFolder, 'doc/doxygen/xml', compound.getAttribute('refid') + '.xml')).toString() 
-      })
- buildDts({
-      defs: r, 
-      isOpenCv: true, 
-      debug: true, 
+    var r = parseDoxygen({
+      xml: readFileSync(join(options.opencvBuildFolder, 'doc/doxygen/xml', compound.getAttribute('refid') + '.xml')).toString()
+    })
+    buildDts({
+      defs: r,
+      isOpenCv: true,
+      debug: true,
       renderLocation: true,
       locationFilePrefix: 'https://github.com/opencv/opencv/tree/ccecd3405a22cd4ed4446574f8465fc7024f7708/modules/core/include/',
       ...options,
       tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, ...options.tsCodeFormatSettings },
     })
-    .results
-    .forEach(d => {
-      const cName = d.def.compoundname.split('::').pop()
-      const fileName = join(options.tsOutputFolder, cName) + '.ts'
-      mkdirSync(dirname(fileName), { recursive: true })
-      writeFileSync(fileName, d.content)
-    })
+      .results
+      .forEach(d => {
+        const cName = d.def.compoundname.split('::').pop()
+        const fileName = join(options.tsOutputFolder, cName) + '.ts'
+        mkdirSync(dirname(fileName), { recursive: true })
+        writeFileSync(fileName, d.content)
+      })
   })
 } 

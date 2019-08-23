@@ -1,7 +1,7 @@
 import { notUndefined } from 'misc-utils-of-mine-generic'
 import { formatString } from 'ts-simple-ast-extra'
 import { Doxygen2tsOptionsBase, TsCodeFormatSettings } from './doxygen2ts'
-import { CompoundDef, Described, Member, Param, PublicType, linkedTextType } from './doxygenTypes'
+import { CompoundDef, Described, linkedTextType, Member, Param, PublicType } from './doxygenTypes'
 import { toMarkdown } from './toMarkdown'
 
 interface Options extends Doxygen2tsOptionsBase {
@@ -38,11 +38,11 @@ ${JSON.stringify({ publicTypes: (def.publicTypes || []).map(d => d.kind).join(',
   else if (['group'].includes(def.kind)) {
     file = `
 ${renderGroupHeader(def)}
-${def.functions.map(f=>renderFunction(f, def, options)).join('\n\n')}
+${def.functions.map(f => renderFunction(f, def, options)).join('\n\n')}
 `.trim()
   }
   else {
-  file = `/* ${def.kind} */`
+    file = `/* ${def.kind} */`
   }
   return { file, def }
 }
@@ -72,13 +72,13 @@ function getCompoundDefName(def: CompoundDef) {
   return normalizeId(def.compoundname.split('::').pop())
 }
 
-const invalidIdRegex = ()=> /[^a-z0-9_]/gi;
+const invalidIdRegex = () => /[^a-z0-9_]/gi
 
 function normalizeId(s: string) {
   return s.replace(invalidIdRegex(), '_')
 }
 
-function isValidId(s:string) {
+function isValidId(s: string) {
   return s && !s.trim().match(invalidIdRegex())
 }
 
@@ -135,7 +135,7 @@ function renderMethod(f: Member, def: CompoundDef, options: Options) {
 ${toJsDoc({ ...options, node: f, wrap: false })}
 ${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
 */
-${f.prot === 'package' ? 'private' : f.prot} ${f.static === 'yes' ? 'static' : ''} ${name} (${f.params.map(p=>renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
+${f.prot === 'package' ? 'private' : f.prot} ${f.static === 'yes' ? 'static' : ''} ${name} (${f.params.map(p => renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
 }
 
 function renderAttr(f: Member, def: CompoundDef, options: Options) {
@@ -154,7 +154,7 @@ function validAttr(m: Member) {
 }
 
 function validMethod(m: Member) {
-  return m.name && isValidId(m.name) &&  !m.name.startsWith('~') && !m.name.match(/^operator[^a-z0-9A-Z_]/)
+  return m.name && isValidId(m.name) && !m.name.startsWith('~') && !m.name.match(/^operator[^a-z0-9A-Z_]/)
 }
 
 
@@ -194,35 +194,35 @@ function renderFunction(f: Member, def: CompoundDef, options: Options) {
 ${toJsDoc({ ...options, node: f, wrap: false })}
 ${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
 */
-export declare function ${name} (${f.params .map(p=>renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
+export declare function ${name} (${f.params.map(p => renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
 }
 
 function renderType(type: linkedTextType, options: Options) {
   var ref = type.refs && type.refs.length && type.refs[0]
   var r = ''
-  if(ref){
-  const text =  type && (type.name || isValidId(type.text) ? type.text : ref && isValidId(ref.text) && ref.text)|| 'any';
-  r=renderRef({...options,  ...ref, text })
+  if (ref) {
+    const text = type && (type.name || isValidId(type.text) ? type.text : ref && isValidId(ref.text) && ref.text) || 'any'
+    r = renderRef({ ...options, ...ref, text })
   }
-  if(!r){
-    return type && (type.name || isValidId(type.text)&& type.text)|| 'any'
+  if (!r) {
+    return type && (type.name || isValidId(type.text) && type.text) || 'any'
   }
 }
 
 export interface RenderRefOptions {
   refType?: Options['refType']
   text?: string
-  refid?:string
+  refid?: string
 }
 
 export function renderRef(options?: RenderRefOptions): string {
-  if(!options||!options.text||!options.refid){
+  if (!options || !options.text || !options.refid) {
     return ''
   }
-  return options.refType === 'typedoc' ? `[${options.text}]` : `[${options.text}](${options.refid}})`;
+  return options.refType === 'typedoc' ? `[${options.text}]` : `[${options.text}](${options.refid}})`
 }
 
-function renderGroupHeader(def: CompoundDef){
+function renderGroupHeader(def: CompoundDef) {
   return `
 /*
  * # ${def.compoundname}

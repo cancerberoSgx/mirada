@@ -1,6 +1,6 @@
-import test from 'ava';
-import { writeFileSync } from 'fs';
-import { getBindingsCppMemberdefs } from '../src/doxygen2json/opencvUtil';
+import test from 'ava'
+import { writeFileSync } from 'fs'
+import { getBindingsCppMemberdefs } from '../src/doxygen2json/opencvUtil'
 
 const buildFolder = '/Users/sebastiangurin/git/opencv/build_js'
 

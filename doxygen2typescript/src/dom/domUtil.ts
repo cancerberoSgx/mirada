@@ -3,7 +3,7 @@ import { getCurrentDom } from './jsdom'
 
 export function Q<T extends Element = Element>(s: string | Element[] | Element | NodeList | HTMLElement | HTMLCollection, ancestor?: Element): T[] {
   const { document, window } = getCurrentDom()
-  ancestor = ancestor ||document
+  ancestor = ancestor || document
   if (typeof s === 'string') {
     return Array.from(ancestor.querySelectorAll<T>(s))
   }
