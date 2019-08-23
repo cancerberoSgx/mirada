@@ -1,2 +1,3 @@
 export * from './format'
-export * from './jimpFormatCodec'
+export * from './jimpCodec'
+export * from './canvasCodec'

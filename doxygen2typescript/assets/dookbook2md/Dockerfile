@@ -1,5 +1,5 @@
-FROM alpine:latest
+FROM ALPINE
 
-RUN apk update 
-RUN apk upgrade
-RUN apk install pandoc
+RUN export TERM=xterm \
+ && apt-get --assume-yes --list-cleanup update \
+ && apt-get --yes install docbook docbook-utils openjade make

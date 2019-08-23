@@ -39,8 +39,7 @@
     "ts-refactor": "0.0.9",
     "typescript": "^3.5.3",
     "typescript-plugin-proactive-code-fixes": "0.0.18",
-    "xml2js": "^0.4.19",
-    "xslt-processor": "^0.11.5"
+    "xml2js": "^0.4.19"
   },
   "dependencies": {
     "misc-utils-of-mine-generic": "^0.2.21"

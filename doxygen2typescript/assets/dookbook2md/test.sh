@@ -1,0 +1,2 @@
+# //  docker run --rm -it -v "$PWD":/work --workdir /work pandoc pandoc  -f docbook -t markdown -s build_js/doc/doxygen/docbook/mainpage.xml -o test-md
+# //  docker run --rm -it -v "$PWD":/work --workdir /work pandoc sh docbook2md.sh

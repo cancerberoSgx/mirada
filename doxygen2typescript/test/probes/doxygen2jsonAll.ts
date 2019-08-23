@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync,  } from 'fs'
-import { createXMLDom, doxygen2json, dummyTreeView, Q } from '../../src'
+import { createXMLDom, parseDoxygen, dummyTreeView, Q } from '../../src'
 import { rm, mkdir, cp, exec, ls } from 'shelljs';
 import { withoutExtension, basename, dirname } from 'misc-utils-of-mine-generic';
 import {  join, resolve } from 'path';
@@ -19,7 +19,7 @@ ls('tmp/xml/*.xml').forEach(f=>{
   // process.exit(1)
     var xml = readFileSync(f).toString()
     // console.log('writing', name, 'XML Size: '+xml.length/1000);
-  var a = doxygen2json({ xml })
+  var a = parseDoxygen({ xml })
   var r = JSON.stringify(a, null, 2)
 writeFileSync(name, r)
     // console.log('written', name, f, 'JSON Size: '+(r.length/1000));

@@ -1,5 +1,5 @@
 import { asArray } from 'misc-utils-of-mine-generic'
-import { _currentOptions } from '../doxygen2json/doxygen2json'
+import { _currentOptions } from '../doxygen2json/parseDoxygen'
 import { doc, window } from './jsdom'
 
 export function Q<T extends Element = Element>(s: string | Element[] | Element | NodeList | HTMLElement | HTMLCollection, ancestor: Element = doc.documentElement): T[] {
@@ -50,15 +50,15 @@ export function isElement(e: any): e is Element {
 /**
  * return an object with given element's attributes (given in second arg)
  */
-export function attrs<O extends Element, T extends ((ReturnType<O['getAttributeNames']>))>(e?: O, attrs?: T): Partial<{ [k in T[number]]: string | null }> {
+export function attrs<T extends {} = {}>(e?: Element, attrs?: string[]): T {
   if (!e || typeof attrs === 'undefined') {
-    return {}
+    return {} as T
   }
-  var o: Partial<{ [k in T[number]]: string | null }> = {};
+  var o: T = {} as any
   (attrs.length === 0 ? e.getAttributeNames() : attrs).forEach(k => {
     o[k] = e.getAttribute(k)
   })
-  return o as any
+  return o 
 }
 
 export function text(s: string, c: Element, def = '') {
