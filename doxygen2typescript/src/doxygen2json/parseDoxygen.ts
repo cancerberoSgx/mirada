@@ -17,7 +17,7 @@ interface Options {
 export function parseDoxygen(options: Options): CompoundDef[] {
   loadXmlDom(options.xml)
 
-  var r = Q('compounddef').map(c => ({
+  var r: CompoundDef[] = Q('compounddef').map(c => ({
     ...getDescribed(c),
     ...attrs<{ kind: DoxCompoundKind, prot: DoxProtectionKind }>(c, ['kind', 'prot']),
     compoundname: text('compoundname', c).trim(),
@@ -27,43 +27,36 @@ export function parseDoxygen(options: Options): CompoundDef[] {
       text: d.textContent
     })),
 
-    publicTypes: getCompoundDefPublicTypes(c),
+    publicTypes: Q('sectiondef[kind="public-type"] memberdef', c).map(getCompoundDefPublicTypes),
 
-    publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(s => ({
-      ...getMember(s)
-    })),
+    publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(getMember),
 
-    publicFuncs: Q('sectiondef[kind="public-func"] memberdef', c).map(s => ({
-      ...getMember(s),
-      params: getParams(s),
-      templateparamlist: Q('templateparamlist param', s).map(p => ({
-        type: getType(p),
-        description: getParamDescription(s, p)
-      })),
-    })),
+    publicFuncs: [...Q('sectiondef[kind="public-func"] memberdef', c), ...Q('sectiondef[kind="public-static-func"] memberdef', c)].map(getMember),
+    
+    functions: Q('sectiondef[kind="func"] memberdef', c).map(getMember),
+    
+    // publicStaticFuncs: Q('sectiondef[kind="public-static-func"] memberdef', c).map(s => ({
+    //   ...getMember(s),
+    //   // params: Q('param', s).map(p => ({
+    //   //   type: getType(p),
+    //   //   declname: text('declname', p),
+    //   //   description: getParamDescription(s, p)
+    //   // }))
+    // })),
 
-    publicStaticFuncs: Q('sectiondef[kind="public-static-func"] memberdef', c).map(s => ({
-      ...getMember(s),
-      params: Q('param', s).map(p => ({
-        type: getType(p),
-        declname: text('declname', p),
-        description: getParamDescription(s, p)
-      }))
-    })),
-
-    protectedFuncs: Q('sectiondef[kind="protected-func"] memberdef', c).map(s => ({
-      ...getMember(s),
-      params: Q('param', s).map(p => ({
-        type: getType(p),
-        declname: text('declname', p),
-        description: getParamDescription(s, p)
-      }))
-    })),
+    // protectedFuncs: Q('sectiondef[kind="protected-func"] memberdef', c).map(s => ({
+    //   ...getMember(s),
+    //   // params: Q('param', s).map(p => ({
+    //   //   type: getType(p),
+    //   //   declname: text('declname', p),
+    //   //   description: getParamDescription(s, p)
+    //   // }))
+    // })),
     inheritancegraph: 'TODO',
     collaborationgraph: 'TODO',
     listofallmembers: 'TODO'
 
-  }))
+  } as CompoundDef))
   return r
 }
 
@@ -75,8 +68,25 @@ function getParams(s: Element): Param[] {
   }))
 }
 
-function getCompoundDefPublicTypes(c: Element): PublicType[] {
-  return Q('sectiondef[kind="public-type"] memberdef', c).map(s => ({
+export function getMember(s: Element): Member {
+  return {
+    ...getDescribed(s),
+    ...attrs<{ static: DoxBool, prot: DoxProtectionKind, kind: DoxMemberKind, mutable: DoxBool, implicit: DoxBool, inline: DoxBool, const: DoxBool }>(s,
+     ['prot', 'kind', 'static', 'mutable', 'implicit', 'inline', 'const']),
+    type: getType(s),
+    definition: text('definition', s),
+    name: text('name', s),
+    argsstring: text('argsstring', s),
+    params: getParams(s),
+    templateparamlist: Q('templateparamlist param', s).map(p => ({
+      type: getType(p),
+      description: getParamDescription(s, p)
+    })),
+  }
+}
+
+function getCompoundDefPublicTypes(s: Element): PublicType {
+return {
     ...getDescribed(s),
     ...attrs<{ kind: DoxSectionKind }>(s, ['kind']),
     enumValues: Q('enumvalue', s).map(v => ({
@@ -84,7 +94,7 @@ function getCompoundDefPublicTypes(c: Element): PublicType[] {
       initializer: text('initializer', v, ''),
       name: text('name', v, '')
     }))
-  }))
+}
 }
 
 function getParamDescription(s: Element, p: Element) {
@@ -124,17 +134,6 @@ function getDescriptions(c: Element): Descriptions {
     detaileddescription: Q(c.childNodes).filter(c => c.tagName === 'detaileddescription').map(c => c.innerHTML).join('\n'),
     inbodydescription: Q(c.childNodes).filter(c => c.tagName === 'inbodydescription').map(c => c.innerHTML).join('\n'),
     detaileddescriptionNode: Q(c.childNodes).find(c => c.tagName === 'detaileddescription')
-  }
-}
-
-function getMember(s: Element): Member {
-  return {
-    ...getDescribed(s),
-    ...attrs<{ static: DoxBool, prot: DoxProtectionKind, kind: DoxMemberKind, mutable: DoxBool, implicit: DoxBool, inline: DoxBool, const: DoxBool, version: DoxBool, }>(s, ['prot', 'kind', 'static', 'mutable', 'implicit', 'inline', 'const', 'version']),
-    type: getType(s),
-    definition: text('definition', s),
-    name: text('name', s),
-    argsstring: text('argsstring', s),
   }
 }
 

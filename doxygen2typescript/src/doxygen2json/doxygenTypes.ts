@@ -1,9 +1,10 @@
 
 
 export interface CompoundDef extends Described {
-  publicTypes?: PublicType[];
-  publicAttribs?: Member[]
-  publicFuncs?: Method[]
+  publicTypes: PublicType[];
+  publicAttribs: Member[]
+  publicFuncs: Member[]
+  functions: Member[]
   compoundname: string
   kind: DoxCompoundKind
   title?: string
@@ -15,10 +16,12 @@ export interface PublicType extends Described {
   kind: DoxSectionKind
   enumValues: PublicTypeEnumValue[];
 }
+
 export interface PublicTypeEnumValue extends Described {
   initializer: string
   name: string
 }
+
 export interface Described extends Descriptions {
   location?: Location;
   id: string;
@@ -42,18 +45,21 @@ export interface Member extends Described {
   implicit: DoxBool,
   inline: DoxBool,
   const: DoxBool,
-  version: DoxBool,
   kind: DoxMemberKind
+    params: Param[]
+    templateparamlist: TemplateParam[]
 }
 
-export interface Method extends Member {
-  params: Param[]
-}
+// export interface Method extends Member {
 
-export interface Param {
+// }
+export interface TemplateParam {
+
   type: linkedTextType
   description?: string
   array?: any
+}
+export interface Param extends TemplateParam {
   name: string
 }
 

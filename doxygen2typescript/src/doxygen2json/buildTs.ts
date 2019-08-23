@@ -1,7 +1,7 @@
 import { notUndefined } from 'misc-utils-of-mine-generic'
 import { formatString } from 'ts-simple-ast-extra'
 import { Doxygen2tsOptionsBase, TsCodeFormatSettings } from './doxygen2ts'
-import { CompoundDef, Described, Member, Method, Param, PublicType } from './doxygenTypes'
+import { CompoundDef, Described, Member, Param, PublicType } from './doxygenTypes'
 import { toMarkdown } from './toMarkdown'
 
 interface Options extends Doxygen2tsOptionsBase {
@@ -19,7 +19,7 @@ export function buildDts(options: Options): Result {
 }
 
 function buildDefDts(def: CompoundDef, options: Options) {
-  if (!['class', 'struct', 'group'].includes(def.kind)) {
+  if (!['class', 'struct', 'group', 'function', 'enumvalue'].includes(def.kind)) {
     console.error('CompoundDef kind ' + def.kind + ' not supported')
     // throw new Error('CompoundDef kind ' + def.kind + ' not supported')
     return undefined
@@ -32,15 +32,17 @@ ${renderCompoundClass(def, options)}
 ${!options.isOpenCv ? '' : (def.publicTypes || []).filter(t => t.kind === 'enum').map(t => renderEnum(t, def, options)).join('\n\n')}
 
 ${!options.debug ? '' : `/* debug
-${JSON.stringify(
-      { publicTypes: (def.publicTypes || []).map(d => d.kind).join(', ') },
-      null, 2)
-        }
+${JSON.stringify({ publicTypes: (def.publicTypes || []).map(d => d.kind).join(', ') }, null, 2)}
 */`}
 `
   }
   else if (['group'].includes(def.kind)) {
-    file = ``
+    file = `
+${def.functions.map(f=>renderFunction(f, def, options)).join('\n\n')}
+`
+  }
+  else {
+    file = `/* ${def.kind} */`
   }
   return { file, def }
 }
@@ -56,7 +58,7 @@ ${def.publicFuncs.filter(validMethod).map(f => renderMethod(f, def, options)).jo
 }`.trim()
 }
 
-function renderMethod(f: Method, def: CompoundDef, options: Options) {
+function renderMethod(f: Member, def: CompoundDef, options: Options) {
   const className = getClassName(def)
   const name = f.name === className ? 'constructor' : f.name
   // const returnDesc = Q('[kind="return"]', f.).map(node => `${toMarkdown({ node })}`).join('').trim();
@@ -134,8 +136,7 @@ function validAttr(m: Member) {
   return true
 }
 
-
-function validMethod(m: Method) {
+function validMethod(m: Member) {
   return m.name && !m.name.startsWith('~') && !m.name.match(/^operator[^a-z0-9A-Z_]/)
 }
 
@@ -157,4 +158,16 @@ function formatCode(code: string, o: Options) {
     o.debug && console.log('Warning: failed to format code. Reason', error)
   }
   return output
+}
+
+
+function renderFunction(f: Member, def: CompoundDef, options: Options) {
+  const className = getClassName(def)
+  const name = f.name === className ? 'constructor' : f.name
+  return `
+/**
+${toJsDoc({ ...options, node: f, wrap: false })}
+${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
+ */
+declare export function ${name} (${f.params.filter(validParam).map(renderParam).join(', ')})${name === 'constructor' ? '' : `: ${f.type && f.type.name || 'any'}`}`
 }
