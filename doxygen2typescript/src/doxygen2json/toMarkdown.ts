@@ -1,5 +1,6 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
 import { Doxygen2tsOptionsBase } from './doxygen2ts'
+import { renderRef } from './buildTs';
 
 interface Options extends Doxygen2tsOptionsBase {
   node: Node
@@ -38,7 +39,7 @@ export function toMarkdown(options: Options): string {
     return `<a name="${el.id}"></a>`
   }
   else if (['ref'].includes(el.tagName)) {
-    return options.refType === 'typedoc' ? `[${renderChildren(el, options)}]` : `[${renderChildren(el, options)}](${getRef(el, options)}})`
+    return renderRef({...options, text: renderChildren(el, options), refid: `#${el.getAttribute('refid')}`})
   }
   else if (['itemizedlist', 'orderedlist'].includes(el.tagName)) {
     return `\n\n${renderChildren(el, options)}`
@@ -60,6 +61,7 @@ export function toMarkdown(options: Options): string {
     return ''
   }
 }
+
 
 function getRef(el: Element, options: Options) {
   return `#${el.getAttribute('refid')}`

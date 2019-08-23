@@ -25,12 +25,12 @@ if(!id){
   return 
 }
     var r = parseDoxygen({ xml: readFileSync(join(o.opencvBuildFolder, 'doc/doxygen/xml', id + '.xml')).toString() })
-    .filter(f=>f.kind==='class' ? defs.classes.map(f=>f.memberdef.id).includes(f.id) : true)
-    
+    // .filter(f=>f.kind==='class' ? defs.classes.map(f=>f.memberdef.id).includes(f.id) : true)
+
         // publicTypes: f.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id)),
 
-    .map(f=>(f.kind==='group' ? {...f,     functions: f.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id)),   } : f))
-    .filter(f=>f.kind==='group'? f.functions.length : true)
+    // .map(f=>(f.kind==='group' ? {...f,     functions: f.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id)),   } : f))
+    // .filter(f=>f.kind==='group'? f.functions.length : true)
 
     // const rf = r.filter(d=>d.kind==='group').map(m=>({functions: m.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id))}))
  buildDts({
