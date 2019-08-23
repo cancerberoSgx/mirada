@@ -16,8 +16,8 @@ export interface PublicType extends Described {
   enumValues: PublicTypeEnumValue[];
 }
 export interface PublicTypeEnumValue extends Described {
-    initializer: string
-    name:string
+  initializer: string
+  name: string
 }
 export interface Described extends Descriptions {
   location?: Location;
@@ -36,13 +36,13 @@ export interface Member extends Described {
   definition?: string;
   argsstring?: string;
   name: string;
- static: DoxBool, 
- prot: DoxProtectionKind, 
+  static: DoxBool,
+  prot: DoxProtectionKind,
   mutable: DoxBool,
-   implicit: DoxBool, 
-  inline: DoxBool, 
+  implicit: DoxBool,
+  inline: DoxBool,
   const: DoxBool,
-   version: DoxBool, 
+  version: DoxBool,
   kind: DoxMemberKind
 }
 

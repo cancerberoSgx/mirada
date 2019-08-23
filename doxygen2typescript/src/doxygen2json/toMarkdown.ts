@@ -58,9 +58,7 @@ export function toMarkdown(options: Options): string {
   else {
     console.assert(false, el.tagName + ' not supported.')
     return ''
-    // return `\`<TODO_${el.tagName}>\` ${renderChildren(el, options)} \`</TODO_${el.tagName}>\``
   }
-
 }
 
 function getRef(el: Element, options: Options) {

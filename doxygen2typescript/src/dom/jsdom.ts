@@ -1,17 +1,47 @@
 import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
+import { getGlobal, hashCode } from 'misc-utils-of-mine-generic';
 
-export function createXMLDom(s: string, debug = false) {
-  const dom = new JSDOM('', { virtualConsole: new VirtualConsole() })
-  window = dom.window
-  const { DOMParser, Node } = window
-  const parser = new DOMParser()
-  doc = parser.parseFromString(s, "text/xml")
-  document = doc.documentElement
-  return { doc, document, window, parser, Node }
+export function loadXmlDom(s: string): DomRepresentation {
+  const hash = hashCode(s)
+  if(!doms[hash]){
+    const dom = getJSDOM()
+ const window = dom.window
+  const parser = new dom.window.DOMParser()
+  const doc =  parser.parseFromString(s, "text/xml");
+   const  document = doc.documentElement
+    doms[hash] =  {doc, window ,document, parser}
+  }
+  const d = doms[hash]  
+   installGlobalDOM(d)
+   return d
 }
-/** the last created documentElement with createXMLDom */
-export let document: HTMLElement
-/** the last created document with createXMLDom */
-export let doc: Document
-/** the last created window with createXMLDom */
-export let window: DOMWindow
+
+const doms : {[s:number]:DomRepresentation}={}
+
+interface DomRepresentation {
+    doc: Document;
+    window: DOMWindow;
+    document: HTMLElement;
+    parser: DOMParser;
+}
+
+function installGlobalDOM(o:DomRepresentation){
+  const g = getGlobal()
+  g.doc=o.doc
+  g.document=o.document
+  g.window = o.window
+  g.domRepresentation = o
+}
+
+export function getCurrentDom(): DomRepresentation{
+  return getGlobal().domRepresentation
+}
+
+let dom : JSDOM|undefined
+
+function getJSDOM(){
+  if(!dom){
+dom=  new JSDOM('', { virtualConsole: new VirtualConsole() })
+  }
+  return dom
+}

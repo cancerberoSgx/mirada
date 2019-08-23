@@ -1,8 +1,7 @@
-import { unique, objectKeys } from 'misc-utils-of-mine-generic'
+import { objectKeys, unique } from 'misc-utils-of-mine-generic'
 import { attrs, Q, Q1, text } from '../dom/domUtil'
-import { createXMLDom } from "../dom/jsdom"
+import { loadXmlDom } from "../dom/jsdom"
 import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
-
 
 interface Options {
   xml: string;
@@ -16,7 +15,7 @@ interface Options {
  * TODO: type return value
  */
 export function parseDoxygen(options: Options): CompoundDef[] {
-  createXMLDom(options.xml, options.debug)
+  loadXmlDom(options.xml)
 
   var r = Q('compounddef').map(c => ({
     ...getDescribed(c),
@@ -107,15 +106,15 @@ function getDescribed(c: Element): Described {
   } as Described
 }
 
-function location(c: Element): Location|undefined {
-   var o = attrs<Location>(Q1('location', c), ['file','line','column','bodyfile','bodystart','bodyend']) 
-  if(!objectKeys(o).length){
+function location(c: Element): Location | undefined {
+  var o = attrs<Location>(Q1('location', c), ['file', 'line', 'column', 'bodyfile', 'bodystart', 'bodyend'])
+  if (!objectKeys(o).length) {
     return
   }
-  o.line = o.line && parseInt(o.line+'')
-  o.column = o.column && parseInt(o.column+'')
-  o.bodystart = o.bodystart && parseInt(o.bodystart+'')
-  o.bodyend = o.bodyend && parseInt(o.bodyend+'')
+  o.line = o.line && parseInt(o.line + '')
+  o.column = o.column && parseInt(o.column + '')
+  o.bodystart = o.bodystart && parseInt(o.bodystart + '')
+  o.bodyend = o.bodyend && parseInt(o.bodyend + '')
   return o
 }
 

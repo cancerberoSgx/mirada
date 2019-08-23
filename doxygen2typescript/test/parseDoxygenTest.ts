@@ -1,8 +1,7 @@
 import test from 'ava'
 import { readFileSync } from 'fs'
-import { parseDoxygen } from '../src'
 import { findJson, visitJson } from 'misc-utils-of-mine-generic'
-
+import { parseDoxygen } from '../src'
 
 test('parseDoxygen', async t => {
   var r = parseDoxygen({ xml: readFileSync('test/assets/mat.xml').toString() })
@@ -12,6 +11,5 @@ test('parseDoxygen', async t => {
     return v && v.name === 'adjustROI' && v.kind === 'function' && v.params.find(p => p.name === 'dtop' && p.description === 'Shift of the top submatrix boundary upwards.')
   }) as any
   t.deepEqual(param.type.text, 'Mat &')
-
 })
 
