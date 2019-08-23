@@ -18,7 +18,7 @@ class JimpProxy implements FormatProxyClass {
 }
 ```
  */
-export class JimpFormatCodec implements FormatCodec {
+export class JimpCodec implements FormatCodec {
   constructor(protected jimp: Jimp) {
   }
   async decode(buffer: ArrayBuffer): Promise<ImageData> {

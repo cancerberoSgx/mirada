@@ -1,16 +1,21 @@
-import { unique } from 'misc-utils-of-mine-generic'
+import { unique, objectKeys } from 'misc-utils-of-mine-generic'
 import { attrs, Q, Q1, text } from '../dom/domUtil'
 import { createXMLDom } from "../dom/jsdom"
-import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, ParseDoxygenOptions, PublicType, refTextType } from './types'
+import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
 
-export let _currentOptions: ParseDoxygenOptions = { xml: '' }
+
+interface Options {
+  xml: string;
+  debug?: boolean;
+  formulas2Svg?: boolean;
+  createParentNodes?: boolean
+}
 
 /**
  * Transform a single doxygen XML source file in a more or less equivalent .json
  * TODO: type return value
  */
-export function parseDoxygen(options: ParseDoxygenOptions): CompoundDef[] {
-  _currentOptions = options
+export function parseDoxygen(options: Options): CompoundDef[] {
   createXMLDom(options.xml, options.debug)
 
   var r = Q('compounddef').map(c => ({
@@ -74,10 +79,11 @@ function getParams(s: Element): Param[] {
 function getCompoundDefPublicTypes(c: Element): PublicType[] {
   return Q('sectiondef[kind="public-type"] memberdef', c).map(s => ({
     ...getDescribed(s),
-    ...attrs<{ kind: DoxSectionKind }>(c, ['kind']),
+    ...attrs<{ kind: DoxSectionKind }>(s, ['kind']),
     enumValues: Q('enumvalue', s).map(v => ({
       ...getDescribed(v),
-      initializer: Q1('initializer', v, {}).textContent,
+      initializer: text('initializer', v, ''),
+      name: text('name', v, '')
     }))
   }))
 }
@@ -101,12 +107,15 @@ function getDescribed(c: Element): Described {
   } as Described
 }
 
-function location(c: Element): Location {
-  var o = attrs(Q1('location', c, {})) as any
-  o.line = o.line && parseInt(o.line) || o.line
-  o.column = o.column && parseInt(o.column) || o.column
-  o.bodystart = o.bodystart && parseInt(o.bodystart) || o.bodystart
-  o.bodyend = o.bodyend && parseInt(o.bodyend) || o.bodyend
+function location(c: Element): Location|undefined {
+   var o = attrs<Location>(Q1('location', c), ['file','line','column','bodyfile','bodystart','bodyend']) 
+  if(!objectKeys(o).length){
+    return
+  }
+  o.line = o.line && parseInt(o.line+'')
+  o.column = o.column && parseInt(o.column+'')
+  o.bodystart = o.bodystart && parseInt(o.bodystart+'')
+  o.bodyend = o.bodyend && parseInt(o.bodyend+'')
   return o
 }
 

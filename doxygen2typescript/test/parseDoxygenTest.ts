@@ -1,7 +1,7 @@
 import test from 'ava'
 import { readFileSync } from 'fs'
 import { parseDoxygen } from '../src'
-import { findJson, visitJson } from '../src/misc'
+import { findJson, visitJson } from 'misc-utils-of-mine-generic'
 
 
 test('parseDoxygen', async t => {

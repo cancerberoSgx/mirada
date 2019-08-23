@@ -39,7 +39,8 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "misc-utils-of-mine-generic": "^0.2.22"
+    "misc-utils-of-mine-generic": "^0.2.23",
+    "ts-simple-ast-extra": "^0.3.5"
   },
   "repository": {
     "type": "git",

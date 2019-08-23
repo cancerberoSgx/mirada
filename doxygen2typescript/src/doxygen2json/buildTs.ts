@@ -1,47 +1,105 @@
 import { Q } from '../dom/domUtil'
+import { Doxygen2tsOptionsBase, TsCodeFormatSettings } from './doxygen2ts'
+import { CompoundDef, Method, Param, Member, PublicType, Described } from './doxygenTypes'
 import { toMarkdown } from './toMarkdown'
-import { CompoundDef, Method, Param } from './types'
+import { FormatStringOptions, formatString } from 'ts-simple-ast-extra';
+import { tryTo } from 'misc-utils-of-mine-generic';
 
-interface BuildDtsOptions {
+interface Options extends Doxygen2tsOptionsBase {
   defs: CompoundDef[]
 }
 
-// interface Result {
-//   files: {def: CompoundDef, dts: string, fileName: string}
-// }
-
-export function buildDts(options: BuildDtsOptions) {
+export function buildDts(options: Options) {
   return {
-    files: options.defs.map(buildDefDts)
+    files: options.defs.map(def => buildDefDts(def, options)).map(s=>formatCode(s, options))
   }
 }
 
-function buildDefDts(def: CompoundDef): string {
+function buildDefDts(def: CompoundDef, options: Options): string {
   if (def.kind !== 'class') {
     throw new Error('CompoundDef kind ' + def.kind + ' not supported')
   }
-  const className = getClassName(def)
-  return `/**
-${toJsDoc(def.detaileddescriptionNode)}
-*/
-declare class ${className} {
-${def.publicFuncs.filter(validMethod).map(f => {
-    const name = f.name === className ? 'constructor' : f.name
-    const returnDesc = Q('[kind="return"]', f.detaileddescriptionNode).map(node => `${toMarkdown({ node })}`).join('').trim()
-    return `
-/**
-${toMarkdown({ node: f.detaileddescriptionNode })}
-${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
-${returnDesc ? `@return ${returnDesc}` : ''}
- */
-${f.prot === 'package' ? '' : f.prot} ${name} (${f.params.filter(validParam).map(renderParam).join(', ')})${name === 'constructor' ? '' : `: ${f.type && f.type.name || 'any'}`}`
-  }).join('\n\n')}
-}
-  `.trim()
+  return `
+${renderCompoundClass(def, options)}
+
+${!options.isOpenCv ? '' : (def.publicTypes||[]).filter(t=>t.kind==='enum').map(t=> renderEnum(t, def, options)).join('\n\n')}
+
+${!options.debug ? '' : `/* debug
+${JSON.stringify(
+  {publicTypes: (def.publicTypes||[]).map(d=>d.kind).join(', ')},
+  null, 2)
+  }
+*/`}
+`
 }
 
-function toJsDoc(node: Node, asterix = false) {
-  return asterix ? `${toMarkdown({ node }).trim().split('\n').join('\n * ')}` : `${toMarkdown({ node }).trim()}`
+function renderCompoundClass(def: CompoundDef, options: Options) {
+  const className = getClassName(def);
+  return `
+${toJsDoc({node: def})}
+declare class ${className} {
+${options.isOpenCv ? '' : def.publicTypes.filter(t=>t.kind==='enum').map(f => renderEnum(f, def, options)).join('\n\n')}
+${def.publicAttribs.filter(validAttr).map(f => renderAttr(f, def, options)).join('\n\n')}
+${def.publicFuncs.filter(validMethod).map(f => renderMethod(f, def, options)).join('\n\n')}
+}`.trim();
+}
+
+function renderMethod(f: Method, def: CompoundDef, options: Options) {
+  const className = getClassName(def)
+  const name = f.name === className ? 'constructor' : f.name;
+  // const returnDesc = Q('[kind="return"]', f.).map(node => `${toMarkdown({ node })}`).join('').trim();
+// ${returnDesc ? `@return ${returnDesc}` : ''}
+  return `
+/**
+${toJsDoc({ ...options, node: f, wrap: false })}
+${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
+ */
+${f.prot === 'package' ? 'private' : f.prot} ${f.static === 'yes' ? 'static' : ''} ${name} (${f.params.filter(validParam).map(renderParam).join(', ')})${name === 'constructor' ? '' : `: ${f.type && f.type.name || 'any'}`}`;
+}
+
+function renderAttr(f: Member, def: CompoundDef, options: Options) {
+  if(f.kind!=='variable') {
+    options.debug&&console.log('Warning, buildTs renderAttr kind not "variable" but '+f.kind)
+  }
+  const className = getClassName(def)
+  const name = f.name === className ? 'constructor' : f.name;
+  return `
+${toJsDoc({ ...options, node: f })}
+${f.prot === 'package' ? 'private' : f.prot} ${f.static === 'yes' ? 'static' : ''} ${name} : ${f.type && f.type.name || 'any'}`;
+}
+
+function renderEnum(f: PublicType, def: CompoundDef, options: Options) {
+  return (f.enumValues||[]).map(v=>{
+  if(options.isOpenCv){
+  const className = getClassName(def)
+return `
+${toJsDoc({ ...options, node: v })}
+declare const ${className}_${v.name} : any; // initializer: ${v.initializer}
+`;
+
+  }
+  else {
+  return `
+${toJsDoc({ ...options, node: v })}
+${'public'} ${'static'} ${v.name}: any; // initializer: ${v.initializer}
+`
+  }
+  }).join('\n\n')
+}
+
+type ToJsDocOptions = Doxygen2tsOptionsBase&{node: Described, asterix?: boolean, wrap?: boolean}
+function toJsDoc(o:ToJsDocOptions) {
+  o.asterix = typeof o.asterix==='undefined' ? false : o.asterix
+  o.wrap = typeof o.wrap==='undefined' ? true : o.wrap
+  o.renderLocation = typeof o.renderLocation==='undefined' ? true : o.renderLocation
+  var node = o.node.detaileddescriptionNode
+  var body = o.asterix ? `${toMarkdown({...o, node}).trim().split('\n').join('\n * ')}` : `${toMarkdown({...o, node})}`
+  body = body.trim()+'\n\n'+renderLocation(o)+'\n'
+  return `${o.wrap ? '/**\n' : ''}${body}${o.wrap ? '\n*/' : ''}`
+}
+
+function renderLocation(o:ToJsDocOptions) {
+  return (!o.renderLocation||!o.node.location)  ? '': `Source: [${o.node.location.file}](${o.locationFilePrefix||'https://github.com/opencv/opencv/tree/master/modules/core/include/'}${o.node.location.file}#L${o.node.location.line}).`
 }
 
 function getClassName(def: CompoundDef) {
@@ -57,9 +115,31 @@ function renderParam(p: Param): string {
 }
 
 function validParam(m: Param) {
-  return true//m.declname||m.defname
+  return true
 }
+
+function validAttr(m: Member) {
+  return true
+}
+
 
 function validMethod(m: Method) {
   return m.name && !m.name.startsWith('~') && !m.name.match(/^operator[^a-z0-9A-Z_]/)
+}
+
+  const defaultFormat:TsCodeFormatSettings = {
+    trailingSemicolons: 'always',
+    indentSize: 2,
+    convertTabsToSpaces: true,
+    quotePreference: 'single', 
+  }
+
+function formatCode(code:string,o:Options){
+  var output = code
+  try {
+    output = formatString({...defaultFormat, ...o.tsCodeFormatSettings||{}, code})
+  } catch (error) {
+    o.debug && console.log('Warning: failed to format code. Reason', error)
+  }
+  return output
 }

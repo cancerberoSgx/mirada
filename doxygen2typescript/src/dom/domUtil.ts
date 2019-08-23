@@ -1,5 +1,4 @@
 import { asArray } from 'misc-utils-of-mine-generic'
-import { _currentOptions } from '../doxygen2json/parseDoxygen'
 import { doc, window } from './jsdom'
 
 export function Q<T extends Element = Element>(s: string | Element[] | Element | NodeList | HTMLElement | HTMLCollection, ancestor: Element = doc.documentElement): T[] {
@@ -17,7 +16,7 @@ export function Q<T extends Element = Element>(s: string | Element[] | Element |
 export function Q1<T extends Element = Element>(s: string | Element[] | Element | NodeList | HTMLElement | HTMLCollection, ancestor: Element = doc.documentElement, def?: any): T {
   var a = Q(s, ancestor)
   if (!a || a.length === 0) {
-    _currentOptions.debug && console.warn('expected element ' + s + '. ancestor.outerHTML: \n' + ancestor.outerHTML)
+    // _currentOptions.debug && console.warn('expected element ' + s + '. ancestor.outerHTML: \n' + ancestor.outerHTML)
     return def
   }
   return a[0] as T

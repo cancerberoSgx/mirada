@@ -1,11 +1,24 @@
 
-export interface ParseDoxygenOptions {
-  xml: string;
-  debug?: boolean;
-  formulas2Svg?: boolean;
-  createParentNodes?: boolean
+
+export interface CompoundDef extends Described {
+  publicTypes?: PublicType[];
+  publicAttribs?: Member[]
+  publicFuncs?: Method[]
+  compoundname: string
+  kind: DoxCompoundKind
+  title?: string
+  basecompoundref?: compoundRefType[]
+  derivedcompoundref?: compoundRefType[];
 }
 
+export interface PublicType extends Described {
+  kind: DoxSectionKind
+  enumValues: PublicTypeEnumValue[];
+}
+export interface PublicTypeEnumValue extends Described {
+    initializer: string
+    name:string
+}
 export interface Described extends Descriptions {
   location?: Location;
   id: string;
@@ -23,6 +36,13 @@ export interface Member extends Described {
   definition?: string;
   argsstring?: string;
   name: string;
+ static: DoxBool, 
+ prot: DoxProtectionKind, 
+  mutable: DoxBool,
+   implicit: DoxBool, 
+  inline: DoxBool, 
+  const: DoxBool,
+   version: DoxBool, 
   kind: DoxMemberKind
 }
 
@@ -51,24 +71,6 @@ export interface Descriptions {
   detaileddescription: string;
   detaileddescriptionNode: Element
   inbodydescription?: string;
-}
-
-export interface CompoundDef extends Described {
-  publicTypes?: PublicType[];
-  publicAttribs?: Member[]
-  publicFuncs?: Method[]
-  compoundname: string
-  kind: DoxCompoundKind
-  title?: string
-  basecompoundref?: compoundRefType[]
-  derivedcompoundref?: compoundRefType[];
-}
-
-export interface PublicType extends Described {
-  kind: DoxSectionKind
-  enumValues: {
-    initializer: string;
-  }[];
 }
 
 export interface compoundRefType extends refTypeBase {
