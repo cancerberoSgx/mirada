@@ -132,6 +132,9 @@ function validMethod(m: Method) {
     indentSize: 2,
     convertTabsToSpaces: true,
     quotePreference: 'single', 
+    emptyLinesMax: 1,
+    formatJsdocs: true,
+    formatJsdocsFormatBefore: true
   }
 
 function formatCode(code:string,o:Options){
