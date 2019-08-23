@@ -5,8 +5,8 @@ import { rm } from 'shelljs'
 import { FormatStringOptions } from 'ts-simple-ast-extra'
 import { Q } from '../dom/domUtil'
 import { loadXmlDom } from '../dom/jsdom'
-import { buildDts } from './buildTs'
 import { parseDoxygen } from './parseDoxygen'
+import { buildDts } from './render/main'
 
 export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
   opencvBuildFolder: string

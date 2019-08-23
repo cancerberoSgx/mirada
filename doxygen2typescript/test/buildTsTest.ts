@@ -3,7 +3,6 @@ import { readFileSync, writeFileSync } from 'fs'
 import { removeWhites } from 'misc-utils-of-mine-generic'
 import { buildDts, parseDoxygen } from '../src'
 
-
 test('buildTs', async t => {
   var r = parseDoxygen({ xml: readFileSync('test/assets/mat.xml').toString() })
   var file = buildDts({

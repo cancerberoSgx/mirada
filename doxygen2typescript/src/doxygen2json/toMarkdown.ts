@@ -1,6 +1,6 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
-import { renderRef } from './buildTs'
 import { Doxygen2tsOptionsBase } from './doxygen2ts'
+import { renderRef } from "./render/type"
 
 interface Options extends Doxygen2tsOptionsBase {
   node: Node

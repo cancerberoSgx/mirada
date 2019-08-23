@@ -2,10 +2,10 @@ import { readFileSync, writeFileSync } from 'fs'
 import { unique, withoutExtension } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
 import { mkdir, rm, test } from 'shelljs'
-import { buildDts } from './buildTs'
 import { Doxygen2tsOptions } from './doxygen2ts'
 import { getBindingsCppMemberdefs } from './opencvUtil'
 import { parseDoxygen } from './parseDoxygen'
+import { buildDts } from './render/main'
 
 // export interface Opencv2tsOptions extends  GetBindingsCppCompoundRefsOptions, RemoveProperties<Doxygen2tsOptions, 'doxygenXmlFolder'> {
 //   // outputFolder: string
