@@ -9,10 +9,10 @@ interface Options extends Doxygen2tsOptionsBase {
 }
 
 interface Result {
-  results: {def: CompoundDef, content: string}[]
+  results: { def: CompoundDef, content: string }[]
 }
 
-export function buildDts(options: Options) : Result{
+export function buildDts(options: Options): Result {
   return {
     results: options.defs.map(def => buildDefDts(def, options)).filter(notUndefined).map(s => ({ ...s, content: formatCode(s.file, options) }))
   }

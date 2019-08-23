@@ -7,11 +7,11 @@ import { buildDts, parseDoxygen } from '../src'
 test('buildTs', async t => {
   var r = parseDoxygen({ xml: readFileSync('test/assets/mat.xml').toString() })
   var file = buildDts({
-    defs: r, 
-    isOpenCv: true, 
-    debug: true, 
+    defs: r,
+    isOpenCv: true,
+    debug: true,
     renderLocation: true,
-     tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true },
+    tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true },
     locationFilePrefix: 'https://github.com/opencv/opencv/tree/ccecd3405a22cd4ed4446574f8465fc7024f7708/modules/core/include/'
   }).results[0]
   var s = removeWhites(file.content)

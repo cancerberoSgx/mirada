@@ -1,12 +1,12 @@
-import { writeFileSync, readFileSync } from 'fs';
-import { notSameNotFalsy, notUndefined, repeat } from 'misc-utils-of-mine-generic';
-import { join, basename } from 'path';
-import { loadXmlDom } from '../dom/jsdom';
-import { Q, text, Q1 } from '../dom/domUtil';
+import { readFileSync } from 'fs'
+import { notSameNotFalsy, notUndefined } from 'misc-utils-of-mine-generic'
+import { join } from 'path'
+import { Q, Q1 } from '../dom/domUtil'
+import { loadXmlDom } from '../dom/jsdom'
 
 
 interface Options {
-  opencvBuildFolder:string
+  opencvBuildFolder: string
 }
 
 interface RefsResult<T extends Ref> {
@@ -17,15 +17,15 @@ interface RefsResult<T extends Ref> {
 
 interface Ref {
   name: string;
-    indexMember: Element;
-    indexCompound: Element
+  indexMember: Element;
+  indexCompound: Element
 }
 
-interface RefFile extends Ref{
-    filePath:string
+interface RefFile extends Ref {
+  filePath: string
 }
-interface RefMemberdef extends Ref{
-    memberdef: Element
+interface RefMemberdef extends Ref {
+  memberdef: Element
 }
 
 
@@ -53,63 +53,63 @@ export function parseBindingsCpp(code: string) {
   }
 }
 
-export function getBindingsCppCompoundRefs(o:Options) : RefsResult<Ref>{
+export function getBindingsCppCompoundRefs(o: Options): RefsResult<Ref> {
   const bindingsPath = join(o.opencvBuildFolder, 'modules/js/bindings.cpp')
   var parsed = parseBindingsCpp(readFileSync(bindingsPath).toString())
   const index = join(o.opencvBuildFolder, 'doc/doxygen/xml/index.xml')
   loadXmlDom(readFileSync(index).toString())
-  const fn = (a:string[]) => a.map(c=>Q('name').filter(s=>s.textContent===c)).flat(). filter(notUndefined).map(b=>({
-    name: b.textContent, 
+  const fn = (a: string[]) => a.map(c => Q('name').filter(s => s.textContent === c)).flat().filter(notUndefined).map(b => ({
+    name: b.textContent,
     indexMember: b.parentElement,
     indexCompound: b.parentElement.parentElement
-    })).filter(notUndefined).filter(r=>!['namespace', 'file'].includes(r.indexCompound.getAttribute('kind'))).filter(notUndefined)
+  })).filter(notUndefined).filter(r => !['namespace', 'file'].includes(r.indexCompound.getAttribute('kind'))).filter(notUndefined)
   return {
     constants: fn(parsed.constants),
     classes: fn(parsed.classes),
     functions: fn(parsed.functions),
-  }  
+  }
 }
 
-  // const bigString = repeat(999, ' ')
-export function getBindingsCppCompoundFiles(o:Options): RefsResult<RefFile> {
+// const bigString = repeat(999, ' ')
+export function getBindingsCppCompoundFiles(o: Options): RefsResult<RefFile> {
   var parsed = getBindingsCppCompoundRefs(o)
-  const fn = (r:Ref[])=>r.map(ref=>({
-      ...ref, 
-      filePath: join(o.opencvBuildFolder, 'doc/doxygen/xml/', ref.indexCompound.getAttribute('refid')+'.xml')
-    }))
+  const fn = (r: Ref[]) => r.map(ref => ({
+    ...ref,
+    filePath: join(o.opencvBuildFolder, 'doc/doxygen/xml/', ref.indexCompound.getAttribute('refid') + '.xml')
+  }))
     .filter(notUndefined)
-    .filter((n,i,a)=>i===a.findIndex(a=>a.filePath===n.filePath&&a.name===n.name))
+    .filter((n, i, a) => i === a.findIndex(a => a.filePath === n.filePath && a.name === n.name))
     .filter(notUndefined)
 
-return {
+  return {
     constants: fn(parsed.constants),
     classes: fn(parsed.classes),
     functions: fn(parsed.functions),
-  }  
+  }
 }
 
-export function getBindingsCppMemberdefs(o:Options): RefsResult<RefMemberdef>  {
+export function getBindingsCppMemberdefs(o: Options): RefsResult<RefMemberdef> {
   const parsed = getBindingsCppCompoundFiles(o)
-  const fn = (r:RefFile[])=>r.map(ref=>{
-    loadXmlDom(readFileSync(ref.filePath).toString()); 
-  const memberdef = Q1(`memberdef[id="${ref.indexMember.getAttribute('refid')}"]`);// getMemberdefElement(ref);
+  const fn = (r: RefFile[]) => r.map(ref => {
+    loadXmlDom(readFileSync(ref.filePath).toString());
+    const memberdef = Q1(`memberdef[id="${ref.indexMember.getAttribute('refid')}"]`);// getMemberdefElement(ref);
     return {
-      ...ref, 
+      ...ref,
       memberdef
     }
-    })
-    // .filter(r=>!!r.memberdef)
+  })
+  // .filter(r=>!!r.memberdef)
 
-    // deduplicate names by selecting the ones with shorter compound names
-    // .filter((n,i,a)=>!!n && !a.find(c=>c!==n && c.name===n.name && (()=>{console.log(text('definition', c.memberdef, bigString),  text('definition', n.memberdef, bigString)); return true})() && text('definition', c.memberdef, bigString).length < text('definition', n.memberdef, bigString).length))
+  // deduplicate names by selecting the ones with shorter compound names
+  // .filter((n,i,a)=>!!n && !a.find(c=>c!==n && c.name===n.name && (()=>{console.log(text('definition', c.memberdef, bigString),  text('definition', n.memberdef, bigString)); return true})() && text('definition', c.memberdef, bigString).length < text('definition', n.memberdef, bigString).length))
 
-    // .filter((n,i,a)=>i===a.findIndex((a, j)=> a.name===n.name ? text('name', a.compound).length > text('name', n.compound).length ? i : j: i))
+  // .filter((n,i,a)=>i===a.findIndex((a, j)=> a.name===n.name ? text('name', a.compound).length > text('name', n.compound).length ? i : j: i))
 
-return {
+  return {
     constants: fn(parsed.constants),
     classes: fn(parsed.classes),
     functions: fn(parsed.functions),
-  }  
+  }
 }
 // const files:{[n:string]:Window}  ={}
 // function getMemberdefElement(ref: RefFile) {
@@ -118,7 +118,7 @@ return {
     // files[ref.filePath] = window
   // }
   // return  Q1(`memberdef[id="${ref.indexMember.getAttribute('refid')}"]`);
- 
+
 // }
 // /Users/sebastiangurin/git/opencv/build_js
 // build_js/modules/js/bindings.cpp
