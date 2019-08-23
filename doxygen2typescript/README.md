@@ -1,8 +1,6 @@
 # doxygen2typescript
 
-Generates TypeScript type declarations from doxygen xml output
-
-Right now just sme painful tests and and unsuccessful attempts
+Generates TypeScript type declarations from doxygen xml output, particularly to genereate opencv.js types.
 
 ## Motivation
 
@@ -10,12 +8,13 @@ Right now just sme painful tests and and unsuccessful attempts
 
 ## Notes for development 
 
+```
 cv.* member names are mapped . It is defined at least in bindings.cpp
-
 for example cv::AgastFeatureDetector::AGAST_7_12s is exposed as AgastFeatureDetector_AGAST_7_12s - the info in bindings.cpp is:
     constant("AgastFeatureDetector_AGAST_7_12s", static_cast<long>(cv::AgastFeatureDetector::AGAST_7_12s));
   "AgastFeatureDetector_AGAST_7_12s",
-  
+```
+
 ## Hacks to opencv
 
 Right now I only need to expose Module.FS (emscripten filesystem API) - a tiny change in JS module - PR: https://github.com/opencv/opencv/pull/15319
@@ -38,4 +37,9 @@ RUN apt-get install -y doxygen
 ```
 
 ## TODO 
+- [ ] multiple files input and output
+- [ ] refs
+- [ ] index.ts that expose the real objects with correct types.
 - [ ] move json2dts to own repo
+- [ ] cli
+

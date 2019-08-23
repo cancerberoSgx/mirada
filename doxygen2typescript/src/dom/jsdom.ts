@@ -1,14 +1,7 @@
-import { DOMWindow, JSDOM, VirtualConsole, ConstructorOptions } from "jsdom"
+import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
 
 export function createXMLDom(s: string, debug = false) {
-  const o:ConstructorOptions = {}
-  // if (debug) {
-    // const vc = new VirtualConsole()
-    // vc.sendTo(console)
-    // o.virtualConsole = vc
-    // Object.assign(o, { virtualConsole: vc })
-  // }
-  const dom = new JSDOM('', { virtualConsole: new VirtualConsole()})
+  const dom = new JSDOM('', { virtualConsole: new VirtualConsole() })
   window = dom.window
   const { DOMParser, Node } = window
   const parser = new DOMParser()

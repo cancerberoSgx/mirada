@@ -42,11 +42,6 @@ export function isElement(e: any): e is Element {
   return e && (e as Element).nodeType === doc.ELEMENT_NODE
 }
 
-// export function visitTopDown(e: Element, v: (e: Element) => void) {
-//   v(e)
-//   Q(e.childNodes).forEach(c => visitTopDown(c, v))
-// }
-
 /**
  * return an object with given element's attributes (given in second arg)
  */
@@ -58,7 +53,7 @@ export function attrs<T extends {} = {}>(e?: Element, attrs?: string[]): T {
   (attrs.length === 0 ? e.getAttributeNames() : attrs).forEach(k => {
     o[k] = e.getAttribute(k)
   })
-  return o 
+  return o
 }
 
 export function text(s: string, c: Element, def = '') {

@@ -1,4 +1,5 @@
-import { isArray, repeat } from 'misc-utils-of-mine-generic'
+import { isArray } from 'misc-utils-of-mine-generic'
+import { ParsedArray, ParsedObject, Textual } from './parsed'
 import { Parsed, ParseOptions } from './types'
 
 export function render(o: ParseOptions) {
@@ -22,40 +23,6 @@ export ${parsed instanceof ParsedObject ? 'interface ' : 'type = '} ${parsed.ren
   `
 }
 
-abstract class AbstractParsed implements Parsed {
-  constructor(protected options: ParseOptions) { }
-  public tabLevel = 0
-  render(tabLevel: number = 0): string { throw 'abstract' }
-}
-class Textual extends AbstractParsed {
-  constructor(protected options: ParseOptions, protected text: string) {
-    super(options)
-  }
-  render() { return this.text }
-}
-class ParsedArray extends AbstractParsed {
-  constructor(protected options: ParseOptions, protected el: Parsed) {
-    super(options)
-  }
-  render(tabLevel: number = 0) {
-    return this.el.render() + '[]'
-  }
-}
-class ParsedObject extends AbstractParsed {
-  constructor(protected options: ParseOptions, protected props: { name: string, type: Parsed }[], ) {
-    super(options)
-  }
-  render(tabLevel: number = 0) {
-    if (this.options.objectRenderPolicy && this.options.objectRenderPolicy !== 'literalObject') {
-      throw `this.options.objectRenderPolicy!=='literalObject'`
-    }
-    return `{
-${this.options.tab}${this.props.map(p => {
-      return `${repeat(tabLevel + 1, this.options.tab)}${p.name}${this.options.optionalProperties ? '?' : ''}: ${p.type.render(this.tabLevel + 1)}`
-    }).join(`\n${repeat(tabLevel + 1, this.options.tab)}`)}
-${repeat(tabLevel, this.options.tab)}}`
-  }
-}
 function _parse(o: ParseOptions): Parsed {
   if (isArray(o.node)) {
     const el = o.node.length ? _parse({ ...o, node: o.node[0] }) : new Textual(o, 'any')
@@ -70,29 +37,6 @@ function _parse(o: ParseOptions): Parsed {
   }
   else {
     return new Textual(o, typeof o.node)
-    // let type = 'undefined'
-    // if (typeof o.node === 'string') {
-    //   type = 'string';
-    // }
-    // else if (typeof o.node === 'number') {
-    //   type = 'number';
-    // }
-    // else if (typeof o.node === 'boolean') {
-    //   type = 'boolean';
-    // }
   }
 }
 
-
-
-// function test() {
-//   const s = render({
-//     node: {
-//       a: 1, b: ['ed']
-//     },
-//     nodeName: 'foo'
-//   })
-//   console.log(s)
-
-// }
-// test()

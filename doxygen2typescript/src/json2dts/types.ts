@@ -1,27 +1,6 @@
-import { JSONValue } from 'misc-utils-of-mine-generic';
+import { JSONValue } from 'misc-utils-of-mine-generic'
 
-export interface ParsedDef {
-  name: string;
-  kind: "class" | 'struct' | 'union';
-  extends: ParsedRef;
-  public: boolean;
-  data: ParsedDefData[];
-}
-interface ParsedRef {
-  name: string;
-  ref: string;
-}
-interface ParsedDefData {
-  id: string;
-  language: string
-  kind: string;
-  prot: "public" | 'protected' | 'private';
-  'xmlns:xsi': string;
-}
 
-export interface Parsed {
-  render(tabLevel?: number): string
-}
 export interface ParseOptions {
   node: JSONValue
   nodeName: string
@@ -45,17 +24,27 @@ export interface ParseOptions {
   jsdoc?: (parsed: Parsed, options: ParseOptions) => string
 }
 
-// interface ParseOptions extends ParseOptions {
+export interface Parsed {
+  render(tabLevel?: number): string
+}
 
-// }
+export interface ParsedDef {
+  name: string;
+  kind: "class" | 'struct' | 'union';
+  extends: ParsedRef;
+  public: boolean;
+  data: ParsedDefData[];
+}
 
+interface ParsedRef {
+  name: string;
+  ref: string;
+}
 
-// export type JSONPrimitive = string | number | boolean | null
-// /** makes sure an object is JSON compatible so we can safely serialize with JSON.stringify */
-// export type JSONValue = JSONPrimitive | JSONObject | JSONArray
-// export type JSONObject = { [member: string]: JSONValue }
-// export interface JSONArray extends Array<JSONValue> { }
-
-// // export function isJSONObject(o: any): o is JSONObject {
-// //   return typeof o === 'object' && !Array.isArray(o)
-// // }
+interface ParsedDefData {
+  id: string;
+  language: string
+  kind: string;
+  prot: "public" | 'protected' | 'private';
+  'xmlns:xsi': string;
+}

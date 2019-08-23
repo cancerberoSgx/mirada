@@ -1,9 +1,10 @@
 {
   "name": "doxygen2typescript",
   "version": "0.0.1",
-  "description": "Generates TypeScript type declarations from doxygen xml output ",
+  "description": "Generates TypeScript type declarations from doxygen xml output particularly to genereate opencv.js types",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "private": true,
   "scripts": {
     "clean": "rm -rf dist docs",
     "clean-npm": " rm -rf node_modules/ package-lock.json",
@@ -14,14 +15,15 @@
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
     "run": "npm run build && rm -rf tmp && node --max-old-space-size=5000  dist/src/test.js",
-    "copy": "exit 0; cp -r static/opencv.js dist/src",
-    "build": "npm run clean && npx tsc&& npm run copy",
+    "build": "npm run clean && npx tsc",
     "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"
   },
   "keywords": [
     "typescript",
     "opencv.js",
-    "opencv"
+    "opencv",
+    "doxygen",
+    "jsdoc"
   ],
   "author": "Sebastián Gurin",
   "license": "MIT",
@@ -29,20 +31,15 @@
     "@types/jsdom": "^12.2.4",
     "@types/mathjax": "0.0.35",
     "@types/node": "^12.7.2",
-    "@types/shelljs": "^0.8.5",
     "@types/xml2js": "^0.4.4",
     "ava": "^2.3.0",
     "jsdom": "^15.1.1",
-    "mathjax-node": "^2.1.1",
-    "shelljs": "^0.8.3",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
-    "typescript": "^3.5.3",
-    "typescript-plugin-proactive-code-fixes": "0.0.18",
-    "xml2js": "^0.4.19"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "misc-utils-of-mine-generic": "^0.2.21"
+    "misc-utils-of-mine-generic": "^0.2.22"
   },
   "repository": {
     "type": "git",

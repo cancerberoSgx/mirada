@@ -1,16 +1,16 @@
-import { checkThrow } from 'misc-utils-of-mine-generic';
+import { checkThrow } from 'misc-utils-of-mine-generic'
 
 
-interface Options{
+interface Options {
   node: Node
-  refType?: 'typedoc'|'mdRefLink'
+  refType?: 'typedoc' | 'mdRefLink'
 }
 function renderChildren(el: Element, options: Options, join = '') {
-  return Array.from(el.childNodes).map(c=>toMarkdown({...options, node: c})).join(join)
+  return Array.from(el.childNodes).map(c => toMarkdown({ ...options, node: c })).join(join)
 }
 export function toMarkdown(options: Options): string {
-  const node = options.node 
-    checkThrow(node && (node.nodeType === node.ELEMENT_NODE||node.nodeType === node.TEXT_NODE), 'node type invalid for ' + node.nodeName)
+  const node = options.node
+  checkThrow(node && (node.nodeType === node.ELEMENT_NODE || node.nodeType === node.TEXT_NODE), 'node type invalid for ' + node.nodeName)
   if (node.nodeType === node.TEXT_NODE) {
     return node.textContent
   }
@@ -37,7 +37,7 @@ export function toMarkdown(options: Options): string {
     return `<a name="${el.id}"></a>`
   }
   else if (['ref'].includes(el.tagName)) {
-    return options.refType==='typedoc' ? `[${renderChildren(el, options)}]` : `[${renderChildren(el, options)}](${getRef(el, options)}})`
+    return options.refType === 'typedoc' ? `[${renderChildren(el, options)}]` : `[${renderChildren(el, options)}](${getRef(el, options)}})`
   }
   else if (['itemizedlist', 'orderedlist'].includes(el.tagName)) {
     return `\n\n${renderChildren(el, options)}`
@@ -49,20 +49,20 @@ export function toMarkdown(options: Options): string {
     return `\n\n## ${renderChildren(el, options)}`
   }
   else if (['para'].includes(el.tagName)) {
-    return [el.parentElement, el.parentElement.parentElement].map(e=>e.tagName).includes('listitem') ? `${renderChildren(el, options)}` : `\n\n${renderChildren(el, options)}`
+    return [el.parentElement, el.parentElement.parentElement].map(e => e.tagName).includes('listitem') ? `${renderChildren(el, options)}` : `\n\n${renderChildren(el, options)}`
   }
   else if (['parameterlist'].includes(el.tagName)) {
     return `` // ignore since we have parsed this data and others are responsible of render it
   }
   else {
-    console.assert(false, el.tagName + ' not supported.');
+    console.assert(false, el.tagName + ' not supported.')
     return ''
     // return `\`<TODO_${el.tagName}>\` ${renderChildren(el, options)} \`</TODO_${el.tagName}>\``
   }
 
 }
 
-function getRef(el:Element, options:Options){
+function getRef(el: Element, options: Options) {
   return `#${el.getAttribute('refid')}`
 }
 
