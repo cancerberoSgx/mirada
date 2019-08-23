@@ -1,10 +1,10 @@
-import { notUndefined } from 'misc-utils-of-mine-generic'
+import { notUndefined, notFalsy } from 'misc-utils-of-mine-generic'
 import { Doxygen2tsOptionsBase } from '../doxygen2ts'
-import { CompoundDef, PublicType } from '../doxygenTypes'
+import { CompoundDef } from '../doxygenTypes'
 import { renderCompoundClass } from './class'
 import { formatCode } from './formatCode'
-import { getCompoundDefName, toJsDoc } from './general'
 import { renderFunction, renderGroupHeader } from './group'
+import { renderOpenCvEnums } from './enums';
 
 export interface Options extends Doxygen2tsOptionsBase {
   defs: CompoundDef[]
@@ -30,11 +30,9 @@ function buildDefDts(def: CompoundDef, options: Options) {
     file = `
 ${renderCompoundClass(def, options)}
 
-${!options.isOpenCv ? '' : (def.publicTypes || []).filter(t => t.kind === 'enum').map(t => renderEnum(t, def, options)).join('\n\n')}
+${renderOpenCvEnums(def, options)}
 
-${!options.debug ? '' : `/* debug
-${JSON.stringify({ publicTypes: (def.publicTypes || []).map(d => d.kind).join(', ') }, null, 2)}
-*/`}
+${!options.debug ? '' : `/* debug */`}
 `
   }
   else if (['group'].includes(def.kind)) {
@@ -48,27 +46,5 @@ ${def.functions.map(f => renderFunction(f, def, options)).join('\n\n')}
   }
   return { file, def }
 }
-
-export function renderEnum(f: PublicType, def: CompoundDef, options: Options) {
-  return (f.enumValues || []).map(v => {
-    if (options.isOpenCv) {
-      const className = getCompoundDefName(def)
-      return `
-${toJsDoc({ ...options, node: v })}
-declare const ${className}_${v.name} : any; // initializer: ${v.initializer}
-`
-    }
-    else {
-      return `
-${toJsDoc({ ...options, node: v })}
-${'public'} ${'static'} ${v.name}: any; // initializer: ${v.initializer}
-`
-    }
-  }).join('\n\n')
-}
-
-
-
-
 
 

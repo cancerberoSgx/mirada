@@ -15,6 +15,7 @@ export interface CompoundDef extends Described {
 export interface PublicType extends Described {
   kind: DoxSectionKind
   enumValues: PublicTypeEnumValue[];
+  name?: string
 }
 
 export interface PublicTypeEnumValue extends Described {

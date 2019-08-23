@@ -6,6 +6,7 @@ import { Doxygen2tsOptions } from './doxygen2ts'
 import { getBindingsCppMemberdefs } from './opencvUtil'
 import { parseDoxygen } from './parseDoxygen'
 import { buildDts } from './render/main'
+import { writeIndexTs, addImports } from './render/exports';
 
 // export interface Opencv2tsOptions extends  GetBindingsCppCompoundRefsOptions, RemoveProperties<Doxygen2tsOptions, 'doxygenXmlFolder'> {
 //   // outputFolder: string
@@ -37,10 +38,10 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       defs: r,
       isOpenCv: true,
       // debug: true, 
-      // renderLocation: true,
-      renderLocation: false,
-      locationFilePrefix: '#',
-      // locationFilePrefix: 'https://github.com/opencv/opencv/tree/ccecd3405a22cd4ed4446574f8465fc7024f7708/modules/core/include/',
+      renderLocation: true,
+      // renderLocation: false,
+      // locationFilePrefix: '#',
+      locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
       ...o,
       tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, ...o.tsCodeFormatSettings },
     })
@@ -52,9 +53,11 @@ export function opencv2ts(o: Doxygen2tsOptions) {
           fileName = withoutExtension((fileName)) + unique('_') + '.ts'
         }
         mkdir('-p', dirname(fileName))
-        writeFileSync(fileName, d.content)
+        const content = addImports(d.content, o)
+        writeFileSync(fileName, content)
         writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
       })
     // buildDts({...o, defs: defs.classes.map(c=>c.memberdef)})
   })
+  writeIndexTs(o)
 }

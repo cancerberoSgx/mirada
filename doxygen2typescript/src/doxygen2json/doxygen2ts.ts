@@ -1,3 +1,5 @@
+//  This is currently not finished - and currently kind of obsoleted by opencv2ts 
+
 import { mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
