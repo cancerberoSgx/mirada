@@ -3,7 +3,7 @@ import { Doxygen2tsOptionsBase, TsCodeFormatSettings } from './doxygen2ts'
 import { CompoundDef, Method, Param, Member, PublicType, Described } from './doxygenTypes'
 import { toMarkdown } from './toMarkdown'
 import { FormatStringOptions, formatString } from 'ts-simple-ast-extra';
-import { tryTo } from 'misc-utils-of-mine-generic';
+import { tryTo, notUndefined } from 'misc-utils-of-mine-generic';
 
 interface Options extends Doxygen2tsOptionsBase {
   defs: CompoundDef[]
@@ -11,15 +11,19 @@ interface Options extends Doxygen2tsOptionsBase {
 
 export function buildDts(options: Options) {
   return {
-    files: options.defs.map(def => buildDefDts(def, options)).map(s=>formatCode(s, options))
+    files: options.defs.map(def => buildDefDts(def, options)).filter(notUndefined).map(s=>({...s, file: formatCode(s.file, options)}))
   }
 }
 
-function buildDefDts(def: CompoundDef, options: Options): string {
-  if (def.kind !== 'class') {
-    throw new Error('CompoundDef kind ' + def.kind + ' not supported')
+function buildDefDts(def: CompoundDef, options: Options) {
+  if (!['class', 'struct', 'group'].includes(def.kind)) {
+    console.error('CompoundDef kind ' + def.kind + ' not supported');
+    // throw new Error('CompoundDef kind ' + def.kind + ' not supported')
+    return undefined
   }
-  return `
+  let file = ''
+  if(['class', 'struct'].includes(def.kind)){
+    file = `
 ${renderCompoundClass(def, options)}
 
 ${!options.isOpenCv ? '' : (def.publicTypes||[]).filter(t=>t.kind==='enum').map(t=> renderEnum(t, def, options)).join('\n\n')}
@@ -31,6 +35,11 @@ ${JSON.stringify(
   }
 */`}
 `
+  }
+  else if(['group'].includes(def.kind)){{
+    file=``
+  }
+  return {file, def}
 }
 
 function renderCompoundClass(def: CompoundDef, options: Options) {

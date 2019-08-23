@@ -31,6 +31,7 @@
     "@types/jsdom": "^12.2.4",
     "@types/mathjax": "0.0.35",
     "@types/node": "^12.7.2",
+    "@types/shelljs": "^0.8.5",
     "@types/xml2js": "^0.4.4",
     "ava": "^2.3.0",
     "jsdom": "^15.1.1",
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "misc-utils-of-mine-generic": "^0.2.24",
+    "shelljs": "^0.8.3",
     "ts-simple-ast-extra": "file:../../typescript-plugins-of-mine/ts-simple-ast-extra"
   },
   "repository": {
