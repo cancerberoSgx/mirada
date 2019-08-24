@@ -14,8 +14,11 @@ function scalarTypes() {
 // in helpers.js so to make it work we manually expose them here:
 
 export declare class Range {
-  public constructor(public start: number=0, public end: number=0)
+  public start: number
+  public end: number
+  public constructor(start: number, end: number)
 }
+
 export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
@@ -25,9 +28,10 @@ export declare class Point {
   public x: number;
   public y: number;
 }
-export { Point2f as Point2f }
-export { Point2l as Point2l }
 
+export { Point as Point2f }
+
+export { Point as Point2l }
 
 export declare class Size {
   public constructor(width: number, height: number);
@@ -36,7 +40,9 @@ export declare class Size {
 }
 
 export { Size as Point2d }
+
 export { Size as Size2d }
+
 export { Size as Size2l }
 
 export declare class Rect {
@@ -48,20 +54,20 @@ export declare class Rect {
 }
 
 export declare class TermCriteria {
-  public type : number
+  public type: number
   public maxCount: number
-  public epsilon : number
+  public epsilon: number
   public constructor()
-  public constructor(type : number, maxCount: number, epsilon : number)
+  public constructor(type: number, maxCount: number, epsilon: number)
 }
 
 export declare class MinMaxLoc {
-  public minVal : number
+  public minVal: number
   public maxVal: number
-  public minLoc : Point
-  public maxLoc : Point
+  public minLoc: Point
+  public maxLoc: Point
   public constructor()
-  public constructor(minVal : number, maxVal: number, minLoc : Point, maxLoc : Point)
+  public constructor(minVal: number, maxVal: number, minLoc: Point, maxLoc: Point)
 }
 `
 }

@@ -12,4 +12,3 @@ test('parseDoxygen', async t => {
   }) as any
   t.deepEqual(param.type.text, 'Mat &')
 })
-
