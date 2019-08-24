@@ -88,7 +88,7 @@ export function getMember(s: Element): Member {
 function getCompoundDefPublicTypes(s: Element): PublicType {
   return {
     ...getDescribed(s),
-      name: (text('name', s, undefined) && !text('name', s, undefined).startsWith('@')) ? text('name', s, undefined)! : undefined,
+    name: (text('name', s, undefined) && !text('name', s, undefined).startsWith('@')) ? text('name', s, undefined)! : undefined,
     ...attrs<{ kind: DoxSectionKind }>(s, ['kind']),
     enumValues: Q('enumvalue', s).map(v => ({
       ...getDescribed(v),

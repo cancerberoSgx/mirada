@@ -1,67 +1,45 @@
-import { Options } from './main';
-import { ls } from 'shelljs';
-import { Doxygen2tsOptions } from '../doxygen2ts';
-import { withoutExtension, notFalsy, notSameNotFalsy } from 'misc-utils-of-mine-generic';
-import { writeFileSync } from 'fs';
-import{Project, tsMorph} from 'ts-simple-ast-extra'
-import { join } from 'path';
+import { readFileSync, writeFileSync } from 'fs'
+import { notSameNotFalsy, withoutExtension } from 'misc-utils-of-mine-generic'
+import { join } from 'path'
+import { ls } from 'shelljs'
+import { Project, tsMorph } from 'ts-simple-ast-extra'
+import { Doxygen2tsOptions } from '../doxygen2ts'
+import { renderCTypesImports } from './tsExports/cTypes'
+import { renderCvExports } from './tsExports/cv'
+import { renderImportHacks } from './tsExports/hacks'
 
-export function writeIndexTs(o: Doxygen2tsOptions){
-  const s = `${[...ls(o.tsOutputFolder).filter(e=>e.endsWith('.ts')), 'cTypes.ts']
-  .map(withoutExtension)
-  .map(f=>`export * from './${f}'`).join('\n')}`
-  writeFileSync(join(o.tsOutputFolder, 'cTypes.ts'), renderBuiltInTypes())
-  writeFileSync(join(o.tsOutputFolder, 'index.ts'), s)
+export function writeIndexTs(o: Doxygen2tsOptions) {
+  const files = [
+    ...ls(o.tsOutputFolder)
+      .filter(e => e.endsWith('.ts'))
+      .map(f => {
+        addImports(f, o)
+        return f
+      }), '_cTypes.ts', '_hacks.ts']
+  const s = `${files.map(f => `export * from './${withoutExtension(f)}'`)
+    .join('\n')}`
+  writeFileSync(join(o.tsOutputFolder, '_cTypes.ts'), renderCTypesImports())
+  writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
+  writeFileSync(join(o.tsOutputFolder, '_types.ts'), s)
+  writeFileSync(join(o.tsOutputFolder, 'index.ts'), renderCvExports())
 }
 
-function getTypeReferences(content: string){
+function getExternalTypeReferences(content: string) {
   const p = new Project()
   const file = p.createSourceFile('f.ts', content)
-  return file.getDescendantsOfKind(tsMorph.SyntaxKind.TypeReference).map(r=>r.getFirstChildByKind(tsMorph.SyntaxKind.Identifier).getText()).filter(notSameNotFalsy)
+  return file.getDescendantsOfKind(tsMorph.SyntaxKind.TypeReference)
+    // // only import type references to types not declared in this file
+    // .filter(t=>tryTo(()=>!t.getType().getSymbol().getDeclarations().find(d=>d.getSourceFile()===file)), true)
+    .map(r => r.getFirstChildByKind(tsMorph.SyntaxKind.Identifier).getText()).filter(notSameNotFalsy)
 }
 
-export function addImports(content: string, o:Doxygen2tsOptions){
-return `
-import ${getTypeReferences(content).join(', ')} from './index.ts'
+function addImports(f: string, o: Doxygen2tsOptions) {
+  const content = readFileSync(join(o.tsOutputFolder, f)).toString()
+  var s = `
+import { ${getExternalTypeReferences(content).join(', ')} } from './_types'
+${content}
 `
+  writeFileSync(join(o.tsOutputFolder, f), s)
 }
 
-function renderBuiltInTypes(){
-  return `
-export type int = number
-export type char = any
-export type bool = boolean
-export type float = number
-export type double = number
-export type uint64 = any
-export type uint64_t = any
-export type uint32 = any
-export type uint32_t = any
-export type uint8 = any
-export type uint8 = any
-export type uchar = any
-export type char = any
-export type size_t = any
-export type uint = any
-export type short = any
-export type ushort = any
-  `.trim()
-}
 
-const cTypeMap_ = {
-    'unsignedint': 'uint',
-  'unsigned': 'any',
-  'unsignedchar': 'uchar',
-  'unsignedshort': 'ushort',
-  'char*': 'any',
-  'int*': 'any',
-    'unsignedint*': 'any',
-  'unsigned*': 'any',
-  'unsignedchar*': 'any',
-  'unsignedshort*': 'any',
-}
-
-export function cTypeMap(s:string) {
-s = s.replace(/\s/g, '')
-return cTypeMap_[s] || 'any'
-}

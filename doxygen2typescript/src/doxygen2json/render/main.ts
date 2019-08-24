@@ -1,10 +1,10 @@
-import { notUndefined, notFalsy } from 'misc-utils-of-mine-generic'
+import { notUndefined } from 'misc-utils-of-mine-generic'
 import { Doxygen2tsOptionsBase } from '../doxygen2ts'
 import { CompoundDef } from '../doxygenTypes'
 import { renderCompoundClass } from './class'
+import { renderOpenCvEnums } from './enums'
 import { formatCode } from './formatCode'
 import { renderFunction, renderGroupHeader } from './group'
-import { renderOpenCvEnums } from './enums';
 
 export interface Options extends Doxygen2tsOptionsBase {
   defs: CompoundDef[]

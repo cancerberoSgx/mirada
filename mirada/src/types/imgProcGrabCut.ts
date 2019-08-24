@@ -1,5 +1,6 @@
 import { TODO } from 'misc-utils-of-mine-generic'
-import { Mat, Rect } from './opencv'
+import { Mat } from './opencv'
+import { Rect } from "./scalars";
 
 export interface CVImgProcGrabCut {
   /**

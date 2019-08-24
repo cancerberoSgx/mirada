@@ -1,16 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs'
-import { unique, withoutExtension } from 'misc-utils-of-mine-generic'
+import { withoutExtension } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
-import { mkdir, rm, test } from 'shelljs'
+import { cp, mkdir, rm, test } from 'shelljs'
 import { Doxygen2tsOptions } from './doxygen2ts'
 import { getBindingsCppMemberdefs } from './opencvUtil'
 import { parseDoxygen } from './parseDoxygen'
+import { getCompoundDefName } from './render'
+import { writeIndexTs } from './render/exports'
 import { buildDts } from './render/main'
-import { writeIndexTs, addImports } from './render/exports';
-
-// export interface Opencv2tsOptions extends  GetBindingsCppCompoundRefsOptions, RemoveProperties<Doxygen2tsOptions, 'doxygenXmlFolder'> {
-//   // outputFolder: string
-// }
+import { canRenderFileNamed } from './render/tsExports/hacks'
 
 export function opencv2ts(o: Doxygen2tsOptions) {
   rm('-rf', o.tsOutputFolder)
@@ -18,46 +16,41 @@ export function opencv2ts(o: Doxygen2tsOptions) {
   const defs = getBindingsCppMemberdefs(o)
     ;
   [...defs.classes, ...defs.functions, ...defs.constants].forEach(c => {
-    // getMember(c.memberdef)
     const id = c.indexCompound.getAttribute('refid')
     //TODO: don't parse the file again, but query compound using memverdef and buildDts
     if (!id) {
       console.warn('WARNING id or refid null for ' + c.name)
       return
     }
-    var r = parseDoxygen({ xml: readFileSync(join(o.opencvBuildFolder, 'doc/doxygen/xml', id + '.xml')).toString() })
-    // .filter(f=>f.kind==='class' ? defs.classes.map(f=>f.memberdef.id).includes(f.id) : true)
-
-    // publicTypes: f.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id)),
-
-    // .map(f=>(f.kind==='group' ? {...f,     functions: f.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id)),   } : f))
-    // .filter(f=>f.kind==='group'? f.functions.length : true)
-
-    // const rf = r.filter(d=>d.kind==='group').map(m=>({functions: m.functions.filter(f=>defs.functions.map(f=>f.memberdef.id).includes(id))}))
+    const xmlFile = join(o.opencvBuildFolder, 'doc/doxygen/xml', id + '.xml')
+    var r = parseDoxygen({ xml: readFileSync(xmlFile).toString() })
     buildDts({
       defs: r,
       isOpenCv: true,
-      // debug: true, 
       renderLocation: true,
-      // renderLocation: false,
-      // locationFilePrefix: '#',
       locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
       ...o,
       tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, ...o.tsCodeFormatSettings },
     })
       .results
       .forEach(d => {
-        const cName = d.def.compoundname.split('::').pop()
+        const cName = getCompoundDefName(d.def)
         let fileName = join(o.tsOutputFolder, cName) + '.ts'
-        if (test('-f', fileName) && readFileSync(fileName).toString().length !== d.content.length) {
-          fileName = withoutExtension((fileName)) + unique('_') + '.ts'
+        // if (test('-f', fileName) && readFileSync(fileName).toString().length !== d.content.length) {
+        //   fileName = withoutExtension((fileName)) + unique('_') + '.ts'
+        // }
+        if (test('-f', fileName) || !canRenderFileNamed(fileName)) {
+          return
         }
         mkdir('-p', dirname(fileName))
-        const content = addImports(d.content, o)
-        writeFileSync(fileName, content)
-        writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
+        writeFileSync(fileName, d.content)
+        if (o.jsonTypes) {
+          writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
+        }
+        if (o.xmlTypes) {
+          cp(xmlFile, withoutExtension(fileName) + '.xml')
+        }
       })
-    // buildDts({...o, defs: defs.classes.map(c=>c.memberdef)})
   })
   writeIndexTs(o)
 }

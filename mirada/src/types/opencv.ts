@@ -2,6 +2,7 @@ import { TODO } from 'misc-utils-of-mine-generic'
 import { BorderTypes, CVCoreBorder } from './coreBoder'
 import { FS } from './emscripten'
 import { CVImgProc, LineTypes } from './imgproc'
+import { Scalar, Rect, Point, Size } from './scalars';
 
 export interface CV extends CV_WASM, CVImgProc, CVCoreBorder {
   Scalar: typeof Scalar;
@@ -55,30 +56,6 @@ export declare class Mat {
   public convertTo(img: Mat, CV_8U: number, scale: number, shift: number): void
   public type(): number
   public delete(): void
-}
-
-export declare class Scalar extends Array<number> {
-  public static all(...v: number[]): Scalar
-}
-
-export declare class Point {
-  public constructor(x: number, y: number)
-  public x: number
-  public y: number
-}
-
-export declare class Size {
-  public constructor(width: number, height: number)
-  public width: number
-  public height: number
-}
-
-export declare class Rect {
-  public constructor(x: number, y: number, width: number, height: number)
-  public x: number
-  public y: number
-  public width: number
-  public height: number
 }
 
 interface CV_WASM {

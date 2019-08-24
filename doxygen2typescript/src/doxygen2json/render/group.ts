@@ -1,11 +1,11 @@
 import { CompoundDef, Member } from '../doxygenTypes'
-import { getCompoundDefName, renderParam, isValidId } from './general'
-import { toJsDoc } from "./jsdoc";
+import { getCompoundDefName, isValidId, renderParam } from './general'
+import { toJsDoc } from "./jsdoc"
 import { Options } from './main'
 import { renderType } from './ref'
 
 export function renderFunction(f: Member, def: CompoundDef, options: Options) {
-  if(!isValidId(f.name)){
+  if (!isValidId(f.name)) {
     return ''
   }
   const className = getCompoundDefName(def)

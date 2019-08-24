@@ -8,11 +8,14 @@ import { FormatStringOptions } from 'ts-simple-ast-extra'
 import { Q } from '../dom/domUtil'
 import { loadXmlDom } from '../dom/jsdom'
 import { parseDoxygen } from './parseDoxygen'
+import { getCompoundDefName } from './render'
 import { buildDts } from './render/main'
 
 export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
   opencvBuildFolder: string
   tsOutputFolder: string
+  jsonTypes?: boolean
+  xmlTypes?: boolean
 }
 
 export interface Doxygen2tsOptionsBase {
@@ -48,7 +51,7 @@ export function doxygen2ts(options: Doxygen2tsOptions) {
     })
       .results
       .forEach(d => {
-        const cName = d.def.compoundname.split('::').pop()
+        const cName = getCompoundDefName(d.def)
         const fileName = join(options.tsOutputFolder, cName) + '.ts'
         mkdirSync(dirname(fileName), { recursive: true })
         writeFileSync(fileName, d.content)

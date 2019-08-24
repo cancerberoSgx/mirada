@@ -1,8 +1,8 @@
 import { CompoundDef, Member } from '../doxygenTypes'
+import { renderEnum } from "./enums"
 import { getCompoundDefName, isValidId, renderParam } from './general'
-import { toJsDoc } from "./jsdoc";
+import { toJsDoc } from "./jsdoc"
 import { Options } from './main'
-import { renderEnum } from "./enums";
 import { renderType } from "./ref"
 
 // CLASS
