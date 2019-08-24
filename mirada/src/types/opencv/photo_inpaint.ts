@@ -20,3 +20,13 @@ import { InputArray, OutputArray, double, int } from './_types'
  */
 export declare function inpaint(src: InputArray, inpaintMask: InputArray, dst: OutputArray, inpaintRadius: double, flags: int): void
 
+/**
+ * 
+ */
+export declare const INPAINT_NS: any // initializer: = 0
+
+/**
+ * 
+ */
+export declare const INPAINT_TELEA: any // initializer: = 1
+

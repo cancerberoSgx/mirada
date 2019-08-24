@@ -82,6 +82,29 @@ function renderMiscImportHacks() {
   return `
 // lazy hack: this types should be exposed by the tool - want to make it work
 ${anys.map(a => `export type ${a} = any`).join('\n')}
+
+// magica or others needs to expose objects in the namespace - do it in that file that won't be touched
+export * from '../_opencvCustom'
+
+export declare function exceptionFromPtr(err: number): TODO
+
+export declare function onRuntimeInitialized:():void
+
+export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): TODO
+
+export declare const  CV_8UC1: number
+
+export declare const CV_8U: number
+
+export declare const CV_16S: number
+
+export declare const CV_8UC3: TODO
+
+export declare const CV_32S: number
+
+export declare const CV_8S: number
+
+export declare const CV_8UC4: number
   `
 }
 
@@ -91,6 +114,23 @@ function renderMatHack() {
 // hack to expose Mat super classes like Mat_, InputArray, OutputArray we  make them alias of Mat to simplify
 // and make it work
 ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
+
+/** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
+export declare class Mat_ {
+public delete(): void
+  public ucharPtr(i: number, j: number):any
+  public data: ImageData
+}
+
+import {Mat} from './Mat'
+export declare function  matFromImageData(imageData: ImageData): Mat
+
+export interface ImageData {
+  data: ArrayBufferView
+  width: number;
+  height: number;
+}
+
 `
 }
  

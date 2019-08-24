@@ -22,7 +22,7 @@ import { InputArray, int, InputOutputArray, TermCriteria, OutputArray, double, _
  * @param flags Flag that can take values of cv::KmeansFlags
  * @param centers Output matrix of the cluster centers, one row per each cluster center.
  */
-export declare function kmeans(data: InputArray, K: int, bestLabels: InputOutputArray, criteria: TermCriteria, attempts: int, flags: int, centers: OutputArray): double
+export declare function kmeans(data: InputArray, K: int, bestLabels: InputOutputArray, criteria: TermCriteria, attempts: int, flags: int, centers?: OutputArray): double
 
 /**
  * The generic function partition implements an `$O(N^2)$` algorithm for splitting a set of `$N$` elements into one or more equivalency classes, as described in  . The function returns the number of equivalency classes.
@@ -33,5 +33,5 @@ export declare function kmeans(data: InputArray, K: int, bestLabels: InputOutput
  * @param labels Output vector of labels. It contains as many elements as vec. Each label labels[i] is a 0-based cluster index of vec[i].
  * @param predicate Equivalence predicate (pointer to a boolean function of two arguments or an instance of the class that has the method bool operator()(const _Tp& a, const _Tp& b) ). The predicate returns true when the elements are certainly in the same class, and returns false if they may or may not be in the same class.
  */
-export declare function partition(arg119: any, arg120: any, _vec: any, labels: any, predicate: _EqPredicate): any
+export declare function partition(arg119: any, arg120: any, _vec: any, labels: any, predicate?: _EqPredicate): any
 

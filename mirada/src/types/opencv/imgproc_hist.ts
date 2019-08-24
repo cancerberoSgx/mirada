@@ -1,5 +1,5 @@
 
-import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, float } from './_types'
+import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, float, HistCompMethods } from './_types'
 /*
  * # imgproc_hist
  *
@@ -26,7 +26,7 @@ import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, f
  * @param scale Optional scale factor for the output back projection.
  * @param uniform Flag indicating whether the histogram is uniform or not (see above).
  */
-export declare function calcBackProject(images: any, nimages: int, channels: any, hist: InputArray, backProject: OutputArray, ranges: any, scale: double, uniform: bool): void
+export declare function calcBackProject(images: any, nimages: int, channels: any, hist: InputArray, backProject: OutputArray, ranges: any, scale?: double, uniform?: bool): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -40,7 +40,7 @@ export declare function calcBackProject(images: any, nimages: int, channels: any
  * @param scale 
  * @param uniform 
  */
-export declare function calcBackProject(images: any, nimages: int, channels: any, hist: any, backProject: OutputArray, ranges: any, scale: double, uniform: bool): void
+export declare function calcBackProject(images: any, nimages: int, channels: any, hist: any, backProject: OutputArray, ranges: any, scale?: double, uniform?: bool): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -126,7 +126,7 @@ export declare function calcBackProject(images: InputArrayOfArrays, channels: an
  * @param uniform Flag indicating whether the histogram is uniform or not (see above).
  * @param accumulate Accumulation flag. If it is set, the histogram is not cleared in the beginning when it is allocated. This feature enables you to compute a single histogram from several sets of arrays, or to update the histogram in time.
  */
-export declare function calcHist(images: any, nimages: int, channels: any, mask: InputArray, hist: OutputArray, dims: int, histSize: any, ranges: any, uniform: bool, accumulate: bool): void
+export declare function calcHist(images: any, nimages: int, channels: any, mask: InputArray, hist: OutputArray, dims: int, histSize: any, ranges: any, uniform?: bool, accumulate?: bool): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -144,7 +144,7 @@ export declare function calcHist(images: any, nimages: int, channels: any, mask:
  * @param uniform 
  * @param accumulate 
  */
-export declare function calcHist(images: any, nimages: int, channels: any, mask: InputArray, hist: any, dims: int, histSize: any, ranges: any, uniform: bool, accumulate: bool): void
+export declare function calcHist(images: any, nimages: int, channels: any, mask: InputArray, hist: any, dims: int, histSize: any, ranges: any, uniform?: bool, accumulate?: bool): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -157,7 +157,7 @@ export declare function calcHist(images: any, nimages: int, channels: any, mask:
  * @param ranges 
  * @param accumulate 
  */
-export declare function calcHist(images: InputArrayOfArrays, channels: any, mask: InputArray, hist: OutputArray, histSize: any, ranges: any, accumulate: bool): void
+export declare function calcHist(images: InputArrayOfArrays, channels: any, mask: InputArray, hist: OutputArray, histSize: any, ranges: any, accumulate?: bool): void
 
 /**
  * The function [cv::compareHist](#d6/dc7/group__imgproc__hist_1gaf4190090efa5c47cb367cf97a9a519bd}) compares two dense or two sparse histograms using the specified method.
@@ -186,7 +186,7 @@ export declare function compareHist(H1: any, H2: any, method: int): double
  * @param clipLimit Threshold for contrast limiting.
  * @param tileGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column.
  */
-export declare function createCLAHE(clipLimit: double, tileGridSize: Size): any
+export declare function createCLAHE(clipLimit?: double, tileGridSize?: Size): any
 
 /**
  * The function computes the earth mover distance and/or a lower boundary of the distance between the two weighted point configurations. One of the applications described in RubnerSept98, Rubner2000 is multi-dimensional histogram comparison for image retrieval. EMD is a transportation problem that is solved using some modification of a simplex algorithm, thus the complexity is exponential in the worst case, though, on average it is much faster. In the case of a real metric the lower boundary can be calculated even faster (using linear-time algorithm) and it can be used to determine roughly whether the two signatures are far enough so that they cannot relate to the same object.
@@ -198,7 +198,7 @@ export declare function createCLAHE(clipLimit: double, tileGridSize: Size): any
  * @param lowerBound Optional input/output parameter: lower boundary of a distance between the two signatures that is a distance between mass centers. The lower boundary may not be calculated if the user-defined cost matrix is used, the total weights of point configurations are not equal, or if the signatures consist of weights only (the signature matrices have a single column). You must** initialize *lowerBound . If the calculated distance between mass centers is greater or equal to *lowerBound (it means that the signatures are far enough), the function does not calculate EMD. In any case *lowerBound is set to the calculated distance between mass centers on return. Thus, if you want to calculate both distance between mass centers and EMD, *lowerBound should be set to 0.
  * @param flow Resultant $\texttt{size1} \times \texttt{size2}$ flow matrix: $\texttt{flow}_{i,j}$ is a flow from $i$ -th point of signature1 to $j$ -th point of signature2 .
  */
-export declare function EMD(signature1: InputArray, signature2: InputArray, distType: int, cost: InputArray, lowerBound: any, flow: OutputArray): float
+export declare function EMD(signature1: InputArray, signature2: InputArray, distType: int, cost?: InputArray, lowerBound?: any, flow?: OutputArray): float
 
 /**
  * The function equalizes the histogram of the input image using the following algorithm:
@@ -224,5 +224,52 @@ export declare function equalizeHist(src: InputArray, dst: OutputArray): void
  * @param lowerBound 
  * @param flow 
  */
-export declare function wrapperEMD(signature1: InputArray, signature2: InputArray, distType: int, cost: InputArray, lowerBound: any, flow: OutputArray): float
+export declare function wrapperEMD(signature1: InputArray, signature2: InputArray, distType: int, cost?: InputArray, lowerBound?: any, flow?: OutputArray): float
+
+/**
+ * Correlation `\\[d(H_1,H_2) = \\frac{\\sum_I (H_1(I) - \\bar{H_1}) (H_2(I) - \\bar{H_2})}{\\sqrt{\\sum_I(H_1(I) - \\bar{H_1})^2 \\sum_I(H_2(I) - \\bar{H_2})^2}}\\]` where `\\[\\bar{H_k} = \\frac{1}{N} \\sum _J H_k(J)\\]` and `$N$` is a total number of histogram bins.
+ * 
+ */
+export declare const HISTCMP_CORREL: HistCompMethods // initializer: = 0
+
+/**
+ * Chi-Square `\\[d(H_1,H_2) = \\sum _I \\frac{\\left(H_1(I)-H_2(I)\\right)^2}{H_1(I)}\\]`
+ * 
+ */
+export declare const HISTCMP_CHISQR: HistCompMethods // initializer: = 1
+
+/**
+ * Intersection `\\[d(H_1,H_2) = \\sum _I \\min (H_1(I), H_2(I))\\]`
+ * 
+ */
+export declare const HISTCMP_INTERSECT: HistCompMethods // initializer: = 2
+
+/**
+ * Bhattacharyya distance (In fact, OpenCV computes Hellinger distance, which is related to Bhattacharyya coefficient.) `\\[d(H_1,H_2) = \\sqrt{1 - \\frac{1}{\\sqrt{\\bar{H_1} \\bar{H_2} N^2}} \\sum_I \\sqrt{H_1(I) \\cdot H_2(I)}}\\]`
+ * 
+ */
+export declare const HISTCMP_BHATTACHARYYA: HistCompMethods // initializer: = 3
+
+/**
+ * 
+ */
+export declare const HISTCMP_HELLINGER: HistCompMethods // initializer: = HISTCMP_BHATTACHARYYA
+
+/**
+ * Alternative Chi-Square `\\[d(H_1,H_2) = 2 * \\sum _I \\frac{\\left(H_1(I)-H_2(I)\\right)^2}{H_1(I)+H_2(I)}\\]` This alternative formula is regularly used for texture comparison. See e.g. Puzicha1997
+ * 
+ */
+export declare const HISTCMP_CHISQR_ALT: HistCompMethods // initializer: = 4
+
+/**
+ * Kullback-Leibler divergence `\\[d(H_1,H_2) = \\sum _I H_1(I) \\log \\left(\\frac{H_1(I)}{H_2(I)}\\right)\\]`
+ * 
+ */
+export declare const HISTCMP_KL_DIV: HistCompMethods // initializer: = 5
+
+/**
+ * Histogram comparison methods
+ * 
+ */
+export type HistCompMethods = any
 

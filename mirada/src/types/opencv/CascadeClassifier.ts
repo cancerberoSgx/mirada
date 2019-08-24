@@ -37,7 +37,7 @@ export declare class CascadeClassifier {
    *   @param minSize Minimum possible object size. Objects smaller than that are ignored.
    *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize == minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: any, objects: any, scaleFactor: double, minNeighbors: int, flags: int, minSize: any, maxSize: any): any
+  public detectMultiScale(image: any, objects: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any): any
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -51,7 +51,7 @@ export declare class CascadeClassifier {
    *   @param minSize Minimum possible object size. Objects smaller than that are ignored.
    *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize == minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: any, objects: any, numDetections: any, scaleFactor: double, minNeighbors: int, flags: int, minSize: any, maxSize: any): any
+  public detectMultiScale(image: any, objects: any, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any): any
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. This function allows you to retrieve the final stage decision certainty of classification. For this, one needs to set `outputRejectLevels` on true and provide the `rejectLevels` and `levelWeights` parameter. For each resulting detection, `levelWeights` will then contain the certainty of classification at the final stage. This value can then be used to separate strong from weaker classifications.
@@ -79,7 +79,7 @@ export declare class CascadeClassifier {
    *   @param maxSize 
    *   @param outputRejectLevels 
    */
-  public detectMultiScale(image: any, objects: any, rejectLevels: any, levelWeights: any, scaleFactor: double, minNeighbors: int, flags: int, minSize: any, maxSize: any, outputRejectLevels: bool): any
+  public detectMultiScale(image: any, objects: any, rejectLevels: any, levelWeights: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any, outputRejectLevels?: bool): any
 
   /**
    *   

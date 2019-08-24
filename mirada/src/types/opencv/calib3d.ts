@@ -1,5 +1,5 @@
 
-import { InputArrayOfArrays, Size, InputOutputArray, OutputArrayOfArrays, OutputArray, int, TermCriteria, double, HandEyeCalibrationMethod, InputArray, bool, float, size_t, Mat, Point2d, Rect, Vec3d, SolvePnPMethod } from './_types'
+import { InputArrayOfArrays, Size, InputOutputArray, OutputArrayOfArrays, OutputArray, int, TermCriteria, double, HandEyeCalibrationMethod, InputArray, bool, float, size_t, Mat, Point2d, Rect, Vec3d, SolvePnPMethod, UndistortTypes } from './_types'
 /*
  * # calib3d
  *
@@ -34,7 +34,7 @@ import { InputArrayOfArrays, Size, InputOutputArray, OutputArrayOfArrays, Output
  * CALIB_USE_INTRINSIC_GUESS cameraMatrix contains valid initial values of fx, fy, cx, cy that are optimized further. Otherwise, (cx, cy) is initially set to the image center ( imageSize is used), and focal distances are computed in a least-squares fashion. Note, that if intrinsic parameters are known, there is no need to use this function just to estimate extrinsic parameters. Use solvePnP instead.CALIB_FIX_PRINCIPAL_POINT The principal point is not changed during the global optimization. It stays at the center or at a different location specified when CALIB_USE_INTRINSIC_GUESS is set too.CALIB_FIX_ASPECT_RATIO The functions considers only fy as a free parameter. The ratio fx/fy stays the same as in the input cameraMatrix . When CALIB_USE_INTRINSIC_GUESS is not set, the actual input values of fx and fy are ignored, only their ratio is computed and used further.CALIB_ZERO_TANGENT_DIST Tangential distortion coefficients $(p_1, p_2)$ are set to zeros and stay zero.CALIB_FIX_K1,...,CALIB_FIX_K6 The corresponding radial distortion coefficient is not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.CALIB_RATIONAL_MODEL Coefficients k4, k5, and k6 are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the rational model and return 8 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_THIN_PRISM_MODEL Coefficients s1, s2, s3 and s4 are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the thin prism model and return 12 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_FIX_S1_S2_S3_S4 The thin prism distortion coefficients are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.CALIB_TILTED_MODEL Coefficients tauX and tauY are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the tilted sensor model and return 14 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_FIX_TAUX_TAUY The coefficients of the tilted sensor model are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
  * @param criteria Termination criteria for the iterative optimization algorithm.
  */
-export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, stdDeviationsIntrinsics: OutputArray, stdDeviationsExtrinsics: OutputArray, perViewErrors: OutputArray, flags: int, criteria: TermCriteria): double
+export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, stdDeviationsIntrinsics: OutputArray, stdDeviationsExtrinsics: OutputArray, perViewErrors: OutputArray, flags?: int, criteria?: TermCriteria): double
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -49,7 +49,7 @@ export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imageP
  * @param flags 
  * @param criteria 
  */
-export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, flags: int, criteria: TermCriteria): double
+export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, flags?: int, criteria?: TermCriteria): double
 
 /**
  * This function is an extension of [calibrateCamera()](#d9/d0c/group__calib3d_1ga3207604e4b1a1758aa66acb6ed5aa65d}) with the method of releasing object which was proposed in strobl2011iccv. In many common cases with inaccurate, unmeasured, roughly planar targets (calibration plates), this method can dramatically improve the precision of the estimated camera parameters. Both the object-releasing method and standard method are supported by this function. Use the parameter **iFixedPoint** for method selection. In the internal implementation, [calibrateCamera()](#d9/d0c/group__calib3d_1ga3207604e4b1a1758aa66acb6ed5aa65d}) is a wrapper for this function.
@@ -75,7 +75,7 @@ export declare function calibrateCamera(objectPoints: InputArrayOfArrays, imageP
  * @param flags Different flags that may be zero or a combination of some predefined values. See calibrateCamera() for details. If the method of releasing object is used, the calibration time may be much longer. CALIB_USE_QR or CALIB_USE_LU could be used for faster calibration with potentially less precise and less stable in some rare cases.
  * @param criteria Termination criteria for the iterative optimization algorithm.
  */
-export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, iFixedPoint: int, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, newObjPoints: OutputArray, stdDeviationsIntrinsics: OutputArray, stdDeviationsExtrinsics: OutputArray, stdDeviationsObjPoints: OutputArray, perViewErrors: OutputArray, flags: int, criteria: TermCriteria): double
+export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, iFixedPoint: int, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, newObjPoints: OutputArray, stdDeviationsIntrinsics: OutputArray, stdDeviationsExtrinsics: OutputArray, stdDeviationsObjPoints: OutputArray, perViewErrors: OutputArray, flags?: int, criteria?: TermCriteria): double
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -92,7 +92,7 @@ export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imag
  * @param flags 
  * @param criteria 
  */
-export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, iFixedPoint: int, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, newObjPoints: OutputArray, flags: int, criteria: TermCriteria): double
+export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, iFixedPoint: int, cameraMatrix: InputOutputArray, distCoeffs: InputOutputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, newObjPoints: OutputArray, flags?: int, criteria?: TermCriteria): double
 
 /**
  * The function performs the Hand-Eye calibration using various methods. One approach consists in estimating the rotation then the translation (separable solutions) and the following methods are implemented:
@@ -131,7 +131,7 @@ export declare function calibrateCameraRO(objectPoints: InputArrayOfArrays, imag
  * @param t_cam2gripper Estimated translation part extracted from the homogeneous matrix that transforms a point expressed in the camera frame to the gripper frame ( $_{}^{g}\textrm{T}_c$).
  * @param method One of the implemented Hand-Eye calibration method, see cv::HandEyeCalibrationMethod
  */
-export declare function calibrateHandEye(R_gripper2base: InputArrayOfArrays, t_gripper2base: InputArrayOfArrays, R_target2cam: InputArrayOfArrays, t_target2cam: InputArrayOfArrays, R_cam2gripper: OutputArray, t_cam2gripper: OutputArray, method: HandEyeCalibrationMethod): void
+export declare function calibrateHandEye(R_gripper2base: InputArrayOfArrays, t_gripper2base: InputArrayOfArrays, R_target2cam: InputArrayOfArrays, t_target2cam: InputArrayOfArrays, R_cam2gripper: OutputArray, t_cam2gripper: OutputArray, method?: HandEyeCalibrationMethod): void
 
 /**
  * The function computes various useful camera characteristics from the previously estimated camera matrix.
@@ -181,7 +181,7 @@ export declare function checkChessboard(img: InputArray, size: Size): bool
  * @param dt3dr2 Optional output derivative of tvec3 with regard to rvec2
  * @param dt3dt2 Optional output derivative of tvec3 with regard to tvec2
  */
-export declare function composeRT(rvec1: InputArray, tvec1: InputArray, rvec2: InputArray, tvec2: InputArray, rvec3: OutputArray, tvec3: OutputArray, dr3dr1: OutputArray, dr3dt1: OutputArray, dr3dr2: OutputArray, dr3dt2: OutputArray, dt3dr1: OutputArray, dt3dt1: OutputArray, dt3dr2: OutputArray, dt3dt2: OutputArray): void
+export declare function composeRT(rvec1: InputArray, tvec1: InputArray, rvec2: InputArray, tvec2: InputArray, rvec3: OutputArray, tvec3: OutputArray, dr3dr1?: OutputArray, dr3dt1?: OutputArray, dr3dr2?: OutputArray, dr3dt2?: OutputArray, dt3dr1?: OutputArray, dt3dt1?: OutputArray, dt3dr2?: OutputArray, dt3dt2?: OutputArray): void
 
 /**
  * For every point in one of the two images of a stereo pair, the function finds the equation of the corresponding epipolar line in the other image.
@@ -277,7 +277,7 @@ export declare function decomposeHomographyMat(H: InputArray, K: InputArray, rot
  * @param rotMatrixZ Optional 3x3 rotation matrix around z-axis.
  * @param eulerAngles Optional three-element vector containing three Euler angles of rotation in degrees.
  */
-export declare function decomposeProjectionMatrix(projMatrix: InputArray, cameraMatrix: OutputArray, rotMatrix: OutputArray, transVect: OutputArray, rotMatrixX: OutputArray, rotMatrixY: OutputArray, rotMatrixZ: OutputArray, eulerAngles: OutputArray): void
+export declare function decomposeProjectionMatrix(projMatrix: InputArray, cameraMatrix: OutputArray, rotMatrix: OutputArray, transVect: OutputArray, rotMatrixX?: OutputArray, rotMatrixY?: OutputArray, rotMatrixZ?: OutputArray, eulerAngles?: OutputArray): void
 
 /**
  * The function draws individual chessboard corners detected either as red circles if the board was not found, or as colored corners connected with lines if the board was found.
@@ -302,7 +302,7 @@ export declare function drawChessboardCorners(image: InputOutputArray, patternSi
  * @param length Length of the painted axes in the same unit than tvec (usually in meters).
  * @param thickness Line thickness of the painted axes.
  */
-export declare function drawFrameAxes(image: InputOutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputArray, tvec: InputArray, length: float, thickness: int): void
+export declare function drawFrameAxes(image: InputOutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputArray, tvec: InputArray, length: float, thickness?: int): void
 
 /**
  * It computes `\\[ \\begin{bmatrix} x\\\\ y\\\\ \\end{bmatrix} = \\begin{bmatrix} a_{11} & a_{12}\\\\ a_{21} & a_{22}\\\\ \\end{bmatrix} \\begin{bmatrix} X\\\\ Y\\\\ \\end{bmatrix} + \\begin{bmatrix} b_1\\\\ b_2\\\\ \\end{bmatrix} \\]`
@@ -326,7 +326,7 @@ export declare function drawFrameAxes(image: InputOutputArray, cameraMatrix: Inp
  * @param confidence Confidence level, between 0 and 1, for the estimated transformation. Anything between 0.95 and 0.99 is usually good enough. Values too close to 1 can slow down the estimation significantly. Values lower than 0.8-0.9 can result in an incorrectly estimated transformation.
  * @param refineIters Maximum number of iterations of refining algorithm (Levenberg-Marquardt). Passing 0 will disable refining, so the output matrix will be output of robust method.
  */
-export declare function estimateAffine2D(from: InputArray, to: InputArray, inliers: OutputArray, method: int, ransacReprojThreshold: double, maxIters: size_t, confidence: double, refineIters: size_t): any
+export declare function estimateAffine2D(from: InputArray, to: InputArray, inliers?: OutputArray, method?: int, ransacReprojThreshold?: double, maxIters?: size_t, confidence?: double, refineIters?: size_t): any
 
 /**
  * It computes `\\[ \\begin{bmatrix} x\\\\ y\\\\ z\\\\ \\end{bmatrix} = \\begin{bmatrix} a_{11} & a_{12} & a_{13}\\\\ a_{21} & a_{22} & a_{23}\\\\ a_{31} & a_{32} & a_{33}\\\\ \\end{bmatrix} \\begin{bmatrix} X\\\\ Y\\\\ Z\\\\ \\end{bmatrix} + \\begin{bmatrix} b_1\\\\ b_2\\\\ b_3\\\\ \\end{bmatrix} \\]`
@@ -340,7 +340,7 @@ export declare function estimateAffine2D(from: InputArray, to: InputArray, inlie
  * @param ransacThreshold Maximum reprojection error in the RANSAC algorithm to consider a point as an inlier.
  * @param confidence Confidence level, between 0 and 1, for the estimated transformation. Anything between 0.95 and 0.99 is usually good enough. Values too close to 1 can slow down the estimation significantly. Values lower than 0.8-0.9 can result in an incorrectly estimated transformation.
  */
-export declare function estimateAffine3D(src: InputArray, dst: InputArray, out: OutputArray, inliers: OutputArray, ransacThreshold: double, confidence: double): int
+export declare function estimateAffine3D(src: InputArray, dst: InputArray, out: OutputArray, inliers: OutputArray, ransacThreshold?: double, confidence?: double): int
 
 /**
  * Output 2D affine transformation (4 degrees of freedom) matrix `$2 \\times 3$` or empty matrix if transformation could not be estimated.
@@ -364,7 +364,7 @@ export declare function estimateAffine3D(src: InputArray, dst: InputArray, out: 
  * @param confidence Confidence level, between 0 and 1, for the estimated transformation. Anything between 0.95 and 0.99 is usually good enough. Values too close to 1 can slow down the estimation significantly. Values lower than 0.8-0.9 can result in an incorrectly estimated transformation.
  * @param refineIters Maximum number of iterations of refining algorithm (Levenberg-Marquardt). Passing 0 will disable refining, so the output matrix will be output of robust method.
  */
-export declare function estimateAffinePartial2D(from: InputArray, to: InputArray, inliers: OutputArray, method: int, ransacReprojThreshold: double, maxIters: size_t, confidence: double, refineIters: size_t): any
+export declare function estimateAffinePartial2D(from: InputArray, to: InputArray, inliers?: OutputArray, method?: int, ransacReprojThreshold?: double, maxIters?: size_t, confidence?: double, refineIters?: size_t): any
 
 /**
  * This function is intended to filter the output of the decomposeHomographyMat based on additional information as described in Malis . The summary of the method: the decomposeHomographyMat function returns 2 unique solutions and their "opposites" for a total of 4 solutions. If we have access to the sets of points visible in the camera frame before and after the homography transformation is applied, we can determine which are the true potential solutions and which are the opposites by verifying which homographies are consistent with all visible reference points being in front of the camera. The inputs are left unchanged; the filtered solution set is returned as indices into the existing one.
@@ -376,7 +376,7 @@ export declare function estimateAffinePartial2D(from: InputArray, to: InputArray
  * @param possibleSolutions Vector of int indices representing the viable solution set after filtering
  * @param pointsMask optional Mat/Vector of 8u type representing the mask for the inliers as given by the findHomography function
  */
-export declare function filterHomographyDecompByVisibleRefpoints(rotations: InputArrayOfArrays, normals: InputArrayOfArrays, beforePoints: InputArray, afterPoints: InputArray, possibleSolutions: OutputArray, pointsMask: InputArray): void
+export declare function filterHomographyDecompByVisibleRefpoints(rotations: InputArrayOfArrays, normals: InputArrayOfArrays, beforePoints: InputArray, afterPoints: InputArray, possibleSolutions: OutputArray, pointsMask?: InputArray): void
 
 /**
  * 
@@ -386,7 +386,7 @@ export declare function filterHomographyDecompByVisibleRefpoints(rotations: Inpu
  * @param maxDiff Maximum difference between neighbor disparity pixels to put them into the same blob. Note that since StereoBM, StereoSGBM and may be other algorithms return a fixed-point disparity map, where disparity values are multiplied by 16, this scale factor should be taken into account when specifying this parameter value.
  * @param buf The optional temporary buffer to avoid memory allocation within the function.
  */
-export declare function filterSpeckles(img: InputOutputArray, newVal: double, maxSpeckleSize: int, maxDiff: double, buf: InputOutputArray): void
+export declare function filterSpeckles(img: InputOutputArray, newVal: double, maxSpeckleSize: int, maxDiff: double, buf?: InputOutputArray): void
 
 /**
  * 
@@ -427,7 +427,7 @@ export declare function find4QuadCornerSubpix(img: InputArray, corners: InputOut
  * @param flags Various operation flags that can be zero or a combination of the following values:
  * CALIB_CB_ADAPTIVE_THRESH Use adaptive thresholding to convert the image to black and white, rather than a fixed threshold level (computed from the average image brightness).CALIB_CB_NORMALIZE_IMAGE Normalize the image gamma with equalizeHist before applying fixed or adaptive thresholding.CALIB_CB_FILTER_QUADS Use additional criteria (like contour area, perimeter, square-like shape) to filter out false quads extracted at the contour retrieval stage.CALIB_CB_FAST_CHECK Run a fast check on the image that looks for chessboard corners, and shortcut the call if none is found. This can drastically speed up the call in the degenerate condition when no chessboard is observed.
  */
-export declare function findChessboardCorners(image: InputArray, patternSize: Size, corners: OutputArray, flags: int): bool
+export declare function findChessboardCorners(image: InputArray, patternSize: Size, corners: OutputArray, flags?: int): bool
 
 /**
  * The function is analog to findchessboardCorners but uses a localized radon transformation approximated by box filters being more robust to all sort of noise, faster on larger images and is able to directly return the sub-pixel position of the internal chessboard corners. The Method is based on the paper duda2018 "Accurate Detection and Localization of Checkerboard Corners for
@@ -441,7 +441,7 @@ export declare function findChessboardCorners(image: InputArray, patternSize: Si
  * @param flags Various operation flags that can be zero or a combination of the following values:
  * CALIB_CB_NORMALIZE_IMAGE Normalize the image gamma with equalizeHist before detection.CALIB_CB_EXHAUSTIVE Run an exhaustive search to improve detection rate.CALIB_CB_ACCURACY Up sample input image to improve sub-pixel accuracy due to aliasing effects. This should be used if an accurate camera calibration is required.
  */
-export declare function findChessboardCornersSB(image: InputArray, patternSize: Size, corners: OutputArray, flags: int): bool
+export declare function findChessboardCornersSB(image: InputArray, patternSize: Size, corners: OutputArray, flags?: int): bool
 
 /**
  * The function attempts to determine whether the input image contains a grid of circles. If it is, the function locates centers of the circles. The function returns a non-zero value if all of the centers have been found and they have been placed in a certain order (row by row, left to right in every row). Otherwise, if the function fails to find all the corners or reorder them, it returns 0.
@@ -479,7 +479,7 @@ export declare function findCirclesGrid(image: InputArray, patternSize: Size, ce
  * @param flags 
  * @param blobDetector 
  */
-export declare function findCirclesGrid(image: InputArray, patternSize: Size, centers: OutputArray, flags: int, blobDetector: any): bool
+export declare function findCirclesGrid(image: InputArray, patternSize: Size, centers: OutputArray, flags?: int, blobDetector?: any): bool
 
 /**
  * This function estimates essential matrix based on the five-point algorithm solver in Nister03 . SteweniusCFS is also a related. The epipolar geometry is described by the following equation:
@@ -497,7 +497,7 @@ export declare function findCirclesGrid(image: InputArray, patternSize: Size, ce
  * @param threshold Parameter used for RANSAC. It is the maximum distance from a point to an epipolar line in pixels, beyond which the point is considered an outlier and is not used for computing the final fundamental matrix. It can be set to something like 1-3, depending on the accuracy of the point localization, image resolution, and the image noise.
  * @param mask Output array of N elements, every element of which is set to 0 for outliers and to 1 for the other points. The array is computed only in the RANSAC and LMedS methods.
  */
-export declare function findEssentialMat(points1: InputArray, points2: InputArray, cameraMatrix: InputArray, method: int, prob: double, threshold: double, mask: OutputArray): Mat
+export declare function findEssentialMat(points1: InputArray, points2: InputArray, cameraMatrix: InputArray, method?: int, prob?: double, threshold?: double, mask?: OutputArray): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -515,7 +515,7 @@ export declare function findEssentialMat(points1: InputArray, points2: InputArra
  * @param threshold Parameter used for RANSAC. It is the maximum distance from a point to an epipolar line in pixels, beyond which the point is considered an outlier and is not used for computing the final fundamental matrix. It can be set to something like 1-3, depending on the accuracy of the point localization, image resolution, and the image noise.
  * @param mask Output array of N elements, every element of which is set to 0 for outliers and to 1 for the other points. The array is computed only in the RANSAC and LMedS methods.
  */
-export declare function findEssentialMat(points1: InputArray, points2: InputArray, focal: double, pp: Point2d, method: int, prob: double, threshold: double, mask: OutputArray): Mat
+export declare function findEssentialMat(points1: InputArray, points2: InputArray, focal?: double, pp?: Point2d, method?: int, prob?: double, threshold?: double, mask?: OutputArray): Mat
 
 /**
  * `\\[[p_2; 1]^T F [p_1; 1] = 0\\]`
@@ -551,7 +551,7 @@ export declare function findEssentialMat(points1: InputArray, points2: InputArra
  * @param confidence Parameter used for the RANSAC and LMedS methods only. It specifies a desirable level of confidence (probability) that the estimated matrix is correct.
  * @param mask The epipolar geometry is described by the following equation:
  */
-export declare function findFundamentalMat(points1: InputArray, points2: InputArray, method: int, ransacReprojThreshold: double, confidence: double, mask: OutputArray): Mat
+export declare function findFundamentalMat(points1: InputArray, points2: InputArray, method?: int, ransacReprojThreshold?: double, confidence?: double, mask?: OutputArray): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -563,7 +563,7 @@ export declare function findFundamentalMat(points1: InputArray, points2: InputAr
  * @param ransacReprojThreshold 
  * @param confidence 
  */
-export declare function findFundamentalMat(points1: InputArray, points2: InputArray, mask: OutputArray, method: int, ransacReprojThreshold: double, confidence: double): Mat
+export declare function findFundamentalMat(points1: InputArray, points2: InputArray, mask: OutputArray, method?: int, ransacReprojThreshold?: double, confidence?: double): Mat
 
 /**
  * The function finds and returns the perspective transformation `$H$` between the source and the destination planes:
@@ -595,7 +595,7 @@ export declare function findFundamentalMat(points1: InputArray, points2: InputAr
  * @param maxIters The maximum number of RANSAC iterations.
  * @param confidence Confidence level, between 0 and 1.
  */
-export declare function findHomography(srcPoints: InputArray, dstPoints: InputArray, method: int, ransacReprojThreshold: double, mask: OutputArray, maxIters: any, confidence: any): Mat
+export declare function findHomography(srcPoints: InputArray, dstPoints: InputArray, method?: int, ransacReprojThreshold?: double, mask?: OutputArray, maxIters?: any, confidence?: any): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -606,7 +606,7 @@ export declare function findHomography(srcPoints: InputArray, dstPoints: InputAr
  * @param method 
  * @param ransacReprojThreshold 
  */
-export declare function findHomography(srcPoints: InputArray, dstPoints: InputArray, mask: OutputArray, method: int, ransacReprojThreshold: double): Mat
+export declare function findHomography(srcPoints: InputArray, dstPoints: InputArray, mask: OutputArray, method?: int, ransacReprojThreshold?: double): Mat
 
 /**
  * The function returns the camera matrix that is either an exact copy of the input cameraMatrix (when centerPrinicipalPoint=false ), or the modified one (when centerPrincipalPoint=true).
@@ -623,7 +623,7 @@ export declare function findHomography(srcPoints: InputArray, dstPoints: InputAr
  * @param imgsize Camera view image size in pixels.
  * @param centerPrincipalPoint Location of the principal point in the new camera matrix. The parameter indicates whether this location should be at the image center or not.
  */
-export declare function getDefaultNewCameraMatrix(cameraMatrix: InputArray, imgsize: Size, centerPrincipalPoint: bool): Mat
+export declare function getDefaultNewCameraMatrix(cameraMatrix: InputArray, imgsize?: Size, centerPrincipalPoint?: bool): Mat
 
 /**
  * new_camera_matrix Output new camera matrix.
@@ -637,7 +637,7 @@ export declare function getDefaultNewCameraMatrix(cameraMatrix: InputArray, imgs
  * @param validPixROI Optional output rectangle that outlines all-good-pixels region in the undistorted image. See roi1, roi2 description in stereoRectify .
  * @param centerPrincipalPoint Optional flag that indicates whether in the new camera matrix the principal point should be at the image center or not. By default, the principal point is chosen to best fit a subset of the source image (determined by alpha) to the corrected image.
  */
-export declare function getOptimalNewCameraMatrix(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, alpha: double, newImgSize: Size, validPixROI: any, centerPrincipalPoint: bool): Mat
+export declare function getOptimalNewCameraMatrix(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, alpha: double, newImgSize?: Size, validPixROI?: any, centerPrincipalPoint?: bool): Mat
 
 /**
  * 
@@ -657,7 +657,7 @@ export declare function getValidDisparityROI(roi1: Rect, roi2: Rect, minDisparit
  * @param imageSize Image size in pixels used to initialize the principal point.
  * @param aspectRatio If it is zero or negative, both $f_x$ and $f_y$ are estimated independently. Otherwise, $f_x = f_y * \texttt{aspectRatio}$ .
  */
-export declare function initCameraMatrix2D(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, aspectRatio: double): Mat
+export declare function initCameraMatrix2D(objectPoints: InputArrayOfArrays, imagePoints: InputArrayOfArrays, imageSize: Size, aspectRatio?: double): Mat
 
 /**
  * The function computes the joint undistortion and rectification transformation and represents the result in the form of maps for remap. The undistorted image looks like original, as if it is captured with a camera using the camera matrix =newCameraMatrix and zero distortion. In case of a monocular camera, newCameraMatrix is usually equal to cameraMatrix, or it can be computed by [getOptimalNewCameraMatrix](#d9/d0c/group__calib3d_1ga7a6c4e032c97f03ba747966e6ad862b1}) for a better control over scaling. In case of a stereo camera, newCameraMatrix is normally set to P1 or P2 computed by [stereoRectify](#d9/d0c/group__calib3d_1ga617b1685d4059c6040827800e72ad2b6}) .
@@ -691,7 +691,7 @@ export declare function initUndistortRectifyMap(cameraMatrix: InputArray, distCo
  * @param projType 
  * @param alpha 
  */
-export declare function initWideAngleProjMap(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, destImageWidth: int, m1type: int, map1: OutputArray, map2: OutputArray, projType: any, alpha: double): float
+export declare function initWideAngleProjMap(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, destImageWidth: int, m1type: int, map1: OutputArray, map2: OutputArray, projType?: any, alpha?: double): float
 
 /**
  * 
@@ -705,7 +705,7 @@ export declare function initWideAngleProjMap(cameraMatrix: InputArray, distCoeff
  * @param projType 
  * @param alpha 
  */
-export declare function initWideAngleProjMap(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, destImageWidth: int, m1type: int, map1: OutputArray, map2: OutputArray, projType: int, alpha: double): float
+export declare function initWideAngleProjMap(cameraMatrix: InputArray, distCoeffs: InputArray, imageSize: Size, destImageWidth: int, m1type: int, map1: OutputArray, map2: OutputArray, projType: int, alpha?: double): float
 
 /**
  * The function computes partial derivatives of the elements of the matrix product `$A*B$` with regard to the elements of each of the two input matrices. The function is used to compute the Jacobian matrices in stereoCalibrate but can also be used in any other similar optimization function.
@@ -731,7 +731,7 @@ export declare function matMulDeriv(A: InputArray, B: InputArray, dABdA: OutputA
  * @param jacobian Optional output 2Nx(10+<numDistCoeffs>) jacobian matrix of derivatives of image points with respect to components of the rotation vector, translation vector, focal lengths, coordinates of the principal point and the distortion coefficients. In the old interface different components of the jacobian are returned via different output parameters.
  * @param aspectRatio Optional "fixed aspect ratio" parameter. If the parameter is not 0, the function assumes that the aspect ratio (fx/fy) is fixed and correspondingly adjusts the jacobian matrix.
  */
-export declare function projectPoints(objectPoints: InputArray, rvec: InputArray, tvec: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, imagePoints: OutputArray, jacobian: OutputArray, aspectRatio: double): void
+export declare function projectPoints(objectPoints: InputArray, rvec: InputArray, tvec: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, imagePoints: OutputArray, jacobian?: OutputArray, aspectRatio?: double): void
 
 /**
  * This function can be used to process output E and mask from findEssentialMat. In this scenario, points1 and points2 are the same input for findEssentialMat. : 
@@ -766,7 +766,7 @@ export declare function projectPoints(objectPoints: InputArray, rvec: InputArray
  * @param t Recovered relative translation.
  * @param mask Input/output mask for inliers in points1 and points2. : If it is not empty, then it marks inliers in points1 and points2 for then given essential matrix E. Only these inliers will be used to recover pose. In the output mask only inliers which pass the cheirality check. This function decomposes an essential matrix using decomposeEssentialMat and then verifies possible pose hypotheses by doing cheirality check. The cheirality check basically means that the triangulated 3D points should have positive depth. Some details can be found in Nister03 .
  */
-export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, cameraMatrix: InputArray, R: OutputArray, t: OutputArray, mask: InputOutputArray): int
+export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, cameraMatrix: InputArray, R: OutputArray, t: OutputArray, mask?: InputOutputArray): int
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -783,7 +783,7 @@ export declare function recoverPose(E: InputArray, points1: InputArray, points2:
  * @param pp principal point of the camera.
  * @param mask Input/output mask for inliers in points1 and points2. : If it is not empty, then it marks inliers in points1 and points2 for then given essential matrix E. Only these inliers will be used to recover pose. In the output mask only inliers which pass the cheirality check.
  */
-export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, R: OutputArray, t: OutputArray, focal: double, pp: Point2d, mask: InputOutputArray): int
+export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, R: OutputArray, t: OutputArray, focal?: double, pp?: Point2d, mask?: InputOutputArray): int
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -798,7 +798,7 @@ export declare function recoverPose(E: InputArray, points1: InputArray, points2:
  * @param mask Input/output mask for inliers in points1 and points2. : If it is not empty, then it marks inliers in points1 and points2 for then given essential matrix E. Only these inliers will be used to recover pose. In the output mask only inliers which pass the cheirality check.
  * @param triangulatedPoints 3d points which were reconstructed by triangulation.
  */
-export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, cameraMatrix: InputArray, R: OutputArray, t: OutputArray, distanceThresh: double, mask: InputOutputArray, triangulatedPoints: OutputArray): int
+export declare function recoverPose(E: InputArray, points1: InputArray, points2: InputArray, cameraMatrix: InputArray, R: OutputArray, t: OutputArray, distanceThresh: double, mask?: InputOutputArray, triangulatedPoints?: OutputArray): int
 
 /**
  * 
@@ -843,7 +843,7 @@ export declare function rectify3Collinear(cameraMatrix1: InputArray, distCoeffs1
  * @param handleMissingValues Indicates, whether the function should handle missing values (i.e. points where the disparity was not computed). If handleMissingValues=true, then pixels with the minimal disparity that corresponds to the outliers (see StereoMatcher::compute ) are transformed to 3D points with a very large Z value (currently set to 10000).
  * @param ddepth The optional output array depth. If it is -1, the output image will have CV_32F depth. ddepth can also be set to CV_16S, CV_32S or CV_32F.
  */
-export declare function reprojectImageTo3D(disparity: InputArray, _3dImage: OutputArray, Q: InputArray, handleMissingValues: bool, ddepth: int): void
+export declare function reprojectImageTo3D(disparity: InputArray, _3dImage: OutputArray, Q: InputArray, handleMissingValues?: bool, ddepth?: int): void
 
 /**
  * `\\[\\begin{array}{l} \\theta \\leftarrow norm(r) \\\\ r \\leftarrow r/ \\theta \\\\ R = \\cos{\\theta} I + (1- \\cos{\\theta} ) r r^T + \\sin{\\theta} \\vecthreethree{0}{-r_z}{r_y}{r_z}{0}{-r_x}{-r_y}{r_x}{0} \\end{array}\\]`
@@ -858,7 +858,7 @@ export declare function reprojectImageTo3D(disparity: InputArray, _3dImage: Outp
  * @param dst Output rotation matrix (3x3) or rotation vector (3x1 or 1x3), respectively.
  * @param jacobian Optional output Jacobian matrix, 3x9 or 9x3, which is a matrix of partial derivatives of the output array components with respect to the input array components.
  */
-export declare function Rodrigues(src: InputArray, dst: OutputArray, jacobian: OutputArray): void
+export declare function Rodrigues(src: InputArray, dst: OutputArray, jacobian?: OutputArray): void
 
 /**
  * The function computes a RQ decomposition using the given rotations. This function is used in decomposeProjectionMatrix to decompose the left 3x3 submatrix of a projection matrix into a camera and a rotation matrix.
@@ -872,7 +872,7 @@ export declare function Rodrigues(src: InputArray, dst: OutputArray, jacobian: O
  * @param Qy Optional output 3x3 rotation matrix around y-axis.
  * @param Qz Optional output 3x3 rotation matrix around z-axis.
  */
-export declare function RQDecomp3x3(src: InputArray, mtxR: OutputArray, mtxQ: OutputArray, Qx: OutputArray, Qy: OutputArray, Qz: OutputArray): Vec3d
+export declare function RQDecomp3x3(src: InputArray, mtxR: OutputArray, mtxQ: OutputArray, Qx?: OutputArray, Qy?: OutputArray, Qz?: OutputArray): Vec3d
 
 /**
  * The function [cv::sampsonDistance](#d9/d0c/group__calib3d_1gacbba2ee98258ca81d352a31faa15a021}) calculates and returns the first order approximation of the geometric error as: `\\[ sd( \\texttt{pt1} , \\texttt{pt2} )= \\frac{(\\texttt{pt2}^t \\cdot \\texttt{F} \\cdot \\texttt{pt1})^2} {((\\texttt{F} \\cdot \\texttt{pt1})(0))^2 + ((\\texttt{F} \\cdot \\texttt{pt1})(1))^2 + ((\\texttt{F}^t \\cdot \\texttt{pt2})(0))^2 + ((\\texttt{F}^t \\cdot \\texttt{pt2})(1))^2} \\]` The fundamental matrix may be calculated using the [cv::findFundamentalMat](#d9/d0c/group__calib3d_1gae420abc34eaa03d0c6a67359609d8429}) function. See HartleyZ00 11.4.3 for details. 
@@ -953,7 +953,7 @@ export declare function solveP3P(objectPoints: InputArray, imagePoints: InputArr
  * Estimation" (penate2013exhaustive). In this case the function also estimates the parameters $f_x$ and $f_y$ assuming that both have the same value. Then the cameraMatrix is updated with the estimated focal length.SOLVEPNP_IPPE Method is based on the paper of T. Collins and A. Bartoli. "Infinitesimal Plane-Based Pose Estimation" (Collins14). This method requires coplanar object points.SOLVEPNP_IPPE_SQUARE Method is based on the paper of Toby Collins and Adrien Bartoli. "Infinitesimal Plane-Based Pose Estimation" (Collins14). This method is suitable for marker pose estimation. It requires 4 coplanar object points defined in the following order:
  * point 0: [-squareLength / 2, squareLength / 2, 0]point 1: [ squareLength / 2, squareLength / 2, 0]point 2: [ squareLength / 2, -squareLength / 2, 0]point 3: [-squareLength / 2, -squareLength / 2, 0]
  */
-export declare function solvePnP(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: OutputArray, tvec: OutputArray, useExtrinsicGuess: bool, flags: int): bool
+export declare function solvePnP(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: OutputArray, tvec: OutputArray, useExtrinsicGuess?: bool, flags?: int): bool
 
 /**
  * P3P methods ([SOLVEPNP_P3P](#d9/d0c/group__calib3d_1gga357634492a94efe8858d0ce1509da869af33a85ca698777ff9bd1de916bf5959a}), [SOLVEPNP_AP3P](#d9/d0c/group__calib3d_1gga357634492a94efe8858d0ce1509da869a8d48dece2da6492d91fa2de0a04679f9})): 3 or 4 input points. Number of returned solutions can be between 0 and 4 with 3 input points.
@@ -1010,7 +1010,7 @@ export declare function solvePnP(objectPoints: InputArray, imagePoints: InputArr
  * @param tvec Translation vector used to initialize an iterative PnP refinement algorithm, when flag is SOLVEPNP_ITERATIVE and useExtrinsicGuess is set to true.
  * @param reprojectionError Optional vector of reprojection error, that is the RMS error ( $ \text{RMSE} = \sqrt{\frac{\sum_{i}^{N} \left ( \hat{y_i} - y_i \right )^2}{N}} $) between the input image points and the 3D object points projected with the estimated pose.
  */
-export declare function solvePnPGeneric(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, useExtrinsicGuess: bool, flags: SolvePnPMethod, rvec: InputArray, tvec: InputArray, reprojectionError: OutputArray): int
+export declare function solvePnPGeneric(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvecs: OutputArrayOfArrays, tvecs: OutputArrayOfArrays, useExtrinsicGuess?: bool, flags?: SolvePnPMethod, rvec?: InputArray, tvec?: InputArray, reprojectionError?: OutputArray): int
 
 /**
  * The function estimates an object pose given a set of object points, their corresponding image projections, as well as the camera matrix and the distortion coefficients. This function finds such a pose that minimizes reprojection error, that is, the sum of squared distances between the observed projections imagePoints and the projected (using [projectPoints](#d9/d0c/group__calib3d_1ga1019495a2c8d1743ed5cc23fa0daff8c}) ) objectPoints. The use of RANSAC makes the function resistant to outliers.
@@ -1036,7 +1036,7 @@ export declare function solvePnPGeneric(objectPoints: InputArray, imagePoints: I
  * @param inliers Output vector that contains indices of inliers in objectPoints and imagePoints .
  * @param flags Method for solving a PnP problem (see solvePnP ).
  */
-export declare function solvePnPRansac(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: OutputArray, tvec: OutputArray, useExtrinsicGuess: bool, iterationsCount: int, reprojectionError: float, confidence: double, inliers: OutputArray, flags: int): bool
+export declare function solvePnPRansac(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: OutputArray, tvec: OutputArray, useExtrinsicGuess?: bool, iterationsCount?: int, reprojectionError?: float, confidence?: double, inliers?: OutputArray, flags?: int): bool
 
 /**
  * The function refines the object pose given at least 3 object points, their corresponding image projections, an initial solution for the rotation and translation vector, as well as the camera matrix and the distortion coefficients. The function minimizes the projection error with respect to the rotation and the translation vectors, according to a Levenberg-Marquardt iterative minimization Madsen04 Eade13 process.
@@ -1049,7 +1049,7 @@ export declare function solvePnPRansac(objectPoints: InputArray, imagePoints: In
  * @param tvec Input/Output translation vector. Input values are used as an initial solution.
  * @param criteria Criteria when to stop the Levenberg-Marquard iterative algorithm.
  */
-export declare function solvePnPRefineLM(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputOutputArray, tvec: InputOutputArray, criteria: TermCriteria): void
+export declare function solvePnPRefineLM(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputOutputArray, tvec: InputOutputArray, criteria?: TermCriteria): void
 
 /**
  * The function refines the object pose given at least 3 object points, their corresponding image projections, an initial solution for the rotation and translation vector, as well as the camera matrix and the distortion coefficients. The function minimizes the projection error with respect to the rotation and the translation vectors, using a virtual visual servoing (VVS) Chaumette06 Marchand16 scheme.
@@ -1063,7 +1063,7 @@ export declare function solvePnPRefineLM(objectPoints: InputArray, imagePoints: 
  * @param criteria Criteria when to stop the Levenberg-Marquard iterative algorithm.
  * @param VVSlambda Gain for the virtual visual servoing control law, equivalent to the $\alpha$ gain in the Damped Gauss-Newton formulation.
  */
-export declare function solvePnPRefineVVS(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputOutputArray, tvec: InputOutputArray, criteria: TermCriteria, VVSlambda: double): void
+export declare function solvePnPRefineVVS(objectPoints: InputArray, imagePoints: InputArray, cameraMatrix: InputArray, distCoeffs: InputArray, rvec: InputOutputArray, tvec: InputOutputArray, criteria?: TermCriteria, VVSlambda?: double): void
 
 /**
  * The function estimates transformation between two cameras making a stereo pair. If you have a stereo camera where the relative position and orientation of two cameras is fixed, and if you computed poses of an object relative to the first camera and to the second camera, (R1, T1) and (R2, T2), respectively (this can be done with solvePnP ), then those poses definitely relate to each other. This means that, given ( `$R_1$`, `$T_1$` ), it should be possible to compute ( `$R_2$`, `$T_2$` ). You only need to know the position and orientation of the second camera relative to the first camera. This is what the described function does. It computes ( `$R$`, `$T$` ) so that:
@@ -1101,7 +1101,7 @@ export declare function solvePnPRefineVVS(objectPoints: InputArray, imagePoints:
  * CALIB_SAME_FOCAL_LENGTH Enforce $f^{(0)}_x=f^{(1)}_x$ and $f^{(0)}_y=f^{(1)}_y$ .CALIB_ZERO_TANGENT_DIST Set tangential distortion coefficients for each camera to zeros and fix there.CALIB_FIX_K1,...,CALIB_FIX_K6 Do not change the corresponding radial distortion coefficient during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.CALIB_RATIONAL_MODEL Enable coefficients k4, k5, and k6. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the rational model and return 8 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_THIN_PRISM_MODEL Coefficients s1, s2, s3 and s4 are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the thin prism model and return 12 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_FIX_S1_S2_S3_S4 The thin prism distortion coefficients are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.CALIB_TILTED_MODEL Coefficients tauX and tauY are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the tilted sensor model and return 14 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.CALIB_FIX_TAUX_TAUY The coefficients of the tilted sensor model are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
  * @param criteria Termination criteria for the iterative optimization algorithm.
  */
-export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imagePoints1: InputArrayOfArrays, imagePoints2: InputArrayOfArrays, cameraMatrix1: InputOutputArray, distCoeffs1: InputOutputArray, cameraMatrix2: InputOutputArray, distCoeffs2: InputOutputArray, imageSize: Size, R: InputOutputArray, T: InputOutputArray, E: OutputArray, F: OutputArray, perViewErrors: OutputArray, flags: int, criteria: TermCriteria): double
+export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imagePoints1: InputArrayOfArrays, imagePoints2: InputArrayOfArrays, cameraMatrix1: InputOutputArray, distCoeffs1: InputOutputArray, cameraMatrix2: InputOutputArray, distCoeffs2: InputOutputArray, imageSize: Size, R: InputOutputArray, T: InputOutputArray, E: OutputArray, F: OutputArray, perViewErrors: OutputArray, flags?: int, criteria?: TermCriteria): double
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -1121,7 +1121,7 @@ export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imageP
  * @param flags 
  * @param criteria 
  */
-export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imagePoints1: InputArrayOfArrays, imagePoints2: InputArrayOfArrays, cameraMatrix1: InputOutputArray, distCoeffs1: InputOutputArray, cameraMatrix2: InputOutputArray, distCoeffs2: InputOutputArray, imageSize: Size, R: OutputArray, T: OutputArray, E: OutputArray, F: OutputArray, flags: int, criteria: TermCriteria): double
+export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imagePoints1: InputArrayOfArrays, imagePoints2: InputArrayOfArrays, cameraMatrix1: InputOutputArray, distCoeffs1: InputOutputArray, cameraMatrix2: InputOutputArray, distCoeffs2: InputOutputArray, imageSize: Size, R: OutputArray, T: OutputArray, E: OutputArray, F: OutputArray, flags?: int, criteria?: TermCriteria): double
 
 /**
  * The function computes the rotation matrices for each camera that (virtually) make both camera image planes the same plane. Consequently, this makes all the epipolar lines parallel and thus simplifies the dense stereo correspondence problem. The function takes the matrices computed by stereoCalibrate as input. As output, it provides two rotation matrices and also two projection matrices in the new coordinates. The function distinguishes the following two cases:
@@ -1151,7 +1151,7 @@ export declare function stereoCalibrate(objectPoints: InputArrayOfArrays, imageP
  * @param validPixROI1 Optional output rectangles inside the rectified images where all the pixels are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller (see the picture below).
  * @param validPixROI2 Optional output rectangles inside the rectified images where all the pixels are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller (see the picture below).
  */
-export declare function stereoRectify(cameraMatrix1: InputArray, distCoeffs1: InputArray, cameraMatrix2: InputArray, distCoeffs2: InputArray, imageSize: Size, R: InputArray, T: InputArray, R1: OutputArray, R2: OutputArray, P1: OutputArray, P2: OutputArray, Q: OutputArray, flags: int, alpha: double, newImageSize: Size, validPixROI1: any, validPixROI2: any): void
+export declare function stereoRectify(cameraMatrix1: InputArray, distCoeffs1: InputArray, cameraMatrix2: InputArray, distCoeffs2: InputArray, imageSize: Size, R: InputArray, T: InputArray, R1: OutputArray, R2: OutputArray, P1: OutputArray, P2: OutputArray, Q: OutputArray, flags?: int, alpha?: double, newImageSize?: Size, validPixROI1?: any, validPixROI2?: any): void
 
 /**
  * The function computes the rectification transformations without knowing intrinsic parameters of the cameras and their relative position in the space, which explains the suffix "uncalibrated". Another related difference from stereoRectify is that the function outputs not the rectification transformations in the object (3D) space, but the planar perspective transformations encoded by the homography matrices H1 and H2 . The function implements the algorithm Hartley99 .
@@ -1166,7 +1166,7 @@ export declare function stereoRectify(cameraMatrix1: InputArray, distCoeffs1: In
  * @param H2 Output rectification homography matrix for the second image.
  * @param threshold Optional threshold used to filter out the outliers. If the parameter is greater than zero, all the point pairs that do not comply with the epipolar geometry (that is, the points for which $|\texttt{points2[i]}^T*\texttt{F}*\texttt{points1[i]}|>\texttt{threshold}$ ) are rejected prior to computing the homographies. Otherwise, all the points are considered inliers.
  */
-export declare function stereoRectifyUncalibrated(points1: InputArray, points2: InputArray, F: InputArray, imgSize: Size, H1: OutputArray, H2: OutputArray, threshold: double): bool
+export declare function stereoRectifyUncalibrated(points1: InputArray, points2: InputArray, F: InputArray, imgSize: Size, H1: OutputArray, H2: OutputArray, threshold?: double): bool
 
 /**
  * The function reconstructs 3-dimensional points (in homogeneous coordinates) by using their observations with a stereo camera. Projections matrices can be obtained from stereoRectify.
@@ -1200,7 +1200,7 @@ export declare function triangulatePoints(projMatr1: InputArray, projMatr2: Inpu
  * @param distCoeffs Input vector of distortion coefficients $(k_1, k_2, p_1, p_2[, k_3[, k_4, k_5, k_6[, s_1, s_2, s_3, s_4[, \tau_x, \tau_y]]]])$ of 4, 5, 8, 12 or 14 elements. If the vector is NULL/empty, the zero distortion coefficients are assumed.
  * @param newCameraMatrix Camera matrix of the distorted image. By default, it is the same as cameraMatrix but you may additionally scale and shift the result by using a different matrix.
  */
-export declare function undistort(src: InputArray, dst: OutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, newCameraMatrix: InputArray): void
+export declare function undistort(src: InputArray, dst: OutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, newCameraMatrix?: InputArray): void
 
 /**
  * The function is similar to [undistort](#d9/d0c/group__calib3d_1ga69f2545a8b62a6b0fc2ee060dc30559d}) and [initUndistortRectifyMap](#d9/d0c/group__calib3d_1ga7dfb72c9cf9780a347fbe3d1c47e5d5a}) but it operates on a sparse set of points instead of a raster image. Also the function performs a reverse transformation to projectPoints. In case of a 3D object, it does not reconstruct its 3D coordinates, but for a planar object, it does, up to a translation vector, if the proper R is specified.
@@ -1218,7 +1218,7 @@ export declare function undistort(src: InputArray, dst: OutputArray, cameraMatri
  * @param R Rectification transformation in the object space (3x3 matrix). R1 or R2 computed by stereoRectify can be passed here. If the matrix is empty, the identity transformation is used.
  * @param P New camera matrix (3x3) or new projection matrix (3x4) $\begin{bmatrix} {f'}_x & 0 & {c'}_x & t_x \\ 0 & {f'}_y & {c'}_y & t_y \\ 0 & 0 & 1 & t_z \end{bmatrix}$. P1 or P2 computed by stereoRectify can be passed here. If the matrix is empty, the identity new camera matrix is used.
  */
-export declare function undistortPoints(src: InputArray, dst: OutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, R: InputArray, P: InputArray): void
+export declare function undistortPoints(src: InputArray, dst: OutputArray, cameraMatrix: InputArray, distCoeffs: InputArray, R?: InputArray, P?: InputArray): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -1243,5 +1243,305 @@ export declare function undistortPoints(src: InputArray, dst: OutputArray, camer
  * @param numberOfDisparities 
  * @param disp12MaxDisp 
  */
-export declare function validateDisparity(disparity: InputOutputArray, cost: InputArray, minDisparity: int, numberOfDisparities: int, disp12MaxDisp: int): void
+export declare function validateDisparity(disparity: InputOutputArray, cost: InputArray, minDisparity: int, numberOfDisparities: int, disp12MaxDisp?: int): void
+
+/**
+ * 
+ */
+export declare const LMEDS: any // initializer: = 4
+
+/**
+ * 
+ */
+export declare const RANSAC: any // initializer: = 8
+
+/**
+ * 
+ */
+export declare const RHO: any // initializer: = 16
+
+/**
+ * 
+ */
+export declare const CALIB_CB_ADAPTIVE_THRESH: any // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CALIB_CB_NORMALIZE_IMAGE: any // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CALIB_CB_FILTER_QUADS: any // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CALIB_CB_FAST_CHECK: any // initializer: = 8
+
+/**
+ * 
+ */
+export declare const CALIB_CB_EXHAUSTIVE: any // initializer: = 16
+
+/**
+ * 
+ */
+export declare const CALIB_CB_ACCURACY: any // initializer: = 32
+
+/**
+ * 
+ */
+export declare const CALIB_CB_SYMMETRIC_GRID: any // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CALIB_CB_ASYMMETRIC_GRID: any // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CALIB_CB_CLUSTERING: any // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CALIB_NINTRINSIC: any // initializer: = 18
+
+/**
+ * 
+ */
+export declare const CALIB_USE_INTRINSIC_GUESS: any // initializer: = 0x00001
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_ASPECT_RATIO: any // initializer: = 0x00002
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_PRINCIPAL_POINT: any // initializer: = 0x00004
+
+/**
+ * 
+ */
+export declare const CALIB_ZERO_TANGENT_DIST: any // initializer: = 0x00008
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_FOCAL_LENGTH: any // initializer: = 0x00010
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K1: any // initializer: = 0x00020
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K2: any // initializer: = 0x00040
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K3: any // initializer: = 0x00080
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K4: any // initializer: = 0x00800
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K5: any // initializer: = 0x01000
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_K6: any // initializer: = 0x02000
+
+/**
+ * 
+ */
+export declare const CALIB_RATIONAL_MODEL: any // initializer: = 0x04000
+
+/**
+ * 
+ */
+export declare const CALIB_THIN_PRISM_MODEL: any // initializer: = 0x08000
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_S1_S2_S3_S4: any // initializer: = 0x10000
+
+/**
+ * 
+ */
+export declare const CALIB_TILTED_MODEL: any // initializer: = 0x40000
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_TAUX_TAUY: any // initializer: = 0x80000
+
+/**
+ * 
+ */
+export declare const CALIB_USE_QR: any // initializer: = 0x100000
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_TANGENT_DIST: any // initializer: = 0x200000
+
+/**
+ * 
+ */
+export declare const CALIB_FIX_INTRINSIC: any // initializer: = 0x00100
+
+/**
+ * 
+ */
+export declare const CALIB_SAME_FOCAL_LENGTH: any // initializer: = 0x00200
+
+/**
+ * 
+ */
+export declare const CALIB_ZERO_DISPARITY: any // initializer: = 0x00400
+
+/**
+ * 
+ */
+export declare const CALIB_USE_LU: any // initializer: = (1 << 17)
+
+/**
+ * 
+ */
+export declare const CALIB_USE_EXTRINSIC_GUESS: any // initializer: = (1 << 22)
+
+/**
+ * 
+ */
+export declare const FM_7POINT: any // initializer: = 1
+
+/**
+ * 
+ */
+export declare const FM_8POINT: any // initializer: = 2
+
+/**
+ * 
+ */
+export declare const FM_LMEDS: any // initializer: = 4
+
+/**
+ * 
+ */
+export declare const FM_RANSAC: any // initializer: = 8
+
+/**
+ * 
+ */
+export declare const CALIB_HAND_EYE_TSAI: HandEyeCalibrationMethod // initializer: = 0
+
+/**
+ * 
+ */
+export declare const CALIB_HAND_EYE_PARK: HandEyeCalibrationMethod // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CALIB_HAND_EYE_HORAUD: HandEyeCalibrationMethod // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CALIB_HAND_EYE_ANDREFF: HandEyeCalibrationMethod // initializer: = 3
+
+/**
+ * 
+ */
+export declare const CALIB_HAND_EYE_DANIILIDIS: HandEyeCalibrationMethod // initializer: = 4
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_ITERATIVE: SolvePnPMethod // initializer: = 0
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_EPNP: SolvePnPMethod // initializer: = 1
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_P3P: SolvePnPMethod // initializer: = 2
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_DLS: SolvePnPMethod // initializer: = 3
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_UPNP: SolvePnPMethod // initializer: = 4
+
+/**
+ * 
+ */
+export declare const SOLVEPNP_AP3P: SolvePnPMethod // initializer: = 5
+
+/**
+ * Infinitesimal Plane-Based Pose Estimation Collins14 
+ *  Object points must be coplanar.
+ * 
+ */
+export declare const SOLVEPNP_IPPE: SolvePnPMethod // initializer: = 6
+
+/**
+ * Infinitesimal Plane-Based Pose Estimation Collins14 
+ *  This is a special case suitable for marker pose estimation.
+ *  4 coplanar object points must be defined in the following order:
+ * 
+ * point 0: [-squareLength / 2, squareLength / 2, 0]
+ * point 1: [ squareLength / 2, squareLength / 2, 0]
+ * point 2: [ squareLength / 2, -squareLength / 2, 0]
+ * point 3: [-squareLength / 2, -squareLength / 2, 0]
+ * 
+ */
+export declare const SOLVEPNP_IPPE_SQUARE: SolvePnPMethod // initializer: = 7
+
+/**
+ * 
+ */
+export declare const PROJ_SPHERICAL_ORTHO: UndistortTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const PROJ_SPHERICAL_EQRECT: UndistortTypes // initializer: = 1
+
+/**
+ * 
+ */
+export type HandEyeCalibrationMethod = any
+
+/**
+ * 
+ */
+export type SolvePnPMethod = any
+
+/**
+ * 
+ */
+export type UndistortTypes = any
 

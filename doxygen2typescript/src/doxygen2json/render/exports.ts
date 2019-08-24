@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { notSameNotFalsy, withoutExtension } from 'misc-utils-of-mine-generic'
 import { join } from 'path'
-import { ls } from 'shelljs'
+import { ls, mkdir } from 'shelljs'
 import { Project, tsMorph } from 'ts-simple-ast-extra'
 import { Doxygen2tsOptions } from '../doxygen2ts'
 import { renderCTypesImports } from './tsExports/cTypes'
@@ -16,12 +16,14 @@ export function writeIndexTs(o: Doxygen2tsOptions) {
         addImports(f, o)
         return f
       }), '_cTypes.ts', '_hacks.ts']
-  const s = `${files.map(f => `export * from './${withoutExtension(f)}'`)
-    .join('\n')}`
   writeFileSync(join(o.tsOutputFolder, '_cTypes.ts'), renderCTypesImports())
   writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
-  writeFileSync(join(o.tsOutputFolder, '_types.ts'), s)
   writeFileSync(join(o.tsOutputFolder, 'index.ts'), renderCvExports())
+  writeFileSync(join(o.tsOutputFolder, '_types.ts'),  `${files.map(f => `export * from './${withoutExtension(f)}'`)    .join('\n')}`)
+  // heads up ! we are writing '../_opencvCustom.ts' so don't target the build directly on mirada's but on empty folder and copy it without overriding this file.
+  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.ts'), `
+export declare const FS: any
+`)
 }
 
 function getExternalTypeReferences(content: string) {

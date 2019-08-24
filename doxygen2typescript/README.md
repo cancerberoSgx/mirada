@@ -30,16 +30,30 @@ opencv2ts({
 })
 ```
 
-## Notes for development 
+## TODO - Status - Progress - Roadmap
+- [ ] class inheritancegraph - Mat_ extends Mat_
+  - [ ] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
+- [x] markdown - don't render links inside code snippets.
+- [ ] rename src/doxygen2json to 2ts 
+- [ ] class compounds enums names prefix broken - verify that's the case.
+- [ ] verify that type alias (enums) are exposed 
+- [x] issue wth optinoal params  (arg4: any, arg5?: typename, list: any)
+- [ ] build more examples and check all types are generated
+  - [ ] grabCut is not exposed
+- [ ] integrates with mirada
+- [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically
+- [ ] index.ts that expose the real objects with correct types. (1)
+- [x] multiple files input and output
+- [x] refs
+- [ ] move json2dts to own repo
+- [ ] cli (5)
+- [ ] groups - innerclass (4)
 
-```
-cv.* member names are mapped . It is defined at least in bindings.cpp
-for example cv::AgastFeatureDetector::AGAST_7_12s is exposed as AgastFeatureDetector_AGAST_7_12s - the info in bindings.cpp is:
-    constant("AgastFeatureDetector_AGAST_7_12s", static_cast<long>(cv::AgastFeatureDetector::AGAST_7_12s));
-  "AgastFeatureDetector_AGAST_7_12s",
-```
+ 
 
 ## Hacks to opencv
+
+None :) 
 
 Right now I only need to expose Module.FS (emscripten filesystem API) - a tiny change in JS module - PR: https://github.com/opencv/opencv/pull/15319
 
@@ -59,21 +73,3 @@ FROM trzeci/emscripten:latest
 RUN apt-get update -y
 RUN apt-get install -y doxygen
 ```
-
-## TODO 
-- [ ] rename src/doxygen2json to 2ts 
-- [ ] class compounds enums names prefix broken - verify that's the case.
-- [ ] verify that type alias (enums) are exposed 
-- [x] issue wth optinoal params  (arg4: any, arg5?: typename, list: any)
-- [ ] build more examples and check all types are generated
-  - [ ] grabCut is not exposed
-- [ ] integrates with mirada
-- [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically
-- [ ] class inheritancegraph - Mat_ extends Mat_
-- [ ] index.ts that expose the real objects with correct types. (1)
-- [x] multiple files input and output
-- [x] refs
-- [ ] move json2dts to own repo
-- [ ] cli (5)
-- [ ] groups - innerclass (4)
-

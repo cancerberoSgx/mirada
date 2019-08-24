@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, double, bool, InputOutputArray, size_t, InputArrayOfArrays, Scalar, InputOutputArrayOfArrays, Mat, OutputArrayOfArrays } from './_types'
+import { InputArray, OutputArray, int, double, bool, InputOutputArray, size_t, InputArrayOfArrays, Scalar, InputOutputArrayOfArrays, Mat, OutputArrayOfArrays, BorderTypes, CmpTypes, DecompTypes, DftFlags, GemmFlags, NormTypes, RotateFlags } from './_types'
 /*
  * # core_array
  *
@@ -45,7 +45,7 @@ export declare function absdiff(src1: InputArray, src2: InputArray, dst: OutputA
  * @param mask optional operation mask - 8-bit single channel array, that specifies elements of the output array to be changed.
  * @param dtype optional depth of the output array (see the discussion below).
  */
-export declare function add(src1: InputArray, src2: InputArray, dst: OutputArray, mask: InputArray, dtype: int): void
+export declare function add(src1: InputArray, src2: InputArray, dst: OutputArray, mask?: InputArray, dtype?: int): void
 
 /**
  * The function addWeighted calculates the weighted sum of two arrays as follows: `\\[\\texttt{dst} (I)= \\texttt{saturate} ( \\texttt{src1} (I)* \\texttt{alpha} + \\texttt{src2} (I)* \\texttt{beta} + \\texttt{gamma} )\\]` where I is a multi-dimensional index of array elements. In case of multi-channel arrays, each channel is processed independently. The function can be replaced with a matrix expression: 
@@ -66,7 +66,7 @@ export declare function add(src1: InputArray, src2: InputArray, dst: OutputArray
  * @param dst output array that has the same size and number of channels as the input arrays.
  * @param dtype optional depth of the output array; when both input arrays have the same depth, dtype can be set to -1, which will be equivalent to src1.depth().
  */
-export declare function addWeighted(src1: InputArray, alpha: double, src2: InputArray, beta: double, gamma: double, dst: OutputArray, dtype: int): void
+export declare function addWeighted(src1: InputArray, alpha: double, src2: InputArray, beta: double, gamma: double, dst: OutputArray, dtype?: int): void
 
 /**
  * see
@@ -82,7 +82,7 @@ export declare function addWeighted(src1: InputArray, alpha: double, src2: Input
  * @param update 
  * @param crosscheck 
  */
-export declare function batchDistance(src1: InputArray, src2: InputArray, dist: OutputArray, dtype: int, nidx: OutputArray, normType: int, K: int, mask: InputArray, update: int, crosscheck: bool): void
+export declare function batchDistance(src1: InputArray, src2: InputArray, dist: OutputArray, dtype: int, nidx: OutputArray, normType?: int, K?: int, mask?: InputArray, update?: int, crosscheck?: bool): void
 
 /**
  * The function [cv::bitwise_and](#d2/de8/group__core__array_1ga60b4d04b251ba5eb1392c34425497e14}) calculates the per-element bit-wise logical conjunction for: Two arrays when src1 and src2 have the same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\wedge \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or has the same number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\wedge \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} \\wedge \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are used for the operation. In case of multi-channel arrays, each channel is processed independently. In the second and third cases above, the scalar is first converted to the array type.
@@ -92,7 +92,7 @@ export declare function batchDistance(src1: InputArray, src2: InputArray, dist: 
  * @param dst output array that has the same size and type as the input arrays.
  * @param mask optional operation mask, 8-bit single channel array, that specifies elements of the output array to be changed.
  */
-export declare function bitwise_and(src1: InputArray, src2: InputArray, dst: OutputArray, mask: InputArray): void
+export declare function bitwise_and(src1: InputArray, src2: InputArray, dst: OutputArray, mask?: InputArray): void
 
 /**
  * The function [cv::bitwise_not](#d2/de8/group__core__array_1ga0002cf8b418479f4cb49a75442baee2f}) calculates per-element bit-wise inversion of the input array: `\\[\\texttt{dst} (I) = \\neg \\texttt{src} (I)\\]` In case of a floating-point input array, its machine-specific bit representation (usually IEEE754-compliant) is used for the operation. In case of multi-channel arrays, each channel is processed independently.
@@ -101,7 +101,7 @@ export declare function bitwise_and(src1: InputArray, src2: InputArray, dst: Out
  * @param dst output array that has the same size and type as the input array.
  * @param mask optional operation mask, 8-bit single channel array, that specifies elements of the output array to be changed.
  */
-export declare function bitwise_not(src: InputArray, dst: OutputArray, mask: InputArray): void
+export declare function bitwise_not(src: InputArray, dst: OutputArray, mask?: InputArray): void
 
 /**
  * The function [cv::bitwise_or](#d2/de8/group__core__array_1gab85523db362a4e26ff0c703793a719b4}) calculates the per-element bit-wise logical disjunction for: Two arrays when src1 and src2 have the same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\vee \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or has the same number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\vee \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} \\vee \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are used for the operation. In case of multi-channel arrays, each channel is processed independently. In the second and third cases above, the scalar is first converted to the array type.
@@ -111,7 +111,7 @@ export declare function bitwise_not(src: InputArray, dst: OutputArray, mask: Inp
  * @param dst output array that has the same size and type as the input arrays.
  * @param mask optional operation mask, 8-bit single channel array, that specifies elements of the output array to be changed.
  */
-export declare function bitwise_or(src1: InputArray, src2: InputArray, dst: OutputArray, mask: InputArray): void
+export declare function bitwise_or(src1: InputArray, src2: InputArray, dst: OutputArray, mask?: InputArray): void
 
 /**
  * The function [cv::bitwise_xor](#d2/de8/group__core__array_1ga84b2d8188ce506593dcc3f8cd00e8e2c}) calculates the per-element bit-wise logical "exclusive-or" operation for: Two arrays when src1 and src2 have the same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\oplus \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or has the same number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\oplus \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} \\oplus \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are used for the operation. In case of multi-channel arrays, each channel is processed independently. In the 2nd and 3rd cases above, the scalar is first converted to the array type.
@@ -121,7 +121,7 @@ export declare function bitwise_or(src1: InputArray, src2: InputArray, dst: Outp
  * @param dst output array that has the same size and type as the input arrays.
  * @param mask optional operation mask, 8-bit single channel array, that specifies elements of the output array to be changed.
  */
-export declare function bitwise_xor(src1: InputArray, src2: InputArray, dst: OutputArray, mask: InputArray): void
+export declare function bitwise_xor(src1: InputArray, src2: InputArray, dst: OutputArray, mask?: InputArray): void
 
 /**
  * The function computes and returns the coordinate of a donor pixel corresponding to the specified extrapolated pixel when using the specified extrapolation border mode. For example, if you use [cv::BORDER_WRAP](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5a697c1b011884a7c2bdc0e5caf7955661}) mode in the horizontal direction, [cv::BORDER_REFLECT_101](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5ab3c5a6143d8120b95005fa7105a10bb4}) in the vertical direction and want to compute value of the "virtual" pixel Point(-5, 100) in a floating-point image img , it looks like: 
@@ -153,7 +153,7 @@ export declare function borderInterpolate(p: int, len: int, borderType: int): in
  * @param flags operation flags as a combination of CovarFlags
  * @param ctype type of the matrixl; it equals 'CV_64F' by default.
  */
-export declare function calcCovarMatrix(samples: any, nsamples: int, covar: any, mean: any, flags: int, ctype: int): void
+export declare function calcCovarMatrix(samples: any, nsamples: int, covar: any, mean: any, flags: int, ctype?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -166,7 +166,7 @@ export declare function calcCovarMatrix(samples: any, nsamples: int, covar: any,
  * @param flags operation flags as a combination of CovarFlags
  * @param ctype type of the matrixl; it equals 'CV_64F' by default.
  */
-export declare function calcCovarMatrix(samples: InputArray, covar: OutputArray, mean: InputOutputArray, flags: int, ctype: int): void
+export declare function calcCovarMatrix(samples: InputArray, covar: OutputArray, mean: InputOutputArray, flags: int, ctype?: int): void
 
 /**
  * The function [cv::cartToPolar](#d2/de8/group__core__array_1gac5f92f48ec32cacf5275969c33ee837d}) calculates either the magnitude, angle, or both for every 2D vector (x(I),y(I)): `\\[\\begin{array}{l} \\texttt{magnitude} (I)= \\sqrt{\\texttt{x}(I)^2+\\texttt{y}(I)^2} , \\\\ \\texttt{angle} (I)= \\texttt{atan2} ( \\texttt{y} (I), \\texttt{x} (I))[ \\cdot180 / \\pi ] \\end{array}\\]`
@@ -181,7 +181,7 @@ export declare function calcCovarMatrix(samples: InputArray, covar: OutputArray,
  * @param angle output array of angles that has the same size and type as x; the angles are measured in radians (from 0 to 2*Pi) or in degrees (0 to 360 degrees).
  * @param angleInDegrees a flag, indicating whether the angles are measured in radians (which is by default), or in degrees.
  */
-export declare function cartToPolar(x: InputArray, y: InputArray, magnitude: OutputArray, angle: OutputArray, angleInDegrees: bool): void
+export declare function cartToPolar(x: InputArray, y: InputArray, magnitude: OutputArray, angle: OutputArray, angleInDegrees?: bool): void
 
 /**
  * The function [cv::checkRange](#d2/de8/group__core__array_1ga2bd19d89cae59361416736f87e3c7a64}) checks that every array element is neither NaN nor infinite. When minVal > -DBL_MAX and maxVal < DBL_MAX, the function also checks that each value is between minVal and maxVal. In case of multi-channel arrays, each channel is processed independently. If some values are out of range, position of the first outlier is stored in pos (when pos != NULL). Then, the function either returns false (when quiet=true) or throws an exception.
@@ -192,7 +192,7 @@ export declare function cartToPolar(x: InputArray, y: InputArray, magnitude: Out
  * @param minVal inclusive lower boundary of valid values range.
  * @param maxVal exclusive upper boundary of valid values range.
  */
-export declare function checkRange(a: InputArray, quiet: bool, pos: any, minVal: double, maxVal: double): bool
+export declare function checkRange(a: InputArray, quiet?: bool, pos?: any, minVal?: double, maxVal?: double): bool
 
 /**
  * The function compares: Elements of two arrays when src1 and src2 have the same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\,\\texttt{cmpop}\\, \\texttt{src2} (I)\\]` Elements of src1 with a scalar src2 when src2 is constructed from Scalar or has a single element: `\\[\\texttt{dst} (I) = \\texttt{src1}(I) \\,\\texttt{cmpop}\\, \\texttt{src2}\\]` src1 with elements of src2 when src1 is constructed from Scalar or has a single element: `\\[\\texttt{dst} (I) = \\texttt{src1} \\,\\texttt{cmpop}\\, \\texttt{src2} (I)\\]` When the comparison result is true, the corresponding element of output array is set to 255. The comparison operations can be replaced with the equivalent matrix expressions: 
@@ -223,7 +223,7 @@ export declare function compare(src1: InputArray, src2: InputArray, dst: OutputA
  * @param m input-output floating-point square matrix.
  * @param lowerToUpper operation flag; if true, the lower half is copied to the upper half. Otherwise, the upper half is copied to the lower half.
  */
-export declare function completeSymm(m: InputOutputArray, lowerToUpper: bool): void
+export declare function completeSymm(m: InputOutputArray, lowerToUpper?: bool): void
 
 /**
  * This function converts FP32 (single precision floating point) from/to FP16 (half precision floating point). CV_16S format is used to represent FP16 data. There are two use modes (src -> dst): CV_32F -> CV_16S and CV_16S -> CV_32F. The input array has to have type of CV_32F or CV_16S to represent the bit depth. If the input array is neither of them, the function will raise an error. The format of half precision floating point is defined in IEEE 754-2008.
@@ -252,7 +252,7 @@ export declare function convertFp16(src: InputArray, dst: OutputArray): void
  * @param alpha optional scale factor.
  * @param beta optional delta added to the scaled values.
  */
-export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha: double, beta: double): void
+export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha?: double, beta?: double): void
 
 /**
  * The function copies the source image into the middle of the destination image. The areas to the left, to the right, above and below the copied source image will be filled with extrapolated pixels. This is not what filtering functions based on it do (they extrapolate pixels on-fly), but what other more complex functions, including your own, may do to simplify image boundary handling.
@@ -288,7 +288,7 @@ export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha
  * @param borderType Border type. See borderInterpolate for details.
  * @param value Border value if borderType==BORDER_CONSTANT .
  */
-export declare function copyMakeBorder(src: InputArray, dst: OutputArray, top: int, bottom: int, left: int, right: int, borderType: int, value: any): void
+export declare function copyMakeBorder(src: InputArray, dst: OutputArray, top: int, bottom: int, left: int, right: int, borderType: int, value?: any): void
 
 /**
  * 
@@ -335,7 +335,7 @@ export declare function countNonZero(src: InputArray): int
  * @param dst output array of the same size and type as src .
  * @param flags transformation flags as a combination of cv::DftFlags (DCT_*)
  */
-export declare function dct(src: InputArray, dst: OutputArray, flags: int): void
+export declare function dct(src: InputArray, dst: OutputArray, flags?: int): void
 
 /**
  * The function [cv::determinant](#dc/d84/group__core__basic_1ga06b8ec936c3cbc9502d76c7818053b41}) calculates and returns the determinant of the specified matrix. For small matrices ( mtx.cols=mtx.rows<=3 ), the direct method is used. For larger matrices, the function uses LU factorization with partial pivoting.
@@ -438,7 +438,7 @@ export declare function determinant(mtx: InputArray): double
  * @param flags transformation flags, representing a combination of the DftFlags
  * @param nonzeroRows when the parameter is not zero, the function assumes that only the first nonzeroRows rows of the input array (DFT_INVERSE is not set) or only the first nonzeroRows of the output array (DFT_INVERSE is set) contain non-zeros, thus, the function can handle the rest of the rows more efficiently and save some time; this technique is very useful for calculating array cross-correlation or convolution using DFT.
  */
-export declare function dft(src: InputArray, dst: OutputArray, flags: int, nonzeroRows: int): void
+export declare function dft(src: InputArray, dst: OutputArray, flags?: int, nonzeroRows?: int): void
 
 /**
  * The function [cv::divide](#d2/de8/group__core__array_1ga6db555d30115642fedae0cda05604874}) divides one array by another: `\\[\\texttt{dst(I) = saturate(src1(I)*scale/src2(I))}\\]` or a scalar by an array when there is no src1 : `\\[\\texttt{dst(I) = saturate(scale/src2(I))}\\]`
@@ -459,7 +459,7 @@ export declare function dft(src: InputArray, dst: OutputArray, flags: int, nonze
  * @param scale scalar factor.
  * @param dtype optional depth of the output array; if -1, dst will have depth src2.depth(), but in case of an array-by-array division, you can only pass -1 when src1.depth()==src2.depth().
  */
-export declare function divide(src1: InputArray, src2: InputArray, dst: OutputArray, scale: double, dtype: int): void
+export declare function divide(src1: InputArray, src2: InputArray, dst: OutputArray, scale?: double, dtype?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -469,7 +469,7 @@ export declare function divide(src1: InputArray, src2: InputArray, dst: OutputAr
  * @param dst 
  * @param dtype 
  */
-export declare function divide(scale: double, src2: InputArray, dst: OutputArray, dtype: int): void
+export declare function divide(scale: double, src2: InputArray, dst: OutputArray, dtype?: int): void
 
 /**
  * The function [cv::eigen](#d2/de8/group__core__array_1ga9fa0d58657f60eaa6c71f6fbb40456e3}) calculates just eigenvalues, or eigenvalues and eigenvectors of the symmetric matrix src: 
@@ -486,7 +486,7 @@ export declare function divide(scale: double, src2: InputArray, dst: OutputArray
  * @param eigenvalues output vector of eigenvalues of the same type as src; the eigenvalues are stored in the descending order.
  * @param eigenvectors output matrix of eigenvectors; it has the same size and type as src; the eigenvectors are stored as subsequent matrix rows, in the same order as the corresponding eigenvalues.
  */
-export declare function eigen(src: InputArray, eigenvalues: OutputArray, eigenvectors: OutputArray): bool
+export declare function eigen(src: InputArray, eigenvalues: OutputArray, eigenvectors?: OutputArray): bool
 
 /**
  * Assumes real eigenvalues.
@@ -585,7 +585,7 @@ export declare function flip(src: InputArray, dst: OutputArray, flipCode: int): 
  * @param dst output matrix; it has the proper size and the same type as input matrices.
  * @param flags operation flags (cv::GemmFlags)
  */
-export declare function gemm(src1: InputArray, src2: InputArray, alpha: double, src3: InputArray, beta: double, dst: OutputArray, flags: int): void
+export declare function gemm(src1: InputArray, src2: InputArray, alpha: double, src3: InputArray, beta: double, dst: OutputArray, flags?: int): void
 
 /**
  * DFT performance is not a monotonic function of a vector size. Therefore, when you calculate convolution of two arrays or perform the spectral analysis of an array, it usually makes sense to pad the input data with zeros to get a bit larger array that can be transformed much faster than the original one. Arrays whose size is a power-of-two (2, 4, 8, 16, 32, ...) are the fastest to process. Though, the arrays whose size is a product of 2's, 3's, and 5's (for example, 300 = 5*5*3*2*2) are also processed quite efficiently.
@@ -687,7 +687,7 @@ export declare function hconcat(src: InputArrayOfArrays, dst: OutputArray): void
  * @param dst output array of the same size and type as src.
  * @param flags operation flags.
  */
-export declare function idct(src: InputArray, dst: OutputArray, flags: int): void
+export declare function idct(src: InputArray, dst: OutputArray, flags?: int): void
 
 /**
  * idft(src, dst, flags) is equivalent to dft(src, dst, flags | [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be})) . 
@@ -701,7 +701,7 @@ export declare function idct(src: InputArray, dst: OutputArray, flags: int): voi
  * @param flags operation flags (see dft and DftFlags).
  * @param nonzeroRows number of dst rows to process; the rest of the rows have undefined content (see the convolution sample in dft description.
  */
-export declare function idft(src: InputArray, dst: OutputArray, flags: int, nonzeroRows: int): void
+export declare function idft(src: InputArray, dst: OutputArray, flags?: int, nonzeroRows?: int): void
 
 /**
  * The function checks the range as follows:
@@ -745,7 +745,7 @@ export declare function insertChannel(src: InputArray, dst: InputOutputArray, co
  * @param dst output matrix of N x M size and the same type as src.
  * @param flags inversion method (cv::DecompTypes)
  */
-export declare function invert(src: InputArray, dst: OutputArray, flags: int): double
+export declare function invert(src: InputArray, dst: OutputArray, flags?: int): double
 
 /**
  * The function [cv::log](#d7/dcc/group__core__utils__softfloat_1gae5de78ee278fe88405c6dbc38502f7c1}) calculates the natural logarithm of every element of the input array: `\\[\\texttt{dst} (I) = \\log (\\texttt{src}(I)) \\]`
@@ -827,7 +827,7 @@ export declare function max(src1: any, src2: any, dst: any): void
  * @param src input array that should have from 1 to 4 channels so that the result can be stored in Scalar_ .
  * @param mask optional operation mask.
  */
-export declare function mean(src: InputArray, mask: InputArray): Scalar
+export declare function mean(src: InputArray, mask?: InputArray): Scalar
 
 /**
  * Calculates a mean and standard deviation of array elements.
@@ -843,7 +843,7 @@ export declare function mean(src: InputArray, mask: InputArray): Scalar
  * @param stddev output parameter: calculated standard deviation.
  * @param mask optional operation mask.
  */
-export declare function meanStdDev(src: InputArray, mean: OutputArray, stddev: OutputArray, mask: InputArray): void
+export declare function meanStdDev(src: InputArray, mean: OutputArray, stddev: OutputArray, mask?: InputArray): void
 
 /**
  * The function [cv::merge](#d2/de8/group__core__array_1ga7d7b4d6c6ee504b30a20b1680029c7b4}) merges several arrays to make a single multi-channel array. That is, each element of the output array will be a concatenation of the elements of the input arrays, where elements of i-th input array are treated as mv[i].channels()-element vectors.
@@ -925,7 +925,7 @@ export declare function min(src1: any, src2: any, dst: any): void
  * @param maxIdx pointer to the returned maximum location (in nD case). NULL is used if not required.
  * @param mask specified array region
  */
-export declare function minMaxIdx(src: InputArray, minVal: any, maxVal: any, minIdx: any, maxIdx: any, mask: InputArray): void
+export declare function minMaxIdx(src: InputArray, minVal: any, maxVal?: any, minIdx?: any, maxIdx?: any, mask?: InputArray): void
 
 /**
  * The function [cv::minMaxLoc](#d2/de8/group__core__array_1gab473bf2eb6d14ff97e89b355dac20707}) finds the minimum and maximum element values and their positions. The extremums are searched across the whole array or, if mask is not an empty array, in the specified array region.
@@ -941,7 +941,7 @@ export declare function minMaxIdx(src: InputArray, minVal: any, maxVal: any, min
  * @param maxLoc pointer to the returned maximum location (in 2D case); NULL is used if not required.
  * @param mask optional mask used to select a sub-array.
  */
-export declare function minMaxLoc(src: InputArray, minVal: any, maxVal: any, minLoc: any, maxLoc: any, mask: InputArray): void
+export declare function minMaxLoc(src: InputArray, minVal: any, maxVal?: any, minLoc?: any, maxLoc?: any, mask?: InputArray): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -952,7 +952,7 @@ export declare function minMaxLoc(src: InputArray, minVal: any, maxVal: any, min
  * @param minIdx pointer to the returned minimum location (in nD case); NULL is used if not required; Otherwise, it must point to an array of src.dims elements, the coordinates of the minimum element in each dimension are stored there sequentially.
  * @param maxIdx pointer to the returned maximum location (in nD case). NULL is used if not required.
  */
-export declare function minMaxLoc(a: any, minVal: any, maxVal: any, minIdx: any, maxIdx: any): void
+export declare function minMaxLoc(a: any, minVal: any, maxVal: any, minIdx?: any, maxIdx?: any): void
 
 /**
  * The function [cv::mixChannels](#d2/de8/group__core__array_1ga51d768c270a1cdd3497255017c4504be}) provides an advanced mechanism for shuffling image channels.
@@ -1018,7 +1018,7 @@ export declare function mixChannels(src: InputArrayOfArrays, dst: InputOutputArr
  * @param flags operation flags; currently, the only supported flag is cv::DFT_ROWS, which indicates that each row of src1 and src2 is an independent 1D Fourier spectrum. If you do not want to use this flag, then simply add a 0 as value.
  * @param conjB optional flag that conjugates the second input array before the multiplication (true) or not (false).
  */
-export declare function mulSpectrums(a: InputArray, b: InputArray, c: OutputArray, flags: int, conjB: bool): void
+export declare function mulSpectrums(a: InputArray, b: InputArray, c: OutputArray, flags: int, conjB?: bool): void
 
 /**
  * The function multiply calculates the per-element product of two arrays:
@@ -1039,7 +1039,7 @@ export declare function mulSpectrums(a: InputArray, b: InputArray, c: OutputArra
  * @param scale optional scale factor.
  * @param dtype optional depth of the output array
  */
-export declare function multiply(src1: InputArray, src2: InputArray, dst: OutputArray, scale: double, dtype: int): void
+export declare function multiply(src1: InputArray, src2: InputArray, dst: OutputArray, scale?: double, dtype?: int): void
 
 /**
  * The function [cv::mulTransposed](#d2/de8/group__core__array_1gadc4e49f8f7a155044e3be1b9e3b270ab}) calculates the product of src and its transposition: `\\[\\texttt{dst} = \\texttt{scale} ( \\texttt{src} - \\texttt{delta} )^T ( \\texttt{src} - \\texttt{delta} )\\]` if aTa=true , and `\\[\\texttt{dst} = \\texttt{scale} ( \\texttt{src} - \\texttt{delta} ) ( \\texttt{src} - \\texttt{delta} )^T\\]` otherwise. The function is used to calculate the covariance matrix. With zero delta, it can be used as a faster substitute for general matrix product A*B when B=A' 
@@ -1053,7 +1053,7 @@ export declare function multiply(src1: InputArray, src2: InputArray, dst: Output
  * @param scale Optional scale factor for the matrix product.
  * @param dtype Optional type of the output matrix. When it is negative, the output matrix will have the same type as src . Otherwise, it will be type=CV_MAT_DEPTH(dtype) that should be either CV_32F or CV_64F .
  */
-export declare function mulTransposed(src: InputArray, dst: OutputArray, aTa: bool, delta: InputArray, scale: double, dtype: int): void
+export declare function mulTransposed(src: InputArray, dst: OutputArray, aTa: bool, delta?: InputArray, scale?: double, dtype?: int): void
 
 /**
  * This version of [norm](#dc/d84/group__core__basic_1ga4e556cb8ad35a643a1ea66e035711bb9}) calculates the absolute norm of src1. The type of norm to calculate is specified using [NormTypes](#d2/de8/group__core__array_1gad12cefbcb5291cf958a85b4b67b6149f}).
@@ -1071,7 +1071,7 @@ export declare function mulTransposed(src: InputArray, dst: OutputArray, aTa: bo
  * @param normType type of the norm (see NormTypes).
  * @param mask optional operation mask; it must have the same size as src1 and CV_8UC1 type.
  */
-export declare function norm(src1: InputArray, normType: int, mask: InputArray): double
+export declare function norm(src1: InputArray, normType?: int, mask?: InputArray): double
 
 /**
  * This version of [cv::norm](#dc/d84/group__core__basic_1ga4e556cb8ad35a643a1ea66e035711bb9}) calculates the absolute difference norm or the relative difference norm of arrays src1 and src2. The type of norm to calculate is specified using [NormTypes](#d2/de8/group__core__array_1gad12cefbcb5291cf958a85b4b67b6149f}).
@@ -1081,7 +1081,7 @@ export declare function norm(src1: InputArray, normType: int, mask: InputArray):
  * @param normType type of the norm (see NormTypes).
  * @param mask optional operation mask; it must have the same size as src1 and CV_8UC1 type.
  */
-export declare function norm(src1: InputArray, src2: InputArray, normType: int, mask: InputArray): double
+export declare function norm(src1: InputArray, src2: InputArray, normType?: int, mask?: InputArray): double
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -1140,7 +1140,7 @@ export declare function norm(src: any, normType: int): double
  * @param dtype when negative, the output array has the same type as src; otherwise, it has the same number of channels as src and the depth =CV_MAT_DEPTH(dtype).
  * @param mask optional operation mask.
  */
-export declare function normalize(src: InputArray, dst: InputOutputArray, alpha: double, beta: double, norm_type: int, dtype: int, mask: InputArray): void
+export declare function normalize(src: InputArray, dst: InputOutputArray, alpha?: double, beta?: double, norm_type?: int, dtype?: int, mask?: InputArray): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -1157,7 +1157,7 @@ export declare function normalize(src: any, dst: any, alpha: double, normType: i
  * @param a 
  * @param val 
  */
-export declare function patchNaNs(a: InputOutputArray, val: double): void
+export declare function patchNaNs(a: InputOutputArray, val?: double): void
 
 /**
  * wrap [PCA::backProject](#d3/d8d/classcv_1_1PCA_1a5f84cfbdb25b9833cc1bfb5bd484ea79})
@@ -1177,7 +1177,7 @@ export declare function PCABackProject(data: InputArray, mean: InputArray, eigen
  * @param eigenvectors 
  * @param maxComponents 
  */
-export declare function PCACompute(data: InputArray, mean: InputOutputArray, eigenvectors: OutputArray, maxComponents: int): void
+export declare function PCACompute(data: InputArray, mean: InputOutputArray, eigenvectors: OutputArray, maxComponents?: int): void
 
 /**
  * wrap PCA::operator() and add eigenvalues output parameter
@@ -1188,7 +1188,7 @@ export declare function PCACompute(data: InputArray, mean: InputOutputArray, eig
  * @param eigenvalues 
  * @param maxComponents 
  */
-export declare function PCACompute(data: InputArray, mean: InputOutputArray, eigenvectors: OutputArray, eigenvalues: OutputArray, maxComponents: int): void
+export declare function PCACompute(data: InputArray, mean: InputOutputArray, eigenvectors: OutputArray, eigenvalues: OutputArray, maxComponents?: int): void
 
 /**
  * wrap PCA::operator()
@@ -1246,7 +1246,7 @@ export declare function perspectiveTransform(src: InputArray, dst: OutputArray, 
  * @param angle output array of vector angles; it has the same size and same type as x .
  * @param angleInDegrees when true, the function calculates the angle in degrees, otherwise, they are measured in radians.
  */
-export declare function phase(x: InputArray, y: InputArray, angle: OutputArray, angleInDegrees: bool): void
+export declare function phase(x: InputArray, y: InputArray, angle: OutputArray, angleInDegrees?: bool): void
 
 /**
  * The function [cv::polarToCart](#d2/de8/group__core__array_1ga581ff9d44201de2dd1b40a50db93d665}) calculates the Cartesian coordinates of each 2D vector represented by the corresponding elements of magnitude and angle: `\\[\\begin{array}{l} \\texttt{x} (I) = \\texttt{magnitude} (I) \\cos ( \\texttt{angle} (I)) \\\\ \\texttt{y} (I) = \\texttt{magnitude} (I) \\sin ( \\texttt{angle} (I)) \\\\ \\end{array}\\]`
@@ -1261,7 +1261,7 @@ export declare function phase(x: InputArray, y: InputArray, angle: OutputArray, 
  * @param y output array of y-coordinates of 2D vectors; it has the same size and type as angle.
  * @param angleInDegrees when true, the input angles are measured in degrees, otherwise, they are measured in radians.
  */
-export declare function polarToCart(magnitude: InputArray, angle: InputArray, x: OutputArray, y: OutputArray, angleInDegrees: bool): void
+export declare function polarToCart(magnitude: InputArray, angle: InputArray, x: OutputArray, y: OutputArray, angleInDegrees?: bool): void
 
 /**
  * The function [cv::pow](#d7/dcc/group__core__utils__softfloat_1ga8bc36646a43b82baa15f151a973fb0c5}) raises every element of the input array to power : `\\[\\texttt{dst} (I) = \\fork{\\texttt{src}(I)^{power}}{if \\(\\texttt{power}\\) is integer}{|\\texttt{src}(I)|^{power}}{otherwise}\\]`
@@ -1299,7 +1299,7 @@ export declare function pow(src: InputArray, power: double, dst: OutputArray): v
  * @param src2 second input array of the same size as src1.
  * @param R the maximum pixel value (255 by default)
  */
-export declare function PSNR(src1: InputArray, src2: InputArray, R: double): double
+export declare function PSNR(src1: InputArray, src2: InputArray, R?: double): double
 
 /**
  * The function [cv::randn](#d2/de8/group__core__array_1gaeff1f61e972d133a04ce3a5f81cf6808}) fills the matrix dst with normally distributed random numbers with the specified mean vector and the standard deviation matrix. The generated random numbers are clipped to fit the value range of the output array data type. 
@@ -1321,7 +1321,7 @@ export declare function randn(dst: InputOutputArray, mean: InputArray, stddev: I
  * @param iterFactor scale factor that determines the number of random swap operations (see the details below).
  * @param rng optional random number generator used for shuffling; if it is zero, theRNG () is used instead.
  */
-export declare function randShuffle(dst: InputOutputArray, iterFactor: double, rng: any): void
+export declare function randShuffle(dst: InputOutputArray, iterFactor?: double, rng?: any): void
 
 /**
  * Non-template variant of the function fills the matrix dst with uniformly-distributed random numbers from the specified range: `\\[\\texttt{low} _c \\leq \\texttt{dst} (I)_c < \\texttt{high} _c\\]` 
@@ -1381,7 +1381,7 @@ export declare function randu(dst: InputOutputArray, low: InputArray, high: Inpu
  * @param rtype reduction operation that could be one of ReduceTypes
  * @param dtype when negative, the output vector will have the same type as the input matrix, otherwise, its type will be CV_MAKE_TYPE(CV_MAT_DEPTH(dtype), src.channels()).
  */
-export declare function reduce(src: InputArray, dst: OutputArray, dim: int, rtype: int, dtype: int): void
+export declare function reduce(src: InputArray, dst: OutputArray, dim: int, rtype: int, dtype?: int): void
 
 /**
  * The function [cv::repeat](#d2/de8/group__core__array_1ga496c3860f3ac44c40b48811333cfda2d}) duplicates the input array one or more times along each of the two axes: `\\[\\texttt{dst} _{ij}= \\texttt{src} _{i\\mod src.rows, \\; j\\mod src.cols }\\]` The second variant of the function is more convenient to use with [MatrixExpressions](#d1/d10/classcv_1_1MatExpr_1MatrixExpressions}). 
@@ -1446,7 +1446,7 @@ export declare function scaleAdd(src1: InputArray, alpha: double, src2: InputArr
  * @param mtx matrix to initialize (not necessarily square).
  * @param s value to assign to diagonal elements.
  */
-export declare function setIdentity(mtx: InputOutputArray, s: any): void
+export declare function setIdentity(mtx: InputOutputArray, s?: any): void
 
 /**
  * The function [cv::setRNGSeed](#d2/de8/group__core__array_1ga757e657c037410d9e19e819569e7de0f}) sets state of default random number generator to custom value. 
@@ -1471,7 +1471,7 @@ export declare function setRNGSeed(seed: int): void
  * @param dst output solution.
  * @param flags solution (matrix inversion) method (DecompTypes)
  */
-export declare function solve(src1: InputArray, src2: InputArray, dst: OutputArray, flags: int): bool
+export declare function solve(src1: InputArray, src2: InputArray, dst: OutputArray, flags?: int): bool
 
 /**
  * The function solveCubic finds the real roots of a cubic equation:
@@ -1495,7 +1495,7 @@ export declare function solveCubic(coeffs: InputArray, roots: OutputArray): int
  * @param roots output (complex) array of roots.
  * @param maxIters maximum number of iterations the algorithm does.
  */
-export declare function solvePoly(coeffs: InputArray, roots: OutputArray, maxIters: int): double
+export declare function solvePoly(coeffs: InputArray, roots: OutputArray, maxIters?: int): double
 
 /**
  * The function [cv::sort](#d2/de8/group__core__array_1ga45dd56da289494ce874be2324856898f}) sorts each matrix row or each matrix column in ascending or descending order. So you should pass two operation flags to get desired behaviour. If you want to sort matrix rows or columns lexicographically, you can use STL std::sort generic function with the proper comparison predicate.
@@ -1601,7 +1601,7 @@ export declare function sqrt(src: InputArray, dst: OutputArray): void
  * @param mask optional operation mask; this is an 8-bit single channel array that specifies elements of the output array to be changed.
  * @param dtype optional depth of the output array
  */
-export declare function subtract(src1: InputArray, src2: InputArray, dst: OutputArray, mask: InputArray, dtype: int): void
+export declare function subtract(src1: InputArray, src2: InputArray, dst: OutputArray, mask?: InputArray, dtype?: int): void
 
 /**
  * The function [cv::sum](#d2/de8/group__core__array_1ga716e10a2dd9e228e4d3c95818f106722}) calculates and returns the sum of array elements, independently for each channel. 
@@ -1632,7 +1632,7 @@ export declare function SVBackSubst(w: InputArray, u: InputArray, vt: InputArray
  * @param vt 
  * @param flags 
  */
-export declare function SVDecomp(src: InputArray, w: OutputArray, u: OutputArray, vt: OutputArray, flags: int): void
+export declare function SVDecomp(src: InputArray, w: OutputArray, u: OutputArray, vt: OutputArray, flags?: int): void
 
 /**
  * The function [cv::theRNG](#d2/de8/group__core__array_1ga75843061d150ad6564b5447e38e57722}) returns the default random number generator. For each thread, there is a separate random number generator, so you can use the function safely in multi-thread environments. If you just need to get a single random number using this generator or initialize an array, you can use randu or randn instead. But if you are going to generate many random numbers inside a loop, it is much faster to use this function to retrieve the generator and then use RNG::operator _Tp() . 
@@ -1750,4 +1750,300 @@ export declare function vconcat(src1: InputArray, src2: InputArray, dst: OutputA
  * @param dst output array. It has the same number of cols and depth as the src, and the sum of rows of the src. same depth.
  */
 export declare function vconcat(src: InputArrayOfArrays, dst: OutputArray): void
+
+/**
+ * 
+ */
+export declare const BORDER_CONSTANT: BorderTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const BORDER_REPLICATE: BorderTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const BORDER_REFLECT: BorderTypes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const BORDER_WRAP: BorderTypes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const BORDER_REFLECT_101: BorderTypes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const BORDER_TRANSPARENT: BorderTypes // initializer: = 5
+
+/**
+ * 
+ */
+export declare const BORDER_REFLECT101: BorderTypes // initializer: = BORDER_REFLECT_101
+
+/**
+ * 
+ */
+export declare const BORDER_DEFAULT: BorderTypes // initializer: = BORDER_REFLECT_101
+
+/**
+ * 
+ */
+export declare const BORDER_ISOLATED: BorderTypes // initializer: = 16
+
+/**
+ * 
+ */
+export declare const CMP_EQ: CmpTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const CMP_GT: CmpTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CMP_GE: CmpTypes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CMP_LT: CmpTypes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const CMP_LE: CmpTypes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CMP_NE: CmpTypes // initializer: = 5
+
+/**
+ * Gaussian elimination with the optimal pivot element chosen.
+ * 
+ */
+export declare const DECOMP_LU: DecompTypes // initializer: = 0
+
+/**
+ * singular value decomposition ([SVD](#df/df7/classcv_1_1SVD})) method; the system can be over-defined and/or the matrix src1 can be singular
+ * 
+ */
+export declare const DECOMP_SVD: DecompTypes // initializer: = 1
+
+/**
+ * eigenvalue decomposition; the matrix src1 must be symmetrical
+ * 
+ */
+export declare const DECOMP_EIG: DecompTypes // initializer: = 2
+
+/**
+ * Cholesky `$LL^T$` factorization; the matrix src1 must be symmetrical and positively defined
+ * 
+ */
+export declare const DECOMP_CHOLESKY: DecompTypes // initializer: = 3
+
+/**
+ * QR factorization; the system can be over-defined and/or the matrix src1 can be singular
+ * 
+ */
+export declare const DECOMP_QR: DecompTypes // initializer: = 4
+
+/**
+ * while all the previous flags are mutually exclusive, this flag can be used together with any of the previous; it means that the normal equations `$\\texttt{src1}^T\\cdot\\texttt{src1}\\cdot\\texttt{dst}=\\texttt{src1}^T\\texttt{src2}$` are solved instead of the original system `$\\texttt{src1}\\cdot\\texttt{dst}=\\texttt{src2}$`
+ * 
+ */
+export declare const DECOMP_NORMAL: DecompTypes // initializer: = 16
+
+/**
+ * performs an inverse 1D or 2D transform instead of the default forward transform.
+ * 
+ */
+export declare const DFT_INVERSE: DftFlags // initializer: = 1
+
+/**
+ * scales the result: divide it by the number of array elements. Normally, it is combined with DFT_INVERSE.
+ * 
+ */
+export declare const DFT_SCALE: DftFlags // initializer: = 2
+
+/**
+ * performs a forward or inverse transform of every individual row of the input matrix; this flag enables you to transform multiple vectors simultaneously and can be used to decrease the overhead (which is sometimes several times larger than the processing itself) to perform 3D and higher-dimensional transformations and so forth.
+ * 
+ */
+export declare const DFT_ROWS: DftFlags // initializer: = 4
+
+/**
+ * performs a forward transformation of 1D or 2D real array; the result, though being a complex array, has complex-conjugate symmetry (*CCS*, see the function description below for details), and such an array can be packed into a real array of the same size as input, which is the fastest option and which is what the function does by default; however, you may wish to get a full complex array (for simpler spectrum analysis, and so on) - pass the flag to enable the function to produce a full-size complex output array.
+ * 
+ */
+export declare const DFT_COMPLEX_OUTPUT: DftFlags // initializer: = 16
+
+/**
+ * performs an inverse transformation of a 1D or 2D complex array; the result is normally a complex array of the same size, however, if the input array has conjugate-complex symmetry (for example, it is a result of forward transformation with DFT_COMPLEX_OUTPUT flag), the output is a real array; while the function itself does not check whether the input is symmetrical or not, you can pass the flag and then the function will assume the symmetry and produce the real output array (note that when the input is packed into a real array and inverse transformation is executed, the function treats the input as a packed complex-conjugate symmetrical array, and the output will also be a real array).
+ * 
+ */
+export declare const DFT_REAL_OUTPUT: DftFlags // initializer: = 32
+
+/**
+ * specifies that input is complex input. If this flag is set, the input must have 2 channels. On the other hand, for backwards compatibility reason, if input has 2 channels, input is already considered complex.
+ * 
+ */
+export declare const DFT_COMPLEX_INPUT: DftFlags // initializer: = 64
+
+/**
+ * performs an inverse 1D or 2D transform instead of the default forward transform.
+ * 
+ */
+export declare const DCT_INVERSE: DftFlags // initializer: = DFT_INVERSE
+
+/**
+ * performs a forward or inverse transform of every individual row of the input matrix. This flag enables you to transform multiple vectors simultaneously and can be used to decrease the overhead (which is sometimes several times larger than the processing itself) to perform 3D and higher-dimensional transforms and so forth.
+ * 
+ */
+export declare const DCT_ROWS: DftFlags // initializer: = DFT_ROWS
+
+/**
+ * 
+ */
+export declare const GEMM_1_T: GemmFlags // initializer: = 1
+
+/**
+ * 
+ */
+export declare const GEMM_2_T: GemmFlags // initializer: = 2
+
+/**
+ * 
+ */
+export declare const GEMM_3_T: GemmFlags // initializer: = 4
+
+/**
+ * `\\[ norm = \\forkthree {\\|\\texttt{src1}\\|_{L_{\\infty}} = \\max _I | \\texttt{src1} (I)|}{if \\(\\texttt{normType} = \\texttt{NORM_INF}\\) } {\\|\\texttt{src1}-\\texttt{src2}\\|_{L_{\\infty}} = \\max _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} = \\texttt{NORM_INF}\\) } {\\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_{\\infty}} }{\\|\\texttt{src2}\\|_{L_{\\infty}} }}{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_INF}\\) } \\]`
+ * 
+ */
+export declare const NORM_INF: NormTypes // initializer: = 1
+
+/**
+ * `\\[ norm = \\forkthree {\\| \\texttt{src1} \\| _{L_1} = \\sum _I | \\texttt{src1} (I)|}{if \\(\\texttt{normType} = \\texttt{NORM_L1}\\)} { \\| \\texttt{src1} - \\texttt{src2} \\| _{L_1} = \\sum _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} = \\texttt{NORM_L1}\\) } { \\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_1} }{\\|\\texttt{src2}\\|_{L_1}} }{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_L1}\\) } \\]`
+ * 
+ */
+export declare const NORM_L1: NormTypes // initializer: = 2
+
+/**
+ * `\\[ norm = \\forkthree { \\| \\texttt{src1} \\| _{L_2} = \\sqrt{\\sum_I \\texttt{src1}(I)^2} }{if \\(\\texttt{normType} = \\texttt{NORM_L2}\\) } { \\| \\texttt{src1} - \\texttt{src2} \\| _{L_2} = \\sqrt{\\sum_I (\\texttt{src1}(I) - \\texttt{src2}(I))^2} }{if \\(\\texttt{normType} = \\texttt{NORM_L2}\\) } { \\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_2} }{\\|\\texttt{src2}\\|_{L_2}} }{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_L2}\\) } \\]`
+ * 
+ */
+export declare const NORM_L2: NormTypes // initializer: = 4
+
+/**
+ * `\\[ norm = \\forkthree { \\| \\texttt{src1} \\| _{L_2} ^{2} = \\sum_I \\texttt{src1}(I)^2} {if \\(\\texttt{normType} = \\texttt{NORM_L2SQR}\\)} { \\| \\texttt{src1} - \\texttt{src2} \\| _{L_2} ^{2} = \\sum_I (\\texttt{src1}(I) - \\texttt{src2}(I))^2 }{if \\(\\texttt{normType} = \\texttt{NORM_L2SQR}\\) } { \\left(\\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_2} }{\\|\\texttt{src2}\\|_{L_2}}\\right)^2 }{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_L2SQR}\\) } \\]`
+ * 
+ */
+export declare const NORM_L2SQR: NormTypes // initializer: = 5
+
+/**
+ * In the case of one input array, calculates the [Hamming](#d3/d59/structcv_1_1Hamming}) distance of the array from zero, In the case of two input arrays, calculates the [Hamming](#d3/d59/structcv_1_1Hamming}) distance between the arrays.
+ * 
+ */
+export declare const NORM_HAMMING: NormTypes // initializer: = 6
+
+/**
+ * Similar to NORM_HAMMING, but in the calculation, each two bits of the input sequence will be added and treated as a single bit to be used in the same calculation as NORM_HAMMING.
+ * 
+ */
+export declare const NORM_HAMMING2: NormTypes // initializer: = 7
+
+/**
+ * 
+ */
+export declare const NORM_TYPE_MASK: NormTypes // initializer: = 7
+
+/**
+ * 
+ */
+export declare const NORM_RELATIVE: NormTypes // initializer: = 8
+
+/**
+ * 
+ */
+export declare const NORM_MINMAX: NormTypes // initializer: = 32
+
+/**
+ * 
+ */
+export declare const ROTATE_90_CLOCKWISE: RotateFlags // initializer: = 0
+
+/**
+ * 
+ */
+export declare const ROTATE_180: RotateFlags // initializer: = 1
+
+/**
+ * 
+ */
+export declare const ROTATE_90_COUNTERCLOCKWISE: RotateFlags // initializer: = 2
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type BorderTypes = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type CmpTypes = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type DecompTypes = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type DftFlags = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type GemmFlags = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type NormTypes = any
+
+/**
+ * Various border types, image boundaries are denoted with `|` 
+ * 
+ * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58}), [copyMakeBorder](#d2/de8/group__core__array_1ga2ac1049c2c3dd25c2b41bffe17658a36})
+ * 
+ */
+export type RotateFlags = any
 

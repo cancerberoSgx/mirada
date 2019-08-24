@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int } from './_types'
+import { InputArray, OutputArray, int, TemplateMatchModes } from './_types'
 /*
  * # imgproc_object
  *
@@ -17,5 +17,41 @@ import { InputArray, OutputArray, int } from './_types'
  * @param method Parameter specifying the comparison method, see TemplateMatchModes
  * @param mask Mask of searched template. It must have the same datatype and size with templ. It is not set by default. Currently, only the TM_SQDIFF and TM_CCORR_NORMED methods are supported.
  */
-export declare function matchTemplate(image: InputArray, templ: InputArray, result: OutputArray, method: int, mask: InputArray): void
+export declare function matchTemplate(image: InputArray, templ: InputArray, result: OutputArray, method: int, mask?: InputArray): void
+
+/**
+ * 
+ */
+export declare const TM_SQDIFF: TemplateMatchModes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const TM_SQDIFF_NORMED: TemplateMatchModes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const TM_CCORR: TemplateMatchModes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const TM_CCORR_NORMED: TemplateMatchModes // initializer: = 3
+
+/**
+ * `\\[R(x,y)= \\sum _{x',y'} (T'(x',y') \\cdot I'(x+x',y+y'))\\]` where `\\[\\begin{array}{l} T'(x',y')=T(x',y') - 1/(w \\cdot h) \\cdot \\sum _{x'',y''} T(x'',y'') \\\\ I'(x+x',y+y')=I(x+x',y+y') - 1/(w \\cdot h) \\cdot \\sum _{x'',y''} I(x+x'',y+y'') \\end{array}\\]`
+ * 
+ */
+export declare const TM_CCOEFF: TemplateMatchModes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const TM_CCOEFF_NORMED: TemplateMatchModes // initializer: = 5
+
+/**
+ * 
+ */
+export type TemplateMatchModes = any
 

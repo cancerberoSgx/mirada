@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, Rect } from './_types'
+import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, Rect, AdaptiveThresholdTypes, DistanceTransformLabelTypes, DistanceTransformMasks, DistanceTypes, FloodFillFlags, GrabCutClasses, GrabCutModes, ThresholdTypes } from './_types'
 /*
  * # imgproc_misc
  *
@@ -65,7 +65,7 @@ export declare function blendLinear(src1: InputArray, src2: InputArray, weights1
  * @param maskSize Size of the distance transform mask, see DistanceTransformMasks. DIST_MASK_PRECISE is not supported by this variant. In case of the DIST_L1 or DIST_C distance type, the parameter is forced to 3 because a $3\times 3$ mask gives the same result as $5\times 5$ or any larger aperture.
  * @param labelType Type of the label array to build, see DistanceTransformLabelTypes.
  */
-export declare function distanceTransform(src: InputArray, dst: OutputArray, labels: OutputArray, distanceType: int, maskSize: int, labelType: int): void
+export declare function distanceTransform(src: InputArray, dst: OutputArray, labels: OutputArray, distanceType: int, maskSize: int, labelType?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -76,7 +76,7 @@ export declare function distanceTransform(src: InputArray, dst: OutputArray, lab
  * @param maskSize Size of the distance transform mask, see DistanceTransformMasks. In case of the DIST_L1 or DIST_C distance type, the parameter is forced to 3 because a $3\times 3$ mask gives the same result as $5\times 5$ or any larger aperture.
  * @param dstType Type of output image. It can be CV_8U or CV_32F. Type CV_8U can be used only for the first variant of the function and distanceType == DIST_L1.
  */
-export declare function distanceTransform(src: InputArray, dst: OutputArray, distanceType: int, maskSize: int, dstType: int): void
+export declare function distanceTransform(src: InputArray, dst: OutputArray, distanceType: int, maskSize: int, dstType?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -91,7 +91,7 @@ export declare function distanceTransform(src: InputArray, dst: OutputArray, dis
  * @param upDiff 
  * @param flags 
  */
-export declare function floodFill(image: InputOutputArray, seedPoint: Point, newVal: Scalar, rect: any, loDiff: Scalar, upDiff: Scalar, flags: int): int
+export declare function floodFill(image: InputOutputArray, seedPoint: Point, newVal: Scalar, rect?: any, loDiff?: Scalar, upDiff?: Scalar, flags?: int): int
 
 /**
  * The function [cv::floodFill](#d7/d1b/group__imgproc__misc_1gaf1f55a048f8a45bc3383586e80b1f0d0}) fills a connected component starting from the seed point with the specified color. The connectivity is determined by the color/brightness closeness of the neighbor pixels. The pixel at `$(x,y)$` is considered to belong to the repainted domain if:
@@ -121,7 +121,7 @@ export declare function floodFill(image: InputOutputArray, seedPoint: Point, new
  * @param upDiff Maximal upper brightness/color difference between the currently observed pixel and one of its neighbors belonging to the component, or a seed pixel being added to the component.
  * @param flags Operation flags. The first 8 bits contain a connectivity value. The default value of 4 means that only the four nearest neighbor pixels (those that share an edge) are considered. A connectivity value of 8 means that the eight nearest neighbor pixels (those that share a corner) will be considered. The next 8 bits (8-16) contain a value between 1 and 255 with which to fill the mask (the default value is 1). For example, 4 | ( 255 << 8 ) will consider 4 nearest neighbours and fill the mask with a value of 255. The following additional options occupy higher bits and therefore may be further combined with the connectivity and mask fill values using bit-wise or (|), see FloodFillFlags.
  */
-export declare function floodFill(image: InputOutputArray, mask: InputOutputArray, seedPoint: Point, newVal: Scalar, rect: any, loDiff: Scalar, upDiff: Scalar, flags: int): int
+export declare function floodFill(image: InputOutputArray, mask: InputOutputArray, seedPoint: Point, newVal: Scalar, rect?: any, loDiff?: Scalar, upDiff?: Scalar, flags?: int): int
 
 /**
  * The function implements the .
@@ -134,7 +134,7 @@ export declare function floodFill(image: InputOutputArray, mask: InputOutputArra
  * @param iterCount Number of iterations the algorithm should make before returning the result. Note that the result can be refined with further calls with mode==GC_INIT_WITH_MASK or mode==GC_EVAL .
  * @param mode Operation mode that could be one of the GrabCutModes
  */
-export declare function grabCut(img: InputArray, mask: InputOutputArray, rect: Rect, bgdModel: InputOutputArray, fgdModel: InputOutputArray, iterCount: int, mode: int): void
+export declare function grabCut(img: InputArray, mask: InputOutputArray, rect: Rect, bgdModel: InputOutputArray, fgdModel: InputOutputArray, iterCount: int, mode?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -143,7 +143,7 @@ export declare function grabCut(img: InputArray, mask: InputOutputArray, rect: R
  * @param sum 
  * @param sdepth 
  */
-export declare function integral(src: InputArray, sum: OutputArray, sdepth: int): void
+export declare function integral(src: InputArray, sum: OutputArray, sdepth?: int): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -154,7 +154,7 @@ export declare function integral(src: InputArray, sum: OutputArray, sdepth: int)
  * @param sdepth 
  * @param sqdepth 
  */
-export declare function integral(src: InputArray, sum: OutputArray, sqsum: OutputArray, sdepth: int, sqdepth: int): void
+export declare function integral(src: InputArray, sum: OutputArray, sqsum: OutputArray, sdepth?: int, sqdepth?: int): void
 
 /**
  * The function calculates one or more integral images for the source image as follows:
@@ -180,7 +180,7 @@ export declare function integral(src: InputArray, sum: OutputArray, sqsum: Outpu
  * @param sdepth desired depth of the integral and the tilted integral images, CV_32S, CV_32F, or CV_64F.
  * @param sqdepth desired depth of the integral image of squared pixel values, CV_32F or CV_64F.
  */
-export declare function integral(src: InputArray, sum: OutputArray, sqsum: OutputArray, tilted: OutputArray, sdepth: int, sqdepth: int): void
+export declare function integral(src: InputArray, sum: OutputArray, sqsum: OutputArray, tilted: OutputArray, sdepth?: int, sqdepth?: int): void
 
 /**
  * The function applies fixed-level thresholding to a multiple-channel array. The function is typically used to get a bi-level (binary) image out of a grayscale image ( [compare](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}) could be also used for this purpose) or for removing a noise, that is, filtering out pixels with too small or too large values. There are several types of thresholding supported by the function. They are determined by type parameter.
@@ -214,4 +214,243 @@ export declare function threshold(src: InputArray, dst: OutputArray, thresh: dou
  * @param markers Input/output 32-bit single-channel image (map) of markers. It should have the same size as image .
  */
 export declare function watershed(image: InputArray, markers: InputOutputArray): void
+
+/**
+ * the threshold value `$T(x,y)$` is a mean of the `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood of `$(x, y)$` minus C
+ * 
+ */
+export declare const ADAPTIVE_THRESH_MEAN_C: AdaptiveThresholdTypes // initializer: = 0
+
+/**
+ * the threshold value `$T(x, y)$` is a weighted sum (cross-correlation with a Gaussian window) of the `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood of `$(x, y)$` minus C . The default sigma (standard deviation) is used for the specified blockSize . See [getGaussianKernel](#d4/d86/group__imgproc__filter_1gac05a120c1ae92a6060dd0db190a61afa})
+ * 
+ */
+export declare const ADAPTIVE_THRESH_GAUSSIAN_C: AdaptiveThresholdTypes // initializer: = 1
+
+/**
+ * each connected component of zeros in src (as well as all the non-zero pixels closest to the connected component) will be assigned the same label
+ * 
+ */
+export declare const DIST_LABEL_CCOMP: DistanceTransformLabelTypes // initializer: = 0
+
+/**
+ * each zero pixel (and all the non-zero pixels closest to it) gets its own label.
+ * 
+ */
+export declare const DIST_LABEL_PIXEL: DistanceTransformLabelTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const DIST_MASK_3: DistanceTransformMasks // initializer: = 3
+
+/**
+ * 
+ */
+export declare const DIST_MASK_5: DistanceTransformMasks // initializer: = 5
+
+/**
+ * 
+ */
+export declare const DIST_MASK_PRECISE: DistanceTransformMasks // initializer: = 0
+
+/**
+ * 
+ */
+export declare const DIST_USER: DistanceTypes // initializer: = -1
+
+/**
+ * 
+ */
+export declare const DIST_L1: DistanceTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const DIST_L2: DistanceTypes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const DIST_C: DistanceTypes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const DIST_L12: DistanceTypes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const DIST_FAIR: DistanceTypes // initializer: = 5
+
+/**
+ * 
+ */
+export declare const DIST_WELSCH: DistanceTypes // initializer: = 6
+
+/**
+ * 
+ */
+export declare const DIST_HUBER: DistanceTypes // initializer: = 7
+
+/**
+ * If set, the difference between the current pixel and seed pixel is considered. Otherwise, the difference between neighbor pixels is considered (that is, the range is floating).
+ * 
+ */
+export declare const FLOODFILL_FIXED_RANGE: FloodFillFlags // initializer: = 1 << 16
+
+/**
+ * If set, the function does not change the image ( newVal is ignored), and only fills the mask with the value specified in bits 8-16 of flags as described above. This option only make sense in function variants that have the mask parameter.
+ * 
+ */
+export declare const FLOODFILL_MASK_ONLY: FloodFillFlags // initializer: = 1 << 17
+
+/**
+ * 
+ */
+export declare const GC_BGD: GrabCutClasses // initializer: = 0
+
+/**
+ * 
+ */
+export declare const GC_FGD: GrabCutClasses // initializer: = 1
+
+/**
+ * 
+ */
+export declare const GC_PR_BGD: GrabCutClasses // initializer: = 2
+
+/**
+ * 
+ */
+export declare const GC_PR_FGD: GrabCutClasses // initializer: = 3
+
+/**
+ * The function initializes the state and the mask using the provided rectangle. After that it runs iterCount iterations of the algorithm.
+ * 
+ */
+export declare const GC_INIT_WITH_RECT: GrabCutModes // initializer: = 0
+
+/**
+ * The function initializes the state using the provided mask. Note that GC_INIT_WITH_RECT and GC_INIT_WITH_MASK can be combined. Then, all the pixels outside of the ROI are automatically initialized with GC_BGD .
+ * 
+ */
+export declare const GC_INIT_WITH_MASK: GrabCutModes // initializer: = 1
+
+/**
+ * The value means that the algorithm should just resume.
+ * 
+ */
+export declare const GC_EVAL: GrabCutModes // initializer: = 2
+
+/**
+ * The value means that the algorithm should just run the grabCut algorithm (a single iteration) with the fixed model
+ * 
+ */
+export declare const GC_EVAL_FREEZE_MODEL: GrabCutModes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const THRESH_BINARY: ThresholdTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const THRESH_BINARY_INV: ThresholdTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const THRESH_TRUNC: ThresholdTypes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const THRESH_TOZERO: ThresholdTypes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const THRESH_TOZERO_INV: ThresholdTypes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const THRESH_MASK: ThresholdTypes // initializer: = 7
+
+/**
+ * 
+ */
+export declare const THRESH_OTSU: ThresholdTypes // initializer: = 8
+
+/**
+ * 
+ */
+export declare const THRESH_TRIANGLE: ThresholdTypes // initializer: = 16
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type AdaptiveThresholdTypes = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type DistanceTransformLabelTypes = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type DistanceTransformMasks = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type DistanceTypes = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type FloodFillFlags = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type GrabCutClasses = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type GrabCutModes = any
+
+/**
+ * adaptive threshold algorithm 
+ * 
+ * [adaptiveThreshold](#d7/d1b/group__imgproc__misc_1ga72b913f352e4a1b1b397736707afcde3})
+ * 
+ */
+export type ThresholdTypes = any
 

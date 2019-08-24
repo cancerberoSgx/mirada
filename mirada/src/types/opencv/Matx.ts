@@ -313,7 +313,7 @@ export declare class Matx {
    *   @param method 
    *   @param p_is_ok 
    */
-  public inv(method: int, p_is_ok: any): any
+  public inv(method?: int, p_is_ok?: any): any
 
   /**
    *   
@@ -340,7 +340,7 @@ export declare class Matx {
    *   @param rhs 
    *   @param flags 
    */
-  public solve(l: int, rhs: any, flags: int): any
+  public solve(l: int, rhs: any, flags?: int): any
 
   /**
    *   
@@ -399,20 +399,20 @@ export declare class Matx {
 /**
  * 
  */
-export declare const Matx_rows: any // initializer: = m
+export declare const rows: any // initializer: = m
 
 /**
  * 
  */
-export declare const Matx_cols: any // initializer: = n
+export declare const cols: any // initializer: = n
 
 /**
  * 
  */
-export declare const Matx_channels: any // initializer: = rows*cols
+export declare const channels: any // initializer: = rows*cols
 
 /**
  * 
  */
-export declare const Matx_shortdim: any // initializer: = (m < n ? m : n)
+export declare const shortdim: any // initializer: = (m < n ? m : n)
 

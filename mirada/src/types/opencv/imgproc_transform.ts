@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double } from './_types'
+import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double, InterpolationFlags, InterpolationMasks, WarpPolarMode } from './_types'
 /*
  * # imgproc_transform
  *
@@ -22,7 +22,7 @@ import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double } from '
  * @param dstmap1type Type of the first output map that should be CV_16SC2, CV_32FC1, or CV_32FC2 .
  * @param nninterpolation Flag indicating whether the fixed-point maps are used for the nearest-neighbor or for a more complex interpolation.
  */
-export declare function convertMaps(map1: InputArray, map2: InputArray, dstmap1: OutputArray, dstmap2: OutputArray, dstmap1type: int, nninterpolation: bool): void
+export declare function convertMaps(map1: InputArray, map2: InputArray, dstmap1: OutputArray, dstmap2: OutputArray, dstmap1type: int, nninterpolation?: bool): void
 
 /**
  * The function calculates the `$2 \\times 3$` matrix of an affine transform so that:
@@ -62,7 +62,7 @@ export declare function getAffineTransform(src: InputArray, dst: InputArray): Ma
  * @param dst Coordinates of the corresponding quadrangle vertices in the destination image.
  * @param solveMethod method passed to cv::solve (DecompTypes)
  */
-export declare function getPerspectiveTransform(src: InputArray, dst: InputArray, solveMethod: int): Mat
+export declare function getPerspectiveTransform(src: InputArray, dst: InputArray, solveMethod?: int): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -71,7 +71,7 @@ export declare function getPerspectiveTransform(src: InputArray, dst: InputArray
  * @param dst 
  * @param solveMethod 
  */
-export declare function getPerspectiveTransform(src: any, dst: any, solveMethod: int): Mat
+export declare function getPerspectiveTransform(src: any, dst: any, solveMethod?: int): Mat
 
 /**
  * The function getRectSubPix extracts pixels from src:
@@ -88,7 +88,7 @@ export declare function getPerspectiveTransform(src: any, dst: any, solveMethod:
  * @param patch Extracted patch that has the size patchSize and the same number of channels as src .
  * @param patchType Depth of the extracted pixels. By default, they have the same depth as src .
  */
-export declare function getRectSubPix(image: InputArray, patchSize: Size, center: Point2f, patch: OutputArray, patchType: int): void
+export declare function getRectSubPix(image: InputArray, patchSize: Size, center: Point2f, patch: OutputArray, patchType?: int): void
 
 /**
  * The function calculates the following matrix:
@@ -160,7 +160,7 @@ export declare function logPolar(src: InputArray, dst: OutputArray, center: Poin
  * @param borderMode Pixel extrapolation method (see BorderTypes). When borderMode=BORDER_TRANSPARENT, it means that the pixels in the destination image that corresponds to the "outliers" in the source image are not modified by the function.
  * @param borderValue Value used in case of a constant border. By default, it is 0.
  */
-export declare function remap(src: InputArray, dst: OutputArray, map1: InputArray, map2: InputArray, interpolation: int, borderMode: int, borderValue: any): void
+export declare function remap(src: InputArray, dst: OutputArray, map1: InputArray, map2: InputArray, interpolation: int, borderMode?: int, borderValue?: any): void
 
 /**
  * The function resize resizes the image src down to or up to the specified size. Note that the initial dst type or size are not taken into account. Instead, the size and type are derived from the `src`,`dsize`,`fx`, and `fy`. If you want to resize src so that it fits the pre-created dst, you may call the function as follows: 
@@ -188,7 +188,7 @@ export declare function remap(src: InputArray, dst: OutputArray, map1: InputArra
  * @param fy scale factor along the vertical axis; when it equals 0, it is computed as \[\texttt{(double)dsize.height/src.rows}\]
  * @param interpolation interpolation method, see InterpolationFlags
  */
-export declare function resize(src: InputArray, dst: OutputArray, dsize: Size, fx: double, fy: double, interpolation: int): void
+export declare function resize(src: InputArray, dst: OutputArray, dsize: Size, fx?: double, fy?: double, interpolation?: int): void
 
 /**
  * The function warpAffine transforms the source image using the specified matrix:
@@ -207,7 +207,7 @@ export declare function resize(src: InputArray, dst: OutputArray, dsize: Size, f
  * @param borderMode pixel extrapolation method (see BorderTypes); when borderMode=BORDER_TRANSPARENT, it means that the pixels in the destination image corresponding to the "outliers" in the source image are not modified by the function.
  * @param borderValue value used in case of a constant border; by default, it is 0.
  */
-export declare function warpAffine(src: InputArray, dst: OutputArray, M: InputArray, dsize: Size, flags: int, borderMode: int, borderValue: any): void
+export declare function warpAffine(src: InputArray, dst: OutputArray, M: InputArray, dsize: Size, flags?: int, borderMode?: int, borderValue?: any): void
 
 /**
  * The function warpPerspective transforms the source image using the specified matrix:
@@ -226,7 +226,7 @@ export declare function warpAffine(src: InputArray, dst: OutputArray, M: InputAr
  * @param borderMode pixel extrapolation method (BORDER_CONSTANT or BORDER_REPLICATE).
  * @param borderValue value used in case of a constant border; by default, it equals 0.
  */
-export declare function warpPerspective(src: InputArray, dst: OutputArray, M: InputArray, dsize: Size, flags: int, borderMode: int, borderValue: any): void
+export declare function warpPerspective(src: InputArray, dst: OutputArray, M: InputArray, dsize: Size, flags?: int, borderMode?: int, borderValue?: any): void
 
 /**
  * <a name="da/d54/group__imgproc__transform_1polar_remaps_reference_image"></a>
@@ -292,4 +292,108 @@ export declare function warpPerspective(src: InputArray, dst: OutputArray, M: In
  * Add WARP_POLAR_LINEAR to select linear polar mapping (default)Add WARP_POLAR_LOG to select semilog polar mappingAdd WARP_INVERSE_MAP for reverse mapping.
  */
 export declare function warpPolar(src: InputArray, dst: OutputArray, dsize: Size, center: Point2f, maxRadius: double, flags: int): void
+
+/**
+ * nearest neighbor interpolation
+ * 
+ */
+export declare const INTER_NEAREST: InterpolationFlags // initializer: = 0
+
+/**
+ * bilinear interpolation
+ * 
+ */
+export declare const INTER_LINEAR: InterpolationFlags // initializer: = 1
+
+/**
+ * bicubic interpolation
+ * 
+ */
+export declare const INTER_CUBIC: InterpolationFlags // initializer: = 2
+
+/**
+ * resampling using pixel area relation. It may be a preferred method for image decimation, as it gives moire'-free results. But when the image is zoomed, it is similar to the INTER_NEAREST method.
+ * 
+ */
+export declare const INTER_AREA: InterpolationFlags // initializer: = 3
+
+/**
+ * Lanczos interpolation over 8x8 neighborhood
+ * 
+ */
+export declare const INTER_LANCZOS4: InterpolationFlags // initializer: = 4
+
+/**
+ * Bit exact bilinear interpolation
+ * 
+ */
+export declare const INTER_LINEAR_EXACT: InterpolationFlags // initializer: = 5
+
+/**
+ * mask for interpolation codes
+ * 
+ */
+export declare const INTER_MAX: InterpolationFlags // initializer: = 7
+
+/**
+ * flag, fills all of the destination image pixels. If some of them correspond to outliers in the source image, they are set to zero
+ * 
+ */
+export declare const WARP_FILL_OUTLIERS: InterpolationFlags // initializer: = 8
+
+/**
+ * flag, inverse transformation
+ * 
+ * For example, [linearPolar](#da/d54/group__imgproc__transform_1gaa38a6884ac8b6e0b9bed47939b5362f3}) or [logPolar](#da/d54/group__imgproc__transform_1gaec3a0b126a85b5ca2c667b16e0ae022d}) transforms:
+ * 
+ * flag is **not** set: `$dst( \\rho , \\phi ) = src(x,y)$`
+ * flag is set: `$dst(x,y) = src( \\rho , \\phi )$`
+ * 
+ */
+export declare const WARP_INVERSE_MAP: InterpolationFlags // initializer: = 16
+
+/**
+ * 
+ */
+export declare const INTER_BITS: InterpolationMasks // initializer: = 5
+
+/**
+ * 
+ */
+export declare const INTER_BITS2: InterpolationMasks // initializer: = INTER_BITS * 2
+
+/**
+ * 
+ */
+export declare const INTER_TAB_SIZE: InterpolationMasks // initializer: = 1 << INTER_BITS
+
+/**
+ * 
+ */
+export declare const INTER_TAB_SIZE2: InterpolationMasks // initializer: = INTER_TAB_SIZE * INTER_TAB_SIZE
+
+/**
+ * 
+ */
+export declare const WARP_POLAR_LINEAR: WarpPolarMode // initializer: = 0
+
+/**
+ * 
+ */
+export declare const WARP_POLAR_LOG: WarpPolarMode // initializer: = 256
+
+/**
+ * 
+ */
+export type InterpolationFlags = any
+
+/**
+ * 
+ */
+export type InterpolationMasks = any
+
+/**
+ * 
+ */
+export type WarpPolarMode = any
 

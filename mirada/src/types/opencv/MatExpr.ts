@@ -105,7 +105,7 @@ export declare class MatExpr {
    *   @param _beta 
    *   @param _s 
    */
-  public constructor(_op: any, _flags: int, _a: any, _b: any, _c: any, _alpha: double, _beta: double, _s: any)
+  public constructor(_op: any, _flags: int, _a?: any, _b?: any, _c?: any, _alpha?: double, _beta?: double, _s?: any)
 
   /**
    *   
@@ -123,7 +123,7 @@ export declare class MatExpr {
    *   
    *   @param d 
    */
-  public diag(d: int): any
+  public diag(d?: int): any
 
   /**
    *   
@@ -135,21 +135,21 @@ export declare class MatExpr {
    *   
    *   @param method 
    */
-  public inv(method: int): any
+  public inv(method?: int): any
 
   /**
    *   
    *   @param e 
    *   @param scale 
    */
-  public mul(e: any, scale: double): any
+  public mul(e: any, scale?: double): any
 
   /**
    *   
    *   @param m 
    *   @param scale 
    */
-  public mul(m: any, scale: double): any
+  public mul(m: any, scale?: double): any
 
   /**
    *   

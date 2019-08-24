@@ -58,7 +58,6 @@ export declare class MinMaxLoc {
   public constructor(minVal: number, maxVal: number, minLoc: Point, maxLoc: Point)
 }
 
-
 // hack to expose Mat super classes like Mat_, InputArray, OutputArray we  make them alias of Mat to simplify
 // and make it work
 export { Mat as InputArray } from './Mat'
@@ -72,13 +71,9 @@ export { Mat as OutputArrayOfArrays } from './Mat'
 // lazy hack: this types should be exposed by the tool - want to make it work
 export type Vec3d = any
 export type Moments = any
-export type HandEyeCalibrationMethod = any
-export type SolvePnPMethod = any
-export type DrawMatchesFlags = any
 export type GMat = any
 export type GMatP = any
 export type GScalar = any
-export type Backend = any
 export type Net = any
 export type AsyncArray = any
 export type ErrorCallback = any
@@ -91,3 +86,43 @@ export type Matx_MulOp = any
 export type Matx_DivOp = any
 export type Matx_MatMulOp = any
 export type Matx_TOp = any
+
+
+
+export declare const CV_8UC1: number
+
+export declare const CV_8U: number
+
+export declare const CV_16S: number
+
+export declare const CV_8UC3: any
+
+export declare const CV_32S: number
+
+export declare const CV_8S: number
+
+export declare const CV_8UC4: number
+
+export declare function exceptionFromPtr(err: number): any
+export declare function onRuntimeInitialized(): any
+export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
+
+
+
+export declare class Mat_ {
+public data: ImageData
+public delete(): void
+  public ucharPtr(i: number, j: number):any
+
+}
+
+import {Mat} from './Mat'
+export declare function  matFromImageData(imageData: ImageData): Mat
+
+export interface ImageData {
+  data: ArrayBufferView
+  width: number;
+  height: number;
+}
+
+export * from '../_opencvCustom'

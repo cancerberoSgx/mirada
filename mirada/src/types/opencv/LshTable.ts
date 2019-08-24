@@ -1,5 +1,5 @@
 
-import { size_t } from './_types'
+import { size_t, SpeedLevel } from './_types'
 
 /**
  * Lsh hash table. As its key is a sub-feature, and as usually the size of it is pretty small, we keep it as a continuous memory array. The value is an index in the corpus of features (we keep it as an unsigned int for pure memory reasons, it could be a size_t)
@@ -77,4 +77,25 @@ export declare class LshTable {
    */
   public getStats(): any
 }
+
+/**
+ * 
+ */
+export declare const kArray: SpeedLevel // initializer: 
+
+/**
+ * 
+ */
+export declare const kBitsetHash: SpeedLevel // initializer: 
+
+/**
+ * 
+ */
+export declare const kHash: SpeedLevel // initializer: 
+
+/**
+ * defines the speed fo the implementation kArray uses a vector for storing data kBitsetHash uses a hash map but checks for the validity of a key with a bitset kHash uses a hash map only
+ * 
+ */
+export type SpeedLevel = any
 

@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfArrays, Mat, Scalar, TermCriteria } from './_types'
+import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfArrays, Mat, Scalar, TermCriteria, MorphShapes, MorphTypes, SpecialFilter } from './_types'
 /*
  * # imgproc_filter
  *
@@ -22,7 +22,7 @@ import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfA
  * @param sigmaSpace Filter sigma in the coordinate space. A larger value of the parameter means that farther pixels will influence each other as long as their colors are close enough (see sigmaColor ). When d>0, it specifies the neighborhood size regardless of sigmaSpace. Otherwise, d is proportional to sigmaSpace.
  * @param borderType border mode used to extrapolate pixels outside of the image, see BorderTypes
  */
-export declare function bilateralFilter(src: InputArray, dst: OutputArray, d: int, sigmaColor: double, sigmaSpace: double, borderType: int): void
+export declare function bilateralFilter(src: InputArray, dst: OutputArray, d: int, sigmaColor: double, sigmaSpace: double, borderType?: int): void
 
 /**
  * The function smooths an image using the kernel:
@@ -39,7 +39,7 @@ export declare function bilateralFilter(src: InputArray, dst: OutputArray, d: in
  * @param anchor anchor point; default value Point(-1,-1) means that the anchor is at the kernel center.
  * @param borderType border mode used to extrapolate pixels outside of the image, see BorderTypes
  */
-export declare function blur(src: InputArray, dst: OutputArray, ksize: Size, anchor: Point, borderType: int): void
+export declare function blur(src: InputArray, dst: OutputArray, ksize: Size, anchor?: Point, borderType?: int): void
 
 /**
  * The function smooths an image using the kernel:
@@ -62,7 +62,7 @@ export declare function blur(src: InputArray, dst: OutputArray, ksize: Size, anc
  * @param normalize flag, specifying whether the kernel is normalized by its area or not.
  * @param borderType border mode used to extrapolate pixels outside of the image, see BorderTypes
  */
-export declare function boxFilter(src: InputArray, dst: OutputArray, ddepth: int, ksize: Size, anchor: Point, normalize: bool, borderType: int): void
+export declare function boxFilter(src: InputArray, dst: OutputArray, ddepth: int, ksize: Size, anchor?: Point, normalize?: bool, borderType?: int): void
 
 /**
  * The function constructs a vector of images and builds the Gaussian pyramid by recursively applying pyrDown to the previously built pyramid layers, starting from `dst[0]==src`.
@@ -72,7 +72,7 @@ export declare function boxFilter(src: InputArray, dst: OutputArray, ddepth: int
  * @param maxlevel 0-based index of the last (the smallest) pyramid layer. It must be non-negative.
  * @param borderType Pixel extrapolation method, see BorderTypes (BORDER_CONSTANT isn't supported)
  */
-export declare function buildPyramid(src: InputArray, dst: OutputArrayOfArrays, maxlevel: int, borderType: int): void
+export declare function buildPyramid(src: InputArray, dst: OutputArrayOfArrays, maxlevel: int, borderType?: int): void
 
 /**
  * The function dilates the source image using the specified structuring element that determines the shape of a pixel neighborhood over which the maximum is taken: `\\[\\texttt{dst} (x,y) = \\max _{(x',y'): \\, \\texttt{element} (x',y') \\ne0 } \\texttt{src} (x+x',y+y')\\]`
@@ -89,7 +89,7 @@ export declare function buildPyramid(src: InputArray, dst: OutputArrayOfArrays, 
  * @param borderType pixel extrapolation method, see BorderTypes
  * @param borderValue border value in case of a constant border
  */
-export declare function dilate(src: InputArray, dst: OutputArray, kernel: InputArray, anchor: Point, iterations: int, borderType: int, borderValue: any): void
+export declare function dilate(src: InputArray, dst: OutputArray, kernel: InputArray, anchor?: Point, iterations?: int, borderType?: int, borderValue?: any): void
 
 /**
  * The function erodes the source image using the specified structuring element that determines the shape of a pixel neighborhood over which the minimum is taken:
@@ -108,7 +108,7 @@ export declare function dilate(src: InputArray, dst: OutputArray, kernel: InputA
  * @param borderType pixel extrapolation method, see BorderTypes
  * @param borderValue border value in case of a constant border
  */
-export declare function erode(src: InputArray, dst: OutputArray, kernel: InputArray, anchor: Point, iterations: int, borderType: int, borderValue: any): void
+export declare function erode(src: InputArray, dst: OutputArray, kernel: InputArray, anchor?: Point, iterations?: int, borderType?: int, borderValue?: any): void
 
 /**
  * The function applies an arbitrary linear filter to an image. In-place operation is supported. When the aperture is partially outside the image, the function interpolates outlier pixel values according to the specified border mode.
@@ -131,7 +131,7 @@ export declare function erode(src: InputArray, dst: OutputArray, kernel: InputAr
  * @param delta optional value added to the filtered pixels before storing them in dst.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
-export declare function filter2D(src: InputArray, dst: OutputArray, ddepth: int, kernel: InputArray, anchor: Point, delta: double, borderType: int): void
+export declare function filter2D(src: InputArray, dst: OutputArray, ddepth: int, kernel: InputArray, anchor?: Point, delta?: double, borderType?: int): void
 
 /**
  * The function convolves the source image with the specified Gaussian kernel. In-place filtering is supported.
@@ -145,7 +145,7 @@ export declare function filter2D(src: InputArray, dst: OutputArray, ddepth: int,
  * @param sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be equal to sigmaX, if both sigmas are zeros, they are computed from ksize.width and ksize.height, respectively (see getGaussianKernel for details); to fully control the result regardless of possible future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and sigmaY.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
-export declare function GaussianBlur(src: InputArray, dst: OutputArray, ksize: Size, sigmaX: double, sigmaY: double, borderType: int): void
+export declare function GaussianBlur(src: InputArray, dst: OutputArray, ksize: Size, sigmaX: double, sigmaY?: double, borderType?: int): void
 
 /**
  * The function computes and returns the filter coefficients for spatial image derivatives. When `ksize=FILTER_SCHARR`, the Scharr `$3 \\times 3$` kernels are generated (see [Scharr](#d4/d86/group__imgproc__filter_1gaa13106761eedf14798f37aa2d60404c9})). Otherwise, Sobel kernels are generated (see [Sobel](#d4/d86/group__imgproc__filter_1gacea54f142e81b6758cb6f375ce782c8d})). The filters are normally passed to [sepFilter2D](#d4/d86/group__imgproc__filter_1ga910e29ff7d7b105057d1625a4bf6318d}) or to
@@ -158,7 +158,7 @@ export declare function GaussianBlur(src: InputArray, dst: OutputArray, ksize: S
  * @param normalize Flag indicating whether to normalize (scale down) the filter coefficients or not. Theoretically, the coefficients should have the denominator $=2^{ksize*2-dx-dy-2}$. If you are going to filter floating-point images, you are likely to use the normalized kernels. But if you compute derivatives of an 8-bit image, store the results in a 16-bit image, and wish to preserve all the fractional bits, you may want to set normalize=false .
  * @param ktype Type of filter coefficients. It can be CV_32f or CV_64F .
  */
-export declare function getDerivKernels(kx: OutputArray, ky: OutputArray, dx: int, dy: int, ksize: int, normalize: bool, ktype: int): void
+export declare function getDerivKernels(kx: OutputArray, ky: OutputArray, dx: int, dy: int, ksize: int, normalize?: bool, ktype?: int): void
 
 /**
  * For more details about gabor filter equations and parameters, see: .
@@ -171,7 +171,7 @@ export declare function getDerivKernels(kx: OutputArray, ky: OutputArray, dx: in
  * @param psi Phase offset.
  * @param ktype Type of filter coefficients. It can be CV_32F or CV_64F .
  */
-export declare function getGaborKernel(ksize: Size, sigma: double, theta: double, lambd: double, gamma: double, psi: double, ktype: int): Mat
+export declare function getGaborKernel(ksize: Size, sigma: double, theta: double, lambd: double, gamma: double, psi?: double, ktype?: int): Mat
 
 /**
  * The function computes and returns the `$\\texttt{ksize} \\times 1$` matrix of Gaussian filter coefficients:
@@ -188,7 +188,7 @@ export declare function getGaborKernel(ksize: Size, sigma: double, theta: double
  * @param sigma Gaussian standard deviation. If it is non-positive, it is computed from ksize as sigma = 0.3*((ksize-1)*0.5 - 1) + 0.8.
  * @param ktype Type of filter coefficients. It can be CV_32F or CV_64F .
  */
-export declare function getGaussianKernel(ksize: int, sigma: double, ktype: int): Mat
+export declare function getGaussianKernel(ksize: int, sigma: double, ktype?: int): Mat
 
 /**
  * The function constructs and returns the structuring element that can be further passed to [erode](#d4/d86/group__imgproc__filter_1gaeb1e0c1033e3f6b891a25d0511362aeb}), [dilate](#d4/d86/group__imgproc__filter_1ga4ff0f3318642c4f469d0e11f242f3b6c}) or [morphologyEx](#d4/d86/group__imgproc__filter_1ga67493776e3ad1a3df63883829375201f}). But you can also construct an arbitrary binary mask yourself and use it as the structuring element.
@@ -197,7 +197,7 @@ export declare function getGaussianKernel(ksize: int, sigma: double, ktype: int)
  * @param ksize Size of the structuring element.
  * @param anchor Anchor position within the element. The default value $(-1, -1)$ means that the anchor is at the center. Note that only the shape of a cross-shaped element depends on the anchor position. In other cases the anchor just regulates how much the result of the morphological operation is shifted.
  */
-export declare function getStructuringElement(shape: int, ksize: Size, anchor: Point): Mat
+export declare function getStructuringElement(shape: int, ksize: Size, anchor?: Point): Mat
 
 /**
  * The function calculates the Laplacian of the source image by adding up the second x and y derivatives calculated using the Sobel operator:
@@ -218,7 +218,7 @@ export declare function getStructuringElement(shape: int, ksize: Size, anchor: P
  * @param delta Optional delta value that is added to the results prior to storing them in dst .
  * @param borderType Pixel extrapolation method, see BorderTypes
  */
-export declare function Laplacian(src: InputArray, dst: OutputArray, ddepth: int, ksize: int, scale: double, delta: double, borderType: int): void
+export declare function Laplacian(src: InputArray, dst: OutputArray, ddepth: int, ksize?: int, scale?: double, delta?: double, borderType?: int): void
 
 /**
  * The function smoothes an image using the median filter with the `$\\texttt{ksize} \\times \\texttt{ksize}$` aperture. Each channel of a multi-channel image is processed independently. In-place operation is supported.
@@ -256,7 +256,7 @@ export declare function morphologyDefaultBorderValue(): Scalar
  * @param borderType Pixel extrapolation method, see BorderTypes
  * @param borderValue Border value in case of a constant border. The default value has a special meaning.
  */
-export declare function morphologyEx(src: InputArray, dst: OutputArray, op: int, kernel: InputArray, anchor: Point, iterations: int, borderType: int, borderValue: any): void
+export declare function morphologyEx(src: InputArray, dst: OutputArray, op: int, kernel: InputArray, anchor?: Point, iterations?: int, borderType?: int, borderValue?: any): void
 
 /**
  * By default, size of the output image is computed as `Size((src.cols+1)/2, (src.rows+1)/2)`, but in any case, the following conditions should be satisfied:
@@ -274,7 +274,7 @@ export declare function morphologyEx(src: InputArray, dst: OutputArray, op: int,
  * @param dstsize size of the output image.
  * @param borderType Pixel extrapolation method, see BorderTypes (BORDER_CONSTANT isn't supported)
  */
-export declare function pyrDown(src: InputArray, dst: OutputArray, dstsize: any, borderType: int): void
+export declare function pyrDown(src: InputArray, dst: OutputArray, dstsize?: any, borderType?: int): void
 
 /**
  * The function implements the filtering stage of meanshift segmentation, that is, the output of the function is the filtered "posterized" image with color gradients and fine-grain texture flattened. At every pixel (X,Y) of the input image (or down-sized input image, see below) the function executes meanshift iterations, that is, the pixel (X,Y) neighborhood in the joint space-color hyperspace is considered:
@@ -298,7 +298,7 @@ export declare function pyrDown(src: InputArray, dst: OutputArray, dstsize: any,
  * @param maxLevel Maximum level of the pyramid for the segmentation.
  * @param termcrit Termination criteria: when to stop meanshift iterations.
  */
-export declare function pyrMeanShiftFiltering(src: InputArray, dst: OutputArray, sp: double, sr: double, maxLevel: int, termcrit: TermCriteria): void
+export declare function pyrMeanShiftFiltering(src: InputArray, dst: OutputArray, sp: double, sr: double, maxLevel?: int, termcrit?: TermCriteria): void
 
 /**
  * By default, size of the output image is computed as `Size(src.cols\\*2, (src.rows\\*2)`, but in any case, the following conditions should be satisfied:
@@ -312,7 +312,7 @@ export declare function pyrMeanShiftFiltering(src: InputArray, dst: OutputArray,
  * @param dstsize size of the output image.
  * @param borderType Pixel extrapolation method, see BorderTypes (only BORDER_DEFAULT is supported)
  */
-export declare function pyrUp(src: InputArray, dst: OutputArray, dstsize: any, borderType: int): void
+export declare function pyrUp(src: InputArray, dst: OutputArray, dstsize?: any, borderType?: int): void
 
 /**
  * The function computes the first x- or y- spatial image derivative using the Scharr operator. The call
@@ -334,7 +334,7 @@ export declare function pyrUp(src: InputArray, dst: OutputArray, dstsize: any, b
  * @param delta optional delta value that is added to the results prior to storing them in dst.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
-export declare function Scharr(src: InputArray, dst: OutputArray, ddepth: int, dx: int, dy: int, scale: double, delta: double, borderType: int): void
+export declare function Scharr(src: InputArray, dst: OutputArray, ddepth: int, dx: int, dy: int, scale?: double, delta?: double, borderType?: int): void
 
 /**
  * The function applies a separable linear filter to the image. That is, first, every row of src is filtered with the 1D kernel kernelX. Then, every column of the result is filtered with the 1D kernel kernelY. The final result shifted by delta is stored in dst .
@@ -350,7 +350,7 @@ export declare function Scharr(src: InputArray, dst: OutputArray, ddepth: int, d
  * @param delta Value added to the filtered results before storing them.
  * @param borderType Pixel extrapolation method, see BorderTypes
  */
-export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: int, kernelX: InputArray, kernelY: InputArray, anchor: Point, delta: double, borderType: int): void
+export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: int, kernelX: InputArray, kernelY: InputArray, anchor?: Point, delta?: double, borderType?: int): void
 
 /**
  * In all cases except one, the `$\\texttt{ksize} \\times \\texttt{ksize}$` separable kernel is used to calculate the derivative. When `$\\texttt{ksize = 1}$`, the `$3 \\times 1$` or `$1 \\times 3$` kernel is used (that is, no Gaussian smoothing is done). `ksize = 1` can only be used for the first or the second x- or y- derivatives.
@@ -385,7 +385,7 @@ export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: i
  * @param delta optional delta value that is added to the results prior to storing them in dst.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
-export declare function Sobel(src: InputArray, dst: OutputArray, ddepth: int, dx: int, dy: int, ksize: int, scale: double, delta: double, borderType: int): void
+export declare function Sobel(src: InputArray, dst: OutputArray, ddepth: int, dx: int, dy: int, ksize?: int, scale?: double, delta?: double, borderType?: int): void
 
 /**
  * Equivalent to calling:
@@ -403,7 +403,7 @@ export declare function Sobel(src: InputArray, dst: OutputArray, ddepth: int, dx
  * @param ksize size of Sobel kernel. It must be 3.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
-export declare function spatialGradient(src: InputArray, dx: OutputArray, dy: OutputArray, ksize: int, borderType: int): void
+export declare function spatialGradient(src: InputArray, dx: OutputArray, dy: OutputArray, ksize?: int, borderType?: int): void
 
 /**
  * For every pixel `$ (x, y) $` in the source image, the function calculates the sum of squares of those neighboring pixel values which overlap the filter placed over the pixel `$ (x, y) $`.
@@ -420,5 +420,88 @@ export declare function spatialGradient(src: InputArray, dx: OutputArray, dy: Ou
  * @param normalize flag, specifying whether the kernel is to be normalized by it's area or not.
  * @param borderType border mode used to extrapolate pixels outside of the image, see BorderTypes
  */
-export declare function sqrBoxFilter(src: InputArray, dst: OutputArray, ddepth: int, ksize: Size, anchor: Point, normalize: bool, borderType: int): void
+export declare function sqrBoxFilter(src: InputArray, dst: OutputArray, ddepth: int, ksize: Size, anchor?: Point, normalize?: bool, borderType?: int): void
+
+/**
+ * 
+ */
+export declare const MORPH_RECT: MorphShapes // initializer: = 0
+
+/**
+ * a cross-shaped structuring element: `\\[E_{ij} = \\fork{1}{if i=\\texttt{anchor.y} or j=\\texttt{anchor.x}}{0}{otherwise}\\]`
+ * 
+ */
+export declare const MORPH_CROSS: MorphShapes // initializer: = 1
+
+/**
+ * an elliptic structuring element, that is, a filled ellipse inscribed into the rectangle Rect(0, 0, esize.width, 0.esize.height)
+ * 
+ */
+export declare const MORPH_ELLIPSE: MorphShapes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const MORPH_ERODE: MorphTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const MORPH_DILATE: MorphTypes // initializer: = 1
+
+/**
+ * an opening operation `\\[\\texttt{dst} = \\mathrm{open} ( \\texttt{src} , \\texttt{element} )= \\mathrm{dilate} ( \\mathrm{erode} ( \\texttt{src} , \\texttt{element} ))\\]`
+ * 
+ */
+export declare const MORPH_OPEN: MorphTypes // initializer: = 2
+
+/**
+ * a closing operation `\\[\\texttt{dst} = \\mathrm{close} ( \\texttt{src} , \\texttt{element} )= \\mathrm{erode} ( \\mathrm{dilate} ( \\texttt{src} , \\texttt{element} ))\\]`
+ * 
+ */
+export declare const MORPH_CLOSE: MorphTypes // initializer: = 3
+
+/**
+ * a morphological gradient `\\[\\texttt{dst} = \\mathrm{morph\\_grad} ( \\texttt{src} , \\texttt{element} )= \\mathrm{dilate} ( \\texttt{src} , \\texttt{element} )- \\mathrm{erode} ( \\texttt{src} , \\texttt{element} )\\]`
+ * 
+ */
+export declare const MORPH_GRADIENT: MorphTypes // initializer: = 4
+
+/**
+ * "top hat" `\\[\\texttt{dst} = \\mathrm{tophat} ( \\texttt{src} , \\texttt{element} )= \\texttt{src} - \\mathrm{open} ( \\texttt{src} , \\texttt{element} )\\]`
+ * 
+ */
+export declare const MORPH_TOPHAT: MorphTypes // initializer: = 5
+
+/**
+ * "black hat" `\\[\\texttt{dst} = \\mathrm{blackhat} ( \\texttt{src} , \\texttt{element} )= \\mathrm{close} ( \\texttt{src} , \\texttt{element} )- \\texttt{src}\\]`
+ * 
+ */
+export declare const MORPH_BLACKHAT: MorphTypes // initializer: = 6
+
+/**
+ * "hit or miss" .- Only supported for CV_8UC1 binary images. A tutorial can be found in the documentation
+ * 
+ */
+export declare const MORPH_HITMISS: MorphTypes // initializer: = 7
+
+/**
+ * 
+ */
+export declare const FILTER_SCHARR: SpecialFilter // initializer: = -1
+
+/**
+ * 
+ */
+export type MorphShapes = any
+
+/**
+ * 
+ */
+export type MorphTypes = any
+
+/**
+ * 
+ */
+export type SpecialFilter = any
 

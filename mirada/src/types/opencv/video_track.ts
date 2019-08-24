@@ -18,7 +18,7 @@ import { InputArray, OutputArrayOfArrays, Size, int, bool, InputOutputArray, dou
  * @param derivBorder the border mode for gradients.
  * @param tryReuseInputImage put ROI of input image into the pyramid if possible. You can pass false to force data copying.
  */
-export declare function buildOpticalFlowPyramid(img: InputArray, pyramid: OutputArrayOfArrays, winSize: Size, maxLevel: int, withDerivatives: bool, pyrBorder: int, derivBorder: int, tryReuseInputImage: bool): int
+export declare function buildOpticalFlowPyramid(img: InputArray, pyramid: OutputArrayOfArrays, winSize: Size, maxLevel: int, withDerivatives?: bool, pyrBorder?: int, derivBorder?: int, tryReuseInputImage?: bool): int
 
 /**
  * The function finds an optical flow for each prev pixel using the Farneback2003 algorithm so that
@@ -62,7 +62,7 @@ export declare function calcOpticalFlowFarneback(prev: InputArray, next: InputAr
  * OPTFLOW_USE_INITIAL_FLOW uses initial estimations, stored in nextPts; if the flag is not set, then prevPts is copied to nextPts and is considered the initial estimate.OPTFLOW_LK_GET_MIN_EIGENVALS use minimum eigen values as an error measure (see minEigThreshold description); if the flag is not set, then L1 distance between patches around the original and a moved point, divided by number of pixels in a window, is used as a error measure.
  * @param minEigThreshold the algorithm calculates the minimum eigen value of a 2x2 normal matrix of optical flow equations (this matrix is called a spatial gradient matrix in Bouguet00), divided by number of pixels in a window; if this value is less than minEigThreshold, then a corresponding feature is filtered out and its flow is not processed, so it allows to remove bad points and get a performance boost.
  */
-export declare function calcOpticalFlowPyrLK(prevImg: InputArray, nextImg: InputArray, prevPts: InputArray, nextPts: InputOutputArray, status: OutputArray, err: OutputArray, winSize: Size, maxLevel: int, criteria: TermCriteria, flags: int, minEigThreshold: double): void
+export declare function calcOpticalFlowPyrLK(prevImg: InputArray, nextImg: InputArray, prevPts: InputArray, nextPts: InputOutputArray, status: OutputArray, err: OutputArray, winSize?: Size, maxLevel?: int, criteria?: TermCriteria, flags?: int, minEigThreshold?: double): void
 
 /**
  * See the OpenCV sample camshiftdemo.c that tracks colored objects.
@@ -82,7 +82,7 @@ export declare function CamShift(probImage: InputArray, window: any, criteria: T
  * @param inputImage single-channel input image to be warped to provide an image similar to templateImage, same type as templateImage.
  * @param inputMask An optional mask to indicate valid values of inputImage.
  */
-export declare function computeECC(templateImage: InputArray, inputImage: InputArray, inputMask: InputArray): double
+export declare function computeECC(templateImage: InputArray, inputImage: InputArray, inputMask?: InputArray): double
 
 /**
  * The function finds an optimal affine transform *[A|b]* (a 2 x 3 floating-point matrix) that approximates best the affine transformation between:  In case of point sets, the problem is formulated as follows: you need to find a 2x2 matrix *A* and 2x1 vector *b* so that:
@@ -133,7 +133,7 @@ export declare function findTransformECC(templateImage: InputArray, inputImage: 
  * @param criteria 
  * @param inputMask 
  */
-export declare function findTransformECC(templateImage: InputArray, inputImage: InputArray, warpMatrix: InputOutputArray, motionType: int, criteria: TermCriteria, inputMask: InputArray): double
+export declare function findTransformECC(templateImage: InputArray, inputImage: InputArray, warpMatrix: InputOutputArray, motionType?: int, criteria?: TermCriteria, inputMask?: InputArray): double
 
 /**
  * 
@@ -157,4 +157,39 @@ export declare function readOpticalFlow(path: any): Mat
  * @param flow Flow field to be stored
  */
 export declare function writeOpticalFlow(path: any, flow: InputArray): bool
+
+/**
+ * 
+ */
+export declare const OPTFLOW_USE_INITIAL_FLOW: any // initializer: = 4
+
+/**
+ * 
+ */
+export declare const OPTFLOW_LK_GET_MIN_EIGENVALS: any // initializer: = 8
+
+/**
+ * 
+ */
+export declare const OPTFLOW_FARNEBACK_GAUSSIAN: any // initializer: = 256
+
+/**
+ * 
+ */
+export declare const MOTION_TRANSLATION: any // initializer: = 0
+
+/**
+ * 
+ */
+export declare const MOTION_EUCLIDEAN: any // initializer: = 1
+
+/**
+ * 
+ */
+export declare const MOTION_AFFINE: any // initializer: = 2
+
+/**
+ * 
+ */
+export declare const MOTION_HOMOGRAPHY: any // initializer: = 3
 

@@ -42,7 +42,7 @@ export declare class MatOp {
    *   @param m 
    *   @param type 
    */
-  public assign(expr: any, m: any, type: int): any
+  public assign(expr: any, m: any, type?: int): any
 
   /**
    *   
@@ -108,7 +108,7 @@ export declare class MatOp {
    *   @param res 
    *   @param scale 
    */
-  public divide(expr1: any, expr2: any, res: any, scale: double): any
+  public divide(expr1: any, expr2: any, res: any, scale?: double): any
 
   /**
    *   
@@ -147,7 +147,7 @@ export declare class MatOp {
    *   @param res 
    *   @param scale 
    */
-  public multiply(expr1: any, expr2: any, res: any, scale: double): any
+  public multiply(expr1: any, expr2: any, res: any, scale?: double): any
 
   /**
    *   

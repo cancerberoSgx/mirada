@@ -108,7 +108,7 @@ export declare class HOGDescriptor {
    *   @param _nlevels sets nlevels with given value.
    *   @param _signedGradient sets signedGradient with given value.
    */
-  public constructor(_winSize: any, _blockSize: any, _blockStride: any, _cellSize: any, _nbins: int, _derivAperture: int, _winSigma: double, _histogramNormType: any, _L2HysThreshold: double, _gammaCorrection: bool, _nlevels: int, _signedGradient: bool)
+  public constructor(_winSize: any, _blockSize: any, _blockStride: any, _cellSize: any, _nbins: int, _derivAperture?: int, _winSigma?: double, _histogramNormType?: any, _L2HysThreshold?: double, _gammaCorrection?: bool, _nlevels?: int, _signedGradient?: bool)
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -137,7 +137,7 @@ export declare class HOGDescriptor {
    *   @param padding Padding
    *   @param locations Vector of Point
    */
-  public compute(img: any, descriptors: any, winStride: any, padding: any, locations: any): any
+  public compute(img: any, descriptors: any, winStride?: any, padding?: any, locations?: any): any
 
   /**
    *   
@@ -147,7 +147,7 @@ export declare class HOGDescriptor {
    *   @param paddingTL Padding from top-left
    *   @param paddingBR Padding from bottom-right
    */
-  public computeGradient(img: any, grad: any, angleOfs: any, paddingTL: any, paddingBR: any): any
+  public computeGradient(img: any, grad: any, angleOfs: any, paddingTL?: any, paddingBR?: any): any
 
   /**
    *   
@@ -165,7 +165,7 @@ export declare class HOGDescriptor {
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes set of requested locations to be evaluated.
    */
-  public detect(img: any, foundLocations: any, weights: any, hitThreshold: double, winStride: any, padding: any, searchLocations: any): any
+  public detect(img: any, foundLocations: any, weights: any, hitThreshold?: double, winStride?: any, padding?: any, searchLocations?: any): any
 
   /**
    *   
@@ -176,7 +176,7 @@ export declare class HOGDescriptor {
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes locations to search.
    */
-  public detect(img: any, foundLocations: any, hitThreshold: double, winStride: any, padding: any, searchLocations: any): any
+  public detect(img: any, foundLocations: any, hitThreshold?: double, winStride?: any, padding?: any, searchLocations?: any): any
 
   /**
    *   
@@ -190,7 +190,7 @@ export declare class HOGDescriptor {
    *   @param finalThreshold Final threshold
    *   @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: any, foundLocations: any, foundWeights: any, hitThreshold: double, winStride: any, padding: any, scale: double, finalThreshold: double, useMeanshiftGrouping: bool): any
+  public detectMultiScale(img: any, foundLocations: any, foundWeights: any, hitThreshold?: double, winStride?: any, padding?: any, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): any
 
   /**
    *   
@@ -203,7 +203,7 @@ export declare class HOGDescriptor {
    *   @param finalThreshold Final threshold
    *   @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: any, foundLocations: any, hitThreshold: double, winStride: any, padding: any, scale: double, finalThreshold: double, useMeanshiftGrouping: bool): any
+  public detectMultiScale(img: any, foundLocations: any, hitThreshold?: double, winStride?: any, padding?: any, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): any
 
   /**
    *   
@@ -213,7 +213,7 @@ export declare class HOGDescriptor {
    *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a group of rectangles to retain it.
    */
-  public detectMultiScaleROI(img: any, foundLocations: any, locations: any, hitThreshold: double, groupThreshold: int): any
+  public detectMultiScaleROI(img: any, foundLocations: any, locations: any, hitThreshold?: double, groupThreshold?: int): any
 
   /**
    *   
@@ -225,7 +225,7 @@ export declare class HOGDescriptor {
    *   @param winStride winStride
    *   @param padding padding
    */
-  public detectROI(img: any, locations: any, foundLocations: any, confidences: any, hitThreshold: double, winStride: any, padding: any): any
+  public detectROI(img: any, locations: any, foundLocations: any, confidences: any, hitThreshold?: double, winStride?: any, padding?: any): any
 
   /**
    *   
@@ -251,7 +251,7 @@ export declare class HOGDescriptor {
    *   @param filename Path of the file to read.
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be used).
    */
-  public load(filename: any, objname: any): any
+  public load(filename: any, objname?: any): any
 
   /**
    *   
@@ -264,7 +264,7 @@ export declare class HOGDescriptor {
    *   @param filename File name
    *   @param objname Object name
    */
-  public save(filename: any, objname: any): any
+  public save(filename: any, objname?: any): any
 
   /**
    *   
@@ -293,22 +293,22 @@ export declare class HOGDescriptor {
 /**
  * 
  */
-export declare const HOGDescriptor_DEFAULT_NLEVELS: any // initializer: = 64
+export declare const DEFAULT_NLEVELS: any // initializer: = 64
 
 /**
  * 
  */
-export declare const HOGDescriptor_DESCR_FORMAT_COL_BY_COL: DescriptorStorageFormat // initializer: 
+export declare const DESCR_FORMAT_COL_BY_COL: DescriptorStorageFormat // initializer: 
 
 /**
  * 
  */
-export declare const HOGDescriptor_DESCR_FORMAT_ROW_BY_ROW: DescriptorStorageFormat // initializer: 
+export declare const DESCR_FORMAT_ROW_BY_ROW: DescriptorStorageFormat // initializer: 
 
 /**
  * 
  */
-export declare const HOGDescriptor_L2Hys: HistogramNormType // initializer: = 0
+export declare const L2Hys: HistogramNormType // initializer: = 0
 
 /**
  * 

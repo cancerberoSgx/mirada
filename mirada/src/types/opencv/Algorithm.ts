@@ -85,7 +85,7 @@ export declare class Algorithm {
    *   @param fs 
    *   @param name 
    */
-  public write(fs: any, name: any): any
+  public write(fs: any, name?: any): any
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is following (in the case of SVM): 
@@ -100,7 +100,7 @@ export declare class Algorithm {
    *   @param filename Name of the file to read.
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be used)
    */
-  public static load(arg0: any, filename: any, objname: any): any
+  public static load(arg0: any, filename: any, objname?: any): any
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is following (in the case of SVM): 
@@ -113,7 +113,7 @@ export declare class Algorithm {
    *   @param strModel The string variable containing the model you want to load.
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be used)
    */
-  public static loadFromString(arg1: any, strModel: any, objname: any): any
+  public static loadFromString(arg1: any, strModel: any, objname?: any): any
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is following (in the case of SVM): 

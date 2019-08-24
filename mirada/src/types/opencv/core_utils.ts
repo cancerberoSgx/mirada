@@ -1,5 +1,5 @@
 
-import { int, size_t, bool, float, _Tp, short, double, InputArray, String, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, ErrorCallback, unsigned, float16_t, AsyncArray } from './_types'
+import { int, size_t, bool, float, _Tp, short, double, InputArray, String, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, ErrorCallback, unsigned, float16_t, AsyncArray, CpuFeatures, SortFlags } from './_types'
 /*
  * # core_utils
  *
@@ -13,7 +13,7 @@ import { int, size_t, bool, float, _Tp, short, double, InputArray, String, Input
  * @param ptr Aligned pointer.
  * @param n Alignment size that must be a power of two.
  */
-export declare function alignPtr(arg92: any, ptr: any, n: int): any
+export declare function alignPtr(arg92: any, ptr: any, n?: int): any
 
 /**
  * The function returns the minimum number that is greater than or equal to sz and is divisible by n : `\\[\\texttt{(sz + n-1) & -n}\\]`
@@ -404,7 +404,7 @@ export declare function getVersionString(): String
  * @param result 
  * @param recursive 
  */
-export declare function glob(pattern: String, result: any, recursive: bool): void
+export declare function glob(pattern: String, result: any, recursive?: bool): void
 
 /**
  * proxy for hal::LU
@@ -517,7 +517,7 @@ export declare function normL2Sqr(a: any, b: any, n: int): float
  * @param body 
  * @param nstripes 
  */
-export declare function parallel_for_(range: any, body: any, nstripes: double): void
+export declare function parallel_for_(range: any, body: any, nstripes?: double): void
 
 /**
  * 
@@ -525,7 +525,7 @@ export declare function parallel_for_(range: any, body: any, nstripes: double): 
  * @param functor 
  * @param nstripes 
  */
-export declare function parallel_for_(range: any, functor: any, nstripes: double): void
+export declare function parallel_for_(range: any, functor: any, nstripes?: double): void
 
 /**
  * The function sets the new error handler, called from [cv::error()](#db/de0/group__core__utils_1gacbd081fdb20423a63cf731569ba70b2b}).
@@ -536,7 +536,7 @@ export declare function parallel_for_(range: any, functor: any, nstripes: double
  * @param userdata the optional user data pointer, passed to the callback.
  * @param prevUserdata the optional output parameter where the previous user data pointer is stored
  */
-export declare function redirectError(errCallback: ErrorCallback, userdata: any, prevUserdata: any): ErrorCallback
+export declare function redirectError(errCallback: ErrorCallback, userdata?: any, prevUserdata?: any): ErrorCallback
 
 /**
  * Use this function instead of `ceil((float)a / b) * b` expressions.
@@ -696,7 +696,7 @@ export declare function setUseOptimized(onoff: bool): void
  * 
  * @param suffix 
  */
-export declare function tempfile(suffix: any): String
+export declare function tempfile(suffix?: any): String
 
 /**
  * 
@@ -714,4 +714,232 @@ export declare function testAsyncException(): AsyncArray
  * 
  */
 export declare function useOptimized(): bool
+
+/**
+ * 
+ */
+export declare const CPU_MMX: CpuFeatures // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CPU_SSE: CpuFeatures // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CPU_SSE2: CpuFeatures // initializer: = 3
+
+/**
+ * 
+ */
+export declare const CPU_SSE3: CpuFeatures // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CPU_SSSE3: CpuFeatures // initializer: = 5
+
+/**
+ * 
+ */
+export declare const CPU_SSE4_1: CpuFeatures // initializer: = 6
+
+/**
+ * 
+ */
+export declare const CPU_SSE4_2: CpuFeatures // initializer: = 7
+
+/**
+ * 
+ */
+export declare const CPU_POPCNT: CpuFeatures // initializer: = 8
+
+/**
+ * 
+ */
+export declare const CPU_FP16: CpuFeatures // initializer: = 9
+
+/**
+ * 
+ */
+export declare const CPU_AVX: CpuFeatures // initializer: = 10
+
+/**
+ * 
+ */
+export declare const CPU_AVX2: CpuFeatures // initializer: = 11
+
+/**
+ * 
+ */
+export declare const CPU_FMA3: CpuFeatures // initializer: = 12
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512F: CpuFeatures // initializer: = 13
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512BW: CpuFeatures // initializer: = 14
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512CD: CpuFeatures // initializer: = 15
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512DQ: CpuFeatures // initializer: = 16
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512ER: CpuFeatures // initializer: = 17
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512IFMA512: CpuFeatures // initializer: = 18
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512IFMA: CpuFeatures // initializer: = 18
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512PF: CpuFeatures // initializer: = 19
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512VBMI: CpuFeatures // initializer: = 20
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512VL: CpuFeatures // initializer: = 21
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512VBMI2: CpuFeatures // initializer: = 22
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512VNNI: CpuFeatures // initializer: = 23
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512BITALG: CpuFeatures // initializer: = 24
+
+/**
+ * 
+ */
+export declare const CPU_AVX_512VPOPCNTDQ: CpuFeatures // initializer: = 25
+
+/**
+ * 
+ */
+export declare const CPU_AVX_5124VNNIW: CpuFeatures // initializer: = 26
+
+/**
+ * 
+ */
+export declare const CPU_AVX_5124FMAPS: CpuFeatures // initializer: = 27
+
+/**
+ * 
+ */
+export declare const CPU_NEON: CpuFeatures // initializer: = 100
+
+/**
+ * 
+ */
+export declare const CPU_VSX: CpuFeatures // initializer: = 200
+
+/**
+ * 
+ */
+export declare const CPU_VSX3: CpuFeatures // initializer: = 201
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_SKX: CpuFeatures // initializer: = 256
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_COMMON: CpuFeatures // initializer: = 257
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_KNL: CpuFeatures // initializer: = 258
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_KNM: CpuFeatures // initializer: = 259
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_CNL: CpuFeatures // initializer: = 260
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_CEL: CpuFeatures // initializer: = 261
+
+/**
+ * 
+ */
+export declare const CPU_AVX512_ICL: CpuFeatures // initializer: = 262
+
+/**
+ * 
+ */
+export declare const CPU_MAX_FEATURE: CpuFeatures // initializer: = 512
+
+/**
+ * 
+ */
+export declare const SORT_EVERY_ROW: SortFlags // initializer: = 0
+
+/**
+ * each matrix column is sorted independently; this flag and the previous one are mutually exclusive.
+ * 
+ */
+export declare const SORT_EVERY_COLUMN: SortFlags // initializer: = 1
+
+/**
+ * each matrix row is sorted in the ascending order.
+ * 
+ */
+export declare const SORT_ASCENDING: SortFlags // initializer: = 0
+
+/**
+ * each matrix row is sorted in the descending order; this flag and the previous one are also mutually exclusive.
+ * 
+ */
+export declare const SORT_DESCENDING: SortFlags // initializer: = 16
+
+/**
+ * 
+ */
+export type CpuFeatures = any
+
+/**
+ * 
+ */
+export type SortFlags = any
 

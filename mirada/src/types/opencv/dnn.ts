@@ -1,5 +1,5 @@
 
-import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Size, Backend, OutputArrayOfArrays, Net, size_t } from './_types'
+import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Size, Backend, OutputArrayOfArrays, Net, size_t, Target } from './_types'
 /*
  * # dnn
  *
@@ -19,7 +19,7 @@ import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Si
  * @param crop flag which indicates whether image will be cropped after resize or not
  * @param ddepth Depth of output blob. Choose CV_32F or CV_8U.
  */
-export declare function blobFromImage(image: InputArray, scalefactor: double, size: any, mean: any, swapRB: bool, crop: bool, ddepth: int): Mat
+export declare function blobFromImage(image: InputArray, scalefactor?: double, size?: any, mean?: any, swapRB?: bool, crop?: bool, ddepth?: int): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -33,7 +33,7 @@ export declare function blobFromImage(image: InputArray, scalefactor: double, si
  * @param crop 
  * @param ddepth 
  */
-export declare function blobFromImage(image: InputArray, blob: OutputArray, scalefactor: double, size: any, mean: any, swapRB: bool, crop: bool, ddepth: int): void
+export declare function blobFromImage(image: InputArray, blob: OutputArray, scalefactor?: double, size?: any, mean?: any, swapRB?: bool, crop?: bool, ddepth?: int): void
 
 /**
  * if `crop` is true, input image is resized so one side after resize is equal to corresponding dimension in `size` and another one is equal or larger. Then, crop from the center is performed. If `crop` is false, direct resize without cropping and preserving aspect ratio is performed. 
@@ -48,7 +48,7 @@ export declare function blobFromImage(image: InputArray, blob: OutputArray, scal
  * @param crop flag which indicates whether image will be cropped after resize or not
  * @param ddepth Depth of output blob. Choose CV_32F or CV_8U.
  */
-export declare function blobFromImages(images: InputArrayOfArrays, scalefactor: double, size: Size, mean: any, swapRB: bool, crop: bool, ddepth: int): Mat
+export declare function blobFromImages(images: InputArrayOfArrays, scalefactor?: double, size?: Size, mean?: any, swapRB?: bool, crop?: bool, ddepth?: int): Mat
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -62,7 +62,7 @@ export declare function blobFromImages(images: InputArrayOfArrays, scalefactor: 
  * @param crop 
  * @param ddepth 
  */
-export declare function blobFromImages(images: InputArrayOfArrays, blob: OutputArray, scalefactor: double, size: Size, mean: any, swapRB: bool, crop: bool, ddepth: int): void
+export declare function blobFromImages(images: InputArrayOfArrays, blob: OutputArray, scalefactor?: double, size?: Size, mean?: any, swapRB?: bool, crop?: bool, ddepth?: int): void
 
 /**
  * 
@@ -92,7 +92,7 @@ export declare function imagesFromBlob(blob_: any, images_: OutputArrayOfArrays)
  * @param eta a coefficient in adaptive threshold formula: $nms\_threshold_{i+1}=eta\cdot nms\_threshold_i$.
  * @param top_k if >0, keep at most top_k picked indices.
  */
-export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta: any, top_k: any): void
+export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta?: any, top_k?: any): void
 
 /**
  * 
@@ -104,7 +104,7 @@ export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any,
  * @param eta 
  * @param top_k 
  */
-export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta: any, top_k: any): void
+export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta?: any, top_k?: any): void
 
 /**
  * 
@@ -116,7 +116,7 @@ export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any,
  * @param eta 
  * @param top_k 
  */
-export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta: any, top_k: any): void
+export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any, nms_threshold: any, indices: any, eta?: any, top_k?: any): void
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -128,7 +128,7 @@ export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any,
  * .prototxt (Caffe, http://caffe.berkeleyvision.org/)*.pbtxt (TensorFlow, https://www.tensorflow.org/)*.cfg (Darknet, https://pjreddie.com/darknet/)*.xml (DLDT, https://software.intel.com/openvino-toolkit)
  * @param framework Explicit framework name tag to determine a format.
  */
-export declare function readNet(model: any, config: any, framework: any): Net
+export declare function readNet(model: any, config?: any, framework?: any): Net
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -139,7 +139,7 @@ export declare function readNet(model: any, config: any, framework: any): Net
  * @param bufferModel A buffer with a content of binary file with weights
  * @param bufferConfig A buffer with a content of text file contains network configuration.
  */
-export declare function readNet(framework: any, bufferModel: any, bufferConfig: any): any
+export declare function readNet(framework: any, bufferModel: any, bufferConfig?: any): any
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -147,7 +147,7 @@ export declare function readNet(framework: any, bufferModel: any, bufferConfig: 
  * @param prototxt path to the .prototxt file with text description of the network architecture.
  * @param caffeModel path to the .caffemodel file with learned network.
  */
-export declare function readNetFromCaffe(prototxt: any, caffeModel: any): Net
+export declare function readNetFromCaffe(prototxt: any, caffeModel?: any): Net
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -155,7 +155,7 @@ export declare function readNetFromCaffe(prototxt: any, caffeModel: any): Net
  * @param bufferProto buffer containing the content of the .prototxt file
  * @param bufferModel buffer containing the content of the .caffemodel file
  */
-export declare function readNetFromCaffe(bufferProto: any, bufferModel: any): any
+export declare function readNetFromCaffe(bufferProto: any, bufferModel?: any): any
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
@@ -167,7 +167,7 @@ export declare function readNetFromCaffe(bufferProto: any, bufferModel: any): an
  * @param bufferModel buffer containing the content of the .caffemodel file
  * @param lenModel length of bufferModel
  */
-export declare function readNetFromCaffe(bufferProto: any, lenProto: size_t, bufferModel: any, lenModel: size_t): Net
+export declare function readNetFromCaffe(bufferProto: any, lenProto: size_t, bufferModel?: any, lenModel?: size_t): Net
 
 /**
  * Network object that ready to do forward, throw an exception in failure cases. 
@@ -177,7 +177,7 @@ export declare function readNetFromCaffe(bufferProto: any, lenProto: size_t, buf
  * @param cfgFile path to the .cfg file with text description of the network architecture.
  * @param darknetModel path to the .weights file with learned network.
  */
-export declare function readNetFromDarknet(cfgFile: any, darknetModel: any): Net
+export declare function readNetFromDarknet(cfgFile: any, darknetModel?: any): Net
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -185,7 +185,7 @@ export declare function readNetFromDarknet(cfgFile: any, darknetModel: any): Net
  * @param bufferCfg A buffer contains a content of .cfg file with text description of the network architecture.
  * @param bufferModel A buffer contains a content of .weights file with learned network.
  */
-export declare function readNetFromDarknet(bufferCfg: any, bufferModel: any): any
+export declare function readNetFromDarknet(bufferCfg: any, bufferModel?: any): any
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -195,7 +195,7 @@ export declare function readNetFromDarknet(bufferCfg: any, bufferModel: any): an
  * @param bufferModel A buffer contains a content of .weights file with learned network.
  * @param lenModel Number of bytes to read from bufferModel
  */
-export declare function readNetFromDarknet(bufferCfg: any, lenCfg: size_t, bufferModel: any, lenModel: size_t): Net
+export declare function readNetFromDarknet(bufferCfg: any, lenCfg: size_t, bufferModel?: any, lenModel?: size_t): Net
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object. Networks imported from Intel's [Model](#d3/df0/classcv_1_1dnn_1_1Model}) Optimizer are launched in Intel's Inference Engine backend.
@@ -233,7 +233,7 @@ export declare function readNetFromONNX(buffer: any): any
  * @param model path to the .pb file with binary protobuf description of the network architecture
  * @param config path to the .pbtxt file that contains text graph definition in protobuf format. Resulting Net object is built by text graph using weights from a binary one that let us make it more flexible.
  */
-export declare function readNetFromTensorflow(model: any, config: any): Net
+export declare function readNetFromTensorflow(model: any, config?: any): Net
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -241,7 +241,7 @@ export declare function readNetFromTensorflow(model: any, config: any): Net
  * @param bufferModel buffer containing the content of the pb file
  * @param bufferConfig buffer containing the content of the pbtxt file
  */
-export declare function readNetFromTensorflow(bufferModel: any, bufferConfig: any): any
+export declare function readNetFromTensorflow(bufferModel: any, bufferConfig?: any): any
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -251,7 +251,7 @@ export declare function readNetFromTensorflow(bufferModel: any, bufferConfig: an
  * @param bufferConfig buffer containing the content of the pbtxt file
  * @param lenConfig length of bufferConfig
  */
-export declare function readNetFromTensorflow(bufferModel: any, lenModel: size_t, bufferConfig: any, lenConfig: size_t): Net
+export declare function readNetFromTensorflow(bufferModel: any, lenModel: size_t, bufferConfig?: any, lenConfig?: size_t): Net
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -277,7 +277,7 @@ export declare function readNetFromTensorflow(bufferModel: any, lenModel: size_t
  * @param isBinary specifies whether the network was serialized in ascii mode or binary.
  * @param evaluate specifies testing phase of network. If true, it's similar to evaluate() method in Torch.
  */
-export declare function readNetFromTorch(model: any, isBinary: bool, evaluate: bool): Net
+export declare function readNetFromTorch(model: any, isBinary?: bool, evaluate?: bool): Net
 
 /**
  * [Mat](#d3/d63/classcv_1_1Mat}).
@@ -292,7 +292,7 @@ export declare function readTensorFromONNX(path: any): Mat
  * @param filename 
  * @param isBinary 
  */
-export declare function readTorchBlob(filename: any, isBinary: bool): Mat
+export declare function readTorchBlob(filename: any, isBinary?: bool): Mat
 
 /**
  * Shrinked model has no origin float32 weights so it can't be used in origin Caffe framework anymore. However the structure of data is taken from NVidia's Caffe fork: . So the resulting model may be used there.
@@ -301,7 +301,7 @@ export declare function readTorchBlob(filename: any, isBinary: bool): Mat
  * @param dst Path to destination model with updated weights.
  * @param layersTypes Set of layers types which parameters will be converted. By default, converts only Convolutional and Fully-Connected layers' weights.
  */
-export declare function shrinkCaffeModel(src: any, dst: any, layersTypes: any): void
+export declare function shrinkCaffeModel(src: any, dst: any, layersTypes?: any): void
 
 /**
  * To reduce output file size, trained weights are not included.
@@ -310,4 +310,72 @@ export declare function shrinkCaffeModel(src: any, dst: any, layersTypes: any): 
  * @param output A path to output text file to be created.
  */
 export declare function writeTextGraph(model: any, output: any): void
+
+/**
+ * DNN_BACKEND_DEFAULT equals to DNN_BACKEND_INFERENCE_ENGINE if OpenCV is built with Intel's Inference Engine library or DNN_BACKEND_OPENCV otherwise.
+ * 
+ */
+export declare const DNN_BACKEND_DEFAULT: Backend // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_BACKEND_HALIDE: Backend // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_BACKEND_INFERENCE_ENGINE: Backend // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_BACKEND_OPENCV: Backend // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_BACKEND_VKCOM: Backend // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_CPU: Target // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_OPENCL: Target // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_OPENCL_FP16: Target // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_MYRIAD: Target // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_VULKAN: Target // initializer: 
+
+/**
+ * 
+ */
+export declare const DNN_TARGET_FPGA: Target // initializer: 
+
+/**
+ * [Net::setPreferableBackend](#db/d30/classcv_1_1dnn_1_1Net_1a7f767df11386d39374db49cd8df8f59e})
+ * 
+ */
+export type Backend = any
+
+/**
+ * [Net::setPreferableBackend](#db/d30/classcv_1_1dnn_1_1Net_1a7f767df11386d39374db49cd8df8f59e})
+ * 
+ */
+export type Target = any
 

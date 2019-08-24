@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputArrayOfArrays, Point, float, Moments, Point2f } from './_types'
+import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputArrayOfArrays, Point, float, Moments, Point2f, ConnectedComponentsAlgorithmsTypes, ConnectedComponentsTypes, ContourApproximationModes, RectanglesIntersectTypes, RetrievalModes, ShapeMatchModes } from './_types'
 /*
  * # imgproc_shape
  *
@@ -58,7 +58,7 @@ export declare function connectedComponents(image: InputArray, labels: OutputArr
  * @param connectivity 8 or 4 for 8-way or 4-way connectivity respectively
  * @param ltype output image label type. Currently CV_32S and CV_16U are supported.
  */
-export declare function connectedComponents(image: InputArray, labels: OutputArray, connectivity: int, ltype: int): int
+export declare function connectedComponents(image: InputArray, labels: OutputArray, connectivity?: int, ltype?: int): int
 
 /**
  * image with 4 or 8 way connectivity - returns N, the total number of labels [0, N-1] where 0 represents the background label. ltype specifies the output label image type, an important consideration based on the total number of labels or alternatively the total number of pixels in the source image. ccltype specifies the connected components labeling algorithm to use, currently Grana's (BBDT) and Wu's (SAUF) algorithms are supported, see the [ConnectedComponentsAlgorithmsTypes](#d3/dc0/group__imgproc__shape_1ga5ed7784614678adccb699c70fb841075}) for details. Note that SAUF algorithm forces a row major ordering of labels while BBDT does not. This function uses parallel version of both Grana and Wu's algorithms (statistics included) if at least one allowed parallel framework is enabled and if the rows of the image are at least twice the number returned by [getNumberOfCPUs](#db/de0/group__core__utils_1gadf09fc982bf4f17bc84bd1abce5d0863}).
@@ -83,7 +83,7 @@ export declare function connectedComponentsWithStats(image: InputArray, labels: 
  * @param connectivity 8 or 4 for 8-way or 4-way connectivity respectively
  * @param ltype output image label type. Currently CV_32S and CV_16U are supported.
  */
-export declare function connectedComponentsWithStats(image: InputArray, labels: OutputArray, stats: OutputArray, centroids: OutputArray, connectivity: int, ltype: int): int
+export declare function connectedComponentsWithStats(image: InputArray, labels: OutputArray, stats: OutputArray, centroids: OutputArray, connectivity?: int, ltype?: int): int
 
 /**
  * The function computes a contour area. Similarly to moments , the area is computed using the Green formula. Thus, the returned area and the number of non-zero pixels, if you draw the contour using [drawContours](#d6/d6e/group__imgproc__draw_1ga746c0625f1781f1ffc9056259103edbc}) or [fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}) , can be different. Also, the function will most certainly give a wrong results for contours with self-intersections.
@@ -110,7 +110,7 @@ export declare function connectedComponentsWithStats(image: InputArray, labels: 
  * @param contour Input vector of 2D points (contour vertices), stored in std::vector or Mat.
  * @param oriented Oriented area flag. If it is true, the function returns a signed area value, depending on the contour orientation (clockwise or counter-clockwise). Using this feature you can determine orientation of a contour by taking the sign of an area. By default, the parameter is false, which means that the absolute value is returned.
  */
-export declare function contourArea(contour: InputArray, oriented: bool): double
+export declare function contourArea(contour: InputArray, oriented?: bool): double
 
 /**
  * The function [cv::convexHull](#d3/dc0/group__imgproc__shape_1ga014b28e56cb8854c0de4a211cb2be656}) finds the convex hull of a 2D point set using the Sklansky's algorithm Sklansky82 that has *O(N logN)* complexity in the current implementation.
@@ -125,7 +125,7 @@ export declare function contourArea(contour: InputArray, oriented: bool): double
  * @param clockwise Orientation flag. If it is true, the output convex hull is oriented clockwise. Otherwise, it is oriented counter-clockwise. The assumed coordinate system has its X axis pointing to the right, and its Y axis pointing upwards.
  * @param returnPoints Operation flag. In case of a matrix, when the flag is true, the function returns convex hull points. Otherwise, it returns indices of the convex hull points. When the output array is std::vector, the flag is ignored, and the output depends on the type of the vector: std::vector<int> implies returnPoints=false, std::vector<Point> implies returnPoints=true.
  */
-export declare function convexHull(points: InputArray, hull: OutputArray, clockwise: bool, returnPoints: bool): void
+export declare function convexHull(points: InputArray, hull: OutputArray, clockwise?: bool, returnPoints?: bool): void
 
 /**
  * The figure below displays convexity defects of a hand contour:
@@ -158,7 +158,7 @@ export declare function createGeneralizedHoughGuil(): any
  * @param method Contour approximation method, see ContourApproximationModes
  * @param offset Optional offset by which every contour point is shifted. This is useful if the contours are extracted from the image ROI and then they should be analyzed in the whole image context.
  */
-export declare function findContours(image: InputArray, contours: OutputArrayOfArrays, hierarchy: OutputArray, mode: int, method: int, offset: Point): void
+export declare function findContours(image: InputArray, contours: OutputArrayOfArrays, hierarchy: OutputArray, mode: int, method: int, offset?: Point): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -169,7 +169,7 @@ export declare function findContours(image: InputArray, contours: OutputArrayOfA
  * @param method 
  * @param offset 
  */
-export declare function findContours(image: InputArray, contours: OutputArrayOfArrays, mode: int, method: int, offset: Point): void
+export declare function findContours(image: InputArray, contours: OutputArrayOfArrays, mode: int, method: int, offset?: Point): void
 
 /**
  * The function calculates the ellipse that fits (in a least-squares sense) a set of 2D points best of all. It returns the rotated rectangle in which the ellipse is inscribed. The first algorithm described by Fitzgibbon95 is used. Developer should keep in mind that it is possible that the returned ellipse/rotatedRect data contains negative indices, due to the data points being close to the border of the containing [Mat](#d3/d63/classcv_1_1Mat}) element.
@@ -262,7 +262,7 @@ export declare function HuMoments(m: any, hu: OutputArray): void
  * @param _p12 
  * @param handleNested 
  */
-export declare function intersectConvexConvex(_p1: InputArray, _p2: InputArray, _p12: OutputArray, handleNested: bool): float
+export declare function intersectConvexConvex(_p1: InputArray, _p2: InputArray, _p12: OutputArray, handleNested?: bool): float
 
 /**
  * The function tests whether the input contour is convex or not. The contour must be simple, that is, without self-intersections. Otherwise, the function output is undefined.
@@ -319,7 +319,7 @@ export declare function minEnclosingTriangle(points: InputArray, triangle: Outpu
  * @param array Raster image (single-channel, 8-bit or floating-point 2D array) or an array ( $1 \times N$ or $N \times 1$ ) of 2D points (Point or Point2f ).
  * @param binaryImage If it is true, all non-zero image pixels are treated as 1's. The parameter is used for images only.
  */
-export declare function moments(array: InputArray, binaryImage: bool): Moments
+export declare function moments(array: InputArray, binaryImage?: bool): Moments
 
 /**
  * The function determines whether the point is inside a contour, outside, or lies on an edge (or coincides with a vertex). It returns positive (inside), negative (outside), or zero (on an edge) value, correspondingly. When measureDist=false , the return value is +1, -1, and 0, respectively. Otherwise, the return value is a signed distance between the point and the nearest contour edge.
@@ -344,4 +344,164 @@ export declare function pointPolygonTest(contour: InputArray, pt: Point2f, measu
  * @param intersectingRegion The output array of the vertices of the intersecting region. It returns at most 8 vertices. Stored as std::vector<cv::Point2f> or cv::Mat as Mx1 of type CV_32FC2.
  */
 export declare function rotatedRectangleIntersection(rect1: any, rect2: any, intersectingRegion: OutputArray): int
+
+/**
+ * 
+ */
+export declare const CCL_WU: ConnectedComponentsAlgorithmsTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const CCL_DEFAULT: ConnectedComponentsAlgorithmsTypes // initializer: = -1
+
+/**
+ * 
+ */
+export declare const CCL_GRANA: ConnectedComponentsAlgorithmsTypes // initializer: = 1
+
+/**
+ * The leftmost (x) coordinate which is the inclusive start of the bounding box in the horizontal direction.
+ * 
+ */
+export declare const CC_STAT_LEFT: ConnectedComponentsTypes // initializer: = 0
+
+/**
+ * The topmost (y) coordinate which is the inclusive start of the bounding box in the vertical direction.
+ * 
+ */
+export declare const CC_STAT_TOP: ConnectedComponentsTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const CC_STAT_WIDTH: ConnectedComponentsTypes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const CC_STAT_HEIGHT: ConnectedComponentsTypes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const CC_STAT_AREA: ConnectedComponentsTypes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CC_STAT_MAX: ConnectedComponentsTypes // initializer: = 5
+
+/**
+ * stores absolutely all the contour points. That is, any 2 subsequent points (x1,y1) and (x2,y2) of the contour will be either horizontal, vertical or diagonal neighbors, that is, max(abs(x1-x2),abs(y2-y1))==1.
+ * 
+ */
+export declare const CHAIN_APPROX_NONE: ContourApproximationModes // initializer: = 1
+
+/**
+ * compresses horizontal, vertical, and diagonal segments and leaves only their end points. For example, an up-right rectangular contour is encoded with 4 points.
+ * 
+ */
+export declare const CHAIN_APPROX_SIMPLE: ContourApproximationModes // initializer: = 2
+
+/**
+ * applies one of the flavors of the Teh-Chin chain approximation algorithm TehChin89
+ * 
+ */
+export declare const CHAIN_APPROX_TC89_L1: ContourApproximationModes // initializer: = 3
+
+/**
+ * applies one of the flavors of the Teh-Chin chain approximation algorithm TehChin89
+ * 
+ */
+export declare const CHAIN_APPROX_TC89_KCOS: ContourApproximationModes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const INTERSECT_NONE: RectanglesIntersectTypes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const INTERSECT_PARTIAL: RectanglesIntersectTypes // initializer: = 1
+
+/**
+ * 
+ */
+export declare const INTERSECT_FULL: RectanglesIntersectTypes // initializer: = 2
+
+/**
+ * retrieves only the extreme outer contours. It sets `hierarchy[i][2]=hierarchy[i][3]=-1` for all the contours.
+ * 
+ */
+export declare const RETR_EXTERNAL: RetrievalModes // initializer: = 0
+
+/**
+ * retrieves all of the contours without establishing any hierarchical relationships.
+ * 
+ */
+export declare const RETR_LIST: RetrievalModes // initializer: = 1
+
+/**
+ * retrieves all of the contours and organizes them into a two-level hierarchy. At the top level, there are external boundaries of the components. At the second level, there are boundaries of the holes. If there is another contour inside a hole of a connected component, it is still put at the top level.
+ * 
+ */
+export declare const RETR_CCOMP: RetrievalModes // initializer: = 2
+
+/**
+ * retrieves all of the contours and reconstructs a full hierarchy of nested contours.
+ * 
+ */
+export declare const RETR_TREE: RetrievalModes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const RETR_FLOODFILL: RetrievalModes // initializer: = 4
+
+/**
+ * 
+ */
+export declare const CONTOURS_MATCH_I1: ShapeMatchModes // initializer: =1
+
+/**
+ * 
+ */
+export declare const CONTOURS_MATCH_I2: ShapeMatchModes // initializer: =2
+
+/**
+ * 
+ */
+export declare const CONTOURS_MATCH_I3: ShapeMatchModes // initializer: =3
+
+/**
+ * 
+ */
+export type ConnectedComponentsAlgorithmsTypes = any
+
+/**
+ * 
+ */
+export type ConnectedComponentsTypes = any
+
+/**
+ * 
+ */
+export type ContourApproximationModes = any
+
+/**
+ * 
+ */
+export type RectanglesIntersectTypes = any
+
+/**
+ * 
+ */
+export type RetrievalModes = any
+
+/**
+ * 
+ */
+export type ShapeMatchModes = any
 

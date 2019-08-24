@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, TermCriteria } from './_types'
+import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, TermCriteria, HoughModes, LineSegmentDetectorModes } from './_types'
 /*
  * # imgproc_feature
  *
@@ -16,7 +16,7 @@ import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, Ter
  * @param apertureSize aperture size for the Sobel operator.
  * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 + (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
-export declare function Canny(image: InputArray, edges: OutputArray, threshold1: double, threshold2: double, apertureSize: int, L2gradient: bool): void
+export declare function Canny(image: InputArray, edges: OutputArray, threshold1: double, threshold2: double, apertureSize?: int, L2gradient?: bool): void
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -30,7 +30,7 @@ export declare function Canny(image: InputArray, edges: OutputArray, threshold1:
  * @param threshold2 second threshold for the hysteresis procedure.
  * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 + (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
-export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray, threshold1: double, threshold2: double, L2gradient: bool): void
+export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray, threshold1: double, threshold2: double, L2gradient?: bool): void
 
 /**
  * For every pixel `$p$` , the function cornerEigenValsAndVecs considers a blockSize `$\\times$` blockSize neighborhood `$S(p)$` . It calculates the covariation matrix of derivatives over the neighborhood as:
@@ -55,7 +55,7 @@ export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray
  * @param ksize Aperture parameter for the Sobel operator.
  * @param borderType Pixel extrapolation method. See BorderTypes.
  */
-export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, borderType: int): void
+export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, borderType?: int): void
 
 /**
  * The function runs the Harris corner detector on the image. Similarly to cornerMinEigenVal and cornerEigenValsAndVecs , for each pixel `$(x, y)$` it calculates a `$2\\times2$` gradient covariance matrix `$M^{(x,y)}$` over a `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood. Then, it computes the following characteristic:
@@ -71,7 +71,7 @@ export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray
  * @param k Harris detector free parameter. See the formula above.
  * @param borderType Pixel extrapolation method. See BorderTypes.
  */
-export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, k: double, borderType: int): void
+export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, k: double, borderType?: int): void
 
 /**
  * The function is similar to cornerEigenValsAndVecs but it calculates and stores only the minimal eigenvalue of the covariance matrix of derivatives, that is, `$\\min(\\lambda_1, \\lambda_2)$` in terms of the formulae in the cornerEigenValsAndVecs description.
@@ -82,7 +82,7 @@ export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSiz
  * @param ksize Aperture parameter for the Sobel operator.
  * @param borderType Pixel extrapolation method. See BorderTypes.
  */
-export declare function cornerMinEigenVal(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, borderType: int): void
+export declare function cornerMinEigenVal(src: InputArray, dst: OutputArray, blockSize: int, ksize?: int, borderType?: int): void
 
 /**
  * The function iterates to find the sub-pixel accurate location of corners or radial saddle points, as shown on the figure below.
@@ -123,7 +123,7 @@ export declare function cornerSubPix(image: InputArray, corners: InputOutputArra
  * @param _density_th Minimal density of aligned region points in the enclosing rectangle.
  * @param _n_bins Number of bins in pseudo-ordering of gradient modulus.
  */
-export declare function createLineSegmentDetector(_refine: int, _scale: double, _sigma_scale: double, _quant: double, _ang_th: double, _log_eps: double, _density_th: double, _n_bins: int): any
+export declare function createLineSegmentDetector(_refine?: int, _scale?: double, _sigma_scale?: double, _quant?: double, _ang_th?: double, _log_eps?: double, _density_th?: double, _n_bins?: int): any
 
 /**
  * The function finds the most prominent corners in the image or in the specified image region, as described in Shi94
@@ -150,7 +150,7 @@ export declare function createLineSegmentDetector(_refine: int, _scale: double, 
  * @param useHarrisDetector Parameter indicating whether to use a Harris detector (see cornerHarris) or cornerMinEigenVal.
  * @param k Free parameter of the Harris detector.
  */
-export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask: InputArray, blockSize: int, useHarrisDetector: bool, k: double): void
+export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask?: InputArray, blockSize?: int, useHarrisDetector?: bool, k?: double): void
 
 /**
  * 
@@ -165,7 +165,7 @@ export declare function goodFeaturesToTrack(image: InputArray, corners: OutputAr
  * @param useHarrisDetector 
  * @param k 
  */
-export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask: InputArray, blockSize: int, gradientSize: int, useHarrisDetector: bool, k: double): void
+export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask: InputArray, blockSize: int, gradientSize: int, useHarrisDetector?: bool, k?: double): void
 
 /**
  * The function finds circles in a grayscale image using a modification of the Hough transform.
@@ -222,7 +222,7 @@ export declare function goodFeaturesToTrack(image: InputArray, corners: OutputAr
  * @param minRadius Minimum circle radius.
  * @param maxRadius Maximum circle radius. If <= 0, uses the maximum image dimension. If < 0, returns centers without finding the radius.
  */
-export declare function HoughCircles(image: InputArray, circles: OutputArray, method: int, dp: double, minDist: double, param1: double, param2: double, minRadius: int, maxRadius: int): void
+export declare function HoughCircles(image: InputArray, circles: OutputArray, method: int, dp: double, minDist: double, param1?: double, param2?: double, minRadius?: int, maxRadius?: int): void
 
 /**
  * The function implements the standard or standard multi-scale Hough transform algorithm for line detection. See  for a good explanation of Hough transform.
@@ -237,7 +237,7 @@ export declare function HoughCircles(image: InputArray, circles: OutputArray, me
  * @param min_theta For standard and multi-scale Hough transform, minimum angle to check for lines. Must fall between 0 and max_theta.
  * @param max_theta For standard and multi-scale Hough transform, maximum angle to check for lines. Must fall between min_theta and CV_PI.
  */
-export declare function HoughLines(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, srn: double, stn: double, min_theta: double, max_theta: double): void
+export declare function HoughLines(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, srn?: double, stn?: double, min_theta?: double, max_theta?: double): void
 
 /**
  * The function implements the probabilistic Hough transform algorithm for line detection, described in Matas00
@@ -292,7 +292,7 @@ export declare function HoughLines(image: InputArray, lines: OutputArray, rho: d
  * @param minLineLength Minimum line length. Line segments shorter than that are rejected.
  * @param maxLineGap Maximum allowed gap between points on the same line to link them.
  */
-export declare function HoughLinesP(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, minLineLength: double, maxLineGap: double): void
+export declare function HoughLinesP(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, minLineLength?: double, maxLineGap?: double): void
 
 /**
  * The function finds lines in a set of points using a modification of the Hough transform. 
@@ -369,5 +369,54 @@ export declare function HoughLinesPointSet(_point: InputArray, _lines: OutputArr
  * @param ksize Aperture size of the Sobel .
  * @param borderType Pixel extrapolation method. See BorderTypes.
  */
-export declare function preCornerDetect(src: InputArray, dst: OutputArray, ksize: int, borderType: int): void
+export declare function preCornerDetect(src: InputArray, dst: OutputArray, ksize: int, borderType?: int): void
+
+/**
+ * classical or standard Hough transform. Every line is represented by two floating-point numbers `$(\\rho, \\theta)$` , where `$\\rho$` is a distance between (0,0) point and the line, and `$\\theta$` is the angle between x-axis and the normal to the line. Thus, the matrix must be (the created sequence will be) of CV_32FC2 type
+ * 
+ */
+export declare const HOUGH_STANDARD: HoughModes // initializer: = 0
+
+/**
+ * probabilistic Hough transform (more efficient in case if the picture contains a few long linear segments). It returns line segments rather than the whole line. Each segment is represented by starting and ending points, and the matrix must be (the created sequence will be) of the CV_32SC4 type.
+ * 
+ */
+export declare const HOUGH_PROBABILISTIC: HoughModes // initializer: = 1
+
+/**
+ * multi-scale variant of the classical Hough transform. The lines are encoded the same way as HOUGH_STANDARD.
+ * 
+ */
+export declare const HOUGH_MULTI_SCALE: HoughModes // initializer: = 2
+
+/**
+ * 
+ */
+export declare const HOUGH_GRADIENT: HoughModes // initializer: = 3
+
+/**
+ * 
+ */
+export declare const LSD_REFINE_NONE: LineSegmentDetectorModes // initializer: = 0
+
+/**
+ * 
+ */
+export declare const LSD_REFINE_STD: LineSegmentDetectorModes // initializer: = 1
+
+/**
+ * Advanced refinement. Number of false alarms is calculated, lines are refined through increase of precision, decrement in size, etc.
+ * 
+ */
+export declare const LSD_REFINE_ADV: LineSegmentDetectorModes // initializer: = 2
+
+/**
+ * 
+ */
+export type HoughModes = any
+
+/**
+ * 
+ */
+export type LineSegmentDetectorModes = any
 

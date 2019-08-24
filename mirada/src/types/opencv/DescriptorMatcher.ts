@@ -25,7 +25,7 @@ export declare class DescriptorMatcher {
    *   
    *   @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object, that is, copies both parameters and train data. If emptyTrainData is true, the method creates an object copy with the current parameters but with empty train data.
    */
-  public clone(emptyTrainData: bool): any
+  public clone(emptyTrainData?: bool): any
 
   /**
    *   
@@ -52,7 +52,7 @@ export declare class DescriptorMatcher {
    *   @param mask Mask specifying permissible matches between an input query and train matrices of descriptors.
    *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: any, trainDescriptors: any, matches: any, k: int, mask: any, compactResult: bool): any
+  public knnMatch(queryDescriptors: any, trainDescriptors: any, matches: any, k: int, mask?: any, compactResult?: bool): any
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -63,7 +63,7 @@ export declare class DescriptorMatcher {
    *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: any, matches: any, k: int, masks: any, compactResult: bool): any
+  public knnMatch(queryDescriptors: any, matches: any, k: int, masks?: any, compactResult?: bool): any
 
   /**
    *   In the first variant of this method, the train descriptors are passed as an input argument. In the second variant of the method, train descriptors collection that was set by [DescriptorMatcher::add](#db/d39/classcv_1_1DescriptorMatcher_1a623a2b07755cf7fb1c79554af73cdbb0}) is used. Optional mask (or masks) can be passed to specify which query and training descriptors can be matched. Namely, queryDescriptors[i] can be matched with trainDescriptors[j] only if mask.at<uchar>(i,j) is non-zero.
@@ -73,7 +73,7 @@ export declare class DescriptorMatcher {
    *   @param matches Matches. If a query descriptor is masked out in mask , no match is added for this descriptor. So, matches size may be smaller than the query descriptors count.
    *   @param mask Mask specifying permissible matches between an input query and train matrices of descriptors.
    */
-  public match(queryDescriptors: any, trainDescriptors: any, matches: any, mask: any): any
+  public match(queryDescriptors: any, trainDescriptors: any, matches: any, mask?: any): any
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -82,7 +82,7 @@ export declare class DescriptorMatcher {
    *   @param matches Matches. If a query descriptor is masked out in mask , no match is added for this descriptor. So, matches size may be smaller than the query descriptors count.
    *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    */
-  public match(queryDescriptors: any, matches: any, masks: any): any
+  public match(queryDescriptors: any, matches: any, masks?: any): any
 
   /**
    *   For each query descriptor, the methods find such training descriptors that the distance between the query descriptor and the training descriptor is equal or smaller than maxDistance. Found matches are returned in the distance increasing order.
@@ -94,7 +94,7 @@ export declare class DescriptorMatcher {
    *   @param mask Mask specifying permissible matches between an input query and train matrices of descriptors.
    *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: any, trainDescriptors: any, matches: any, maxDistance: float, mask: any, compactResult: bool): any
+  public radiusMatch(queryDescriptors: any, trainDescriptors: any, matches: any, maxDistance: float, mask?: any, compactResult?: bool): any
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -105,7 +105,7 @@ export declare class DescriptorMatcher {
    *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: any, matches: any, maxDistance: float, masks: any, compactResult: bool): any
+  public radiusMatch(queryDescriptors: any, matches: any, maxDistance: float, masks?: any, compactResult?: bool): any
 
   /**
    *   
@@ -142,7 +142,7 @@ export declare class DescriptorMatcher {
    *   @param fs 
    *   @param name 
    */
-  public write(fs: any, name: any): any
+  public write(fs: any, name?: any): any
 
   /**
    *   
@@ -161,32 +161,32 @@ export declare class DescriptorMatcher {
 /**
  * 
  */
-export declare const DescriptorMatcher_FLANNBASED: MatcherType // initializer: = 1
+export declare const FLANNBASED: MatcherType // initializer: = 1
 
 /**
  * 
  */
-export declare const DescriptorMatcher_BRUTEFORCE: MatcherType // initializer: = 2
+export declare const BRUTEFORCE: MatcherType // initializer: = 2
 
 /**
  * 
  */
-export declare const DescriptorMatcher_BRUTEFORCE_L1: MatcherType // initializer: = 3
+export declare const BRUTEFORCE_L1: MatcherType // initializer: = 3
 
 /**
  * 
  */
-export declare const DescriptorMatcher_BRUTEFORCE_HAMMING: MatcherType // initializer: = 4
+export declare const BRUTEFORCE_HAMMING: MatcherType // initializer: = 4
 
 /**
  * 
  */
-export declare const DescriptorMatcher_BRUTEFORCE_HAMMINGLUT: MatcherType // initializer: = 5
+export declare const BRUTEFORCE_HAMMINGLUT: MatcherType // initializer: = 5
 
 /**
  * 
  */
-export declare const DescriptorMatcher_BRUTEFORCE_SL2: MatcherType // initializer: = 6
+export declare const BRUTEFORCE_SL2: MatcherType // initializer: = 6
 
 /**
  * 

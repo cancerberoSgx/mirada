@@ -80,7 +80,7 @@ export declare class PCA {
    *   @param flags operation flags; currently the parameter is only used to specify the data layout (PCA::Flags)
    *   @param maxComponents maximum number of components that PCA should retain; by default, all the components are retained.
    */
-  public constructor(data: any, mean: any, flags: int, maxComponents: int)
+  public constructor(data: any, mean: any, flags: int, maxComponents?: int)
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
@@ -140,17 +140,17 @@ export declare class PCA {
 /**
  * 
  */
-export declare const PCA_DATA_AS_ROW: Flags // initializer: = 0
+export declare const DATA_AS_ROW: Flags // initializer: = 0
 
 /**
  * 
  */
-export declare const PCA_DATA_AS_COL: Flags // initializer: = 1
+export declare const DATA_AS_COL: Flags // initializer: = 1
 
 /**
  * 
  */
-export declare const PCA_USE_AVG: Flags // initializer: = 2
+export declare const USE_AVG: Flags // initializer: = 2
 
 /**
  * 

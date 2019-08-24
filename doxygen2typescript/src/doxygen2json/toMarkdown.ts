@@ -4,10 +4,19 @@ import { renderRef } from "./render/ref"
 
 interface Options extends Doxygen2tsOptionsBase {
   node: Node
+  _disableLinks?: boolean
 }
 
 function renderChildren(el: Element, options: Options, join = '') {
   return Array.from(el.childNodes).map(c => toMarkdown({ ...options, node: c })).join(join)
+}
+
+function renderChildrenLinksDisabled(el: Element, options: Options, join = '') {
+  options._disableLinks=true
+  const original = options._disableLinks
+  const r = Array.from(el.childNodes).map(c => toMarkdown({ ...options, node: c })).join(join)
+  options._disableLinks=original
+  return r
 }
 
 export function toMarkdown(options: Options): string {
@@ -33,7 +42,7 @@ export function toMarkdown(options: Options): string {
     return `\`${renderChildren(el, options)}\``
   }
   else if (['programlisting'].includes(el.tagName)) {
-    return `\n\n\`\`\`cpp\n${renderChildren(el, options)}\`\`\`\n\n`
+    return `\n\n\`\`\`cpp\n${renderChildrenLinksDisabled(el, options)}\`\`\`\n\n`
   }
   else if (['anchor'].includes(el.tagName)) {
     return `<a name="${el.id}"></a>`
@@ -63,6 +72,6 @@ export function toMarkdown(options: Options): string {
 }
 
 
-function getRef(el: Element, options: Options) {
-  return `#${el.getAttribute('refid')}`
-}
+// function getRef(el: Element, options: Options) {
+//   return `#${el.getAttribute('refid')}`
+// }

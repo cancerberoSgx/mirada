@@ -14,7 +14,7 @@ export declare class FlannBasedMatcher {
    *   @param indexParams 
    *   @param searchParams 
    */
-  public constructor(indexParams: any, searchParams: any)
+  public constructor(indexParams?: any, searchParams?: any)
 
   /**
    *   If the collection is not empty, the new descriptors are added to existing train descriptors.
@@ -32,7 +32,7 @@ export declare class FlannBasedMatcher {
    *   
    *   @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object, that is, copies both parameters and train data. If emptyTrainData is true, the method creates an object copy with the current parameters but with empty train data.
    */
-  public clone(emptyTrainData: bool): any
+  public clone(emptyTrainData?: bool): any
 
   /**
    *   

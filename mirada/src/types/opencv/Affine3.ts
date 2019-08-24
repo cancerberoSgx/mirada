@@ -87,7 +87,7 @@ export declare class Affine3 {
    *   @param R 3x3 rotation matrix.
    *   @param t 3x1 translation vector.
    */
-  public constructor(R: any, t: any)
+  public constructor(R: any, t?: any)
 
   /**
    *   Rodrigues vector.
@@ -97,7 +97,7 @@ export declare class Affine3 {
    *   @param rvec 3x1 rotation vector. Its direction indicates the rotation axis and its length indicates the rotation angle in radian (using right hand rule).
    *   @param t 3x1 translation vector.
    */
-  public constructor(rvec: any, t: any)
+  public constructor(rvec: any, t?: any)
 
   /**
    *   Combines all constructors above. Supports 4x4, 3x4, 3x3, 1x3, 3x1 sizes of data matrix.
@@ -107,7 +107,7 @@ export declare class Affine3 {
    *   @param data 1-channel matrix. when it is 4x4, it is copied to the current matrix and t is not used. When it is 3x4, it is copied to the upper part 3x4 of the current matrix and t is not used. When it is 3x3, it is copied to the upper left 3x3 part of the current matrix. When it is 3x1 or 1x3, it is treated as a rotation vector and the Rodrigues formula is used to compute a 3x3 rotation matrix.
    *   @param t 3x1 translation vector. It is used only when data is neither 4x4 nor 3x4.
    */
-  public constructor(data: any, t: any)
+  public constructor(data: any, t?: any)
 
   /**
    *   
@@ -132,7 +132,7 @@ export declare class Affine3 {
    *   
    *   @param method 
    */
-  public inv(method: int): any
+  public inv(method?: int): any
 
   /**
    *   Copy the 3x3 matrix L to the upper left part of the current matrix
