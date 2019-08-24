@@ -59,7 +59,8 @@ RUN apt-get install -y doxygen
 ```
 
 ## TODO (priority)
-
+- [ ] integrates with mirada
+- [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically
 - [ ] class inheritancegraph - Mat_ extends Mat_
 - [ ] index.ts that expose the real objects with correct types. (1)
 - [x] multiple files input and output

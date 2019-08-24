@@ -10,21 +10,24 @@ test('opencv2ts', async t => {
   opencv2ts({
     opencvBuildFolder: '/Users/sebastiangurin/git/opencv/build_js',
     tsOutputFolder: 'tmp/src/cv',
-    jsonTypes: true,
-    xmlTypes: true
+    // jsonTypes: true,
+    // xmlTypes: true,
+    renderLocation: false,
+    // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
+    tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, emptyLinesMax: 1, trailingSemicolons: 'never' },
   })
   t.true(ls('tmp/src/cv/**/*.ts').length > 0)
-    t.true(ls('tmp/dist/**/*.js').length === 0)
-    writeFileSync('tmp/src/tsconfig.json', configTsJson)
-    writeFileSync('tmp/src/test.ts', testTs)
-    const p = exec('npx tsc', {cwd: 'tmp'})
-    t.deepEqual(p.code, 0)
-    t.true(ls('tmp/dist/**/*.js').length > 0)
+  t.true(ls('tmp/dist/**/*.js').length === 0)
+  writeFileSync('tmp/tsconfig.json', configTsJson)
+  writeFileSync('tmp/src/test.ts', testTs)
+  const p = exec('npx tsc', { cwd: 'tmp' })
+  t.deepEqual(p.code, 0)
+  t.true(ls('tmp/dist/**/*.js').length > 0)
 
-    writeFileSync('tmp/src/testError.ts', testErrorTs)
-    const p2 = exec('npx tsc', {cwd: 'tmp'})
-    t.false(p2.code===0)
-    t.true(p2.stdout.includes(`Property 'nonExistent' does not exist on type 'Mat'`))
+  writeFileSync('tmp/src/testError.ts', testErrorTs)
+  const p2 = exec('npx tsc', { cwd: 'tmp' })
+  t.false(p2.code === 0)
+  t.true(p2.stdout.includes(`Property 'nonExistent' does not exist on type 'Mat'`))
 })
 
 

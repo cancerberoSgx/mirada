@@ -1,4 +1,4 @@
-import { ImageData } from './opencv'
+import { ImageData } from './opencv/opencv'
 
 /**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec instances

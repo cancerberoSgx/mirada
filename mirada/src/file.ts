@@ -5,7 +5,7 @@ import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeFor
 import { arrayBufferToBase64, urlToBase64 } from './base64'
 import { getDefaultCodec } from './format'
 import { imageData } from './imageUtil'
-import { ImageData, Mat } from './types/opencv'
+import { ImageData, Mat } from './types/opencv/opencv'
 
 export class File {
 

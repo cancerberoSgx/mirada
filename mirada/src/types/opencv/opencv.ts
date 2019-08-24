@@ -1,6 +1,6 @@
 import { TODO } from 'misc-utils-of-mine-generic'
 import { BorderTypes, CVCoreBorder } from './coreBoder'
-import { FS } from './emscripten'
+import { FS } from '../emscripten'
 import { CVImgProc, LineTypes } from './imgproc'
 import { Scalar, Rect, Point, Size } from './scalars';
 
