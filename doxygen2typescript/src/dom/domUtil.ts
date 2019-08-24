@@ -63,3 +63,13 @@ export function attrs<T extends {} = {}>(e?: Element, attrs?: string[]): T {
 export function text(s: string, c: Element, def = '') {
   return Q1(s, c, { textContent: def }).textContent.trim()
 }
+
+export function findAncestor(n:Element, p: (e:Element)=>boolean): HTMLElement|undefined{
+  if(n.parentElement && n.parentElement!==n) {
+    if(p(n.parentElement)){
+      return n.parentElement
+    }else {
+      return findAncestor(n.parentElement, p)
+    }
+  }
+}

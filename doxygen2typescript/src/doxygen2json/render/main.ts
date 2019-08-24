@@ -4,7 +4,7 @@ import { CompoundDef } from '../doxygenTypes'
 import { renderCompoundClass } from './class'
 import { renderOpenCvEnums } from './enums'
 import { formatCode } from './formatCode'
-import { renderFunction, renderGroupHeader } from './group'
+import { renderFunction, renderGroupHeader, renderGroup } from './group'
 
 export interface Options extends Doxygen2tsOptionsBase {
   defs: CompoundDef[]
@@ -36,10 +36,7 @@ ${!options.debug ? '' : `/* debug */`}
 `
   }
   else if (['group'].includes(def.kind)) {
-    file = `
-${renderGroupHeader(def)}
-${def.functions.map(f => renderFunction(f, def, options)).join('\n\n')}
-`.trim()
+    file = renderGroup(def, options)
   }
   else {
     file = `/* ${def.kind} */`

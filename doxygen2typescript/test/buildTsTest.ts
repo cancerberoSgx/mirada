@@ -11,7 +11,7 @@ test('buildTs', async t => {
     debug: true,
     renderLocation: true,
     tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true },
-    locationFilePrefix: 'https://github.com/opencv/opencv/tree/ccecd3405a22cd4ed4446574f8465fc7024f7708/modules/core/include/'
+      locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
   }).results[0]
   var s = removeWhites(file.content)
     ;[`\`\`\`cpp * M.at<double>(i,j) += 1.f;`, `of the [Mat](#d3/d63/classcv_1_1Mat}) class`, `declare class Mat {`]

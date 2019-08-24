@@ -71,12 +71,12 @@ export declare class MinMaxLoc {
 }
 `
 }
+
 function renderMiscImportHacks() {
   const anys = [
     'Vec3d', 'Moments',
-    'HandEyeCalibrationMethod', 'SolvePnPMethod', 'DrawMatchesFlags',
     'GMat', 'GMatP', 'GScalar',
-    'Backend', 'Net', 'AsyncArray', 'ErrorCallback', '_EqPredicate',
+'Net', 'AsyncArray', 'ErrorCallback', '_EqPredicate',
     'Matx_AddOp', 'Matx_SubOp', '_T2', 'Matx_ScaleOp', 'Matx_MulOp', 'Matx_DivOp', 'Matx_MatMulOp', 'Matx_TOp',
   ]
   return `
@@ -93,12 +93,7 @@ function renderMatHack() {
 ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 `
 }
-
-
-// import {cv} from './cv'
-
-// var p = new cv.ParsedObject({} as any, [])
-
+ 
 /**
  * I don't master yet doxygen output / cpp bindings exports and I'm currently getting coalissions of names
  * between different modules / groups / classes / structs. In JS we cannot export the same names from index so

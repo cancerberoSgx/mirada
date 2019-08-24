@@ -1,22 +1,22 @@
 import test from 'ava'
-import { ls, mkdir, rm, exec } from 'shelljs'
+import { writeFileSync } from 'fs'
+import { exec, ls, mkdir, rm } from 'shelljs'
 import { opencv2ts } from '../src'
-import { writeFileSync } from 'fs';
 
 test('opencv2ts', async t => {
   rm('-rf', 'tmp')
   mkdir('-p', 'tmp')
-  t.true(ls('tmp/src/cv/**/*.ts').length === 0)
+  t.true(ls('tmp/src/opencv/**/*.ts').length === 0)
   opencv2ts({
     opencvBuildFolder: '/Users/sebastiangurin/git/opencv/build_js',
-    tsOutputFolder: 'tmp/src/cv',
+    tsOutputFolder: 'tmp/src/opencv',
     // jsonTypes: true,
     // xmlTypes: true,
     renderLocation: false,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
     tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, emptyLinesMax: 1, trailingSemicolons: 'never' },
   })
-  t.true(ls('tmp/src/cv/**/*.ts').length > 0)
+  t.true(ls('tmp/src/opencv/**/*.ts').length > 0)
   t.true(ls('tmp/dist/**/*.js').length === 0)
   writeFileSync('tmp/tsconfig.json', configTsJson)
   writeFileSync('tmp/src/test.ts', testTs)
@@ -32,12 +32,12 @@ test('opencv2ts', async t => {
 
 
 const testTs = `
-import {cv} from './cv'
+import {cv} from './opencv'
 const m = new cv.Mat()
 var a = m.rows+1`
 
 const testErrorTs = `
-import {cv} from './cv'
+import {cv} from './opencv'
 const m = new cv.Mat()
 m.nonExistent()`
 

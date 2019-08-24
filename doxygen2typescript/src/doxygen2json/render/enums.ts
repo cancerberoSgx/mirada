@@ -25,16 +25,15 @@ export type ${name} = any
 export function renderEnum(f: PublicType, def: CompoundDef, options: Options) {
   return (f.enumValues || []).filter(e => isValidId(e.name)).map(v => {
     if (options.isOpenCv) {
-      const className = getCompoundDefName(def)
       return `
 ${toJsDoc({ ...options, node: v })}
-export declare const ${className}_${v.name} : ${(f.name && !f.name.startsWith('@')) ? f.name : 'any'} // initializer: ${v.initializer}
+export declare const ${v.name} : ${f.name || 'any'} // initializer: ${v.initializer}
 `
     }
     else {
       return `
 ${toJsDoc({ ...options, node: v })}
-${'public'} ${'static'} ${v.name}: ${(f.name && !f.name.startsWith('@')) ? f.name : 'any'} // initializer: ${v.initializer}
+${'public'} ${'static'}${v.name} : ${f.name || 'any'} // initializer: ${v.initializer}
 `
     }
   }).join('\n\n')

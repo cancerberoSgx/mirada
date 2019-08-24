@@ -8,11 +8,13 @@ Generates TypeScript type declarations from doxygen xml output, particularly to 
 
 ## Status
 
-At the beginning I tried to bild a generic doxygen xml output to TypeScript translator. It's doable and currently it will generate some useful output from any generic doxygen xml.
+At the beginning I tried to build a generic doxygen xml output to TypeScript translator. It's doable and currently it will generate some useful output from any generic doxygen xml.
 
 Nevertheless I'm eager to use opencv with typescript instead of building a generic tool so right now the the tool is not generic and the output it generates stills needs some manual editing in order to be used., although very little and good quality both in docs, and typings. 
 
-It's currently coupled with opencv because it filtering the generated classes/types/functions by parsing the file bindings.cpp (generated in opencv.js build).  I did this just for speed up the build since if not, building all doxygen objects takes lots of time and often gives out of memory errors (node.js XML parser I'm currently using is not the best...)
+It's currently coupled with opencv.js build since I use bindings.cpp file to filter only the objects present in opencv.js build. I'm doing this mostly because if not it's very slow and often fail because out of memory. 
+
+Nevertheless there is an alternative version of the tool that only consumes xml/index.ml and genreates all the objects (doxygen2ts.ts)
 
 ## How to use it
 
@@ -58,7 +60,13 @@ RUN apt-get update -y
 RUN apt-get install -y doxygen
 ```
 
-## TODO (priority)
+## TODO 
+- [ ] rename src/doxygen2json to 2ts 
+- [ ] class compounds enums names prefix broken - verify that's the case.
+- [ ] verify that type alias (enums) are exposed 
+- [x] issue wth optinoal params  (arg4: any, arg5?: typename, list: any)
+- [ ] build more examples and check all types are generated
+  - [ ] grabCut is not exposed
 - [ ] integrates with mirada
 - [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically
 - [ ] class inheritancegraph - Mat_ extends Mat_

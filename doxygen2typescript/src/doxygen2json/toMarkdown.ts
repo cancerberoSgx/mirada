@@ -57,7 +57,7 @@ export function toMarkdown(options: Options): string {
     return `` // ignore since we have parsed this data and others are responsible of render it
   }
   else {
-    console.assert(false, el.tagName + ' not supported.')
+    // console.assert(false, el.tagName + ' not supported.')
     return ''
   }
 }

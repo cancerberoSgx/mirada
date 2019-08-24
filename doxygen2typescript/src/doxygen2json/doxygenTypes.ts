@@ -55,13 +55,13 @@ export interface Member extends Described {
 
 // }
 export interface TemplateParam {
-
   type: linkedTextType
   description?: string
   array?: any
 }
 export interface Param extends TemplateParam {
   name: string
+  defval?: any
 }
 
 export interface Location {

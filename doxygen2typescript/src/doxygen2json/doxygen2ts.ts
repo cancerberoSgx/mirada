@@ -44,8 +44,8 @@ export function doxygen2ts(options: Doxygen2tsOptions) {
       defs: r,
       isOpenCv: true,
       debug: true,
-      renderLocation: true,
-      locationFilePrefix: 'https://github.com/opencv/opencv/tree/ccecd3405a22cd4ed4446574f8465fc7024f7708/modules/core/include/',
+      renderLocation: true,    
+      locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
       ...options,
       tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, ...options.tsCodeFormatSettings },
     })

@@ -1,7 +1,8 @@
-import { objectKeys, unique } from 'misc-utils-of-mine-generic'
-import { attrs, Q, Q1, text } from '../dom/domUtil'
+import { objectKeys, unique, notSame, notSameNotFalsy } from 'misc-utils-of-mine-generic'
+import { attrs, Q, Q1, text, findAncestor } from '../dom/domUtil'
 import { loadXmlDom } from "../dom/jsdom"
 import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
+import { getCompoundName } from './render';
 
 interface Options {
   xml: string;
@@ -27,7 +28,9 @@ export function parseDoxygen(options: Options): CompoundDef[] {
       text: d.textContent
     })),
 
-    publicTypes: Q('sectiondef[kind="public-type"] memberdef', c).map(getCompoundDefPublicTypes),
+    // Heads up - the design based on kind="public-type", kind="public-attrib", etc is wrong since here also compounddef kind="group" are also considered and they don't have sectiondef kind="public-type" but just directly sectiondef kind="enum"
+    // TODO: we shouild change these names and eal directluy with enum or concrete public types.
+    publicTypes: [...Q('sectiondef[kind="public-type"] memberdef'), ...Q('memberdef[kind="enum"]', c)].filter(notSameNotFalsy).map(getCompoundDefPublicTypes),
 
     publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(getMember),
 
@@ -35,23 +38,6 @@ export function parseDoxygen(options: Options): CompoundDef[] {
 
     functions: Q('sectiondef[kind="func"] memberdef', c).map(getMember),
 
-    // publicStaticFuncs: Q('sectiondef[kind="public-static-func"] memberdef', c).map(s => ({
-    //   ...getMember(s),
-    //   // params: Q('param', s).map(p => ({
-    //   //   type: getType(p),
-    //   //   declname: text('declname', p),
-    //   //   description: getParamDescription(s, p)
-    //   // }))
-    // })),
-
-    // protectedFuncs: Q('sectiondef[kind="protected-func"] memberdef', c).map(s => ({
-    //   ...getMember(s),
-    //   // params: Q('param', s).map(p => ({
-    //   //   type: getType(p),
-    //   //   declname: text('declname', p),
-    //   //   description: getParamDescription(s, p)
-    //   // }))
-    // })),
     inheritancegraph: 'TODO',
     collaborationgraph: 'TODO',
     listofallmembers: 'TODO'
@@ -61,11 +47,17 @@ export function parseDoxygen(options: Options): CompoundDef[] {
 }
 
 function getParams(s: Element): Param[] {
-  return Q('param', s).map(p => ({
-    type: getType(p),
-    name: text('declname', p) || text('defname', p) || unique('arg'),
-    description: getParamDescription(s, p)
-  }))
+  let optional = false
+  return Q('param', s).map(p => {
+    const defval = optional || text('defval', p)
+    optional = optional || !!defval
+    return {
+      type: getType(p),
+      name: text('declname', p) || text('defname', p) || unique('arg'),
+      defval,
+      description: getParamDescription(s, p)
+    }
+  })
 }
 
 export function getMember(s: Element): Member {
@@ -86,14 +78,19 @@ export function getMember(s: Element): Member {
 }
 
 function getCompoundDefPublicTypes(s: Element): PublicType {
+  // const c = findAncestor(s, a => a.tagName === 'compounddef')
+  // !c && console.error('Expected compounddef ancestor for element ' + s.tagName);
   return {
     ...getDescribed(s),
+    // enums starting with @ are anon
     name: (text('name', s, undefined) && !text('name', s, undefined).startsWith('@')) ? text('name', s, undefined)! : undefined,
     ...attrs<{ kind: DoxSectionKind }>(s, ['kind']),
     enumValues: Q('enumvalue', s).map(v => ({
       ...getDescribed(v),
       initializer: text('initializer', v, ''),
       name: text('name', v, '')
+      // enum in class compounds have their names prefixed with the class'
+      // name: (c && c.getAttribute('king') === 'class' ? getCompoundName(text('name', c, undefined)) + '_' : '') + text('name', v, '')
     }))
   }
 }

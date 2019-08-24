@@ -3,6 +3,21 @@ import { getCompoundDefName, isValidId, renderParam } from './general'
 import { toJsDoc } from "./jsdoc"
 import { Options } from './main'
 import { renderType } from './ref'
+import { renderOpenCvEnums } from './enums';
+
+
+
+export function renderGroup(def: CompoundDef, options: Options): string {
+  return `
+${renderGroupHeader(def)}
+${def.functions.map(f => renderFunction(f, def, options)).join('\n\n')}
+
+${renderOpenCvEnums(def, options)}
+
+`.trim();
+}
+// ${def.publicTypes.map(f => renderp(f, def, options)).join('\n\n')}
+
 
 export function renderFunction(f: Member, def: CompoundDef, options: Options) {
   if (!isValidId(f.name)) {

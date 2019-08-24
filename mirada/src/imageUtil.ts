@@ -1,4 +1,4 @@
-import { Mat } from './types/opencv/opencv'
+import { Mat } from './types/opencv/'
 
 /**
  * Creates an CV ImageData object from given image.
