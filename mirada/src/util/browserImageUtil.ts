@@ -1,6 +1,6 @@
-import { imageData } from '.'
+import { imageData } from '..'
 import { toRgba } from './imageUtil'
-import { Mat } from './types/opencv'
+import { Mat } from '../types/opencv'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -27,8 +27,7 @@ export function getImageData(url: string) {
   * 
   * This method is useful as a decoder for the browser without libraries
  */
-export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasElement, appendToBody = true): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
-
+export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasElement, appendToBody = false): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
   var blob = new Blob([new Uint8ClampedArray(a)])
   var url = URL.createObjectURL(blob)
   var img = new Image()
@@ -40,16 +39,15 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasEle
       }
       canvas!.setAttribute('width', img.naturalWidth + '')
       canvas!.setAttribute('height', img.naturalHeight + '')
-
       canvas!.getContext('2d')!.drawImage(img, 0, 0)
       resolve({ canvas, width: img.naturalWidth, height: img.naturalHeight })
+    URL.revokeObjectURL(url)
     }
     img.src = url
-    URL.revokeObjectURL(url)
   })
 }
 
-export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = true): HTMLCanvasElement {
+export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = false): HTMLCanvasElement {
   if (!canvas) {
     canvas = document.createElement('canvas')
     appendToBody && document.body.append(canvas)

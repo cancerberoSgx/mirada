@@ -11,3 +11,15 @@ textarea{
 .ui.segment.appBody, .ui.segment.outputSegment {
   padding-top: 2em;
 }
+#inputCanvas {
+  position: fixed;
+  display: block;
+  top: 40px;
+  left: 2px;
+}
+#outputCanvas {
+  position: fixed;
+  display: block;
+  top: 40px;
+  left: 50vw;
+}

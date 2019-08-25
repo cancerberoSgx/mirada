@@ -8,6 +8,7 @@ import { About } from './about'
 import { AbstractComponent } from './common/component'
 import { memoryReport, printMs } from "./common/util"
 import { ExampleTag } from "../app/examples";
+import { test } from './app';
 
 export class Header extends AbstractComponent {
 
@@ -30,7 +31,7 @@ export class Header extends AbstractComponent {
   memEl: HTMLDivElement | null = null;
 
   render() {
-    return <Menu inverted fixed="top">
+    return <Menu inverted fixed="top" id="header">
       <Dropdown text='Examples' pointing className='link item'>
         <Dropdown.Menu>
           <Dropdown.Item>
@@ -58,8 +59,9 @@ export class Header extends AbstractComponent {
       </Dropdown>
 
       <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
-      {/* <Menu.Item> <div>{this.state.result && this.state.result.times && printMs(this.state.result.times.total) || ''}</div></Menu.Item> */}
+     
       <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
+           <Menu.Item >  <button onClick={test}>click me</button></Menu.Item>
 
       <Menu.Menu position="right">
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>

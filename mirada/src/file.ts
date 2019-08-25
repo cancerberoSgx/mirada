@@ -1,13 +1,16 @@
 import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
-import { arrayBufferToBase64, urlToBase64 } from './base64'
-import { isFile, readFile, writeFile } from './fileUtil'
+import { arrayBufferToBase64, urlToBase64 } from './util/base64'
+import { isFile, readFile, writeFile } from './util/fileUtil'
 import { getDefaultCodec } from './format'
-import { imageData } from './imageUtil'
+import { imageData } from './util/imageUtil'
 import { ImageData, Mat } from './types/opencv'
 import fileType = require('file-type')
 
+/**
+ * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.
+ */
 export class File {
   constructor(public readonly name: string, protected mat: Mat) {
 
@@ -41,16 +44,28 @@ export class File {
   }
 
   /**
-   * returns an array buffer containing the image encoded in given format or inferring format from its name.
+   * Returns an array buffer containing the image encoded in given format or inferring format from its name.
    */
   async asArrayBuffer(format = this.getExtension()) {
     return await getDefaultCodec().encode(this.asImageData(), format)
   }
 
+  /**
+   * Writes this image on given file path, encoded in given format (or inferred form current name).
+   */
   async write(path: string = this.name, format = this.getExtension()) {
     const a = await this.asArrayBuffer(format)
-    // writeFileSync(path, a)
     writeFile(path, new Uint8ClampedArray(a))
+  }
+
+  /**
+   * Shows this image in given HTML canvas or image element.
+   */
+  show(el: HTMLCanvasElement|HTMLImageElement) {
+  if (!inBrowser()) {
+      throw new Error('This method is only supported in the browser')
+    }
+    cv.imshow(el, this.asMat())
   }
 
   async asBase64(format = this.getExtension()) {
@@ -108,7 +123,7 @@ export class File {
 	/**
 	 * Loads files from files in html input element of type "file".
 	 */
-  public static fromHtmlFileInputElement(el: HTMLInputElement): Promise<Array<File>> {
+  public static fromHtmlFileInputElement(el: HTMLInputElement): Promise<File[]> {
     if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
@@ -117,6 +132,16 @@ export class File {
       reader.addEventListener('loadend', async e => resolve(await File.fromArrayBuffer(reader.result as ArrayBuffer, file.name)))
       reader.readAsArrayBuffer(file)
     })))
+  }
+
+	/**
+	 * Loads file form existing HTMLCanvasElement or HTMLImageElement
+	 */
+  public static fromCanvas(el: HTMLCanvasElement|HTMLImageElement|string): File {
+    if (!inBrowser()) {
+      throw new Error('This method is only supported in the browser')
+    }
+    return File.fromMat(cv.imread(el))
   }
 
   /**
@@ -135,7 +160,6 @@ export class File {
     var result = await serial(a.map(f => async () => {
       if (typeof f === 'string') {
         if (isFile(f)) {
-          // if (existsSync(f)) {
           return await File.fromFile(f)
         }
         else {
@@ -151,7 +175,8 @@ export class File {
   }
 
   public static isFile(f: any): f is File {
-    return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data && typeof (f as File).constructor !== 'undefined' && !!(f as File).asImageData && !!(f as File).asMat
+    return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data && 
+      typeof (f as File).constructor !== 'undefined' && !!(f as File).asImageData && !!(f as File).asMat
   }
 
   public static asPath(f: string | File) {
@@ -176,7 +201,6 @@ export class File {
 
   public static async fromFile(path: string, o: FileOptions = {}) {
     const data = await getDefaultCodec().decode(readFile(path).buffer)
-    // const data = await getDefaultCodec().decode(readFileSync(path).buffer)
     return File.fromData(data, o.name || basename(path))
   }
 

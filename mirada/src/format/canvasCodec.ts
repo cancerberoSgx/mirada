@@ -1,5 +1,5 @@
 import { inBrowser } from 'misc-utils-of-mine-generic'
-import { renderArrayBufferInCanvas } from '../browserImageUtil'
+import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
 import { FormatCodec } from '../types/mirada'
 
 // type AnyConstructor = {

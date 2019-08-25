@@ -94,16 +94,25 @@ export declare class RectVector extends Rect implements Vector<Rect>{
 }
 
 import { LineTypes, Mat, RotatedRect } from '.'
+import { read } from 'fs';
 
 export declare function matFromImageData(imageData: ImageData): Mat
 
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
+/** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
-  public ucharPtr(i: number, j: number): any
-  public intPtr(i: number, j: number): any
+  public ucharPtr(i: any, j: any): any
+  public charPtr(i: any,j: any):any
+  public charPtr(i: any,j: any):any
+  public shortPtr(i: any,j: any):any
+  public ushortPtr(i: any,j: any):any
+  public intPtr(i: any,j: any):any
+  public floatPtr(i: any,j: any):any
+  public doublePtr(i: any,j: any):any
+  public intPtr(i: any, j: any): any
   public roi(rect: Rect): Mat
 }
 
@@ -186,3 +195,11 @@ export type int32_t = any
 export type int64_t = any
 
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
+export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
+export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
+
+export declare class VideoCapture {
+  public constructor(videoSource: HTMLVideoElement | string)
+  public video: HTMLVideoElement
+  public read(frame: Mat):void
+}

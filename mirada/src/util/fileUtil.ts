@@ -1,4 +1,4 @@
-import { FS_ROOT } from './opencvReady'
+import { FS_ROOT } from '../opencvReady'
 
 /**
  * if given a file it ignores its contents and alwasys read again from FS

@@ -19,13 +19,15 @@ npm i mirada
 
 ## Usage
 
-mirada / opencv.js don't support image format decoders out of the box so we need to use a library for this. 
+Sorry I don't have docs yet, please take a look to [tests](test). (Working on it)
+
+<!-- mirada / opencv.js don't support image format decoders out of the box so we need to use a library for this. 
 
 The following is a node.js example that uses `jimp` to read and write files from different formats:
 
 ```ts
 TODO
-```
+``` -->
 
 ## Reference API
 
@@ -39,8 +41,8 @@ See [Reference API docs](api). Important types:
 See [mirada-cli project page](../mirada-cli).
 
 ## TODO
-
-- [ ] don't waste more time manually porting docs. build the doxygen2typescript thing
+- [ ] docs
+- [x] don't waste more time manually porting docs. build the doxygen2typescript thing
 - [ ] make an example FormatProxy for loading svg
 
 ## Initial design notes

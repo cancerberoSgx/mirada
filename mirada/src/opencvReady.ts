@@ -1,7 +1,7 @@
 import { existsSync } from 'fs'
 import { getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
-import { buildError, resolveNodeModule } from './misc'
+import { buildError, resolveNodeModule } from './util/misc'
 import { FS } from './types/emscripten'
 
 export const FS_ROOT = '/work'

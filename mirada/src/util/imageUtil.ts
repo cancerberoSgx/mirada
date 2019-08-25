@@ -1,5 +1,5 @@
-import { File } from './File'
-import { Mat } from './types/opencv/'
+import { File } from '../File'
+import { Mat } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.

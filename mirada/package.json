@@ -1,6 +1,6 @@
 {
   "name": "mirada",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js and Browser high level OpenCv API. Base on OpenCv.js with support for npm, TypeScript and a a single easy to use API compatible with Node.js and browser",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -14,7 +14,7 @@
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
-    "copy": "cp -r static/opencv.js dist/src",
+    "copy": "cp -r static/opencv.js dist/src && rm -rf dist/src/types/opencv && mkdir -p dist/src/types/opencv && cp -r src/types/opencv/* dist/src/types/opencv",
     "docs": "npm run docs-readme-toc && npm run docs-api",
     "docs-api": "rm -rf ./api && mkdir -p ./api && typedoc  --ignoreCompilerErrors --theme markdown --out ./api --readme none --excludeNotExported src/index.ts ",
     "docs-readme-toc": "npx markdown-toc README.md -i",

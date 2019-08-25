@@ -9,8 +9,8 @@ export class Command extends AbstractComponent {
     return <Segment>
       {/* <Header>{this.state.example.name}</Header> */}
       {/* <Header.Content >Description: <span dangerouslySetInnerHTML={{ __html: this.state.example.description }}></span>}</Header.Content> */}
-      <textarea value={this.state.script}
-        onChange={e => this.setState({ script: e.currentTarget.value })}
+      <textarea value={this.state.code}
+        onChange={e => this.setState({ code: e.currentTarget.value })}
       ></textarea>
       <br />
       {/* <Button onClick={e => setExample()}>Execute</Button> */}

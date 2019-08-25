@@ -47,6 +47,8 @@ export { Size as Size2f }
 export { Size as Size2l }
 
 export declare class Rect {
+  public constructor();
+  public constructor(point: Point, size: Size);
   public constructor(x: number, y: number, width: number, height: number);
   public x: number;
   public y: number;
@@ -55,6 +57,17 @@ export declare class Rect {
 }
 
 export { Rect as Rect_ }
+
+declare class RotatedRect {
+  public center: Point
+  public size: Size
+  angle: number
+  public constructor()
+  public constructor(center: Point, size: Size, angle: number)
+  public static rotatedRectPoints(obj:any):any
+  public static rotatedRectBoundingRect(obj:any):any
+  public static rotatedRectBoundingRect2f(obj:any):any
+}
 
 export declare class TermCriteria {
   public type: number
@@ -123,8 +136,15 @@ ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
-  public ucharPtr(i: number, j: number): any
-  public intPtr(i: number, j: number): any
+  public ucharPtr(i: any, j: any): any
+  public charPtr(i: any,j: any):any
+  public charPtr(i: any,j: any):any
+  public shortPtr(i: any,j: any):any
+  public ushortPtr(i: any,j: any):any
+  public intPtr(i: any,j: any):any
+  public floatPtr(i: any,j: any):any
+  public doublePtr(i: any,j: any):any
+  public intPtr(i: any, j: any): any
   public roi(rect: Rect): Mat
 }
 
@@ -152,6 +172,12 @@ export declare const CV_32F: number
 
 import {RotatedRect, LineTypes} from '.'
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
+export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
+export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
+
+export declare class VideoCapture {
+  public constructor(videoSource: HTMLVideoElement | string)
+}
 
   `.trim()
 }

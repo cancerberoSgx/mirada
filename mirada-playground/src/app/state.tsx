@@ -8,9 +8,9 @@ export interface State {
   inputFiles: File[]
   examples: Example[];
   // result: RunResult | undefined
-  script: string
+  code: string
   working: boolean
-  showAllResultsOutput: boolean
+  // showAllResultsOutput: boolean
   // fields: ExampleField[]
 }
 
@@ -33,9 +33,9 @@ export async function getInitialState(): Promise<State> {
     inputFiles: [],
     examples: [...examples()],
     // result: null as any,
-    script: '',
-    working: false,
-    showAllResultsOutput: true,
+    code: '',
+    working: true,
+    // showAllResultsOutput: true,
     // fields: []
   }
 }

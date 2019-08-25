@@ -1,4 +1,5 @@
 import { Example } from "./examples";
+import { getStore } from './store';
 
 // import { File } from 'magica'
 // import { Example } from 'magica-examples'
@@ -21,27 +22,27 @@ import { Example } from "./examples";
 // }
 
 export async function setExample(example?: Example) {
-//   var state = getStore().getState()
+  var state = getStore().getState()
 //   var fields = example && example.fields ? example.fields : state.fields || []
-//   getStore().setState({
-//     working: true,
-//     fields,
-//   })
+  getStore().setState({
+    working: true,
+    // fields,
+  })
 //   var inputFiles = [...await serial((example ? example.inputFiles : state.inputFiles.map(f => f.name)).filter(f => !state.inputFiles.find(f2 => f2.name == f)).map(file => async () => File.fromUrl(file))), ...state.inputFiles].filter(notUndefined)
-//   const script = example ? example.script : state.script
-//   var result = await callRun({
-//     script,
-//     inputFiles,
-//     fields: arrayToObject(fields.map(f => f.id), f => { var f3 = fields.find(f2 => f2.id === f); return f3 ? f3.value : undefined })
-//   })
-//   getStore().setState({
-//     example: example || state.example,
-//     script,
-//     result,
-//     fields,
-//     inputFiles,
-//     working: false
-//   })
-//   await sleep(100)
+  const script = example ? example.code : state.code
+  // var result = await callRun({
+  //   code,
+  //   inputFiles,
+  //   fields: arrayToObject(fields.map(f => f.id), f => { var f3 = fields.find(f2 => f2.id === f); return f3 ? f3.value : undefined })
+  // })
+  // getStore().setState({
+  //   example: example || state.example,
+  //   code,
+  //   result,
+  //   fields,
+  //   inputFiles,
+  //   working: false
+  // })
+  // await sleep(100)
 }
 
