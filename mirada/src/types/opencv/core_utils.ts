@@ -7,7 +7,8 @@ import { int, size_t, bool, float, _Tp, short, double, InputArray, String, Input
  */
 
 /**
- * The function returns the aligned pointer of the same type as the input pointer: `\\[\\texttt{(_Tp*)(((size_t)ptr + n-1) & -n)}\\]`
+ * The function returns the aligned pointer of the same type as the input pointer:
+ * `\\[\\texttt{(_Tp*)(((size_t)ptr + n-1) & -n)}\\]`
  * 
  * @param arg92 
  * @param ptr Aligned pointer.
@@ -16,7 +17,8 @@ import { int, size_t, bool, float, _Tp, short, double, InputArray, String, Input
 export declare function alignPtr(arg92: any, ptr: any, n?: int): any
 
 /**
- * The function returns the minimum number that is greater than or equal to sz and is divisible by n : `\\[\\texttt{(sz + n-1) & -n}\\]`
+ * The function returns the minimum number that is greater than or equal to sz and is divisible by n :
+ * `\\[\\texttt{(sz + n-1) & -n}\\]`
  * 
  * @param sz Buffer size to align.
  * @param n Alignment size that must be a power of two.
@@ -24,7 +26,11 @@ export declare function alignPtr(arg92: any, ptr: any, n?: int): any
 export declare function alignSize(sz: size_t, n: int): size_t
 
 /**
- * The function returns true if the host hardware supports the specified feature. When user calls setUseOptimized(false), the subsequent calls to [checkHardwareSupport()](#db/de0/group__core__utils_1ga83400136ccc28490087722ef5b3a27d9}) will return false until setUseOptimized(true) is called. This way user can dynamically switch on and off the optimized code in OpenCV.
+ * The function returns true if the host hardware supports the specified feature. When user calls
+ * setUseOptimized(false), the subsequent calls to
+ * [checkHardwareSupport()](#db/de0/group__core__utils_1ga83400136ccc28490087722ef5b3a27d9}) will
+ * return false until setUseOptimized(true) is called. This way user can dynamically switch on and off
+ * the optimized code in OpenCV.
  * 
  * @param feature The feature of interest, one of cv::CpuFeatures
  */
@@ -55,7 +61,9 @@ export declare function Cholesky(A: any, astep: size_t, m: int, b: any, bstep: s
 export declare function Cholesky(A: any, astep: size_t, m: int, b: any, bstep: size_t, n: int): bool
 
 /**
- * The function cubeRoot computes `$\\sqrt[3]{\\texttt{val}}$`. Negative arguments are handled correctly. NaN and Inf are not handled. The accuracy approaches the maximum possible accuracy for single-precision data.
+ * The function cubeRoot computes `$\\sqrt[3]{\\texttt{val}}$`. Negative arguments are handled
+ * correctly. NaN and Inf are not handled. The accuracy approaches the maximum possible accuracy for
+ * single-precision data.
  * 
  * @param val A function argument.
  */
@@ -102,19 +110,22 @@ export declare function CV_XADD(addr: any, delta: int): any
 /**
  * The function computes an integer i such that: `\\[i \\le \\texttt{value} < i+1\\]`
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+ * result is not defined.
  */
 export declare function cvCeil(value: double): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
 export declare function cvCeil(value: float): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
@@ -123,47 +134,54 @@ export declare function cvCeil(value: int): int
 /**
  * The function computes an integer i such that: `\\[i \\le \\texttt{value} < i+1\\]`
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+ * result is not defined.
  */
 export declare function cvFloor(value: double): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
 export declare function cvFloor(value: float): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
 export declare function cvFloor(value: int): int
 
 /**
- * The function returns 1 if the argument is a plus or minus infinity (as defined by IEEE754 standard) and 0 otherwise.
+ * The function returns 1 if the argument is a plus or minus infinity (as defined by IEEE754 standard)
+ * and 0 otherwise.
  * 
  * @param value The input floating-point value
  */
 export declare function cvIsInf(value: double): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
 export declare function cvIsInf(value: float): int
 
 /**
- * The function returns 1 if the argument is Not A Number (as defined by IEEE754 standard), 0 otherwise.
+ * The function returns 1 if the argument is Not A Number (as defined by IEEE754 standard), 0
+ * otherwise.
  * 
  * @param value The input floating-point value
  */
 export declare function cvIsNaN(value: double): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
@@ -171,19 +189,22 @@ export declare function cvIsNaN(value: float): int
 
 /**
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+ * result is not defined.
  */
 export declare function cvRound(value: double): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
 export declare function cvRound(value: float): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param value 
  */
@@ -200,7 +221,8 @@ export declare function cvRound(value: int): int
 export declare function divUp(a: int, b: any): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param a 
  * @param b 
@@ -232,16 +254,25 @@ export declare function dumpInputOutputArray(argument: InputOutputArray): String
 export declare function dumpInputOutputArrayOfArrays(argument: InputOutputArrayOfArrays): String
 
 /**
- * By default the function prints information about the error to stderr, then it either stops if [cv::setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been called before or raises the exception. It is possible to alternate error processing by using [redirectError()](#db/de0/group__core__utils_1ga8cd28eccccb695570cdaf86a572d2c0c}).
+ * By default the function prints information about the error to stderr, then it either stops if
+ * [cv::setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been
+ * called before or raises the exception. It is possible to alternate error processing by using
+ * [redirectError()](#db/de0/group__core__utils_1ga8cd28eccccb695570cdaf86a572d2c0c}).
  * 
  * @param exc the exception raisen.
  */
 export declare function error(exc: any): void
 
 /**
- * By default the function prints information about the error to stderr, then it either stops if [setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been called before or raises the exception. It is possible to alternate error processing by using [redirectError()](#db/de0/group__core__utils_1ga8cd28eccccb695570cdaf86a572d2c0c}). 
+ * By default the function prints information about the error to stderr, then it either stops if
+ * [setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been
+ * called before or raises the exception. It is possible to alternate error processing by using
+ * [redirectError()](#db/de0/group__core__utils_1ga8cd28eccccb695570cdaf86a572d2c0c}). 
  * 
- * [CV_Error](#db/de0/group__core__utils_1ga5b48c333c777666e076bd7052799f891}), [CV_Error_](#db/de0/group__core__utils_1ga1c0cd6e5bd9a5f915c6cab9c0632f969}), [CV_Assert](#db/de0/group__core__utils_1gaf62bcd90f70e275191ab95136d85906b}), [CV_DbgAssert](#db/de0/group__core__utils_1gafbcb487cba05bd288dbe18c433de4f6f})
+ * [CV_Error](#db/de0/group__core__utils_1ga5b48c333c777666e076bd7052799f891}),
+ * [CV_Error_](#db/de0/group__core__utils_1ga1c0cd6e5bd9a5f915c6cab9c0632f969}),
+ * [CV_Assert](#db/de0/group__core__utils_1gaf62bcd90f70e275191ab95136d85906b}),
+ * [CV_DbgAssert](#db/de0/group__core__utils_1gafbcb487cba05bd288dbe18c433de4f6f})
  * 
  * @param _code - error code (Error::Code)
  * @param _err - error description
@@ -252,7 +283,8 @@ export declare function error(exc: any): void
 export declare function error(_code: int, _err: any, _func: any, _file: any, _line: int): void
 
 /**
- * The function fastAtan2 calculates the full-range angle of an input 2D vector. The angle is measured in degrees and varies from 0 to 360 degrees. The accuracy is about 0.3 degrees.
+ * The function fastAtan2 calculates the full-range angle of an input 2D vector. The angle is measured
+ * in degrees and varies from 0 to 360 degrees. The accuracy is about 0.3 degrees.
  * 
  * @param y y-coordinate of the vector.
  * @param x x-coordinate of the vector.
@@ -260,14 +292,17 @@ export declare function error(_code: int, _err: any, _func: any, _file: any, _li
 export declare function fastAtan2(y: float, x: float): float
 
 /**
- * The function deallocates the buffer allocated with fastMalloc . If NULL pointer is passed, the function does nothing. C version of the function clears the pointer *pptr* to avoid problems with double memory deallocation.
+ * The function deallocates the buffer allocated with fastMalloc . If NULL pointer is passed, the
+ * function does nothing. C version of the function clears the pointer *pptr* to avoid problems with
+ * double memory deallocation.
  * 
  * @param ptr Pointer to the allocated buffer.
  */
 export declare function fastFree(ptr: any): void
 
 /**
- * The function allocates the buffer of the specified size and returns it. When the buffer size is 16 bytes or more, the returned buffer is aligned to 16 bytes.
+ * The function allocates the buffer of the specified size and returns it. When the buffer size is 16
+ * bytes or more, the returned buffer is aligned to 16 bytes.
  * 
  * @param bufSize Allocated buffer size.
  */
@@ -282,7 +317,9 @@ export declare function fastMalloc(bufSize: size_t): any
 export declare function forEach_impl(arg94: any, arg95: any, operation: any): any
 
 /**
- * Returned value is raw cmake output including version control system revision, compiler version, compiler flags, enabled modules and third party libraries, etc. Output format depends on target architecture.
+ * Returned value is raw cmake output including version control system revision, compiler version,
+ * compiler flags, enabled modules and third party libraries, etc. Output format depends on target
+ * architecture.
  * 
  */
 export declare function getBuildInformation(): any
@@ -300,7 +337,15 @@ export declare function getBuildInformation(): any
 export declare function getCPUFeaturesLine(): any
 
 /**
- * The function returns the current number of CPU ticks on some architectures (such as x86, x64, PowerPC). On other platforms the function is equivalent to getTickCount. It can also be used for very accurate time measurements, as well as for [RNG](#d1/dd6/classcv_1_1RNG}) initialization. Note that in case of multi-CPU systems a thread, from which getCPUTickCount is called, can be suspended and resumed at another CPU with its own counter. So, theoretically (and practically) the subsequent calls to the function do not necessary return the monotonously increasing values. Also, since a modern CPU varies the CPU frequency depending on the load, the number of CPU clocks spent in some code cannot be directly converted to time units. Therefore, getTickCount is generally a preferable solution for measuring execution time.
+ * The function returns the current number of CPU ticks on some architectures (such as x86, x64,
+ * PowerPC). On other platforms the function is equivalent to getTickCount. It can also be used for
+ * very accurate time measurements, as well as for [RNG](#d1/dd6/classcv_1_1RNG}) initialization. Note
+ * that in case of multi-CPU systems a thread, from which getCPUTickCount is called, can be suspended
+ * and resumed at another CPU with its own counter. So, theoretically (and practically) the subsequent
+ * calls to the function do not necessary return the monotonously increasing values. Also, since a
+ * modern CPU varies the CPU frequency depending on the load, the number of CPU clocks spent in some
+ * code cannot be directly converted to time units. Therefore, getTickCount is generally a preferable
+ * solution for measuring execution time.
  * 
  */
 export declare function getCPUTickCount(): any
@@ -328,13 +373,18 @@ export declare function getNumberOfCPUs(): int
  * 
  * The exact meaning of return value depends on the threading framework used by OpenCV library:
  * 
- * `TBB` - The number of threads, that OpenCV will try to use for parallel regions. If there is any tbb::thread_scheduler_init in user code conflicting with OpenCV, then function returns default number of threads used by TBB library.
+ * `TBB` - The number of threads, that OpenCV will try to use for parallel regions. If there is any
+ * tbb::thread_scheduler_init in user code conflicting with OpenCV, then function returns default
+ * number of threads used by TBB library.
  * `OpenMP` - An upper bound on the number of threads that could be used to form a new team.
  * `Concurrency` - The number of threads, that OpenCV will try to use for parallel regions.
  * `GCD` - Unsupported; returns the GCD thread pool limit (512) for compatibility.
- * `C=` - The number of threads, that OpenCV will try to use for parallel regions, if before called setNumThreads with threads > 0, otherwise returns the number of logical CPUs, available for the process. 
+ * `C=` - The number of threads, that OpenCV will try to use for parallel regions, if before called
+ * setNumThreads with threads > 0, otherwise returns the number of logical CPUs, available for the
+ * process. 
  * 
- * [setNumThreads](#db/de0/group__core__utils_1gae78625c3c2aa9e0b83ed31b73c6549c0}), [getThreadNum](#db/de0/group__core__utils_1gaf9cc0cb10097686a9da60f6c587e5774})
+ * [setNumThreads](#db/de0/group__core__utils_1gae78625c3c2aa9e0b83ed31b73c6549c0}),
+ * [getThreadNum](#db/de0/group__core__utils_1gaf9cc0cb10097686a9da60f6c587e5774})
  * 
  */
 export declare function getNumThreads(): int
@@ -344,25 +394,31 @@ export declare function getNumThreads(): int
  * 
  * `TBB` - Unsupported with current 4.1 TBB release. Maybe will be supported in future.
  * `OpenMP` - The thread number, within the current team, of the calling thread.
- * `Concurrency` - An ID for the virtual processor that the current context is executing on (0 for master thread and unique number for others, but not necessary 1,2,3,...).
+ * `Concurrency` - An ID for the virtual processor that the current context is executing on (0 for
+ * master thread and unique number for others, but not necessary 1,2,3,...).
  * `GCD` - System calling thread's ID. Never returns 0 inside parallel region.
  * `C=` - The index of the current parallel task. 
  * 
- * [setNumThreads](#db/de0/group__core__utils_1gae78625c3c2aa9e0b83ed31b73c6549c0}), [getNumThreads](#db/de0/group__core__utils_1ga2db334ec41d98da3129ef4a2342fc4d4})
+ * [setNumThreads](#db/de0/group__core__utils_1gae78625c3c2aa9e0b83ed31b73c6549c0}),
+ * [getNumThreads](#db/de0/group__core__utils_1ga2db334ec41d98da3129ef4a2342fc4d4})
  * 
  */
 export declare function getThreadNum(): int
 
 /**
- * The function returns the number of ticks after the certain event (for example, when the machine was turned on). It can be used to initialize [RNG](#d1/dd6/classcv_1_1RNG}) or to measure a function execution time by reading the tick count before and after the function call. 
+ * The function returns the number of ticks after the certain event (for example, when the machine was
+ * turned on). It can be used to initialize [RNG](#d1/dd6/classcv_1_1RNG}) or to measure a function
+ * execution time by reading the tick count before and after the function call. 
  * 
- * [getTickFrequency](#db/de0/group__core__utils_1ga705441a9ef01f47acdc55d87fbe5090c}), [TickMeter](#d9/d6f/classcv_1_1TickMeter})
+ * [getTickFrequency](#db/de0/group__core__utils_1ga705441a9ef01f47acdc55d87fbe5090c}),
+ * [TickMeter](#d9/d6f/classcv_1_1TickMeter})
  * 
  */
 export declare function getTickCount(): any
 
 /**
- * The function returns the number of ticks per second. That is, the following code computes the execution time in seconds: 
+ * The function returns the number of ticks per second. That is, the following code computes the
+ * execution time in seconds: 
  * 
  * ```cpp
  * double t = (double)getTickCount();
@@ -370,7 +426,8 @@ export declare function getTickCount(): any
  * t = ((double)getTickCount() - t)/getTickFrequency();
  * ```
  * 
- * [getTickCount](#db/de0/group__core__utils_1gae73f58000611a1af25dd36d496bf4487}), [TickMeter](#d9/d6f/classcv_1_1TickMeter})
+ * [getTickCount](#db/de0/group__core__utils_1gae73f58000611a1af25dd36d496bf4487}),
+ * [TickMeter](#d9/d6f/classcv_1_1TickMeter})
  * 
  */
 export declare function getTickFrequency(): double
@@ -528,7 +585,8 @@ export declare function parallel_for_(range: any, body: any, nstripes?: double):
 export declare function parallel_for_(range: any, functor: any, nstripes?: double): void
 
 /**
- * The function sets the new error handler, called from [cv::error()](#db/de0/group__core__utils_1gacbd081fdb20423a63cf731569ba70b2b}).
+ * The function sets the new error handler, called from
+ * [cv::error()](#db/de0/group__core__utils_1gacbd081fdb20423a63cf731569ba70b2b}).
  * 
  * the previous error handler
  * 
@@ -549,7 +607,8 @@ export declare function redirectError(errCallback: ErrorCallback, userdata?: any
 export declare function roundUp(a: int, b: any): int
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param a 
  * @param b 
@@ -557,20 +616,31 @@ export declare function roundUp(a: int, b: any): int
 export declare function roundUp(a: size_t, b: any): size_t
 
 /**
- * The function saturate_cast resembles the standard C++ cast operations, such as static_cast<T>() and others. It perform an efficient and accurate conversion from one primitive type to another (see the introduction chapter). saturate in the name means that when the input value v is out of the range of the target type, the result is not formed just by taking low bits of the input, but instead the value is clipped. For example: 
+ * The function saturate_cast resembles the standard C++ cast operations, such as static_cast<T>() and
+ * others. It perform an efficient and accurate conversion from one primitive type to another (see the
+ * introduction chapter). saturate in the name means that when the input value v is out of the range
+ * of the target type, the result is not formed just by taking low bits of the input, but instead the
+ * value is clipped. For example: 
  * 
  * ```cpp
  * uchar a = saturate_cast<uchar>(-100); // a = 0 (UCHAR_MIN)
  * short b = saturate_cast<short>(33333.33333); // b = 32767 (SHRT_MAX)
  * ```
  * 
- *  Such clipping is done when the target type is unsigned char , signed char , unsigned short or signed short . For 32-bit integers, no clipping is done.
+ *  Such clipping is done when the target type is unsigned char , signed char , unsigned short or
+ * signed short . For 32-bit integers, no clipping is done.
  * 
- * When the parameter is a floating-point value and the target type is an integer (8-, 16- or 32-bit), the floating-point value is first rounded to the nearest integer and then clipped if needed (when the target type is 8- or 16-bit).
+ * When the parameter is a floating-point value and the target type is an integer (8-, 16- or 32-bit),
+ * the floating-point value is first rounded to the nearest integer and then clipped if needed (when
+ * the target type is 8- or 16-bit).
  * 
  * This operation is used in the simplest or most complex image processing functions in OpenCV.
  * 
- * [add](#d2/de8/group__core__array_1ga10ac1bfb180e2cfda1701d06c24fdbd6}), [subtract](#d2/de8/group__core__array_1gaa0f00d98b4b5edeaeb7b8333b2de353b}), [multiply](#d2/de8/group__core__array_1ga979d898a58d7f61c53003e162e7ad89f}), [divide](#d2/de8/group__core__array_1ga6db555d30115642fedae0cda05604874}), [Mat::convertTo](#d3/d63/classcv_1_1Mat_1adf88c60c5b4980e05bb556080916978b})
+ * [add](#d2/de8/group__core__array_1ga10ac1bfb180e2cfda1701d06c24fdbd6}),
+ * [subtract](#d2/de8/group__core__array_1gaa0f00d98b4b5edeaeb7b8333b2de353b}),
+ * [multiply](#d2/de8/group__core__array_1ga979d898a58d7f61c53003e162e7ad89f}),
+ * [divide](#d2/de8/group__core__array_1ga6db555d30115642fedae0cda05604874}),
+ * [Mat::convertTo](#d3/d63/classcv_1_1Mat_1adf88c60c5b4980e05bb556080916978b})
  * 
  * @param arg108 
  * @param v Function parameter.
@@ -578,7 +648,8 @@ export declare function roundUp(a: size_t, b: any): size_t
 export declare function saturate_cast(arg108: any, v: any): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg109 
  * @param v 
@@ -586,7 +657,8 @@ export declare function saturate_cast(arg108: any, v: any): any
 export declare function saturate_cast(arg109: any, v: any): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg110 
  * @param v 
@@ -594,7 +666,8 @@ export declare function saturate_cast(arg109: any, v: any): any
 export declare function saturate_cast(arg110: any, v: any): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg111 
  * @param v 
@@ -602,7 +675,8 @@ export declare function saturate_cast(arg110: any, v: any): any
 export declare function saturate_cast(arg111: any, v: short): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg112 
  * @param v 
@@ -610,7 +684,8 @@ export declare function saturate_cast(arg111: any, v: short): any
 export declare function saturate_cast(arg112: any, v: unsigned): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg113 
  * @param v 
@@ -618,7 +693,8 @@ export declare function saturate_cast(arg112: any, v: unsigned): any
 export declare function saturate_cast(arg113: any, v: int): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg114 
  * @param v 
@@ -626,7 +702,8 @@ export declare function saturate_cast(arg113: any, v: int): any
 export declare function saturate_cast(arg114: any, v: float): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg115 
  * @param v 
@@ -634,7 +711,8 @@ export declare function saturate_cast(arg114: any, v: float): any
 export declare function saturate_cast(arg115: any, v: double): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg116 
  * @param v 
@@ -642,7 +720,8 @@ export declare function saturate_cast(arg115: any, v: double): any
 export declare function saturate_cast(arg116: any, v: any): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg117 
  * @param v 
@@ -650,7 +729,8 @@ export declare function saturate_cast(arg116: any, v: any): any
 export declare function saturate_cast(arg117: any, v: any): any
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * @param arg118 
  * @param v 
@@ -658,7 +738,8 @@ export declare function saturate_cast(arg117: any, v: any): any
 export declare function saturate_cast(arg118: any, v: float16_t): any
 
 /**
- * When the break-on-error mode is set, the default error handler issues a hardware exception, which can make debugging more convenient.
+ * When the break-on-error mode is set, the default error handler issues a hardware exception, which
+ * can make debugging more convenient.
  * 
  * the previous state
  * 
@@ -667,28 +748,40 @@ export declare function saturate_cast(arg118: any, v: float16_t): any
 export declare function setBreakOnError(flag: bool): bool
 
 /**
- * If threads == 0, OpenCV will disable threading optimizations and run all it's functions sequentially. Passing threads < 0 will reset threads number to system default. This function must be called outside of parallel region.
+ * If threads == 0, OpenCV will disable threading optimizations and run all it's functions
+ * sequentially. Passing threads < 0 will reset threads number to system default. This function must
+ * be called outside of parallel region.
  * 
- * OpenCV will try to run its functions with specified threads number, but some behaviour differs from framework:
+ * OpenCV will try to run its functions with specified threads number, but some behaviour differs from
+ * framework:
  * 
- * `TBB` - User-defined parallel constructions will run with the same threads number, if another is not specified. If later on user creates his own scheduler, OpenCV will use it.
+ * `TBB` - User-defined parallel constructions will run with the same threads number, if another is
+ * not specified. If later on user creates his own scheduler, OpenCV will use it.
  * `OpenMP` - No special defined behaviour.
- * `Concurrency` - If threads == 1, OpenCV will disable threading optimizations and run its functions sequentially.
+ * `Concurrency` - If threads == 1, OpenCV will disable threading optimizations and run its functions
+ * sequentially.
  * `GCD` - Supports only values <= 0.
  * `C=` - No special defined behaviour. 
  * 
- * [getNumThreads](#db/de0/group__core__utils_1ga2db334ec41d98da3129ef4a2342fc4d4}), [getThreadNum](#db/de0/group__core__utils_1gaf9cc0cb10097686a9da60f6c587e5774})
+ * [getNumThreads](#db/de0/group__core__utils_1ga2db334ec41d98da3129ef4a2342fc4d4}),
+ * [getThreadNum](#db/de0/group__core__utils_1gaf9cc0cb10097686a9da60f6c587e5774})
  * 
  * @param nthreads Number of threads used by OpenCV.
  */
 export declare function setNumThreads(nthreads: int): void
 
 /**
- * The function can be used to dynamically turn on and off optimized dispatched code (code that uses SSE4.2, AVX/AVX2, and other instructions on the platforms that support it). It sets a global flag that is further checked by OpenCV functions. Since the flag is not checked in the inner OpenCV loops, it is only safe to call the function on the very top level in your application where you can be sure that no other OpenCV function is currently executed.
+ * The function can be used to dynamically turn on and off optimized dispatched code (code that uses
+ * SSE4.2, AVX/AVX2, and other instructions on the platforms that support it). It sets a global flag
+ * that is further checked by OpenCV functions. Since the flag is not checked in the inner OpenCV
+ * loops, it is only safe to call the function on the very top level in your application where you can
+ * be sure that no other OpenCV function is currently executed.
  * 
- * By default, the optimized code is enabled unless you disable it in CMake. The current status can be retrieved using useOptimized.
+ * By default, the optimized code is enabled unless you disable it in CMake. The current status can be
+ * retrieved using useOptimized.
  * 
- * @param onoff The boolean flag specifying whether the optimized code should be used (onoff=true) or not (onoff=false).
+ * @param onoff The boolean flag specifying whether the optimized code should be used (onoff=true) or
+ * not (onoff=false).
  */
 export declare function setUseOptimized(onoff: bool): void
 
@@ -928,7 +1021,8 @@ export declare const SORT_EVERY_COLUMN: SortFlags // initializer: = 1
 export declare const SORT_ASCENDING: SortFlags // initializer: = 0
 
 /**
- * each matrix row is sorted in the descending order; this flag and the previous one are also mutually exclusive.
+ * each matrix row is sorted in the descending order; this flag and the previous one are also mutually
+ * exclusive.
  * 
  */
 export declare const SORT_DESCENDING: SortFlags // initializer: = 16

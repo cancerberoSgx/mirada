@@ -2,29 +2,37 @@
 import { _Tp, Matx_AddOp, Matx_SubOp, _T2, Matx_ScaleOp, Matx_MulOp, Matx_DivOp, int, Matx_MatMulOp, Matx_TOp } from './_types'
 
 /**
- * If you need a more flexible type, use [Mat](#d3/d63/classcv_1_1Mat}) . The elements of the matrix M are accessible using the M(i,j) notation. Most of the common matrix operations (see also [MatrixExpressions](#d1/d10/classcv_1_1MatExpr_1MatrixExpressions}) ) are available. To do an operation on [Matx](#de/de1/classcv_1_1Matx}) that is not implemented, you can easily convert the matrix to [Mat](#d3/d63/classcv_1_1Mat}) and backwards: 
+ * If you need a more flexible type, use [Mat](#d3/d63/classcv_1_1Mat}) . The elements of the matrix M
+ * are accessible using the M(i,j) notation. Most of the common matrix operations (see also
+ * [MatrixExpressions](#d1/d10/classcv_1_1MatExpr_1MatrixExpressions}) ) are available. To do an
+ * operation on [Matx](#de/de1/classcv_1_1Matx}) that is not implemented, you can easily convert the
+ * matrix to [Mat](#d3/d63/classcv_1_1Mat}) and backwards: 
  * 
  * ```cpp
- * [Matx33f](#dc/d84/group__core__basic_1ga118a383f60581636c7c8ab180cbb155e}) m(1, 2, 3,
+ * Matx33f m(1, 2, 3,
  *           4, 5, 6,
  *           7, 8, 9);
- * cout << [sum](#d2/de8/group__core__array_1ga716e10a2dd9e228e4d3c95818f106722})(Mat(m*m.t())) << endl;
+ * cout << sum(Mat(m*m.t())) << endl;
  * ```
  * 
- *  Except of the plain constructor which takes a list of elements, [Matx](#de/de1/classcv_1_1Matx}) can be initialized from a C-array: 
+ *  Except of the plain constructor which takes a list of elements, [Matx](#de/de1/classcv_1_1Matx})
+ * can be initialized from a C-array: 
  * 
  * ```cpp
  * float values[] = { 1, 2, 3};
- * [Matx31f](#dc/d84/group__core__basic_1ga1625ab2c70d7f06d259f245cb5f5f4f8}) m(values);
+ * Matx31f m(values);
  * ```
  * 
- *  In case if C++11 features are available, std::initializer_list can be also used to initialize [Matx](#de/de1/classcv_1_1Matx}): 
+ *  In case if C++11 features are available, std::initializer_list can be also used to initialize
+ * [Matx](#de/de1/classcv_1_1Matx}): 
  * 
  * ```cpp
- * [Matx31f](#dc/d84/group__core__basic_1ga1625ab2c70d7f06d259f245cb5f5f4f8}) m = { 1, 2, 3};
+ * Matx31f m = { 1, 2, 3};
  * ```
  * 
- * Source: [opencv2/core/matx.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/matx.hpp#L1185).
+ * Source:
+ * [opencv2/core/matx.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/co
+ * re/matx.hpp#L1185).
  * 
  */
 export declare class Matx {

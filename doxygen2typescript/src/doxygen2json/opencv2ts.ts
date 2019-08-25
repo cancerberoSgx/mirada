@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync} from 'fs'
 import { withoutExtension } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
 import { cp, mkdir, rm, test } from 'shelljs'
@@ -30,7 +30,7 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       renderLocation: true,
       locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
       ...o,
-      tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, ...o.tsCodeFormatSettings },
+      tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, lineBreak: 100, ...o.tsCodeFormatSettings },
     })
       .results
       .forEach(d => {
@@ -44,10 +44,10 @@ export function opencv2ts(o: Doxygen2tsOptions) {
         }
         mkdir('-p', dirname(fileName))
         writeFileSync(fileName, d.content)
-        if (o.jsonTypes) {
+        if (o.jsonTypes && !existsSync(withoutExtension(fileName) + '.json')) {
           writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
         }
-        if (o.xmlTypes) {
+        if (o.xmlTypes&& !existsSync(withoutExtension(fileName) + '.xml')) {
           cp(xmlFile, withoutExtension(fileName) + '.xml')
         }
       })

@@ -33,9 +33,9 @@ opencv2ts({
 ## TODO - Status - Progress - Roadmap
 - [ ] class inheritancegraph - Mat_ extends Mat_
   - [ ] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
+- [ ] class compounds enums names prefix broken. (ex AgastFeatureDetector.AGAST_7_12s becomes AgastFeatureDetector_AGAST_7_12s)
 - [x] markdown - don't render links inside code snippets.
 - [ ] rename src/doxygen2json to 2ts 
-- [ ] class compounds enums names prefix broken - verify that's the case.
 - [ ] verify that type alias (enums) are exposed 
 - [x] issue wth optinoal params  (arg4: any, arg5?: typename, list: any)
 - [ ] build more examples and check all types are generated

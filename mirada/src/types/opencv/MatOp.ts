@@ -3,7 +3,9 @@ import { int, double } from './_types'
 
 /**
  * 
- * Source: [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/mat.hpp#L3432).
+ * Source:
+ * [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/cor
+ * e/mat.hpp#L3432).
  * 
  */
 export declare class MatOp {

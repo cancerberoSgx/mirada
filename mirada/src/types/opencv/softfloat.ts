@@ -3,7 +3,9 @@ import { int, bool } from './_types'
 
 /**
  * 
- * Source: [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/softfloat.hpp#L220).
+ * Source:
+ * [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/openc
+ * v2/core/softfloat.hpp#L220).
  * 
  */
 export declare class softfloat {

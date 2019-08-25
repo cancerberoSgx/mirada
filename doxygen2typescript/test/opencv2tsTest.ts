@@ -14,10 +14,17 @@ test('opencv2ts', async t => {
     // xmlTypes: true,
     renderLocation: false,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
-    tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, emptyLinesMax: 1, trailingSemicolons: 'never' },
+    tsCodeFormatSettings: { 
+      indentSize: 2, 
+      convertTabsToSpaces: true, 
+      emptyLinesMax: 1, 
+      trailingSemicolons: 'never', 
+      lineBreak: 100 
+      },
   })
   t.true(ls('tmp/src/opencv/**/*.ts').length > 0)
   t.true(ls('tmp/dist/**/*.js').length === 0)
+  
   writeFileSync('tmp/tsconfig.json', configTsJson)
   writeFileSync('tmp/src/test.ts', testTs)
   const p = exec('npx tsc', { cwd: 'tmp' })
@@ -30,16 +37,17 @@ test('opencv2ts', async t => {
   t.true(p2.stdout.includes(`Property 'nonExistent' does not exist on type 'Mat'`))
 })
 
-
 const testTs = `
 import {cv} from './opencv'
 const m = new cv.Mat()
-var a = m.rows+1`
+var a = m.rows+1
+`.trim()
 
 const testErrorTs = `
 import {cv} from './opencv'
 const m = new cv.Mat()
-m.nonExistent()`
+m.nonExistent()
+`.trim()
 
 const configTsJson = `
 {
@@ -54,4 +62,33 @@ const configTsJson = `
   },
   "include": ["src"]
 }
-`
+`.trim()
+
+// const testTs = `
+// import {CV} from './opencv'
+// declare var cv: CV
+// const m = new cv.Mat()
+// var a = m.rows+1
+// `.trim()
+
+// const testErrorTs = `
+// import {CV} from './opencv'
+// declare var cv: CV
+// const m = new cv.Mat()
+// m.nonExistent()
+// `.trim()
+
+// const configTsJson = `
+// {
+//   "compilerOptions": {
+//     "target": "esnext",
+//     "module": "commonjs",
+//     "lib": ["esnext", "dom"], 
+//     "sourceMap": true,
+//     "outDir": "./dist", 
+//     "rootDir": ".",
+//     "declaration": true
+//   },
+//   "include": ["src"]
+// }
+// `.trim()

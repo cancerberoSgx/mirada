@@ -3,13 +3,16 @@ import { int, double } from './_types'
 
 /**
  * 
- * Source: [opencv2/ml.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ml.hpp#L1163).
+ * Source:
+ * [opencv2/ml.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ml.hpp#L1
+ * 163).
  * 
  */
 export declare class Node {
 
   /**
-   *   Class index normalized to 0..class_count-1 range and assigned to the node. It is used internally in classification trees and tree ensembles.
+   *   Class index normalized to 0..class_count-1 range and assigned to the node. It is used internally
+   * in classification trees and tree ensembles.
    *   
    */
   public classIdx: int
@@ -41,7 +44,8 @@ export declare class Node {
   public split: int
 
   /**
-   *   Value at the node: a class label in case of classification or estimated function value in case of regression.
+   *   Value at the node: a class label in case of classification or estimated function value in case of
+   * regression.
    *   
    */
   public value: double

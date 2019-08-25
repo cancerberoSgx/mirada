@@ -2,9 +2,12 @@
 import { size_t, bool } from './_types'
 
 /**
- * Class re-implementing the boost version of it This helps not depending on boost, it also does not do the bound checks and has a way to reset a block for speed
+ * Class re-implementing the boost version of it This helps not depending on boost, it also does not
+ * do the bound checks and has a way to reset a block for speed
  * 
- * Source: [opencv2/flann/dynamic_bitset.h](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/flann/dynamic_bitset.h#L150).
+ * Source:
+ * [opencv2/flann/dynamic_bitset.h](https://github.com/opencv/opencv/tree/master/modules/core/include/o
+ * pencv2/flann/dynamic_bitset.h#L150).
  * 
  */
 export declare class DynamicBitset {

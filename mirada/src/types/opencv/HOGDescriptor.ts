@@ -6,7 +6,9 @@ import { int, float, bool, double, size_t, DescriptorStorageFormat, HistogramNor
  * 
  * useful links:
  * 
- * Source: [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/objdetect.hpp#L377).
+ * Source:
+ * [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ob
+ * jdetect.hpp#L377).
  * 
  */
 export declare class HOGDescriptor {
@@ -87,13 +89,15 @@ export declare class HOGDescriptor {
   public winSize: any
 
   /**
-   *   aqual to [HOGDescriptor](#d5/d33/structcv_1_1HOGDescriptor})(Size(64,128), Size(16,16), Size(8,8), Size(8,8), 9 )
+   *   aqual to [HOGDescriptor](#d5/d33/structcv_1_1HOGDescriptor})(Size(64,128), Size(16,16),
+   * Size(8,8), Size(8,8), 9 )
    *   
    */
   public constructor()
 
   /**
-   *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+   *   This is an overloaded member function, provided for convenience. It differs from the above
+   * function only in what argument(s) it accepts.
    *   
    *   @param _winSize sets winSize with given value.
    *   @param _blockSize sets blockSize with given value.
@@ -111,14 +115,17 @@ export declare class HOGDescriptor {
   public constructor(_winSize: any, _blockSize: any, _blockStride: any, _cellSize: any, _nbins: int, _derivAperture?: int, _winSigma?: double, _histogramNormType?: any, _L2HysThreshold?: double, _gammaCorrection?: bool, _nlevels?: int, _signedGradient?: bool)
 
   /**
-   *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+   *   This is an overloaded member function, provided for convenience. It differs from the above
+   * function only in what argument(s) it accepts.
    *   
-   *   @param filename The file name containing HOGDescriptor properties and coefficients for the linear SVM classifier.
+   *   @param filename The file name containing HOGDescriptor properties and coefficients for the linear
+   * SVM classifier.
    */
   public constructor(filename: any)
 
   /**
-   *   This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+   *   This is an overloaded member function, provided for convenience. It differs from the above
+   * function only in what argument(s) it accepts.
    *   
    *   @param d the HOGDescriptor which cloned to create a new one.
    */
@@ -158,9 +165,13 @@ export declare class HOGDescriptor {
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
-   *   @param foundLocations Vector of point where each point contains left-top corner point of detected object boundaries.
+   *   @param foundLocations Vector of point where each point contains left-top corner point of detected
+   * object boundaries.
    *   @param weights Vector that will contain confidence values for each detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes set of requested locations to be evaluated.
@@ -170,8 +181,12 @@ export declare class HOGDescriptor {
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
-   *   @param foundLocations Vector of point where each point contains left-top corner point of detected object boundaries.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
+   *   @param foundLocations Vector of point where each point contains left-top corner point of detected
+   * object boundaries.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes locations to search.
@@ -183,7 +198,10 @@ export declare class HOGDescriptor {
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
    *   @param foundWeights Vector that will contain confidence values for each detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param scale Coefficient of the detection window increase.
@@ -196,7 +214,10 @@ export declare class HOGDescriptor {
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param scale Coefficient of the detection window increase.
@@ -210,8 +231,12 @@ export declare class HOGDescriptor {
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
    *   @param locations Vector of DetectionROI
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here.
-   *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a group of rectangles to retain it.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here.
+   *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a
+   * group of rectangles to retain it.
    */
   public detectMultiScaleROI(img: any, foundLocations: any, locations: any, hitThreshold?: double, groupThreshold?: int): any
 
@@ -221,7 +246,10 @@ export declare class HOGDescriptor {
    *   @param locations Vector of Point
    *   @param foundLocations Vector of Point where each Point is detected object's top-left point.
    *   @param confidences confidences
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if the free coefficient is omitted (which is allowed), you can specify it manually here
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
+   * Usually it is 0 and should be specified in the detector coefficients (as the last free
+   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
+   * manually here
    *   @param winStride winStride
    *   @param padding padding
    */
@@ -239,9 +267,12 @@ export declare class HOGDescriptor {
 
   /**
    *   
-   *   @param rectList Input/output vector of rectangles. Output vector includes retained and grouped rectangles. (The Python list is not modified in place.)
-   *   @param weights Input/output vector of weights of rectangles. Output vector includes weights of retained and grouped rectangles. (The Python list is not modified in place.)
-   *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a group of rectangles to retain it.
+   *   @param rectList Input/output vector of rectangles. Output vector includes retained and grouped
+   * rectangles. (The Python list is not modified in place.)
+   *   @param weights Input/output vector of weights of rectangles. Output vector includes weights of
+   * retained and grouped rectangles. (The Python list is not modified in place.)
+   *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a
+   * group of rectangles to retain it.
    *   @param eps Relative difference between sides of the rectangles to merge them into a group.
    */
   public groupRectangles(rectList: any, weights: any, groupThreshold: int, eps: double): any
@@ -249,7 +280,8 @@ export declare class HOGDescriptor {
   /**
    *   
    *   @param filename Path of the file to read.
-   *   @param objname The optional name of the node to read (if empty, the first top-level node will be used).
+   *   @param objname The optional name of the node to read (if empty, the first top-level node will be
+   * used).
    */
   public load(filename: any, objname?: any): any
 

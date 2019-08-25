@@ -69,7 +69,8 @@ export declare function hal_ni_dftFree2D(context: any): any
  * @param count estimated transformation count
  * @param depth array type (CV_32F or CV_64F)
  * @param flags algorithm options (combination of CV_HAL_DFT_INVERSE, CV_HAL_DFT_SCALE, ...)
- * @param needBuffer pointer to boolean variable, if valid pointer provided, then variable value should be set to true to signal that additional memory buffer is needed for operations
+ * @param needBuffer pointer to boolean variable, if valid pointer provided, then variable value
+ * should be set to true to signal that additional memory buffer is needed for operations
  */
 export declare function hal_ni_dftInit1D(context: any, len: int, count: int, depth: int, flags: int, needBuffer: any): any
 

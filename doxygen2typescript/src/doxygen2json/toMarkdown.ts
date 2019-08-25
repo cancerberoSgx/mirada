@@ -48,7 +48,7 @@ export function toMarkdown(options: Options): string {
     return `<a name="${el.id}"></a>`
   }
   else if (['ref'].includes(el.tagName)) {
-    return renderRef({ ...options, text: renderChildren(el, options), refid: `#${el.getAttribute('refid')}` })
+    return options._disableLinks ?  renderChildren(el, options) : renderRef({ ...options, text: renderChildren(el, options), refid: `#${el.getAttribute('refid')}` })
   }
   else if (['itemizedlist', 'orderedlist'].includes(el.tagName)) {
     return `\n\n${renderChildren(el, options)}`
@@ -70,8 +70,4 @@ export function toMarkdown(options: Options): string {
     return ''
   }
 }
-
-
-// function getRef(el: Element, options: Options) {
-//   return `#${el.getAttribute('refid')}`
-// }
+ 

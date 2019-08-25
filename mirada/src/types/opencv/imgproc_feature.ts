@@ -7,19 +7,24 @@ import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, Ter
  */
 
 /**
- * The function finds edges in the input image and marks them in the output map edges using the Canny algorithm. The smallest value between threshold1 and threshold2 is used for edge linking. The largest value is used to find initial segments of strong edges. See
+ * The function finds edges in the input image and marks them in the output map edges using the Canny
+ * algorithm. The smallest value between threshold1 and threshold2 is used for edge linking. The
+ * largest value is used to find initial segments of strong edges. See
  * 
  * @param image 8-bit input image.
  * @param edges output edge map; single channels 8-bit image, which has the same size as image .
  * @param threshold1 first threshold for the hysteresis procedure.
  * @param threshold2 second threshold for the hysteresis procedure.
  * @param apertureSize aperture size for the Sobel operator.
- * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 + (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
+ * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 +
+ * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or
+ * whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
 export declare function Canny(image: InputArray, edges: OutputArray, threshold1: double, threshold2: double, apertureSize?: int, L2gradient?: bool): void
 
 /**
- * This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+ * This is an overloaded member function, provided for convenience. It differs from the above function
+ * only in what argument(s) it accepts.
  * 
  * Finds edges in an image using the Canny algorithm with custom image gradient.
  * 
@@ -28,18 +33,24 @@ export declare function Canny(image: InputArray, edges: OutputArray, threshold1:
  * @param edges output edge map; single channels 8-bit image, which has the same size as image .
  * @param threshold1 first threshold for the hysteresis procedure.
  * @param threshold2 second threshold for the hysteresis procedure.
- * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 + (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
+ * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 +
+ * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or
+ * whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
 export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray, threshold1: double, threshold2: double, L2gradient?: bool): void
 
 /**
- * For every pixel `$p$` , the function cornerEigenValsAndVecs considers a blockSize `$\\times$` blockSize neighborhood `$S(p)$` . It calculates the covariation matrix of derivatives over the neighborhood as:
+ * For every pixel `$p$` , the function cornerEigenValsAndVecs considers a blockSize `$\\times$`
+ * blockSize neighborhood `$S(p)$` . It calculates the covariation matrix of derivatives over the
+ * neighborhood as:
  * 
- * `\\[M = \\begin{bmatrix} \\sum _{S(p)}(dI/dx)^2 & \\sum _{S(p)}dI/dx dI/dy \\\\ \\sum _{S(p)}dI/dx dI/dy & \\sum _{S(p)}(dI/dy)^2 \\end{bmatrix}\\]`
+ * `\\[M = \\begin{bmatrix} \\sum _{S(p)}(dI/dx)^2 & \\sum _{S(p)}dI/dx dI/dy \\\\ \\sum _{S(p)}dI/dx
+ * dI/dy & \\sum _{S(p)}(dI/dy)^2 \\end{bmatrix}\\]`
  * 
  * where the derivatives are computed using the Sobel operator.
  * 
- * After that, it finds eigenvectors and eigenvalues of `$M$` and stores them in the destination image as `$(\\lambda_1, \\lambda_2, x_1, y_1, x_2, y_2)$` where
+ * After that, it finds eigenvectors and eigenvalues of `$M$` and stores them in the destination image
+ * as `$(\\lambda_1, \\lambda_2, x_1, y_1, x_2, y_2)$` where
  * 
  * `$\\lambda_1, \\lambda_2$` are the non-sorted eigenvalues of `$M$`
  * `$x_1, y_1$` are the eigenvectors corresponding to `$\\lambda_1$`
@@ -47,7 +58,9 @@ export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray
  * 
  * The output of the function can be used for robust edge or corner detection.
  * 
- * [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}), [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}), [preCornerDetect](#dd/d1a/group__imgproc__feature_1gaa819f39b5c994871774081803ae22586})
+ * [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}),
+ * [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}),
+ * [preCornerDetect](#dd/d1a/group__imgproc__feature_1gaa819f39b5c994871774081803ae22586})
  * 
  * @param src Input single-channel 8-bit or floating-point image.
  * @param dst Image to store the results. It has the same size as src and the type CV_32FC(6) .
@@ -58,14 +71,19 @@ export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray
 export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, borderType?: int): void
 
 /**
- * The function runs the Harris corner detector on the image. Similarly to cornerMinEigenVal and cornerEigenValsAndVecs , for each pixel `$(x, y)$` it calculates a `$2\\times2$` gradient covariance matrix `$M^{(x,y)}$` over a `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood. Then, it computes the following characteristic:
+ * The function runs the Harris corner detector on the image. Similarly to cornerMinEigenVal and
+ * cornerEigenValsAndVecs , for each pixel `$(x, y)$` it calculates a `$2\\times2$` gradient
+ * covariance matrix `$M^{(x,y)}$` over a `$\\texttt{blockSize} \\times \\texttt{blockSize}$`
+ * neighborhood. Then, it computes the following characteristic:
  * 
- * `\\[\\texttt{dst} (x,y) = \\mathrm{det} M^{(x,y)} - k \\cdot \\left ( \\mathrm{tr} M^{(x,y)} \\right )^2\\]`
+ * `\\[\\texttt{dst} (x,y) = \\mathrm{det} M^{(x,y)} - k \\cdot \\left ( \\mathrm{tr} M^{(x,y)}
+ * \\right )^2\\]`
  * 
  * Corners in the image can be found as the local maxima of this response map.
  * 
  * @param src Input single-channel 8-bit or floating-point image.
- * @param dst Image to store the Harris detector responses. It has the type CV_32FC1 and the same size as src .
+ * @param dst Image to store the Harris detector responses. It has the type CV_32FC1 and the same size
+ * as src .
  * @param blockSize Neighborhood size (see the details on cornerEigenValsAndVecs ).
  * @param ksize Aperture parameter for the Sobel operator.
  * @param k Harris detector free parameter. See the formula above.
@@ -74,10 +92,13 @@ export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray
 export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSize: int, ksize: int, k: double, borderType?: int): void
 
 /**
- * The function is similar to cornerEigenValsAndVecs but it calculates and stores only the minimal eigenvalue of the covariance matrix of derivatives, that is, `$\\min(\\lambda_1, \\lambda_2)$` in terms of the formulae in the cornerEigenValsAndVecs description.
+ * The function is similar to cornerEigenValsAndVecs but it calculates and stores only the minimal
+ * eigenvalue of the covariance matrix of derivatives, that is, `$\\min(\\lambda_1, \\lambda_2)$` in
+ * terms of the formulae in the cornerEigenValsAndVecs description.
  * 
  * @param src Input single-channel 8-bit or floating-point image.
- * @param dst Image to store the minimal eigenvalues. It has the type CV_32FC1 and the same size as src .
+ * @param dst Image to store the minimal eigenvalues. It has the type CV_32FC1 and the same size as
+ * src .
  * @param blockSize Neighborhood size (see the details on cornerEigenValsAndVecs ).
  * @param ksize Aperture parameter for the Sobel operator.
  * @param borderType Pixel extrapolation method. See BorderTypes.
@@ -85,32 +106,47 @@ export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSiz
 export declare function cornerMinEigenVal(src: InputArray, dst: OutputArray, blockSize: int, ksize?: int, borderType?: int): void
 
 /**
- * The function iterates to find the sub-pixel accurate location of corners or radial saddle points, as shown on the figure below.
+ * The function iterates to find the sub-pixel accurate location of corners or radial saddle points,
+ * as shown on the figure below.
  * 
- *  Sub-pixel accurate corner locator is based on the observation that every vector from the center `$q$` to a point `$p$` located within a neighborhood of `$q$` is orthogonal to the image gradient at `$p$` subject to image and measurement noise. Consider the expression:
+ *  Sub-pixel accurate corner locator is based on the observation that every vector from the center
+ * `$q$` to a point `$p$` located within a neighborhood of `$q$` is orthogonal to the image gradient
+ * at `$p$` subject to image and measurement noise. Consider the expression:
  * 
  * `\\[\\epsilon _i = {DI_{p_i}}^T \\cdot (q - p_i)\\]`
  * 
- * where `${DI_{p_i}}$` is an image gradient at one of the points `$p_i$` in a neighborhood of `$q$` . The value of `$q$` is to be found so that `$\\epsilon_i$` is minimized. A system of equations may be set up with `$\\epsilon_i$` set to zero:
+ * where `${DI_{p_i}}$` is an image gradient at one of the points `$p_i$` in a neighborhood of `$q$` .
+ * The value of `$q$` is to be found so that `$\\epsilon_i$` is minimized. A system of equations may
+ * be set up with `$\\epsilon_i$` set to zero:
  * 
- * `\\[\\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T) \\cdot q - \\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T \\cdot p_i)\\]`
+ * `\\[\\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T) \\cdot q - \\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T \\cdot
+ * p_i)\\]`
  * 
- * where the gradients are summed within a neighborhood ("search window") of `$q$` . Calling the first gradient term `$G$` and the second gradient term `$b$` gives:
+ * where the gradients are summed within a neighborhood ("search window") of `$q$` . Calling the first
+ * gradient term `$G$` and the second gradient term `$b$` gives:
  * 
  * `\\[q = G^{-1} \\cdot b\\]`
  * 
- * The algorithm sets the center of the neighborhood window at this new center `$q$` and then iterates until the center stays within a set threshold.
+ * The algorithm sets the center of the neighborhood window at this new center `$q$` and then iterates
+ * until the center stays within a set threshold.
  * 
  * @param image Input single-channel, 8-bit or float image.
  * @param corners Initial coordinates of the input corners and refined coordinates provided for output.
- * @param winSize Half of the side length of the search window. For example, if winSize=Size(5,5) , then a $(5*2+1) \times (5*2+1) = 11 \times 11$ search window is used.
- * @param zeroZone Half of the size of the dead region in the middle of the search zone over which the summation in the formula below is not done. It is used sometimes to avoid possible singularities of the autocorrelation matrix. The value of (-1,-1) indicates that there is no such a size.
- * @param criteria Criteria for termination of the iterative process of corner refinement. That is, the process of corner position refinement stops either after criteria.maxCount iterations or when the corner position moves by less than criteria.epsilon on some iteration.
+ * @param winSize Half of the side length of the search window. For example, if winSize=Size(5,5) ,
+ * then a $(5*2+1) \times (5*2+1) = 11 \times 11$ search window is used.
+ * @param zeroZone Half of the size of the dead region in the middle of the search zone over which the
+ * summation in the formula below is not done. It is used sometimes to avoid possible singularities of
+ * the autocorrelation matrix. The value of (-1,-1) indicates that there is no such a size.
+ * @param criteria Criteria for termination of the iterative process of corner refinement. That is,
+ * the process of corner position refinement stops either after criteria.maxCount iterations or when
+ * the corner position moves by less than criteria.epsilon on some iteration.
  */
 export declare function cornerSubPix(image: InputArray, corners: InputOutputArray, winSize: Size, zeroZone: Size, criteria: TermCriteria): void
 
 /**
- * The [LineSegmentDetector](#db/d73/classcv_1_1LineSegmentDetector}) algorithm is defined using the standard values. Only advanced users may want to edit those, as to tailor it for their own application.
+ * The [LineSegmentDetector](#db/d73/classcv_1_1LineSegmentDetector}) algorithm is defined using the
+ * standard values. Only advanced users may want to edit those, as to tailor it for their own
+ * application.
  * 
  * Implementation has been removed due original code license conflict
  * 
@@ -119,35 +155,57 @@ export declare function cornerSubPix(image: InputArray, corners: InputOutputArra
  * @param _sigma_scale Sigma for Gaussian filter. It is computed as sigma = _sigma_scale/_scale.
  * @param _quant Bound to the quantization error on the gradient norm.
  * @param _ang_th Gradient angle tolerance in degrees.
- * @param _log_eps Detection threshold: -log10(NFA) > log_eps. Used only when advance refinement is chosen.
+ * @param _log_eps Detection threshold: -log10(NFA) > log_eps. Used only when advance refinement is
+ * chosen.
  * @param _density_th Minimal density of aligned region points in the enclosing rectangle.
  * @param _n_bins Number of bins in pseudo-ordering of gradient modulus.
  */
 export declare function createLineSegmentDetector(_refine?: int, _scale?: double, _sigma_scale?: double, _quant?: double, _ang_th?: double, _log_eps?: double, _density_th?: double, _n_bins?: int): any
 
 /**
- * The function finds the most prominent corners in the image or in the specified image region, as described in Shi94
+ * The function finds the most prominent corners in the image or in the specified image region, as
+ * described in Shi94
  * 
- * Function calculates the corner quality measure at every source image pixel using the [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}) or [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}) .
- * Function performs a non-maximum suppression (the local maximums in *3 x 3* neighborhood are retained).
- * The corners with the minimal eigenvalue less than `$\\texttt{qualityLevel} \\cdot \\max_{x,y} qualityMeasureMap(x,y)$` are rejected.
+ * Function calculates the corner quality measure at every source image pixel using the
+ * [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}) or
+ * [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}) .
+ * Function performs a non-maximum suppression (the local maximums in *3 x 3* neighborhood are
+ * retained).
+ * The corners with the minimal eigenvalue less than `$\\texttt{qualityLevel} \\cdot \\max_{x,y}
+ * qualityMeasureMap(x,y)$` are rejected.
  * The remaining corners are sorted by the quality measure in the descending order.
- * Function throws away each corner for which there is a stronger corner at a distance less than maxDistance.
+ * Function throws away each corner for which there is a stronger corner at a distance less than
+ * maxDistance.
  * 
  * The function can be used to initialize a point-based tracker of an object.
  * 
- * If the function is called with different values A and B of the parameter qualityLevel , and A > B, the vector of returned corners with qualityLevel=A will be the prefix of the output vector with qualityLevel=B .
+ * If the function is called with different values A and B of the parameter qualityLevel , and A > B,
+ * the vector of returned corners with qualityLevel=A will be the prefix of the output vector with
+ * qualityLevel=B .
  * 
- * [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}), [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}), [calcOpticalFlowPyrLK](#dc/d6b/group__video__track_1ga473e4b886d0bcc6b65831eb88ed93323}), [estimateRigidTransform](#dc/d6b/group__video__track_1ga762cbe5efd52cf078950196f3c616d48}),
+ * [cornerMinEigenVal](#dd/d1a/group__imgproc__feature_1ga3dbce297c1feb859ee36707e1003e0a8}),
+ * [cornerHarris](#dd/d1a/group__imgproc__feature_1gac1fc3598018010880e370e2f709b4345}),
+ * [calcOpticalFlowPyrLK](#dc/d6b/group__video__track_1ga473e4b886d0bcc6b65831eb88ed93323}),
+ * [estimateRigidTransform](#dc/d6b/group__video__track_1ga762cbe5efd52cf078950196f3c616d48}),
  * 
  * @param image Input 8-bit or floating-point 32-bit, single-channel image.
  * @param corners Output vector of detected corners.
- * @param maxCorners Maximum number of corners to return. If there are more corners than are found, the strongest of them is returned. maxCorners <= 0 implies that no limit on the maximum is set and all detected corners are returned.
- * @param qualityLevel Parameter characterizing the minimal accepted quality of image corners. The parameter value is multiplied by the best corner quality measure, which is the minimal eigenvalue (see cornerMinEigenVal ) or the Harris function response (see cornerHarris ). The corners with the quality measure less than the product are rejected. For example, if the best corner has the quality measure = 1500, and the qualityLevel=0.01 , then all the corners with the quality measure less than 15 are rejected.
+ * @param maxCorners Maximum number of corners to return. If there are more corners than are found,
+ * the strongest of them is returned. maxCorners <= 0 implies that no limit on the maximum is set and
+ * all detected corners are returned.
+ * @param qualityLevel Parameter characterizing the minimal accepted quality of image corners. The
+ * parameter value is multiplied by the best corner quality measure, which is the minimal eigenvalue
+ * (see cornerMinEigenVal ) or the Harris function response (see cornerHarris ). The corners with the
+ * quality measure less than the product are rejected. For example, if the best corner has the quality
+ * measure = 1500, and the qualityLevel=0.01 , then all the corners with the quality measure less than
+ * 15 are rejected.
  * @param minDistance Minimum possible Euclidean distance between the returned corners.
- * @param mask Optional region of interest. If the image is not empty (it needs to have the type CV_8UC1 and the same size as image ), it specifies the region in which the corners are detected.
- * @param blockSize Size of an average block for computing a derivative covariation matrix over each pixel neighborhood. See cornerEigenValsAndVecs .
- * @param useHarrisDetector Parameter indicating whether to use a Harris detector (see cornerHarris) or cornerMinEigenVal.
+ * @param mask Optional region of interest. If the image is not empty (it needs to have the type
+ * CV_8UC1 and the same size as image ), it specifies the region in which the corners are detected.
+ * @param blockSize Size of an average block for computing a derivative covariation matrix over each
+ * pixel neighborhood. See cornerEigenValsAndVecs .
+ * @param useHarrisDetector Parameter indicating whether to use a Harris detector (see cornerHarris)
+ * or cornerMinEigenVal.
  * @param k Free parameter of the Harris detector.
  */
 export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask?: InputArray, blockSize?: int, useHarrisDetector?: bool, k?: double): void
@@ -173,107 +231,133 @@ export declare function goodFeaturesToTrack(image: InputArray, corners: OutputAr
  * Example: : 
  * 
  * ```cpp
- * #include <[opencv2/imgproc.hpp](#d1/d4f/imgproc_2include_2opencv2_2imgproc_8hpp})>
- * #include <[opencv2/highgui.hpp](#d4/dd5/highgui_8hpp})>
+ * #include <opencv2/imgproc.hpp>
+ * #include <opencv2/highgui.hpp>
  * #include <math.h>
  * 
- * using namespace [cv](#d2/d75/namespacecv});
- * using namespace [std](#d8/dcc/namespacestd});
+ * using namespace cv;
+ * using namespace std;
  * 
  * int main(int argc, char** argv)
  * {
- *     [Mat](#d3/d63/classcv_1_1Mat}) img, gray;
- *     if( argc != 2 || !(img=[imread](#d4/da8/group__imgcodecs_1ga288b8b3da0892bd651fce07b3bbd3a56})(argv[1], 1)).data)
+ *     Mat img, gray;
+ *     if( argc != 2 || !(img=imread(argv[1], 1)).data)
  *         return -1;
- *     [cvtColor](#d8/d01/group__imgproc__color__conversions_1ga397ae87e1288a81d2363b61574eb8cab})(img, gray, [COLOR_BGR2GRAY](#d8/d01/group__imgproc__color__conversions_1gga4e0972be5de079fed4e3a10e24ef5ef0a353a4b8db9040165db4dacb5bcefb6ea}));
+ *     cvtColor(img, gray, COLOR_BGR2GRAY);
  *     // smooth it, otherwise a lot of false circles may be detected
- *     [GaussianBlur](#d4/d86/group__imgproc__filter_1gaabe8c836e97159a9193fb0b11ac52cf1})( gray, gray, [Size](#dc/d84/group__core__basic_1ga346f563897249351a34549137c8532a0})(9, 9), 2, 2 );
+ *     GaussianBlur( gray, gray, Size(9, 9), 2, 2 );
  *     vector<Vec3f> circles;
- *     [HoughCircles](#dd/d1a/group__imgproc__feature_1ga47849c3be0d0406ad3ca45db65a25d2d})(gray, circles, [HOUGH_GRADIENT](#dd/d1a/group__imgproc__feature_1gga073687a5b96ac7a3ab5802eb5510fe65ab1bf00a90864db34b2f72fa76389931d}),
- *                  2, gray.[rows](#d3/d63/classcv_1_1Mat_1abed816466c45234254d25bc59c31245e})/4, 200, 100 );
+ *     HoughCircles(gray, circles, HOUGH_GRADIENT,
+ *                  2, gray.rows/4, 200, 100 );
  *     for( size_t i = 0; i < circles.size(); i++ )
  *     {
- *          [Point](#db/d4e/classcv_1_1Point__}) center([cvRound](#db/de0/group__core__utils_1ga085eca238176984a0b72df2818598d85})(circles[i][0]), [cvRound](#db/de0/group__core__utils_1ga085eca238176984a0b72df2818598d85})(circles[i][1]));
- *          int radius = [cvRound](#db/de0/group__core__utils_1ga085eca238176984a0b72df2818598d85})(circles[i][2]);
+ *          Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+ *          int radius = cvRound(circles[i][2]);
  *          // draw the circle center
- *          [circle](#d6/d6e/group__imgproc__draw_1gaf10604b069374903dbd0f0488cb43670})( img, center, 3, [Scalar](#dc/d84/group__core__basic_1ga599fe92e910c027be274233eccad7beb})(0,255,0), -1, 8, 0 );
+ *          circle( img, center, 3, Scalar(0,255,0), -1, 8, 0 );
  *          // draw the circle outline
- *          [circle](#d6/d6e/group__imgproc__draw_1gaf10604b069374903dbd0f0488cb43670})( img, center, radius, [Scalar](#dc/d84/group__core__basic_1ga599fe92e910c027be274233eccad7beb})(0,0,255), 3, 8, 0 );
+ *          circle( img, center, radius, Scalar(0,0,255), 3, 8, 0 );
  *     }
- *     [namedWindow](#d7/dfc/group__highgui_1ga5afdf8410934fd099df85c75b2e0888b})( "circles", 1 );
- *     [imshow](#d7/dfc/group__highgui_1ga453d42fe4cb60e5723281a89973ee563})( "circles", img );
+ *     namedWindow( "circles", 1 );
+ *     imshow( "circles", img );
  * 
- *     [waitKey](#d7/dfc/group__highgui_1ga5628525ad33f52eab17feebcfba38bd7})(0);
+ *     waitKey(0);
  *     return 0;
  * }
  * ```
  * 
- * Usually the function detects the centers of circles well. However, it may fail to find correct radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if you know it. Or, you may set maxRadius to a negative number to return centers only without radius search, and find the correct radius using an additional procedure.
+ * Usually the function detects the centers of circles well. However, it may fail to find correct
+ * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
+ * you know it. Or, you may set maxRadius to a negative number to return centers only without radius
+ * search, and find the correct radius using an additional procedure.
  * 
- * [fitEllipse](#d3/dc0/group__imgproc__shape_1gaf259efaad93098103d6c27b9e4900ffa}), [minEnclosingCircle](#d3/dc0/group__imgproc__shape_1ga8ce13c24081bbc7151e9326f412190f1})
+ * [fitEllipse](#d3/dc0/group__imgproc__shape_1gaf259efaad93098103d6c27b9e4900ffa}),
+ * [minEnclosingCircle](#d3/dc0/group__imgproc__shape_1ga8ce13c24081bbc7151e9326f412190f1})
  * 
  * @param image 8-bit, single-channel, grayscale input image.
- * @param circles Output vector of found circles. Each vector is encoded as 3 or 4 element floating-point vector $(x, y, radius)$ or $(x, y, radius, votes)$ .
- * @param method Detection method, see HoughModes. Currently, the only implemented method is HOUGH_GRADIENT
- * @param dp Inverse ratio of the accumulator resolution to the image resolution. For example, if dp=1 , the accumulator has the same resolution as the input image. If dp=2 , the accumulator has half as big width and height.
- * @param minDist Minimum distance between the centers of the detected circles. If the parameter is too small, multiple neighbor circles may be falsely detected in addition to a true one. If it is too large, some circles may be missed.
- * @param param1 First method-specific parameter. In case of HOUGH_GRADIENT , it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
- * @param param2 Second method-specific parameter. In case of HOUGH_GRADIENT , it is the accumulator threshold for the circle centers at the detection stage. The smaller it is, the more false circles may be detected. Circles, corresponding to the larger accumulator values, will be returned first.
+ * @param circles Output vector of found circles. Each vector is encoded as 3 or 4 element
+ * floating-point vector $(x, y, radius)$ or $(x, y, radius, votes)$ .
+ * @param method Detection method, see HoughModes. Currently, the only implemented method is
+ * HOUGH_GRADIENT
+ * @param dp Inverse ratio of the accumulator resolution to the image resolution. For example, if dp=1
+ * , the accumulator has the same resolution as the input image. If dp=2 , the accumulator has half as
+ * big width and height.
+ * @param minDist Minimum distance between the centers of the detected circles. If the parameter is
+ * too small, multiple neighbor circles may be falsely detected in addition to a true one. If it is
+ * too large, some circles may be missed.
+ * @param param1 First method-specific parameter. In case of HOUGH_GRADIENT , it is the higher
+ * threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
+ * @param param2 Second method-specific parameter. In case of HOUGH_GRADIENT , it is the accumulator
+ * threshold for the circle centers at the detection stage. The smaller it is, the more false circles
+ * may be detected. Circles, corresponding to the larger accumulator values, will be returned first.
  * @param minRadius Minimum circle radius.
- * @param maxRadius Maximum circle radius. If <= 0, uses the maximum image dimension. If < 0, returns centers without finding the radius.
+ * @param maxRadius Maximum circle radius. If <= 0, uses the maximum image dimension. If < 0, returns
+ * centers without finding the radius.
  */
 export declare function HoughCircles(image: InputArray, circles: OutputArray, method: int, dp: double, minDist: double, param1?: double, param2?: double, minRadius?: int, maxRadius?: int): void
 
 /**
- * The function implements the standard or standard multi-scale Hough transform algorithm for line detection. See  for a good explanation of Hough transform.
+ * The function implements the standard or standard multi-scale Hough transform algorithm for line
+ * detection. See  for a good explanation of Hough transform.
  * 
  * @param image 8-bit, single-channel binary source image. The image may be modified by the function.
- * @param lines Output vector of lines. Each line is represented by a 2 or 3 element vector $(\rho, \theta)$ or $(\rho, \theta, \textrm{votes})$ . $\rho$ is the distance from the coordinate origin $(0,0)$ (top-left corner of the image). $\theta$ is the line rotation angle in radians ( $0 \sim \textrm{vertical line}, \pi/2 \sim \textrm{horizontal line}$ ). $\textrm{votes}$ is the value of accumulator.
+ * @param lines Output vector of lines. Each line is represented by a 2 or 3 element vector $(\rho,
+ * \theta)$ or $(\rho, \theta, \textrm{votes})$ . $\rho$ is the distance from the coordinate origin
+ * $(0,0)$ (top-left corner of the image). $\theta$ is the line rotation angle in radians ( $0 \sim
+ * \textrm{vertical line}, \pi/2 \sim \textrm{horizontal line}$ ). $\textrm{votes}$ is the value of
+ * accumulator.
  * @param rho Distance resolution of the accumulator in pixels.
  * @param theta Angle resolution of the accumulator in radians.
- * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough votes ( $>\texttt{threshold}$ ).
- * @param srn For the multi-scale Hough transform, it is a divisor for the distance resolution rho . The coarse accumulator distance resolution is rho and the accurate accumulator resolution is rho/srn . If both srn=0 and stn=0 , the classical Hough transform is used. Otherwise, both these parameters should be positive.
+ * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough
+ * votes ( $>\texttt{threshold}$ ).
+ * @param srn For the multi-scale Hough transform, it is a divisor for the distance resolution rho .
+ * The coarse accumulator distance resolution is rho and the accurate accumulator resolution is
+ * rho/srn . If both srn=0 and stn=0 , the classical Hough transform is used. Otherwise, both these
+ * parameters should be positive.
  * @param stn For the multi-scale Hough transform, it is a divisor for the distance resolution theta.
- * @param min_theta For standard and multi-scale Hough transform, minimum angle to check for lines. Must fall between 0 and max_theta.
- * @param max_theta For standard and multi-scale Hough transform, maximum angle to check for lines. Must fall between min_theta and CV_PI.
+ * @param min_theta For standard and multi-scale Hough transform, minimum angle to check for lines.
+ * Must fall between 0 and max_theta.
+ * @param max_theta For standard and multi-scale Hough transform, maximum angle to check for lines.
+ * Must fall between min_theta and CV_PI.
  */
 export declare function HoughLines(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, srn?: double, stn?: double, min_theta?: double, max_theta?: double): void
 
 /**
- * The function implements the probabilistic Hough transform algorithm for line detection, described in Matas00
+ * The function implements the probabilistic Hough transform algorithm for line detection, described
+ * in Matas00
  * 
  * See the line detection example below: 
  * 
  * ```cpp
- * #include <[opencv2/imgproc.hpp](#d1/d4f/imgproc_2include_2opencv2_2imgproc_8hpp})>
- * #include <[opencv2/highgui.hpp](#d4/dd5/highgui_8hpp})>
+ * #include <opencv2/imgproc.hpp>
+ * #include <opencv2/highgui.hpp>
  * 
- * using namespace [cv](#d2/d75/namespacecv});
- * using namespace [std](#d8/dcc/namespacestd});
+ * using namespace cv;
+ * using namespace std;
  * 
  * int main(int argc, char** argv)
  * {
- *     [Mat](#d3/d63/classcv_1_1Mat}) src, dst, color_dst;
- *     if( argc != 2 || !(src=[imread](#d4/da8/group__imgcodecs_1ga288b8b3da0892bd651fce07b3bbd3a56})(argv[1], 0)).data)
+ *     Mat src, dst, color_dst;
+ *     if( argc != 2 || !(src=imread(argv[1], 0)).data)
  *         return -1;
  * 
- *     [Canny](#dd/d1a/group__imgproc__feature_1ga04723e007ed888ddf11d9ba04e2232de})( src, dst, 50, 200, 3 );
- *     [cvtColor](#d8/d01/group__imgproc__color__conversions_1ga397ae87e1288a81d2363b61574eb8cab})( dst, color_dst, [COLOR_GRAY2BGR](#d8/d01/group__imgproc__color__conversions_1gga4e0972be5de079fed4e3a10e24ef5ef0a869da65c045477f2f17d39395df65b2d}) );
+ *     Canny( src, dst, 50, 200, 3 );
+ *     cvtColor( dst, color_dst, COLOR_GRAY2BGR );
  * 
  *     vector<Vec4i> lines;
- *     [HoughLinesP](#dd/d1a/group__imgproc__feature_1ga8618180a5948286384e3b7ca02f6feeb})( dst, lines, 1, [CV_PI](#db/de0/group__core__utils_1ga677b89fae9308b340ddaebf0dba8455f})/180, 80, 30, 10 );
+ *     HoughLinesP( dst, lines, 1, CV_PI/180, 80, 30, 10 );
  *     for( size_t i = 0; i < lines.size(); i++ )
  *     {
- *         [line](#d6/d6e/group__imgproc__draw_1ga7078a9fae8c7e7d13d24dac2520ae4a2})( color_dst, [Point](#dc/d84/group__core__basic_1ga1e83eafb2d26b3c93f09e8338bcab192})(lines[i][0], lines[i][1]),
- *         [Point](#dc/d84/group__core__basic_1ga1e83eafb2d26b3c93f09e8338bcab192})( lines[i][2], lines[i][3]), [Scalar](#dc/d84/group__core__basic_1ga599fe92e910c027be274233eccad7beb})(0,0,255), 3, 8 );
+ *         line( color_dst, Point(lines[i][0], lines[i][1]),
+ *         Point( lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
  *     }
- *     [namedWindow](#d7/dfc/group__highgui_1ga5afdf8410934fd099df85c75b2e0888b})( "Source", 1 );
- *     [imshow](#d7/dfc/group__highgui_1ga453d42fe4cb60e5723281a89973ee563})( "Source", src );
+ *     namedWindow( "Source", 1 );
+ *     imshow( "Source", src );
  * 
- *     [namedWindow](#d7/dfc/group__highgui_1ga5afdf8410934fd099df85c75b2e0888b})( "Detected Lines", 1 );
- *     [imshow](#d7/dfc/group__highgui_1ga453d42fe4cb60e5723281a89973ee563})( "Detected Lines", color_dst );
+ *     namedWindow( "Detected Lines", 1 );
+ *     imshow( "Detected Lines", color_dst );
  * 
- *     [waitKey](#d7/dfc/group__highgui_1ga5628525ad33f52eab17feebcfba38bd7})(0);
+ *     waitKey(0);
  *     return 0;
  * }
  * ```
@@ -285,10 +369,12 @@ export declare function HoughLines(image: InputArray, lines: OutputArray, rho: d
  * [LineSegmentDetector](#db/d73/classcv_1_1LineSegmentDetector})
  * 
  * @param image 8-bit, single-channel binary source image. The image may be modified by the function.
- * @param lines Output vector of lines. Each line is represented by a 4-element vector $(x_1, y_1, x_2, y_2)$ , where $(x_1,y_1)$ and $(x_2, y_2)$ are the ending points of each detected line segment.
+ * @param lines Output vector of lines. Each line is represented by a 4-element vector $(x_1, y_1,
+ * x_2, y_2)$ , where $(x_1,y_1)$ and $(x_2, y_2)$ are the ending points of each detected line segment.
  * @param rho Distance resolution of the accumulator in pixels.
  * @param theta Angle resolution of the accumulator in radians.
- * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough votes ( $>\texttt{threshold}$ ).
+ * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough
+ * votes ( $>\texttt{threshold}$ ).
  * @param minLineLength Minimum line length. Line segments shorter than that are rejected.
  * @param maxLineGap Maximum allowed gap between points on the same line to link them.
  */
@@ -298,15 +384,15 @@ export declare function HoughLinesP(image: InputArray, lines: OutputArray, rho: 
  * The function finds lines in a set of points using a modification of the Hough transform. 
  * 
  * ```cpp
- * #include <[opencv2/core.hpp](#d0/d9c/core_2include_2opencv2_2core_8hpp})>
- * #include <[opencv2/imgproc.hpp](#d1/d4f/imgproc_2include_2opencv2_2imgproc_8hpp})>
+ * #include <opencv2/core.hpp>
+ * #include <opencv2/imgproc.hpp>
  * 
- * using namespace [cv](#d2/d75/namespacecv});
- * using namespace [std](#d8/dcc/namespacestd});
+ * using namespace cv;
+ * using namespace std;
  * 
  * int main()
  * {
- *     [Mat](#d3/d63/classcv_1_1Mat}) lines;
+ *     Mat lines;
  *     vector<Vec3d> line3d;
  *     vector<Point2f> point;
  *     const static float Points[20][2] = {
@@ -319,25 +405,29 @@ export declare function HoughLinesP(image: InputArray, lines: OutputArray, rho: 
  * 
  *     for (int i = 0; i < 20; i++)
  *     {
- *         point.push_back([Point2f](#dc/d84/group__core__basic_1ga7d080aa40de011e4410bca63385ffe2a})(Points[i][0],Points[i][1]));
+ *         point.push_back(Point2f(Points[i][0],Points[i][1]));
  *     }
  * 
  *     double rhoMin = 0.0f, rhoMax = 360.0f, rhoStep = 1;
- *     double thetaMin = 0.0f, thetaMax = [CV_PI](#db/de0/group__core__utils_1ga677b89fae9308b340ddaebf0dba8455f}) / 2.0f, thetaStep = [CV_PI](#db/de0/group__core__utils_1ga677b89fae9308b340ddaebf0dba8455f}) / 180.0f;
+ *     double thetaMin = 0.0f, thetaMax = CV_PI / 2.0f, thetaStep = CV_PI / 180.0f;
  * 
- *     [HoughLinesPointSet](#dd/d1a/group__imgproc__feature_1ga2858ef61b4e47d1919facac2152a160e})(point, lines, 20, 1,
+ *     HoughLinesPointSet(point, lines, 20, 1,
  *                        rhoMin, rhoMax, rhoStep,
  *                        thetaMin, thetaMax, thetaStep);
  * 
- *     lines.[copyTo](#d3/d63/classcv_1_1Mat_1a33fd5d125b4c302b0c9aa86980791a77})(line3d);
- *     printf("votes:%d, rho:%.7f, theta:%.7f\\n",(int)line3d.at(0).val[0], line3d.at(0).val[1], line3d.at(0).val[2]);
+ *     lines.copyTo(line3d);
+ *     printf("votes:%d, rho:%.7f, theta:%.7f\\n",(int)line3d.at(0).val[0], line3d.at(0).val[1],
+ * line3d.at(0).val[2]);
  * }
  * ```
  * 
- * @param _point Input vector of points. Each vector must be encoded as a Point vector $(x,y)$. Type must be CV_32FC2 or CV_32SC2.
- * @param _lines Output vector of found lines. Each vector is encoded as a vector<Vec3d> $(votes, rho, theta)$. The larger the value of 'votes', the higher the reliability of the Hough line.
+ * @param _point Input vector of points. Each vector must be encoded as a Point vector $(x,y)$. Type
+ * must be CV_32FC2 or CV_32SC2.
+ * @param _lines Output vector of found lines. Each vector is encoded as a vector<Vec3d> $(votes, rho,
+ * theta)$. The larger the value of 'votes', the higher the reliability of the Hough line.
  * @param lines_max Max count of hough lines.
- * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough votes ( $>\texttt{threshold}$ )
+ * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough
+ * votes ( $>\texttt{threshold}$ )
  * @param min_rho Minimum Distance value of the accumulator in pixels.
  * @param max_rho Maximum Distance value of the accumulator in pixels.
  * @param rho_step Distance resolution of the accumulator in pixels.
@@ -350,9 +440,12 @@ export declare function HoughLinesPointSet(_point: InputArray, _lines: OutputArr
 /**
  * The function calculates the complex spatial derivative-based function of the source image
  * 
- * `\\[\\texttt{dst} = (D_x \\texttt{src} )^2 \\cdot D_{yy} \\texttt{src} + (D_y \\texttt{src} )^2 \\cdot D_{xx} \\texttt{src} - 2 D_x \\texttt{src} \\cdot D_y \\texttt{src} \\cdot D_{xy} \\texttt{src}\\]`
+ * `\\[\\texttt{dst} = (D_x \\texttt{src} )^2 \\cdot D_{yy} \\texttt{src} + (D_y \\texttt{src} )^2
+ * \\cdot D_{xx} \\texttt{src} - 2 D_x \\texttt{src} \\cdot D_y \\texttt{src} \\cdot D_{xy}
+ * \\texttt{src}\\]`
  * 
- * where `$D_x$`, `$D_y$` are the first image derivatives, `$D_{xx}$`, `$D_{yy}$` are the second image derivatives, and `$D_{xy}$` is the mixed derivative.
+ * where `$D_x$`, `$D_y$` are the first image derivatives, `$D_{xx}$`, `$D_{yy}$` are the second image
+ * derivatives, and `$D_{xy}$` is the mixed derivative.
  * 
  * The corners can be found as local maximums of the functions, as shown below: 
  * 
@@ -372,19 +465,26 @@ export declare function HoughLinesPointSet(_point: InputArray, _lines: OutputArr
 export declare function preCornerDetect(src: InputArray, dst: OutputArray, ksize: int, borderType?: int): void
 
 /**
- * classical or standard Hough transform. Every line is represented by two floating-point numbers `$(\\rho, \\theta)$` , where `$\\rho$` is a distance between (0,0) point and the line, and `$\\theta$` is the angle between x-axis and the normal to the line. Thus, the matrix must be (the created sequence will be) of CV_32FC2 type
+ * classical or standard Hough transform. Every line is represented by two floating-point numbers
+ * `$(\\rho, \\theta)$` , where `$\\rho$` is a distance between (0,0) point and the line, and
+ * `$\\theta$` is the angle between x-axis and the normal to the line. Thus, the matrix must be (the
+ * created sequence will be) of CV_32FC2 type
  * 
  */
 export declare const HOUGH_STANDARD: HoughModes // initializer: = 0
 
 /**
- * probabilistic Hough transform (more efficient in case if the picture contains a few long linear segments). It returns line segments rather than the whole line. Each segment is represented by starting and ending points, and the matrix must be (the created sequence will be) of the CV_32SC4 type.
+ * probabilistic Hough transform (more efficient in case if the picture contains a few long linear
+ * segments). It returns line segments rather than the whole line. Each segment is represented by
+ * starting and ending points, and the matrix must be (the created sequence will be) of the CV_32SC4
+ * type.
  * 
  */
 export declare const HOUGH_PROBABILISTIC: HoughModes // initializer: = 1
 
 /**
- * multi-scale variant of the classical Hough transform. The lines are encoded the same way as HOUGH_STANDARD.
+ * multi-scale variant of the classical Hough transform. The lines are encoded the same way as
+ * HOUGH_STANDARD.
  * 
  */
 export declare const HOUGH_MULTI_SCALE: HoughModes // initializer: = 2
@@ -405,7 +505,8 @@ export declare const LSD_REFINE_NONE: LineSegmentDetectorModes // initializer: =
 export declare const LSD_REFINE_STD: LineSegmentDetectorModes // initializer: = 1
 
 /**
- * Advanced refinement. Number of false alarms is calculated, lines are refined through increase of precision, decrement in size, etc.
+ * Advanced refinement. Number of false alarms is calculated, lines are refined through increase of
+ * precision, decrement in size, etc.
  * 
  */
 export declare const LSD_REFINE_ADV: LineSegmentDetectorModes // initializer: = 2
