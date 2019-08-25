@@ -115,7 +115,8 @@ ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
-  public ucharPtr(i: number, j: number): any  
+  public ucharPtr(i: number, j: number): any
+  public intPtr(i: number, j: number): any
   public roi(rect: Rect): Mat
 }
 
