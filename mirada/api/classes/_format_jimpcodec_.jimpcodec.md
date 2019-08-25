@@ -44,7 +44,7 @@ return new JimpFormatCodec(Jimp)
 
 \+ **new JimpCodec**(`jimp`: Jimp): *[JimpCodec](_format_jimpcodec_.jimpcodec.md)*
 
-*Defined in [format/jimpCodec.ts:21](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/format/jimpCodec.ts#L21)*
+*Defined in [format/jimpCodec.ts:21](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/format/jimpCodec.ts#L21)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ Name | Type |
 
 • **jimp**: *Jimp*
 
-*Defined in [format/jimpCodec.ts:22](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/format/jimpCodec.ts#L22)*
+*Defined in [format/jimpCodec.ts:22](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/format/jimpCodec.ts#L22)*
 
 ## Methods
 
@@ -68,7 +68,7 @@ Name | Type |
 
 ▸ **decode**(`buffer`: ArrayBuffer): *Promise‹ImageData›*
 
-*Defined in [format/jimpCodec.ts:24](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/format/jimpCodec.ts#L24)*
+*Defined in [format/jimpCodec.ts:24](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/format/jimpCodec.ts#L24)*
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 *Implementation of [FormatCodec](../interfaces/_types_mirada_.formatcodec.md)*
 
-*Defined in [format/jimpCodec.ts:28](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/format/jimpCodec.ts#L28)*
+*Defined in [format/jimpCodec.ts:28](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/format/jimpCodec.ts#L28)*
 
 **Parameters:**
 

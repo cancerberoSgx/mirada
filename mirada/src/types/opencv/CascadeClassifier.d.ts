@@ -1,6 +1,6 @@
 
+import { Mat_ } from './_hacks'
 import { bool, double, FileNode, InputArray, int, Ptr, Rect, Size } from './_types'
-import { Mat_ } from './_hacks';
 
 export declare class CascadeClassifier extends Mat_ {
 

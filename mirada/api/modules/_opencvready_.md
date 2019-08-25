@@ -21,7 +21,7 @@
 
 • **FS_ROOT**: *"/work"* = "/work"
 
-*Defined in [opencvReady.ts:7](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/opencvReady.ts#L7)*
+*Defined in [opencvReady.ts:7](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/opencvReady.ts#L7)*
 
 ## Functions
 
@@ -29,7 +29,7 @@
 
 ▸ **getFS**(): *[FS](../interfaces/_types_emscripten_.fs.md)*
 
-*Defined in [opencvReady.ts:18](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/opencvReady.ts#L18)*
+*Defined in [opencvReady.ts:18](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/opencvReady.ts#L18)*
 
 gets the emscripten FS API
 
@@ -41,7 +41,7 @@ ___
 
 ▸ **loadOpencv**(`o`: LoadOptions): *Promise‹void› | Promise‹[FS](../interfaces/_types_emscripten_.fs.md)›*
 
-*Defined in [opencvReady.ts:41](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/opencvReady.ts#L41)*
+*Defined in [opencvReady.ts:41](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/opencvReady.ts#L41)*
 
 Loads opencv.js file. It will do it only once no matter if called multiple times.
 In the browser a new script element is created to load the file while in Node.js

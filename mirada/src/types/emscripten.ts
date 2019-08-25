@@ -69,7 +69,7 @@ export interface FS {
   createPreloadedFile(parent: string, name: string, url: string, canRead: boolean, canWrite: boolean, onload?: () => void, onerror?: () => void, dontCreateFile?: boolean, canOwn?: boolean): void
   createPreloadedFile(parent: FSNode, name: string, url: string, canRead: boolean, canWrite: boolean, onload?: () => void, onerror?: () => void, dontCreateFile?: boolean, canOwn?: boolean): void
 
-  createDataFile(parent: string, name: string, data: ArrayBufferView,canRead: boolean, canWrite: boolean, canOwn: boolean): void
+  createDataFile(parent: string, name: string, data: ArrayBufferView, canRead: boolean, canWrite: boolean, canOwn: boolean): void
 }
 
 
