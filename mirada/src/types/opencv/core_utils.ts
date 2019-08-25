@@ -1,5 +1,5 @@
 
-import { int, size_t, bool, float, _Tp, short, double, InputArray, String, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, ErrorCallback, unsigned, float16_t, AsyncArray, CpuFeatures, SortFlags } from './_types'
+import { int, size_t, bool, float, _Tp, uchar, schar, ushort, short, double, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int64, ErrorCallback, unsigned, uint64, float16_t, AsyncArray } from './_types'
 /*
  * # core_utils
  *
@@ -80,19 +80,19 @@ export declare function cv_abs(arg93: any, x: _Tp): any
  * 
  * @param x 
  */
-export declare function cv_abs(x: any): any
+export declare function cv_abs(x: uchar): uchar
 
 /**
  * 
  * @param x 
  */
-export declare function cv_abs(x: any): any
+export declare function cv_abs(x: schar): schar
 
 /**
  * 
  * @param x 
  */
-export declare function cv_abs(x: any): any
+export declare function cv_abs(x: ushort): ushort
 
 /**
  * 
@@ -110,8 +110,8 @@ export declare function CV_XADD(addr: any, delta: int): any
 /**
  * The function computes an integer i such that: `\\[i \\le \\texttt{value} < i+1\\]`
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
- * result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result
+ * is not defined.
  */
 export declare function cvCeil(value: double): int
 
@@ -134,8 +134,8 @@ export declare function cvCeil(value: int): int
 /**
  * The function computes an integer i such that: `\\[i \\le \\texttt{value} < i+1\\]`
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
- * result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result
+ * is not defined.
  */
 export declare function cvFloor(value: double): int
 
@@ -189,8 +189,8 @@ export declare function cvIsNaN(value: float): int
 
 /**
  * 
- * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
- * result is not defined.
+ * @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the result
+ * is not defined.
  */
 export declare function cvRound(value: double): int
 
@@ -265,8 +265,8 @@ export declare function error(exc: any): void
 
 /**
  * By default the function prints information about the error to stderr, then it either stops if
- * [setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been
- * called before or raises the exception. It is possible to alternate error processing by using
+ * [setBreakOnError()](#db/de0/group__core__utils_1gae4904ef072dede53cf161d9a6869083f}) had been called
+ * before or raises the exception. It is possible to alternate error processing by using
  * [redirectError()](#db/de0/group__core__utils_1ga8cd28eccccb695570cdaf86a572d2c0c}). 
  * 
  * [CV_Error](#db/de0/group__core__utils_1ga5b48c333c777666e076bd7052799f891}),
@@ -348,7 +348,7 @@ export declare function getCPUFeaturesLine(): any
  * solution for measuring execution time.
  * 
  */
-export declare function getCPUTickCount(): any
+export declare function getCPUTickCount(): int64
 
 /**
  * 
@@ -414,7 +414,7 @@ export declare function getThreadNum(): int
  * [TickMeter](#d9/d6f/classcv_1_1TickMeter})
  * 
  */
-export declare function getTickCount(): any
+export declare function getTickCount(): int64
 
 /**
  * The function returns the number of ticks per second. That is, the following code computes the
@@ -539,7 +539,7 @@ export declare function normL1(a: any, b: any, n: int): float
  * @param b 
  * @param n 
  */
-export declare function normL1(a: any, b: any, n: int): any
+export declare function normL1(a: uchar, b: uchar, n: int): uchar
 
 /**
  * 
@@ -618,8 +618,8 @@ export declare function roundUp(a: size_t, b: any): size_t
 /**
  * The function saturate_cast resembles the standard C++ cast operations, such as static_cast<T>() and
  * others. It perform an efficient and accurate conversion from one primitive type to another (see the
- * introduction chapter). saturate in the name means that when the input value v is out of the range
- * of the target type, the result is not formed just by taking low bits of the input, but instead the
+ * introduction chapter). saturate in the name means that when the input value v is out of the range of
+ * the target type, the result is not formed just by taking low bits of the input, but instead the
  * value is clipped. For example: 
  * 
  * ```cpp
@@ -645,7 +645,7 @@ export declare function roundUp(a: size_t, b: any): size_t
  * @param arg108 
  * @param v Function parameter.
  */
-export declare function saturate_cast(arg108: any, v: any): any
+export declare function saturate_cast(arg108: any, v: uchar): uchar
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -654,7 +654,7 @@ export declare function saturate_cast(arg108: any, v: any): any
  * @param arg109 
  * @param v 
  */
-export declare function saturate_cast(arg109: any, v: any): any
+export declare function saturate_cast(arg109: any, v: schar): schar
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -663,7 +663,7 @@ export declare function saturate_cast(arg109: any, v: any): any
  * @param arg110 
  * @param v 
  */
-export declare function saturate_cast(arg110: any, v: any): any
+export declare function saturate_cast(arg110: any, v: ushort): ushort
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -717,7 +717,7 @@ export declare function saturate_cast(arg115: any, v: double): any
  * @param arg116 
  * @param v 
  */
-export declare function saturate_cast(arg116: any, v: any): any
+export declare function saturate_cast(arg116: any, v: int64): int64
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -726,7 +726,7 @@ export declare function saturate_cast(arg116: any, v: any): any
  * @param arg117 
  * @param v 
  */
-export declare function saturate_cast(arg117: any, v: any): any
+export declare function saturate_cast(arg117: any, v: uint64): uint64
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -749,14 +749,14 @@ export declare function setBreakOnError(flag: bool): bool
 
 /**
  * If threads == 0, OpenCV will disable threading optimizations and run all it's functions
- * sequentially. Passing threads < 0 will reset threads number to system default. This function must
- * be called outside of parallel region.
+ * sequentially. Passing threads < 0 will reset threads number to system default. This function must be
+ * called outside of parallel region.
  * 
  * OpenCV will try to run its functions with specified threads number, but some behaviour differs from
  * framework:
  * 
- * `TBB` - User-defined parallel constructions will run with the same threads number, if another is
- * not specified. If later on user creates his own scheduler, OpenCV will use it.
+ * `TBB` - User-defined parallel constructions will run with the same threads number, if another is not
+ * specified. If later on user creates his own scheduler, OpenCV will use it.
  * `OpenMP` - No special defined behaviour.
  * `Concurrency` - If threads == 1, OpenCV will disable threading optimizations and run its functions
  * sequentially.

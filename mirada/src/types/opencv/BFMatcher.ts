@@ -1,13 +1,12 @@
 
-import { int, bool } from './_types'
+import { int, bool, Ptr } from './_types'
 
 /**
- * For each descriptor in the first set, this matcher finds the closest descriptor in the second set
- * by trying each one. This descriptor matcher supports masking permissible matches of descriptor sets.
+ * For each descriptor in the first set, this matcher finds the closest descriptor in the second set by
+ * trying each one. This descriptor matcher supports masking permissible matches of descriptor sets.
  * 
  * Source:
- * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/f
- * eatures2d.hpp#L1140).
+ * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/features2d.hpp#L1140).
  * 
  */
 export declare class BFMatcher {
@@ -25,7 +24,7 @@ export declare class BFMatcher {
    * that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
    * object copy with the current parameters but with empty train data.
    */
-  public clone(emptyTrainData?: bool): any
+  public clone(emptyTrainData?: bool): Ptr
 
   /**
    *   
@@ -45,6 +44,6 @@ export declare class BFMatcher {
    * pairs. Such technique usually produces best results with minimal number of outliers when there are
    * enough matches. This is alternative to the ratio test, used by D. Lowe in SIFT paper.
    */
-  public static create(normType?: int, crossCheck?: bool): any
+  public static create(normType?: int, crossCheck?: bool): Ptr
 }
 

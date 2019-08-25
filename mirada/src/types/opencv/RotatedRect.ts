@@ -1,5 +1,5 @@
 
-import { float } from './_types'
+import { float, Point2f, Size2f, Rect, Rect_ } from './_types'
 
 /**
  * Each rectangle is specified by the center point (mass center), length of each side (represented by
@@ -29,8 +29,7 @@ import { float } from './_types'
  * [minAreaRect](#d3/dc0/group__imgproc__shape_1ga3d476a3417130ae5154aea421ca7ead9}), CvBox2D
  * 
  * Source:
- * [opencv2/core/types.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/c
- * ore/types.hpp#L534).
+ * [opencv2/core/types.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/types.hpp#L534).
  * 
  */
 export declare class RotatedRect {
@@ -43,12 +42,12 @@ export declare class RotatedRect {
   /**
    *   
    */
-  public center: any
+  public center: Point2f
 
   /**
    *   
    */
-  public size: any
+  public size: Size2f
 
   /**
    *   
@@ -63,7 +62,7 @@ export declare class RotatedRect {
    *   @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
    * the rectangle becomes an up-right rectangle.
    */
-  public constructor(center: any, size: any, angle: float)
+  public constructor(center: Point2f, size: Size2f, angle: float)
 
   /**
    *   Any 3 end points of the [RotatedRect](#db/dd6/classcv_1_1RotatedRect}). They must be given in
@@ -73,17 +72,17 @@ export declare class RotatedRect {
    *   @param point2 
    *   @param point3 
    */
-  public constructor(point1: any, point2: any, point3: any)
+  public constructor(point1: Point2f, point2: Point2f, point3: Point2f)
 
   /**
    *   
    */
-  public boundingRect(): any
+  public boundingRect(): Rect
 
   /**
    *   
    */
-  public boundingRect2f(): any
+  public boundingRect2f(): Rect_
 
   /**
    *   returns 4 vertices of the rectangle
@@ -91,6 +90,6 @@ export declare class RotatedRect {
    *   @param pts The points array for storing rectangle vertices. The order is bottomLeft, topLeft,
    * topRight, bottomRight.
    */
-  public points(pts: any): any
+  public points(pts: Point2f): Point2f
 }
 

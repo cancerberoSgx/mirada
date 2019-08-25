@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfArrays, Mat, Scalar, TermCriteria, MorphShapes, MorphTypes, SpecialFilter } from './_types'
+import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfArrays, Mat, Scalar, TermCriteria } from './_types'
 /*
  * # imgproc_filter
  *
@@ -28,9 +28,9 @@ import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfA
  * farther colors within the pixel neighborhood (see sigmaSpace) will be mixed together, resulting in
  * larger areas of semi-equal color.
  * @param sigmaSpace Filter sigma in the coordinate space. A larger value of the parameter means that
- * farther pixels will influence each other as long as their colors are close enough (see sigmaColor
- * ). When d>0, it specifies the neighborhood size regardless of sigmaSpace. Otherwise, d is
- * proportional to sigmaSpace.
+ * farther pixels will influence each other as long as their colors are close enough (see sigmaColor ).
+ * When d>0, it specifies the neighborhood size regardless of sigmaSpace. Otherwise, d is proportional
+ * to sigmaSpace.
  * @param borderType border mode used to extrapolate pixels outside of the image, see BorderTypes
  */
 export declare function bilateralFilter(src: InputArray, dst: OutputArray, d: int, sigmaColor: double, sigmaSpace: double, borderType?: int): void
@@ -38,9 +38,9 @@ export declare function bilateralFilter(src: InputArray, dst: OutputArray, d: in
 /**
  * The function smooths an image using the kernel:
  * 
- * `\\[\\texttt{K} = \\frac{1}{\\texttt{ksize.width*ksize.height}} \\begin{bmatrix} 1 & 1 & 1 &
- * \\cdots & 1 & 1 \\\\ 1 & 1 & 1 & \\cdots & 1 & 1 \\\\ \\hdotsfor{6} \\\\ 1 & 1 & 1 & \\cdots & 1 &
- * 1 \\\\ \\end{bmatrix}\\]`
+ * `\\[\\texttt{K} = \\frac{1}{\\texttt{ksize.width*ksize.height}} \\begin{bmatrix} 1 & 1 & 1 & \\cdots
+ * & 1 & 1 \\\\ 1 & 1 & 1 & \\cdots & 1 & 1 \\\\ \\hdotsfor{6} \\\\ 1 & 1 & 1 & \\cdots & 1 & 1 \\\\
+ * \\end{bmatrix}\\]`
  * 
  * The call `blur(src, dst, ksize, anchor, borderType)` is equivalent to `boxFilter(src, dst,
  * src.type(), anchor, true, borderType)`.
@@ -169,8 +169,8 @@ export declare function erode(src: InputArray, dst: OutputArray, kernel: InputAr
  * \\texttt{anchor.y} )\\]`
  * 
  * That is, the kernel is not mirrored around the anchor point. If you need a real convolution, flip
- * the kernel using [flip](#d2/de8/group__core__array_1gaca7be533e3dac7feb70fc60635adf441}) and set
- * the new anchor to `(kernel.cols - anchor.x - 1, kernel.rows - anchor.y - 1)`.
+ * the kernel using [flip](#d2/de8/group__core__array_1gaca7be533e3dac7feb70fc60635adf441}) and set the
+ * new anchor to `(kernel.cols - anchor.x - 1, kernel.rows - anchor.y - 1)`.
  * 
  * The function uses the DFT-based algorithm in case of sufficiently large kernels (~`11 x 11` or
  * larger) and the direct algorithm for small kernels.
@@ -212,9 +212,9 @@ export declare function filter2D(src: InputArray, dst: OutputArray, ddepth: int,
  * @param sigmaX Gaussian kernel standard deviation in X direction.
  * @param sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be
  * equal to sigmaX, if both sigmas are zeros, they are computed from ksize.width and ksize.height,
- * respectively (see getGaussianKernel for details); to fully control the result regardless of
- * possible future modifications of all this semantics, it is recommended to specify all of ksize,
- * sigmaX, and sigmaY.
+ * respectively (see getGaussianKernel for details); to fully control the result regardless of possible
+ * future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and
+ * sigmaY.
  * @param borderType pixel extrapolation method, see BorderTypes
  */
 export declare function GaussianBlur(src: InputArray, dst: OutputArray, ksize: Size, sigmaX: double, sigmaY?: double, borderType?: int): void
@@ -234,10 +234,10 @@ export declare function GaussianBlur(src: InputArray, dst: OutputArray, ksize: S
  * @param dy Derivative order in respect of y.
  * @param ksize Aperture size. It can be FILTER_SCHARR, 1, 3, 5, or 7.
  * @param normalize Flag indicating whether to normalize (scale down) the filter coefficients or not.
- * Theoretically, the coefficients should have the denominator $=2^{ksize*2-dx-dy-2}$. If you are
- * going to filter floating-point images, you are likely to use the normalized kernels. But if you
- * compute derivatives of an 8-bit image, store the results in a 16-bit image, and wish to preserve
- * all the fractional bits, you may want to set normalize=false .
+ * Theoretically, the coefficients should have the denominator $=2^{ksize*2-dx-dy-2}$. If you are going
+ * to filter floating-point images, you are likely to use the normalized kernels. But if you compute
+ * derivatives of an 8-bit image, store the results in a 16-bit image, and wish to preserve all the
+ * fractional bits, you may want to set normalize=false .
  * @param ktype Type of filter coefficients. It can be CV_32f or CV_64F .
  */
 export declare function getDerivKernels(kx: OutputArray, ky: OutputArray, dx: int, dy: int, ksize: int, normalize?: bool, ktype?: int): void
@@ -265,8 +265,8 @@ export declare function getGaborKernel(ksize: Size, sigma: double, theta: double
  * G_i=1$`.
  * 
  * Two of such generated kernels can be passed to sepFilter2D. Those functions automatically recognize
- * smoothing kernels (a symmetrical kernel with sum of weights equal to 1) and handle them
- * accordingly. You may also use the higher-level GaussianBlur. 
+ * smoothing kernels (a symmetrical kernel with sum of weights equal to 1) and handle them accordingly.
+ * You may also use the higher-level GaussianBlur. 
  * 
  * [sepFilter2D](#d4/d86/group__imgproc__filter_1ga910e29ff7d7b105057d1625a4bf6318d}),
  * [getDerivKernels](#d4/d86/group__imgproc__filter_1ga6d6c23f7bd3f5836c31cfae994fc4aea}),
@@ -289,10 +289,10 @@ export declare function getGaussianKernel(ksize: int, sigma: double, ktype?: int
  * 
  * @param shape Element shape that could be one of MorphShapes
  * @param ksize Size of the structuring element.
- * @param anchor Anchor position within the element. The default value $(-1, -1)$ means that the
- * anchor is at the center. Note that only the shape of a cross-shaped element depends on the anchor
- * position. In other cases the anchor just regulates how much the result of the morphological
- * operation is shifted.
+ * @param anchor Anchor position within the element. The default value $(-1, -1)$ means that the anchor
+ * is at the center. Note that only the shape of a cross-shaped element depends on the anchor position.
+ * In other cases the anchor just regulates how much the result of the morphological operation is
+ * shifted.
  */
 export declare function getStructuringElement(shape: int, ksize: Size, anchor?: Point): Mat
 
@@ -329,8 +329,8 @@ export declare function Laplacian(src: InputArray, dst: OutputArray, ddepth: int
  * In-place operation is supported.
  * 
  * The median filter uses
- * [BORDER_REPLICATE](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5aa1de4cff95e3377d6
- * d0cbe7569bd4e9f}) internally to cope with border pixels, see
+ * [BORDER_REPLICATE](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5aa1de4cff95e3377d6d0cbe7569bd4e9f})
+ * internally to cope with border pixels, see
  * [BorderTypes](#d2/de8/group__core__array_1ga209f2f4869e304c82d07739337eae7c5})
  * 
  * [bilateralFilter](#d4/d86/group__imgproc__filter_1ga9d7064d478c95d60003cf839430737ed}),
@@ -351,9 +351,9 @@ export declare function medianBlur(src: InputArray, dst: OutputArray, ksize: int
 export declare function morphologyDefaultBorderValue(): Scalar
 
 /**
- * The function
- * [cv::morphologyEx](#d4/d86/group__imgproc__filter_1ga67493776e3ad1a3df63883829375201f}) can perform
- * advanced morphological transformations using an erosion and dilation as basic operations.
+ * The function [cv::morphologyEx](#d4/d86/group__imgproc__filter_1ga67493776e3ad1a3df63883829375201f})
+ * can perform advanced morphological transformations using an erosion and dilation as basic
+ * operations.
  * 
  * Any of the operations can be done in-place. In case of multi-channel images, each channel is
  * processed independently.
@@ -362,19 +362,19 @@ export declare function morphologyDefaultBorderValue(): Scalar
  * [erode](#d4/d86/group__imgproc__filter_1gaeb1e0c1033e3f6b891a25d0511362aeb}),
  * [getStructuringElement](#d4/d86/group__imgproc__filter_1gac342a1bb6eabf6f55c803b09268e36dc}) 
  * 
- * The number of iterations is the number of times erosion or dilatation operation will be applied.
- * For instance, an opening operation
- * ([MORPH_OPEN](#d4/d86/group__imgproc__filter_1gga7be549266bad7b2e6a04db49827f9f32a08d3cc3a2ace00cec4
- * 88966d31fa29ea})) with two iterations is equivalent to apply successively: erode -> erode -> dilate
- * -> dilate (and not erode -> dilate -> erode -> dilate).
+ * The number of iterations is the number of times erosion or dilatation operation will be applied. For
+ * instance, an opening operation
+ * ([MORPH_OPEN](#d4/d86/group__imgproc__filter_1gga7be549266bad7b2e6a04db49827f9f32a08d3cc3a2ace00cec488966d31fa29ea}))
+ * with two iterations is equivalent to apply successively: erode -> erode -> dilate -> dilate (and not
+ * erode -> dilate -> erode -> dilate).
  * 
  * @param src Source image. The number of channels can be arbitrary. The depth should be one of CV_8U,
  * CV_16U, CV_16S, CV_32F or CV_64F.
  * @param dst Destination image of the same size and type as source image.
  * @param op Type of a morphological operation, see MorphTypes
  * @param kernel Structuring element. It can be created using getStructuringElement.
- * @param anchor Anchor position with the kernel. Negative values mean that the anchor is at the
- * kernel center.
+ * @param anchor Anchor position with the kernel. Negative values mean that the anchor is at the kernel
+ * center.
  * @param iterations Number of times erosion and dilation are applied.
  * @param borderType Pixel extrapolation method, see BorderTypes
  * @param borderValue Border value in case of a constant border. The default value has a special
@@ -386,8 +386,8 @@ export declare function morphologyEx(src: InputArray, dst: OutputArray, op: int,
  * By default, size of the output image is computed as `Size((src.cols+1)/2, (src.rows+1)/2)`, but in
  * any case, the following conditions should be satisfied:
  * 
- * `\\[\\begin{array}{l} | \\texttt{dstsize.width} *2-src.cols| \\leq 2 \\\\ |
- * \\texttt{dstsize.height} *2-src.rows| \\leq 2 \\end{array}\\]`
+ * `\\[\\begin{array}{l} | \\texttt{dstsize.width} *2-src.cols| \\leq 2 \\\\ | \\texttt{dstsize.height}
+ * *2-src.rows| \\leq 2 \\end{array}\\]`
  * 
  * The function performs the downsampling step of the Gaussian pyramid construction. First, it
  * convolves the source image with the kernel:
@@ -407,12 +407,12 @@ export declare function pyrDown(src: InputArray, dst: OutputArray, dstsize?: any
 /**
  * The function implements the filtering stage of meanshift segmentation, that is, the output of the
  * function is the filtered "posterized" image with color gradients and fine-grain texture flattened.
- * At every pixel (X,Y) of the input image (or down-sized input image, see below) the function
- * executes meanshift iterations, that is, the pixel (X,Y) neighborhood in the joint space-color
- * hyperspace is considered:
+ * At every pixel (X,Y) of the input image (or down-sized input image, see below) the function executes
+ * meanshift iterations, that is, the pixel (X,Y) neighborhood in the joint space-color hyperspace is
+ * considered:
  * 
- * `\\[(x,y): X- \\texttt{sp} \\le x \\le X+ \\texttt{sp} , Y- \\texttt{sp} \\le y \\le Y+
- * \\texttt{sp} , ||(R,G,B)-(r,g,b)|| \\le \\texttt{sr}\\]`
+ * `\\[(x,y): X- \\texttt{sp} \\le x \\le X+ \\texttt{sp} , Y- \\texttt{sp} \\le y \\le Y+ \\texttt{sp}
+ * , ||(R,G,B)-(r,g,b)|| \\le \\texttt{sr}\\]`
  * 
  * where (R,G,B) and (r,g,b) are the vectors of color components at (X,Y) and (x,y), respectively
  * (though, the algorithm does not depend on the color space used, so any 3-component color space can
@@ -428,10 +428,10 @@ export declare function pyrDown(src: InputArray, dst: OutputArray, dstsize?: any
  * 
  * When maxLevel > 0, the gaussian pyramid of maxLevel+1 levels is built, and the above procedure is
  * run on the smallest layer first. After that, the results are propagated to the larger layer and the
- * iterations are run again only on those pixels where the layer colors differ by more than sr from
- * the lower-resolution layer of the pyramid. That makes boundaries of color regions sharper. Note
- * that the results will be actually different from the ones obtained by running the meanshift
- * procedure on the whole original image (i.e. when maxLevel==0).
+ * iterations are run again only on those pixels where the layer colors differ by more than sr from the
+ * lower-resolution layer of the pyramid. That makes boundaries of color regions sharper. Note that the
+ * results will be actually different from the ones obtained by running the meanshift procedure on the
+ * whole original image (i.e. when maxLevel==0).
  * 
  * @param src The source 8-bit, 3-channel image.
  * @param dst The destination image of the same format and the same size as the source.
@@ -488,8 +488,8 @@ export declare function Scharr(src: InputArray, dst: OutputArray, ddepth: int, d
 
 /**
  * The function applies a separable linear filter to the image. That is, first, every row of src is
- * filtered with the 1D kernel kernelX. Then, every column of the result is filtered with the 1D
- * kernel kernelY. The final result shifted by delta is stored in dst .
+ * filtered with the 1D kernel kernelX. Then, every column of the result is filtered with the 1D kernel
+ * kernelY. The final result shifted by delta is stored in dst .
  * 
  * [filter2D](#d4/d86/group__imgproc__filter_1ga27c049795ce870216ddfb366086b5a04}),
  * [Sobel](#d4/d86/group__imgproc__filter_1gacea54f142e81b6758cb6f375ce782c8d}),
@@ -510,15 +510,15 @@ export declare function Scharr(src: InputArray, dst: OutputArray, ddepth: int, d
 export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: int, kernelX: InputArray, kernelY: InputArray, anchor?: Point, delta?: double, borderType?: int): void
 
 /**
- * In all cases except one, the `$\\texttt{ksize} \\times \\texttt{ksize}$` separable kernel is used
- * to calculate the derivative. When `$\\texttt{ksize = 1}$`, the `$3 \\times 1$` or `$1 \\times 3$`
+ * In all cases except one, the `$\\texttt{ksize} \\times \\texttt{ksize}$` separable kernel is used to
+ * calculate the derivative. When `$\\texttt{ksize = 1}$`, the `$3 \\times 1$` or `$1 \\times 3$`
  * kernel is used (that is, no Gaussian smoothing is done). `ksize = 1` can only be used for the first
  * or the second x- or y- derivatives.
  * 
  * There is also the special value `ksize =
- * [FILTER_SCHARR](#d4/d86/group__imgproc__filter_1ggad8e695e87dee497e227716576c244598a460c815d2bb921fb
- * 7f53f4220e19c1d5}) (-1)` that corresponds to the `$3\\times3$` Scharr filter that may give more
- * accurate results than the `$3\\times3$` Sobel. The Scharr aperture is
+ * [FILTER_SCHARR](#d4/d86/group__imgproc__filter_1ggad8e695e87dee497e227716576c244598a460c815d2bb921fb7f53f4220e19c1d5})
+ * (-1)` that corresponds to the `$3\\times3$` Scharr filter that may give more accurate results than
+ * the `$3\\times3$` Sobel. The Scharr aperture is
  * 
  * `\\[\\vecthreethree{-3}{0}{3}{-10}{0}{10}{-3}{0}{3}\\]`
  * 
@@ -530,9 +530,9 @@ export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: i
  * y^{yorder}}\\]`
  * 
  * The Sobel operators combine Gaussian smoothing and differentiation, so the result is more or less
- * resistant to the noise. Most often, the function is called with ( xorder = 1, yorder = 0, ksize =
- * 3) or ( xorder = 0, yorder = 1, ksize = 3) to calculate the first x- or y- image derivative. The
- * first case corresponds to a kernel of:
+ * resistant to the noise. Most often, the function is called with ( xorder = 1, yorder = 0, ksize = 3)
+ * or ( xorder = 0, yorder = 1, ksize = 3) to calculate the first x- or y- image derivative. The first
+ * case corresponds to a kernel of:
  * 
  * `\\[\\vecthreethree{-1}{0}{1}{-2}{0}{2}{-1}{0}{1}\\]`
  * 
@@ -549,8 +549,8 @@ export declare function sepFilter2D(src: InputArray, dst: OutputArray, ddepth: i
  * 
  * @param src input image.
  * @param dst output image of the same size and the same number of channels as src .
- * @param ddepth output image depth, see combinations; in the case of 8-bit input images it will
- * result in truncated derivatives.
+ * @param ddepth output image depth, see combinations; in the case of 8-bit input images it will result
+ * in truncated derivatives.
  * @param dx order of the derivative x.
  * @param dy order of the derivative y.
  * @param ksize size of the extended Sobel kernel; it must be 1, 3, 5, or 7.
@@ -583,8 +583,8 @@ export declare function spatialGradient(src: InputArray, dx: OutputArray, dy: Ou
  * For every pixel `$ (x, y) $` in the source image, the function calculates the sum of squares of
  * those neighboring pixel values which overlap the filter placed over the pixel `$ (x, y) $`.
  * 
- * The unnormalized square box filter can be useful in computing local image statistics such as the
- * the local variance and standard deviation around the neighborhood of a pixel.
+ * The unnormalized square box filter can be useful in computing local image statistics such as the the
+ * local variance and standard deviation around the neighborhood of a pixel.
  * 
  * [boxFilter](#d4/d86/group__imgproc__filter_1gad533230ebf2d42509547d514f7d3fbc3})
  * 

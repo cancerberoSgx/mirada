@@ -1,11 +1,9 @@
 import { CompoundDef, Member } from '../doxygenTypes'
 import { renderEnum } from "./enums"
-import { getCompoundDefName, isValidId, renderParam } from './general'
-import { toJsDoc } from "./jsdoc"
+import { getCompoundDefName, isValidId, renderParam , renderType} from './general'
+import { toJsDoc, jsdocFunction } from "./jsdoc"
 import { Options } from './main'
-import { renderType } from "./ref"
 
-// CLASS
 export function renderCompoundClass(def: CompoundDef, options: Options) {
   const className = getCompoundDefName(def)
   return `
@@ -21,10 +19,7 @@ function renderMethod(f: Member, def: CompoundDef, options: Options) {
   const className = getCompoundDefName(def)
   const name = f.name === className ? 'constructor' : f.name
   return `
-/**
-${toJsDoc({ ...options, node: f, wrap: false })}
-${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
-*/
+${jsdocFunction(options, f)}
 ${f.prot === 'package' ? 'private' : f.prot} ${f.static === 'yes' ? 'static' : ''} ${name} (${f.params.map(p => renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
 }
 

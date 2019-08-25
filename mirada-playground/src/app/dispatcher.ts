@@ -1,4 +1,4 @@
-import { Example } from './state';
+import { Example } from "./examples";
 
 // import { File } from 'magica'
 // import { Example } from 'magica-examples'

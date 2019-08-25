@@ -22,6 +22,7 @@ export function parseDoxygen(options: Options): CompoundDef[] {
     ...getDescribed(c),
     ...attrs<{ kind: DoxCompoundKind, prot: DoxProtectionKind }>(c, ['kind', 'prot']),
     compoundname: text('compoundname', c).trim(),
+    title: text('title', c).trim(),
 
     derivedcompoundref: Q('derivedcompoundref', c).map(d => ({
       ...attrs<{ refid: DoxBool, prot: DoxProtectionKind, virt: DoxVirtualKind }>(d, ['refid', 'prot', 'virt']),
@@ -29,7 +30,7 @@ export function parseDoxygen(options: Options): CompoundDef[] {
     })),
 
     // Heads up - the design based on kind="public-type", kind="public-attrib", etc is wrong since here also compounddef kind="group" are also considered and they don't have sectiondef kind="public-type" but just directly sectiondef kind="enum"
-    // TODO: we shouild change these names and eal directluy with enum or concrete public types.
+    // TODO: we should change these names and eal directly with enum or concrete public types.
     publicTypes: [...Q('sectiondef[kind="public-type"] memberdef'), ...Q('memberdef[kind="enum"]', c)].filter(notSameNotFalsy).map(getCompoundDefPublicTypes),
 
     publicAttribs: Q('sectiondef[kind="public-attrib"] memberdef', c).map(getMember),
@@ -38,9 +39,9 @@ export function parseDoxygen(options: Options): CompoundDef[] {
 
     functions: Q('sectiondef[kind="func"] memberdef', c).map(getMember),
 
-    inheritancegraph: 'TODO',
-    collaborationgraph: 'TODO',
-    listofallmembers: 'TODO'
+    // inheritancegraph: 'TODO',
+    // collaborationgraph: 'TODO',
+    // listofallmembers: 'TODO'
 
   } as CompoundDef))
   return r
@@ -136,10 +137,29 @@ function getDescriptions(c: Element): Descriptions {
 }
 
 function getType(s: Element, prefix = 'type'): linkedTextType {
-  return {
-    ...attrs(Q1(`${prefix}>ref`, s), []),
-    name: text(`${prefix}>ref`, s, ``),
-    text: text(`${prefix}`, s),
-    refs: Q(`${prefix}>ref`, s).map(r => attrs<refTextType>(r, ['refid', 'kindref', 'text']))
-  }
+  //  <type>  <ref refid="d1/d10/classcv_1_1MatExpr" kindref="compound">MatExpr</ref>  </type>
+    // <type>int</type>
+    var ref = Q1(`${prefix}>ref`, s)
+    // if(ref) {
+      // const name = text(ref)
+      return {
+        name: (ref?ref.textContent:''||text(`${prefix}`, s, ``)).trim()||undefined,
+        ref:  ref && {...attrs<refTextType>(ref, ['refid', 'kindref' ]), text: (ref.textContent||'').trim()}
+
+    // ...attrs(ref, []),
+    // name: text(`${prefix}>ref`, s, ``)||text(`${prefix}`, s),
+    // // text: text(`${prefix}`, s),
+    // ref: {...attrs<refTextType>(ref, ['refid', 'kindref', 'text']), text: (ref?ref.textContent:'').trim()}
+
+      }
+      
+  //   }else {
+
+  //   }
+  // return {
+  //   ...attrs(Q1(`${prefix}>ref`, s), []),
+  //   name: text(`${prefix}>ref`, s, ``),
+  //   // text: text(`${prefix}`, s),
+  //   refs: Q(`${prefix}>ref`, s).map(r => attrs<refTextType>(r, ['refid', 'kindref', 'text']))
+  // }
 }

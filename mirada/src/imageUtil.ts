@@ -1,5 +1,5 @@
 import { Mat } from './types/opencv/'
-
+import {File} from './File'
 /**
  * Creates an CV ImageData object from given image.
  */
@@ -34,4 +34,14 @@ export function toRgba(mat: Mat) {
       throw new Error('Bad number of channels (Source image must have 1, 3 or 4 channels)')
   }
   return img
+}
+
+export async function fromFile(f: string){
+  const file = await File.fromFile(f)
+  return file.asMat()
+}
+
+export async function fromUrl(f: string){
+  const file = await File.fromUrl(f)
+  return file.asMat()
 }

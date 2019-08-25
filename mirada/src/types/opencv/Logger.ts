@@ -4,8 +4,7 @@ import { int } from './_types'
 /**
  * 
  * Source:
- * [opencv2/flann/logger.h](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/f
- * lann/logger.h#L130).
+ * [opencv2/flann/logger.h](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/flann/logger.h#L130).
  * 
  */
 export declare class Logger {

@@ -1,5 +1,5 @@
 
-import { InputArray, InputOutputArray, DrawMatchesFlags } from './_types'
+import { InputArray, InputOutputArray } from './_types'
 /*
  * # features2d_draw
  *
@@ -34,8 +34,8 @@ export declare function drawKeypoints(image: InputArray, keypoints: any, outImag
  * has a corresponding point in keypoints2[matches[i]] .
  * @param outImg Output image. Its content depends on the flags value defining what is drawn in the
  * output image. See possible flags bit values below.
- * @param matchColor Color of matches (lines and connected keypoints). If matchColor==Scalar::all(-1)
- * , the color is generated randomly.
+ * @param matchColor Color of matches (lines and connected keypoints). If matchColor==Scalar::all(-1) ,
+ * the color is generated randomly.
  * @param singlePointColor Color of single keypoints (circles), which means that keypoints do not have
  * the matches. If singlePointColor==Scalar::all(-1) , the color is generated randomly.
  * @param matchesMask Mask determining which matches are drawn. If the mask is empty, all matches are
@@ -64,10 +64,10 @@ export declare function drawMatches(img1: InputArray, keypoints1: any, img2: Inp
 
 /**
  * Output image matrix will be created
- * ([Mat::create](#d3/d63/classcv_1_1Mat_1a55ced2c8d844d683ea9a725c60037ad0})), i.e. existing memory
- * of output image may be reused. Two source image, matches and single keypoints will be drawn. For
- * each keypoint only the center point will be drawn (without the circle around keypoint with keypoint
- * size and orientation).
+ * ([Mat::create](#d3/d63/classcv_1_1Mat_1a55ced2c8d844d683ea9a725c60037ad0})), i.e. existing memory of
+ * output image may be reused. Two source image, matches and single keypoints will be drawn. For each
+ * keypoint only the center point will be drawn (without the circle around keypoint with keypoint size
+ * and orientation).
  * 
  */
 export declare const DEFAULT: DrawMatchesFlags // initializer: = 0

@@ -20,5 +20,6 @@ const defaultFormat: TsCodeFormatSettings = {
   quotePreference: 'single',
   emptyLinesMax: 1,
   formatJsdocs: true,
-  formatJsdocsFormatBefore: true
+  formatJsdocsFormatBefore: true,
+  jsdocLineMaxLength: 100
 }

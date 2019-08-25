@@ -19,8 +19,8 @@ import { InputArray, OutputArray, double, int } from './_types'
  * @param inpaintMask Inpainting mask, 8-bit 1-channel image. Non-zero pixels indicate the area that
  * needs to be inpainted.
  * @param dst Output image with the same size and type as src .
- * @param inpaintRadius Radius of a circular neighborhood of each point inpainted that is considered
- * by the algorithm.
+ * @param inpaintRadius Radius of a circular neighborhood of each point inpainted that is considered by
+ * the algorithm.
  * @param flags Inpainting method that could be cv::INPAINT_NS or cv::INPAINT_TELEA
  */
 export declare function inpaint(src: InputArray, inpaintMask: InputArray, dst: OutputArray, inpaintRadius: double, flags: int): void

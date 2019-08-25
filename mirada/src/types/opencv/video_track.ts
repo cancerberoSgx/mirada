@@ -18,8 +18,8 @@ import { InputArray, OutputArrayOfArrays, Size, int, bool, InputOutputArray, dou
  * constructed without the gradients then calcOpticalFlowPyrLK will calculate them internally.
  * @param pyrBorder the border mode for pyramid layers.
  * @param derivBorder the border mode for gradients.
- * @param tryReuseInputImage put ROI of input image into the pyramid if possible. You can pass false
- * to force data copying.
+ * @param tryReuseInputImage put ROI of input image into the pyramid if possible. You can pass false to
+ * force data copying.
  */
 export declare function buildOpticalFlowPyramid(img: InputArray, pyramid: OutputArrayOfArrays, winSize: Size, maxLevel: int, withDerivatives?: bool, pyrBorder?: int, derivBorder?: int, tryReuseInputImage?: bool): int
 
@@ -42,11 +42,11 @@ export declare function buildOpticalFlowPyramid(img: InputArray, pyramid: Output
  * one.
  * @param levels number of pyramid layers including the initial image; levels=1 means that no extra
  * layers are created and only the original images are used.
- * @param winsize averaging window size; larger values increase the algorithm robustness to image
- * noise and give more chances for fast motion detection, but yield more blurred motion field.
+ * @param winsize averaging window size; larger values increase the algorithm robustness to image noise
+ * and give more chances for fast motion detection, but yield more blurred motion field.
  * @param iterations number of iterations the algorithm does at each pyramid level.
- * @param poly_n size of the pixel neighborhood used to find polynomial expansion in each pixel;
- * larger values mean that the image will be approximated with smoother surfaces, yielding more robust
+ * @param poly_n size of the pixel neighborhood used to find polynomial expansion in each pixel; larger
+ * values mean that the image will be approximated with smoother surfaces, yielding more robust
  * algorithm and more blurred motion field, typically poly_n =5 or 7.
  * @param poly_sigma standard deviation of the Gaussian that is used to smooth derivatives used as a
  * basis for the polynomial expansion; for poly_n=5, you can set poly_sigma=1.1, for poly_n=7, a good
@@ -55,14 +55,14 @@ export declare function buildOpticalFlowPyramid(img: InputArray, pyramid: Output
  * OPTFLOW_USE_INITIAL_FLOW uses the input flow as an initial flow
  * approximation.OPTFLOW_FARNEBACK_GAUSSIAN uses the Gaussian $\texttt{winsize}\times\texttt{winsize}$
  * filter instead of a box filter of the same size for optical flow estimation; usually, this option
- * gives z more accurate flow than with a box filter, at the cost of lower speed; normally, winsize
- * for a Gaussian window should be set to a larger value to achieve the same level of robustness.
+ * gives z more accurate flow than with a box filter, at the cost of lower speed; normally, winsize for
+ * a Gaussian window should be set to a larger value to achieve the same level of robustness.
  */
 export declare function calcOpticalFlowFarneback(prev: InputArray, next: InputArray, flow: InputOutputArray, pyr_scale: double, levels: int, winsize: int, iterations: int, poly_n: int, poly_sigma: double, flags: int): void
 
 /**
- * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids.
- * See Bouguet00 . The function is parallelized with the TBB library.
+ * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
+ * Bouguet00 . The function is parallelized with the TBB library.
  * 
  * An example using the Lucas-Kanade optical flow algorithm can be found at
  * opencv_source_code/samples/cpp/lkdemo.cpp
@@ -92,10 +92,10 @@ export declare function calcOpticalFlowFarneback(prev: InputArray, next: InputAr
  * by less than criteria.epsilon.
  * @param flags operation flags:
  * OPTFLOW_USE_INITIAL_FLOW uses initial estimations, stored in nextPts; if the flag is not set, then
- * prevPts is copied to nextPts and is considered the initial estimate.OPTFLOW_LK_GET_MIN_EIGENVALS
- * use minimum eigen values as an error measure (see minEigThreshold description); if the flag is not
- * set, then L1 distance between patches around the original and a moved point, divided by number of
- * pixels in a window, is used as a error measure.
+ * prevPts is copied to nextPts and is considered the initial estimate.OPTFLOW_LK_GET_MIN_EIGENVALS use
+ * minimum eigen values as an error measure (see minEigThreshold description); if the flag is not set,
+ * then L1 distance between patches around the original and a moved point, divided by number of pixels
+ * in a window, is used as a error measure.
  * @param minEigThreshold the algorithm calculates the minimum eigen value of a 2x2 normal matrix of
  * optical flow equations (this matrix is called a spatial gradient matrix in Bouguet00), divided by
  * number of pixels in a window; if this value is less than minEigThreshold, then a corresponding
@@ -156,8 +156,8 @@ export declare function computeECC(templateImage: InputArray, inputImage: InputA
 export declare function estimateRigidTransform(src: InputArray, dst: InputArray, fullAffine: bool): Mat
 
 /**
- * The function estimates the optimum transformation (warpMatrix) with respect to ECC criterion
- * (EP08), that is
+ * The function estimates the optimum transformation (warpMatrix) with respect to ECC criterion (EP08),
+ * that is
  * 
  * `\\[\\texttt{warpMatrix} = \\texttt{warpMatrix} = \\arg\\max_{W}
  * \\texttt{ECC}(\\texttt{templateImage}(x,y),\\texttt{inputImage}(x',y'))\\]`
@@ -194,11 +194,11 @@ export declare function estimateRigidTransform(src: InputArray, dst: InputArray,
  * @param warpMatrix floating-point $2\times 3$ or $3\times 3$ mapping matrix (warp).
  * @param motionType parameter, specifying the type of motion:
  * MOTION_TRANSLATION sets a translational motion model; warpMatrix is $2\times 3$ with the first
- * $2\times 2$ part being the unity matrix and the rest two parameters being
- * estimated.MOTION_EUCLIDEAN sets a Euclidean (rigid) transformation as motion model; three
- * parameters are estimated; warpMatrix is $2\times 3$.MOTION_AFFINE sets an affine motion model
- * (DEFAULT); six parameters are estimated; warpMatrix is $2\times 3$.MOTION_HOMOGRAPHY sets a
- * homography as a motion model; eight parameters are estimated;`warpMatrix` is $3\times 3$.
+ * $2\times 2$ part being the unity matrix and the rest two parameters being estimated.MOTION_EUCLIDEAN
+ * sets a Euclidean (rigid) transformation as motion model; three parameters are estimated; warpMatrix
+ * is $2\times 3$.MOTION_AFFINE sets an affine motion model (DEFAULT); six parameters are estimated;
+ * warpMatrix is $2\times 3$.MOTION_HOMOGRAPHY sets a homography as a motion model; eight parameters
+ * are estimated;`warpMatrix` is $3\times 3$.
  * @param criteria parameter, specifying the termination criteria of the ECC algorithm;
  * criteria.epsilon defines the threshold of the increment in the correlation coefficient between two
  * iterations (a negative criteria.epsilon makes criteria.maxcount the only termination criterion).
@@ -234,8 +234,8 @@ export declare function findTransformECC(templateImage: InputArray, inputImage: 
  * unlike CamShift , the search window size or orientation do not change during the search. You can
  * simply pass the output of calcBackProject to this function. But better results can be obtained if
  * you pre-filter the back projection and remove the noise. For example, you can do this by retrieving
- * connected components with findContours , throwing away contours with small area ( contourArea ),
- * and rendering the remaining contours with drawContours.
+ * connected components with findContours , throwing away contours with small area ( contourArea ), and
+ * rendering the remaining contours with drawContours.
  */
 export declare function meanShift(probImage: InputArray, window: any, criteria: TermCriteria): int
 
@@ -249,9 +249,9 @@ export declare function meanShift(probImage: InputArray, window: any, criteria: 
 export declare function readOpticalFlow(path: any): Mat
 
 /**
- * The function stores a flow field in a file, returns true on success, false otherwise. The flow
- * field must be a 2-channel, floating-point matrix (CV_32FC2). First channel corresponds to the flow
- * in the horizontal direction (u), second - vertical (v).
+ * The function stores a flow field in a file, returns true on success, false otherwise. The flow field
+ * must be a 2-channel, floating-point matrix (CV_32FC2). First channel corresponds to the flow in the
+ * horizontal direction (u), second - vertical (v).
  * 
  * @param path Path to the file to be written
  * @param flow Flow field to be stored

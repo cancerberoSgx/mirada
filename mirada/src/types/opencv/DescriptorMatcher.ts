@@ -1,13 +1,12 @@
 
-import { bool, int, float, MatcherType } from './_types'
+import { InputArrayOfArrays, bool, Ptr, Mat, InputArray, DMatch, int, float, FileNode, FileStorage } from './_types'
 
 /**
  * It has two groups of match methods: for matching descriptors of an image with another image or with
  * an image set.
  * 
  * Source:
- * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/f
- * eatures2d.hpp#L860).
+ * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/features2d.hpp#L860).
  * 
  */
 export declare class DescriptorMatcher {
@@ -18,7 +17,7 @@ export declare class DescriptorMatcher {
    *   @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
    * train image.
    */
-  public add(descriptors: any): any
+  public add(descriptors: InputArrayOfArrays): InputArrayOfArrays
 
   /**
    *   
@@ -31,7 +30,7 @@ export declare class DescriptorMatcher {
    * that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
    * object copy with the current parameters but with empty train data.
    */
-  public clone(emptyTrainData?: bool): any
+  public clone(emptyTrainData?: bool): Ptr
 
   /**
    *   
@@ -41,7 +40,7 @@ export declare class DescriptorMatcher {
   /**
    *   
    */
-  public getTrainDescriptors(): any
+  public getTrainDescriptors(): Mat
 
   /**
    *   
@@ -51,10 +50,10 @@ export declare class DescriptorMatcher {
   /**
    *   These extended variants of
    * [DescriptorMatcher::match](#db/d39/classcv_1_1DescriptorMatcher_1a0f046f47b68ec7074391e1e85c750cba})
-   *  methods find several best matches for each query descriptor. The matches are returned in the
+   * methods find several best matches for each query descriptor. The matches are returned in the
    * distance increasing order. See
    * [DescriptorMatcher::match](#db/d39/classcv_1_1DescriptorMatcher_1a0f046f47b68ec7074391e1e85c750cba})
-   *  for the details about query and train descriptors.
+   * for the details about query and train descriptors.
    *   
    *   @param queryDescriptors Query set of descriptors.
    *   @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
@@ -68,7 +67,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: any, trainDescriptors: any, matches: any, k: int, mask?: any, compactResult?: bool): any
+  public knnMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, k: int, mask?: InputArray, compactResult?: bool): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -84,11 +83,11 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: any, matches: any, k: int, masks?: any, compactResult?: bool): any
+  public knnMatch(queryDescriptors: InputArray, matches: DMatch, k: int, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
 
   /**
-   *   In the first variant of this method, the train descriptors are passed as an input argument. In
-   * the second variant of the method, train descriptors collection that was set by
+   *   In the first variant of this method, the train descriptors are passed as an input argument. In the
+   * second variant of the method, train descriptors collection that was set by
    * [DescriptorMatcher::add](#db/d39/classcv_1_1DescriptorMatcher_1a623a2b07755cf7fb1c79554af73cdbb0})
    * is used. Optional mask (or masks) can be passed to specify which query and training descriptors can
    * be matched. Namely, queryDescriptors[i] can be matched with trainDescriptors[j] only if
@@ -102,7 +101,7 @@ export declare class DescriptorMatcher {
    *   @param mask Mask specifying permissible matches between an input query and train matrices of
    * descriptors.
    */
-  public match(queryDescriptors: any, trainDescriptors: any, matches: any, mask?: any): any
+  public match(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, mask?: InputArray): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -114,12 +113,12 @@ export declare class DescriptorMatcher {
    *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
    * descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    */
-  public match(queryDescriptors: any, matches: any, masks?: any): any
+  public match(queryDescriptors: InputArray, matches: DMatch, masks?: InputArrayOfArrays): InputArray
 
   /**
    *   For each query descriptor, the methods find such training descriptors that the distance between
-   * the query descriptor and the training descriptor is equal or smaller than maxDistance. Found
-   * matches are returned in the distance increasing order.
+   * the query descriptor and the training descriptor is equal or smaller than maxDistance. Found matches
+   * are returned in the distance increasing order.
    *   
    *   @param queryDescriptors Query set of descriptors.
    *   @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
@@ -134,7 +133,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: any, trainDescriptors: any, matches: any, maxDistance: float, mask?: any, compactResult?: bool): any
+  public radiusMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, maxDistance: float, mask?: InputArray, compactResult?: bool): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -151,19 +150,19 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: any, matches: any, maxDistance: float, masks?: any, compactResult?: bool): any
+  public radiusMatch(queryDescriptors: InputArray, matches: DMatch, maxDistance: float, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
 
   /**
    *   
    *   @param fileName 
    */
-  public read(fileName: any): any
+  public read(fileName: String): String
 
   /**
    *   
    *   @param fn 
    */
-  public read(fn: any): any
+  public read(fn: FileNode): FileNode
 
   /**
    *   Trains a descriptor matcher (for example, the flann index). In all methods to match, the method
@@ -180,20 +179,20 @@ export declare class DescriptorMatcher {
    *   
    *   @param fileName 
    */
-  public write(fileName: any): any
+  public write(fileName: String): String
 
   /**
    *   
    *   @param fs 
    */
-  public write(fs: any): any
+  public write(fs: FileStorage): FileStorage
 
   /**
    *   
    *   @param fs 
    *   @param name 
    */
-  public write(fs: any, name?: any): any
+  public write(fs: Ptr, name?: String): Ptr
 
   /**
    *   
@@ -201,13 +200,13 @@ export declare class DescriptorMatcher {
    * supported:
    *   BruteForce (it uses L2 )BruteForce-L1BruteForce-HammingBruteForce-Hamming(2)FlannBased
    */
-  public static create(descriptorMatcherType: any): any
+  public static create(descriptorMatcherType: String): Ptr
 
   /**
    *   
    *   @param matcherType 
    */
-  public static create(matcherType: any): any
+  public static create(matcherType: any): Ptr
 }
 
 /**

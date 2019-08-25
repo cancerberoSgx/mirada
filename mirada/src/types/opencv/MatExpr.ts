@@ -1,11 +1,11 @@
 
-import { double, int } from './_types'
+import { Mat, double, int, MatOp, Scalar, Size } from './_types'
 
 /**
  * <a name="d1/d10/classcv_1_1MatExpr_1MatrixExpressions"></a>This is a list of implemented matrix
  * operations that can be combined in arbitrary complex expressions (here A, B stand for matrices (
- * [Mat](#d3/d63/classcv_1_1Mat}) ), s for a scalar ( Scalar ), alpha for a real-valued scalar (
- * double )):
+ * [Mat](#d3/d63/classcv_1_1Mat}) ), s for a scalar ( Scalar ), alpha for a real-valued scalar ( double
+ * )):
  * 
  * Addition, subtraction, negation: `A+B`, `A-B`, `A+s`, `A-s`, `s+A`, `s-A`, `-A`
  * Scaling: `A*alpha`
@@ -52,16 +52,15 @@ import { double, int } from './_types'
  * ```
  * 
  * Source:
- * [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/cor
- * e/mat.hpp#L3557).
+ * [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/mat.hpp#L3557).
  * 
  */
-export declare class MatExpr {
+export declare class MatExpr extends Mat{
 
   /**
    *   
    */
-  public a: any
+  public a: Mat
 
   /**
    *   
@@ -71,7 +70,7 @@ export declare class MatExpr {
   /**
    *   
    */
-  public b: any
+  public b: Mat
 
   /**
    *   
@@ -81,7 +80,7 @@ export declare class MatExpr {
   /**
    *   
    */
-  public c: any
+  public c: Mat
 
   /**
    *   
@@ -91,12 +90,12 @@ export declare class MatExpr {
   /**
    *   
    */
-  public op: any
+  public op: MatOp
 
   /**
    *   
    */
-  public s: any
+  public s: Scalar
 
   /**
    *   
@@ -107,7 +106,7 @@ export declare class MatExpr {
    *   
    *   @param m 
    */
-  public constructor(m: any)
+  public constructor(m: Mat)
 
   /**
    *   
@@ -120,67 +119,67 @@ export declare class MatExpr {
    *   @param _beta 
    *   @param _s 
    */
-  public constructor(_op: any, _flags: int, _a?: any, _b?: any, _c?: any, _alpha?: double, _beta?: double, _s?: any)
+  public constructor(_op: MatOp, _flags: int, _a?: Mat, _b?: Mat, _c?: Mat, _alpha?: double, _beta?: double, _s?: Scalar)
 
   /**
    *   
    *   @param x 
    */
-  public col(x: int): any
+  public col(x: int): MatExpr
 
   /**
    *   
    *   @param m 
    */
-  public cross(m: any): any
+  public cross(m: Mat): Mat
 
   /**
    *   
    *   @param d 
    */
-  public diag(d?: int): any
+  public diag(d?: int): MatExpr
 
   /**
    *   
    *   @param m 
    */
-  public dot(m: any): any
+  public dot(m: Mat): Mat
 
   /**
    *   
    *   @param method 
    */
-  public inv(method?: int): any
+  public inv(method?: int): MatExpr
 
   /**
    *   
    *   @param e 
    *   @param scale 
    */
-  public mul(e: any, scale?: double): any
+  public mul(e: MatExpr, scale?: double): MatExpr
 
   /**
    *   
    *   @param m 
    *   @param scale 
    */
-  public mul(m: any, scale?: double): any
+  public mul(m: Mat, scale?: double): MatExpr
 
   /**
    *   
    *   @param y 
    */
-  public row(y: int): any
+  public row(y: int): MatExpr
 
   /**
    *   
    */
-  public size(): any
+  // public size(): Size
 
   /**
    *   
    */
-  public t(): any
+  public t(): MatExpr
 
   /**
    *   

@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, TermCriteria, HoughModes, LineSegmentDetectorModes } from './_types'
+import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, TermCriteria } from './_types'
 /*
  * # imgproc_feature
  *
@@ -17,8 +17,8 @@ import { InputArray, OutputArray, double, int, bool, InputOutputArray, Size, Ter
  * @param threshold2 second threshold for the hysteresis procedure.
  * @param apertureSize aperture size for the Sobel operator.
  * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 +
- * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or
- * whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
+ * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether
+ * the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
 export declare function Canny(image: InputArray, edges: OutputArray, threshold1: double, threshold2: double, apertureSize?: int, L2gradient?: bool): void
 
@@ -34,8 +34,8 @@ export declare function Canny(image: InputArray, edges: OutputArray, threshold1:
  * @param threshold1 first threshold for the hysteresis procedure.
  * @param threshold2 second threshold for the hysteresis procedure.
  * @param L2gradient a flag, indicating whether a more accurate $L_2$ norm $=\sqrt{(dI/dx)^2 +
- * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or
- * whether the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
+ * (dI/dy)^2}$ should be used to calculate the image gradient magnitude ( L2gradient=true ), or whether
+ * the default $L_1$ norm $=|dI/dx|+|dI/dy|$ is enough ( L2gradient=false ).
  */
 export declare function Canny(dx: InputArray, dy: InputArray, edges: OutputArray, threshold1: double, threshold2: double, L2gradient?: bool): void
 
@@ -72,12 +72,12 @@ export declare function cornerEigenValsAndVecs(src: InputArray, dst: OutputArray
 
 /**
  * The function runs the Harris corner detector on the image. Similarly to cornerMinEigenVal and
- * cornerEigenValsAndVecs , for each pixel `$(x, y)$` it calculates a `$2\\times2$` gradient
- * covariance matrix `$M^{(x,y)}$` over a `$\\texttt{blockSize} \\times \\texttt{blockSize}$`
- * neighborhood. Then, it computes the following characteristic:
+ * cornerEigenValsAndVecs , for each pixel `$(x, y)$` it calculates a `$2\\times2$` gradient covariance
+ * matrix `$M^{(x,y)}$` over a `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood. Then,
+ * it computes the following characteristic:
  * 
- * `\\[\\texttt{dst} (x,y) = \\mathrm{det} M^{(x,y)} - k \\cdot \\left ( \\mathrm{tr} M^{(x,y)}
- * \\right )^2\\]`
+ * `\\[\\texttt{dst} (x,y) = \\mathrm{det} M^{(x,y)} - k \\cdot \\left ( \\mathrm{tr} M^{(x,y)} \\right
+ * )^2\\]`
  * 
  * Corners in the image can be found as the local maxima of this response map.
  * 
@@ -97,8 +97,8 @@ export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSiz
  * terms of the formulae in the cornerEigenValsAndVecs description.
  * 
  * @param src Input single-channel 8-bit or floating-point image.
- * @param dst Image to store the minimal eigenvalues. It has the type CV_32FC1 and the same size as
- * src .
+ * @param dst Image to store the minimal eigenvalues. It has the type CV_32FC1 and the same size as src
+ * .
  * @param blockSize Neighborhood size (see the details on cornerEigenValsAndVecs ).
  * @param ksize Aperture parameter for the Sobel operator.
  * @param borderType Pixel extrapolation method. See BorderTypes.
@@ -106,18 +106,18 @@ export declare function cornerHarris(src: InputArray, dst: OutputArray, blockSiz
 export declare function cornerMinEigenVal(src: InputArray, dst: OutputArray, blockSize: int, ksize?: int, borderType?: int): void
 
 /**
- * The function iterates to find the sub-pixel accurate location of corners or radial saddle points,
- * as shown on the figure below.
+ * The function iterates to find the sub-pixel accurate location of corners or radial saddle points, as
+ * shown on the figure below.
  * 
  *  Sub-pixel accurate corner locator is based on the observation that every vector from the center
- * `$q$` to a point `$p$` located within a neighborhood of `$q$` is orthogonal to the image gradient
- * at `$p$` subject to image and measurement noise. Consider the expression:
+ * `$q$` to a point `$p$` located within a neighborhood of `$q$` is orthogonal to the image gradient at
+ * `$p$` subject to image and measurement noise. Consider the expression:
  * 
  * `\\[\\epsilon _i = {DI_{p_i}}^T \\cdot (q - p_i)\\]`
  * 
  * where `${DI_{p_i}}$` is an image gradient at one of the points `$p_i$` in a neighborhood of `$q$` .
- * The value of `$q$` is to be found so that `$\\epsilon_i$` is minimized. A system of equations may
- * be set up with `$\\epsilon_i$` set to zero:
+ * The value of `$q$` is to be found so that `$\\epsilon_i$` is minimized. A system of equations may be
+ * set up with `$\\epsilon_i$` set to zero:
  * 
  * `\\[\\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T) \\cdot q - \\sum _i(DI_{p_i} \\cdot {DI_{p_i}}^T \\cdot
  * p_i)\\]`
@@ -137,9 +137,9 @@ export declare function cornerMinEigenVal(src: InputArray, dst: OutputArray, blo
  * @param zeroZone Half of the size of the dead region in the middle of the search zone over which the
  * summation in the formula below is not done. It is used sometimes to avoid possible singularities of
  * the autocorrelation matrix. The value of (-1,-1) indicates that there is no such a size.
- * @param criteria Criteria for termination of the iterative process of corner refinement. That is,
- * the process of corner position refinement stops either after criteria.maxCount iterations or when
- * the corner position moves by less than criteria.epsilon on some iteration.
+ * @param criteria Criteria for termination of the iterative process of corner refinement. That is, the
+ * process of corner position refinement stops either after criteria.maxCount iterations or when the
+ * corner position moves by less than criteria.epsilon on some iteration.
  */
 export declare function cornerSubPix(image: InputArray, corners: InputOutputArray, winSize: Size, zeroZone: Size, criteria: TermCriteria): void
 
@@ -190,9 +190,9 @@ export declare function createLineSegmentDetector(_refine?: int, _scale?: double
  * 
  * @param image Input 8-bit or floating-point 32-bit, single-channel image.
  * @param corners Output vector of detected corners.
- * @param maxCorners Maximum number of corners to return. If there are more corners than are found,
- * the strongest of them is returned. maxCorners <= 0 implies that no limit on the maximum is set and
- * all detected corners are returned.
+ * @param maxCorners Maximum number of corners to return. If there are more corners than are found, the
+ * strongest of them is returned. maxCorners <= 0 implies that no limit on the maximum is set and all
+ * detected corners are returned.
  * @param qualityLevel Parameter characterizing the minimal accepted quality of image corners. The
  * parameter value is multiplied by the best corner quality measure, which is the minimal eigenvalue
  * (see cornerMinEigenVal ) or the Harris function response (see cornerHarris ). The corners with the
@@ -204,8 +204,8 @@ export declare function createLineSegmentDetector(_refine?: int, _scale?: double
  * CV_8UC1 and the same size as image ), it specifies the region in which the corners are detected.
  * @param blockSize Size of an average block for computing a derivative covariation matrix over each
  * pixel neighborhood. See cornerEigenValsAndVecs .
- * @param useHarrisDetector Parameter indicating whether to use a Harris detector (see cornerHarris)
- * or cornerMinEigenVal.
+ * @param useHarrisDetector Parameter indicating whether to use a Harris detector (see cornerHarris) or
+ * cornerMinEigenVal.
  * @param k Free parameter of the Harris detector.
  */
 export declare function goodFeaturesToTrack(image: InputArray, corners: OutputArray, maxCorners: int, qualityLevel: double, minDistance: double, mask?: InputArray, blockSize?: int, useHarrisDetector?: bool, k?: double): void
@@ -282,9 +282,9 @@ export declare function goodFeaturesToTrack(image: InputArray, corners: OutputAr
  * @param dp Inverse ratio of the accumulator resolution to the image resolution. For example, if dp=1
  * , the accumulator has the same resolution as the input image. If dp=2 , the accumulator has half as
  * big width and height.
- * @param minDist Minimum distance between the centers of the detected circles. If the parameter is
- * too small, multiple neighbor circles may be falsely detected in addition to a true one. If it is
- * too large, some circles may be missed.
+ * @param minDist Minimum distance between the centers of the detected circles. If the parameter is too
+ * small, multiple neighbor circles may be falsely detected in addition to a true one. If it is too
+ * large, some circles may be missed.
  * @param param1 First method-specific parameter. In case of HOUGH_GRADIENT , it is the higher
  * threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
  * @param param2 Second method-specific parameter. In case of HOUGH_GRADIENT , it is the accumulator
@@ -311,9 +311,9 @@ export declare function HoughCircles(image: InputArray, circles: OutputArray, me
  * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough
  * votes ( $>\texttt{threshold}$ ).
  * @param srn For the multi-scale Hough transform, it is a divisor for the distance resolution rho .
- * The coarse accumulator distance resolution is rho and the accurate accumulator resolution is
- * rho/srn . If both srn=0 and stn=0 , the classical Hough transform is used. Otherwise, both these
- * parameters should be positive.
+ * The coarse accumulator distance resolution is rho and the accurate accumulator resolution is rho/srn
+ * . If both srn=0 and stn=0 , the classical Hough transform is used. Otherwise, both these parameters
+ * should be positive.
  * @param stn For the multi-scale Hough transform, it is a divisor for the distance resolution theta.
  * @param min_theta For standard and multi-scale Hough transform, minimum angle to check for lines.
  * Must fall between 0 and max_theta.
@@ -323,8 +323,8 @@ export declare function HoughCircles(image: InputArray, circles: OutputArray, me
 export declare function HoughLines(image: InputArray, lines: OutputArray, rho: double, theta: double, threshold: int, srn?: double, stn?: double, min_theta?: double, max_theta?: double): void
 
 /**
- * The function implements the probabilistic Hough transform algorithm for line detection, described
- * in Matas00
+ * The function implements the probabilistic Hough transform algorithm for line detection, described in
+ * Matas00
  * 
  * See the line detection example below: 
  * 
@@ -369,8 +369,8 @@ export declare function HoughLines(image: InputArray, lines: OutputArray, rho: d
  * [LineSegmentDetector](#db/d73/classcv_1_1LineSegmentDetector})
  * 
  * @param image 8-bit, single-channel binary source image. The image may be modified by the function.
- * @param lines Output vector of lines. Each line is represented by a 4-element vector $(x_1, y_1,
- * x_2, y_2)$ , where $(x_1,y_1)$ and $(x_2, y_2)$ are the ending points of each detected line segment.
+ * @param lines Output vector of lines. Each line is represented by a 4-element vector $(x_1, y_1, x_2,
+ * y_2)$ , where $(x_1,y_1)$ and $(x_2, y_2)$ are the ending points of each detected line segment.
  * @param rho Distance resolution of the accumulator in pixels.
  * @param theta Angle resolution of the accumulator in radians.
  * @param threshold Accumulator threshold parameter. Only those lines are returned that get enough

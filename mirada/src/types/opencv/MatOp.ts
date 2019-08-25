@@ -1,11 +1,10 @@
 
-import { int, double } from './_types'
+import { MatExpr, Scalar, Mat, int, double, Size } from './_types'
 
 /**
  * 
  * Source:
- * [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/cor
- * e/mat.hpp#L3432).
+ * [opencv2/core/mat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/mat.hpp#L3432).
  * 
  */
 export declare class MatOp {
@@ -20,7 +19,7 @@ export declare class MatOp {
    *   @param expr 
    *   @param res 
    */
-  public abs(expr: any, res: any): any
+  public abs(expr: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
@@ -28,7 +27,7 @@ export declare class MatOp {
    *   @param expr2 
    *   @param res 
    */
-  public add(expr1: any, expr2: any, res: any): any
+  public add(expr1: MatExpr, expr2: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
@@ -36,7 +35,7 @@ export declare class MatOp {
    *   @param s 
    *   @param res 
    */
-  public add(expr1: any, s: any, res: any): any
+  public add(expr1: MatExpr, s: Scalar, res: MatExpr): MatExpr
 
   /**
    *   
@@ -44,56 +43,56 @@ export declare class MatOp {
    *   @param m 
    *   @param type 
    */
-  public assign(expr: any, m: any, type?: int): any
+  public assign(expr: MatExpr, m: Mat, type?: int): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignAdd(expr: any, m: any): any
+  public augAssignAdd(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignAnd(expr: any, m: any): any
+  public augAssignAnd(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignDivide(expr: any, m: any): any
+  public augAssignDivide(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignMultiply(expr: any, m: any): any
+  public augAssignMultiply(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignOr(expr: any, m: any): any
+  public augAssignOr(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignSubtract(expr: any, m: any): any
+  public augAssignSubtract(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
    *   @param expr 
    *   @param m 
    */
-  public augAssignXor(expr: any, m: any): any
+  public augAssignXor(expr: MatExpr, m: Mat): MatExpr
 
   /**
    *   
@@ -101,7 +100,7 @@ export declare class MatOp {
    *   @param d 
    *   @param res 
    */
-  public diag(expr: any, d: int, res: any): any
+  public diag(expr: MatExpr, d: int, res: MatExpr): MatExpr
 
   /**
    *   
@@ -110,7 +109,7 @@ export declare class MatOp {
    *   @param res 
    *   @param scale 
    */
-  public divide(expr1: any, expr2: any, res: any, scale?: double): any
+  public divide(expr1: MatExpr, expr2: MatExpr, res: MatExpr, scale?: double): MatExpr
 
   /**
    *   
@@ -118,13 +117,13 @@ export declare class MatOp {
    *   @param expr 
    *   @param res 
    */
-  public divide(s: double, expr: any, res: any): any
+  public divide(s: double, expr: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
    *   @param expr 
    */
-  public elementWise(expr: any): any
+  public elementWise(expr: MatExpr): MatExpr
 
   /**
    *   
@@ -132,7 +131,7 @@ export declare class MatOp {
    *   @param method 
    *   @param res 
    */
-  public invert(expr: any, method: int, res: any): any
+  public invert(expr: MatExpr, method: int, res: MatExpr): MatExpr
 
   /**
    *   
@@ -140,7 +139,7 @@ export declare class MatOp {
    *   @param expr2 
    *   @param res 
    */
-  public matmul(expr1: any, expr2: any, res: any): any
+  public matmul(expr1: MatExpr, expr2: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
@@ -149,7 +148,7 @@ export declare class MatOp {
    *   @param res 
    *   @param scale 
    */
-  public multiply(expr1: any, expr2: any, res: any, scale?: double): any
+  public multiply(expr1: MatExpr, expr2: MatExpr, res: MatExpr, scale?: double): MatExpr
 
   /**
    *   
@@ -157,7 +156,7 @@ export declare class MatOp {
    *   @param s 
    *   @param res 
    */
-  public multiply(expr1: any, s: double, res: any): any
+  public multiply(expr1: MatExpr, s: double, res: MatExpr): MatExpr
 
   /**
    *   
@@ -166,13 +165,13 @@ export declare class MatOp {
    *   @param colRange 
    *   @param res 
    */
-  public roi(expr: any, rowRange: any, colRange: any, res: any): any
+  public roi(expr: MatExpr, rowRange: Range, colRange: Range, res: MatExpr): MatExpr
 
   /**
    *   
    *   @param expr 
    */
-  public size(expr: any): any
+  public size(expr: MatExpr): Size
 
   /**
    *   
@@ -180,7 +179,7 @@ export declare class MatOp {
    *   @param expr2 
    *   @param res 
    */
-  public subtract(expr1: any, expr2: any, res: any): any
+  public subtract(expr1: MatExpr, expr2: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
@@ -188,19 +187,19 @@ export declare class MatOp {
    *   @param expr 
    *   @param res 
    */
-  public subtract(s: any, expr: any, res: any): any
+  public subtract(s: Scalar, expr: MatExpr, res: MatExpr): Scalar
 
   /**
    *   
    *   @param expr 
    *   @param res 
    */
-  public transpose(expr: any, res: any): any
+  public transpose(expr: MatExpr, res: MatExpr): MatExpr
 
   /**
    *   
    *   @param expr 
    */
-  public type(expr: any): any
+  public type(expr: MatExpr): MatExpr
 }
 

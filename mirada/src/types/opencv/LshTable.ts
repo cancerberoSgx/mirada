@@ -1,5 +1,5 @@
 
-import { size_t, SpeedLevel } from './_types'
+import { Matrix, BucketKey, Bucket, size_t, LshStats } from './_types'
 
 /**
  * Lsh hash table. As its key is a sub-feature, and as usually the size of it is pretty small, we keep
@@ -7,8 +7,7 @@ import { size_t, SpeedLevel } from './_types'
  * unsigned int for pure memory reasons, it could be a size_t)
  * 
  * Source:
- * [opencv2/flann/lsh_table.h](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv
- * 2/flann/lsh_table.h#L261).
+ * [opencv2/flann/lsh_table.h](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/flann/lsh_table.h#L261).
  * 
  */
 export declare class LshTable {
@@ -47,14 +46,14 @@ export declare class LshTable {
    *   
    *   @param dataset the values to store
    */
-  public add(dataset: any): any
+  public add(dataset: Matrix): Matrix
 
   /**
    *   Get a bucket given the key
    *   
    *   @param key 
    */
-  public getBucketFromKey(key: any): any
+  public getBucketFromKey(key: BucketKey): Bucket
 
   /**
    *   Compute the sub-signature of a feature
@@ -74,12 +73,12 @@ export declare class LshTable {
    *   Get statistics about the table
    *   
    */
-  public getStats(): any
+  public getStats(): LshStats
 
   /**
    *   
    */
-  public getStats(): any
+  public getStats(): LshStats
 }
 
 /**

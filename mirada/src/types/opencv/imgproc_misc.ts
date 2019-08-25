@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, Rect, AdaptiveThresholdTypes, DistanceTransformLabelTypes, DistanceTransformMasks, DistanceTypes, FloodFillFlags, GrabCutClasses, GrabCutModes, ThresholdTypes } from './_types'
+import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, Rect } from './_types'
 /*
  * # imgproc_misc
  *
@@ -30,8 +30,8 @@ import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, 
  * ThresholdTypes.
  * @param blockSize Size of a pixel neighborhood that is used to calculate a threshold value for the
  * pixel: 3, 5, 7, and so on.
- * @param C Constant subtracted from the mean or weighted mean (see the details below). Normally, it
- * is positive but may be zero or negative as well.
+ * @param C Constant subtracted from the mean or weighted mean (see the details below). Normally, it is
+ * positive but may be zero or negative as well.
  */
 export declare function adaptiveThreshold(src: InputArray, dst: OutputArray, maxValue: double, adaptiveMethod: int, thresholdType: int, blockSize: int, C: double): void
 
@@ -54,27 +54,27 @@ export declare function blendLinear(src1: InputArray, src2: InputArray, weights1
  * pixel. For zero image pixels, the distance will obviously be zero.
  * 
  * When maskSize ==
- * [DIST_MASK_PRECISE](#d7/d1b/group__imgproc__misc_1ggaaa68392323ccf7fad87570e41259b497a71e13e06c1d12e
- * abd2acd2669f94f9ca}) and distanceType ==
- * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b971
- * 6d158b96}) , the function runs the algorithm described in Felzenszwalb04 . This algorithm is
- * parallelized with the TBB library.
+ * [DIST_MASK_PRECISE](#d7/d1b/group__imgproc__misc_1ggaaa68392323ccf7fad87570e41259b497a71e13e06c1d12eabd2acd2669f94f9ca})
+ * and distanceType ==
+ * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b9716d158b96})
+ * , the function runs the algorithm described in Felzenszwalb04 . This algorithm is parallelized with
+ * the TBB library.
  * 
  * In other cases, the algorithm Borgefors86 is used. This means that for a pixel the function finds
  * the shortest path to the nearest zero pixel consisting of basic shifts: horizontal, vertical,
- * diagonal, or knight's move (the latest is available for a `$5\\times 5$` mask). The overall
- * distance is calculated as a sum of these basic distances. Since the distance function should be
- * symmetric, all of the horizontal and vertical shifts must have the same cost (denoted as a ), all
- * the diagonal shifts must have the same cost (denoted as `b`), and all knight's moves must have the
- * same cost (denoted as `c`). For the
- * [DIST_C](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8eba507b16eb5ef95ea784ca1b3cb
- * 7b0d7ee}) and
- * [DIST_L1](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebae5b2dfaf2ba5024d7ce47885
- * 001fad86}) types, the distance is calculated precisely, whereas for
- * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b971
- * 6d158b96}) (Euclidean distance) the distance can be calculated only with a relative error (a
- * `$5\\times 5$` mask gives more accurate results). For `a`,`b`, and `c`, OpenCV uses the values
- * suggested in the original paper:
+ * diagonal, or knight's move (the latest is available for a `$5\\times 5$` mask). The overall distance
+ * is calculated as a sum of these basic distances. Since the distance function should be symmetric,
+ * all of the horizontal and vertical shifts must have the same cost (denoted as a ), all the diagonal
+ * shifts must have the same cost (denoted as `b`), and all knight's moves must have the same cost
+ * (denoted as `c`). For the
+ * [DIST_C](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8eba507b16eb5ef95ea784ca1b3cb7b0d7ee})
+ * and
+ * [DIST_L1](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebae5b2dfaf2ba5024d7ce47885001fad86})
+ * types, the distance is calculated precisely, whereas for
+ * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b9716d158b96})
+ * (Euclidean distance) the distance can be calculated only with a relative error (a `$5\\times 5$`
+ * mask gives more accurate results). For `a`,`b`, and `c`, OpenCV uses the values suggested in the
+ * original paper:
  * 
  * DIST_L1: `a = 1, b = 2`
  * DIST_L2:
@@ -85,36 +85,35 @@ export declare function blendLinear(src1: InputArray, src2: InputArray, weights1
  * DIST_C: `a = 1, b = 1`
  * 
  * Typically, for a fast, coarse distance estimation
- * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b971
- * 6d158b96}), a `$3\\times 3$` mask is used. For a more accurate distance estimation
- * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b971
- * 6d158b96}), a `$5\\times 5$` mask or the precise algorithm is used. Note that both the precise and
- * the approximate algorithms are linear on the number of pixels.
+ * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b9716d158b96}),
+ * a `$3\\times 3$` mask is used. For a more accurate distance estimation
+ * [DIST_L2](#d7/d1b/group__imgproc__misc_1ggaa2bfbebbc5c320526897996aafa1d8ebaff0d1f5be0fc152a56a9b9716d158b96}),
+ * a `$5\\times 5$` mask or the precise algorithm is used. Note that both the precise and the
+ * approximate algorithms are linear on the number of pixels.
  * 
  * This variant of the function does not only compute the minimum distance for each pixel `$(x, y)$`
  * but also identifies the nearest connected component consisting of zero pixels
- * (labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631
- * de3e838ee72d6a9d991b8fbce4c1d})) or the nearest zero pixel
- * (labelType==[DIST_LABEL_PIXEL](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa5d2
- * 91835de98b72caa12a9947c2cd92a})). Index of the component/pixel is stored in `labels(x, y)`. When
- * labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631d
- * e3e838ee72d6a9d991b8fbce4c1d}), the function automatically finds connected components of zero
- * pixels in the input image and marks them with distinct labels. When
- * labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631d
- * e3e838ee72d6a9d991b8fbce4c1d}), the function scans through the input image and marks all the zero
- * pixels with distinct labels.
+ * (labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631de3e838ee72d6a9d991b8fbce4c1d}))
+ * or the nearest zero pixel
+ * (labelType==[DIST_LABEL_PIXEL](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa5d291835de98b72caa12a9947c2cd92a})).
+ * Index of the component/pixel is stored in `labels(x, y)`. When
+ * labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631de3e838ee72d6a9d991b8fbce4c1d}),
+ * the function automatically finds connected components of zero pixels in the input image and marks
+ * them with distinct labels. When
+ * labelType==[DIST_LABEL_CCOMP](#d7/d1b/group__imgproc__misc_1gga3fe343d63844c40318ee627bd1c1c42fa631de3e838ee72d6a9d991b8fbce4c1d}),
+ * the function scans through the input image and marks all the zero pixels with distinct labels.
  * 
  * In this mode, the complexity is still linear. That is, the function provides a very fast way to
  * compute the Voronoi diagram for a binary image. Currently, the second variant can use only the
  * approximate distance transform algorithm, i.e.
- * maskSize=[DIST_MASK_PRECISE](#d7/d1b/group__imgproc__misc_1ggaaa68392323ccf7fad87570e41259b497a71e13
- * e06c1d12eabd2acd2669f94f9ca}) is not supported yet.
+ * maskSize=[DIST_MASK_PRECISE](#d7/d1b/group__imgproc__misc_1ggaaa68392323ccf7fad87570e41259b497a71e13e06c1d12eabd2acd2669f94f9ca})
+ * is not supported yet.
  * 
  * @param src 8-bit, single-channel (binary) source image.
  * @param dst Output image with calculated distances. It is a 8-bit or 32-bit floating-point,
  * single-channel image of the same size as src.
- * @param labels Output 2D array of labels (the discrete Voronoi diagram). It has the type CV_32SC1
- * and the same size as src.
+ * @param labels Output 2D array of labels (the discrete Voronoi diagram). It has the type CV_32SC1 and
+ * the same size as src.
  * @param distanceType Type of distance, see DistanceTypes
  * @param maskSize Size of the distance transform mask, see DistanceTransformMasks. DIST_MASK_PRECISE
  * is not supported by this variant. In case of the DIST_L1 or DIST_C distance type, the parameter is
@@ -175,24 +174,24 @@ export declare function floodFill(image: InputOutputArray, seedPoint: Point, new
  * \\texttt{seedPoint} .y)_r- \\texttt{loDiff} _r \\leq \\texttt{src} (x,y)_r \\leq \\texttt{src} (
  * \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_r+ \\texttt{upDiff} _r,\\]` `\\[\\texttt{src} (
  * \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_g- \\texttt{loDiff} _g \\leq \\texttt{src} (x,y)_g
- * \\leq \\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_g+ \\texttt{upDiff} _g\\]`
- * and `\\[\\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_b- \\texttt{loDiff} _b
- * \\leq \\texttt{src} (x,y)_b \\leq \\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint}
- * .y)_b+ \\texttt{upDiff} _b\\]`
+ * \\leq \\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_g+ \\texttt{upDiff} _g\\]` and
+ * `\\[\\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_b- \\texttt{loDiff} _b \\leq
+ * \\texttt{src} (x,y)_b \\leq \\texttt{src} ( \\texttt{seedPoint} .x, \\texttt{seedPoint} .y)_b+
+ * \\texttt{upDiff} _b\\]`
  * 
  * where `$src(x',y')$` is the value of one of pixel neighbors that is already known to belong to the
  * component. That is, to be added to the connected component, a color/brightness of the pixel should
  * be close enough to:
  * 
- * Color/brightness of one of its neighbors that already belong to the connected component in case of
- * a floating range.
+ * Color/brightness of one of its neighbors that already belong to the connected component in case of a
+ * floating range.
  * Color/brightness of the seed point in case of a fixed range.
  * 
- * Use these functions to either mark a connected component with the specified color in-place, or
- * build a mask and then extract the contour, or copy the region to another image, and so on.
+ * Use these functions to either mark a connected component with the specified color in-place, or build
+ * a mask and then extract the contour, or copy the region to another image, and so on.
  * 
- * Since the mask is larger than the filled image, a pixel `$(x, y)$` in image corresponds to the
- * pixel `$(x+1, y+1)$` in the mask .
+ * Since the mask is larger than the filled image, a pixel `$(x, y)$` in image corresponds to the pixel
+ * `$(x+1, y+1)$` in the mask .
  * 
  * [findContours](#d3/dc0/group__imgproc__shape_1gadf1ad6a0b82947fa1fe3c3d497f260e0})
  * 
@@ -200,29 +199,29 @@ export declare function floodFill(image: InputOutputArray, seedPoint: Point, new
  * function unless the FLOODFILL_MASK_ONLY flag is set in the second variant of the function. See the
  * details below.
  * @param mask Operation mask that should be a single-channel 8-bit image, 2 pixels wider and 2 pixels
- * taller than image. Since this is both an input and output parameter, you must take responsibility
- * of initializing it. Flood-filling cannot go across non-zero pixels in the input mask. For example,
- * an edge detector output can be used as a mask to stop filling at edges. On output, pixels in the
- * mask corresponding to filled pixels in the image are set to 1 or to the a value specified in flags
- * as described below. Additionally, the function fills the border of the mask with ones to simplify
- * internal processing. It is therefore possible to use the same mask in multiple calls to the
- * function to make sure the filled areas do not overlap.
+ * taller than image. Since this is both an input and output parameter, you must take responsibility of
+ * initializing it. Flood-filling cannot go across non-zero pixels in the input mask. For example, an
+ * edge detector output can be used as a mask to stop filling at edges. On output, pixels in the mask
+ * corresponding to filled pixels in the image are set to 1 or to the a value specified in flags as
+ * described below. Additionally, the function fills the border of the mask with ones to simplify
+ * internal processing. It is therefore possible to use the same mask in multiple calls to the function
+ * to make sure the filled areas do not overlap.
  * @param seedPoint Starting point.
  * @param newVal New value of the repainted domain pixels.
  * @param rect Optional output parameter set by the function to the minimum bounding rectangle of the
  * repainted domain.
- * @param loDiff Maximal lower brightness/color difference between the currently observed pixel and
- * one of its neighbors belonging to the component, or a seed pixel being added to the component.
- * @param upDiff Maximal upper brightness/color difference between the currently observed pixel and
- * one of its neighbors belonging to the component, or a seed pixel being added to the component.
+ * @param loDiff Maximal lower brightness/color difference between the currently observed pixel and one
+ * of its neighbors belonging to the component, or a seed pixel being added to the component.
+ * @param upDiff Maximal upper brightness/color difference between the currently observed pixel and one
+ * of its neighbors belonging to the component, or a seed pixel being added to the component.
  * @param flags Operation flags. The first 8 bits contain a connectivity value. The default value of 4
  * means that only the four nearest neighbor pixels (those that share an edge) are considered. A
  * connectivity value of 8 means that the eight nearest neighbor pixels (those that share a corner)
  * will be considered. The next 8 bits (8-16) contain a value between 1 and 255 with which to fill the
  * mask (the default value is 1). For example, 4 | ( 255 << 8 ) will consider 4 nearest neighbours and
- * fill the mask with a value of 255. The following additional options occupy higher bits and
- * therefore may be further combined with the connectivity and mask fill values using bit-wise or (|),
- * see FloodFillFlags.
+ * fill the mask with a value of 255. The following additional options occupy higher bits and therefore
+ * may be further combined with the connectivity and mask fill values using bit-wise or (|), see
+ * FloodFillFlags.
  */
 export declare function floodFill(image: InputOutputArray, mask: InputOutputArray, seedPoint: Point, newVal: Scalar, rect?: any, loDiff?: Scalar, upDiff?: Scalar, flags?: int): int
 
@@ -236,8 +235,8 @@ export declare function floodFill(image: InputOutputArray, mask: InputOutputArra
  * background". The parameter is only used when mode==GC_INIT_WITH_RECT .
  * @param bgdModel Temporary array for the background model. Do not modify it while you are processing
  * the same image.
- * @param fgdModel Temporary arrays for the foreground model. Do not modify it while you are
- * processing the same image.
+ * @param fgdModel Temporary arrays for the foreground model. Do not modify it while you are processing
+ * the same image.
  * @param iterCount Number of iterations the algorithm should make before returning the result. Note
  * that the result can be refined with further calls with mode==GC_INIT_WITH_MASK or mode==GC_EVAL .
  * @param mode Operation mode that could be one of the GrabCutModes
@@ -292,8 +291,8 @@ export declare function integral(src: InputArray, sum: OutputArray, sqsum: Outpu
  * @param sum integral image as $(W+1)\times (H+1)$ , 32-bit integer or floating-point (32f or 64f).
  * @param sqsum integral image for squared pixel values; it is $(W+1)\times (H+1)$, double-precision
  * floating-point (64f) array.
- * @param tilted integral for the image rotated by 45 degrees; it is $(W+1)\times (H+1)$ array with
- * the same data type as sum.
+ * @param tilted integral for the image rotated by 45 degrees; it is $(W+1)\times (H+1)$ array with the
+ * same data type as sum.
  * @param sdepth desired depth of the integral and the tilted integral images, CV_32S, CV_32F, or
  * CV_64F.
  * @param sqdepth desired depth of the integral image of squared pixel values, CV_32F or CV_64F.
@@ -301,20 +300,19 @@ export declare function integral(src: InputArray, sum: OutputArray, sqsum: Outpu
 export declare function integral(src: InputArray, sum: OutputArray, sqsum: OutputArray, tilted: OutputArray, sdepth?: int, sqdepth?: int): void
 
 /**
- * The function applies fixed-level thresholding to a multiple-channel array. The function is
- * typically used to get a bi-level (binary) image out of a grayscale image (
+ * The function applies fixed-level thresholding to a multiple-channel array. The function is typically
+ * used to get a bi-level (binary) image out of a grayscale image (
  * [compare](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}) could be also used for
  * this purpose) or for removing a noise, that is, filtering out pixels with too small or too large
  * values. There are several types of thresholding supported by the function. They are determined by
  * type parameter.
  * 
  * Also, the special values
- * [THRESH_OTSU](#d7/d1b/group__imgproc__misc_1ggaa9e58d2860d4afa658ef70a9b1115576a95251923e8e22f368ffa
- * 86ba8bce87ff}) or
- * [THRESH_TRIANGLE](#d7/d1b/group__imgproc__misc_1ggaa9e58d2860d4afa658ef70a9b1115576a22ffcf680811aed9
- * 5be6c7f5cd809621}) may be combined with one of the above values. In these cases, the function
- * determines the optimal threshold value using the Otsu's or Triangle algorithm and uses it instead
- * of the specified thresh.
+ * [THRESH_OTSU](#d7/d1b/group__imgproc__misc_1ggaa9e58d2860d4afa658ef70a9b1115576a95251923e8e22f368ffa86ba8bce87ff})
+ * or
+ * [THRESH_TRIANGLE](#d7/d1b/group__imgproc__misc_1ggaa9e58d2860d4afa658ef70a9b1115576a22ffcf680811aed95be6c7f5cd809621})
+ * may be combined with one of the above values. In these cases, the function determines the optimal
+ * threshold value using the Otsu's or Triangle algorithm and uses it instead of the specified thresh.
  * 
  * Currently, the Otsu's and Triangle methods are implemented only for 8-bit single-channel images.
  * 
@@ -368,8 +366,8 @@ export declare const ADAPTIVE_THRESH_MEAN_C: AdaptiveThresholdTypes // initializ
 
 /**
  * the threshold value `$T(x, y)$` is a weighted sum (cross-correlation with a Gaussian window) of the
- * `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood of `$(x, y)$` minus C . The
- * default sigma (standard deviation) is used for the specified blockSize . See
+ * `$\\texttt{blockSize} \\times \\texttt{blockSize}$` neighborhood of `$(x, y)$` minus C . The default
+ * sigma (standard deviation) is used for the specified blockSize . See
  * [getGaussianKernel](#d4/d86/group__imgproc__filter_1gac05a120c1ae92a6060dd0db190a61afa})
  * 
  */

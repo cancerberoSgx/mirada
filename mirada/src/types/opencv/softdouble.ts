@@ -1,11 +1,10 @@
 
-import { int, bool } from './_types'
+import { uint64_t, uint32_t, int32_t, int64_t, int, bool } from './_types'
 
 /**
  * 
  * Source:
- * [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/openc
- * v2/core/softfloat.hpp#L362).
+ * [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/softfloat.hpp#L362).
  * 
  */
 export declare class softdouble {
@@ -13,7 +12,7 @@ export declare class softdouble {
   /**
    *   
    */
-  public v: any
+  public v: uint64_t
 
   /**
    *   
@@ -24,31 +23,31 @@ export declare class softdouble {
    *   
    *   @param c 
    */
-  public constructor(c: any)
+  public constructor(c: softdouble)
 
   /**
    *   
    *   @param arg159 
    */
-  public constructor(arg159: any)
+  public constructor(arg159: uint32_t)
 
   /**
    *   
    *   @param arg160 
    */
-  public constructor(arg160: any)
+  public constructor(arg160: uint64_t)
 
   /**
    *   
    *   @param arg161 
    */
-  public constructor(arg161: any)
+  public constructor(arg161: int32_t)
 
   /**
    *   
    *   @param arg162 
    */
-  public constructor(arg162: any)
+  public constructor(arg162: int64_t)
 
   /**
    *   
@@ -65,7 +64,7 @@ export declare class softdouble {
    *   Returns a number 1 <= x < 2 with the same significand
    *   
    */
-  public getFrac(): any
+  public getFrac(): softdouble
 
   /**
    *   
@@ -91,66 +90,66 @@ export declare class softdouble {
    *   
    *   @param e 
    */
-  public setExp(e: int): any
+  public setExp(e: int): softdouble
 
   /**
    *   Constructs a copy of a number with significand taken from parameter
    *   
    *   @param s 
    */
-  public setFrac(s: any): any
+  public setFrac(s: softdouble): softdouble
 
   /**
    *   
    *   @param sign 
    */
-  public setSign(sign: bool): any
+  public setSign(sign: bool): softdouble
 
   /**
    *   
    */
-  public static eps(): any
+  public static eps(): softdouble
 
   /**
    *   Builds new value from raw binary representation
    *   
    *   @param a 
    */
-  public static fromRaw(a: any): any
+  public static fromRaw(a: uint64_t): softdouble
 
   /**
    *   
    */
-  public static inf(): any
+  public static inf(): softdouble
 
   /**
    *   
    */
-  public static max(): any
+  public static max(): softdouble
 
   /**
    *   
    */
-  public static min(): any
+  public static min(): softdouble
 
   /**
    *   
    */
-  public static nan(): any
+  public static nan(): softdouble
 
   /**
    *   
    */
-  public static one(): any
+  public static one(): softdouble
 
   /**
    *   
    */
-  public static pi(): any
+  public static pi(): softdouble
 
   /**
    *   
    */
-  public static zero(): any
+  public static zero(): softdouble
 }
 

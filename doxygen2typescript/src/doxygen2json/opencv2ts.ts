@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync} from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { withoutExtension } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
 import { cp, mkdir, rm, test } from 'shelljs'
@@ -11,6 +11,10 @@ import { buildDts } from './render/main'
 import { canRenderFileNamed } from './render/tsExports/hacks'
 
 export function opencv2ts(o: Doxygen2tsOptions) {
+  // if (o.writeIndexOnly) {
+  //   writeIndexTs(o)
+  //   return
+  // }
   rm('-rf', o.tsOutputFolder)
   mkdir('-p', o.tsOutputFolder)
   const defs = getBindingsCppMemberdefs(o)
@@ -30,7 +34,12 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       renderLocation: true,
       locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
       ...o,
-      tsCodeFormatSettings: { indentSize: 2, convertTabsToSpaces: true, lineBreak: 100, ...o.tsCodeFormatSettings },
+      tsCodeFormatSettings: {
+        indentSize: 2,
+        convertTabsToSpaces: true,
+        jsdocLineMaxLength: 100,
+        ...o.tsCodeFormatSettings
+      },
     })
       .results
       .forEach(d => {
@@ -47,7 +56,7 @@ export function opencv2ts(o: Doxygen2tsOptions) {
         if (o.jsonTypes && !existsSync(withoutExtension(fileName) + '.json')) {
           writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
         }
-        if (o.xmlTypes&& !existsSync(withoutExtension(fileName) + '.xml')) {
+        if (o.xmlTypes && !existsSync(withoutExtension(fileName) + '.xml')) {
           cp(xmlFile, withoutExtension(fileName) + '.xml')
         }
       })

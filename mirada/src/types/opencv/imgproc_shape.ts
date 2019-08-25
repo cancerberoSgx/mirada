@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputArrayOfArrays, Point, float, Moments, Point2f, ConnectedComponentsAlgorithmsTypes, ConnectedComponentsTypes, ContourApproximationModes, RectanglesIntersectTypes, RetrievalModes, ShapeMatchModes } from './_types'
+import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputArrayOfArrays, Point, float, Moments, Point2f } from './_types'
 /*
  * # imgproc_shape
  *
@@ -8,16 +8,15 @@ import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputAr
 
 /**
  * The function [cv::approxPolyDP](#d3/dc0/group__imgproc__shape_1ga0012a5fdaea70b8a9970165d98722b4c})
- * approximates a curve or a polygon with another curve/polygon with less vertices so that the
- * distance between them is less or equal to the specified precision. It uses the Douglas-Peucker
- * algorithm
+ * approximates a curve or a polygon with another curve/polygon with less vertices so that the distance
+ * between them is less or equal to the specified precision. It uses the Douglas-Peucker algorithm
  * 
  * @param curve Input vector of a 2D point stored in std::vector or Mat
  * @param approxCurve Result of the approximation. The type should match the type of the input curve.
- * @param epsilon Parameter specifying the approximation accuracy. This is the maximum distance
- * between the original curve and its approximation.
- * @param closed If true, the approximated curve is closed (its first and last vertices are
- * connected). Otherwise, it is not closed.
+ * @param epsilon Parameter specifying the approximation accuracy. This is the maximum distance between
+ * the original curve and its approximation.
+ * @param closed If true, the approximated curve is closed (its first and last vertices are connected).
+ * Otherwise, it is not closed.
  */
 export declare function approxPolyDP(curve: InputArray, approxCurve: OutputArray, epsilon: double, closed: bool): void
 
@@ -52,14 +51,14 @@ export declare function boxPoints(box: RotatedRect, points: OutputArray): void
 /**
  * image with 4 or 8 way connectivity - returns N, the total number of labels [0, N-1] where 0
  * represents the background label. ltype specifies the output label image type, an important
- * consideration based on the total number of labels or alternatively the total number of pixels in
- * the source image. ccltype specifies the connected components labeling algorithm to use, currently
- * Grana (BBDT) and Wu's (SAUF) algorithms are supported, see the
- * [ConnectedComponentsAlgorithmsTypes](#d3/dc0/group__imgproc__shape_1ga5ed7784614678adccb699c70fb8410
- * 75}) for details. Note that SAUF algorithm forces a row major ordering of labels while BBDT does
- * not. This function uses parallel version of both Grana and Wu's algorithms if at least one allowed
- * parallel framework is enabled and if the rows of the image are at least twice the number returned
- * by [getNumberOfCPUs](#db/de0/group__core__utils_1gadf09fc982bf4f17bc84bd1abce5d0863}).
+ * consideration based on the total number of labels or alternatively the total number of pixels in the
+ * source image. ccltype specifies the connected components labeling algorithm to use, currently Grana
+ * (BBDT) and Wu's (SAUF) algorithms are supported, see the
+ * [ConnectedComponentsAlgorithmsTypes](#d3/dc0/group__imgproc__shape_1ga5ed7784614678adccb699c70fb841075})
+ * for details. Note that SAUF algorithm forces a row major ordering of labels while BBDT does not.
+ * This function uses parallel version of both Grana and Wu's algorithms if at least one allowed
+ * parallel framework is enabled and if the rows of the image are at least twice the number returned by
+ * [getNumberOfCPUs](#db/de0/group__core__utils_1gadf09fc982bf4f17bc84bd1abce5d0863}).
  * 
  * @param image the 8-bit single-channel image to be labeled
  * @param labels destination labeled image
@@ -83,14 +82,14 @@ export declare function connectedComponents(image: InputArray, labels: OutputArr
 /**
  * image with 4 or 8 way connectivity - returns N, the total number of labels [0, N-1] where 0
  * represents the background label. ltype specifies the output label image type, an important
- * consideration based on the total number of labels or alternatively the total number of pixels in
- * the source image. ccltype specifies the connected components labeling algorithm to use, currently
+ * consideration based on the total number of labels or alternatively the total number of pixels in the
+ * source image. ccltype specifies the connected components labeling algorithm to use, currently
  * Grana's (BBDT) and Wu's (SAUF) algorithms are supported, see the
- * [ConnectedComponentsAlgorithmsTypes](#d3/dc0/group__imgproc__shape_1ga5ed7784614678adccb699c70fb8410
- * 75}) for details. Note that SAUF algorithm forces a row major ordering of labels while BBDT does
- * not. This function uses parallel version of both Grana and Wu's algorithms (statistics included) if
- * at least one allowed parallel framework is enabled and if the rows of the image are at least twice
- * the number returned by
+ * [ConnectedComponentsAlgorithmsTypes](#d3/dc0/group__imgproc__shape_1ga5ed7784614678adccb699c70fb841075})
+ * for details. Note that SAUF algorithm forces a row major ordering of labels while BBDT does not.
+ * This function uses parallel version of both Grana and Wu's algorithms (statistics included) if at
+ * least one allowed parallel framework is enabled and if the rows of the image are at least twice the
+ * number returned by
  * [getNumberOfCPUs](#db/de0/group__core__utils_1gadf09fc982bf4f17bc84bd1abce5d0863}).
  * 
  * @param image the 8-bit single-channel image to be labeled
@@ -174,9 +173,9 @@ export declare function contourArea(contour: InputArray, oriented?: bool): doubl
  * @param clockwise Orientation flag. If it is true, the output convex hull is oriented clockwise.
  * Otherwise, it is oriented counter-clockwise. The assumed coordinate system has its X axis pointing
  * to the right, and its Y axis pointing upwards.
- * @param returnPoints Operation flag. In case of a matrix, when the flag is true, the function
- * returns convex hull points. Otherwise, it returns indices of the convex hull points. When the
- * output array is std::vector, the flag is ignored, and the output depends on the type of the vector:
+ * @param returnPoints Operation flag. In case of a matrix, when the flag is true, the function returns
+ * convex hull points. Otherwise, it returns indices of the convex hull points. When the output array
+ * is std::vector, the flag is ignored, and the output depends on the type of the vector:
  * std::vector<int> implies returnPoints=false, std::vector<Point> implies returnPoints=true.
  */
 export declare function convexHull(points: InputArray, hull: OutputArray, clockwise?: bool, returnPoints?: bool): void
@@ -262,17 +261,17 @@ export declare function fitEllipse(points: InputArray): RotatedRect
  * The function calculates the ellipse that fits a set of 2D points. It returns the rotated rectangle
  * in which the ellipse is inscribed. The Approximate Mean Square (AMS) proposed by Taubin1991 is used.
  * 
- * For an ellipse, this basis set is `$ \\chi= \\left(x^2, x y, y^2, x, y, 1\\right) $`, which is a
- * set of six free coefficients `$
+ * For an ellipse, this basis set is `$ \\chi= \\left(x^2, x y, y^2, x, y, 1\\right) $`, which is a set
+ * of six free coefficients `$
  * A^T=\\left\\{A_{\\text{xx}},A_{\\text{xy}},A_{\\text{yy}},A_x,A_y,A_0\\right\\} $`. However, to
  * specify an ellipse, all that is needed is five numbers; the major and minor axes lengths `$ (a,b)
  * $`, the position `$ (x_0,y_0) $`, and the orientation `$ \\theta $`. This is because the basis set
  * includes lines, quadratics, parabolic and hyperbolic functions as well as elliptical functions as
  * possible fits. If the fit is found to be a parabolic or hyperbolic function then the standard
- * [fitEllipse](#d3/dc0/group__imgproc__shape_1gaf259efaad93098103d6c27b9e4900ffa}) method is used.
- * The AMS method restricts the fit to parabolic, hyperbolic and elliptical curves by imposing the
- * condition that `$ A^T ( D_x^T D_x + D_y^T D_y) A = 1 $` where the matrices `$ Dx $` and `$ Dy $`
- * are the partial derivatives of the design matrix `$ D $` with respect to x and y. The matrices are
+ * [fitEllipse](#d3/dc0/group__imgproc__shape_1gaf259efaad93098103d6c27b9e4900ffa}) method is used. The
+ * AMS method restricts the fit to parabolic, hyperbolic and elliptical curves by imposing the
+ * condition that `$ A^T ( D_x^T D_x + D_y^T D_y) A = 1 $` where the matrices `$ Dx $` and `$ Dy $` are
+ * the partial derivatives of the design matrix `$ D $` with respect to x and y. The matrices are
  * formed row by row applying the following to each of the points in the set: `\\begin{align*}
  * D(i,:)&=\\left\\{x_i^2, x_i y_i, y_i^2, x_i, y_i, 1\\right\\} & D_x(i,:)&=\\left\\{2
  * x_i,y_i,0,1,0,0\\right\\} & D_y(i,:)&=\\left\\{0,x_i,2 y_i,0,1,0\\right\\} \\end{align*}` The AMS
@@ -292,20 +291,20 @@ export declare function fitEllipseAMS(points: InputArray): RotatedRect
  * in which the ellipse is inscribed. The Direct least square (Direct) method by Fitzgibbon1999 is
  * used.
  * 
- * For an ellipse, this basis set is `$ \\chi= \\left(x^2, x y, y^2, x, y, 1\\right) $`, which is a
- * set of six free coefficients `$
+ * For an ellipse, this basis set is `$ \\chi= \\left(x^2, x y, y^2, x, y, 1\\right) $`, which is a set
+ * of six free coefficients `$
  * A^T=\\left\\{A_{\\text{xx}},A_{\\text{xy}},A_{\\text{yy}},A_x,A_y,A_0\\right\\} $`. However, to
  * specify an ellipse, all that is needed is five numbers; the major and minor axes lengths `$ (a,b)
  * $`, the position `$ (x_0,y_0) $`, and the orientation `$ \\theta $`. This is because the basis set
  * includes lines, quadratics, parabolic and hyperbolic functions as well as elliptical functions as
  * possible fits. The Direct method confines the fit to ellipses by ensuring that `$ 4 A_{xx} A_{yy}-
- * A_{xy}^2 > 0 $`. The condition imposed is that `$ 4 A_{xx} A_{yy}- A_{xy}^2=1 $` which satisfies
- * the inequality and as the coefficients can be arbitrarily scaled is not overly restrictive.
+ * A_{xy}^2 > 0 $`. The condition imposed is that `$ 4 A_{xx} A_{yy}- A_{xy}^2=1 $` which satisfies the
+ * inequality and as the coefficients can be arbitrarily scaled is not overly restrictive.
  * 
  * `\\begin{equation*} \\epsilon ^2= A^T D^T D A \\quad \\text{with} \\quad A^T C A =1 \\quad
- * \\text{and} \\quad C=\\left(\\begin{matrix} 0 & 0 & 2 & 0 & 0 & 0 \\\\ 0 & -1 & 0 & 0 & 0 & 0 \\\\
- * 2 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0
- * & 0 \\end{matrix} \\right) \\end{equation*}`
+ * \\text{and} \\quad C=\\left(\\begin{matrix} 0 & 0 & 2 & 0 & 0 & 0 \\\\ 0 & -1 & 0 & 0 & 0 & 0 \\\\ 2
+ * & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0
+ * \\end{matrix} \\right) \\end{equation*}`
  * 
  * The minimum cost is found by solving the generalized eigenvalue problem.
  * 
@@ -314,8 +313,8 @@ export declare function fitEllipseAMS(points: InputArray): RotatedRect
  * The system produces only one positive eigenvalue `$ \\lambda$` which is chosen as the solution with
  * its eigenvector `$\\mathbf{u}$`. These are used to find the coefficients
  * 
- * `\\begin{equation*} A = \\sqrt{\\frac{1}{\\mathbf{u}^T C \\mathbf{u}}} \\mathbf{u}
- * \\end{equation*}` The scaling factor guarantees that `$A^T C A =1$`.
+ * `\\begin{equation*} A = \\sqrt{\\frac{1}{\\mathbf{u}^T C \\mathbf{u}}} \\mathbf{u} \\end{equation*}`
+ * The scaling factor guarantees that `$A^T C A =1$`.
  * 
  * @param points Input 2D point set, stored in std::vector<> or Mat
  */
@@ -342,11 +341,11 @@ export declare function fitEllipseDirect(points: InputArray): RotatedRect
  * inversely proportional to `$\\rho(r_i)$` .
  * 
  * @param points Input vector of 2D or 3D points, stored in std::vector<> or Mat.
- * @param line Output line parameters. In case of 2D fitting, it should be a vector of 4 elements
- * (like Vec4f) - (vx, vy, x0, y0), where (vx, vy) is a normalized vector collinear to the line and
- * (x0, y0) is a point on the line. In case of 3D fitting, it should be a vector of 6 elements (like
- * Vec6f) - (vx, vy, vz, x0, y0, z0), where (vx, vy, vz) is a normalized vector collinear to the line
- * and (x0, y0, z0) is a point on the line.
+ * @param line Output line parameters. In case of 2D fitting, it should be a vector of 4 elements (like
+ * Vec4f) - (vx, vy, x0, y0), where (vx, vy) is a normalized vector collinear to the line and (x0, y0)
+ * is a point on the line. In case of 3D fitting, it should be a vector of 6 elements (like Vec6f) -
+ * (vx, vy, vz, x0, y0, z0), where (vx, vy, vz) is a normalized vector collinear to the line and (x0,
+ * y0, z0) is a point on the line.
  * @param distType Distance used by the M-estimator, see DistanceTypes
  * @param param Numerical parameter ( C ) for some types of distances. If it is 0, an optimal value is
  * chosen.
@@ -374,8 +373,8 @@ export declare function fitLine(points: InputArray, line: OutputArray, distType:
  * 
  * These values are proved to be invariants to the image scale, rotation, and reflection except the
  * seventh one, whose sign is changed by reflection. This invariance is proved with the assumption of
- * infinite image resolution. In case of raster images, the computed Hu invariants for the original
- * and transformed images are a bit different.
+ * infinite image resolution. In case of raster images, the computed Hu invariants for the original and
+ * transformed images are a bit different.
  * 
  * [matchShapes](#d3/dc0/group__imgproc__shape_1gaadc90cb16e2362c9bd6e7363e6e4c317})
  * 
@@ -456,8 +455,8 @@ export declare function minEnclosingCircle(points: InputArray, center: any, radi
  * log(n))$`.
  * 
  * @param points Input vector of 2D points with depth CV_32S or CV_32F, stored in std::vector<> or Mat
- * @param triangle Output vector of three 2D points defining the vertices of the triangle. The depth
- * of the OutputArray must be CV_32F.
+ * @param triangle Output vector of three 2D points defining the vertices of the triangle. The depth of
+ * the OutputArray must be CV_32F.
  */
 export declare function minEnclosingTriangle(points: InputArray, triangle: OutputArray): double
 
@@ -473,8 +472,8 @@ export declare function minEnclosingTriangle(points: InputArray, triangle: Outpu
  * [contourArea](#d3/dc0/group__imgproc__shape_1ga2c759ed9f497d4a618048a2f56dc97f1}),
  * [arcLength](#d3/dc0/group__imgproc__shape_1ga8d26483c636be6b35c3ec6335798a47c})
  * 
- * @param array Raster image (single-channel, 8-bit or floating-point 2D array) or an array ( $1
- * \times N$ or $N \times 1$ ) of 2D points (Point or Point2f ).
+ * @param array Raster image (single-channel, 8-bit or floating-point 2D array) or an array ( $1 \times
+ * N$ or $N \times 1$ ) of 2D points (Point or Point2f ).
  * @param binaryImage If it is true, all non-zero image pixels are treated as 1's. The parameter is
  * used for images only.
  */
@@ -490,8 +489,8 @@ export declare function moments(array: InputArray, binaryImage?: bool): Moments
  * 
  * @param contour Input contour.
  * @param pt Point tested against the contour.
- * @param measureDist If true, the function estimates the signed distance from the point to the
- * nearest contour edge. Otherwise, the function only checks if the point is inside a contour or not.
+ * @param measureDist If true, the function estimates the signed distance from the point to the nearest
+ * contour edge. Otherwise, the function only checks if the point is inside a contour or not.
  */
 export declare function pointPolygonTest(contour: InputArray, pt: Point2f, measureDist: bool): double
 
@@ -506,8 +505,8 @@ export declare function pointPolygonTest(contour: InputArray, pt: Point2f, measu
  * 
  * @param rect1 First rectangle
  * @param rect2 Second rectangle
- * @param intersectingRegion The output array of the vertices of the intersecting region. It returns
- * at most 8 vertices. Stored as std::vector<cv::Point2f> or cv::Mat as Mx1 of type CV_32FC2.
+ * @param intersectingRegion The output array of the vertices of the intersecting region. It returns at
+ * most 8 vertices. Stored as std::vector<cv::Point2f> or cv::Mat as Mx1 of type CV_32FC2.
  */
 export declare function rotatedRectangleIntersection(rect1: any, rect2: any, intersectingRegion: OutputArray): int
 
@@ -616,10 +615,10 @@ export declare const RETR_EXTERNAL: RetrievalModes // initializer: = 0
 export declare const RETR_LIST: RetrievalModes // initializer: = 1
 
 /**
- * retrieves all of the contours and organizes them into a two-level hierarchy. At the top level,
- * there are external boundaries of the components. At the second level, there are boundaries of the
- * holes. If there is another contour inside a hole of a connected component, it is still put at the
- * top level.
+ * retrieves all of the contours and organizes them into a two-level hierarchy. At the top level, there
+ * are external boundaries of the components. At the second level, there are boundaries of the holes.
+ * If there is another contour inside a hole of a connected component, it is still put at the top
+ * level.
  * 
  */
 export declare const RETR_CCOMP: RetrievalModes // initializer: = 2

@@ -1,5 +1,5 @@
 
-import { int } from './_types'
+import { Mat4, Mat3, Vec3, Mat, float_type, int } from './_types'
 
 /**
  * It represents a 4x4 homogeneous transformation matrix `$T$`
@@ -62,8 +62,7 @@ import { int } from './_types'
  * ```
  * 
  * Source:
- * [opencv2/core/affine.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/
- * core/affine.hpp#L129).
+ * [opencv2/core/affine.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/affine.hpp#L129).
  * 
  */
 export declare class Affine3 {
@@ -71,7 +70,7 @@ export declare class Affine3 {
   /**
    *   
    */
-  public matrix: any
+  public matrix: Mat4
 
   /**
    *   
@@ -82,7 +81,7 @@ export declare class Affine3 {
    *   
    *   @param affine 
    */
-  public constructor(affine: any)
+  public constructor(affine: Mat4)
 
   /**
    *   The resulting 4x4 matrix is
@@ -92,7 +91,7 @@ export declare class Affine3 {
    *   @param R 3x3 rotation matrix.
    *   @param t 3x1 translation vector.
    */
-  public constructor(R: any, t?: any)
+  public constructor(R: Mat3, t?: Vec3)
 
   /**
    *   Rodrigues vector.
@@ -103,7 +102,7 @@ export declare class Affine3 {
    * indicates the rotation angle in radian (using right hand rule).
    *   @param t 3x1 translation vector.
    */
-  public constructor(rvec: any, t?: any)
+  public constructor(rvec: Vec3, t?: Vec3)
 
   /**
    *   Combines all constructors above. Supports 4x4, 3x4, 3x3, 1x3, 3x1 sizes of data matrix.
@@ -117,32 +116,32 @@ export declare class Affine3 {
    * matrix.
    *   @param t 3x1 translation vector. It is used only when data is neither 4x4 nor 3x4.
    */
-  public constructor(data: any, t?: any)
+  public constructor(data: Mat, t?: Vec3)
 
   /**
    *   
    *   @param vals 
    */
-  public constructor(vals: any)
+  public constructor(vals: float_type)
 
   /**
    *   
    *   @param arg401 
    */
-  public cast(arg401: any): any
+  public cast(arg401: any): Affine3
 
   /**
    *   
    *   @param affine 
    */
-  public concatenate(affine: any): any
+  public concatenate(affine: Affine3): Affine3
 
   /**
    *   the inverse of the current matrix.
    *   
    *   @param method 
    */
-  public inv(method?: int): any
+  public inv(method?: int): Affine3
 
   /**
    *   Copy the 3x3 matrix L to the upper left part of the current matrix
@@ -151,25 +150,25 @@ export declare class Affine3 {
    *   
    *   @param L 3x3 matrix.
    */
-  public linear(L: any): any
+  public linear(L: Mat3): Mat3
 
   /**
    *   the upper left 3x3 part
    *   
    */
-  public linear(): any
+  public linear(): Mat3
 
   /**
    *   
    *   @param R 
    */
-  public rotate(R: any): any
+  public rotate(R: Mat3): Affine3
 
   /**
    *   
    *   @param rvec 
    */
-  public rotate(rvec: any): any
+  public rotate(rvec: Vec3): Affine3
 
   /**
    *   Rotation matrix.
@@ -179,7 +178,7 @@ export declare class Affine3 {
    *   
    *   @param R 3x3 rotation matrix.
    */
-  public rotation(R: any): any
+  public rotation(R: Mat3): Mat3
 
   /**
    *   Rodrigues vector.
@@ -189,7 +188,7 @@ export declare class Affine3 {
    *   @param rvec 3x1 rotation vector. The direction indicates the rotation axis and its length
    * indicates the rotation angle in radian (using the right thumb convention).
    */
-  public rotation(rvec: any): any
+  public rotation(rvec: Vec3): Vec3
 
   /**
    *   Combines rotation methods above. Supports 3x3, 1x3, 3x1 sizes of data matrix.
@@ -201,13 +200,13 @@ export declare class Affine3 {
    * formula is used to compute the rotation matrix and sets the upper left 3x3 part of the current
    * matrix.
    */
-  public rotation(data: any): any
+  public rotation(data: Mat): Mat
 
   /**
    *   the upper left 3x3 part
    *   
    */
-  public rotation(): any
+  public rotation(): Mat3
 
   /**
    *   Rodrigues vector. 
@@ -220,13 +219,13 @@ export declare class Affine3 {
    * rvec)](#dd/d99/classcv_1_1Affine3_1acfe7474211770799f56deb8b81d829f5})`.
    *   
    */
-  public rvec(): any
+  public rvec(): Vec3
 
   /**
    *   
    *   @param t 
    */
-  public translate(t: any): any
+  public translate(t: Vec3): Affine3
 
   /**
    *   Copy t to the first three elements of the last column of the current matrix
@@ -235,17 +234,17 @@ export declare class Affine3 {
    *   
    *   @param t 3x1 translation vector.
    */
-  public translation(t: any): any
+  public translation(t: Vec3): Vec3
 
   /**
    *   the upper right 3x1 part
    *   
    */
-  public translation(): any
+  public translation(): Vec3
 
   /**
    *   
    */
-  public static Identity(): any
+  public static Identity(): Affine3
 }
 

@@ -7,7 +7,7 @@ import { setExample } from '../app/dispatcher'
 import { About } from './about'
 import { AbstractComponent } from './common/component'
 import { memoryReport, printMs } from "./common/util"
-import { ExampleTag } from '../app/state';
+import { ExampleTag } from "../app/examples";
 
 export class Header extends AbstractComponent {
 

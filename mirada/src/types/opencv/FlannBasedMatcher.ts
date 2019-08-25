@@ -1,5 +1,5 @@
 
-import { bool } from './_types'
+import { Ptr, InputArrayOfArrays, bool, FileNode, FileStorage } from './_types'
 
 /**
  * This matcher trains [cv::flann::Index](#d1/db2/classcv_1_1flann_1_1Index}) on a train descriptor
@@ -10,8 +10,7 @@ import { bool } from './_types'
  * support this. :
  * 
  * Source:
- * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/f
- * eatures2d.hpp#L1187).
+ * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/features2d.hpp#L1187).
  * 
  */
 export declare class FlannBasedMatcher {
@@ -21,7 +20,7 @@ export declare class FlannBasedMatcher {
    *   @param indexParams 
    *   @param searchParams 
    */
-  public constructor(indexParams?: any, searchParams?: any)
+  public constructor(indexParams?: Ptr, searchParams?: Ptr)
 
   /**
    *   If the collection is not empty, the new descriptors are added to existing train descriptors.
@@ -29,7 +28,7 @@ export declare class FlannBasedMatcher {
    *   @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
    * train image.
    */
-  public add(descriptors: any): any
+  public add(descriptors: InputArrayOfArrays): InputArrayOfArrays
 
   /**
    *   
@@ -42,7 +41,7 @@ export declare class FlannBasedMatcher {
    * that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
    * object copy with the current parameters but with empty train data.
    */
-  public clone(emptyTrainData?: bool): any
+  public clone(emptyTrainData?: bool): Ptr
 
   /**
    *   
@@ -53,7 +52,7 @@ export declare class FlannBasedMatcher {
    *   
    *   @param fn 
    */
-  public read(fn: any): any
+  public read(fn: FileNode): FileNode
 
   /**
    *   Trains a descriptor matcher (for example, the flann index). In all methods to match, the method
@@ -70,11 +69,11 @@ export declare class FlannBasedMatcher {
    *   
    *   @param fs 
    */
-  public write(fs: any): any
+  public write(fs: FileStorage): FileStorage
 
   /**
    *   
    */
-  public static create(): any
+  public static create(): Ptr
 }
 

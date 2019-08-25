@@ -1,5 +1,5 @@
 
-import { InputOutputArray, Point, int, double, Size, bool, Size2l, Rect, InputArrayOfArrays, InputArray, Point2d, Size2d, Scalar, HersheyFonts, LineTypes, MarkerTypes } from './_types'
+import { InputOutputArray, Point, int, double, Size, bool, Size2l, Rect, InputArrayOfArrays, InputArray, Point2d, Size2d, Scalar } from './_types'
 /*
  * # imgproc_draw
  *
@@ -23,8 +23,8 @@ import { InputOutputArray, Point, int, double, Size, bool, Size2l, Rect, InputAr
 export declare function arrowedLine(img: InputOutputArray, pt1: Point, pt2: Point, color: any, thickness?: int, line_type?: int, shift?: int, tipLength?: double): void
 
 /**
- * The function [cv::circle](#d6/d6e/group__imgproc__draw_1gaf10604b069374903dbd0f0488cb43670}) draws
- * a simple or filled circle with a given center and radius.
+ * The function [cv::circle](#d6/d6e/group__imgproc__draw_1gaf10604b069374903dbd0f0488cb43670}) draws a
+ * simple or filled circle with a given center and radius.
  * 
  * @param img Image where the circle is drawn.
  * @param center Center of the circle.
@@ -69,8 +69,8 @@ export declare function clipLine(imgSize: Size2l, pt1: any, pt2: any): bool
 export declare function clipLine(imgRect: Rect, pt1: any, pt2: any): bool
 
 /**
- * The function draws contour outlines in the image if `$\\texttt{thickness} \\ge 0$` or fills the
- * area bounded by the contours if `$\\texttt{thickness}<0$` . The example below shows how to retrieve
+ * The function draws contour outlines in the image if `$\\texttt{thickness} \\ge 0$` or fills the area
+ * bounded by the contours if `$\\texttt{thickness}<0$` . The example below shows how to retrieve
  * connected components from the binary image and label them: : 
  * 
  * ```cpp
@@ -116,11 +116,11 @@ export declare function clipLine(imgRect: Rect, pt1: any, pt2: any): bool
  * ```
  * 
  * When
- * thickness=[FILLED](#d6/d6e/group__imgproc__draw_1ggaf076ef45de481ac96e0ab3dc2c29a777a89c5f6beef080e6
- * df347167f85e07b9e}), the function is designed to handle connected components with holes correctly
- * even when no hierarchy date is provided. This is done by analyzing all the outlines together using
- * even-odd rule. This may give incorrect results if you have a joint collection of separately
- * retrieved contours. In order to solve this problem, you need to call
+ * thickness=[FILLED](#d6/d6e/group__imgproc__draw_1ggaf076ef45de481ac96e0ab3dc2c29a777a89c5f6beef080e6df347167f85e07b9e}),
+ * the function is designed to handle connected components with holes correctly even when no hierarchy
+ * date is provided. This is done by analyzing all the outlines together using even-odd rule. This may
+ * give incorrect results if you have a joint collection of separately retrieved contours. In order to
+ * solve this problem, you need to call
  * [drawContours](#d6/d6e/group__imgproc__draw_1ga746c0625f1781f1ffc9056259103edbc}) separately for
  * each sub-group of contours, or iterate over the collection using contourIdx parameter.
  * 
@@ -165,11 +165,11 @@ export declare function drawMarker(img: InputOutputArray, position: Point, color
  * sector. The drawing code uses general parametric form. A piecewise-linear curve is used to
  * approximate the elliptic arc boundary. If you need more control of the ellipse rendering, you can
  * retrieve the curve using
- * [ellipse2Poly](#d6/d6e/group__imgproc__draw_1ga727a72a3f6a625a2ae035f957c61051f}) and then render
- * it with [polylines](#d6/d6e/group__imgproc__draw_1ga1ea127ffbbb7e0bfc4fd6fd2eb64263c}) or fill it
- * with [fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}). If you use the
- * first variant of the function and want to draw the whole ellipse, not an arc, pass `startAngle=0`
- * and `endAngle=360`. If `startAngle` is greater than `endAngle`, they are swapped. The figure below
+ * [ellipse2Poly](#d6/d6e/group__imgproc__draw_1ga727a72a3f6a625a2ae035f957c61051f}) and then render it
+ * with [polylines](#d6/d6e/group__imgproc__draw_1ga1ea127ffbbb7e0bfc4fd6fd2eb64263c}) or fill it with
+ * [fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}). If you use the first
+ * variant of the function and want to draw the whole ellipse, not an arc, pass `startAngle=0` and
+ * `endAngle=360`. If `startAngle` is greater than `endAngle`, they are swapped. The figure below
  * explains the meaning of the parameters to draw the blue arc.
  * 
  * @param img Image.
@@ -179,8 +179,8 @@ export declare function drawMarker(img: InputOutputArray, position: Point, color
  * @param startAngle Starting angle of the elliptic arc in degrees.
  * @param endAngle Ending angle of the elliptic arc in degrees.
  * @param color Ellipse color.
- * @param thickness Thickness of the ellipse arc outline, if positive. Otherwise, this indicates that
- * a filled ellipse sector is to be drawn.
+ * @param thickness Thickness of the ellipse arc outline, if positive. Otherwise, this indicates that a
+ * filled ellipse sector is to be drawn.
  * @param lineType Type of the ellipse boundary. See LineTypes
  * @param shift Number of fractional bits in the coordinates of the center and values of axes.
  */
@@ -191,11 +191,11 @@ export declare function ellipse(img: InputOutputArray, center: Point, axes: Size
  * only in what argument(s) it accepts.
  * 
  * @param img Image.
- * @param box Alternative ellipse representation via RotatedRect. This means that the function draws
- * an ellipse inscribed in the rotated rectangle.
+ * @param box Alternative ellipse representation via RotatedRect. This means that the function draws an
+ * ellipse inscribed in the rotated rectangle.
  * @param color Ellipse color.
- * @param thickness Thickness of the ellipse arc outline, if positive. Otherwise, this indicates that
- * a filled ellipse sector is to be drawn.
+ * @param thickness Thickness of the ellipse arc outline, if positive. Otherwise, this indicates that a
+ * filled ellipse sector is to be drawn.
  * @param lineType Type of the ellipse boundary. See LineTypes
  */
 export declare function ellipse(img: InputOutputArray, box: any, color: any, thickness?: int, lineType?: int): void
@@ -244,11 +244,10 @@ export declare function ellipse2Poly(center: Point2d, axes: Size2d, angle: int, 
 export declare function fillConvexPoly(img: InputOutputArray, pts: any, npts: int, color: any, lineType?: int, shift?: int): void
 
 /**
- * The function
- * [cv::fillConvexPoly](#d6/d6e/group__imgproc__draw_1ga3069baf93b51565e386c8e591f8418e6}) draws a
- * filled convex polygon. This function is much faster than the function
- * [fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}) . It can fill not
- * only convex polygons but any monotonic polygon without self-intersections, that is, a polygon whose
+ * The function [cv::fillConvexPoly](#d6/d6e/group__imgproc__draw_1ga3069baf93b51565e386c8e591f8418e6})
+ * draws a filled convex polygon. This function is much faster than the function
+ * [fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}) . It can fill not only
+ * convex polygons but any monotonic polygon without self-intersections, that is, a polygon whose
  * contour intersects every horizontal line (scan line) twice at the most (though, its top-most and/or
  * the bottom edge could be horizontal).
  * 
@@ -276,9 +275,9 @@ export declare function fillConvexPoly(img: InputOutputArray, points: InputArray
 export declare function fillPoly(img: InputOutputArray, pts: any, npts: any, ncontours: int, color: any, lineType?: int, shift?: int, offset?: Point): void
 
 /**
- * The function [cv::fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5})
- * fills an area bounded by several polygonal contours. The function can fill complex areas, for
- * example, areas with holes, contours with self-intersections (some of their parts), and so forth.
+ * The function [cv::fillPoly](#d6/d6e/group__imgproc__draw_1ga8c69b68fab5f25e2223b6496aa60dad5}) fills
+ * an area bounded by several polygonal contours. The function can fill complex areas, for example,
+ * areas with holes, contours with self-intersections (some of their parts), and so forth.
  * 
  * @param img Image.
  * @param pts Array of polygons where each polygon is represented as an array of points.
@@ -351,9 +350,9 @@ export declare function getTextSize(text: any, fontFace: int, fontScale: double,
 
 /**
  * The function line draws the line segment between pt1 and pt2 points in the image. The line is
- * clipped by the image boundaries. For non-antialiased lines with integer coordinates, the
- * 8-connected or 4-connected Bresenham algorithm is used. Thick lines are drawn with rounding
- * endings. Antialiased lines are drawn using Gaussian filtering.
+ * clipped by the image boundaries. For non-antialiased lines with integer coordinates, the 8-connected
+ * or 4-connected Bresenham algorithm is used. Thick lines are drawn with rounding endings. Antialiased
+ * lines are drawn using Gaussian filtering.
  * 
  * @param img Image.
  * @param pt1 First point of the line segment.
@@ -411,8 +410,8 @@ export declare function polylines(img: InputOutputArray, pts: InputArrayOfArrays
  * @param color Text color.
  * @param thickness Thickness of the lines used to draw a text.
  * @param lineType Line type. See LineTypes
- * @param bottomLeftOrigin When true, the image data origin is at the bottom-left corner. Otherwise,
- * it is at the top-left corner.
+ * @param bottomLeftOrigin When true, the image data origin is at the bottom-left corner. Otherwise, it
+ * is at the top-left corner.
  */
 export declare function putText(img: InputOutputArray, text: any, org: Point, fontFace: int, fontScale: double, color: Scalar, thickness?: int, lineType?: int, bottomLeftOrigin?: bool): void
 

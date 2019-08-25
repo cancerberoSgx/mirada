@@ -16,6 +16,7 @@ export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
   tsOutputFolder: string
   jsonTypes?: boolean
   xmlTypes?: boolean
+  writeIndexOnly?: boolean
 }
 
 export interface Doxygen2tsOptionsBase {

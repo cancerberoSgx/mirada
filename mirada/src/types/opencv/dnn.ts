@@ -1,5 +1,5 @@
 
-import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Size, Backend, OutputArrayOfArrays, Net, size_t, Target } from './_types'
+import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Size, OutputArrayOfArrays, Net, uchar, size_t } from './_types'
 /*
  * # dnn
  *
@@ -16,8 +16,8 @@ import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Si
  * @param image input image (with 1-, 3- or 4-channels).
  * @param scalefactor multiplier for image values.
  * @param size spatial size for output image
- * @param mean scalar with mean values which are subtracted from channels. Values are intended to be
- * in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+ * @param mean scalar with mean values which are subtracted from channels. Values are intended to be in
+ * (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
  * @param swapRB flag which indicates that swap first and last channels in 3-channel image is
  * necessary.
  * @param crop flag which indicates whether image will be cropped after resize or not
@@ -50,8 +50,8 @@ export declare function blobFromImage(image: InputArray, blob: OutputArray, scal
  * @param images input images (all with 1-, 3- or 4-channels).
  * @param scalefactor multiplier for images values.
  * @param size spatial size for output image
- * @param mean scalar with mean values which are subtracted from channels. Values are intended to be
- * in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+ * @param mean scalar with mean values which are subtracted from channels. Values are intended to be in
+ * (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
  * @param swapRB flag which indicates that swap first and last channels in 3-channel image is
  * necessary.
  * @param crop flag which indicates whether image will be cropped after resize or not
@@ -90,9 +90,9 @@ export declare function getAvailableTargets(be: Backend): any
  * @param blob_ 4 dimensional array (images, channels, height, width) in floating point precision
  * (CV_32F) from which you would like to extract the images.
  * @param images_ array of 2D Mat containing the images extracted from the blob in floating point
- * precision (CV_32F). They are non normalized neither mean added. The number of returned images
- * equals the first dimension of the blob (batch size). Every image has a number of channels equals to
- * the second dimension of the blob (depth).
+ * precision (CV_32F). They are non normalized neither mean added. The number of returned images equals
+ * the first dimension of the blob (batch size). Every image has a number of channels equals to the
+ * second dimension of the blob (depth).
  */
 export declare function imagesFromBlob(blob_: any, images_: OutputArrayOfArrays): any
 
@@ -146,8 +146,8 @@ export declare function NMSBoxes(bboxes: any, scores: any, score_threshold: any,
  * models from different frameworks:
  * .caffemodel (Caffe, http://caffe.berkeleyvision.org/)*.pb (TensorFlow,
  * https://www.tensorflow.org/)*.t7 | *.net (Torch, http://torch.ch/)*.weights (Darknet,
- * https://pjreddie.com/darknet/)*.bin (DLDT, https://software.intel.com/openvino-toolkit)*.onnx
- * (ONNX, https://onnx.ai/)
+ * https://pjreddie.com/darknet/)*.bin (DLDT, https://software.intel.com/openvino-toolkit)*.onnx (ONNX,
+ * https://onnx.ai/)
  * @param config Text file contains network configuration. It could be a file with the following
  * extensions:
  * .prototxt (Caffe, http://caffe.berkeleyvision.org/)*.pbtxt (TensorFlow,
@@ -167,7 +167,7 @@ export declare function readNet(model: any, config?: any, framework?: any): Net
  * @param bufferModel A buffer with a content of binary file with weights
  * @param bufferConfig A buffer with a content of text file contains network configuration.
  */
-export declare function readNet(framework: any, bufferModel: any, bufferConfig?: any): any
+export declare function readNet(framework: any, bufferModel: uchar, bufferConfig?: uchar): uchar
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -183,7 +183,7 @@ export declare function readNetFromCaffe(prototxt: any, caffeModel?: any): Net
  * @param bufferProto buffer containing the content of the .prototxt file
  * @param bufferModel buffer containing the content of the .caffemodel file
  */
-export declare function readNetFromCaffe(bufferProto: any, bufferModel?: any): any
+export declare function readNetFromCaffe(bufferProto: uchar, bufferModel?: uchar): uchar
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -215,7 +215,7 @@ export declare function readNetFromDarknet(cfgFile: any, darknetModel?: any): Ne
  * architecture.
  * @param bufferModel A buffer contains a content of .weights file with learned network.
  */
-export declare function readNetFromDarknet(bufferCfg: any, bufferModel?: any): any
+export declare function readNetFromDarknet(bufferCfg: uchar, bufferModel?: uchar): uchar
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
@@ -258,15 +258,15 @@ export declare function readNetFromONNX(buffer: any, sizeBuffer: size_t): Net
  * 
  * @param buffer in-memory buffer that stores the ONNX model bytes.
  */
-export declare function readNetFromONNX(buffer: any): any
+export declare function readNetFromONNX(buffer: uchar): uchar
 
 /**
  * [Net](#db/d30/classcv_1_1dnn_1_1Net}) object.
  * 
  * @param model path to the .pb file with binary protobuf description of the network architecture
  * @param config path to the .pbtxt file that contains text graph definition in protobuf format.
- * Resulting Net object is built by text graph using weights from a binary one that let us make it
- * more flexible.
+ * Resulting Net object is built by text graph using weights from a binary one that let us make it more
+ * flexible.
  */
 export declare function readNetFromTensorflow(model: any, config?: any): Net
 
@@ -276,7 +276,7 @@ export declare function readNetFromTensorflow(model: any, config?: any): Net
  * @param bufferModel buffer containing the content of the pb file
  * @param bufferConfig buffer containing the content of the pbtxt file
  */
-export declare function readNetFromTensorflow(bufferModel: any, bufferConfig?: any): any
+export declare function readNetFromTensorflow(bufferModel: uchar, bufferConfig?: uchar): uchar
 
 /**
  * This is an overloaded member function, provided for convenience. It differs from the above function
@@ -342,8 +342,8 @@ export declare function readTorchBlob(filename: any, isBinary?: bool): Mat
  * @param src Path to origin model from Caffe framework contains single precision floating point
  * weights (usually has .caffemodel extension).
  * @param dst Path to destination model with updated weights.
- * @param layersTypes Set of layers types which parameters will be converted. By default, converts
- * only Convolutional and Fully-Connected layers' weights.
+ * @param layersTypes Set of layers types which parameters will be converted. By default, converts only
+ * Convolutional and Fully-Connected layers' weights.
  */
 export declare function shrinkCaffeModel(src: any, dst: any, layersTypes?: any): void
 
@@ -356,8 +356,8 @@ export declare function shrinkCaffeModel(src: any, dst: any, layersTypes?: any):
 export declare function writeTextGraph(model: any, output: any): void
 
 /**
- * DNN_BACKEND_DEFAULT equals to DNN_BACKEND_INFERENCE_ENGINE if OpenCV is built with Intel's
- * Inference Engine library or DNN_BACKEND_OPENCV otherwise.
+ * DNN_BACKEND_DEFAULT equals to DNN_BACKEND_INFERENCE_ENGINE if OpenCV is built with Intel's Inference
+ * Engine library or DNN_BACKEND_OPENCV otherwise.
  * 
  */
 export declare const DNN_BACKEND_DEFAULT: Backend // initializer: 

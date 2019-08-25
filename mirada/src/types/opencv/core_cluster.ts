@@ -16,11 +16,11 @@ import { InputArray, int, InputOutputArray, TermCriteria, OutputArray, double, _
  * 
  * The function returns the compactness measure that is computed as `\\[\\sum _i \\| \\texttt{samples}
  * _i - \\texttt{centers} _{ \\texttt{labels} _i} \\| ^2\\]` after every attempt. The best (minimum)
- * value is chosen and the corresponding labels and the compactness value are returned by the
- * function. Basically, you can use only the core of the function, set the number of attempts to 1,
- * initialize labels each time using a custom algorithm, pass them with the ( flags =
- * [KMEANS_USE_INITIAL_LABELS](#d0/de1/group__core_1gga276000efe55ee2756e0c471c7b270949a40625baa3d28c78
- * 0813f9634b960b366}) ) flag, and then choose the best (most-compact) clustering.
+ * value is chosen and the corresponding labels and the compactness value are returned by the function.
+ * Basically, you can use only the core of the function, set the number of attempts to 1, initialize
+ * labels each time using a custom algorithm, pass them with the ( flags =
+ * [KMEANS_USE_INITIAL_LABELS](#d0/de1/group__core_1gga276000efe55ee2756e0c471c7b270949a40625baa3d28c780813f9634b960b366})
+ * ) flag, and then choose the best (most-compact) clustering.
  * 
  * @param data Data for clustering. An array of N-Dimensional points with float coordinates is needed.
  * Examples of this array can be:
@@ -28,9 +28,9 @@ import { InputArray, int, InputOutputArray, TermCriteria, OutputArray, double, _
  * CV_32FC2);std::vector<cv::Point2f> points(sampleCount);
  * @param K Number of clusters to split the set by.
  * @param bestLabels Input/output integer array that stores the cluster indices for every sample.
- * @param criteria The algorithm termination criteria, that is, the maximum number of iterations
- * and/or the desired accuracy. The accuracy is specified as criteria.epsilon. As soon as each of the
- * cluster centers moves by less than criteria.epsilon on some iteration, the algorithm stops.
+ * @param criteria The algorithm termination criteria, that is, the maximum number of iterations and/or
+ * the desired accuracy. The accuracy is specified as criteria.epsilon. As soon as each of the cluster
+ * centers moves by less than criteria.epsilon on some iteration, the algorithm stops.
  * @param attempts Flag to specify the number of times the algorithm is executed using different
  * initial labellings. The algorithm returns the labels that yield the best compactness (see the last
  * function parameter).
@@ -41,8 +41,8 @@ export declare function kmeans(data: InputArray, K: int, bestLabels: InputOutput
 
 /**
  * The generic function partition implements an `$O(N^2)$` algorithm for splitting a set of `$N$`
- * elements into one or more equivalency classes, as described in  . The function returns the number
- * of equivalency classes.
+ * elements into one or more equivalency classes, as described in  . The function returns the number of
+ * equivalency classes.
  * 
  * @param arg119 
  * @param arg120 

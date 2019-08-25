@@ -1,5 +1,5 @@
 
-import { bool } from './_types'
+import { bool, FileNode, FileStorage, Ptr } from './_types'
 
 /**
  * especially for classes of algorithms, for which there can be multiple implementations. The examples
@@ -20,8 +20,8 @@ import { bool } from './_types'
  *         sbd->read(fs_read.root());
  *         fs_read.release();
  *     }
- *     else // else modify the parameters and store them; user can later edit the file to use
- * different parameters
+ *     else // else modify the parameters and store them; user can later edit the file to use different
+ * parameters
  *     {
  *         fs_read.release();
  *         FileStorage fs_write("SimpleBlobDetector_params.xml", FileStorage::WRITE);
@@ -42,8 +42,7 @@ import { bool } from './_types'
  * ```
  * 
  * Source:
- * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hp
- * p#L3077).
+ * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hpp#L3077).
  * 
  */
 export declare class Algorithm {
@@ -68,34 +67,34 @@ export declare class Algorithm {
    * the object is saved to a file or string.
    *   
    */
-  public getDefaultName(): any
+  public getDefaultName(): String
 
   /**
    *   
    *   @param fn 
    */
-  public read(fn: any): any
+  public read(fn: FileNode): FileNode
 
   /**
-   *   Saves the algorithm to a file. In order to make this method work, the derived class must
-   * implement Algorithm::write(FileStorage& fs).
+   *   Saves the algorithm to a file. In order to make this method work, the derived class must implement
+   * Algorithm::write(FileStorage& fs).
    *   
    *   @param filename 
    */
-  public save(filename: any): any
+  public save(filename: String): String
 
   /**
    *   
    *   @param fs 
    */
-  public write(fs: any): any
+  public write(fs: FileStorage): FileStorage
 
   /**
    *   
    *   @param fs 
    *   @param name 
    */
-  public write(fs: any, name?: any): any
+  public write(fs: Ptr, name?: String): Ptr
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is
@@ -114,7 +113,7 @@ export declare class Algorithm {
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be
    * used)
    */
-  public static load(arg0: any, filename: any, objname?: any): any
+  public static load(arg0: any, filename: String, objname?: String): Ptr
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is
@@ -129,7 +128,7 @@ export declare class Algorithm {
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be
    * used)
    */
-  public static loadFromString(arg1: any, strModel: any, objname?: any): any
+  public static loadFromString(arg1: any, strModel: String, objname?: String): Ptr
 
   /**
    *   This is static template method of [Algorithm](#d3/d46/classcv_1_1Algorithm}). It's usage is
@@ -148,6 +147,6 @@ export declare class Algorithm {
    *   @param arg2 
    *   @param fn 
    */
-  public static read(arg2: any, fn: any): any
+  public static read(arg2: any, fn: FileNode): Ptr
 }
 

@@ -1,11 +1,10 @@
 
-import { double, int, bool } from './_types'
+import { Ptr, InputArray, Rect, double, int, Size, bool, FileNode } from './_types'
 
 /**
  * 
  * Source:
- * [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ob
- * jdetect.hpp#L337).
+ * [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/objdetect.hpp#L337).
  * 
  */
 export declare class CascadeClassifier {
@@ -13,7 +12,7 @@ export declare class CascadeClassifier {
   /**
    *   
    */
-  public cc: any
+  public cc: Ptr
 
   /**
    *   
@@ -24,7 +23,7 @@ export declare class CascadeClassifier {
    *   
    *   @param filename Name of the file from which the classifier is loaded.
    */
-  public constructor(filename: any)
+  public constructor(filename: String)
 
   /**
    *   The function is parallelized with the TBB library.
@@ -44,7 +43,7 @@ export declare class CascadeClassifier {
    *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: any, objects: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any): any
+  public detectMultiScale(image: InputArray, objects: Rect, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -53,8 +52,8 @@ export declare class CascadeClassifier {
    *   @param image Matrix of the type CV_8U containing an image where objects are detected.
    *   @param objects Vector of rectangles where each rectangle contains the detected object, the
    * rectangles may be partially outside the original image.
-   *   @param numDetections Vector of detection numbers for the corresponding objects. An object's
-   * number of detections is the number of neighboring positively classified rectangles that were joined
+   *   @param numDetections Vector of detection numbers for the corresponding objects. An object's number
+   * of detections is the number of neighboring positively classified rectangles that were joined
    * together to form the object.
    *   @param scaleFactor Parameter specifying how much the image size is reduced at each image scale.
    *   @param minNeighbors Parameter specifying how many neighbors each candidate rectangle should have
@@ -65,7 +64,7 @@ export declare class CascadeClassifier {
    *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: any, objects: any, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any): any
+  public detectMultiScale(image: InputArray, objects: Rect, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -98,7 +97,7 @@ export declare class CascadeClassifier {
    *   @param maxSize 
    *   @param outputRejectLevels 
    */
-  public detectMultiScale(image: any, objects: any, rejectLevels: any, levelWeights: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: any, maxSize?: any, outputRejectLevels?: bool): any
+  public detectMultiScale(image: InputArray, objects: Rect, rejectLevels: any, levelWeights: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size, outputRejectLevels?: bool): InputArray
 
   /**
    *   
@@ -113,7 +112,7 @@ export declare class CascadeClassifier {
   /**
    *   
    */
-  public getMaskGenerator(): any
+  public getMaskGenerator(): Ptr
 
   /**
    *   
@@ -123,7 +122,7 @@ export declare class CascadeClassifier {
   /**
    *   
    */
-  public getOriginalWindowSize(): any
+  public getOriginalWindowSize(): Size
 
   /**
    *   
@@ -136,26 +135,26 @@ export declare class CascadeClassifier {
    * HAAR classifier trained by the haartraining application or a new cascade classifier trained by the
    * traincascade application.
    */
-  public load(filename: any): any
+  public load(filename: String): String
 
   /**
    *   The file may contain a new cascade classifier (trained traincascade application) only.
    *   
    *   @param node 
    */
-  public read(node: any): any
+  public read(node: FileNode): FileNode
 
   /**
    *   
    *   @param maskGenerator 
    */
-  public setMaskGenerator(maskGenerator: any): any
+  public setMaskGenerator(maskGenerator: Ptr): Ptr
 
   /**
    *   
    *   @param oldcascade 
    *   @param newcascade 
    */
-  public static convert(oldcascade: any, newcascade: any): any
+  public static convert(oldcascade: String, newcascade: String): String
 }
 

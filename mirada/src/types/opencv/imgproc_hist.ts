@@ -1,5 +1,5 @@
 
-import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, float, HistCompMethods } from './_types'
+import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, float } from './_types'
 /*
  * # imgproc_hist
  *
@@ -10,17 +10,16 @@ import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, f
  * The function
  * [cv::calcBackProject](#d6/dc7/group__imgproc__hist_1ga3a0af640716b456c3d14af8aee12e3ca}) calculates
  * the back project of the histogram. That is, similarly to
- * [calcHist](#d6/dc7/group__imgproc__hist_1ga4b2b5fd75503ff9e6844cc4dcdaed35d}) , at each location
- * (x, y) the function collects the values from the selected channels in the input images and finds
- * the corresponding histogram bin. But instead of incrementing it, the function reads the bin value,
+ * [calcHist](#d6/dc7/group__imgproc__hist_1ga4b2b5fd75503ff9e6844cc4dcdaed35d}) , at each location (x,
+ * y) the function collects the values from the selected channels in the input images and finds the
+ * corresponding histogram bin. But instead of incrementing it, the function reads the bin value,
  * scales it by scale , and stores in backProject(x,y) . In terms of statistics, the function computes
- * probability of each element value in respect with the empirical probability distribution
- * represented by the histogram. See how, for example, you can find and track a bright-colored object
- * in a scene:
+ * probability of each element value in respect with the empirical probability distribution represented
+ * by the histogram. See how, for example, you can find and track a bright-colored object in a scene:
  * 
- * Before tracking, show the object to the camera so that it covers almost the whole frame. Calculate
- * a hue histogram. The histogram may have strong maximums, corresponding to the dominant colors in
- * the object.
+ * Before tracking, show the object to the camera so that it covers almost the whole frame. Calculate a
+ * hue histogram. The histogram may have strong maximums, corresponding to the dominant colors in the
+ * object.
  * When tracking, calculate a back projection of a hue plane of each input video frame using that
  * pre-computed histogram. Threshold the back projection to suppress weak colors. It may also make
  * sense to suppress pixels with non-sufficient color saturation and too dark or too bright pixels.
@@ -39,8 +38,8 @@ import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, f
  * images[0].channels()-1 , the second array channels are counted from images[0].channels() to
  * images[0].channels() + images[1].channels()-1, and so on.
  * @param hist Input histogram that can be dense or sparse.
- * @param backProject Destination back projection array that is a single-channel array of the same
- * size and depth as images[0] .
+ * @param backProject Destination back projection array that is a single-channel array of the same size
+ * and depth as images[0] .
  * @param ranges Array of arrays of the histogram bin boundaries in each dimension. See calcHist .
  * @param scale Optional scale factor for the output back projection.
  * @param uniform Flag indicating whether the histogram is uniform or not (see above).
@@ -145,8 +144,8 @@ export declare function calcBackProject(images: InputArrayOfArrays, channels: an
  * @param channels List of the dims channels used to compute the histogram. The first array channels
  * are numerated from 0 to images[0].channels()-1 , the second array channels are counted from
  * images[0].channels() to images[0].channels() + images[1].channels()-1, and so on.
- * @param mask Optional mask. If the matrix is not empty, it must be an 8-bit array of the same size
- * as images[i] . The non-zero mask elements mark the array elements counted in the histogram.
+ * @param mask Optional mask. If the matrix is not empty, it must be an 8-bit array of the same size as
+ * images[i] . The non-zero mask elements mark the array elements counted in the histogram.
  * @param hist Output histogram, which is a dense or sparse dims -dimensional array.
  * @param dims Histogram dimensionality that must be positive and not greater than CV_MAX_DIMS (equal
  * to 32 in the current OpenCV version).
@@ -258,14 +257,14 @@ export declare function createCLAHE(clipLimit?: double, tileGridSize?: Size): an
  * is used, lower boundary lowerBound cannot be calculated because it needs a metric function.
  * @param lowerBound Optional input/output parameter: lower boundary of a distance between the two
  * signatures that is a distance between mass centers. The lower boundary may not be calculated if the
- * user-defined cost matrix is used, the total weights of point configurations are not equal, or if
- * the signatures consist of weights only (the signature matrices have a single column). You must**
+ * user-defined cost matrix is used, the total weights of point configurations are not equal, or if the
+ * signatures consist of weights only (the signature matrices have a single column). You must**
  * initialize *lowerBound . If the calculated distance between mass centers is greater or equal to
  * *lowerBound (it means that the signatures are far enough), the function does not calculate EMD. In
  * any case *lowerBound is set to the calculated distance between mass centers on return. Thus, if you
  * want to calculate both distance between mass centers and EMD, *lowerBound should be set to 0.
- * @param flow Resultant $\texttt{size1} \times \texttt{size2}$ flow matrix: $\texttt{flow}_{i,j}$ is
- * a flow from $i$ -th point of signature1 to $j$ -th point of signature2 .
+ * @param flow Resultant $\texttt{size1} \times \texttt{size2}$ flow matrix: $\texttt{flow}_{i,j}$ is a
+ * flow from $i$ -th point of signature1 to $j$ -th point of signature2 .
  */
 export declare function EMD(signature1: InputArray, signature2: InputArray, distType: int, cost?: InputArray, lowerBound?: any, flow?: OutputArray): float
 
@@ -317,8 +316,8 @@ export declare const HISTCMP_INTERSECT: HistCompMethods // initializer: = 2
 
 /**
  * Bhattacharyya distance (In fact, OpenCV computes Hellinger distance, which is related to
- * Bhattacharyya coefficient.) `\\[d(H_1,H_2) = \\sqrt{1 - \\frac{1}{\\sqrt{\\bar{H_1} \\bar{H_2}
- * N^2}} \\sum_I \\sqrt{H_1(I) \\cdot H_2(I)}}\\]`
+ * Bhattacharyya coefficient.) `\\[d(H_1,H_2) = \\sqrt{1 - \\frac{1}{\\sqrt{\\bar{H_1} \\bar{H_2} N^2}}
+ * \\sum_I \\sqrt{H_1(I) \\cdot H_2(I)}}\\]`
  * 
  */
 export declare const HISTCMP_BHATTACHARYYA: HistCompMethods // initializer: = 3
@@ -330,8 +329,8 @@ export declare const HISTCMP_HELLINGER: HistCompMethods // initializer: = HISTCM
 
 /**
  * Alternative Chi-Square `\\[d(H_1,H_2) = 2 * \\sum _I
- * \\frac{\\left(H_1(I)-H_2(I)\\right)^2}{H_1(I)+H_2(I)}\\]` This alternative formula is regularly
- * used for texture comparison. See e.g. Puzicha1997
+ * \\frac{\\left(H_1(I)-H_2(I)\\right)^2}{H_1(I)+H_2(I)}\\]` This alternative formula is regularly used
+ * for texture comparison. See e.g. Puzicha1997
  * 
  */
 export declare const HISTCMP_CHISQR_ALT: HistCompMethods // initializer: = 4

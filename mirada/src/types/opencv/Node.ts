@@ -4,8 +4,7 @@ import { int, double } from './_types'
 /**
  * 
  * Source:
- * [opencv2/ml.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ml.hpp#L1
- * 163).
+ * [opencv2/ml.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ml.hpp#L1163).
  * 
  */
 export declare class Node {

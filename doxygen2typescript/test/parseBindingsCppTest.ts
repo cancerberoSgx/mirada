@@ -2,7 +2,7 @@ import test from 'ava'
 import { writeFileSync, readFileSync, existsSync } from 'fs'
 import { getBindingsCppMemberdefs, parseBindingsCpp, getBindingsCppCompoundRefs, getBindingsCppCompoundFiles } from '../src/doxygen2json/parseBindingsCpp'
 
-const buildFolder = '/Users/sebastiangurin/git/opencv/build_js'
+const buildFolder = '../../opencv/build_js'
 
 const expectedConstants = ['COLOR_RGB2RGBA']
 const expectedFunctions = ['cvtColor']

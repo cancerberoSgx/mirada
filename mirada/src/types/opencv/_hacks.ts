@@ -1,5 +1,4 @@
-// manual types for Scalar, Point, Rect, etc TODO: this should be exposed by the tool but BTW are implemented
-// in helpers.js so to make it work we manually expose them here:
+// Scalar, Point, Rect, etc are defined by opencv.js (helpers.js) and we need to declare them manually:
 
 export declare class Range {
   public start: number
@@ -10,6 +9,7 @@ export declare class Range {
 export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
+export { Scalar as GScalar }
 
 export declare class Point {
   public constructor(x: number, y: number);
@@ -18,7 +18,7 @@ export declare class Point {
 }
 
 export { Point as Point2f }
-
+export { Point as KeyPoint }
 export { Point as Point2l }
 
 export declare class Size {
@@ -28,9 +28,8 @@ export declare class Size {
 }
 
 export { Size as Point2d }
-
 export { Size as Size2d }
-
+export { Size as Size2f }
 export { Size as Size2l }
 
 export declare class Rect {
@@ -40,6 +39,8 @@ export declare class Rect {
   public width: number;
   public height: number;
 }
+
+export { Rect as Rect_ }
 
 export declare class TermCriteria {
   public type: number
@@ -58,24 +59,52 @@ export declare class MinMaxLoc {
   public constructor(minVal: number, maxVal: number, minLoc: Point, maxLoc: Point)
 }
 
-// hack to expose Mat super classes like Mat_, InputArray, OutputArray we  make them alias of Mat to simplify and make it work
+// expose emscripten / opencv.js specifics
+
+export declare function exceptionFromPtr(err: number): any
+export declare function onRuntimeInitialized(): any
+export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
+
+declare class Vector<T> {
+  get(i: number): T
+  set(i: number, t: T): void
+  size(): number
+  push_back(n: T): any
+  resize(count: number, value?: T): void
+  delete(): void
+}
+
+export declare class Vec3d extends Vector<any> { }
+export declare class IntVector extends Vector<number> { }
+export declare class FloatVector extends Vector<number> { }
+export declare class DoubleVector extends Vector<number>{ }
+export declare class PointVector extends Vector<Point> { }
+export declare class RectVector extends Vector<Rect> { }
+export declare class KeyPointVector extends Vector<any> { }
+export declare class DMatchVector extends Vector<any> { }
+export declare class DMatchVectorVector extends Vector<Vector<any>> { }
+
+
+
+import {Mat} from './Mat'
+
+export declare function  matFromImageData(imageData: ImageData): Mat
+
+// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
 export { Mat as InputArray } from './Mat'
 export { Mat as OutputArray } from './Mat'
 export { Mat as InputOutputArray } from './Mat'
 export { Mat as InputOutputArrayOfArrays } from './Mat'
 export { Mat as InputArrayOfArrays } from './Mat'
 export { Mat as OutputArrayOfArrays } from './Mat'
+export { Mat as MatVector } from './Mat'
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
-export declare class Mat_ {
-public delete(): void
+export declare class Mat_ extends Vector<Mat> {
+  public delete(): void
   public data: ImageData
   public ucharPtr(i: number, j: number): any
-  public delete(): any
 }
-
-import {Mat} from './Mat'
-export declare function  matFromImageData(imageData: ImageData): Mat
 
 export interface ImageData {
   data: ArrayBufferView
@@ -83,12 +112,27 @@ export interface ImageData {
   height: number
 }
 
-// lazy hack: this types should be exposed by the tool - want to make it work
-export type Vec3d = any
 export type Moments = any
+export type Matrix = any
+export type BucketKey = any
+export type Bucket = any
+export type LshStats = any
+export type FileNode = any
+export type FileStorage = any
+export type Ptr = any
+export type DMatch = any
+export type cvhalDFT = any
+// export type HOGDescriptor = any
+export type DetectionROI = any
+export type diag_type = any
+export type Vec = any
+export type Mat4 = any
+export type Mat3 = any
+export type Vec3 = any
+// export type Mat = any
+export type float_type = any
 export type GMat = any
 export type GMatP = any
-export type GScalar = any
 export type Net = any
 export type AsyncArray = any
 export type ErrorCallback = any
@@ -101,26 +145,25 @@ export type Matx_MulOp = any
 export type Matx_DivOp = any
 export type Matx_MatMulOp = any
 export type Matx_TOp = any
+export type MatAllocator = any
+export type MatSize = any
+export type MatStep = any
+export type UMatData = any
+export type Point_ = any
+export type Point3_ = any
+export type MatCommaInitializer_ = any
+export type MatIterator_ = any
+export type MatConstIterator_ = any
+export type AccessFlag = any
+export type UMatUsageFlags = any
+export type UMat = any
 
-// magica or others needs to expose objects in the namespace - do it in that file that won't be touched
-export * from '../_opencvCustom'
 
-export declare function exceptionFromPtr(err: number): any
-
-export declare function onRuntimeInitialized(): any
-
-export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
-
+// TODO this types should be exposed by the tool - want to make it work:
 export declare const CV_8UC1: number
-
 export declare const CV_8U: number
-
 export declare const CV_16S: number
-
 export declare const CV_8UC3: any
-
 export declare const CV_32S: number
-
 export declare const CV_8S: number
-
 export declare const CV_8UC4: number

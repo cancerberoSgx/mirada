@@ -31,6 +31,8 @@ opencv2ts({
 ```
 
 ## TODO - Status - Progress - Roadmap
+- [ ] add missing types automatically using ts api - compile and check errors about missing imports 
+- [x] fix types: Mat.zeros(src.rows, src.cols, cv.CV_8UC3): any should return Mat
 - [ ] class inheritancegraph - Mat_ extends Mat_
   - [ ] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
 - [ ] class compounds enums names prefix broken. (ex AgastFeatureDetector.AGAST_7_12s becomes AgastFeatureDetector_AGAST_7_12s)
@@ -48,7 +50,6 @@ opencv2ts({
 - [ ] move json2dts to own repo
 - [ ] cli (5)
 - [ ] groups - innerclass (4)
-
  
 
 ## Hacks to opencv

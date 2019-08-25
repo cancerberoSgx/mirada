@@ -1,4 +1,3 @@
-
 export type int = number
 export type bool = boolean
 export type float = number
@@ -11,6 +10,10 @@ export type uint32 = any
 export type uint32_t = any
 export type uint8 = any
 export type uint8_t = any
+export type schar = any
+export type int64 = any
+export type int32_t = any
+export type int64_t = any
 export type uchar = any
 export type size_t = any
 export type uint = any
@@ -21,4 +24,3 @@ export type float16_t = any
 export type float16 = any
 export type typename = any
 export type _Tp = any
-  

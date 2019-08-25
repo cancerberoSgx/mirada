@@ -8,7 +8,6 @@ import { imageData } from './imageUtil'
 import { ImageData, Mat } from './types/opencv'
 
 export class File {
-
   constructor(public readonly name: string, protected mat: Mat) {
 
   }
@@ -50,6 +49,10 @@ export class File {
   async asBase64(format = this.getExtension()) {
     var encoded = await this.asArrayBuffer(format)
     return arrayBufferToBase64(encoded)
+  }
+  
+  delete(): any {
+    this.mat && this.mat.delete()
   }
 
   /** 

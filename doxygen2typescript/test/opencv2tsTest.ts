@@ -8,23 +8,23 @@ test('opencv2ts', async t => {
   mkdir('-p', 'tmp')
   t.true(ls('tmp/src/opencv/**/*.ts').length === 0)
   opencv2ts({
-    opencvBuildFolder: '/Users/sebastiangurin/git/opencv/build_js',
+    opencvBuildFolder: '../../opencv/build_js',
     tsOutputFolder: 'tmp/src/opencv',
     // jsonTypes: true,
     // xmlTypes: true,
     renderLocation: false,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
-    tsCodeFormatSettings: { 
-      indentSize: 2, 
-      convertTabsToSpaces: true, 
-      emptyLinesMax: 1, 
-      trailingSemicolons: 'never', 
-      lineBreak: 100 
-      },
+    tsCodeFormatSettings: {
+      indentSize: 2,
+      convertTabsToSpaces: true,
+      emptyLinesMax: 1,
+      trailingSemicolons: 'never',
+      jsdocLineMaxLength: 100
+    },
   })
   t.true(ls('tmp/src/opencv/**/*.ts').length > 0)
   t.true(ls('tmp/dist/**/*.js').length === 0)
-  
+
   writeFileSync('tmp/tsconfig.json', configTsJson)
   writeFileSync('tmp/src/test.ts', testTs)
   const p = exec('npx tsc', { cwd: 'tmp' })
@@ -63,32 +63,3 @@ const configTsJson = `
   "include": ["src"]
 }
 `.trim()
-
-// const testTs = `
-// import {CV} from './opencv'
-// declare var cv: CV
-// const m = new cv.Mat()
-// var a = m.rows+1
-// `.trim()
-
-// const testErrorTs = `
-// import {CV} from './opencv'
-// declare var cv: CV
-// const m = new cv.Mat()
-// m.nonExistent()
-// `.trim()
-
-// const configTsJson = `
-// {
-//   "compilerOptions": {
-//     "target": "esnext",
-//     "module": "commonjs",
-//     "lib": ["esnext", "dom"], 
-//     "sourceMap": true,
-//     "outDir": "./dist", 
-//     "rootDir": ".",
-//     "declaration": true
-//   },
-//   "include": ["src"]
-// }
-// `.trim()

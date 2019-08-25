@@ -1,23 +1,18 @@
 import { CompoundDef, Member } from '../doxygenTypes'
-import { getCompoundDefName, isValidId, renderParam } from './general'
-import { toJsDoc } from "./jsdoc"
+import { getCompoundDefName, isValidId, renderParam, renderType } from './general'
+import { toJsDoc, jsdocFunction } from "./jsdoc"
 import { Options } from './main'
-import { renderType } from './ref'
 import { renderOpenCvEnums } from './enums';
-
-
+import { toMarkdown } from '../toMarkdown';
 
 export function renderGroup(def: CompoundDef, options: Options): string {
   return `
-${renderGroupHeader(def)}
+${renderGroupHeader(def, options)}
 ${def.functions.map(f => renderFunction(f, def, options)).join('\n\n')}
 
 ${renderOpenCvEnums(def, options)}
-
 `.trim();
 }
-// ${def.publicTypes.map(f => renderp(f, def, options)).join('\n\n')}
-
 
 export function renderFunction(f: Member, def: CompoundDef, options: Options) {
   if (!isValidId(f.name)) {
@@ -26,19 +21,17 @@ export function renderFunction(f: Member, def: CompoundDef, options: Options) {
   const className = getCompoundDefName(def)
   const name = f.name === className ? 'constructor' : f.name
   return `
-/**
-${toJsDoc({ ...options, node: f, wrap: false })}
-${f.params.map(p => `@param ${p.name} ${p.description || ''}`).join('\n')}
-*/
-export declare function ${name} (${f.params.map(p => renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}`
+${jsdocFunction(options, f)}
+export declare function ${name} (${f.params.map(p => renderParam(p, options)).join(', ')})${name === 'constructor' ? '' : `: ${renderType(f.type, options)}`}
+`.trim()
 }
 
-export function renderGroupHeader(def: CompoundDef) {
+export function renderGroupHeader(def: CompoundDef,  options: Options) {
   return `
 /*
- * # ${def.compoundname}
+ * # ${def.title}
  *
- * TODO  
+ * ${ toMarkdown({ ...options, node: def.detaileddescriptionNode }).split('\n').join('\n * ')}
  */
 `.trim()
 }

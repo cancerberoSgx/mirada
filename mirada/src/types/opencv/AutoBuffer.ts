@@ -27,8 +27,7 @@ import { size_t } from './_types'
  * ```
  * 
  * Source:
- * [opencv2/core/utility.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2
- * /core/utility.hpp#L128).
+ * [opencv2/core/utility.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/utility.hpp#L128).
  * 
  */
 export declare class AutoBuffer {
@@ -48,7 +47,7 @@ export declare class AutoBuffer {
    *   
    *   @param buf 
    */
-  public constructor(buf: any)
+  public constructor(buf: AutoBuffer)
 
   /**
    *   

@@ -9,8 +9,7 @@ import { int } from './_types'
  * [error](#db/de0/group__core__utils_1gacbd081fdb20423a63cf731569ba70b2b})
  * 
  * Source:
- * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hp
- * p#L135).
+ * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hpp#L135).
  * 
  */
 export declare class Exception {
@@ -24,17 +23,17 @@ export declare class Exception {
   /**
    *   
    */
-  public err: any
+  public err: String
 
   /**
    *   
    */
-  public file: any
+  public file: String
 
   /**
    *   
    */
-  public func: any
+  public func: String
 
   /**
    *   
@@ -44,7 +43,7 @@ export declare class Exception {
   /**
    *   
    */
-  public msg: any
+  public msg: String
 
   /**
    *   Default constructor
@@ -64,7 +63,7 @@ export declare class Exception {
    *   @param _file 
    *   @param _line 
    */
-  public constructor(_code: int, _err: any, _func: any, _file: any, _line: int)
+  public constructor(_code: int, _err: String, _func: String, _file: String, _line: int)
 
   /**
    *   

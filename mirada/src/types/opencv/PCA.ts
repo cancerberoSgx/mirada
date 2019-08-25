@@ -1,5 +1,5 @@
 
-import { int, double, Flags } from './_types'
+import { Mat, InputArray, int, double, OutputArray, FileNode, FileStorage } from './_types'
 
 /**
  * The class is used to calculate a special basis for a set of vectors. The basis will consist of
@@ -8,17 +8,17 @@ import { int, double, Flags } from './_types'
  * coordinate system, each vector from the original set (and any linear combination of such vectors)
  * can be quite accurately approximated by taking its first few components, corresponding to the
  * eigenvectors of the largest eigenvalues of the covariance matrix. Geometrically it means that you
- * calculate a projection of the vector to a subspace formed by a few eigenvectors corresponding to
- * the dominant eigenvalues of the covariance matrix. And usually such a projection is very close to
- * the original vector. So, you can represent the original vector from a high-dimensional space with a
- * much shorter vector consisting of the projected vector's coordinates in the subspace. Such a
+ * calculate a projection of the vector to a subspace formed by a few eigenvectors corresponding to the
+ * dominant eigenvalues of the covariance matrix. And usually such a projection is very close to the
+ * original vector. So, you can represent the original vector from a high-dimensional space with a much
+ * shorter vector consisting of the projected vector's coordinates in the subspace. Such a
  * transformation is also known as Karhunen-Loeve Transform, or KLT. See 
  * 
- * The sample below is the function that takes two matrices. The first function stores a set of
- * vectors (a row per vector) that is used to calculate [PCA](#d3/d8d/classcv_1_1PCA}). The second
- * function stores another "test" set of vectors (a row per vector). First, these vectors are
- * compressed with [PCA](#d3/d8d/classcv_1_1PCA}), then reconstructed back, and then the
- * reconstruction error norm is computed and printed for each vector. :
+ * The sample below is the function that takes two matrices. The first function stores a set of vectors
+ * (a row per vector) that is used to calculate [PCA](#d3/d8d/classcv_1_1PCA}). The second function
+ * stores another "test" set of vectors (a row per vector). First, these vectors are compressed with
+ * [PCA](#d3/d8d/classcv_1_1PCA}), then reconstructed back, and then the reconstruction error norm is
+ * computed and printed for each vector. :
  * 
  * ```cpp
  * using namespace cv;
@@ -65,8 +65,7 @@ import { int, double, Flags } from './_types'
  * [dct](#d2/de8/group__core__array_1ga85aad4d668c01fbd64825f589e3696d4})
  * 
  * Source:
- * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hp
- * p#L2393).
+ * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hpp#L2393).
  * 
  */
 export declare class PCA {
@@ -74,17 +73,17 @@ export declare class PCA {
   /**
    *   
    */
-  public eigenvalues: any
+  public eigenvalues: Mat
 
   /**
    *   
    */
-  public eigenvectors: any
+  public eigenvectors: Mat
 
   /**
    *   
    */
-  public mean: any
+  public mean: Mat
 
   /**
    *   The default constructor initializes an empty PCA structure. The other constructors initialize the
@@ -98,53 +97,52 @@ export declare class PCA {
    * function only in what argument(s) it accepts.
    *   
    *   @param data input samples stored as matrix rows or matrix columns.
-   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from
-   * the data.
+   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
+   * data.
    *   @param flags operation flags; currently the parameter is only used to specify the data layout
    * (PCA::Flags)
    *   @param maxComponents maximum number of components that PCA should retain; by default, all the
    * components are retained.
    */
-  public constructor(data: any, mean: any, flags: int, maxComponents?: int)
+  public constructor(data: InputArray, mean: InputArray, flags: int, maxComponents?: int)
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
    *   @param data input samples stored as matrix rows or matrix columns.
-   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from
-   * the data.
+   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
+   * data.
    *   @param flags operation flags; currently the parameter is only used to specify the data layout
    * (PCA::Flags)
    *   @param retainedVariance Percentage of variance that PCA should retain. Using this parameter will
    * let the PCA decided how many components to retain but it will always keep at least 2.
    */
-  public constructor(data: any, mean: any, flags: int, retainedVariance: double)
+  public constructor(data: InputArray, mean: InputArray, flags: int, retainedVariance: double)
 
   /**
    *   The methods are inverse operations to
-   * [PCA::project](#d3/d8d/classcv_1_1PCA_1a67c9a3f8fe804f40be58c88a3ae73f41}). They take PC
-   * coordinates of projected vectors and reconstruct the original vectors. Unless all the principal
-   * components have been retained, the reconstructed vectors are different from the originals. But
-   * typically, the difference is small if the number of components is large enough (but still much
-   * smaller than the original vector dimensionality). As a result, [PCA](#d3/d8d/classcv_1_1PCA}) is
-   * used.
+   * [PCA::project](#d3/d8d/classcv_1_1PCA_1a67c9a3f8fe804f40be58c88a3ae73f41}). They take PC coordinates
+   * of projected vectors and reconstruct the original vectors. Unless all the principal components have
+   * been retained, the reconstructed vectors are different from the originals. But typically, the
+   * difference is small if the number of components is large enough (but still much smaller than the
+   * original vector dimensionality). As a result, [PCA](#d3/d8d/classcv_1_1PCA}) is used.
    *   
-   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size
-   * are the same as of PCA::project output vectors.
+   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size are
+   * the same as of PCA::project output vectors.
    */
-  public backProject(vec: any): any
+  public backProject(vec: InputArray): Mat
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size
-   * are the same as of PCA::project output vectors.
+   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size are
+   * the same as of PCA::project output vectors.
    *   @param result reconstructed vectors; the layout and size are the same as of PCA::project input
    * vectors.
    */
-  public backProject(vec: any, result: any): any
+  public backProject(vec: InputArray, result: OutputArray): InputArray
 
   /**
    *   The methods project one or more vectors to the principal component subspace, where each vector
@@ -157,7 +155,7 @@ export declare class PCA {
    * dimensionality) and vec.rows is the number of vectors to project, and the same is true for the
    * PCA::DATA_AS_COL case.
    */
-  public project(vec: any): any
+  public project(vec: InputArray): Mat
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -171,7 +169,7 @@ export declare class PCA {
    * as the number of input vectors, this means that result.cols==vec.cols and the number of rows match
    * the number of principal components (for example, maxComponents parameter passed to the constructor).
    */
-  public project(vec: any, result: any): any
+  public project(vec: InputArray, result: OutputArray): InputArray
 
   /**
    *   Loads [eigenvalues](#d3/d8d/classcv_1_1PCA_1a1c9d34c02df49120474a4a366b971303})
@@ -181,7 +179,7 @@ export declare class PCA {
    *   
    *   @param fn 
    */
-  public read(fn: any): any
+  public read(fn: FileNode): FileNode
 
   /**
    *   Writes [eigenvalues](#d3/d8d/classcv_1_1PCA_1a1c9d34c02df49120474a4a366b971303})
@@ -191,7 +189,7 @@ export declare class PCA {
    *   
    *   @param fs 
    */
-  public write(fs: any): any
+  public write(fs: FileStorage): FileStorage
 }
 
 /**

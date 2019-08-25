@@ -1,5 +1,5 @@
 
-import { int, float, bool, double, size_t, DescriptorStorageFormat, HistogramNormType } from './_types'
+import { Size, int, float, bool, double, UMat, InputArray, Point, InputOutputArray, Rect, DetectionROI, size_t, FileNode, FileStorage } from './_types'
 
 /**
  * the HOG descriptor algorithm introduced by Navneet Dalal and Bill Triggs Dalal2005 .
@@ -7,8 +7,7 @@ import { int, float, bool, double, size_t, DescriptorStorageFormat, HistogramNor
  * useful links:
  * 
  * Source:
- * [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/ob
- * jdetect.hpp#L377).
+ * [opencv2/objdetect.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/objdetect.hpp#L377).
  * 
  */
 export declare class HOGDescriptor {
@@ -16,17 +15,17 @@ export declare class HOGDescriptor {
   /**
    *   
    */
-  public blockSize: any
+  public blockSize: Size
 
   /**
    *   
    */
-  public blockStride: any
+  public blockStride: Size
 
   /**
    *   
    */
-  public cellSize: any
+  public cellSize: Size
 
   /**
    *   
@@ -66,7 +65,7 @@ export declare class HOGDescriptor {
   /**
    *   
    */
-  public oclSvmDetector: any
+  public oclSvmDetector: UMat
 
   /**
    *   
@@ -86,11 +85,11 @@ export declare class HOGDescriptor {
   /**
    *   
    */
-  public winSize: any
+  public winSize: Size
 
   /**
-   *   aqual to [HOGDescriptor](#d5/d33/structcv_1_1HOGDescriptor})(Size(64,128), Size(16,16),
-   * Size(8,8), Size(8,8), 9 )
+   *   aqual to [HOGDescriptor](#d5/d33/structcv_1_1HOGDescriptor})(Size(64,128), Size(16,16), Size(8,8),
+   * Size(8,8), 9 )
    *   
    */
   public constructor()
@@ -112,7 +111,7 @@ export declare class HOGDescriptor {
    *   @param _nlevels sets nlevels with given value.
    *   @param _signedGradient sets signedGradient with given value.
    */
-  public constructor(_winSize: any, _blockSize: any, _blockStride: any, _cellSize: any, _nbins: int, _derivAperture?: int, _winSigma?: double, _histogramNormType?: any, _L2HysThreshold?: double, _gammaCorrection?: bool, _nlevels?: int, _signedGradient?: bool)
+  public constructor(_winSize: Size, _blockSize: Size, _blockStride: Size, _cellSize: Size, _nbins: int, _derivAperture?: int, _winSigma?: double, _histogramNormType?: any, _L2HysThreshold?: double, _gammaCorrection?: bool, _nlevels?: int, _signedGradient?: bool)
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -121,7 +120,7 @@ export declare class HOGDescriptor {
    *   @param filename The file name containing HOGDescriptor properties and coefficients for the linear
    * SVM classifier.
    */
-  public constructor(filename: any)
+  public constructor(filename: String)
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -129,7 +128,7 @@ export declare class HOGDescriptor {
    *   
    *   @param d the HOGDescriptor which cloned to create a new one.
    */
-  public constructor(d: any)
+  public constructor(d: HOGDescriptor)
 
   /**
    *   
@@ -144,7 +143,7 @@ export declare class HOGDescriptor {
    *   @param padding Padding
    *   @param locations Vector of Point
    */
-  public compute(img: any, descriptors: any, winStride?: any, padding?: any, locations?: any): any
+  public compute(img: InputArray, descriptors: any, winStride?: Size, padding?: Size, locations?: Point): InputArray
 
   /**
    *   
@@ -154,13 +153,13 @@ export declare class HOGDescriptor {
    *   @param paddingTL Padding from top-left
    *   @param paddingBR Padding from bottom-right
    */
-  public computeGradient(img: any, grad: any, angleOfs: any, paddingTL?: any, paddingBR?: any): any
+  public computeGradient(img: InputArray, grad: InputOutputArray, angleOfs: InputOutputArray, paddingTL?: Size, paddingBR?: Size): InputArray
 
   /**
    *   
    *   @param c cloned HOGDescriptor
    */
-  public copyTo(c: any): any
+  public copyTo(c: HOGDescriptor): HOGDescriptor
 
   /**
    *   
@@ -168,77 +167,72 @@ export declare class HOGDescriptor {
    *   @param foundLocations Vector of point where each point contains left-top corner point of detected
    * object boundaries.
    *   @param weights Vector that will contain confidence values for each detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes set of requested locations to be evaluated.
    */
-  public detect(img: any, foundLocations: any, weights: any, hitThreshold?: double, winStride?: any, padding?: any, searchLocations?: any): any
+  public detect(img: InputArray, foundLocations: Point, weights: any, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
 
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of point where each point contains left-top corner point of detected
    * object boundaries.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param searchLocations Vector of Point includes locations to search.
    */
-  public detect(img: any, foundLocations: any, hitThreshold?: double, winStride?: any, padding?: any, searchLocations?: any): any
+  public detect(img: InputArray, foundLocations: Point, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
 
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
    *   @param foundWeights Vector that will contain confidence values for each detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param scale Coefficient of the detection window increase.
    *   @param finalThreshold Final threshold
    *   @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: any, foundLocations: any, foundWeights: any, hitThreshold?: double, winStride?: any, padding?: any, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): any
+  public detectMultiScale(img: InputArray, foundLocations: Rect, foundWeights: any, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
 
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param winStride Window stride. It must be a multiple of block stride.
    *   @param padding Padding
    *   @param scale Coefficient of the detection window increase.
    *   @param finalThreshold Final threshold
    *   @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: any, foundLocations: any, hitThreshold?: double, winStride?: any, padding?: any, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): any
+  public detectMultiScale(img: InputArray, foundLocations: Rect, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
 
   /**
    *   
    *   @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
    *   @param foundLocations Vector of rectangles where each rectangle contains the detected object.
    *   @param locations Vector of DetectionROI
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here.
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here.
    *   @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a
    * group of rectangles to retain it.
    */
-  public detectMultiScaleROI(img: any, foundLocations: any, locations: any, hitThreshold?: double, groupThreshold?: int): any
+  public detectMultiScaleROI(img: InputArray, foundLocations: any, locations: DetectionROI, hitThreshold?: double, groupThreshold?: int): InputArray
 
   /**
    *   
@@ -246,14 +240,13 @@ export declare class HOGDescriptor {
    *   @param locations Vector of Point
    *   @param foundLocations Vector of Point where each Point is detected object's top-left point.
    *   @param confidences confidences
-   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane.
-   * Usually it is 0 and should be specified in the detector coefficients (as the last free
-   * coefficient). But if the free coefficient is omitted (which is allowed), you can specify it
-   * manually here
+   *   @param hitThreshold Threshold for the distance between features and SVM classifying plane. Usually
+   * it is 0 and should be specified in the detector coefficients (as the last free coefficient). But if
+   * the free coefficient is omitted (which is allowed), you can specify it manually here
    *   @param winStride winStride
    *   @param padding padding
    */
-  public detectROI(img: any, locations: any, foundLocations: any, confidences: any, hitThreshold?: double, winStride?: any, padding?: any): any
+  public detectROI(img: InputArray, locations: any, foundLocations: any, confidences: any, hitThreshold?: double, winStride?: any, padding?: any): InputArray
 
   /**
    *   
@@ -283,33 +276,33 @@ export declare class HOGDescriptor {
    *   @param objname The optional name of the node to read (if empty, the first top-level node will be
    * used).
    */
-  public load(filename: any, objname?: any): any
+  public load(filename: String, objname?: String): String
 
   /**
    *   
    *   @param fn File node
    */
-  public read(fn: any): any
+  public read(fn: FileNode): FileNode
 
   /**
    *   
    *   @param filename File name
    *   @param objname Object name
    */
-  public save(filename: any, objname?: any): any
+  public save(filename: String, objname?: String): String
 
   /**
    *   
    *   @param svmdetector coefficients for the linear SVM classifier.
    */
-  public setSVMDetector(svmdetector: any): any
+  public setSVMDetector(svmdetector: InputArray): InputArray
 
   /**
    *   
    *   @param fs File storage
    *   @param objname Object name
    */
-  public write(fs: any, objname: any): any
+  public write(fs: FileStorage, objname: String): FileStorage
 
   /**
    *   

@@ -1,13 +1,12 @@
 
-import { int } from './_types'
+import { Mat, int } from './_types'
 
 /**
  * For details, see, for example, *Visual Categorization with Bags of Keypoints* by Gabriella Csurka,
  * Christopher R. Dance, Lixin Fan, Jutta Willamowski, Cedric Bray, 2004. :
  * 
  * Source:
- * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/f
- * eatures2d.hpp#L1339).
+ * [opencv2/features2d.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/features2d.hpp#L1339).
  * 
  */
 export declare class BOWTrainer {
@@ -23,7 +22,7 @@ export declare class BOWTrainer {
    *   @param descriptors Descriptors to add to a training set. Each row of the descriptors matrix is a
    * descriptor.
    */
-  public add(descriptors: any): any
+  public add(descriptors: Mat): Mat
 
   /**
    *   
@@ -35,7 +34,7 @@ export declare class BOWTrainer {
    * function only in what argument(s) it accepts.
    *   
    */
-  public cluster(): any
+  public cluster(): Mat
 
   /**
    *   The vocabulary consists of cluster centers. So, this method returns the vocabulary. In the first
@@ -45,7 +44,7 @@ export declare class BOWTrainer {
    *   @param descriptors Descriptors to cluster. Each row of the descriptors matrix is a descriptor.
    * Descriptors are not added to the inner train descriptor set.
    */
-  public cluster(descriptors: any): any
+  public cluster(descriptors: Mat): Mat
 
   /**
    *   
@@ -55,6 +54,6 @@ export declare class BOWTrainer {
   /**
    *   
    */
-  public getDescriptors(): any
+  public getDescriptors(): Mat
 }
 

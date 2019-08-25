@@ -1,3 +1,5 @@
+import { Example, examples } from './examples';
+
 // import { File, RunResult } from 'magica'
 // import { Example, ExampleField, examples } from "magica-examples"
 
@@ -11,18 +13,7 @@ export interface State {
   showAllResultsOutput: boolean
   // fields: ExampleField[]
 }
-export interface Example {
-name:string
-tags: ExampleTag[]
-}
-export function examples() {
-  return [
-    {name:'test', tags: []}
-  ]
-}
-export enum ExampleTag {
-  'test'='test',
-}
+
 // // export interface Field {
 // //   id: string
 // //   value: string

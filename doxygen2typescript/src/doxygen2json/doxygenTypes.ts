@@ -8,8 +8,8 @@ export interface CompoundDef extends Described {
   compoundname: string
   kind: DoxCompoundKind
   title?: string
-  basecompoundref?: compoundRefType[]
-  derivedcompoundref?: compoundRefType[];
+  // basecompoundref?: compoundRefType[]
+  // derivedcompoundref?: compoundRefType[];
 }
 
 export interface PublicType extends Described {
@@ -30,9 +30,9 @@ export interface Described extends Descriptions {
 }
 
 export interface linkedTextType {
-  name: string
-  text: string
-  refs: refTextType[];
+  name?: string
+  // text: string
+  ref?: refTextType
 }
 
 export interface Member extends Described {

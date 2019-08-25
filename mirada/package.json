@@ -47,7 +47,7 @@
   "dependencies": {
     "cross-fetch": "^3.0.4",
     "js-base64": "^2.5.1",
-    "misc-utils-of-mine-generic": "^0.2.22"
+    "misc-utils-of-mine-generic": "^0.2.29"
   },
   "repository": {
     "type": "git",

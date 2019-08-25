@@ -1,11 +1,10 @@
-import { readFileSync, writeFileSync } from 'fs'
-import { notSameNotFalsy, withoutExtension } from 'misc-utils-of-mine-generic'
-import { join } from 'path'
-import { ls, mkdir } from 'shelljs'
-import { Project, tsMorph } from 'ts-simple-ast-extra'
-import { Doxygen2tsOptions } from '../doxygen2ts'
-import { renderCTypesImports, renderCvExports } from './tsExports/types'
-import { renderImportHacks } from './tsExports/hacks'
+import { readFileSync, writeFileSync } from 'fs';
+import { notSame, notSameNotFalsy, unique, withoutExtension } from 'misc-utils-of-mine-generic';
+import { basename, join } from 'path';
+import { ls } from 'shelljs';
+import { getTypeReferencesByDefinitionOrigin, Project } from 'ts-simple-ast-extra';
+import { Doxygen2tsOptions } from '../doxygen2ts';
+import { renderImportHacks } from './tsExports/hacks';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
   const files = [
@@ -14,27 +13,21 @@ export function writeIndexTs(o: Doxygen2tsOptions) {
       .map(f => {
         addImports(f, o)
         return f
-      }), '_cTypes.ts', '_hacks.ts']
-  writeFileSync(join(o.tsOutputFolder, '_cTypes.ts'), renderCTypesImports())
+      }), '_hacks.ts']
   writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
-  writeFileSync(join(o.tsOutputFolder, 'index.ts'), renderCvExports())
+  writeFileSync(join(o.tsOutputFolder, 'index.ts'), index)
   writeFileSync(join(o.tsOutputFolder, '_types.ts'), `${files.map(f => `export * from './${withoutExtension(f)}'`).join('\n')}`)
-  // heads up ! we are writing '../_opencvCustom.ts' so don't target the build directly on mirada's but on empty folder and copy it without overriding this file.
-  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.ts'), `
-export declare const FS: any
-import {CV} from './opencv'
-export declare var cv: CV
-`)
-  finalHacks(o)
+  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.ts'), _opencvCustom)
+  fixMissingExtends(o)
+  fixClasses(o)
+  fixMissingImports(o)
 }
 
 function getExternalTypeReferences(content: string) {
   const p = new Project()
   const file = p.createSourceFile('f.ts', content)
-  return file.getDescendantsOfKind(tsMorph.SyntaxKind.TypeReference)
-    // // only import type references to types not declared in this file
-    // .filter(t=>tryTo(()=>!t.getType().getSymbol().getDeclarations().find(d=>d.getSourceFile()===file)), true)
-    .map(r => r.getFirstChildByKind(tsMorph.SyntaxKind.Identifier).getText()).filter(notSameNotFalsy)
+  return getTypeReferencesByDefinitionOrigin({ node: file, origin: 'unknown' })
+    .map(r => r.getText()).filter(notSameNotFalsy)
 }
 
 function addImports(f: string, o: Doxygen2tsOptions) {
@@ -46,9 +39,76 @@ ${content}
   writeFileSync(join(o.tsOutputFolder, f), s)
 }
 
-
-export function finalHacks(o: Doxygen2tsOptions) {
-  const s = readFileSync(join(o.tsOutputFolder, 'Mat.ts')).toString()
-  const s2 = s.replace(`} from './_types'`, `, Mat_} from './_types'`).replace(`export declare class Mat`, `export declare class Mat extends Mat_`)
-  writeFileSync(join(o.tsOutputFolder, 'Mat.ts'), s2)
+export function fixMissingExtends(o: Doxygen2tsOptions) {
+  const missingExtends = {
+    'Mat': 'Mat_',
+    'MatExpr': 'Mat'
+  }
+  Object.keys(missingExtends).forEach(k => {
+    const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
+      .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
+    writeFileSync(join(o.tsOutputFolder, k + '.ts'), s)
+  })
 }
+
+export function fixClasses(o: Doxygen2tsOptions) {
+  const removeMembers = {
+    'MatExpr': 'size'
+  }
+  // const p = createProject(o); 
+  const p = new Project()
+  Object.keys(removeMembers).forEach(k => {
+    const f = p.createSourceFile(unique(k)+'.ts', readFileSync(join(o.tsOutputFolder, k + '.ts')).toString())
+    // const f = p.getSourceFiles().find(f => f.getBaseNameWithoutExtension() === k)!
+    const c = f.getClass(k)
+    if (!c) {
+      return console.error(`Expected to find class ${k}`);
+    }
+    const m = c.getMember(removeMembers[k])
+    if (!m) {
+      return console.error(`Expected to find member ${removeMembers[k]} in class ${k}`);
+    }
+    m.remove()
+    writeFileSync(join(o.tsOutputFolder, k + '.ts'), f.getFullText())
+  })
+}
+
+export function fixMissingImports(o: Doxygen2tsOptions) {
+  const p = createProject(o);
+  const prefix = `Module '"./_types"' has no exported member '`
+  const missing = p.getPreEmitDiagnostics()
+    .map(d => d.getMessageText().toString())
+    .filter(s => s.startsWith(prefix))
+    .map(s => s.substring(prefix.length))
+    .map(s => s.substring(0, s.indexOf('\'') !== -1 ? s.indexOf('\'') : s.length))
+    .filter(notSame)
+  const s = `
+${readFileSync(o.tsOutputFolder + '/_hacks.ts').toString()}
+
+// Missing imports: 
+${missing.map(t => `export type ${t} = any`).join('\n')}
+`.trim()
+  writeFileSync(o.tsOutputFolder + '/_hacks.ts', s)
+}
+
+function createProject(o: Doxygen2tsOptions) {
+  const p = new Project();
+  ls(o.tsOutputFolder + '/*.ts').filter(notSame)
+    .map(f => {
+      return p.createSourceFile(basename(f), readFileSync(f).toString());
+    });
+  return p;
+}
+
+const _opencvCustom = `
+export declare const FS: any
+import {CV} from './opencv'
+export declare var cv: CV
+`.trim()
+const index = `
+import * as _CV from './_types'
+export type CV = typeof _CV // namespace type
+export * from './_types'
+export * from './_hacks'
+export * from '../_opencvCustom'
+`.trim()

@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double, InterpolationFlags, InterpolationMasks, WarpPolarMode } from './_types'
+import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double } from './_types'
 /*
  * # imgproc_transform
  *
@@ -18,8 +18,8 @@ import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double, Interpo
  * contains indices in the interpolation tables.
  * `$\\texttt{(CV_32FC2)} \\rightarrow \\texttt{(CV_16SC2, CV_16UC1)}$`. The same as above but the
  * original maps are stored in one 2-channel matrix.
- * Reverse conversion. Obviously, the reconstructed floating-point maps will not be exactly the same
- * as the originals.
+ * Reverse conversion. Obviously, the reconstructed floating-point maps will not be exactly the same as
+ * the originals.
  * 
  * [remap](#da/d54/group__imgproc__transform_1gab75ef31ce5cdfb5c44b6da5f3b908ea4}),
  * [undistort](#d9/d0c/group__calib3d_1ga69f2545a8b62a6b0fc2ee060dc30559d}),
@@ -117,8 +117,8 @@ export declare function getRectSubPix(image: InputArray, patchSize: Size, center
  * The function calculates the following matrix:
  * 
  * `\\[\\begin{bmatrix} \\alpha & \\beta & (1- \\alpha ) \\cdot \\texttt{center.x} - \\beta \\cdot
- * \\texttt{center.y} \\\\ - \\beta & \\alpha & \\beta \\cdot \\texttt{center.x} + (1- \\alpha )
- * \\cdot \\texttt{center.y} \\end{bmatrix}\\]`
+ * \\texttt{center.y} \\\\ - \\beta & \\alpha & \\beta \\cdot \\texttt{center.x} + (1- \\alpha ) \\cdot
+ * \\texttt{center.y} \\end{bmatrix}\\]`
  * 
  * where
  * 
@@ -178,15 +178,15 @@ export declare function logPolar(src: InputArray, dst: OutputArray, center: Poin
  * where values of pixels with non-integer coordinates are computed using one of available
  * interpolation methods. `$map_x$` and `$map_y$` can be encoded as separate floating-point maps in
  * `$map_1$` and `$map_2$` respectively, or interleaved floating-point maps of `$(x,y)$` in `$map_1$`,
- * or fixed-point maps created by using convertMaps. The reason you might want to convert from
- * floating to fixed-point representations of a map is that they can yield much faster (2x) remapping
+ * or fixed-point maps created by using convertMaps. The reason you might want to convert from floating
+ * to fixed-point representations of a map is that they can yield much faster (2x) remapping
  * operations. In the converted case, `$map_1$` contains pairs (cvFloor(x), cvFloor(y)) and `$map_2$`
  * contains indices in a table of interpolation coefficients.
  * 
  * This function cannot operate in-place.
  * 
- * Due to current implementation limitations the size of an input and output images should be less
- * than 32767x32767.
+ * Due to current implementation limitations the size of an input and output images should be less than
+ * 32767x32767.
  * 
  * @param src Source image.
  * @param dst Destination image. It has the same size as map1 and the same type as src .
@@ -205,10 +205,10 @@ export declare function logPolar(src: InputArray, dst: OutputArray, center: Poin
 export declare function remap(src: InputArray, dst: OutputArray, map1: InputArray, map2: InputArray, interpolation: int, borderMode?: int, borderValue?: any): void
 
 /**
- * The function resize resizes the image src down to or up to the specified size. Note that the
- * initial dst type or size are not taken into account. Instead, the size and type are derived from
- * the `src`,`dsize`,`fx`, and `fy`. If you want to resize src so that it fits the pre-created dst,
- * you may call the function as follows: 
+ * The function resize resizes the image src down to or up to the specified size. Note that the initial
+ * dst type or size are not taken into account. Instead, the size and type are derived from the
+ * `src`,`dsize`,`fx`, and `fy`. If you want to resize src so that it fits the pre-created dst, you may
+ * call the function as follows: 
  * 
  * ```cpp
  * // explicitly specify dsize=dst.size(); fx and fy will be computed from that.
@@ -224,11 +224,11 @@ export declare function remap(src: InputArray, dst: OutputArray, map1: InputArra
  * ```
  * 
  *  To shrink an image, it will generally look best with
- * [INTER_AREA](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121acf959dca2480cc69
- * 4ca016b81b442ceb}) interpolation, whereas to enlarge an image, it will generally look best with
- * c::INTER_CUBIC (slow) or
- * [INTER_LINEAR](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121ac97d8e4880d8b5
- * d509e96825c7522deb}) (faster but still looks OK).
+ * [INTER_AREA](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121acf959dca2480cc694ca016b81b442ceb})
+ * interpolation, whereas to enlarge an image, it will generally look best with c::INTER_CUBIC (slow)
+ * or
+ * [INTER_LINEAR](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121ac97d8e4880d8b5d509e96825c7522deb})
+ * (faster but still looks OK).
  * 
  * [warpAffine](#da/d54/group__imgproc__transform_1ga0203d9ee5fcd28d40dbc4a1ea4451983}),
  * [warpPerspective](#da/d54/group__imgproc__transform_1gaf73673a7e8e18ec6963e3774e6a94b87}),
@@ -254,8 +254,8 @@ export declare function resize(src: InputArray, dst: OutputArray, dsize: Size, f
  * _{13}, \\texttt{M} _{21} x + \\texttt{M} _{22} y + \\texttt{M} _{23})\\]`
  * 
  * when the flag
- * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433
- * 186c4eae1ea86aa0ca75ba}) is set. Otherwise, the transformation is first inverted with
+ * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433186c4eae1ea86aa0ca75ba})
+ * is set. Otherwise, the transformation is first inverted with
  * [invertAffineTransform](#da/d54/group__imgproc__transform_1ga57d3505a878a7e1a636645727ca08f51}) and
  * then put in the formula above instead of M. The function cannot operate in-place.
  * 
@@ -287,9 +287,9 @@ export declare function warpAffine(src: InputArray, dst: OutputArray, M: InputAr
  * )\\]`
  * 
  * when the flag
- * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433
- * 186c4eae1ea86aa0ca75ba}) is set. Otherwise, the transformation is first inverted with invert and
- * then put in the formula above instead of M. The function cannot operate in-place.
+ * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433186c4eae1ea86aa0ca75ba})
+ * is set. Otherwise, the transformation is first inverted with invert and then put in the formula
+ * above instead of M. The function cannot operate in-place.
  * 
  * [warpAffine](#da/d54/group__imgproc__transform_1ga0203d9ee5fcd28d40dbc4a1ea4451983}),
  * [resize](#da/d54/group__imgproc__transform_1ga47a974309e9102f5f08231edc7e7529d}),
@@ -342,8 +342,8 @@ export declare function warpPerspective(src: InputArray, dst: OutputArray, M: In
  * the bounding circle will be scaled to `dsize`.
  * 
  * You can get reverse mapping adding
- * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433
- * 186c4eae1ea86aa0ca75ba}) to `flags` 
+ * [WARP_INVERSE_MAP](#da/d54/group__imgproc__transform_1gga5bb5a1fea74ea38e1a5445ca803ff121aa48be1c433186c4eae1ea86aa0ca75ba})
+ * to `flags` 
  * 
  * ```cpp
  *         // direct transform
@@ -358,8 +358,8 @@ export declare function warpPerspective(src: InputArray, dst: OutputArray, M: In
  * WARP_POLAR_LOG + WARP_INVERSE_MAP);
  * ```
  * 
- *  In addiction, to calculate the original coordinate from a polar mapped coordinate `$(rho,
- * phi)->(x, y)$`: 
+ *  In addiction, to calculate the original coordinate from a polar mapped coordinate `$(rho, phi)->(x,
+ * y)$`: 
  * 
  * ```cpp
  *         double angleRad, magnitude;
@@ -384,8 +384,8 @@ export declare function warpPerspective(src: InputArray, dst: OutputArray, M: In
  * [cartToPolar](#d2/de8/group__core__array_1gac5f92f48ec32cacf5275969c33ee837d}) is used internally
  * thus angles are measured from 0 to 360 with accuracy about 0.3 degrees.
  * This function uses [remap](#da/d54/group__imgproc__transform_1gab75ef31ce5cdfb5c44b6da5f3b908ea4}).
- * Due to current implementation limitations the size of an input and output images should be less
- * than 32767x32767.
+ * Due to current implementation limitations the size of an input and output images should be less than
+ * 32767x32767.
  * 
  * [cv::remap](#da/d54/group__imgproc__transform_1gab75ef31ce5cdfb5c44b6da5f3b908ea4})
  * 
@@ -393,8 +393,8 @@ export declare function warpPerspective(src: InputArray, dst: OutputArray, M: In
  * @param dst Destination image. It will have same type as src.
  * @param dsize The destination image size (see description for valid options).
  * @param center The transformation center.
- * @param maxRadius The radius of the bounding circle to transform. It determines the inverse
- * magnitude scale parameter too.
+ * @param maxRadius The radius of the bounding circle to transform. It determines the inverse magnitude
+ * scale parameter too.
  * @param flags A combination of interpolation methods, InterpolationFlags + WarpPolarMode.
  * Add WARP_POLAR_LINEAR to select linear polar mapping (default)Add WARP_POLAR_LOG to select semilog
  * polar mappingAdd WARP_INVERSE_MAP for reverse mapping.
@@ -420,8 +420,8 @@ export declare const INTER_LINEAR: InterpolationFlags // initializer: = 1
 export declare const INTER_CUBIC: InterpolationFlags // initializer: = 2
 
 /**
- * resampling using pixel area relation. It may be a preferred method for image decimation, as it
- * gives moire'-free results. But when the image is zoomed, it is similar to the INTER_NEAREST method.
+ * resampling using pixel area relation. It may be a preferred method for image decimation, as it gives
+ * moire'-free results. But when the image is zoomed, it is similar to the INTER_NEAREST method.
  * 
  */
 export declare const INTER_AREA: InterpolationFlags // initializer: = 3

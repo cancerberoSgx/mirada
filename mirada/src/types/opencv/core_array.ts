@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, double, bool, InputOutputArray, size_t, InputArrayOfArrays, Scalar, InputOutputArrayOfArrays, Mat, OutputArrayOfArrays, BorderTypes, CmpTypes, DecompTypes, DftFlags, GemmFlags, NormTypes, RotateFlags } from './_types'
+import { InputArray, OutputArray, int, double, bool, InputOutputArray, size_t, InputArrayOfArrays, Scalar, InputOutputArrayOfArrays, Mat, OutputArrayOfArrays } from './_types'
 /*
  * # core_array
  *
@@ -12,11 +12,11 @@ import { InputArray, OutputArray, int, double, bool, InputOutputArray, size_t, I
  * `\\[\\texttt{dst}(I) = \\texttt{saturate} (| \\texttt{src1}(I) - \\texttt{src2}(I)|)\\]` Absolute
  * difference between an array and a scalar when the second array is constructed from Scalar or has as
  * many elements as the number of channels in `src1`: `\\[\\texttt{dst}(I) = \\texttt{saturate} (|
- * \\texttt{src1}(I) - \\texttt{src2} |)\\]` Absolute difference between a scalar and an array when
- * the first array is constructed from Scalar or has as many elements as the number of channels in
- * `src2`: `\\[\\texttt{dst}(I) = \\texttt{saturate} (| \\texttt{src1} - \\texttt{src2}(I) |)\\]`
- * where I is a multi-dimensional index of array elements. In case of multi-channel arrays, each
- * channel is processed independently. 
+ * \\texttt{src1}(I) - \\texttt{src2} |)\\]` Absolute difference between a scalar and an array when the
+ * first array is constructed from Scalar or has as many elements as the number of channels in `src2`:
+ * `\\[\\texttt{dst}(I) = \\texttt{saturate} (| \\texttt{src1} - \\texttt{src2}(I) |)\\]` where I is a
+ * multi-dimensional index of array elements. In case of multi-channel arrays, each channel is
+ * processed independently. 
  * 
  * Saturation is not applied when the arrays have the depth CV_32S. You may even get a negative value
  * in the case of overflow. 
@@ -35,13 +35,13 @@ export declare function absdiff(src1: InputArray, src2: InputArray, dst: OutputA
  * Sum of two arrays when both input arrays have the same size and the same number of channels:
  * `\\[\\texttt{dst}(I) = \\texttt{saturate} ( \\texttt{src1}(I) + \\texttt{src2}(I)) \\quad
  * \\texttt{if mask}(I) \\ne0\\]`
- * Sum of an array and a scalar when src2 is constructed from Scalar or has the same number of
- * elements as `src1.channels()`: `\\[\\texttt{dst}(I) = \\texttt{saturate} ( \\texttt{src1}(I) +
- * \\texttt{src2} ) \\quad \\texttt{if mask}(I) \\ne0\\]`
- * Sum of a scalar and an array when src1 is constructed from Scalar or has the same number of
- * elements as `src2.channels()`: `\\[\\texttt{dst}(I) = \\texttt{saturate} ( \\texttt{src1} +
- * \\texttt{src2}(I) ) \\quad \\texttt{if mask}(I) \\ne0\\]` where `I` is a multi-dimensional index of
- * array elements. In case of multi-channel arrays, each channel is processed independently.
+ * Sum of an array and a scalar when src2 is constructed from Scalar or has the same number of elements
+ * as `src1.channels()`: `\\[\\texttt{dst}(I) = \\texttt{saturate} ( \\texttt{src1}(I) + \\texttt{src2}
+ * ) \\quad \\texttt{if mask}(I) \\ne0\\]`
+ * Sum of a scalar and an array when src1 is constructed from Scalar or has the same number of elements
+ * as `src2.channels()`: `\\[\\texttt{dst}(I) = \\texttt{saturate} ( \\texttt{src1} + \\texttt{src2}(I)
+ * ) \\quad \\texttt{if mask}(I) \\ne0\\]` where `I` is a multi-dimensional index of array elements. In
+ * case of multi-channel arrays, each channel is processed independently.
  * 
  * The first function in the list above can be replaced with matrix expressions: 
  * 
@@ -51,11 +51,11 @@ export declare function absdiff(src1: InputArray, src2: InputArray, dst: OutputA
  * ```
  * 
  *  The input arrays and the output array can all have the same or different depths. For example, you
- * can add a 16-bit unsigned array to a 8-bit signed array and store the sum as a 32-bit
- * floating-point array. Depth of the output array is determined by the dtype parameter. In the second
- * and third cases above, as well as in the first case, when src1.depth() == src2.depth(), dtype can
- * be set to the default -1. In this case, the output array will have the same depth as the input
- * array, be it src1, src2 or both. 
+ * can add a 16-bit unsigned array to a 8-bit signed array and store the sum as a 32-bit floating-point
+ * array. Depth of the output array is determined by the dtype parameter. In the second and third cases
+ * above, as well as in the first case, when src1.depth() == src2.depth(), dtype can be set to the
+ * default -1. In this case, the output array will have the same depth as the input array, be it src1,
+ * src2 or both. 
  * 
  * Saturation is not applied when the output array has the depth CV_32S. You may even get result of an
  * incorrect sign in the case of overflow. 
@@ -77,8 +77,8 @@ export declare function add(src1: InputArray, src2: InputArray, dst: OutputArray
 
 /**
  * The function addWeighted calculates the weighted sum of two arrays as follows: `\\[\\texttt{dst}
- * (I)= \\texttt{saturate} ( \\texttt{src1} (I)* \\texttt{alpha} + \\texttt{src2} (I)* \\texttt{beta}
- * + \\texttt{gamma} )\\]` where I is a multi-dimensional index of array elements. In case of
+ * (I)= \\texttt{saturate} ( \\texttt{src1} (I)* \\texttt{alpha} + \\texttt{src2} (I)* \\texttt{beta} +
+ * \\texttt{gamma} )\\]` where I is a multi-dimensional index of array elements. In case of
  * multi-channel arrays, each channel is processed independently. The function can be replaced with a
  * matrix expression: 
  * 
@@ -127,12 +127,12 @@ export declare function batchDistance(src1: InputArray, src2: InputArray, dist: 
  * same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\wedge \\texttt{src2} (I) \\quad \\texttt{if
  * mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or has the same
  * number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\wedge
- * \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is
- * constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst}
- * (I) = \\texttt{src1} \\wedge \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of
+ * \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is constructed
+ * from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst} (I) =
+ * \\texttt{src1} \\wedge \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of
  * floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are
- * used for the operation. In case of multi-channel arrays, each channel is processed independently.
- * In the second and third cases above, the scalar is first converted to the array type.
+ * used for the operation. In case of multi-channel arrays, each channel is processed independently. In
+ * the second and third cases above, the scalar is first converted to the array type.
  * 
  * @param src1 first input array or a scalar.
  * @param src2 second input array or a scalar.
@@ -162,12 +162,12 @@ export declare function bitwise_not(src: InputArray, dst: OutputArray, mask?: In
  * same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\vee \\texttt{src2} (I) \\quad \\texttt{if
  * mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or has the same
  * number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\vee
- * \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is
- * constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst}
- * (I) = \\texttt{src1} \\vee \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of
+ * \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is constructed
+ * from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst} (I) =
+ * \\texttt{src1} \\vee \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of
  * floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are
- * used for the operation. In case of multi-channel arrays, each channel is processed independently.
- * In the second and third cases above, the scalar is first converted to the array type.
+ * used for the operation. In case of multi-channel arrays, each channel is processed independently. In
+ * the second and third cases above, the scalar is first converted to the array type.
  * 
  * @param src1 first input array or a scalar.
  * @param src2 second input array or a scalar.
@@ -181,14 +181,14 @@ export declare function bitwise_or(src1: InputArray, src2: InputArray, dst: Outp
  * The function [cv::bitwise_xor](#d2/de8/group__core__array_1ga84b2d8188ce506593dcc3f8cd00e8e2c})
  * calculates the per-element bit-wise logical "exclusive-or" operation for: Two arrays when src1 and
  * src2 have the same size: `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\oplus \\texttt{src2} (I)
- * \\quad \\texttt{if mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar
- * or has the same number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I)
+ * \\quad \\texttt{if mask} (I) \\ne0\\]` An array and a scalar when src2 is constructed from Scalar or
+ * has the same number of elements as `src1.channels()`: `\\[\\texttt{dst} (I) = \\texttt{src1} (I)
  * \\oplus \\texttt{src2} \\quad \\texttt{if mask} (I) \\ne0\\]` A scalar and an array when src1 is
  * constructed from Scalar or has the same number of elements as `src2.channels()`: `\\[\\texttt{dst}
  * (I) = \\texttt{src1} \\oplus \\texttt{src2} (I) \\quad \\texttt{if mask} (I) \\ne0\\]` In case of
  * floating-point arrays, their machine-specific bit representations (usually IEEE754-compliant) are
- * used for the operation. In case of multi-channel arrays, each channel is processed independently.
- * In the 2nd and 3rd cases above, the scalar is first converted to the array type.
+ * used for the operation. In case of multi-channel arrays, each channel is processed independently. In
+ * the 2nd and 3rd cases above, the scalar is first converted to the array type.
  * 
  * @param src1 first input array or a scalar.
  * @param src2 second input array or a scalar.
@@ -201,11 +201,11 @@ export declare function bitwise_xor(src1: InputArray, src2: InputArray, dst: Out
 /**
  * The function computes and returns the coordinate of a donor pixel corresponding to the specified
  * extrapolated pixel when using the specified extrapolation border mode. For example, if you use
- * [cv::BORDER_WRAP](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5a697c1b011884a7c2bd
- * c0e5caf7955661}) mode in the horizontal direction,
- * [cv::BORDER_REFLECT_101](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5ab3c5a6143d8
- * 120b95005fa7105a10bb4}) in the vertical direction and want to compute value of the "virtual" pixel
- * Point(-5, 100) in a floating-point image img , it looks like: 
+ * [cv::BORDER_WRAP](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5a697c1b011884a7c2bdc0e5caf7955661})
+ * mode in the horizontal direction,
+ * [cv::BORDER_REFLECT_101](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5ab3c5a6143d8120b95005fa7105a10bb4})
+ * in the vertical direction and want to compute value of the "virtual" pixel Point(-5, 100) in a
+ * floating-point image img , it looks like: 
  * 
  * ```cpp
  * float val = img.at<float>(borderInterpolate(100, img.rows, cv::BORDER_REFLECT_101),
@@ -220,8 +220,8 @@ export declare function bitwise_xor(src1: InputArray, src2: InputArray, dst: Out
  * @param p 0-based coordinate of the extrapolated pixel along one of the axes, likely <0 or >= len
  * @param len Length of the array along the corresponding axis.
  * @param borderType Border type, one of the BorderTypes, except for BORDER_TRANSPARENT and
- * BORDER_ISOLATED . When borderType==BORDER_CONSTANT , the function always returns -1, regardless of
- * p and len.
+ * BORDER_ISOLATED . When borderType==BORDER_CONSTANT , the function always returns -1, regardless of p
+ * and len.
  */
 export declare function borderInterpolate(p: int, len: int, borderType: int): int
 
@@ -248,10 +248,10 @@ export declare function calcCovarMatrix(samples: any, nsamples: int, covar: any,
  * only in what argument(s) it accepts. 
  * 
  * use
- * [COVAR_ROWS](#d0/de1/group__core_1gga719ebd4a73f30f4fab258ab7616d0f0fadbac775ac8245aad5bfef994731c63
- * 5f}) or
- * [COVAR_COLS](#d0/de1/group__core_1gga719ebd4a73f30f4fab258ab7616d0f0fac8cc5a80914e18d6100184a2829aa3
- * c0}) flag
+ * [COVAR_ROWS](#d0/de1/group__core_1gga719ebd4a73f30f4fab258ab7616d0f0fadbac775ac8245aad5bfef994731c635f})
+ * or
+ * [COVAR_COLS](#d0/de1/group__core_1gga719ebd4a73f30f4fab258ab7616d0f0fac8cc5a80914e18d6100184a2829aa3c0})
+ * flag
  * 
  * @param samples samples stored as rows/columns of a single matrix.
  * @param covar output covariance matrix of the type ctype and square size.
@@ -279,8 +279,8 @@ export declare function calcCovarMatrix(samples: InputArray, covar: OutputArray,
  * array.
  * @param y array of y-coordinates, that must have the same size and same type as x.
  * @param magnitude output array of magnitudes of the same size and type as x.
- * @param angle output array of angles that has the same size and type as x; the angles are measured
- * in radians (from 0 to 2*Pi) or in degrees (0 to 360 degrees).
+ * @param angle output array of angles that has the same size and type as x; the angles are measured in
+ * radians (from 0 to 2*Pi) or in degrees (0 to 360 degrees).
  * @param angleInDegrees a flag, indicating whether the angles are measured in radians (which is by
  * default), or in degrees.
  */
@@ -291,8 +291,8 @@ export declare function cartToPolar(x: InputArray, y: InputArray, magnitude: Out
  * checks that every array element is neither NaN nor infinite. When minVal > -DBL_MAX and maxVal <
  * DBL_MAX, the function also checks that each value is between minVal and maxVal. In case of
  * multi-channel arrays, each channel is processed independently. If some values are out of range,
- * position of the first outlier is stored in pos (when pos != NULL). Then, the function either
- * returns false (when quiet=true) or throws an exception.
+ * position of the first outlier is stored in pos (when pos != NULL). Then, the function either returns
+ * false (when quiet=true) or throws an exception.
  * 
  * @param a input array.
  * @param quiet a flag, indicating whether the functions quietly return false when the array elements
@@ -309,10 +309,10 @@ export declare function checkRange(a: InputArray, quiet?: bool, pos?: any, minVa
  * `\\[\\texttt{dst} (I) = \\texttt{src1} (I) \\,\\texttt{cmpop}\\, \\texttt{src2} (I)\\]` Elements of
  * src1 with a scalar src2 when src2 is constructed from Scalar or has a single element:
  * `\\[\\texttt{dst} (I) = \\texttt{src1}(I) \\,\\texttt{cmpop}\\, \\texttt{src2}\\]` src1 with
- * elements of src2 when src1 is constructed from Scalar or has a single element: `\\[\\texttt{dst}
- * (I) = \\texttt{src1} \\,\\texttt{cmpop}\\, \\texttt{src2} (I)\\]` When the comparison result is
- * true, the corresponding element of output array is set to 255. The comparison operations can be
- * replaced with the equivalent matrix expressions: 
+ * elements of src2 when src1 is constructed from Scalar or has a single element: `\\[\\texttt{dst} (I)
+ * = \\texttt{src1} \\,\\texttt{cmpop}\\, \\texttt{src2} (I)\\]` When the comparison result is true,
+ * the corresponding element of output array is set to 255. The comparison operations can be replaced
+ * with the equivalent matrix expressions: 
  * 
  * ```cpp
  * Mat dst1 = src1 >= src2;
@@ -391,12 +391,12 @@ export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha
 
 /**
  * The function copies the source image into the middle of the destination image. The areas to the
- * left, to the right, above and below the copied source image will be filled with extrapolated
- * pixels. This is not what filtering functions based on it do (they extrapolate pixels on-fly), but
- * what other more complex functions, including your own, may do to simplify image boundary handling.
+ * left, to the right, above and below the copied source image will be filled with extrapolated pixels.
+ * This is not what filtering functions based on it do (they extrapolate pixels on-fly), but what other
+ * more complex functions, including your own, may do to simplify image boundary handling.
  * 
- * The function supports the mode when src is already in the middle of dst . In this case, the
- * function does not copy src itself but simply constructs the border, for example:
+ * The function supports the mode when src is already in the middle of dst . In this case, the function
+ * does not copy src itself but simply constructs the border, for example:
  * 
  * ```cpp
  * // let border be the same in all directions
@@ -417,8 +417,7 @@ export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha
  * When the source image is a part (ROI) of a bigger image, the function will try to use the pixels
  * outside of the ROI to form a border. To disable this feature and always do extrapolation, as if src
  * was not a ROI, use borderType |
- * [BORDER_ISOLATED](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5a4fcb77ae62e1e1336c
- * 1c2b24a441995c}).
+ * [BORDER_ISOLATED](#d2/de8/group__core__array_1gga209f2f4869e304c82d07739337eae7c5a4fcb77ae62e1e1336c1c2b24a441995c}).
  * 
  * [borderInterpolate](#d2/de8/group__core__array_1ga247f571aa6244827d3d798f13892da58})
  * 
@@ -429,8 +428,8 @@ export declare function convertScaleAbs(src: InputArray, dst: OutputArray, alpha
  * @param bottom the bottom pixels
  * @param left the left pixels
  * @param right Parameter specifying how many pixels in each direction from the source image rectangle
- * to extrapolate. For example, top=1, bottom=1, left=1, right=1 mean that 1 pixel-wide border needs
- * to be built.
+ * to extrapolate. For example, top=1, bottom=1, left=1, right=1 mean that 1 pixel-wide border needs to
+ * be built.
  * @param borderType Border type. See borderInterpolate for details.
  * @param value Border value if borderType==BORDER_CONSTANT .
  */
@@ -439,8 +438,8 @@ export declare function copyMakeBorder(src: InputArray, dst: OutputArray, top: i
 /**
  * 
  * @param src source matrix.
- * @param dst Destination matrix. If it does not have a proper size or type before the operation, it
- * is reallocated.
+ * @param dst Destination matrix. If it does not have a proper size or type before the operation, it is
+ * reallocated.
  * @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
  * elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels.
  */
@@ -467,23 +466,23 @@ export declare function countNonZero(src: InputArray): int
  * Forward Cosine transform of a 1D vector of N elements: `\\[Y = C^{(N)} \\cdot X\\]` where
  * `\\[C^{(N)}_{jk}= \\sqrt{\\alpha_j/N} \\cos \\left ( \\frac{\\pi(2k+1)j}{2N} \\right )\\]` and
  * `$\\alpha_0=1$`, `$\\alpha_j=2$` for *j > 0*.
- * Inverse Cosine transform of a 1D vector of N elements: `\\[X = \\left (C^{(N)} \\right )^{-1}
- * \\cdot Y = \\left (C^{(N)} \\right )^T \\cdot Y\\]` (since `$C^{(N)}$` is an orthogonal matrix,
- * `$C^{(N)} \\cdot \\left(C^{(N)}\\right)^T = I$` )
- * Forward 2D Cosine transform of M x N matrix: `\\[Y = C^{(N)} \\cdot X \\cdot \\left (C^{(N)}
- * \\right )^T\\]`
+ * Inverse Cosine transform of a 1D vector of N elements: `\\[X = \\left (C^{(N)} \\right )^{-1} \\cdot
+ * Y = \\left (C^{(N)} \\right )^T \\cdot Y\\]` (since `$C^{(N)}$` is an orthogonal matrix, `$C^{(N)}
+ * \\cdot \\left(C^{(N)}\\right)^T = I$` )
+ * Forward 2D Cosine transform of M x N matrix: `\\[Y = C^{(N)} \\cdot X \\cdot \\left (C^{(N)} \\right
+ * )^T\\]`
  * Inverse 2D Cosine transform of M x N matrix: `\\[X = \\left (C^{(N)} \\right )^T \\cdot X \\cdot
  * C^{(N)}\\]`
  * 
  * The function chooses the mode of operation by looking at the flags and size of the input array:
  * 
  * If (flags &
- * [DCT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca7d18108cbce9d52e649663
- * 3c713587da})) == 0 , the function does a forward 1D or 2D transform. Otherwise, it is an inverse 1D
- * or 2D transform.
+ * [DCT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca7d18108cbce9d52e6496633c713587da}))
+ * == 0 , the function does a forward 1D or 2D transform. Otherwise, it is an inverse 1D or 2D
+ * transform.
  * If (flags &
- * [DCT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca49bc8de8aedbe7fabb8960445
- * 133e494})) != 0 , the function performs a 1D transform of each row.
+ * [DCT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca49bc8de8aedbe7fabb8960445133e494}))
+ * != 0 , the function performs a 1D transform of each row.
  * If the array is a single column or a single row, the function performs a 1D transform.
  * If none of the above is true, the function performs a 2D transform.
  * 
@@ -528,8 +527,8 @@ export declare function dct(src: InputArray, dst: OutputArray, flags?: int): voi
 export declare function determinant(mtx: InputArray): double
 
 /**
- * The function [cv::dft](#d2/de8/group__core__array_1gadd6cf9baf2b8b704a11b5f04aaf4f39d}) performs
- * one of the following:
+ * The function [cv::dft](#d2/de8/group__core__array_1gadd6cf9baf2b8b704a11b5f04aaf4f39d}) performs one
+ * of the following:
  * 
  * Forward the Fourier transform of a 1D vector of N elements: `\\[Y = F^{(N)} \\cdot X,\\]` where
  * `$F^{(N)}_{jk}=\\exp(-2\\pi i j k/N)$` and `$i=\\sqrt{-1}$`
@@ -541,66 +540,64 @@ export declare function determinant(mtx: InputArray): double
  * \\right )^* \\cdot Y \\cdot \\left (F^{(N)} \\right )^* \\\\ X = \\frac{1}{M \\cdot N} \\cdot X'
  * \\end{array}\\]`
  * 
- * In case of real (single-channel) data, the output spectrum of the forward Fourier transform or
- * input spectrum of the inverse Fourier transform can be represented in a packed format called *CCS*
- * (complex-conjugate-symmetrical). It was borrowed from IPL (Intel* Image Processing Library). Here
- * is how 2D *CCS* spectrum looks: `\\[\\begin{bmatrix} Re Y_{0,0} & Re Y_{0,1} & Im Y_{0,1} & Re
- * Y_{0,2} & Im Y_{0,2} & \\cdots & Re Y_{0,N/2-1} & Im Y_{0,N/2-1} & Re Y_{0,N/2} \\\\ Re Y_{1,0} &
- * Re Y_{1,1} & Im Y_{1,1} & Re Y_{1,2} & Im Y_{1,2} & \\cdots & Re Y_{1,N/2-1} & Im Y_{1,N/2-1} & Re
- * Y_{1,N/2} \\\\ Im Y_{1,0} & Re Y_{2,1} & Im Y_{2,1} & Re Y_{2,2} & Im Y_{2,2} & \\cdots & Re
- * Y_{2,N/2-1} & Im Y_{2,N/2-1} & Im Y_{1,N/2} \\\\ \\hdotsfor{9} \\\\ Re Y_{M/2-1,0} & Re Y_{M-3,1} &
- * Im Y_{M-3,1} & \\hdotsfor{3} & Re Y_{M-3,N/2-1} & Im Y_{M-3,N/2-1}& Re Y_{M/2-1,N/2} \\\\ Im
- * Y_{M/2-1,0} & Re Y_{M-2,1} & Im Y_{M-2,1} & \\hdotsfor{3} & Re Y_{M-2,N/2-1} & Im Y_{M-2,N/2-1}& Im
- * Y_{M/2-1,N/2} \\\\ Re Y_{M/2,0} & Re Y_{M-1,1} & Im Y_{M-1,1} & \\hdotsfor{3} & Re Y_{M-1,N/2-1} &
- * Im Y_{M-1,N/2-1}& Re Y_{M/2,N/2} \\end{bmatrix}\\]`
+ * In case of real (single-channel) data, the output spectrum of the forward Fourier transform or input
+ * spectrum of the inverse Fourier transform can be represented in a packed format called *CCS*
+ * (complex-conjugate-symmetrical). It was borrowed from IPL (Intel* Image Processing Library). Here is
+ * how 2D *CCS* spectrum looks: `\\[\\begin{bmatrix} Re Y_{0,0} & Re Y_{0,1} & Im Y_{0,1} & Re Y_{0,2}
+ * & Im Y_{0,2} & \\cdots & Re Y_{0,N/2-1} & Im Y_{0,N/2-1} & Re Y_{0,N/2} \\\\ Re Y_{1,0} & Re Y_{1,1}
+ * & Im Y_{1,1} & Re Y_{1,2} & Im Y_{1,2} & \\cdots & Re Y_{1,N/2-1} & Im Y_{1,N/2-1} & Re Y_{1,N/2}
+ * \\\\ Im Y_{1,0} & Re Y_{2,1} & Im Y_{2,1} & Re Y_{2,2} & Im Y_{2,2} & \\cdots & Re Y_{2,N/2-1} & Im
+ * Y_{2,N/2-1} & Im Y_{1,N/2} \\\\ \\hdotsfor{9} \\\\ Re Y_{M/2-1,0} & Re Y_{M-3,1} & Im Y_{M-3,1} &
+ * \\hdotsfor{3} & Re Y_{M-3,N/2-1} & Im Y_{M-3,N/2-1}& Re Y_{M/2-1,N/2} \\\\ Im Y_{M/2-1,0} & Re
+ * Y_{M-2,1} & Im Y_{M-2,1} & \\hdotsfor{3} & Re Y_{M-2,N/2-1} & Im Y_{M-2,N/2-1}& Im Y_{M/2-1,N/2}
+ * \\\\ Re Y_{M/2,0} & Re Y_{M-1,1} & Im Y_{M-1,1} & \\hdotsfor{3} & Re Y_{M-1,N/2-1} & Im
+ * Y_{M-1,N/2-1}& Re Y_{M/2,N/2} \\end{bmatrix}\\]`
  * 
  * In case of 1D transform of a real vector, the output looks like the first row of the matrix above.
  * 
  * So, the function chooses an operation mode depending on the flags and size of the input array:
  * 
  * If
- * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c
- * 1565b7f}) is set or the input array has a single row or single column, the function performs a 1D
- * forward or inverse transform of each row of a matrix when
- * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c
- * 1565b7f}) is set. Otherwise, it performs a 2D transform.
+ * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c1565b7f})
+ * is set or the input array has a single row or single column, the function performs a 1D forward or
+ * inverse transform of each row of a matrix when
+ * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c1565b7f})
+ * is set. Otherwise, it performs a 2D transform.
  * If the input array is real and
- * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a267
- * 67d7b636be}) is not set, the function performs a forward 1D or 2D transform:
+ * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be})
+ * is not set, the function performs a forward 1D or 2D transform:
  * 
  * When
- * [DFT_COMPLEX_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca07b45079b38d60e
- * 7837dfb666a55299b}) is set, the output is a complex matrix of the same size as input.
+ * [DFT_COMPLEX_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca07b45079b38d60e7837dfb666a55299b})
+ * is set, the output is a complex matrix of the same size as input.
  * When
- * [DFT_COMPLEX_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca07b45079b38d60e
- * 7837dfb666a55299b}) is not set, the output is a real matrix of the same size as input. In case of
- * 2D transform, it uses the packed format as shown above. In case of a single 1D transform, it looks
- * like the first row of the matrix above. In case of multiple 1D transforms (when using the
- * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c
- * 1565b7f}) flag), each row of the output matrix looks like the first row of the matrix above.
+ * [DFT_COMPLEX_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca07b45079b38d60e7837dfb666a55299b})
+ * is not set, the output is a real matrix of the same size as input. In case of 2D transform, it uses
+ * the packed format as shown above. In case of a single 1D transform, it looks like the first row of
+ * the matrix above. In case of multiple 1D transforms (when using the
+ * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c1565b7f})
+ * flag), each row of the output matrix looks like the first row of the matrix above.
  * 
  * If the input array is complex and either
- * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a267
- * 67d7b636be}) or
- * [DFT_REAL_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca28347c7846e5eaed83
- * e019cd003e8e03}) are not set, the output is a complex array of the same size as input. The function
- * performs a forward or inverse 1D or 2D transform of the whole input array or each row of the input
- * array independently, depending on the flags DFT_INVERSE and DFT_ROWS.
+ * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be})
+ * or
+ * [DFT_REAL_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca28347c7846e5eaed83e019cd003e8e03})
+ * are not set, the output is a complex array of the same size as input. The function performs a
+ * forward or inverse 1D or 2D transform of the whole input array or each row of the input array
+ * independently, depending on the flags DFT_INVERSE and DFT_ROWS.
  * When
- * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a267
- * 67d7b636be}) is set and the input array is real, or it is complex but
- * [DFT_REAL_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca28347c7846e5eaed83
- * e019cd003e8e03}) is set, the output is a real array of the same size as input. The function
- * performs a 1D or 2D inverse transformation of the whole input array or each individual row,
- * depending on the flags
- * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a267
- * 67d7b636be}) and
- * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c
- * 1565b7f}).
+ * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be})
+ * is set and the input array is real, or it is complex but
+ * [DFT_REAL_OUTPUT](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca28347c7846e5eaed83e019cd003e8e03})
+ * is set, the output is a real array of the same size as input. The function performs a 1D or 2D
+ * inverse transformation of the whole input array or each individual row, depending on the flags
+ * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be})
+ * and
+ * [DFT_ROWS](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca1744dc1cf1249944bc841e78c1565b7f}).
  * 
  * If
- * [DFT_SCALE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca74746fb171aa4bfc08ace28d
- * 73f52375}) is set, the scaling is done after the transformation.
+ * [DFT_SCALE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca74746fb171aa4bfc08ace28d73f52375})
+ * is set, the scaling is done after the transformation.
  * 
  * Unlike dct , the function supports arrays of arbitrary size. But only those arrays are processed
  * efficiently, whose sizes can be factorized in a product of small prime numbers (2, 3, and 5 in the
@@ -663,8 +660,8 @@ export declare function determinant(mtx: InputArray): double
  * of A and B are required to calculate convolution in this tile. If the tiles in C are too small, the
  * speed will decrease a lot because of repeated work. In the ultimate case, when each tile in C is a
  * single pixel, the algorithm becomes equivalent to the naive convolution algorithm. If the tiles are
- * too big, the temporary arrays tempA and tempB become too big and there is also a slowdown because
- * of bad cache locality. So, there is an optimal tile size somewhere in the middle.
+ * too big, the temporary arrays tempA and tempB become too big and there is also a slowdown because of
+ * bad cache locality. So, there is an optimal tile size somewhere in the middle.
  * If different tiles in C can be calculated in parallel and, thus, the convolution is done by parts,
  * the loop can be threaded.
  * 
@@ -712,9 +709,9 @@ export declare function dft(src: InputArray, dst: OutputArray, flags?: int, nonz
  * 
  * For integer types when src2(I) is zero, dst(I) will also be zero.
  * 
- * In case of floating point data there is no special defined behavior for zero src2(I) values.
- * Regular floating-point division is used. Expect correct IEEE-754 behaviour for floating-point data
- * (with NaN, Inf result values).
+ * In case of floating point data there is no special defined behavior for zero src2(I) values. Regular
+ * floating-point division is used. Expect correct IEEE-754 behaviour for floating-point data (with
+ * NaN, Inf result values).
  * 
  * Saturation is not applied when the output array has the depth CV_32S. You may even get result of an
  * incorrect sign in the case of overflow. 
@@ -744,8 +741,8 @@ export declare function divide(src1: InputArray, src2: InputArray, dst: OutputAr
 export declare function divide(scale: double, src2: InputArray, dst: OutputArray, dtype?: int): void
 
 /**
- * The function [cv::eigen](#d2/de8/group__core__array_1ga9fa0d58657f60eaa6c71f6fbb40456e3})
- * calculates just eigenvalues, or eigenvalues and eigenvectors of the symmetric matrix src: 
+ * The function [cv::eigen](#d2/de8/group__core__array_1ga9fa0d58657f60eaa6c71f6fbb40456e3}) calculates
+ * just eigenvalues, or eigenvalues and eigenvectors of the symmetric matrix src: 
  * 
  * ```cpp
  * src*eigenvectors.row(i).t() = eigenvalues.at<srcType>(i)*eigenvectors.row(i).t()
@@ -820,9 +817,9 @@ export declare function extractChannel(src: InputArray, dst: OutputArray, coi: i
 /**
  * Given a binary matrix (likely returned from an operation such as
  * [threshold()](#d7/d1b/group__imgproc__misc_1gae8a4a146d1ca78c626a53577199e9c57}),
- * [compare()](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}), >, ==, etc, return
- * all of the non-zero indices as a [cv::Mat](#d3/d63/classcv_1_1Mat}) or std::vector<cv::Point> (x,y)
- * For example: 
+ * [compare()](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}), >, ==, etc, return all
+ * of the non-zero indices as a [cv::Mat](#d3/d63/classcv_1_1Mat}) or std::vector<cv::Point> (x,y) For
+ * example: 
  * 
  * ```cpp
  * cv::Mat binaryImage; // input, binary image
@@ -852,18 +849,17 @@ export declare function findNonZero(src: InputArray, idx: OutputArray): void
 
 /**
  * The function [cv::flip](#d2/de8/group__core__array_1gaca7be533e3dac7feb70fc60635adf441}) flips the
- * array in one of three different ways (row and column indices are 0-based): `\\[\\texttt{dst} _{ij}
- * = \\left\\{ \\begin{array}{l l} \\texttt{src} _{\\texttt{src.rows}-i-1,j} & if\\;
- * \\texttt{flipCode} = 0 \\\\ \\texttt{src} _{i, \\texttt{src.cols} -j-1} & if\\; \\texttt{flipCode}
- * > 0 \\\\ \\texttt{src} _{ \\texttt{src.rows} -i-1, \\texttt{src.cols} -j-1} & if\\;
- * \\texttt{flipCode} < 0 \\\\ \\end{array} \\right.\\]` The example scenarios of using the function
- * are the following: Vertical flipping of the image (flipCode == 0) to switch between top-left and
- * bottom-left image origin. This is a typical operation in video processing on Microsoft Windows* OS.
- * Horizontal flipping of the image with the subsequent horizontal shift and absolute difference
- * calculation to check for a vertical-axis symmetry (flipCode > 0). Simultaneous horizontal and
- * vertical flipping of the image with the subsequent shift and absolute difference calculation to
- * check for a central symmetry (flipCode < 0). Reversing the order of point arrays (flipCode > 0 or
- * flipCode == 0). 
+ * array in one of three different ways (row and column indices are 0-based): `\\[\\texttt{dst} _{ij} =
+ * \\left\\{ \\begin{array}{l l} \\texttt{src} _{\\texttt{src.rows}-i-1,j} & if\\; \\texttt{flipCode} =
+ * 0 \\\\ \\texttt{src} _{i, \\texttt{src.cols} -j-1} & if\\; \\texttt{flipCode} > 0 \\\\ \\texttt{src}
+ * _{ \\texttt{src.rows} -i-1, \\texttt{src.cols} -j-1} & if\\; \\texttt{flipCode} < 0 \\\\
+ * \\end{array} \\right.\\]` The example scenarios of using the function are the following: Vertical
+ * flipping of the image (flipCode == 0) to switch between top-left and bottom-left image origin. This
+ * is a typical operation in video processing on Microsoft Windows* OS. Horizontal flipping of the
+ * image with the subsequent horizontal shift and absolute difference calculation to check for a
+ * vertical-axis symmetry (flipCode > 0). Simultaneous horizontal and vertical flipping of the image
+ * with the subsequent shift and absolute difference calculation to check for a central symmetry
+ * (flipCode < 0). Reversing the order of point arrays (flipCode > 0 or flipCode == 0). 
  * 
  * [transpose](#d2/de8/group__core__array_1ga46630ed6c0ea6254a35f447289bd7404}) ,
  * [repeat](#d2/de8/group__core__array_1ga496c3860f3ac44c40b48811333cfda2d}) ,
@@ -872,8 +868,8 @@ export declare function findNonZero(src: InputArray, idx: OutputArray): void
  * @param src input array.
  * @param dst output array of the same size and type as src.
  * @param flipCode a flag to specify how to flip the array; 0 means flipping around the x-axis and
- * positive value (for example, 1) means flipping around y-axis. Negative value (for example, -1)
- * means flipping around both axes.
+ * positive value (for example, 1) means flipping around y-axis. Negative value (for example, -1) means
+ * flipping around both axes.
  */
 export declare function flip(src: InputArray, dst: OutputArray, flipCode: int): void
 
@@ -900,8 +896,8 @@ export declare function flip(src: InputArray, dst: OutputArray, flipCode: int): 
  * complex(CV_32FC2, CV_64FC2).
  * @param src2 second multiplied input matrix of the same type as src1.
  * @param alpha weight of the matrix product.
- * @param src3 third optional delta matrix added to the matrix product; it should have the same type
- * as src1 and src2.
+ * @param src3 third optional delta matrix added to the matrix product; it should have the same type as
+ * src1 and src2.
  * @param beta weight of src3.
  * @param dst output matrix; it has the proper size and the same type as input matrices.
  * @param flags operation flags (cv::GemmFlags)
@@ -911,16 +907,16 @@ export declare function gemm(src1: InputArray, src2: InputArray, alpha: double, 
 /**
  * DFT performance is not a monotonic function of a vector size. Therefore, when you calculate
  * convolution of two arrays or perform the spectral analysis of an array, it usually makes sense to
- * pad the input data with zeros to get a bit larger array that can be transformed much faster than
- * the original one. Arrays whose size is a power-of-two (2, 4, 8, 16, 32, ...) are the fastest to
- * process. Though, the arrays whose size is a product of 2's, 3's, and 5's (for example, 300 =
- * 5*5*3*2*2) are also processed quite efficiently.
+ * pad the input data with zeros to get a bit larger array that can be transformed much faster than the
+ * original one. Arrays whose size is a power-of-two (2, 4, 8, 16, 32, ...) are the fastest to process.
+ * Though, the arrays whose size is a product of 2's, 3's, and 5's (for example, 300 = 5*5*3*2*2) are
+ * also processed quite efficiently.
  * 
  * The function
- * [cv::getOptimalDFTSize](#d2/de8/group__core__array_1ga6577a2e59968936ae02eb2edde5de299}) returns
- * the minimum number N that is greater than or equal to vecsize so that the DFT of a vector of size N
- * can be processed efficiently. In the current implementation N = 2 ^p^ * 3 ^q^ * 5 ^r^ for some
- * integer p, q, r.
+ * [cv::getOptimalDFTSize](#d2/de8/group__core__array_1ga6577a2e59968936ae02eb2edde5de299}) returns the
+ * minimum number N that is greater than or equal to vecsize so that the DFT of a vector of size N can
+ * be processed efficiently. In the current implementation N = 2 ^p^ * 3 ^q^ * 5 ^r^ for some integer
+ * p, q, r.
  * 
  * The function returns a negative number if vecsize is too large (very close to INT_MAX ).
  * 
@@ -939,8 +935,8 @@ export declare function gemm(src1: InputArray, src2: InputArray, alpha: double, 
 export declare function getOptimalDFTSize(vecsize: int): int
 
 /**
- * The function horizontally concatenates two or more [cv::Mat](#d3/d63/classcv_1_1Mat}) matrices
- * (with the same number of rows). 
+ * The function horizontally concatenates two or more [cv::Mat](#d3/d63/classcv_1_1Mat}) matrices (with
+ * the same number of rows). 
  * 
  * ```cpp
  * cv::Mat matArray[] = { cv::Mat(4, 1, CV_8UC1, cv::Scalar(1)),
@@ -968,8 +964,8 @@ export declare function getOptimalDFTSize(vecsize: int): int
  * @param src input array or vector of matrices. all of the matrices must have the same number of rows
  * and the same depth.
  * @param nsrc number of matrices in src.
- * @param dst output array. It has the same number of rows and depth as the src, and the sum of cols
- * of the src.
+ * @param dst output array. It has the same number of rows and depth as the src, and the sum of cols of
+ * the src.
  */
 export declare function hconcat(src: any, nsrc: size_t, dst: OutputArray): void
 
@@ -1020,8 +1016,8 @@ export declare function hconcat(src1: InputArray, src2: InputArray, dst: OutputA
  * 
  * @param src input array or vector of matrices. all of the matrices must have the same number of rows
  * and the same depth.
- * @param dst output array. It has the same number of rows and depth as the src, and the sum of cols
- * of the src. same depth.
+ * @param dst output array. It has the same number of rows and depth as the src, and the sum of cols of
+ * the src. same depth.
  */
 export declare function hconcat(src: InputArrayOfArrays, dst: OutputArray): void
 
@@ -1041,12 +1037,12 @@ export declare function idct(src: InputArray, dst: OutputArray, flags?: int): vo
 
 /**
  * idft(src, dst, flags) is equivalent to dft(src, dst, flags |
- * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a267
- * 67d7b636be})) . 
+ * [DFT_INVERSE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca4e01d7e91cae1dbb68a26767d7b636be}))
+ * . 
  * 
  * None of dft and idft scales the result by default. So, you should pass
- * [DFT_SCALE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca74746fb171aa4bfc08ace28d
- * 73f52375}) to one of dft or idft explicitly to make these transforms mutually inverse. 
+ * [DFT_SCALE](#d2/de8/group__core__array_1ggaf4dde112b483b38175621befedda1f1ca74746fb171aa4bfc08ace28d73f52375})
+ * to one of dft or idft explicitly to make these transforms mutually inverse. 
  * 
  * [dft](#d2/de8/group__core__array_1gadd6cf9baf2b8b704a11b5f04aaf4f39d}),
  * [dct](#d2/de8/group__core__array_1ga85aad4d668c01fbd64825f589e3696d4}),
@@ -1075,8 +1071,8 @@ export declare function idft(src: InputArray, dst: OutputArray, flags?: int, non
  * That is, dst (I) is set to 255 (all 1 -bits) if src (I) is within the specified 1D, 2D, 3D, ... box
  * and 0 otherwise.
  * 
- * When the lower and/or upper boundary parameters are scalars, the indexes (I) at lowerb and upperb
- * in the above formulas should be omitted.
+ * When the lower and/or upper boundary parameters are scalars, the indexes (I) at lowerb and upperb in
+ * the above formulas should be omitted.
  * 
  * @param src first input array.
  * @param lowerb inclusive lower boundary array or a scalar.
@@ -1098,27 +1094,27 @@ export declare function insertChannel(src: InputArray, dst: InputOutputArray, co
 /**
  * The function [cv::invert](#d2/de8/group__core__array_1gad278044679d4ecf20f7622cc151aaaa2}) inverts
  * the matrix src and stores the result in dst . When the matrix src is singular or non-square, the
- * function calculates the pseudo-inverse matrix (the dst matrix) so that norm(src*dst - I) is
- * minimal, where I is an identity matrix.
+ * function calculates the pseudo-inverse matrix (the dst matrix) so that norm(src*dst - I) is minimal,
+ * where I is an identity matrix.
  * 
  * In case of the
- * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26
- * 999dc024}) method, the function returns non-zero value if the inverse has been successfully
- * calculated and 0 if src is singular.
+ * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26999dc024})
+ * method, the function returns non-zero value if the inverse has been successfully calculated and 0 if
+ * src is singular.
  * 
  * In case of the
- * [DECOMP_SVD](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca523b676c90c7a1d2841b126
- * 7ba9ba614}) method, the function returns the inverse condition number of src (the ratio of the
- * smallest singular value to the largest singular value) and 0 if src is singular. The
- * [SVD](#df/df7/classcv_1_1SVD}) method calculates a pseudo-inverse matrix if src is singular.
+ * [DECOMP_SVD](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca523b676c90c7a1d2841b1267ba9ba614})
+ * method, the function returns the inverse condition number of src (the ratio of the smallest singular
+ * value to the largest singular value) and 0 if src is singular. The [SVD](#df/df7/classcv_1_1SVD})
+ * method calculates a pseudo-inverse matrix if src is singular.
  * 
  * Similarly to
- * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26
- * 999dc024}), the method
- * [DECOMP_CHOLESKY](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca33cf860f9800431037
- * 4a81d2c01715da}) works only with non-singular square matrices that should also be symmetrical and
- * positively defined. In this case, the function stores the inverted matrix in dst and returns
- * non-zero. Otherwise, it returns 0.
+ * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26999dc024}),
+ * the method
+ * [DECOMP_CHOLESKY](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca33cf860f98004310374a81d2c01715da})
+ * works only with non-singular square matrices that should also be symmetrical and positively defined.
+ * In this case, the function stores the inverted matrix in dst and returns non-zero. Otherwise, it
+ * returns 0.
  * 
  * [solve](#d2/de8/group__core__array_1ga12b43690dbd31fed96f213eefead2373}),
  * [SVD](#df/df7/classcv_1_1SVD})
@@ -1187,12 +1183,12 @@ export declare function magnitude(x: InputArray, y: InputArray, magnitude: Outpu
  * The function [cv::Mahalanobis](#d2/de8/group__core__array_1ga4493aee129179459cbfc6064f051aa7d})
  * calculates and returns the weighted distance between two vectors: `\\[d( \\texttt{vec1} ,
  * \\texttt{vec2} )=
- * \\sqrt{\\sum_{i,j}{\\texttt{icovar(i,j)}\\cdot(\\texttt{vec1}(I)-\\texttt{vec2}(I))\\cdot(\\texttt{v
- * ec1(j)}-\\texttt{vec2(j)})} }\\]` The covariance matrix may be calculated using the
- * [calcCovarMatrix](#d2/de8/group__core__array_1gae6ffa9354633f984246945d52823165d}) function and
- * then inverted using the invert function (preferably using the
- * [DECOMP_SVD](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca523b676c90c7a1d2841b126
- * 7ba9ba614}) method, as the most accurate).
+ * \\sqrt{\\sum_{i,j}{\\texttt{icovar(i,j)}\\cdot(\\texttt{vec1}(I)-\\texttt{vec2}(I))\\cdot(\\texttt{vec1(j)}-\\texttt{vec2(j)})}
+ * }\\]` The covariance matrix may be calculated using the
+ * [calcCovarMatrix](#d2/de8/group__core__array_1gae6ffa9354633f984246945d52823165d}) function and then
+ * inverted using the invert function (preferably using the
+ * [DECOMP_SVD](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca523b676c90c7a1d2841b1267ba9ba614})
+ * method, as the most accurate).
  * 
  * @param v1 first 1D input vector.
  * @param v2 second 1D input vector.
@@ -1202,9 +1198,9 @@ export declare function Mahalanobis(v1: InputArray, v2: InputArray, icovar: Inpu
 
 /**
  * The function [cv::max](#d7/dcc/group__core__utils__softfloat_1ga78f988f6cfa6223610298cbd4f86ec66})
- * calculates the per-element maximum of two arrays: `\\[\\texttt{dst} (I)= \\max ( \\texttt{src1}
- * (I), \\texttt{src2} (I))\\]` or array and a scalar: `\\[\\texttt{dst} (I)= \\max ( \\texttt{src1}
- * (I), \\texttt{value} )\\]` 
+ * calculates the per-element maximum of two arrays: `\\[\\texttt{dst} (I)= \\max ( \\texttt{src1} (I),
+ * \\texttt{src2} (I))\\]` or array and a scalar: `\\[\\texttt{dst} (I)= \\max ( \\texttt{src1} (I),
+ * \\texttt{value} )\\]` 
  * 
  * [min](#d7/dcc/group__core__utils__softfloat_1gac48df53b8fd34b87e7b121fa8fd4c379}),
  * [compare](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}),
@@ -1243,9 +1239,9 @@ export declare function max(src1: any, src2: any, dst: any): void
 /**
  * The function [cv::mean](#d2/de8/group__core__array_1ga191389f8a0e58180bb13a727782cd461}) calculates
  * the mean value M of array elements, independently for each channel, and return it:
- * `\\[\\begin{array}{l} N = \\sum _{I: \\; \\texttt{mask} (I) \\ne 0} 1 \\\\ M_c = \\left ( \\sum
- * _{I: \\; \\texttt{mask} (I) \\ne 0}{ \\texttt{mtx} (I)_c} \\right )/N \\end{array}\\]` When all the
- * mask elements are 0's, the function returns Scalar::all(0) 
+ * `\\[\\begin{array}{l} N = \\sum _{I: \\; \\texttt{mask} (I) \\ne 0} 1 \\\\ M_c = \\left ( \\sum _{I:
+ * \\; \\texttt{mask} (I) \\ne 0}{ \\texttt{mtx} (I)_c} \\right )/N \\end{array}\\]` When all the mask
+ * elements are 0's, the function returns Scalar::all(0) 
  * 
  * [countNonZero](#d2/de8/group__core__array_1gaa4b89393263bb4d604e0fe5986723914}),
  * [meanStdDev](#d2/de8/group__core__array_1ga846c858f4004d59493d7c6a4354b301d}),
@@ -1265,14 +1261,14 @@ export declare function mean(src: InputArray, mask?: InputArray): Scalar
  * calculates the mean and the standard deviation M of array elements independently for each channel
  * and returns it via the output parameters: `\\[\\begin{array}{l} N = \\sum _{I, \\texttt{mask} (I)
  * \\ne 0} 1 \\\\ \\texttt{mean} _c = \\frac{\\sum_{ I: \\; \\texttt{mask}(I) \\ne 0} \\texttt{src}
- * (I)_c}{N} \\\\ \\texttt{stddev} _c = \\sqrt{\\frac{\\sum_{ I: \\; \\texttt{mask}(I) \\ne 0} \\left
- * ( \\texttt{src} (I)_c - \\texttt{mean} _c \\right )^2}{N}} \\end{array}\\]` When all the mask
- * elements are 0's, the function returns mean=stddev=Scalar::all(0). 
+ * (I)_c}{N} \\\\ \\texttt{stddev} _c = \\sqrt{\\frac{\\sum_{ I: \\; \\texttt{mask}(I) \\ne 0} \\left (
+ * \\texttt{src} (I)_c - \\texttt{mean} _c \\right )^2}{N}} \\end{array}\\]` When all the mask elements
+ * are 0's, the function returns mean=stddev=Scalar::all(0). 
  * 
- * The calculated standard deviation is only the diagonal of the complete normalized covariance
- * matrix. If the full matrix is needed, you can reshape the multi-channel array M x N to the
- * single-channel array M*N x mtx.channels() (only possible when the matrix is continuous) and then
- * pass the matrix to calcCovarMatrix . 
+ * The calculated standard deviation is only the diagonal of the complete normalized covariance matrix.
+ * If the full matrix is needed, you can reshape the multi-channel array M x N to the single-channel
+ * array M*N x mtx.channels() (only possible when the matrix is continuous) and then pass the matrix to
+ * calcCovarMatrix . 
  * 
  * [countNonZero](#d2/de8/group__core__array_1gaa4b89393263bb4d604e0fe5986723914}),
  * [mean](#d2/de8/group__core__array_1ga191389f8a0e58180bb13a727782cd461}),
@@ -1323,8 +1319,8 @@ export declare function meanStdDev(src: InputArray, mean: OutputArray, stddev: O
  * @param mv input array of matrices to be merged; all the matrices in mv must have the same size and
  * the same depth.
  * @param count number of input matrices when mv is a plain C array; it must be greater than zero.
- * @param dst output array of the same size and the same depth as mv[0]; The number of channels will
- * be equal to the parameter count.
+ * @param dst output array of the same size and the same depth as mv[0]; The number of channels will be
+ * equal to the parameter count.
  */
 export declare function merge(mv: any, count: size_t, dst: OutputArray): void
 
@@ -1334,16 +1330,16 @@ export declare function merge(mv: any, count: size_t, dst: OutputArray): void
  * 
  * @param mv input vector of matrices to be merged; all the matrices in mv must have the same size and
  * the same depth.
- * @param dst output array of the same size and the same depth as mv[0]; The number of channels will
- * be the total number of channels in the matrix array.
+ * @param dst output array of the same size and the same depth as mv[0]; The number of channels will be
+ * the total number of channels in the matrix array.
  */
 export declare function merge(mv: InputArrayOfArrays, dst: OutputArray): void
 
 /**
  * The function [cv::min](#d7/dcc/group__core__utils__softfloat_1gac48df53b8fd34b87e7b121fa8fd4c379})
- * calculates the per-element minimum of two arrays: `\\[\\texttt{dst} (I)= \\min ( \\texttt{src1}
- * (I), \\texttt{src2} (I))\\]` or array and a scalar: `\\[\\texttt{dst} (I)= \\min ( \\texttt{src1}
- * (I), \\texttt{value} )\\]` 
+ * calculates the per-element minimum of two arrays: `\\[\\texttt{dst} (I)= \\min ( \\texttt{src1} (I),
+ * \\texttt{src2} (I))\\]` or array and a scalar: `\\[\\texttt{dst} (I)= \\min ( \\texttt{src1} (I),
+ * \\texttt{value} )\\]` 
  * 
  * [max](#d7/dcc/group__core__utils__softfloat_1ga78f988f6cfa6223610298cbd4f86ec66}),
  * [compare](#d2/de8/group__core__array_1ga303cfb72acf8cbb36d884650c09a3a97}),
@@ -1385,8 +1381,8 @@ export declare function min(src1: any, src2: any, dst: any): void
  * work with multi-channel arrays. If you need to find minimum or maximum elements across all the
  * channels, use [Mat::reshape](#d3/d63/classcv_1_1Mat_1a4eb96e3251417fa88b78e2abd6cfd7d8}) first to
  * reinterpret the array as single-channel. Or you may extract the particular channel using either
- * extractImageCOI , or mixChannels , or split . In case of a sparse matrix, the minimum is found
- * among non-zero elements only. 
+ * extractImageCOI , or mixChannels , or split . In case of a sparse matrix, the minimum is found among
+ * non-zero elements only. 
  * 
  * When minIdx is not NULL, it must have at least 2 elements (as well as maxIdx), even if src is a
  * single-row or single-column matrix. In OpenCV (following MATLAB) each array has at least 2
@@ -1398,8 +1394,8 @@ export declare function min(src1: any, src2: any, dst: any): void
  * @param minVal pointer to the returned minimum value; NULL is used if not required.
  * @param maxVal pointer to the returned maximum value; NULL is used if not required.
  * @param minIdx pointer to the returned minimum location (in nD case); NULL is used if not required;
- * Otherwise, it must point to an array of src.dims elements, the coordinates of the minimum element
- * in each dimension are stored there sequentially.
+ * Otherwise, it must point to an array of src.dims elements, the coordinates of the minimum element in
+ * each dimension are stored there sequentially.
  * @param maxIdx pointer to the returned maximum location (in nD case). NULL is used if not required.
  * @param mask specified array region
  */
@@ -1413,8 +1409,8 @@ export declare function minMaxIdx(src: InputArray, minVal: any, maxVal?: any, mi
  * The function do not work with multi-channel arrays. If you need to find minimum or maximum elements
  * across all the channels, use
  * [Mat::reshape](#d3/d63/classcv_1_1Mat_1a4eb96e3251417fa88b78e2abd6cfd7d8}) first to reinterpret the
- * array as single-channel. Or you may extract the particular channel using either extractImageCOI ,
- * or mixChannels , or split . 
+ * array as single-channel. Or you may extract the particular channel using either extractImageCOI , or
+ * mixChannels , or split . 
  * 
  * [max](#d7/dcc/group__core__utils__softfloat_1ga78f988f6cfa6223610298cbd4f86ec66}),
  * [min](#d7/dcc/group__core__utils__softfloat_1gac48df53b8fd34b87e7b121fa8fd4c379}),
@@ -1441,8 +1437,8 @@ export declare function minMaxLoc(src: InputArray, minVal: any, maxVal?: any, mi
  * @param minVal pointer to the returned minimum value; NULL is used if not required.
  * @param maxVal pointer to the returned maximum value; NULL is used if not required.
  * @param minIdx pointer to the returned minimum location (in nD case); NULL is used if not required;
- * Otherwise, it must point to an array of src.dims elements, the coordinates of the minimum element
- * in each dimension are stored there sequentially.
+ * Otherwise, it must point to an array of src.dims elements, the coordinates of the minimum element in
+ * each dimension are stored there sequentially.
  * @param maxIdx pointer to the returned maximum location (in nD case). NULL is used if not required.
  */
 export declare function minMaxLoc(a: any, minVal: any, maxVal: any, minIdx?: any, maxIdx?: any): void
@@ -1451,10 +1447,8 @@ export declare function minMaxLoc(a: any, minVal: any, maxVal: any, minIdx?: any
  * The function [cv::mixChannels](#d2/de8/group__core__array_1ga51d768c270a1cdd3497255017c4504be})
  * provides an advanced mechanism for shuffling image channels.
  * 
- * [cv::split](#d2/de8/group__core__array_1ga0547c7fed86152d7e9d0096029c8518a}),[cv::merge](#d2/de8/gro
- * up__core__array_1ga7d7b4d6c6ee504b30a20b1680029c7b4}),[cv::extractChannel](#d2/de8/group__core__arra
- * y_1gacc6158574aa1f0281878c955bcf35642}),[cv::insertChannel](#d2/de8/group__core__array_1ga1d4bd886d3
- * 5b00ec0b764cb4ce6eb515}) and some forms of
+ * [cv::split](#d2/de8/group__core__array_1ga0547c7fed86152d7e9d0096029c8518a}),[cv::merge](#d2/de8/group__core__array_1ga7d7b4d6c6ee504b30a20b1680029c7b4}),[cv::extractChannel](#d2/de8/group__core__array_1gacc6158574aa1f0281878c955bcf35642}),[cv::insertChannel](#d2/de8/group__core__array_1ga1d4bd886d35b00ec0b764cb4ce6eb515})
+ * and some forms of
  * [cv::cvtColor](#d8/d01/group__imgproc__color__conversions_1ga397ae87e1288a81d2363b61574eb8cab}) are
  * partial cases of [cv::mixChannels](#d2/de8/group__core__array_1ga51d768c270a1cdd3497255017c4504be}).
  * 
@@ -1554,8 +1548,8 @@ export declare function mixChannels(src: InputArrayOfArrays, dst: InputOutputArr
  * @param b second input array of the same size and type as src1 .
  * @param c output array of the same size and type as src1 .
  * @param flags operation flags; currently, the only supported flag is cv::DFT_ROWS, which indicates
- * that each row of src1 and src2 is an independent 1D Fourier spectrum. If you do not want to use
- * this flag, then simply add a 0 as value.
+ * that each row of src1 and src2 is an independent 1D Fourier spectrum. If you do not want to use this
+ * flag, then simply add a 0 as value.
  * @param conjB optional flag that conjugates the second input array before the multiplication (true)
  * or not (false).
  */
@@ -1611,11 +1605,11 @@ export declare function multiply(src1: InputArray, src2: InputArray, dst: Output
  * floating-point matrices.
  * @param dst output square matrix.
  * @param aTa Flag specifying the multiplication ordering. See the description below.
- * @param delta Optional delta matrix subtracted from src before the multiplication. When the matrix
- * is empty ( delta=noArray() ), it is assumed to be zero, that is, nothing is subtracted. If it has
- * the same size as src , it is simply subtracted. Otherwise, it is "repeated" (see repeat ) to cover
- * the full src and then subtracted. Type of the delta matrix, when it is not empty, must be the same
- * as the type of created output matrix. See the dtype parameter description below.
+ * @param delta Optional delta matrix subtracted from src before the multiplication. When the matrix is
+ * empty ( delta=noArray() ), it is assumed to be zero, that is, nothing is subtracted. If it has the
+ * same size as src , it is simply subtracted. Otherwise, it is "repeated" (see repeat ) to cover the
+ * full src and then subtracted. Type of the delta matrix, when it is not empty, must be the same as
+ * the type of created output matrix. See the dtype parameter description below.
  * @param scale Optional scale factor for the matrix product.
  * @param dtype Optional type of the output matrix. When it is negative, the output matrix will have
  * the same type as src . Otherwise, it will be type=CV_MAT_DEPTH(dtype) that should be either CV_32F
@@ -1628,8 +1622,8 @@ export declare function mulTransposed(src: InputArray, dst: OutputArray, aTa: bo
  * the absolute norm of src1. The type of norm to calculate is specified using
  * [NormTypes](#d2/de8/group__core__array_1gad12cefbcb5291cf958a85b4b67b6149f}).
  * 
- * As example for one array consider the function `$r(x)= \\begin{pmatrix} x \\\\ 1-x \\end{pmatrix},
- * x \\in [-1;1]$`. The `$ L_{1}, L_{2} $` and `$ L_{\\infty} $` norm for the sample value `$r(-1) =
+ * As example for one array consider the function `$r(x)= \\begin{pmatrix} x \\\\ 1-x \\end{pmatrix}, x
+ * \\in [-1;1]$`. The `$ L_{1}, L_{2} $` and `$ L_{\\infty} $` norm for the sample value `$r(-1) =
  * \\begin{pmatrix} -1 \\\\ 2 \\end{pmatrix}$` is calculated as follows `\\begin{align*} \\| r(-1)
  * \\|_{L_1} &= |-1| + |2| = 3 \\\\ \\| r(-1) \\|_{L_2} &= \\sqrt{(-1)^{2} + (2)^{2}} = \\sqrt{5} \\\\
  * \\| r(-1) \\|_{L_\\infty} &= \\max(|-1|,|2|) = 2 \\end{align*}` and for `$r(0.5) = \\begin{pmatrix}
@@ -1637,13 +1631,13 @@ export declare function mulTransposed(src: InputArray, dst: OutputArray, aTa: bo
  * |0.5| = 1 \\\\ \\| r(0.5) \\|_{L_2} &= \\sqrt{(0.5)^{2} + (0.5)^{2}} = \\sqrt{0.5} \\\\ \\| r(0.5)
  * \\|_{L_\\infty} &= \\max(|0.5|,|0.5|) = 0.5. \\end{align*}` The following graphic shows all values
  * for the three norm functions `$\\| r(x) \\|_{L_1}, \\| r(x) \\|_{L_2}$` and `$\\| r(x)
- * \\|_{L_\\infty}$`. It is notable that the `$ L_{1} $` norm forms the upper and the `$ L_{\\infty}
- * $` norm forms the lower border for the example function `$ r(x) $`. 
+ * \\|_{L_\\infty}$`. It is notable that the `$ L_{1} $` norm forms the upper and the `$ L_{\\infty} $`
+ * norm forms the lower border for the example function `$ r(x) $`. 
  *  When the mask parameter is specified and it is not empty, the norm is
  * 
  * If normType is not specified,
- * [NORM_L2](#d2/de8/group__core__array_1ggad12cefbcb5291cf958a85b4b67b6149fa7bacbe84d400336a8f26297d8e
- * 80e3a2}) is used. calculated only over the region specified by the mask.
+ * [NORM_L2](#d2/de8/group__core__array_1ggad12cefbcb5291cf958a85b4b67b6149fa7bacbe84d400336a8f26297d8e80e3a2})
+ * is used. calculated only over the region specified by the mask.
  * 
  * Multi-channel input arrays are treated as single-channel arrays, that is, the results for all
  * channels are combined.
@@ -1658,8 +1652,8 @@ export declare function norm(src1: InputArray, normType?: int, mask?: InputArray
 
 /**
  * This version of [cv::norm](#dc/d84/group__core__basic_1ga4e556cb8ad35a643a1ea66e035711bb9})
- * calculates the absolute difference norm or the relative difference norm of arrays src1 and src2.
- * The type of norm to calculate is specified using
+ * calculates the absolute difference norm or the relative difference norm of arrays src1 and src2. The
+ * type of norm to calculate is specified using
  * [NormTypes](#d2/de8/group__core__array_1gad12cefbcb5291cf958a85b4b67b6149f}).
  * 
  * @param src1 first input array.
@@ -1681,9 +1675,9 @@ export declare function norm(src: any, normType: int): double
 /**
  * The function [cv::normalize](#dc/d84/group__core__basic_1ga1b6a396a456c8b6c6e4afd8591560d80})
  * normalizes scale and shift the input array elements so that `\\[\\| \\texttt{dst} \\| _{L_p}=
- * \\texttt{alpha}\\]` (where p=Inf, 1 or 2) when normType=NORM_INF, NORM_L1, or NORM_L2,
- * respectively; or so that `\\[\\min _I \\texttt{dst} (I)= \\texttt{alpha} , \\, \\, \\max _I
- * \\texttt{dst} (I)= \\texttt{beta}\\]`
+ * \\texttt{alpha}\\]` (where p=Inf, 1 or 2) when normType=NORM_INF, NORM_L1, or NORM_L2, respectively;
+ * or so that `\\[\\min _I \\texttt{dst} (I)= \\texttt{alpha} , \\, \\, \\max _I \\texttt{dst} (I)=
+ * \\texttt{beta}\\]`
  * 
  * when normType=NORM_MINMAX (for dense arrays only). The optional mask specifies a sub-array to be
  * normalized. This means that the norm or min-n-max are calculated over the sub-array, and then this
@@ -1853,16 +1847,16 @@ export declare function PCAProject(data: InputArray, mean: InputArray, eigenvect
 export declare function perspectiveTransform(src: InputArray, dst: OutputArray, m: InputArray): void
 
 /**
- * The function [cv::phase](#d2/de8/group__core__array_1ga9db9ca9b4d81c3bde5677b8f64dc0137})
- * calculates the rotation angle of each 2D vector that is formed from the corresponding elements of x
- * and y : `\\[\\texttt{angle} (I) = \\texttt{atan2} ( \\texttt{y} (I), \\texttt{x} (I))\\]`
+ * The function [cv::phase](#d2/de8/group__core__array_1ga9db9ca9b4d81c3bde5677b8f64dc0137}) calculates
+ * the rotation angle of each 2D vector that is formed from the corresponding elements of x and y :
+ * `\\[\\texttt{angle} (I) = \\texttt{atan2} ( \\texttt{y} (I), \\texttt{x} (I))\\]`
  * 
- * The angle estimation accuracy is about 0.3 degrees. When x(I)=y(I)=0 , the corresponding angle(I)
- * is set to 0.
+ * The angle estimation accuracy is about 0.3 degrees. When x(I)=y(I)=0 , the corresponding angle(I) is
+ * set to 0.
  * 
  * @param x input floating-point array of x-coordinates of 2D vectors.
- * @param y input array of y-coordinates of 2D vectors; it must have the same size and the same type
- * as x.
+ * @param y input array of y-coordinates of 2D vectors; it must have the same size and the same type as
+ * x.
  * @param angle output array of vector angles; it has the same size and same type as x .
  * @param angleInDegrees when true, the function calculates the angle in degrees, otherwise, they are
  * measured in radians.
@@ -1903,9 +1897,9 @@ export declare function polarToCart(magnitude: InputArray, angle: InputArray, x:
  * \\fork{\\texttt{src}(I)^{power}}{if \\(\\texttt{power}\\) is
  * integer}{|\\texttt{src}(I)|^{power}}{otherwise}\\]`
  * 
- * So, for a non-integer power exponent, the absolute values of input array elements are used.
- * However, it is possible to get true values for negative values using some extra operations. In the
- * example below, computing the 5th root of array src shows: 
+ * So, for a non-integer power exponent, the absolute values of input array elements are used. However,
+ * it is possible to get true values for negative values using some extra operations. In the example
+ * below, computing the 5th root of array src shows: 
  * 
  * ```cpp
  * Mat mask = src < 0;
@@ -1965,15 +1959,15 @@ export declare function randn(dst: InputOutputArray, mean: InputArray, stddev: I
 
 /**
  * The function [cv::randShuffle](#d2/de8/group__core__array_1ga6a789c8a5cb56c6dd62506179808f763})
- * shuffles the specified 1D array by randomly choosing pairs of elements and swapping them. The
- * number of such swap operations will be dst.rows*dst.cols*iterFactor . 
+ * shuffles the specified 1D array by randomly choosing pairs of elements and swapping them. The number
+ * of such swap operations will be dst.rows*dst.cols*iterFactor . 
  * 
  * [RNG](#d1/dd6/classcv_1_1RNG}),
  * [sort](#d2/de8/group__core__array_1ga45dd56da289494ce874be2324856898f})
  * 
  * @param dst input/output numerical 1D array.
- * @param iterFactor scale factor that determines the number of random swap operations (see the
- * details below).
+ * @param iterFactor scale factor that determines the number of random swap operations (see the details
+ * below).
  * @param rng optional random number generator used for shuffling; if it is zero, theRNG () is used
  * instead.
  */
@@ -1998,15 +1992,15 @@ export declare function randu(dst: InputOutputArray, low: InputArray, high: Inpu
  * matrix to a vector by treating the matrix rows/columns as a set of 1D vectors and performing the
  * specified operation on the vectors until a single row/column is obtained. For example, the function
  * can be used to compute horizontal and vertical projections of a raster image. In case of
- * [REDUCE_MAX](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a928b4c3eb0a038ea41b61d122c0495
- * ee}) and
- * [REDUCE_MIN](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a1f40a2ed66c8a8b8198186da47ec7b
- * 76}) , the output image should have the same type as the source one. In case of
- * [REDUCE_SUM](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a101441e283ed69f20cfc5468114f98
- * 67}) and
- * [REDUCE_AVG](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a85f039992a454ca367bc190529766c
- * 7e}) , the output may have a larger element bit-depth to preserve accuracy. And multi-channel
- * arrays are also supported in these two reduction modes.
+ * [REDUCE_MAX](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a928b4c3eb0a038ea41b61d122c0495ee})
+ * and
+ * [REDUCE_MIN](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a1f40a2ed66c8a8b8198186da47ec7b76})
+ * , the output image should have the same type as the source one. In case of
+ * [REDUCE_SUM](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a101441e283ed69f20cfc5468114f9867})
+ * and
+ * [REDUCE_AVG](#d0/de1/group__core_1gga14cdedf2933367eb9395ec16798af994a85f039992a454ca367bc190529766c7e})
+ * , the output may have a larger element bit-depth to preserve accuracy. And multi-channel arrays are
+ * also supported in these two reduction modes.
  * 
  * The following code demonstrates its usage for a single channel matrix. 
  * 
@@ -2096,10 +2090,10 @@ export declare function repeat(src: any, ny: int, nx: int): Mat
 export declare function rotate(src: InputArray, dst: OutputArray, rotateCode: int): void
 
 /**
- * The function scaleAdd is one of the classical primitive linear algebra operations, known as DAXPY
- * or SAXPY in . It calculates the sum of a scaled array and another array: `\\[\\texttt{dst} (I)=
- * \\texttt{scale} \\cdot \\texttt{src1} (I) + \\texttt{src2} (I)\\]` The function can also be
- * emulated with a matrix expression, for example: 
+ * The function scaleAdd is one of the classical primitive linear algebra operations, known as DAXPY or
+ * SAXPY in . It calculates the sum of a scaled array and another array: `\\[\\texttt{dst} (I)=
+ * \\texttt{scale} \\cdot \\texttt{src1} (I) + \\texttt{src2} (I)\\]` The function can also be emulated
+ * with a matrix expression, for example: 
  * 
  * ```cpp
  * Mat A(3, 3, CV_64F);
@@ -2158,17 +2152,16 @@ export declare function setRNGSeed(seed: int): void
  * The function [cv::solve](#d2/de8/group__core__array_1ga12b43690dbd31fed96f213eefead2373}) solves a
  * linear system or least-squares problem (the latter is possible with [SVD](#df/df7/classcv_1_1SVD})
  * or QR methods, or by specifying the flag
- * [DECOMP_NORMAL](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca13eaae02412951661402
- * 91223db12166}) ): `\\[\\texttt{dst} = \\arg \\min _X \\| \\texttt{src1} \\cdot \\texttt{X} -
- * \\texttt{src2} \\|\\]`
+ * [DECOMP_NORMAL](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca13eaae0241295166140291223db12166})
+ * ): `\\[\\texttt{dst} = \\arg \\min _X \\| \\texttt{src1} \\cdot \\texttt{X} - \\texttt{src2} \\|\\]`
  * 
  * If
- * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26
- * 999dc024}) or
- * [DECOMP_CHOLESKY](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca33cf860f9800431037
- * 4a81d2c01715da}) method is used, the function returns 1 if src1 (or
- * `$\\texttt{src1}^T\\texttt{src1}$` ) is non-singular. Otherwise, it returns 0. In the latter case,
- * dst is not valid. Other methods find a pseudo-solution in case of a singular left-hand side part.
+ * [DECOMP_LU](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca247a3455cd64973152e17e26999dc024})
+ * or
+ * [DECOMP_CHOLESKY](#d2/de8/group__core__array_1ggaaf9ea5dcc392d5ae04eacb9920b9674ca33cf860f98004310374a81d2c01715da})
+ * method is used, the function returns 1 if src1 (or `$\\texttt{src1}^T\\texttt{src1}$` ) is
+ * non-singular. Otherwise, it returns 0. In the latter case, dst is not valid. Other methods find a
+ * pseudo-solution in case of a singular left-hand side part.
  * 
  * If you want to find a unity-norm solution of an under-defined singular system
  * `$\\texttt{src1}\\cdot\\texttt{dst}=0$` , the function solve will not do the work. Use
@@ -2417,10 +2410,10 @@ export declare function trace(mtx: InputArray): Scalar
 
 /**
  * The function [cv::transform](#d2/de8/group__core__array_1ga393164aa54bb9169ce0a8cc44e08ff22})
- * performs the matrix transformation of every element of the array src and stores the results in dst
- * : `\\[\\texttt{dst} (I) = \\texttt{m} \\cdot \\texttt{src} (I)\\]` (when m.cols=src.channels() ),
- * or `\\[\\texttt{dst} (I) = \\texttt{m} \\cdot [ \\texttt{src} (I); 1]\\]` (when
- * m.cols=src.channels()+1 )
+ * performs the matrix transformation of every element of the array src and stores the results in dst :
+ * `\\[\\texttt{dst} (I) = \\texttt{m} \\cdot \\texttt{src} (I)\\]` (when m.cols=src.channels() ), or
+ * `\\[\\texttt{dst} (I) = \\texttt{m} \\cdot [ \\texttt{src} (I); 1]\\]` (when m.cols=src.channels()+1
+ * )
  * 
  * Every element of the N -channel array src is interpreted as N -element vector that is transformed
  * using the M x N or M x (N+1) matrix m to M-element vector - the corresponding element of the output
@@ -2482,8 +2475,8 @@ export declare function transpose(src: InputArray, dst: OutputArray): void
  * @param src input array or vector of matrices. all of the matrices must have the same number of cols
  * and the same depth.
  * @param nsrc number of matrices in src.
- * @param dst output array. It has the same number of cols and depth as the src, and the sum of rows
- * of the src.
+ * @param dst output array. It has the same number of cols and depth as the src, and the sum of rows of
+ * the src.
  */
 export declare function vconcat(src: any, nsrc: size_t, dst: OutputArray): void
 
@@ -2536,8 +2529,8 @@ export declare function vconcat(src1: InputArray, src2: InputArray, dst: OutputA
  * 
  * @param src input array or vector of matrices. all of the matrices must have the same number of cols
  * and the same depth
- * @param dst output array. It has the same number of cols and depth as the src, and the sum of rows
- * of the src. same depth.
+ * @param dst output array. It has the same number of cols and depth as the src, and the sum of rows of
+ * the src. same depth.
  */
 export declare function vconcat(src: InputArrayOfArrays, dst: OutputArray): void
 
@@ -2623,8 +2616,8 @@ export declare const CMP_NE: CmpTypes // initializer: = 5
 export declare const DECOMP_LU: DecompTypes // initializer: = 0
 
 /**
- * singular value decomposition ([SVD](#df/df7/classcv_1_1SVD})) method; the system can be
- * over-defined and/or the matrix src1 can be singular
+ * singular value decomposition ([SVD](#df/df7/classcv_1_1SVD})) method; the system can be over-defined
+ * and/or the matrix src1 can be singular
  * 
  */
 export declare const DECOMP_SVD: DecompTypes // initializer: = 1
@@ -2696,16 +2689,16 @@ export declare const DFT_COMPLEX_OUTPUT: DftFlags // initializer: = 16
  * while the function itself does not check whether the input is symmetrical or not, you can pass the
  * flag and then the function will assume the symmetry and produce the real output array (note that
  * when the input is packed into a real array and inverse transformation is executed, the function
- * treats the input as a packed complex-conjugate symmetrical array, and the output will also be a
- * real array).
+ * treats the input as a packed complex-conjugate symmetrical array, and the output will also be a real
+ * array).
  * 
  */
 export declare const DFT_REAL_OUTPUT: DftFlags // initializer: = 32
 
 /**
  * specifies that input is complex input. If this flag is set, the input must have 2 channels. On the
- * other hand, for backwards compatibility reason, if input has 2 channels, input is already
- * considered complex.
+ * other hand, for backwards compatibility reason, if input has 2 channels, input is already considered
+ * complex.
  * 
  */
 export declare const DFT_COMPLEX_INPUT: DftFlags // initializer: = 64
@@ -2742,8 +2735,8 @@ export declare const GEMM_3_T: GemmFlags // initializer: = 4
 
 /**
  * `\\[ norm = \\forkthree {\\|\\texttt{src1}\\|_{L_{\\infty}} = \\max _I | \\texttt{src1} (I)|}{if
- * \\(\\texttt{normType} = \\texttt{NORM_INF}\\) } {\\|\\texttt{src1}-\\texttt{src2}\\|_{L_{\\infty}}
- * = \\max _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} =
+ * \\(\\texttt{normType} = \\texttt{NORM_INF}\\) } {\\|\\texttt{src1}-\\texttt{src2}\\|_{L_{\\infty}} =
+ * \\max _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} =
  * \\texttt{NORM_INF}\\) } {\\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_{\\infty}}
  * }{\\|\\texttt{src2}\\|_{L_{\\infty}} }}{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE |
  * NORM_INF}\\) } \\]`
@@ -2754,10 +2747,9 @@ export declare const NORM_INF: NormTypes // initializer: = 1
 /**
  * `\\[ norm = \\forkthree {\\| \\texttt{src1} \\| _{L_1} = \\sum _I | \\texttt{src1} (I)|}{if
  * \\(\\texttt{normType} = \\texttt{NORM_L1}\\)} { \\| \\texttt{src1} - \\texttt{src2} \\| _{L_1} =
- * \\sum _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} =
- * \\texttt{NORM_L1}\\) } { \\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_1}
- * }{\\|\\texttt{src2}\\|_{L_1}} }{if \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_L1}\\) }
- * \\]`
+ * \\sum _I | \\texttt{src1} (I) - \\texttt{src2} (I)|}{if \\(\\texttt{normType} = \\texttt{NORM_L1}\\)
+ * } { \\frac{\\|\\texttt{src1}-\\texttt{src2}\\|_{L_1} }{\\|\\texttt{src2}\\|_{L_1}} }{if
+ * \\(\\texttt{normType} = \\texttt{NORM_RELATIVE | NORM_L1}\\) } \\]`
  * 
  */
 export declare const NORM_L1: NormTypes // initializer: = 2

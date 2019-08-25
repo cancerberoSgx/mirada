@@ -1,5 +1,5 @@
 
-import { _Tp, Matx_AddOp, Matx_SubOp, _T2, Matx_ScaleOp, Matx_MulOp, Matx_DivOp, int, Matx_MatMulOp, Matx_TOp } from './_types'
+import { _Tp, Matx_AddOp, Matx_SubOp, _T2, Matx_ScaleOp, Matx_MulOp, Matx_DivOp, int, Matx_MatMulOp, Matx_TOp, diag_type, Vec } from './_types'
 
 /**
  * If you need a more flexible type, use [Mat](#d3/d63/classcv_1_1Mat}) . The elements of the matrix M
@@ -31,8 +31,7 @@ import { _Tp, Matx_AddOp, Matx_SubOp, _T2, Matx_ScaleOp, Matx_MulOp, Matx_DivOp,
  * ```
  * 
  * Source:
- * [opencv2/core/matx.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/co
- * re/matx.hpp#L1185).
+ * [opencv2/core/matx.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/matx.hpp#L1185).
  * 
  */
 export declare class Matx {
@@ -227,7 +226,7 @@ export declare class Matx {
    *   @param b 
    *   @param arg335 
    */
-  public constructor(a: any, b: any, arg335: Matx_AddOp)
+  public constructor(a: Matx, b: Matx, arg335: Matx_AddOp)
 
   /**
    *   
@@ -235,7 +234,7 @@ export declare class Matx {
    *   @param b 
    *   @param arg336 
    */
-  public constructor(a: any, b: any, arg336: Matx_SubOp)
+  public constructor(a: Matx, b: Matx, arg336: Matx_SubOp)
 
   /**
    *   
@@ -244,7 +243,7 @@ export declare class Matx {
    *   @param alpha 
    *   @param arg338 
    */
-  public constructor(arg337: any, a: any, alpha: _T2, arg338: Matx_ScaleOp)
+  public constructor(arg337: any, a: Matx, alpha: _T2, arg338: Matx_ScaleOp)
 
   /**
    *   
@@ -252,7 +251,7 @@ export declare class Matx {
    *   @param b 
    *   @param arg339 
    */
-  public constructor(a: any, b: any, arg339: Matx_MulOp)
+  public constructor(a: Matx, b: Matx, arg339: Matx_MulOp)
 
   /**
    *   
@@ -260,7 +259,7 @@ export declare class Matx {
    *   @param b 
    *   @param arg340 
    */
-  public constructor(a: any, b: any, arg340: Matx_DivOp)
+  public constructor(a: Matx, b: Matx, arg340: Matx_DivOp)
 
   /**
    *   
@@ -269,43 +268,43 @@ export declare class Matx {
    *   @param b 
    *   @param arg341 
    */
-  public constructor(l: int, a: any, b: any, arg341: Matx_MatMulOp)
+  public constructor(l: int, a: Matx, b: Matx, arg341: Matx_MatMulOp)
 
   /**
    *   
    *   @param a 
    *   @param arg342 
    */
-  public constructor(a: any, arg342: Matx_TOp)
+  public constructor(a: Matx, arg342: Matx_TOp)
 
   /**
    *   
    *   @param i 
    */
-  public col(i: int): any
+  public col(i: int): Matx
 
   /**
    *   
    *   @param v 
    */
-  public ddot(v: any): any
+  public ddot(v: Matx): Matx
 
   /**
    *   
    */
-  public diag(): any
+  public diag(): diag_type
 
   /**
    *   
    *   @param a 
    */
-  public div(a: any): any
+  public div(a: Matx): Matx
 
   /**
    *   
    *   @param v 
    */
-  public dot(v: any): any
+  public dot(v: Matx): Matx
 
   /**
    *   
@@ -314,33 +313,33 @@ export declare class Matx {
    *   @param base_row 
    *   @param base_col 
    */
-  public get_minor(m1: int, n1: int, base_row: int, base_col: int): any
+  public get_minor(m1: int, n1: int, base_row: int, base_col: int): Matx
 
   /**
    *   
    *   @param method 
    *   @param p_is_ok 
    */
-  public inv(method?: int, p_is_ok?: any): any
+  public inv(method?: int, p_is_ok?: any): Matx
 
   /**
    *   
    *   @param a 
    */
-  public mul(a: any): any
+  public mul(a: Matx): Matx
 
   /**
    *   
    *   @param m1 
    *   @param n1 
    */
-  public reshape(m1: int, n1: int): any
+  public reshape(m1: int, n1: int): Matx
 
   /**
    *   
    *   @param i 
    */
-  public row(i: int): any
+  public row(i: int): Matx
 
   /**
    *   
@@ -348,60 +347,60 @@ export declare class Matx {
    *   @param rhs 
    *   @param flags 
    */
-  public solve(l: int, rhs: any, flags?: int): any
+  public solve(l: int, rhs: Matx, flags?: int): Matx
 
   /**
    *   
    *   @param rhs 
    *   @param method 
    */
-  public solve(rhs: any, method: int): any
+  public solve(rhs: Vec, method: int): Vec
 
   /**
    *   
    */
-  public t(): any
+  public t(): Matx
 
   /**
    *   
    *   @param alpha 
    */
-  public static all(alpha: _Tp): any
+  public static all(alpha: _Tp): Matx
 
   /**
    *   
    *   @param d 
    */
-  public static diag(d: any): any
+  public static diag(d: diag_type): Matx
 
   /**
    *   
    */
-  public static eye(): any
+  public static eye(): Matx
 
   /**
    *   
    */
-  public static ones(): any
-
-  /**
-   *   
-   *   @param a 
-   *   @param b 
-   */
-  public static randn(a: _Tp, b: _Tp): any
+  public static ones(): Matx
 
   /**
    *   
    *   @param a 
    *   @param b 
    */
-  public static randu(a: _Tp, b: _Tp): any
+  public static randn(a: _Tp, b: _Tp): Matx
+
+  /**
+   *   
+   *   @param a 
+   *   @param b 
+   */
+  public static randu(a: _Tp, b: _Tp): Matx
 
   /**
    *   
    */
-  public static zeros(): any
+  public static zeros(): Matx
 }
 
 /**

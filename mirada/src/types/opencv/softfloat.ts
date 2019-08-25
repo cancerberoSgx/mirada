@@ -1,11 +1,10 @@
 
-import { int, bool } from './_types'
+import { uint32_t, uint64_t, int32_t, int64_t, int, bool } from './_types'
 
 /**
  * 
  * Source:
- * [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/openc
- * v2/core/softfloat.hpp#L220).
+ * [opencv2/core/softfloat.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core/softfloat.hpp#L220).
  * 
  */
 export declare class softfloat {
@@ -13,7 +12,7 @@ export declare class softfloat {
   /**
    *   
    */
-  public v: any
+  public v: uint32_t
 
   /**
    *   
@@ -24,31 +23,31 @@ export declare class softfloat {
    *   
    *   @param c 
    */
-  public constructor(c: any)
+  public constructor(c: softfloat)
 
   /**
    *   
    *   @param arg174 
    */
-  public constructor(arg174: any)
+  public constructor(arg174: uint32_t)
 
   /**
    *   
    *   @param arg175 
    */
-  public constructor(arg175: any)
+  public constructor(arg175: uint64_t)
 
   /**
    *   
    *   @param arg176 
    */
-  public constructor(arg176: any)
+  public constructor(arg176: int32_t)
 
   /**
    *   
    *   @param arg177 
    */
-  public constructor(arg177: any)
+  public constructor(arg177: int64_t)
 
   /**
    *   
@@ -65,7 +64,7 @@ export declare class softfloat {
    *   Returns a number 1 <= x < 2 with the same significand
    *   
    */
-  public getFrac(): any
+  public getFrac(): softfloat
 
   /**
    *   
@@ -91,66 +90,66 @@ export declare class softfloat {
    *   
    *   @param e 
    */
-  public setExp(e: int): any
+  public setExp(e: int): softfloat
 
   /**
    *   Constructs a copy of a number with significand taken from parameter
    *   
    *   @param s 
    */
-  public setFrac(s: any): any
+  public setFrac(s: softfloat): softfloat
 
   /**
    *   
    *   @param sign 
    */
-  public setSign(sign: bool): any
+  public setSign(sign: bool): softfloat
 
   /**
    *   
    */
-  public static eps(): any
+  public static eps(): softfloat
 
   /**
    *   Builds new value from raw binary representation
    *   
    *   @param a 
    */
-  public static fromRaw(a: any): any
+  public static fromRaw(a: uint32_t): softfloat
 
   /**
    *   
    */
-  public static inf(): any
+  public static inf(): softfloat
 
   /**
    *   
    */
-  public static max(): any
+  public static max(): softfloat
 
   /**
    *   
    */
-  public static min(): any
+  public static min(): softfloat
 
   /**
    *   
    */
-  public static nan(): any
+  public static nan(): softfloat
 
   /**
    *   
    */
-  public static one(): any
+  public static one(): softfloat
 
   /**
    *   
    */
-  public static pi(): any
+  public static pi(): softfloat
 
   /**
    *   
    */
-  public static zero(): any
+  public static zero(): softfloat
 }
 
