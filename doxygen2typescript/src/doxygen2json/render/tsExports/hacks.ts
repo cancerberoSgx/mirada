@@ -93,10 +93,18 @@ export declare class IntVector extends Vector<number> { }
 export declare class FloatVector extends Vector<number> { }
 export declare class DoubleVector extends Vector<number>{ }
 export declare class PointVector extends Vector<Point> { }
-export declare class RectVector extends Vector<Rect> { }
 export declare class KeyPointVector extends Vector<any> { }
 export declare class DMatchVector extends Vector<any> { }
 export declare class DMatchVectorVector extends Vector<Vector<any>> { }
+
+export declare class RectVector extends Rect implements Vector<Rect>{
+  get(i: number): Rect
+  set(i: number, t: Rect): void   
+  size(): number
+  push_back(n: Rect):void
+  resize(count: number, value?: Rect | undefined): void 
+  delete(): void  
+}
 
 `
 }

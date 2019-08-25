@@ -72,6 +72,9 @@ function loadOpencvNode(o: LoadOptions = {}) {
         await finishSetup()
         o.onloadCallback && o.onloadCallback()
         resolve()
+      },
+      onAbort: (e: any) => {
+        console.error('Error has occurred in WebAssembly Module', e, e.stack);        
       }
     }
     g.cv = require(resolved)

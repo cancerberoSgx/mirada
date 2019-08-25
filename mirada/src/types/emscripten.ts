@@ -33,7 +33,7 @@ export interface FS {
   symlink(oldpath: string, newpath: string): any
   rename(old_path: string, new_path: string): void
   rmdir(path: string): void
-  readdir(path: string): any
+  readdir(path: string): string[]
   unlink(path: string): void
   readlink(path: string): string
   stat(path: string, dontFollow?: boolean): any
@@ -68,6 +68,8 @@ export interface FS {
 
   createPreloadedFile(parent: string, name: string, url: string, canRead: boolean, canWrite: boolean, onload?: () => void, onerror?: () => void, dontCreateFile?: boolean, canOwn?: boolean): void
   createPreloadedFile(parent: FSNode, name: string, url: string, canRead: boolean, canWrite: boolean, onload?: () => void, onerror?: () => void, dontCreateFile?: boolean, canOwn?: boolean): void
+
+  createDataFile(parent: string, name: string, data: ArrayBufferView,canRead: boolean, canWrite: boolean, canOwn: boolean): void
 }
 
 

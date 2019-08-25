@@ -44,7 +44,8 @@ ${content}
 export function fixMissingExtends(o: Doxygen2tsOptions) {
   const missingExtends = {
     'Mat': 'Mat_',
-    'MatExpr': 'Mat'
+    'MatExpr': 'Mat',
+    'CascadeClassifier': 'Mat'
   }
   Object.keys(missingExtends).forEach(k => {
     const s = readFileSync(join(o.tsOutputFolder, k + '.d.ts')).toString()
