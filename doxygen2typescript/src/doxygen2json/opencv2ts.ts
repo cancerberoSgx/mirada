@@ -1,5 +1,4 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { withoutExtension } from 'misc-utils-of-mine-generic'
 import { dirname, join } from 'path'
 import { cp, mkdir, rm, test } from 'shelljs'
 import { Doxygen2tsOptions } from './doxygen2ts'
@@ -11,10 +10,6 @@ import { buildDts } from './render/main'
 import { canRenderFileNamed } from './render/tsExports/hacks'
 
 export function opencv2ts(o: Doxygen2tsOptions) {
-  // if (o.writeIndexOnly) {
-  //   writeIndexTs(o)
-  //   return
-  // }
   rm('-rf', o.tsOutputFolder)
   mkdir('-p', o.tsOutputFolder)
   const defs = getBindingsCppMemberdefs(o)
@@ -44,22 +39,21 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       .results
       .forEach(d => {
         const cName = getCompoundDefName(d.def)
-        let fileName = join(o.tsOutputFolder, cName) + '.ts'
-        // if (test('-f', fileName) && readFileSync(fileName).toString().length !== d.content.length) {
-        //   fileName = withoutExtension((fileName)) + unique('_') + '.ts'
-        // }
+        let fileName = join(o.tsOutputFolder, cName) + '.d.ts'
         if (test('-f', fileName) || !canRenderFileNamed(fileName)) {
           return
         }
         mkdir('-p', dirname(fileName))
         writeFileSync(fileName, d.content)
-        if (o.jsonTypes && !existsSync(withoutExtension(fileName) + '.json')) {
-          writeFileSync(withoutExtension(fileName) + '.json', JSON.stringify(r, null, 2))
+        if (o.jsonTypes && !existsSync(withoutTypeScriptExtension(fileName) + '.json')) {
+          writeFileSync(withoutTypeScriptExtension(fileName) + '.json', JSON.stringify(r, null, 2))
         }
-        if (o.xmlTypes && !existsSync(withoutExtension(fileName) + '.xml')) {
-          cp(xmlFile, withoutExtension(fileName) + '.xml')
+        if (o.xmlTypes && !existsSync(withoutTypeScriptExtension(fileName) + '.xml')) {
+          cp(xmlFile, withoutTypeScriptExtension(fileName) + '.xml')
         }
       })
   })
   writeIndexTs(o)
 }
+
+export         const withoutTypeScriptExtension = (f:string)=>f.substring(0, f.length-'.d.ts'.length)

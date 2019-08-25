@@ -119,7 +119,7 @@ export declare class Mat_ extends Vector<Mat> {
   public ucharPtr(i: number, j: number): any
 }
 
-export interface ImageData {
+export declare class ImageData {
   data: ArrayBufferView
   width: number
   height: number
@@ -161,6 +161,6 @@ export declare const CV_8UC4: number
 export function canRenderFileNamed(f: string) {
   const fileBlackList = ['calib3d_fisheye', 'core_basic', 'core_utils_softfloat', 'gapi_filters',
     'gapi_math', 'gapi_matrixop', 'gapi_pixelwise', 'gapi_transform', 'imgproc_hal_functions']
-  return !fileBlackList.includes(basename(f, '.ts'))
+  return !fileBlackList.includes(basename(f, '.d.ts'))
 }
 

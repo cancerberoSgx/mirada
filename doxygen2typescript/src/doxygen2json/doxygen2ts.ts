@@ -16,7 +16,6 @@ export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
   tsOutputFolder: string
   jsonTypes?: boolean
   xmlTypes?: boolean
-  writeIndexOnly?: boolean
 }
 
 export interface Doxygen2tsOptionsBase {
@@ -53,7 +52,7 @@ export function doxygen2ts(options: Doxygen2tsOptions) {
       .results
       .forEach(d => {
         const cName = getCompoundDefName(d.def)
-        const fileName = join(options.tsOutputFolder, cName) + '.ts'
+        const fileName = join(options.tsOutputFolder, cName) + '.d.ts'
         mkdirSync(dirname(fileName), { recursive: true })
         writeFileSync(fileName, d.content)
       })

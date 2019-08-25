@@ -1,6 +1,7 @@
 import { existsSync } from 'fs'
 import { getGlobal, isNode, withoutExtension } from 'misc-utils-of-mine-generic'
 import { relative, resolve as pathResolve } from 'path'
+import { resolveNodeModule } from '../../../src/mist';
 
 // /**
 //  * An exposed promise that is resolved when the library is ready to be used. 
@@ -8,7 +9,7 @@ import { relative, resolve as pathResolve } from 'path'
 //  */
 // export const opencvReady = new Deferred<void>()
 // const  promise =opencvReady()
-let isLoaded = true
+let isLoaded = true 
 
 export function opencvReady() {
   if (isLoaded) {
@@ -41,10 +42,4 @@ export function opencvReady() {
   })
 }
 
-function resolveNodeModule(p: string) {
-  var r = withoutExtension(relative(__dirname, pathResolve(p)))
-  if (!r.startsWith('.')) {
-    r = './' + r
-  }
-  return r
-}
+

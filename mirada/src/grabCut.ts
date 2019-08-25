@@ -40,8 +40,7 @@ export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
   }
   const rgbaImg = toRgba(src)
   const image = imageData(rgbaImg)
-  src.delete()
-  
+  // src.delete()  
   mask.delete()
   rgbaImg.delete()
   bgdModel.delete()

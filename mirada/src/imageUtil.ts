@@ -1,5 +1,7 @@
 import { Mat } from './types/opencv/'
 import {File} from './File'
+import fileType = require('file-type');
+
 /**
  * Creates an CV ImageData object from given image.
  */
@@ -38,6 +40,11 @@ export function toRgba(mat: Mat) {
 
 export async function fromFile(f: string){
   const file = await File.fromFile(f)
+  return file.asMat()
+}
+
+export async function fromArrayBuffer(a: ArrayBuffer){
+  const file = await File.fromArrayBuffer(a)
   return file.asMat()
 }
 

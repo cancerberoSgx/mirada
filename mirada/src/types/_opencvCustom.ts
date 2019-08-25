@@ -1,7 +1,11 @@
 
 import {FS as _FS} from './emscripten'
-export declare const FS: _FS
 import {CV} from './opencv'
 declare global {
-  var cv: CV
+  var cv: CV & {FS:_FS}
 }
+// export declare namespace cv {
+// export var cv: CV & {FS:_FS}
+// }
+// export * from './opencv'
+export = cv

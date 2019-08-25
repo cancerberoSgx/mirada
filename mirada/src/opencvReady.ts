@@ -3,7 +3,9 @@ import { Deferred, getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
 import { buildError, resolveNodeModule } from './mist'
 import { FS } from './types/emscripten'
+import { resolve as pathResolve} from 'path'
 
+export const FS_ROOT = '/work'
 /**
  * An exposed promise that is resolved when the library is ready to be used. 
  * At that time the global variable 'cv' should be available and ready.
@@ -63,8 +65,8 @@ function loadOpencvNode(o: LoadOptions = {}) {
     g.Module = {
       preRun: () => {
         if (isNode()) {
-          g.Module.FS.mkdir('/work')
-          g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: o.cwd || process.cwd() || '.' }, '/work')
+          g.Module.FS.mkdir(FS_ROOT)
+          g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: o.cwd || process.cwd() || '.' }, FS_ROOT)
         }
       },
       onRuntimeInitialized: async () => {
@@ -76,6 +78,7 @@ function loadOpencvNode(o: LoadOptions = {}) {
     g.cv = require(resolved)
   })
 }
+
 
 async function finishSetup() {
   opencvLoaded = true

@@ -2,7 +2,6 @@ import { objectKeys, unique, notSame, notSameNotFalsy } from 'misc-utils-of-mine
 import { attrs, Q, Q1, text, findAncestor } from '../dom/domUtil'
 import { loadXmlDom } from "../dom/jsdom"
 import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
-import { getCompoundName } from './render';
 
 interface Options {
   xml: string;
@@ -79,8 +78,6 @@ export function getMember(s: Element): Member {
 }
 
 function getCompoundDefPublicTypes(s: Element): PublicType {
-  // const c = findAncestor(s, a => a.tagName === 'compounddef')
-  // !c && console.error('Expected compounddef ancestor for element ' + s.tagName);
   return {
     ...getDescribed(s),
     // enums starting with @ are anon
@@ -137,29 +134,12 @@ function getDescriptions(c: Element): Descriptions {
 }
 
 function getType(s: Element, prefix = 'type'): linkedTextType {
-  //  <type>  <ref refid="d1/d10/classcv_1_1MatExpr" kindref="compound">MatExpr</ref>  </type>
-    // <type>int</type>
-    var ref = Q1(`${prefix}>ref`, s)
-    // if(ref) {
-      // const name = text(ref)
-      return {
-        name: (ref?ref.textContent:''||text(`${prefix}`, s, ``)).trim()||undefined,
-        ref:  ref && {...attrs<refTextType>(ref, ['refid', 'kindref' ]), text: (ref.textContent||'').trim()}
-
-    // ...attrs(ref, []),
-    // name: text(`${prefix}>ref`, s, ``)||text(`${prefix}`, s),
-    // // text: text(`${prefix}`, s),
-    // ref: {...attrs<refTextType>(ref, ['refid', 'kindref', 'text']), text: (ref?ref.textContent:'').trim()}
-
-      }
-      
-  //   }else {
-
-  //   }
-  // return {
-  //   ...attrs(Q1(`${prefix}>ref`, s), []),
-  //   name: text(`${prefix}>ref`, s, ``),
-  //   // text: text(`${prefix}`, s),
-  //   refs: Q(`${prefix}>ref`, s).map(r => attrs<refTextType>(r, ['refid', 'kindref', 'text']))
-  // }
+  // examples of with and without ref: 
+  // <type><ref refid="d1/d10/classcv_1_1MatExpr" kindref="compound">MatExpr</ref>  </type> 
+  // <type>int</type>
+  var ref = Q1(`${prefix}>ref`, s)
+  return {
+    name: (ref ? ref.textContent : '' || text(`${prefix}`, s, ``)).trim() || undefined,
+    ref: ref && { ...attrs<refTextType>(ref, ['refid', 'kindref']), text: (ref.textContent || '').trim() }
+  }
 }

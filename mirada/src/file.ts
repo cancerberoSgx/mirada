@@ -1,11 +1,13 @@
 import { ok } from 'assert'
 import fetch from 'cross-fetch'
-import { existsSync, readFileSync } from 'fs'
-import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, isNode, notUndefined, serial } from 'misc-utils-of-mine-generic'
+import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
 import { arrayBufferToBase64, urlToBase64 } from './base64'
 import { getDefaultCodec } from './format'
 import { imageData } from './imageUtil'
 import { ImageData, Mat } from './types/opencv'
+import { isFile, readFile, writeFile } from './fileUtil';
+import fileType = require('file-type');
+// import { writeFileSync, readFileSync, existsSync } from 'fs';
 
 export class File {
   constructor(public readonly name: string, protected mat: Mat) {
@@ -24,7 +26,7 @@ export class File {
   }
 
   getExtension() {
-    return getFileExtension(this.name)
+    return getFileExtension(this.name).toLowerCase()
   }
 
   asMat(): Mat {
@@ -46,6 +48,12 @@ export class File {
     return await getDefaultCodec().encode(this.asImageData(), format)
   }
 
+  async write(path: string=this.name, format = this.getExtension()) {
+    const a = await this.asArrayBuffer(format)
+    // writeFileSync(path, a)
+  writeFile(path, new Uint8ClampedArray(a))
+  }
+
   async asBase64(format = this.getExtension()) {
     var encoded = await this.asArrayBuffer(format)
     return arrayBufferToBase64(encoded)
@@ -58,23 +66,43 @@ export class File {
   /** 
    * Loads file from given base64 string containing an encoded image.  
   */
-  public static fromBase64(base64: string, name: string) {
+  public static fromBase64(base64: string, name?: string) {
     var buffer = Buffer.from(Base64.decode(base64), 'base64')
-    return File.fromArrayBuffer(buffer, name)
+    return File.fromArrayBuffer(buffer,  name||File.getBufferFileName(buffer))
   }
 
   /** 
    * Loads file from given array buffer containing an encoded image.
    */
-  public static async fromArrayBuffer(buffer: ArrayBuffer, name: string) {
+  public static async fromArrayBuffer(buffer: ArrayBuffer, name?: string) {
     var data = await getDefaultCodec().decode(buffer)
-    return File.fromData(data, name)
+    return File.fromData(data, name||File.getBufferFileName(buffer))
   }
+
+  /** 
+   * Loads file from given array buffer view containing an encoded image.
+   */
+  public static async fromArrayBufferView(a: ArrayBufferView, name?: string) {
+    return File.fromArrayBuffer(a.buffer, name)
+  }
+
+public static getBufferFileType(a:ArrayBuffer){
+  var t = fileType(a)
+if(!t){
+  throw new Error('Could not get file type for buffer')
+}
+return t
+}
+
+public static getBufferFileName (a:ArrayBuffer){
+  var t = File.getBufferFileType(a)
+  return unique('file')+t.ext
+}
 
   /** 
    * Loads file from given data url string containing an encoded image.
   */
-  public static async fromDataUrl(dataUrl: string, name: string) {
+  public static async fromDataUrl(dataUrl: string, name?: string) {
     return await File.fromBase64(urlToBase64(dataUrl), name)
   }
 
@@ -104,12 +132,13 @@ export class File {
    * Given paths, urls or files it will try to load them all and return a list of File for those succeed.
    */
   public static async resolve(files: string | File | undefined | (string | File | undefined)[]) {
-    var fs = (asArray<undefined | string | File>(files || [])).filter(notUndefined)
-    var result = await serial(fs.map(f => async () => {
+    var a = (asArray<undefined | string | File>(files || [])).filter(notUndefined)
+    var result = await serial(a.map(f => async () => {
       if (typeof f === 'string') {
-        if (isNode() && existsSync(f)) {
+        if (isFile(f)) {
+        // if (existsSync(f)) {
           return await File.fromFile(f)
-        }
+        } 
         else {
           return await File.fromUrl(f)
         }
@@ -125,10 +154,6 @@ export class File {
   public static isFile(f: any): f is File {
     return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data && typeof (f as File).constructor !== 'undefined' && !!(f as File).asImageData && !!(f as File).asMat
   }
-
-  // public static asFile(f: string | File) {
-  //   return File.isFile(f) ? f : typeof f === 'string' ? readFile(f, getFS()) : new File(f.name, f.content)
-  // }
 
   public static asPath(f: string | File) {
     return typeof f === 'string' ? f : f.name
@@ -151,20 +176,11 @@ export class File {
   }
 
   public static async fromFile(path: string, o: FileOptions = {}) {
-    if (!isNode()) {
-      throw new Error('This operation is not supported in the browser.')
-    }
-    const data = await getDefaultCodec().decode(readFileSync(path))
+    const data = await getDefaultCodec().decode( readFile(path).buffer)
+    // const data = await getDefaultCodec().decode(readFileSync(path).buffer)
     return File.fromData(data, o.name || basename(path))
   }
 
-  // protected static verifyFormatProxy() {
-  // getDefaultCodec()
-  //   if (!formatProxy) {
-  //     throw new Error('A format proxy must be installed in order to perform this operation')
-  //   }
-  //   return formatProxy
-  // }
 }
 
 interface FileOptions { name?: string }

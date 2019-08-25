@@ -29,7 +29,6 @@ interface RefMemberdef extends Ref {
   memberdef: Element
 }
 
-
 export function parseBindingsCpp(code: string) {
   const functionsRe = /\s+function\s*\("([^"]+)"/g
   let r: any
@@ -92,9 +91,6 @@ export function getBindingsCppMemberdefs(o: GetBindingsCppCompoundRefsOptions): 
     loadXmlDom(readFileSync(ref.filePath).toString());
     const refIdSelector = `memberdef[id="${ref.indexMember.getAttribute('refid')}"]`
     let memberdef = Q1(refIdSelector);
-    // if(memberdef.tagName!=='memberdef') {
-    //   memberdef = findAncestor(memberdef, n=>n.tagName==='memberdef')
-    // }
     o.debug && !memberdef && console.log(' * getBindingsCppMemberdefs no memberdef found matching '+refIdSelector+' on file '+ref.filePath)
     return {
       ...ref,
@@ -102,7 +98,6 @@ export function getBindingsCppMemberdefs(o: GetBindingsCppCompoundRefsOptions): 
     }
   })
     .filter(r => !!r.memberdef)
-    // .filter((r,i,a)=>i===a.findIndex(p=>p.memberdef.getAttribute('id')===r.memberdef.getAttribute('id')))
   const parsed = getBindingsCppCompoundFiles(o)
   return {
     constants: fn(parsed.constants),

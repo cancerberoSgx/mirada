@@ -1,23 +1,27 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { notSame, notSameNotFalsy, unique, withoutExtension } from 'misc-utils-of-mine-generic';
+import { notSame, notSameNotFalsy, unique } from 'misc-utils-of-mine-generic';
 import { basename, join } from 'path';
 import { ls } from 'shelljs';
 import { getTypeReferencesByDefinitionOrigin, Project } from 'ts-simple-ast-extra';
 import { Doxygen2tsOptions } from '../doxygen2ts';
 import { renderImportHacks } from './tsExports/hacks';
+import { withoutTypeScriptExtension } from '../opencv2ts';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
   const files = [
     ...ls(o.tsOutputFolder)
-      .filter(e => e.endsWith('.ts'))
+      .filter(e => e.endsWith('.d.ts'))
       .map(f => {
         addImports(f, o)
         return f
-      }), '_hacks.ts']
-  writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
-  writeFileSync(join(o.tsOutputFolder, 'index.ts'), index)
-  writeFileSync(join(o.tsOutputFolder, '_types.ts'), `${files.map(f => `export * from './${withoutExtension(f)}'`).join('\n')}`)
-  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.ts'), _opencvCustom)
+      }), '_hacks.d.ts']
+  writeFileSync(join(o.tsOutputFolder, '_hacks.d.ts'), renderImportHacks())
+  writeFileSync(join(o.tsOutputFolder, 'index.d.ts'), index)
+  writeFileSync(join(o.tsOutputFolder, '_types.d.ts'), `
+${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n')}
+export * from '../_opencvCustom'
+  `.trim())
+  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.d.ts'), _opencvCustom)
   fixMissingExtends(o)
   fixClasses(o)
   fixMissingImports(o)
@@ -25,7 +29,7 @@ export function writeIndexTs(o: Doxygen2tsOptions) {
 
 function getExternalTypeReferences(content: string) {
   const p = new Project()
-  const file = p.createSourceFile('f.ts', content)
+  const file = p.createSourceFile('f.d.ts', content)
   return getTypeReferencesByDefinitionOrigin({ node: file, origin: 'unknown' })
     .map(r => r.getText()).filter(notSameNotFalsy)
 }
@@ -45,9 +49,9 @@ export function fixMissingExtends(o: Doxygen2tsOptions) {
     'MatExpr': 'Mat'
   }
   Object.keys(missingExtends).forEach(k => {
-    const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
+    const s = readFileSync(join(o.tsOutputFolder, k + '.d.ts')).toString()
       .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
-    writeFileSync(join(o.tsOutputFolder, k + '.ts'), s)
+    writeFileSync(join(o.tsOutputFolder, k + '.d.ts'), s)
   })
 }
 
@@ -58,7 +62,7 @@ export function fixClasses(o: Doxygen2tsOptions) {
   // const p = createProject(o); 
   const p = new Project()
   Object.keys(removeMembers).forEach(k => {
-    const f = p.createSourceFile(unique(k)+'.ts', readFileSync(join(o.tsOutputFolder, k + '.ts')).toString())
+    const f = p.createSourceFile(unique(k)+'.d.ts', readFileSync(join(o.tsOutputFolder, k + '.d.ts')).toString())
     // const f = p.getSourceFiles().find(f => f.getBaseNameWithoutExtension() === k)!
     const c = f.getClass(k)
     if (!c) {
@@ -69,7 +73,7 @@ export function fixClasses(o: Doxygen2tsOptions) {
       return console.error(`Expected to find member ${removeMembers[k]} in class ${k}`);
     }
     m.remove()
-    writeFileSync(join(o.tsOutputFolder, k + '.ts'), f.getFullText())
+    writeFileSync(join(o.tsOutputFolder, k + '.d.ts'), f.getFullText())
   })
 }
 
@@ -83,17 +87,17 @@ export function fixMissingImports(o: Doxygen2tsOptions) {
     .map(s => s.substring(0, s.indexOf('\'') !== -1 ? s.indexOf('\'') : s.length))
     .filter(notSame)
   const s = `
-${readFileSync(o.tsOutputFolder + '/_hacks.ts').toString()}
+${readFileSync(o.tsOutputFolder + '/_hacks.d.ts').toString()}
 
 // Missing imports: 
 ${missing.map(t => `export type ${t} = any`).join('\n')}
 `.trim()
-  writeFileSync(o.tsOutputFolder + '/_hacks.ts', s)
+  writeFileSync(o.tsOutputFolder + '/_hacks.d.ts', s)
 }
 
 function createProject(o: Doxygen2tsOptions) {
   const p = new Project();
-  ls(o.tsOutputFolder + '/*.ts').filter(notSame)
+  ls(o.tsOutputFolder + '/*.d.ts').filter(notSame)
     .map(f => {
       return p.createSourceFile(basename(f), readFileSync(f).toString());
     });
@@ -110,5 +114,4 @@ import * as _CV from './_types'
 export type CV = typeof _CV // namespace type
 export * from './_types'
 export * from './_hacks'
-export * from '../_opencvCustom'
 `.trim()
