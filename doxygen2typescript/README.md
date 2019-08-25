@@ -31,6 +31,7 @@ opencv2ts({
 ```
 
 ## TODO - Status - Progress - Roadmap
+- [x] method cv.ellipse1 is not generated -   cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8)
 - [ ] don't expose all class members but only those declared in bindings.cpp
 - [ ] generate .d.ts instead of .ts
 - [ ] detaileddescription formula - render to svg and embed ? or to a more readable format ? 

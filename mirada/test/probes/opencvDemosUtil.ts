@@ -1,5 +1,4 @@
 import { getGlobal } from 'misc-utils-of-mine-generic'
-import { opencvReady } from '../../src/opencvReady'
 
 /**
  * Ported from doc/js_tutorials/js_assets/utils.js - only useful in tests
@@ -30,7 +29,7 @@ export class OpenCvBrowserUtils {
         const cv = getGlobal().cv
         if (typeof cv !== 'undefined' && typeof cv.getBuildInformation !== 'undefined') {
           this.opencvLoaded = true
-          opencvReady.resolve(cv.Module)
+          // opencvReady.resolve(cv.Module)
           console.log(cv.getBuildInformation())
           onloadCallback && onloadCallback()
           resolve(cv)
@@ -39,7 +38,7 @@ export class OpenCvBrowserUtils {
           getGlobal().cv = typeof cv === 'undefined' ? {} : cv
           cv.onRuntimeInitialized = () => {
             this.opencvLoaded = true
-            opencvReady.resolve(cv.Module)
+            // opencvReady.resolve(cv.Module)
             console.log(cv.getBuildInformation())
             onloadCallback && onloadCallback()
             resolve()

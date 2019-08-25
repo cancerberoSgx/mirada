@@ -84,9 +84,7 @@ export declare class KeyPointVector extends Vector<any> { }
 export declare class DMatchVector extends Vector<any> { }
 export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 
-
-
-import {Mat} from './Mat'
+import {Mat} from '.'
 
 export declare function  matFromImageData(imageData: ImageData): Mat
 
@@ -105,6 +103,7 @@ export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
   public ucharPtr(i: number, j: number): any
+  public roi(rect: Rect): Mat
 }
 
 export declare class ImageData {
@@ -121,6 +120,7 @@ export declare const CV_8UC3: any
 export declare const CV_32S: number
 export declare const CV_8S: number
 export declare const CV_8UC4: number
+export declare const CV_32F: number
 
 // Missing imports: 
 export type Mat4 = any
@@ -183,3 +183,6 @@ export type uint64_t = any
 export type uint32_t = any
 export type int32_t = any
 export type int64_t = any
+
+import {RotatedRect, LineTypes} from '.'
+export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void

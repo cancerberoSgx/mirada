@@ -1,15 +1,15 @@
 import { existsSync } from 'fs'
 import { Deferred, getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
-import { buildError, resolveNodeModule } from './mist'
+import { buildError, resolveNodeModule } from './misc'
 import { FS } from './types/emscripten'
 
 export const FS_ROOT = '/work'
-/**
- * An exposed promise that is resolved when the library is ready to be used. 
- * At that time the global variable 'cv' should be available and ready.
- */
-export const opencvReady = new Deferred<void>()
+// /**
+//  * An exposed promise that is resolved when the library is ready to be used. 
+//  * At that time the global variable 'cv' should be available and ready.
+//  */
+// export const opencvReady = new Deferred<void>()
 
 let FS_: FS
 /**
@@ -83,7 +83,7 @@ async function finishSetup() {
   opencvLoaded = true
   await loadFormatProxies()
   FS_ = getGlobal().Module.FS
-  opencvReady.resolve()
+  // opencvReady.resolve()
 }
 
 function loadOpencvBrowser(o: LoadOptions = {}) {

@@ -104,7 +104,7 @@ export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 function mat_() {
   const alias = ['InputArray', 'OutputArray', 'InputOutputArray', 'InputOutputArrayOfArrays', 'InputArrayOfArrays', 'OutputArrayOfArrays', 'MatVector'].filter(notSame).sort()
   return `
-import {Mat} from './Mat'
+import {Mat} from '.'
 
 export declare function  matFromImageData(imageData: ImageData): Mat
 
@@ -115,7 +115,8 @@ ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
-  public ucharPtr(i: number, j: number): any
+  public ucharPtr(i: number, j: number): any  
+  public roi(rect: Rect): Mat
 }
 
 export declare class ImageData {
@@ -138,6 +139,11 @@ export declare const CV_8UC3: any
 export declare const CV_32S: number
 export declare const CV_8S: number
 export declare const CV_8UC4: number
+export declare const CV_32F: number
+
+import {RotatedRect, LineTypes} from '.'
+export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
+
   `.trim()
 }
 

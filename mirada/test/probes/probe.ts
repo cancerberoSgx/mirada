@@ -5,8 +5,6 @@ import { getImageData, renderInCanvas } from '../../src/browserImageUtil'
 import { loadOpencv } from '../../src/opencvReady'
 
 
-
-
 async function filesTest() {
 
   async function createFileFromUrl(path: string, url: string, callback?: (error?: Error) => void) {

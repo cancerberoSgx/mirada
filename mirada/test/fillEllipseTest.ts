@@ -19,7 +19,6 @@ test('fillEllipse', async t => {
   const contoursColor = new cv.Scalar(255, 255, 255)
   const ellipseColor = new cv.Scalar(255, 0, 0)
   cv.drawContours(dst, contours, 0, contoursColor, 1, 8, hierarchy, 100)
-  //@ts-ignore
   cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8)
   // await f.write('tmp1.png')
   const f = File.fromMat(dst, 'tmp1.png')

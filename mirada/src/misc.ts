@@ -15,11 +15,4 @@ export function resolveNodeModule(p: string) {
     r = './' + r
   }
   return r
-}
-// function resolveNodeModule(p: string) {
-//   var r = withoutExtension(relative(__dirname, pathResolve(p)))
-//   if (!r.startsWith('.')) {
-//     r = './' + r
-//   }
-//   return r
-// }
+} 
