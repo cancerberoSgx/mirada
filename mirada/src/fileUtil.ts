@@ -1,9 +1,9 @@
-import { FS_ROOT } from './opencvReady';
+import { FS_ROOT } from './opencvReady'
 
 /**
  * if given a file it ignores its contents and alwasys read again from FS
  */
-export function readFile(f: string, FS =cv.FS): ArrayBufferView {
+export function readFile(f: string, FS = cv.FS): ArrayBufferView {
   return FS.readFile(getFilePath(f))
 }
 
@@ -21,15 +21,15 @@ export function getFilePath(path: string) {
   return path.startsWith(`${FS_ROOT}/`) ? path : `${FS_ROOT}/${path}`
 }
 
-export function writeFile(name: string, f: ArrayBufferView, FS =cv.FS) {
+export function writeFile(name: string, f: ArrayBufferView, FS = cv.FS) {
   FS.writeFile(getFilePath(name), f)
 }
 
-export function removeFile(f: string, FS =cv.FS) {
+export function removeFile(f: string, FS = cv.FS) {
   FS.unlink(getFilePath(getFilePath(f)))
 }
 
-export function isDir(f: string, FS =cv.FS) {
+export function isDir(f: string, FS = cv.FS) {
   try {
     return FS.isDir(FS.stat(getFilePath(f)).mode)
   } catch (error) {
@@ -37,7 +37,7 @@ export function isDir(f: string, FS =cv.FS) {
   }
 }
 
-export function isFile(f: string, FS =cv.FS) {
+export function isFile(f: string, FS = cv.FS) {
   try {
     return FS.isFile(FS.stat(getFilePath(f)).mode)
   } catch (error) {

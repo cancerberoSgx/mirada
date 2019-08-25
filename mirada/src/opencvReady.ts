@@ -3,7 +3,6 @@ import { Deferred, getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
 import { buildError, resolveNodeModule } from './mist'
 import { FS } from './types/emscripten'
-import { resolve as pathResolve} from 'path'
 
 export const FS_ROOT = '/work'
 /**

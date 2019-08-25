@@ -1,5 +1,5 @@
+import { File } from './File'
 import { Mat } from './types/opencv/'
-import {File} from './File'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -37,17 +37,17 @@ export function toRgba(mat: Mat) {
   return img
 }
 
-export async function fromFile(f: string){
+export async function fromFile(f: string) {
   const file = await File.fromFile(f)
   return file.asMat()
 }
 
-export async function fromArrayBuffer(a: ArrayBuffer){
+export async function fromArrayBuffer(a: ArrayBuffer) {
   const file = await File.fromArrayBuffer(a)
   return file.asMat()
 }
 
-export async function fromUrl(f: string){
+export async function fromUrl(f: string) {
   const file = await File.fromUrl(f)
   return file.asMat()
 }

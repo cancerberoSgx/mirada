@@ -20,7 +20,7 @@
 
 ▸ **grabCut**(`o`: [GrabCutOptions](../interfaces/_grabcut_.grabcutoptions.md)): *Promise‹GrabCutResult›*
 
-*Defined in [grabCut.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/grabCut.ts#L18)*
+*Defined in [grabCut.ts:18](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/grabCut.ts#L18)*
 
 **Parameters:**
 

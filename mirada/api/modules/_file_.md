@@ -1,8 +1,8 @@
 **[mirada](../README.md)**
 
-[Globals](../README.md) › ["file"](_file_.md)
+[Globals](../README.md) › ["File"](_file_.md)
 
-# External module: "file"
+# External module: "File"
 
 ## Index
 

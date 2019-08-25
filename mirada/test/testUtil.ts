@@ -11,7 +11,7 @@ export async function loadMirada() {
     loaded = true
     await installFormatProxy(() => new JimpCodec(Jimp))
     await loadFormatProxies()
-    await loadOpencv() 
+    await loadOpencv()
   }
 }
 

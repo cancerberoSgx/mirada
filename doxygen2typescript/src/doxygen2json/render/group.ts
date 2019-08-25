@@ -27,11 +27,11 @@ export declare function ${name} (${f.params.map(p => renderParam(p, options)).jo
 }
 
 export function renderGroupHeader(def: CompoundDef,  options: Options) {
+  const d = toMarkdown({ ...options, node: def.detaileddescriptionNode }).trim()
   return `
 /*
  * # ${def.title}
- *
- * ${ toMarkdown({ ...options, node: def.detaileddescriptionNode }).split('\n').join('\n * ')}
+ * ${d ? d.split('\n').join('\n * ') : ''}
  */
 `.trim()
 }

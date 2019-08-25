@@ -17,7 +17,7 @@
 
 ▸ **buildError**(`e`: any): *Error*
 
-Defined in mist.ts:4
+*Defined in [mist.ts:4](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/mist.ts#L4)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **resolveNodeModule**(`p`: string): *string*
 
-Defined in mist.ts:12
+*Defined in [mist.ts:12](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/mist.ts#L12)*
 
 **Parameters:**
 

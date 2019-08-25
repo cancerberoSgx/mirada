@@ -1,6 +1,6 @@
 import { imageData } from '.'
 import { toRgba } from './imageUtil'
-import { Mat } from './types/opencv';
+import { Mat } from './types/opencv'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -49,7 +49,7 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasEle
   })
 }
 
-export function renderInCanvas(mat:  Mat, canvas?: HTMLCanvasElement, appendToBody = true): HTMLCanvasElement {
+export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = true): HTMLCanvasElement {
   if (!canvas) {
     canvas = document.createElement('canvas')
     appendToBody && document.body.append(canvas)

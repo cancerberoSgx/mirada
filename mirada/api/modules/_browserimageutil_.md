@@ -19,7 +19,7 @@
 
 ▸ **getImageData**(`url`: string): *Promise‹ImageData›*
 
-*Defined in [browserImageUtil.ts:4](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/browserImageUtil.ts#L4)*
+*Defined in [browserImageUtil.ts:5](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L5)*
 
 **Parameters:**
 
@@ -33,15 +33,15 @@ ___
 
 ###  htmlImageData
 
-▸ **htmlImageData**(`img`: [Mat](../classes/_types_opencv_.mat.md)): *ImageData*
+▸ **htmlImageData**(`img`: Mat): *ImageData*
 
-*Defined in [browserImageUtil.ts:69](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/browserImageUtil.ts#L69)*
+*Defined in [browserImageUtil.ts:68](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L68)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`img` | [Mat](../classes/_types_opencv_.mat.md) |
+`img` | Mat |
 
 **Returns:** *ImageData*
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **renderArrayBufferInCanvas**(`a`: ArrayBuffer, `canvas?`: HTMLCanvasElement, `appendToBody`: boolean): *Promise‹object›*
 
-*Defined in [browserImageUtil.ts:31](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/browserImageUtil.ts#L31)*
+*Defined in [browserImageUtil.ts:30](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L30)*
 
 A subptimal method to load a image array buffer (encoded in jpg, png) wihtout knowing its format or size.
 1) creates a blob and a url object
@@ -74,15 +74,15 @@ ___
 
 ###  renderInCanvas
 
-▸ **renderInCanvas**(`mat`: [Mat](../classes/_types_opencv_.mat.md), `canvas?`: HTMLCanvasElement, `appendToBody`: boolean): *HTMLCanvasElement*
+▸ **renderInCanvas**(`mat`: Mat, `canvas?`: HTMLCanvasElement, `appendToBody`: boolean): *HTMLCanvasElement*
 
-*Defined in [browserImageUtil.ts:53](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/browserImageUtil.ts#L53)*
+*Defined in [browserImageUtil.ts:52](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L52)*
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`mat` | [Mat](../classes/_types_opencv_.mat.md) | - |
+`mat` | Mat | - |
 `canvas?` | HTMLCanvasElement | - |
 `appendToBody` | boolean | true |
 

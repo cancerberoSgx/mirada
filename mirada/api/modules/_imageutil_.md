@@ -8,16 +8,67 @@
 
 ### Functions
 
+* [fromArrayBuffer](_imageutil_.md#fromarraybuffer)
+* [fromFile](_imageutil_.md#fromfile)
+* [fromUrl](_imageutil_.md#fromurl)
 * [imageData](_imageutil_.md#imagedata)
 * [toRgba](_imageutil_.md#torgba)
 
 ## Functions
 
+###  fromArrayBuffer
+
+▸ **fromArrayBuffer**(`a`: ArrayBuffer): *Promise‹Mat›*
+
+*Defined in [imageUtil.ts:45](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/imageUtil.ts#L45)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`a` | ArrayBuffer |
+
+**Returns:** *Promise‹Mat›*
+
+___
+
+###  fromFile
+
+▸ **fromFile**(`f`: string): *Promise‹Mat›*
+
+*Defined in [imageUtil.ts:40](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/imageUtil.ts#L40)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`f` | string |
+
+**Returns:** *Promise‹Mat›*
+
+___
+
+###  fromUrl
+
+▸ **fromUrl**(`f`: string): *Promise‹Mat›*
+
+*Defined in [imageUtil.ts:50](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/imageUtil.ts#L50)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`f` | string |
+
+**Returns:** *Promise‹Mat›*
+
+___
+
 ###  imageData
 
-▸ **imageData**(`img`: [Mat](../classes/_types_opencv_.mat.md)): *object*
+▸ **imageData**(`img`: Mat): *object*
 
-*Defined in [imageUtil.ts:6](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/imageUtil.ts#L6)*
+*Defined in [imageUtil.ts:7](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/imageUtil.ts#L7)*
 
 Creates an CV ImageData object from given image.
 
@@ -25,7 +76,7 @@ Creates an CV ImageData object from given image.
 
 Name | Type |
 ------ | ------ |
-`img` | [Mat](../classes/_types_opencv_.mat.md) |
+`img` | Mat |
 
 **Returns:** *object*
 
@@ -33,9 +84,9 @@ ___
 
 ###  toRgba
 
-▸ **toRgba**(`mat`: [Mat](../classes/_types_opencv_.mat.md)): *[Mat](../classes/_types_opencv_.mat.md)*
+▸ **toRgba**(`mat`: Mat): *Mat*
 
-*Defined in [imageUtil.ts:18](https://github.com/cancerberoSgx/mirada/blob/d67acf6/mirada/src/imageUtil.ts#L18)*
+*Defined in [imageUtil.ts:19](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/imageUtil.ts#L19)*
 
 Returns a new image that is identical to given (1, 3 or 4 channels)
 but has 4 RGBA channels.
@@ -44,6 +95,6 @@ but has 4 RGBA channels.
 
 Name | Type |
 ------ | ------ |
-`mat` | [Mat](../classes/_types_opencv_.mat.md) |
+`mat` | Mat |
 
-**Returns:** *[Mat](../classes/_types_opencv_.mat.md)*
+**Returns:** *Mat*

@@ -1,7 +1,7 @@
 
 import { File, imageData, loadOpencv } from '.'
 import { toRgba } from './imageUtil'
-import { Rect, Scalar, ImageData } from './types/opencv'
+import { ImageData, Rect, Scalar } from './types/opencv'
 
 export interface GrabCutOptions extends Rect {
   image: File

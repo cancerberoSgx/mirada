@@ -2,12 +2,11 @@ import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
 import { arrayBufferToBase64, urlToBase64 } from './base64'
+import { isFile, readFile, writeFile } from './fileUtil'
 import { getDefaultCodec } from './format'
 import { imageData } from './imageUtil'
 import { ImageData, Mat } from './types/opencv'
-import { isFile, readFile, writeFile } from './fileUtil';
-import fileType = require('file-type');
-// import { writeFileSync, readFileSync, existsSync } from 'fs';
+import fileType = require('file-type')
 
 export class File {
   constructor(public readonly name: string, protected mat: Mat) {
@@ -48,17 +47,17 @@ export class File {
     return await getDefaultCodec().encode(this.asImageData(), format)
   }
 
-  async write(path: string=this.name, format = this.getExtension()) {
+  async write(path: string = this.name, format = this.getExtension()) {
     const a = await this.asArrayBuffer(format)
     // writeFileSync(path, a)
-  writeFile(path, new Uint8ClampedArray(a))
+    writeFile(path, new Uint8ClampedArray(a))
   }
 
   async asBase64(format = this.getExtension()) {
     var encoded = await this.asArrayBuffer(format)
     return arrayBufferToBase64(encoded)
   }
-  
+
   delete(): any {
     this.mat && this.mat.delete()
   }
@@ -68,7 +67,7 @@ export class File {
   */
   public static fromBase64(base64: string, name?: string) {
     var buffer = Buffer.from(Base64.decode(base64), 'base64')
-    return File.fromArrayBuffer(buffer,  name||File.getBufferFileName(buffer))
+    return File.fromArrayBuffer(buffer, name || File.getBufferFileName(buffer))
   }
 
   /** 
@@ -76,7 +75,7 @@ export class File {
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name?: string) {
     var data = await getDefaultCodec().decode(buffer)
-    return File.fromData(data, name||File.getBufferFileName(buffer))
+    return File.fromData(data, name || File.getBufferFileName(buffer))
   }
 
   /** 
@@ -86,18 +85,18 @@ export class File {
     return File.fromArrayBuffer(a.buffer, name)
   }
 
-public static getBufferFileType(a:ArrayBuffer){
-  var t = fileType(a)
-if(!t){
-  throw new Error('Could not get file type for buffer')
-}
-return t
-}
+  public static getBufferFileType(a: ArrayBuffer) {
+    var t = fileType(a)
+    if (!t) {
+      throw new Error('Could not get file type for buffer')
+    }
+    return t
+  }
 
-public static getBufferFileName (a:ArrayBuffer){
-  var t = File.getBufferFileType(a)
-  return unique('file')+t.ext
-}
+  public static getBufferFileName(a: ArrayBuffer) {
+    var t = File.getBufferFileType(a)
+    return unique('file') + t.ext
+  }
 
   /** 
    * Loads file from given data url string containing an encoded image.
@@ -136,9 +135,9 @@ public static getBufferFileName (a:ArrayBuffer){
     var result = await serial(a.map(f => async () => {
       if (typeof f === 'string') {
         if (isFile(f)) {
-        // if (existsSync(f)) {
+          // if (existsSync(f)) {
           return await File.fromFile(f)
-        } 
+        }
         else {
           return await File.fromUrl(f)
         }
@@ -164,7 +163,7 @@ public static getBufferFileName (a:ArrayBuffer){
   }
 
   public static fromMat(mat: Mat, name?: string) {
-    return new File(name||unique('file')+'.png', mat)
+    return new File(name || unique('file') + '.png', mat)
   }
 
   public static async fromUrl(url: string, o: RequestInit & FileOptions = {}) {
@@ -176,7 +175,7 @@ public static getBufferFileName (a:ArrayBuffer){
   }
 
   public static async fromFile(path: string, o: FileOptions = {}) {
-    const data = await getDefaultCodec().decode( readFile(path).buffer)
+    const data = await getDefaultCodec().decode(readFile(path).buffer)
     // const data = await getDefaultCodec().decode(readFileSync(path).buffer)
     return File.fromData(data, o.name || basename(path))
   }
