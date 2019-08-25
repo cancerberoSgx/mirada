@@ -1,5 +1,5 @@
 
-import { size_t, bool } from './_types'
+import { bool, size_t } from './_types'
 
 /**
  * Class re-implementing the boost version of it This helps not depending on boost, it also does not do

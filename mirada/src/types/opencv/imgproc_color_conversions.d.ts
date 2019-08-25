@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int } from './_types'
+import { InputArray, int, OutputArray } from './_types'
 /*
  * # Color Space Conversions
  *

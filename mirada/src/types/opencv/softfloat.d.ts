@@ -1,5 +1,5 @@
 
-import { uint32_t, uint64_t, int32_t, int64_t, int, bool } from './_types'
+import { bool, int, int32_t, int64_t, uint32_t, uint64_t } from './_types'
 
 export declare class softfloat {
 

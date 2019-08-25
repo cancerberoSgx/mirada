@@ -1,5 +1,5 @@
 
-import { _Tp, Matx_AddOp, Matx_SubOp, _T2, Matx_ScaleOp, Matx_MulOp, Matx_DivOp, int, Matx_MatMulOp, Matx_TOp, diag_type, Vec } from './_types'
+import { diag_type, int, Matx_AddOp, Matx_DivOp, Matx_MatMulOp, Matx_MulOp, Matx_ScaleOp, Matx_SubOp, Matx_TOp, Vec, _T2, _Tp } from './_types'
 
 /**
  * If you need a more flexible type, use [Mat](#d3/d63/classcv_1_1Mat}) . The elements of the matrix M

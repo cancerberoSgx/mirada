@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, int, InputOutputArray, Point, Scalar, Rect } from './_types'
+import { double, InputArray, InputOutputArray, int, OutputArray, Point, Rect, Scalar } from './_types'
 /*
  * # Miscellaneous Image Transformations
  *

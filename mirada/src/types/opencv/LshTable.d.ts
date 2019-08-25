@@ -1,5 +1,5 @@
 
-import { Matrix, BucketKey, Bucket, size_t, LshStats } from './_types'
+import { Bucket, BucketKey, LshStats, Matrix, size_t } from './_types'
 
 /**
  * Lsh hash table. As its key is a sub-feature, and as usually the size of it is pretty small, we keep

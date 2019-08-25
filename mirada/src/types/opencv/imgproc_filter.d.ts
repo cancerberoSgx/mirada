@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, double, Size, Point, bool, OutputArrayOfArrays, Mat, Scalar, TermCriteria } from './_types'
+import { bool, double, InputArray, int, Mat, OutputArray, OutputArrayOfArrays, Point, Scalar, Size, TermCriteria } from './_types'
 /*
  * # Image Filtering
  *

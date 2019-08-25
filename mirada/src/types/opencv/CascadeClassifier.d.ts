@@ -1,5 +1,5 @@
 
-import { Ptr, InputArray, Rect, double, int, Size, bool, FileNode } from './_types'
+import { bool, double, FileNode, InputArray, int, Ptr, Rect, Size } from './_types'
 
 export declare class CascadeClassifier {
 

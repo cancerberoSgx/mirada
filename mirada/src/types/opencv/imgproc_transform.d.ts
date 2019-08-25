@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double } from './_types'
+import { bool, double, InputArray, int, Mat, OutputArray, Point2f, Size } from './_types'
 /*
  * # Geometric Image Transformations
  *

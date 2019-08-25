@@ -1,5 +1,5 @@
 
-import { InputOutputArray, Point, int, double, Size, bool, Size2l, Rect, InputArrayOfArrays, InputArray, Point2d, Size2d, Scalar } from './_types'
+import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, int, Point, Point2d, Rect, Scalar, Size, Size2d, Size2l } from './_types'
 /*
  * # Drawing Functions
  *

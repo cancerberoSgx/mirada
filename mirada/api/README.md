@@ -17,7 +17,7 @@
 * ["grabCut"](modules/_grabcut_.md)
 * ["imageUtil"](modules/_imageutil_.md)
 * ["index"](modules/_index_.md)
-* ["mist"](modules/_mist_.md)
+* ["misc"](modules/_misc_.md)
 * ["opencvReady"](modules/_opencvready_.md)
 * ["types/_opencvCustom"](modules/_types__opencvcustom_.md)
 * ["types/emscripten"](modules/_types_emscripten_.md)

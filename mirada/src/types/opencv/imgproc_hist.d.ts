@@ -1,5 +1,5 @@
 
-import { int, InputArray, OutputArray, double, bool, InputArrayOfArrays, Size, float } from './_types'
+import { bool, double, float, InputArray, InputArrayOfArrays, int, OutputArray, Size } from './_types'
 /*
  * # Histograms
  *

@@ -9,7 +9,18 @@ export declare class Range {
 export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
+// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to
+// simplify and make it work
+export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
 export { Scalar as GScalar }
+export { Point as Point2f }
+export { Point as KeyPoint }
+export { Point as Point2l }
+export { Size as Point2d }
+export { Size as Size2d }
+export { Size as Size2f }
+export { Size as Size2l }
+export { Rect as Rect_ }
 
 export declare class Point {
   public constructor(x: number, y: number);
@@ -17,9 +28,6 @@ export declare class Point {
   public y: number;
 }
 
-export { Point as Point2f }
-export { Point as KeyPoint }
-export { Point as Point2l }
 
 export declare class Size {
   public constructor(width: number, height: number);
@@ -27,10 +35,6 @@ export declare class Size {
   public height: number;
 }
 
-export { Size as Point2d }
-export { Size as Size2d }
-export { Size as Size2f }
-export { Size as Size2l }
 
 export declare class Rect {
   public constructor(x: number, y: number, width: number, height: number);
@@ -40,7 +44,6 @@ export declare class Rect {
   public height: number;
 }
 
-export { Rect as Rect_ }
 
 export declare class TermCriteria {
   public type: number
@@ -84,19 +87,10 @@ export declare class KeyPointVector extends Vector<any> { }
 export declare class DMatchVector extends Vector<any> { }
 export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 
-import {Mat} from '.'
+import { LineTypes, Mat, RotatedRect } from '.'
 
-export declare function  matFromImageData(imageData: ImageData): Mat
+export declare function matFromImageData(imageData: ImageData): Mat
 
-// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to
-// simplify and make it work
-export { Mat as InputArray } from './Mat'
-export { Mat as InputArrayOfArrays } from './Mat'
-export { Mat as InputOutputArray } from './Mat'
-export { Mat as InputOutputArrayOfArrays } from './Mat'
-export { Mat as MatVector } from './Mat'
-export { Mat as OutputArray } from './Mat'
-export { Mat as OutputArrayOfArrays } from './Mat'
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
@@ -184,5 +178,4 @@ export type uint32_t = any
 export type int32_t = any
 export type int64_t = any
 
-import {RotatedRect, LineTypes} from '.'
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void

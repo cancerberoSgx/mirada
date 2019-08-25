@@ -1,15 +1,15 @@
 **[mirada](../README.md)**
 
-[Globals](../README.md) › ["mist"](_mist_.md)
+[Globals](../README.md) › ["misc"](_misc_.md)
 
-# External module: "mist"
+# External module: "misc"
 
 ## Index
 
 ### Functions
 
-* [buildError](_mist_.md#builderror)
-* [resolveNodeModule](_mist_.md#resolvenodemodule)
+* [buildError](_misc_.md#builderror)
+* [resolveNodeModule](_misc_.md#resolvenodemodule)
 
 ## Functions
 
@@ -17,7 +17,7 @@
 
 ▸ **buildError**(`e`: any): *Error*
 
-*Defined in [mist.ts:4](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/mist.ts#L4)*
+*Defined in [misc.ts:4](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/misc.ts#L4)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **resolveNodeModule**(`p`: string): *string*
 
-*Defined in [mist.ts:12](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/mist.ts#L12)*
+*Defined in [misc.ts:12](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/misc.ts#L12)*
 
 **Parameters:**
 

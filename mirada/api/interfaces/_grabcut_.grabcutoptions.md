@@ -33,7 +33,7 @@
 
 *Inherited from void*
 
-*Defined in [types/opencv/_hacks.d.ts:39](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/types/opencv/_hacks.d.ts#L39)*
+*Defined in [types/opencv/_hacks.d.ts:39](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/types/opencv/_hacks.d.ts#L39)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Name | Type |
 
 • **frameColor**? : *Scalar*
 
-*Defined in [grabCut.ts:11](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/grabCut.ts#L11)*
+*Defined in [grabCut.ts:11](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/grabCut.ts#L11)*
 
 If given a rectangle frame will be drawn on given coordinates with that color.
 
@@ -64,7 +64,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv/_hacks.d.ts:44](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/types/opencv/_hacks.d.ts#L44)*
+*Defined in [types/opencv/_hacks.d.ts:44](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/types/opencv/_hacks.d.ts#L44)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **image**: *[File](../classes/_file_.file.md)*
 
-*Defined in [grabCut.ts:7](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/grabCut.ts#L7)*
+*Defined in [grabCut.ts:7](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/grabCut.ts#L7)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv/_hacks.d.ts:43](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/types/opencv/_hacks.d.ts#L43)*
+*Defined in [types/opencv/_hacks.d.ts:43](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/types/opencv/_hacks.d.ts#L43)*
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv/_hacks.d.ts:41](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/types/opencv/_hacks.d.ts#L41)*
+*Defined in [types/opencv/_hacks.d.ts:41](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/types/opencv/_hacks.d.ts#L41)*
 
 ___
 
@@ -102,4 +102,4 @@ ___
 
 *Inherited from void*
 
-*Defined in [types/opencv/_hacks.d.ts:42](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/types/opencv/_hacks.d.ts#L42)*
+*Defined in [types/opencv/_hacks.d.ts:42](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/types/opencv/_hacks.d.ts#L42)*

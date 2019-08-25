@@ -19,7 +19,7 @@
 
 ▸ **getImageData**(`url`: string): *Promise‹ImageData›*
 
-*Defined in [browserImageUtil.ts:5](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L5)*
+*Defined in [browserImageUtil.ts:5](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/browserImageUtil.ts#L5)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **htmlImageData**(`img`: Mat): *ImageData*
 
-*Defined in [browserImageUtil.ts:68](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L68)*
+*Defined in [browserImageUtil.ts:68](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/browserImageUtil.ts#L68)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **renderArrayBufferInCanvas**(`a`: ArrayBuffer, `canvas?`: HTMLCanvasElement, `appendToBody`: boolean): *Promise‹object›*
 
-*Defined in [browserImageUtil.ts:30](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L30)*
+*Defined in [browserImageUtil.ts:30](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/browserImageUtil.ts#L30)*
 
 A subptimal method to load a image array buffer (encoded in jpg, png) wihtout knowing its format or size.
 1) creates a blob and a url object
@@ -76,7 +76,7 @@ ___
 
 ▸ **renderInCanvas**(`mat`: Mat, `canvas?`: HTMLCanvasElement, `appendToBody`: boolean): *HTMLCanvasElement*
 
-*Defined in [browserImageUtil.ts:52](https://github.com/cancerberoSgx/mirada/blob/0e72f4f/mirada/src/browserImageUtil.ts#L52)*
+*Defined in [browserImageUtil.ts:52](https://github.com/cancerberoSgx/mirada/blob/0ec64a4/mirada/src/browserImageUtil.ts#L52)*
 
 **Parameters:**
 

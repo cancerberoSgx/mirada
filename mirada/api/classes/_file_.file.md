@@ -53,7 +53,7 @@
 
 \+ **new File**(`name`: string, `mat`: Mat): *[File](_file_.file.md)*
 
-Defined in File.ts:12
+Defined in File.ts:11
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ Name | Type |
 
 • **mat**: *Mat*
 
-Defined in File.ts:13
+Defined in File.ts:12
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 • **name**: *string*
 
-Defined in File.ts:13
+Defined in File.ts:12
 
 ## Methods
 
@@ -86,7 +86,7 @@ Defined in File.ts:13
 
 ▸ **asArrayBuffer**(`format`: string): *Promise‹ArrayBuffer›*
 
-Defined in File.ts:47
+Defined in File.ts:46
 
 returns an array buffer containing the image encoded in given format or inferring format from its name.
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **asBase64**(`format`: string): *Promise‹string›*
 
-Defined in File.ts:57
+Defined in File.ts:56
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **asDataUrl**(): *string*
 
-Defined in File.ts:40
+Defined in File.ts:39
 
 **Returns:** *string*
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **asImageData**(): *ImageData*
 
-Defined in File.ts:36
+Defined in File.ts:35
 
 **Returns:** *ImageData*
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **asMat**(): *Mat*
 
-Defined in File.ts:32
+Defined in File.ts:31
 
 **Returns:** *Mat*
 
@@ -150,7 +150,7 @@ ___
 
 ▸ **delete**(): *any*
 
-Defined in File.ts:62
+Defined in File.ts:61
 
 **Returns:** *any*
 
@@ -160,7 +160,7 @@ ___
 
 ▸ **getExtension**(): *string*
 
-Defined in File.ts:28
+Defined in File.ts:27
 
 **Returns:** *string*
 
@@ -170,7 +170,7 @@ ___
 
 ▸ **getMimeType**(): *undefined | string*
 
-Defined in File.ts:24
+Defined in File.ts:23
 
 **Returns:** *undefined | string*
 
@@ -180,7 +180,7 @@ ___
 
 ▸ **size**(): *object*
 
-Defined in File.ts:17
+Defined in File.ts:16
 
 **Returns:** *object*
 
@@ -190,7 +190,7 @@ ___
 
 ▸ **write**(`path`: string, `format`: string): *Promise‹void›*
 
-Defined in File.ts:51
+Defined in File.ts:50
 
 **Parameters:**
 
@@ -207,7 +207,7 @@ ___
 
 ▸ **asPath**(`f`: string | [File](_file_.file.md)): *string*
 
-Defined in File.ts:158
+Defined in File.ts:157
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ ___
 
 ▸ **fromArrayBuffer**(`buffer`: ArrayBuffer, `name?`: undefined | string): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:77
+Defined in File.ts:76
 
 Loads file from given array buffer containing an encoded image.
 
@@ -242,7 +242,7 @@ ___
 
 ▸ **fromArrayBufferView**(`a`: ArrayBufferView, `name?`: undefined | string): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:85
+Defined in File.ts:84
 
 Loads file from given array buffer view containing an encoded image.
 
@@ -261,7 +261,7 @@ ___
 
 ▸ **fromBase64**(`base64`: string, `name?`: undefined | string): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:69
+Defined in File.ts:68
 
 Loads file from given base64 string containing an encoded image.
 
@@ -280,7 +280,7 @@ ___
 
 ▸ **fromData**(`data`: ImageData, `name`: string): *[File](_file_.file.md)*
 
-Defined in File.ts:162
+Defined in File.ts:161
 
 **Parameters:**
 
@@ -297,7 +297,7 @@ ___
 
 ▸ **fromDataUrl**(`dataUrl`: string, `name?`: undefined | string): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:105
+Defined in File.ts:104
 
 Loads file from given data url string containing an encoded image.
 
@@ -316,7 +316,7 @@ ___
 
 ▸ **fromFile**(`path`: string, `o`: FileOptions): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:178
+Defined in File.ts:177
 
 **Parameters:**
 
@@ -333,7 +333,7 @@ ___
 
 ▸ **fromHtmlFileInputElement**(`el`: HTMLInputElement): *Promise‹Array‹[File](_file_.file.md)››*
 
-Defined in File.ts:112
+Defined in File.ts:111
 
 Loads files from files in html input element of type "file".
 
@@ -351,7 +351,7 @@ ___
 
 ▸ **fromMat**(`mat`: Mat, `name?`: undefined | string): *[File](_file_.file.md)*
 
-Defined in File.ts:166
+Defined in File.ts:165
 
 **Parameters:**
 
@@ -368,7 +368,7 @@ ___
 
 ▸ **fromUrl**(`url`: string, `o`: RequestInit & FileOptions): *Promise‹[File](_file_.file.md)›*
 
-Defined in File.ts:170
+Defined in File.ts:169
 
 **Parameters:**
 
@@ -385,7 +385,7 @@ ___
 
 ▸ **getBufferFileName**(`a`: ArrayBuffer): *string*
 
-Defined in File.ts:97
+Defined in File.ts:96
 
 **Parameters:**
 
@@ -401,7 +401,7 @@ ___
 
 ▸ **getBufferFileType**(`a`: ArrayBuffer): *FileTypeResult*
 
-Defined in File.ts:89
+Defined in File.ts:88
 
 **Parameters:**
 
@@ -417,7 +417,7 @@ ___
 
 ▸ **isFile**(`f`: any): *boolean*
 
-Defined in File.ts:154
+Defined in File.ts:153
 
 **Parameters:**
 
@@ -433,7 +433,7 @@ ___
 
 ▸ **resolve**(`files`: string | [File](_file_.file.md) | undefined | undefined | string | [File](_file_.file.md)[]): *Promise‹[File](_file_.file.md)[]›*
 
-Defined in File.ts:134
+Defined in File.ts:133
 
 Given paths, urls or files it will try to load them all and return a list of File for those succeed.
 
@@ -451,7 +451,7 @@ ___
 
 ▸ **resolveOne**(`files`: string | [File](_file_.file.md) | undefined | undefined | string | [File](_file_.file.md)[]): *Promise‹undefined | [File](_file_.file.md)›*
 
-Defined in File.ts:126
+Defined in File.ts:125
 
 Shortcut for [resolve] that returns the first result.
 

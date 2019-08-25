@@ -1,5 +1,5 @@
 import { existsSync } from 'fs'
-import { Deferred, getGlobal, isNode } from 'misc-utils-of-mine-generic'
+import { getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
 import { buildError, resolveNodeModule } from './misc'
 import { FS } from './types/emscripten'

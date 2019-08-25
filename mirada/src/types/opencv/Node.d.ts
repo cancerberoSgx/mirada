@@ -1,5 +1,5 @@
 
-import { int, double } from './_types'
+import { double, int } from './_types'
 
 export declare class Node {
 
