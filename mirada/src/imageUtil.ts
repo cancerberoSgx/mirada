@@ -1,6 +1,5 @@
 import { Mat } from './types/opencv/'
 import {File} from './File'
-import fileType = require('file-type');
 
 /**
  * Creates an CV ImageData object from given image.

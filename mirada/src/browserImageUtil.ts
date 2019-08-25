@@ -1,6 +1,6 @@
 import { imageData } from '.'
 import { toRgba } from './imageUtil'
-import { Mat } from './types/_opencvCustom';
+import { Mat } from './types/opencv';
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -18,9 +18,7 @@ export function getImageData(url: string) {
     img.src = url
   })
 }
-// function getAuxImg(){
-//   if(auxImg)
-// }
+
 /**
  * A subptimal method to load a image array buffer (encoded in jpg, png) wihtout knowing its format or size. 
   * 1) creates a blob and a url object 

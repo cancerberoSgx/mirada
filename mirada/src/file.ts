@@ -163,8 +163,8 @@ public static getBufferFileName (a:ArrayBuffer){
     return new File(name, cv.matFromImageData(data))
   }
 
-  public static fromMat(mat: Mat, name: string) {
-    return new File(name, mat)
+  public static fromMat(mat: Mat, name?: string) {
+    return new File(name||unique('file')+'.png', mat)
   }
 
   public static async fromUrl(url: string, o: RequestInit & FileOptions = {}) {

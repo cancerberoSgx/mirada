@@ -108,8 +108,7 @@ import {Mat} from './Mat'
 
 export declare function  matFromImageData(imageData: ImageData): Mat
 
-// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to
-// simplify and make it work
+// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
 ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
@@ -130,17 +129,7 @@ export declare class ImageData {
 
 
 function missingImports() {
-  const anys = [
-    // 'Moments', 'Matrix', 'BucketKey', 'Bucket', 'LshStats', 'FileNode', 'FileStorage', 'Ptr', 'DMatch', 
-    // 'cvhalDFT', 'DetectionROI', 'diag_type', 'Vec', 'Mat4', 'Mat3', 'Vec3', 'float_type', 'GMat', 
-    // 'GMatP', 'Net', 'AsyncArray', 'ErrorCallback', '_EqPredicate', 'Matx_AddOp', 'Matx_SubOp', 
-    // '_T2', 'Matx_ScaleOp', 'Matx_MulOp', 'Matx_DivOp', 'Matx_MatMulOp', 'Matx_TOp', 'MatAllocator', 
-    // 'MatSize', 'MatStep', 'UMatData', 'Vec', 'Point_', 'Point3_', 'MatCommaInitializer_', 
-    // 'MatIterator_', 'MatConstIterator_', 'AccessFlag', 'UMatUsageFlags', 'UMat',
-  ].filter(notSame).sort()
   return `
-${anys.map(a => `export type ${a} = any`).join('\n')}
-
 // TODO this types should be exposed by the tool - want to make it work:
 export declare const CV_8UC1: number
 export declare const CV_8U: number
@@ -151,7 +140,6 @@ export declare const CV_8S: number
 export declare const CV_8UC4: number
   `.trim()
 }
-
 
 /**
  * I don't master yet doxygen output / cpp bindings exports and I'm currently getting coalitions of names

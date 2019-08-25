@@ -19,9 +19,7 @@ export function writeIndexTs(o: Doxygen2tsOptions) {
   writeFileSync(join(o.tsOutputFolder, 'index.d.ts'), index)
   writeFileSync(join(o.tsOutputFolder, '_types.d.ts'), `
 ${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n')}
-export * from '../_opencvCustom'
   `.trim())
-  writeFileSync(join(o.tsOutputFolder, '../_opencvCustom.d.ts'), _opencvCustom)
   fixMissingExtends(o)
   fixClasses(o)
   fixMissingImports(o)
@@ -104,14 +102,9 @@ function createProject(o: Doxygen2tsOptions) {
   return p;
 }
 
-const _opencvCustom = `
-export declare const FS: any
-import {CV} from './opencv'
-export declare var cv: CV
-`.trim()
 const index = `
 import * as _CV from './_types'
-export type CV = typeof _CV // namespace type
+export type CV = typeof _CV
 export * from './_types'
 export * from './_hacks'
 `.trim()
