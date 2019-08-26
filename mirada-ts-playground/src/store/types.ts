@@ -21,12 +21,12 @@ export interface Layout {
   stateUrlParam?: string
 }
 
-export interface File {
-  filePath: string
-  content: string
-  selected?: boolean
-  selection?: Selection
-}
+// export interface File {
+//   filePath: string
+//   content: string
+//   selected?: boolean
+//   selection?: Selection
+// }
 
 export interface Selection {
   endColumn: number
@@ -39,7 +39,7 @@ export interface Output {
   text?: string
 }
 
-export interface Example extends File {
+export interface Example {
   name: string
   description: string
 }

@@ -1,6 +1,6 @@
 import test from 'ava'
 import { create, distance, read } from 'jimp'
-import { File, grabCut } from '../src'
+import { File, tool } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 
@@ -8,7 +8,7 @@ test.before(loadMirada)
 
 test('simple', async t => {
   const image = await File.fromFile('test/assets/lenna.jpg')
-  const result = await grabCut({
+  const result = await tool.grabCut({
     image,
     x: 50,
     y: 50,

@@ -4,7 +4,7 @@ import { Mat } from '../types/opencv'
 /**
  * Creates an CV ImageData object from given image.
  */
-export function imageData(img: Mat) {
+export function toImageData(img: Mat) {
   return {
     data: new Uint8ClampedArray(img.data),
     width: img.cols,
@@ -45,6 +45,11 @@ export async function fromFile(f: string) {
 export async function fromArrayBuffer(a: ArrayBuffer) {
   const file = await File.fromArrayBuffer(a)
   return file.asMat()
+}
+
+export async function fromInputFile(a: HTMLInputElement) {
+  const files = await File.fromHtmlFileInputElement(a)
+  return files.map(f=>f.asMat())
 }
 
 export async function fromUrl(f: string) {

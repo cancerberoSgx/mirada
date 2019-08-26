@@ -5,7 +5,7 @@ import { getDefaultCodec } from './format'
 import { ImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, writeFile } from './util/fileUtil'
-import { imageData } from './util/imageUtil'
+import { toImageData } from './util/imageUtil'
 import fileType = require('file-type')
 
 /**
@@ -36,7 +36,7 @@ export class File {
   }
 
   asImageData(): ImageData {
-    return imageData(this.mat)
+    return toImageData(this.mat)
   }
 
   asDataUrl() {

@@ -2,7 +2,7 @@
 import { ok } from 'assert'
 import 'babel-polyfill'
 import { loadOpencv } from '../../src/opencvReady'
-import { getImageData, renderInCanvas } from '../../src/util/browserImageUtil'
+import { fetchImageData, renderInCanvas } from '../../src/util/browserImageUtil'
 
 
 async function filesTest() {
@@ -39,7 +39,7 @@ async function filesTest() {
 async function test() {
   await loadOpencv()
   filesTest()
-  var src = cv.matFromImageData(await getImageData('shape.jpg'))
+  var src = cv.matFromImageData(await fetchImageData('shape.jpg'))
   let dst = new cv!.Mat()
   let M = cv.Mat.ones(5, 5, cv.CV_8U)
   let anchor = new cv.Point(-1, -1)
@@ -59,7 +59,7 @@ testMain()
 
 async function testGrabCut() {
   await loadOpencv()
-  var src = cv.matFromImageData(await getImageData('lenna.jpg'))
+  var src = cv.matFromImageData(await fetchImageData('lenna.jpg'))
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
   let mask = new cv.Mat()
   let bgdModel = new cv.Mat()

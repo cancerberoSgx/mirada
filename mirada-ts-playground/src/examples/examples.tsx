@@ -1,19 +1,29 @@
-import * as Mirada_ from 'mirada'
-(window as any).Mirada = Mirada_
-import { PackedExample } from '../packedExamples'
-import { State } from '../../store/types';
+import { State } from '../store/types';
 
+export interface Example {
+  name: string
+  code: string
+  description: string
+  tags: ExampleTag[];
+}
 
-export class DilateExample implements PackedExample {
-  filePath = '/src/examples/test.ts'
-  name = 'Print AST'
-  description = 'Prints a textual AST representation of selected file or all files of none selected'
-  content =  (state:State) => `
+export enum ExampleTag {
+  'simple' = 'simple',
+  grabCut = "grabCut"
+}
+
+export function examples(): Example[] {
+  return [
+    {
+  name :'Dilate',
+  tags: [ExampleTag.simple],
+  description:'Simple example that creates an image from url, dilate it and show it in a HTML canvas element',
+  code: `
 import { CV} from 'opencv'
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
 declare var cv: CV
- 
+
 (async ()=>{
   var img = await Mirada.File.fromUrl('lenna.jpg')
   let dst = new cv.Mat()
@@ -24,5 +34,8 @@ declare var cv: CV
   dest.delete(); img.delete();
 })()
 `
+    },
+  ]
 }
+
 

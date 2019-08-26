@@ -1,8 +1,8 @@
-import { imageData } from '..'
+import { toImageData } from '..'
 import { Mat } from '../types/opencv'
 import { toRgba } from './imageUtil'
 
-export function getImageData(url: string) {
+export function fetchImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
     var img = new Image()
     img.onload = e => {
@@ -53,7 +53,7 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
     appendToBody && document.body.append(canvas)
   }
   var img = toRgba(mat)
-  var imgData = htmlImageData(img)
+  var imgData = getHtmlImageData(img)
   var ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   canvas.width = imgData.width
@@ -63,8 +63,8 @@ export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBod
   return canvas
 }
 
-export function htmlImageData(img: Mat) {
-  var imgData = imageData(img)
+export function getHtmlImageData(img: Mat) {
+  var imgData = toImageData(img)
   const htmlImageData = new ImageData(imgData.data, imgData.width, imgData.height)
   return htmlImageData
 }

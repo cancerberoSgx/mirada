@@ -1,7 +1,7 @@
 
-import { File, imageData, loadOpencv } from '..'
+import { File, toImageData, loadOpencv } from '..'
 import { ImageData, Rect, Scalar } from '../types/opencv'
-import { toRgba } from './imageUtil'
+import { toRgba } from '../util/imageUtil'
 
 export interface GrabCutOptions extends Rect {
   image: File
@@ -39,7 +39,7 @@ export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
     cv.rectangle(src, point1, point2, o.frameColor)
   }
   const rgbaImg = toRgba(src)
-  const image = imageData(rgbaImg)
+  const image = toImageData(rgbaImg)
   mask.delete()
   rgbaImg.delete()
   bgdModel.delete()

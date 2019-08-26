@@ -1,5 +1,10 @@
 import { ImageData } from './opencv'
-import './_opencvCustom'
+import { FS as _FS } from './emscripten'
+import { CV } from './opencv'
+declare global {
+  var cv: CV & { FS: _FS }
+}
+export {cv, CV, _FS as FS}
 
 /**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec instances
