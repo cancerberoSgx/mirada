@@ -1,25 +1,25 @@
 import { Example, State, Output } from '../store/types'
-import printAst from './toPack/test'
+import { DilateExample } from './toPack/dilate';
 
 export interface PackedExample extends Example {
-  execute<
-    T extends {
-      filePath: string
-      content: string
-      selected?: boolean
-      selection?: {
-        endColumn: number
-        endLineNumber: number
-        startColumn: number
-        startLineNumber: number
-      }
-    }
-  >(
-    files: T[]
-  ): Output
+  // execute<
+  //   T extends {
+      // filePath: string
+      // content: string
+      // selected?: boolean
+      // selection?: {
+      //   endColumn: number
+      //   endLineNumber: number
+      //   startColumn: number
+      //   startLineNumber: number
+      // }
+  //   }
+  // >(
+  //   files: T[]
+  // ): Output
 }
 
-export const packedExamples: PackedExample[] = [new printAst()]
+export const packedExamples: PackedExample[] = [new DilateExample()]
 
 packedExamples[0].selected = true
 

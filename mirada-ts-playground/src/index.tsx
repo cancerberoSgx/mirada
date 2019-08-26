@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
@@ -14,7 +15,6 @@ import { routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import { getStateFromLocation } from './store/dispatch/getStateFromLocation'
 import {loadOpencv, loadFormatProxies, installFormatProxy, CanvasCodec} from 'mirada'
 import { sleep } from 'misc-utils-of-mine-generic';
-
 initMonacoWorkers()
 
 const sagaMiddleware = createSagaMiddleware()

@@ -26,18 +26,21 @@ class App_ extends React.Component<P, {}> {
         <Header {...(this.props as any)} />
         <div className={classes.wrapper}>
           <div className={classes.examples}>
-            <Examples />
+         
+            {/* <Examples /> */}
           </div>
           <div className={classes.files}>
-            <Files />
+            {/* <Files /> */}
           </div>
           <div className={classes.examplesEditor}>
             {state.selectedFile && <button onClick={ev => executeSelectedExample(state)}>Execute</button>}
             <Editor />
           </div>
+              <canvas id="outputCanvas" width="400" height="400"></canvas>
           {state.output && state.output.text && (
             <div className={classes.output}>
-              <Output />
+              {/* <Output /> */}
+             
             </div>
           )}
         </div>

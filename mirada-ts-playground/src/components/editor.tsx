@@ -13,8 +13,8 @@ import { Theme } from '../theme/theme'
 import withStyles, { WithSheet } from 'react-jss'
 import { throttle } from '../util/throttle'
 import { SELECTED_FILE_ACTIONS } from '../store/selectedFile'
-import { opencv } from '../examples/opencv';
 import { objectKeys, basename } from 'misc-utils-of-mine-generic';
+import { magica } from '../examples/magica';
 
 interface P extends WithSheet<typeof styles, Theme> {
   files: File[]
@@ -46,22 +46,22 @@ export class MonacoEditor extends React.Component<P, {}> {
   componentDidMount() {
     this.installEditor()
     MonacoEditor.editor!.getModel()!.onDidChangeContent(throttle(e => this.modelChanged(e), 1000, { trailing: true }))
-    MonacoEditor.editor!.onDidChangeCursorSelection(
-      throttle(e => this.cursorSelectionChanged(e), 2000, { trailing: true })
-    )
+    // MonacoEditor.editor!.onDidChangeCursorSelection(
+    //   throttle(e => this.cursorSelectionChanged(e), 2000, { trailing: true })
+    // )
   }
 
-  private cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
-    dispatch({
-      type: SELECTED_FILE_ACTIONS.CHANGE_CURSOR_SELECTION,
-      selection: {
-        endColumn: e.selection.endColumn,
-        endLineNumber: e.selection.endLineNumber,
-        startColumn: e.selection.startColumn,
-        startLineNumber: e.selection.startLineNumber
-      }
-    })
-  }
+  // private cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
+  //   dispatch({
+  //     type: SELECTED_FILE_ACTIONS.CHANGE_CURSOR_SELECTION,
+  //     selection: {
+  //       endColumn: e.selection.endColumn,
+  //       endLineNumber: e.selection.endLineNumber,
+  //       startColumn: e.selection.startColumn,
+  //       startLineNumber: e.selection.startLineNumber
+  //     }
+  //   })
+  // }
 
   render() {
     return <div className={this.props.classes.editor} ref={this.containerEl} />
@@ -69,7 +69,7 @@ export class MonacoEditor extends React.Component<P, {}> {
 
   private modelChanged(e: monaco.editor.IModelContentChangedEvent) {
     // const model = MonacoEditor.editor!.getModel()!
-    // if (model.uri.path.includes('opencv/')) {
+    // if (model.uri.path.includes('types/')) {
     //   return
     // }
     // if (packedExamples.find(e => e.filePath === model.uri.path)) {
@@ -99,25 +99,12 @@ export class MonacoEditor extends React.Component<P, {}> {
     if (!containerEl) {
       return
     }
-    objectKeys(opencv)
-    // .map(k=>k.substring('node_modules_mirada_dist_src_types_opencv_'.length).replace(/\_/g, '.'))
+    objectKeys(magica)
     .forEach(f=>{
-        // node_modules_mirada_dist_src_types_opencv_imgproc_draw_d_ts
-        var name = 'file:///opencv/'+opencv[f].filename.substring('node_modules_mirada_dist_src_types_opencv_'.length,opencv[f].filename.length-'.d.ts'.length )+'.ts'
-        // .replace(/\_/g, '.')
-        console.log(name)
-    monaco.editor.createModel(opencv[f].content, 'typescript', buildModelUrl(name))
-        // monaco.languages.typescript.typescriptDefaults.addExtraLib(opencv[f].content, name)//.substring('file://'.length))
-
+        var name = 'file:///types/'+magica[f].originalFileName.substring('node_modules/mirada/dist/src/'.length,magica[f].originalFileName.length-'.d.ts'.length )+'.ts'
+        // console.log(name, magica[f].originalFileName)
+    monaco.editor.createModel(magica[f].content, 'typescript', buildModelUrl(name))
     })
-        // monaco.languages.typescript.typescriptDefaults.addExtraLib(`
-//          monaco.editor.createModel(`
-// import { CV } from './index'
-// declare global {
-//   var cv: CV
-// }
-// export = cv
-//         `, `file:///opencv/_index.ts`)
     this.props.files.forEach(f => monaco.editor.createModel(f.content, 'typescript', buildModelUrl(f)))
     monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
       target: monaco.languages.typescript.ScriptTarget.ESNext,
@@ -128,7 +115,8 @@ export class MonacoEditor extends React.Component<P, {}> {
       libs: ['dom', 'esnext'],
       baseUrl: '.',
       paths: {
-        opencv: ['file:///opencv/index.ts']
+        opencv: ['file:///types/types/opencv/index.ts'],
+        mirada: ['file:///types/index.ts']
       },
       jsx: monaco.languages.typescript.JsxEmit.React
     })
