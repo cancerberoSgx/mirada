@@ -1,10 +1,9 @@
-
 // import { CV} from 'mirada'
 // import * as Mirada_ from 'mirada'
 // import { getFileNameFromUrl } from 'misc-utils-of-mine-generic';
 // declare var Mirada: typeof Mirada_
 // declare var cv: CV&{FS:Mirada_.FS}
- 
+
 // (async ()=>{
 
 //   const src = await Mirada.fromFile('test/assets/lenna.jpg')

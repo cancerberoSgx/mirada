@@ -1,5 +1,5 @@
-import { Example } from "./examples";
-import { getStore } from './store';
+import { Example } from './examples'
+import { getStore } from './store'
 
 // import { File } from 'magica'
 // import { Example } from 'magica-examples'
@@ -23,12 +23,12 @@ import { getStore } from './store';
 
 export async function setExample(example?: Example) {
   var state = getStore().getState()
-//   var fields = example && example.fields ? example.fields : state.fields || []
+  //   var fields = example && example.fields ? example.fields : state.fields || []
   getStore().setState({
-    working: true,
+    working: true
     // fields,
   })
-//   var inputFiles = [...await serial((example ? example.inputFiles : state.inputFiles.map(f => f.name)).filter(f => !state.inputFiles.find(f2 => f2.name == f)).map(file => async () => File.fromUrl(file))), ...state.inputFiles].filter(notUndefined)
+  //   var inputFiles = [...await serial((example ? example.inputFiles : state.inputFiles.map(f => f.name)).filter(f => !state.inputFiles.find(f2 => f2.name == f)).map(file => async () => File.fromUrl(file))), ...state.inputFiles].filter(notUndefined)
   const script = example ? example.code : state.code
   // var result = await callRun({
   //   code,
@@ -45,4 +45,3 @@ export async function setExample(example?: Example) {
   // })
   // await sleep(100)
 }
-

@@ -45,7 +45,6 @@
 //   //   this.installEditor()
 //   // }
 
-
 //   // render() {
 //   //   return <div className={this.props.classes.editor} ref={this.containerEl} />
 //   // }
@@ -57,7 +56,6 @@
 //   //   //   throttle(e => this.cursorSelectionChanged(e), 2000, { trailing: true })
 //   //   // )
 //   // }
-
 
 // // }
 

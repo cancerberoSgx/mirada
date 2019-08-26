@@ -1,9 +1,9 @@
-import { CV} from 'mirada'
+import { CV } from 'mirada'
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
-declare var cv: CV&{FS:Mirada_.FS}
- 
-(async ()=>{
+declare var cv: CV & { FS: Mirada_.FS }
+
+;(async () => {
   var img = await Mirada.File.fromUrl('lenna.jpg')
   let dst = new cv.Mat()
   let M = cv.Mat.ones(5, 5, cv.CV_8U)

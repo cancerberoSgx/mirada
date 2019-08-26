@@ -13,37 +13,37 @@ import '../node_modules/picnic/picnic.min.css'
 // import { createHashHistory } from 'history'
 // import { routerMiddleware, ConnectedRouter } from 'connected-react-router'
 // import { getStateFromLocation } from './store/dispatch/getStateFromLocation'
-import {loadOpencv, loadFormatProxies, installFormatProxy, CanvasCodec} from 'mirada'
-import { sleep } from 'misc-utils-of-mine-generic';
-import { getInitialState } from './store/state';
-import { App } from './components/app';
-import { _setStore, getStore } from './store/store';
-import { installEditor } from './monaco/monaco';
-import { onExecuteRequestInstall } from './handlers/onExecuteRequest';
-import { onExampleSelectedInstall } from './handlers/onExampleSelect';
+import { loadOpencv, loadFormatProxies, installFormatProxy, CanvasCodec } from 'mirada'
+import { sleep } from 'misc-utils-of-mine-generic'
+import { getInitialState } from './store/state'
+import { App } from './components/app'
+import { _setStore, getStore } from './store/store'
+import { installEditor } from './monaco/monaco'
+import { onExecuteRequestInstall } from './handlers/onExecuteRequest'
+import { onExampleSelectedInstall } from './handlers/onExampleSelect'
 
 async function start() {
-await initMonacoWorkers()
-  await sleep (10)
+  await initMonacoWorkers()
+  await sleep(10)
 
-const s = await getInitialState()
-_setStore(s)
+  const s = await getInitialState()
+  _setStore(s)
 
-const div = document.createElement('div')
-document.body.appendChild(div)
-ReactDom.render(  <App/>, div)
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  ReactDom.render(<App />, div)
 
-  await sleep (10)
-await installEditor()
-  await sleep (10)
-getStore().setState(s)
+  await sleep(10)
+  await installEditor()
+  await sleep(10)
+  getStore().setState(s)
 
-  await sleep (10)
-    await installFormatProxy(() => new CanvasCodec())
-    await loadFormatProxies()
-  await sleep (10)
+  await sleep(10)
+  await installFormatProxy(() => new CanvasCodec())
+  await loadFormatProxies()
+  await sleep(10)
   await loadOpencv()
-  await sleep (10)
+  await sleep(10)
   await onExecuteRequestInstall()
   await onExampleSelectedInstall()
 }

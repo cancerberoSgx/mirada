@@ -1,4 +1,4 @@
-import { Example, examples } from './examples';
+import { Example, examples } from './examples'
 
 // import { File, RunResult } from 'magica'
 // import { Example, ExampleField, examples } from "magica-examples"
@@ -6,7 +6,7 @@ import { Example, examples } from './examples';
 export interface State {
   example: Example
   // inputFiles: File[]
-  examples: Example[];
+  examples: Example[]
   // result: RunResult | undefined
   code: string
   working: boolean
@@ -35,7 +35,7 @@ export async function getInitialState(): Promise<State> {
     examples: [...examples()],
     // result: null as any,
     code: example.code,
-    working: true,
+    working: true
     // showAllResultsOutput: true,
     // fields: []
   }

@@ -1,17 +1,15 @@
 import * as monaco from 'monaco-editor'
-import { examples } from '../store/examples';
-import { getStore } from '../store/store';
-import { objectKeys, throttle } from 'misc-utils-of-mine-generic';
-import { mirada } from '../examples/mirada';
-import { isDesktop } from '../util/style';
-import { install as navigateExternalDefinitionsInstall } from './navigateExternalDefinitions';
+import { examples } from '../store/examples'
+import { getStore } from '../store/store'
+import { objectKeys, throttle } from 'misc-utils-of-mine-generic'
+import { mirada } from '../examples/mirada'
+import { isDesktop } from '../util/style'
+import { install as navigateExternalDefinitionsInstall } from './navigateExternalDefinitions'
 
 function buildModelUrl(name: string) {
   // const s = typeof f === 'string' ? f : f.filePath
   return name.startsWith('file://') ? monaco.Uri.parse(name) : monaco.Uri.file(name)
 }
-
-
 
 function cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
   // dispatch({
@@ -44,9 +42,7 @@ function modelChanged(e: monaco.editor.IModelContentChangedEvent) {
 }
 function installListeners() {
   editorInstance!.getModel()!.onDidChangeContent(throttle(e => modelChanged(e), 1000, { trailing: true }))
-  editorInstance!.onDidChangeCursorSelection(
-    throttle(e => cursorSelectionChanged(e), 2000, { trailing: true })
-  )
+  editorInstance!.onDidChangeCursorSelection(throttle(e => cursorSelectionChanged(e), 2000, { trailing: true }))
 }
 
 let editorInstance: monaco.editor.IStandaloneCodeEditor | undefined
@@ -69,11 +65,16 @@ export function installEditor() {
   if (!containerEl) {
     return
   }
-  objectKeys(mirada)
-    .forEach(f => {
-      var name = 'file:///types/' + mirada[f].originalFileName.substring('node_modules/mirada/dist/src/'.length, mirada[f].originalFileName.length - '.d.ts'.length) + '.ts'
-      monaco.editor.createModel(mirada[f].content, 'typescript', buildModelUrl(name))
-    })
+  objectKeys(mirada).forEach(f => {
+    var name =
+      'file:///types/' +
+      mirada[f].originalFileName.substring(
+        'node_modules/mirada/dist/src/'.length,
+        mirada[f].originalFileName.length - '.d.ts'.length
+      ) +
+      '.ts'
+    monaco.editor.createModel(mirada[f].content, 'typescript', buildModelUrl(name))
+  })
   // this.props.files.forEach(f => monaco.editor.createModel(f.content, 'typescript', buildModelUrl(f)))
 
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
@@ -101,8 +102,8 @@ export function installEditor() {
     minimap: isDesktop()
       ? undefined
       : {
-        enabled: false
-      }
+          enabled: false
+        }
   })
   navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => {
     // editor.setModel(model)
@@ -113,7 +114,7 @@ export function installEditor() {
 }
 
 function getModel(example = getStore().getState().example) {
-  let m = monaco.editor.getModels().find(m => m.uri.path === example.name);
+  let m = monaco.editor.getModels().find(m => m.uri.path === example.name)
   if (!m) {
     debugger
     m = monaco.editor.createModel(example.code, 'typescript', buildModelUrl(example.name))
@@ -121,12 +122,12 @@ function getModel(example = getStore().getState().example) {
   return m
 }
 
-  export function  setEditorFile(name:string, content:string) {
-    // const model = monaco.editor.getModels().find(m => m.uri.path === buildModelUrl(name))
-    const model =   getModel(getStore().getState().example)
-    // getModel(model)
-    editorInstance!.setModel(model!)
-    // if (file.selection) {
-      // monacoInstance!.setSelection(file.selection)
-    // }
-  }
+export function setEditorFile(name: string, content: string) {
+  // const model = monaco.editor.getModels().find(m => m.uri.path === buildModelUrl(name))
+  const model = getModel(getStore().getState().example)
+  // getModel(model)
+  editorInstance!.setModel(model!)
+  // if (file.selection) {
+  // monacoInstance!.setSelection(file.selection)
+  // }
+}

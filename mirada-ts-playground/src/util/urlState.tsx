@@ -8,7 +8,7 @@ export function createUrl() {
   const s = {
     example: {
       // ...state.example,
-      code: state.code,
+      code: state.code
     },
     // fields: state.fields,
     // inputFileNames: state.inputFiles.map(f => f.url).filter(notUndefined),
@@ -30,7 +30,6 @@ export async function loadUrl() {
     //   }
     // }))
     // inputFiles = inputFiles.filter(notUndefined)
-
     // getStore().setState({
     //   example: {
     //     ...getStore().getState().example,
@@ -44,15 +43,12 @@ export async function loadUrl() {
     // })
     // await sleep(400)
     // if (inputFiles.length) {
-
     // }
     // await setExample({ ...getStore().getState().example, })
   } else {
-
   }
 }
 
 export function urlHasState() {
   return window.location.hash.includes('state=')
 }
-

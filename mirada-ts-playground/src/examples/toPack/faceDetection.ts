@@ -1,10 +1,9 @@
-
-import { CV} from 'mirada'
+import { CV } from 'mirada'
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
-declare var cv: CV&{FS:Mirada_.FS}
- 
-(async ()=>{
+declare var cv: CV & { FS: Mirada_.FS }
+
+;(async () => {
   const src = await Mirada.fromUrl('lenna.jpg')
   let gray = new cv.Mat()
   cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
@@ -13,15 +12,15 @@ declare var cv: CV&{FS:Mirada_.FS}
   let faceCascade = new cv.CascadeClassifier()
   let eyeCascade = new cv.CascadeClassifier()
 
-  async function  fetchDataFile (f:string)  {
-    const  r = await fetch(f)
+  async function fetchDataFile(f: string) {
+    const r = await fetch(f)
     const b = await r.arrayBuffer()
     return new Uint8ClampedArray(b)
   }
-  async function loadDataFile(url: string){
-    const name = url.substring(url.lastIndexOf('/')+1, url.length)
-  if(!cv.FS.readdir('/').includes(name)) {
-    await   cv.FS.createDataFile('/', name, await fetchDataFile(url), true, false, false)
+  async function loadDataFile(url: string) {
+    const name = url.substring(url.lastIndexOf('/') + 1, url.length)
+    if (!cv.FS.readdir('/').includes(name)) {
+      await cv.FS.createDataFile('/', name, await fetchDataFile(url), true, false, false)
     }
   }
   // load pre-trained classifier files (./test/assets/*.xml)
@@ -38,21 +37,23 @@ declare var cv: CV&{FS:Mirada_.FS}
     let roiGray = gray.roi(faces.get(i))
     let roiSrc = src.roi(faces.get(i))
     let point1 = new cv.Point(faces.get(i).x, faces.get(i).y)
-    let point2 = new cv.Point(faces.get(i).x + faces.get(i).width,
-      faces.get(i).y + faces.get(i).height)
+    let point2 = new cv.Point(faces.get(i).x + faces.get(i).width, faces.get(i).y + faces.get(i).height)
     cv.rectangle(src, point1, point2, [255, 0, 0, 255])
     // detect eyes in face ROI
     eyeCascade.detectMultiScale(roiGray, eyes)
     for (let j = 0; j < eyes.size(); ++j) {
       let point1 = new cv.Point(eyes.get(j).x, eyes.get(j).y)
-      let point2 = new cv.Point(eyes.get(j).x + eyes.get(j).width,
-        eyes.get(j).y + eyes.get(j).height)
+      let point2 = new cv.Point(eyes.get(j).x + eyes.get(j).width, eyes.get(j).y + eyes.get(j).height)
       cv.rectangle(roiSrc, point1, point2, [0, 0, 255, 255])
     }
-    roiGray.delete(); roiSrc.delete()
+    roiGray.delete()
+    roiSrc.delete()
   }
   cv.imshow(document.getElementById('outputCanvas')!, src)
-  src.delete(); gray.delete(); faceCascade.delete();
-  eyeCascade.delete(); faces.delete(); eyes.delete()
-
+  src.delete()
+  gray.delete()
+  faceCascade.delete()
+  eyeCascade.delete()
+  faces.delete()
+  eyes.delete()
 })()

@@ -3,33 +3,32 @@ import { Examples } from './examples'
 import { ForkRibbon } from './forkRibbon'
 import { Header } from './header'
 import './styles.css'
-export const App = ()=>      <article>
-        <ForkRibbon />
-        <Header/>
-        <div>
-          <div>
-                     <Examples />
-          </div>
-          <div >
-            {/* <Files /> */}
-          </div>
-          <div >
-            {/* {state.selectedFile && <button onClick={ev => executeSelectedExample(state)}>Execute</button>}
+export const App = () => (
+  <article>
+    <ForkRibbon />
+    <Header />
+    <div>
+      <div>
+        <Examples />
+      </div>
+      <div>{/* <Files /> */}</div>
+      <div>
+        {/* {state.selectedFile && <button onClick={ev => executeSelectedExample(state)}>Execute</button>}
             {/* <Editor /> */}
-             <div id="editorContainer"   />
-            <div   />
-          </div>
-              <canvas id="outputCanvas" width="400" height="400"></canvas>
-          {/* {state.output && state.output.text && ( */}
-            {/* <div className={classes.output}> */}
-              {/* <Output /> */}
-             
-            {/* </div> */}
-          )}
-        </div>
-      </article>
-    // )
-  // }
+        <div id="editorContainer" />
+        <div />
+      </div>
+      <canvas id="outputCanvas" width="400" height="400"></canvas>
+      {/* {state.output && state.output.text && ( */}
+      {/* <div className={classes.output}> */}
+      {/* <Output /> */}
+      {/* </div> */}
+      )}
+    </div>
+  </article>
+)
+// )
+// }
 // }
 
 // const mapStateToProps = (state: State) => ({

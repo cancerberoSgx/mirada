@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { AbstractComponent } from '../util/component';
+import { AbstractComponent } from '../util/component'
 
-export class Header extends AbstractComponent{
+export class Header extends AbstractComponent {
   componentDidMount() {
     document.onkeydown = function(e) {
       if (e.keyCode == 27) {
@@ -15,7 +15,7 @@ export class Header extends AbstractComponent{
   render() {
     return (
       <div>
-        <nav  >
+        <nav>
           <a href="#" className={`brand`}>
             <span aria-hidden="true" data-icon="&#x21dd;" />
             <span>ts-morph Playground</span>

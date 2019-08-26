@@ -1,8 +1,7 @@
 import { Emitter } from 'misc-utils-of-mine-generic'
 import { State } from './state'
 
-class Store extends Emitter<{ oldState: State, partial: Partial<State>, newState: State }> {
-
+class Store extends Emitter<{ oldState: State; partial: Partial<State>; newState: State }> {
   constructor(protected state: State) {
     super()
   }

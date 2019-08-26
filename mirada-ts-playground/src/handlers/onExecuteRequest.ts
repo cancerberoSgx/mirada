@@ -1,28 +1,26 @@
-import { State } from '../store/state';
-import { getStore } from '../store/store';
-import { Project, ScriptTarget, } from 'ts-morph'
+import { State } from '../store/state'
+import { getStore } from '../store/store'
+import { Project, ScriptTarget } from 'ts-morph'
 import * as Mirada_ from 'mirada'
-import { getGlobal } from 'misc-utils-of-mine-generic';
+import { getGlobal } from 'misc-utils-of-mine-generic'
 
 export function onExecuteRequestInstall() {
   getGlobal().Mirada = Mirada_
-  getStore().add((event) => {
-    handle(event);
+  getStore().add(event => {
+    handle(event)
   })
 }
 interface Result {
   error?: string
 }
-async function handle(event: { oldState: State; partial: Partial<State>; newState: State; }) {
+async function handle(event: { oldState: State; partial: Partial<State>; newState: State }) {
   if (event.newState.executeRequest) {
-    const p = new Project(
-      {
-        useVirtualFileSystem: true,
-        compilerOptions: {
-          target: ScriptTarget.ESNext,
-        }
+    const p = new Project({
+      useVirtualFileSystem: true,
+      compilerOptions: {
+        target: ScriptTarget.ESNext
       }
-    )
+    })
     const f = p.createSourceFile('test.ts', event.newState.code)
     f.getImportDeclarations().forEach(d => d.remove())
     let result: Result | undefined
@@ -31,7 +29,7 @@ async function handle(event: { oldState: State; partial: Partial<State>; newStat
       toEval = `${p.emitToMemory().getFiles()[0].text}`
       const f = eval(toEval)
     } catch (ex) {
-      console.error(ex);
+      console.error(ex)
       result = {
         error: `ERROR: ${ex} 
 ${(ex.stack || '').split('\n').join('\n')}
@@ -42,7 +40,7 @@ ${toEval}`
     getStore().setState({
       ...result,
       executeRequest: false,
-      working: false,
+      working: false
     })
   }
 }
@@ -57,7 +55,7 @@ ${toEval}`
 //         compilerOptions: {
 //         target: ScriptTarget.ESNext,
 //         }
-//         } 
+//         }
 //       )
 //       const f = p.createSourceFile('test.ts', stateExample.content)
 //       f.getImportDeclarations().forEach(d=>d.remove())
@@ -67,11 +65,11 @@ ${toEval}`
 //         toEval = `${p.emitToMemory().getFiles()[0].text}`
 //         const f = eval(toEval)
 //       } catch (ex) {
-//         console.error(ex);        
+//         console.error(ex);
 //         result = {
-//           text: `ERROR: ${ex} 
+//           text: `ERROR: ${ex}
 // ${(ex.stack || '').split('\n').join('\n')}
-// Evaluated code: 
+// Evaluated code:
 // ${toEval}`
 //         }
 //       }
