@@ -26,8 +26,7 @@ class App_ extends React.Component<P, {}> {
         <Header {...(this.props as any)} />
         <div className={classes.wrapper}>
           <div className={classes.examples}>
-         
-            {/* <Examples /> */}
+                     <Examples />
           </div>
           <div className={classes.files}>
             {/* <Files /> */}
@@ -63,7 +62,7 @@ const styles = (theme: Theme) => ({
   },
   wrapper: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '10px',
     gridAutoRows: 'minmax(100px, auto)',
     paddingTop: '3em'
@@ -73,7 +72,7 @@ const styles = (theme: Theme) => ({
     gridRow: 1
   },
   files: {
-    gridColumn: '3/4',
+    gridColumn: '3/5',
     gridRow: 1
   },
   examplesEditor: {
@@ -81,7 +80,7 @@ const styles = (theme: Theme) => ({
     gridRow: 2
   },
   output: {
-    gridColumn: '3/4',
+    gridColumn: '3/5',
     gridRow: 2
   }
 })

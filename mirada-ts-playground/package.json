@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npm run clean && npm run pack && npx tsc && sh build-workers.sh && npx parcel build src/index.html -d docs --no-content-hash --detailed-report --public-url './' && npm run copy && rm -rf ../../demos/docs/mirada-ts-playground && mkdir -p ../../demos/docs/mirada-ts-playground && cp -r docs/* ../../demos/docs/mirada-ts-playground",
     "build-local": "npm run build && gzip docs/*.* && npx http-server docs --gzip",
-    "copy": "cp -r src/index.appcache node_modules/mirada/dist/src/opencv.js static/* docs && cp -r node_modules/mirada/dist/src/opencv.js static/* dist",
-    "start": "mkdir -p dist docs&& npm run pack && npm run copy && && cp docs/*.worker.js dist && npx parcel start  --no-hmr --open --no-source-maps --no-autoinstall src/index.html",
+    "copy": "cp -r src/index.appcache node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/* docs && cp -r node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/*  dist",
+    "start": "mkdir -p dist docs && npm run pack && npm run copy &&  cp docs/*.worker.js dist && npx parcel start --no-hmr --open --no-source-maps --no-autoinstall src/index.html",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120 --jsx-bracket-same-line true \"src/**/*.ts*\"",
     "clean": "rm -rf dist docs",
     "pack": "npm run pack-examples && npm run pack-files",
