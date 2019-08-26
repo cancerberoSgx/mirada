@@ -38,16 +38,16 @@ interface LoadOptions {
  * Notice that among the options users can define the location of opencv.js file, which 
  * in the case of the browser it could be in an external server.
  */
-export function loadOpencv(o: LoadOptions = {}) {
+export function loadOpencv(options: LoadOptions = {}) {
   if (opencvLoaded) {
-    o.onloadCallback && o.onloadCallback()
+    options.onloadCallback && options.onloadCallback()
     return Promise.resolve()
   }
   if (isNode()) {
-    return loadOpencvNode(o)
+    return loadOpencvNode(options)
   }
   else {
-    return loadOpencvBrowser(o)
+    return loadOpencvBrowser(options)
   }
 }
 let opencvLoaded = false

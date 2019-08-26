@@ -1,0 +1,7 @@
+node_modules
+dist
+*.log
+tmp
+.cache
+.DS_Store
+bkps

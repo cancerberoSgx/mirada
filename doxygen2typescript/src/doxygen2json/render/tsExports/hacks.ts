@@ -137,13 +137,13 @@ export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
   public ucharPtr(i: any, j: any): any
-  public charPtr(i: any,j: any):any
-  public charPtr(i: any,j: any):any
-  public shortPtr(i: any,j: any):any
-  public ushortPtr(i: any,j: any):any
-  public intPtr(i: any,j: any):any
-  public floatPtr(i: any,j: any):any
-  public doublePtr(i: any,j: any):any
+  public charPtr(i: any,j: any): any
+  public charPtr(i: any,j: any): any
+  public shortPtr(i: any,j: any): any
+  public ushortPtr(i: any,j: any): any
+  public intPtr(i: any,j: any): any
+  public floatPtr(i: any,j: any): any
+  public doublePtr(i: any,j: any): any
   public intPtr(i: any, j: any): any
   public roi(rect: Rect): Mat
 }

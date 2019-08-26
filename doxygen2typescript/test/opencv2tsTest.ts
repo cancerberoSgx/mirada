@@ -13,6 +13,7 @@ test('opencv2ts', async t => {
     // jsonTypes: true,
     // xmlTypes: true,
     renderLocation: false,
+    // singleDeclaration: true,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
     tsCodeFormatSettings: {
       indentSize: 2,
