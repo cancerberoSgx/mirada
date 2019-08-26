@@ -1,45 +1,18 @@
 import * as monaco from 'monaco-editor'
-import { examples } from '../store/examples'
 import { getStore } from '../store/store'
 import { objectKeys, throttle } from 'misc-utils-of-mine-generic'
 import { mirada } from '../examples/mirada'
 import { isDesktop } from '../util/style'
 import { install as navigateExternalDefinitionsInstall } from './navigateExternalDefinitions'
 
+export function getEditorText(){
+ return  editorInstance!.getModel()!.getValue()
+}
+
 function buildModelUrl(name: string) {
-  // const s = typeof f === 'string' ? f : f.filePath
   return name.startsWith('file://') ? monaco.Uri.parse(name) : monaco.Uri.file(name)
 }
 
-function cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
-  // dispatch({
-  //   type: SELECTED_FILE_ACTIONS.CHANGE_CURSOR_SELECTION,
-  //   selection: {
-  //     endColumn: e.selection.endColumn,
-  //     endLineNumber: e.selection.endLineNumber,
-  //     startColumn: e.selection.startColumn,
-  //     startLineNumber: e.selection.startLineNumber
-  //   }
-  // })
-}
-
-function modelChanged(e: monaco.editor.IModelContentChangedEvent) {
-  //   const model = editorInstance!.getModel()!
-  //   if (model.uri.path.includes('types/')) {
-  //     return
-  //   }
-  //   if (packedExamples.find(e => e.filePath === model.uri.path)) {
-  //     dispatch({
-  //       type: EXAMPLES_ACTIONS.EDIT,
-  //       content: model.getValue()
-  //     })
-  //   } else {
-  //     dispatch({
-  //       type: FILES_ACTIONS.EDIT,
-  //       content: model.getValue()
-  //     })
-  //   }
-}
 function installListeners() {
   editorInstance!.getModel()!.onDidChangeContent(throttle(e => modelChanged(e), 1000, { trailing: true }))
   editorInstance!.onDidChangeCursorSelection(throttle(e => cursorSelectionChanged(e), 2000, { trailing: true }))
@@ -52,15 +25,6 @@ function getEditorContainerEl() {
 }
 
 export function installEditor() {
-  // if (editorInstance) {
-  //   const models = monaco.editor.getModels().map(m => m.uri.path)
-  //   examples()
-  //     .filter(f => !models.includes(f.name))
-  //     .forEach(f => {
-  //       monaco.editor.createModel(f.code, 'typescript', buildModelUrl(f.name))
-  //     })
-  //   return
-  // }
   const containerEl = getEditorContainerEl()
   if (!containerEl) {
     return
@@ -75,7 +39,6 @@ export function installEditor() {
       '.ts'
     monaco.editor.createModel(mirada[f].content, 'typescript', buildModelUrl(name))
   })
-  // this.props.files.forEach(f => monaco.editor.createModel(f.content, 'typescript', buildModelUrl(f)))
 
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
     target: monaco.languages.typescript.ScriptTarget.ESNext,
@@ -106,9 +69,6 @@ export function installEditor() {
         }
   })
   navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => {
-    // editor.setModel(model)
-    // editor.revealPositionInCenter({ column: def.range.startColumn, lineNumber: def.range.startLineNumber })
-    // editor.setSelection(def.range)
   })
   installListeners()
 }
@@ -116,18 +76,43 @@ export function installEditor() {
 function getModel(example = getStore().getState().example) {
   let m = monaco.editor.getModels().find(m => m.uri.path === example.name)
   if (!m) {
-    debugger
-    m = monaco.editor.createModel(example.code, 'typescript', buildModelUrl(example.name))
+      m = monaco.editor.createModel(example.code, 'typescript', buildModelUrl(example.name))
   }
   return m
 }
 
 export function setEditorFile(name: string, content: string) {
-  // const model = monaco.editor.getModels().find(m => m.uri.path === buildModelUrl(name))
   const model = getModel(getStore().getState().example)
-  // getModel(model)
   editorInstance!.setModel(model!)
-  // if (file.selection) {
-  // monacoInstance!.setSelection(file.selection)
-  // }
+}
+
+
+function cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
+  // dispatch({
+  //   type: SELECTED_FILE_ACTIONS.CHANGE_CURSOR_SELECTION,
+  //   selection: {
+  //     endColumn: e.selection.endColumn,
+  //     endLineNumber: e.selection.endLineNumber,
+  //     startColumn: e.selection.startColumn,
+  //     startLineNumber: e.selection.startLineNumber
+  //   }
+  // })
+}
+
+function modelChanged(e: monaco.editor.IModelContentChangedEvent) {
+  //   const model = editorInstance!.getModel()!
+  //   if (model.uri.path.includes('types/')) {
+  //     return
+  //   }
+  //   if (packedExamples.find(e => e.filePath === model.uri.path)) {
+  //     dispatch({
+  //       type: EXAMPLES_ACTIONS.EDIT,
+  //       content: model.getValue()
+  //     })
+  //   } else {
+  //     dispatch({
+  //       type: FILES_ACTIONS.EDIT,
+  //       content: model.getValue()
+  //     })
+  //   }
 }

@@ -10,13 +10,9 @@ export function onExampleSelectedInstall() {
   })
 }
 async function handle(event: { oldState: State; partial: Partial<State>; newState: State }) {
-  debugger
   if (event.oldState.example !== event.newState.example) {
     setEditorFile(event.newState.example.name, event.newState.example.code)
-    // setEditorFile(event.newState.example)
-    // editorInstance!.setModel(getModel(event.newState.example))
     await sleep(10)
-
     getStore().setState({ code: event.newState.example.code, executeRequest: true, working: true })
   }
 }

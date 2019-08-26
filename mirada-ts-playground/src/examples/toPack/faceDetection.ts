@@ -1,10 +1,6 @@
-import { CV } from 'mirada'
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
-declare var cv: CV & { FS: Mirada_.FS }
-
 ;(async () => {
-  const src = await Mirada.fromUrl('lenna.jpg')
+  const canvas = document.getElementById('outputCanvas')!
+  var src = await cv.imread(canvas)
   let gray = new cv.Mat()
   cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0)
   let faces = new cv.RectVector()
@@ -12,22 +8,22 @@ declare var cv: CV & { FS: Mirada_.FS }
   let faceCascade = new cv.CascadeClassifier()
   let eyeCascade = new cv.CascadeClassifier()
 
-  async function fetchDataFile(f: string) {
+  async function fetchArrayBufferView(f: string) {
     const r = await fetch(f)
-    const b = await r.arrayBuffer()
-    return new Uint8ClampedArray(b)
+    return new Uint8ClampedArray(await r.arrayBuffer())
   }
   async function loadDataFile(url: string) {
+    // Heads up! we need to verify that the files don't already exists if not it throws! 
     const name = url.substring(url.lastIndexOf('/') + 1, url.length)
     if (!cv.FS.readdir('/').includes(name)) {
-      await cv.FS.createDataFile('/', name, await fetchDataFile(url), true, false, false)
+      await cv.FS.createDataFile('/', name, await fetchArrayBufferView(url), true, false, false)
     }
+    return name
   }
-  // load pre-trained classifier files (./test/assets/*.xml)
-  await loadDataFile('haarcascade_frontalface_default.xml')
-  faceCascade.load('haarcascade_frontalface_default.xml')
-  await loadDataFile('haarcascade_eye.xml')
-  eyeCascade.load('haarcascade_eye.xml')
+  // load pre-trained classifier files. They are available at the same location than the index.html.
+  // the two previous functions take care of fetching them and creating the Files (emscripten FS). 
+  faceCascade.load(await loadDataFile('haarcascade_frontalface_default.xml'))
+  eyeCascade.load(await loadDataFile('haarcascade_eye.xml'))
 
   // detect faces
   let msize = new cv.Size(0, 0)
@@ -49,7 +45,7 @@ declare var cv: CV & { FS: Mirada_.FS }
     roiGray.delete()
     roiSrc.delete()
   }
-  cv.imshow(document.getElementById('outputCanvas')!, src)
+  cv.imshow(canvas, src)
   src.delete()
   gray.delete()
   faceCascade.delete()

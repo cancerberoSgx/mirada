@@ -61,7 +61,7 @@ export class File {
   /**
    * Shows this image in given HTML canvas or image element.
    */
-  show(el: HTMLCanvasElement | HTMLImageElement) {
+  show(el: HTMLElement) {
     if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
@@ -135,9 +135,9 @@ export class File {
   }
 
 	/**
-	 * Loads file form existing HTMLCanvasElement or HTMLImageElement
+	 * Loads file form existing HTMLElement or HTMLImageElement
 	 */
-  public static fromCanvas(el: HTMLCanvasElement | HTMLImageElement | string): File {
+  public static fromCanvas(el: HTMLElement   | string): File {
     if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }

@@ -1,40 +1,60 @@
 import * as React from 'react'
 import { AbstractComponent } from '../util/component'
+import { getEditorText } from '../monaco/monaco';
+import { File } from 'mirada';
+import { memoryReport } from '../util/misc';
+import { printMs } from 'misc-utils-of-mine-generic';
 
 export class Header extends AbstractComponent {
+  
+  timer: NodeJS.Timeout | undefined
+  memEl: HTMLElement | null=null
+
+  componentWillUnmount() {
+    this.timer && clearInterval(this.timer)
+  }
+
+  updateMem(): void {
+    if (this.memEl) {
+      this.memEl.innerHTML = memoryReport().usedMb + ' ' + memoryReport().percent
+    }
+  }
+
   componentDidMount() {
-    document.onkeydown = function(e) {
+    this.timer = setInterval(() => this.updateMem(), 1000)
+    document.onkeydown = function (e) {
       if (e.keyCode == 27) {
         var mods = document.querySelectorAll('.modal > [type=checkbox]')
-        ;[].forEach.call(mods, function(mod: any) {
-          mod.checked = false
-        })
+          ;[].forEach.call(mods, function (mod: any) {
+            mod.checked = false
+          })
       }
     }
   }
+
   render() {
     return (
-      <div>
+      <div className="header">
         <nav>
-          <a href="#" className={`brand`}>
-            <span aria-hidden="true" data-icon="&#x21dd;" />
-            <span>ts-morph Playground</span>
-          </a>
-          {/* <select
+          <label>Examples: <select
             className="button"
-            onChange={e =>
-              dispatch({
-                type: LAYOUT_ACTIONS.CHANGE_THEME,
-                theme: state.layout.themes.find(t => t.name === e.currentTarget.value)!
-              })
-            }>
-            {state.layout.themes.map(t => (
-              <option key={t.name} value={t.name}>
-                {t.name} theme
-              </option>
+            onChange={e => this.setState({ example: this.state.examples.find(t => t.name === e.currentTarget.value)! })}>
+            {this.state.examples.map(t => (
+              <option key={t.name} value={t.name} selected={this.state.example.name === t.name}>                {t.name}                      </option>
             ))}
-          </select> */}
-          <label htmlFor="whats_this_modal" className="button">
+          </select></label>
+
+          <button onClick={e => this.setState({ executeRequest: true, working: true, code: getEditorText() })}>Execute!</button>
+
+          <input type="file" onChange={async e => handleInputFiles(await File.fromHtmlFileInputElement(e.currentTarget))} />
+
+
+      <span className={this.state.working ? "working" : ""} >{this.state.working ? <span >WORKING</span> : 'IDLE'}</span>
+      <span> <span>{this.state.result && this.state.result.time && printMs(this.state.result.time) || ''}</span>
+  <span ref={c => this.memEl = c}/> </span>
+
+
+          <label htmlFor="whats_this_modal" className="button whats_this_modal">
             What's this?
           </label>
           {/* <Link className="button" to={'/state/' + stateToString(state)}>
@@ -53,41 +73,14 @@ export class Header extends AbstractComponent {
               </label>
             </header>
             <section className="content">
-              <p>
-                Welcome to <a href="https://github.com/dsherret/ts-morph">ts-morph</a> playground, where you can explore
-                a some of examples that use this library to parse, manipulate, print TypeScript code. You will be able
-                to run and modify the examples.
+              <p>                Welcome to <a href="https://github.com/cancerberosgx/mirada">mirada</a> TypeScript playground, where you can edit and run opencv.js with TypeScript, execute and experience online editing autocompletion, and inline documentation of the Openvc.js typings I'm implementing.
               </p>
-
-              <p>
-                I've made this page just to practice my front-end skills and explore new technologies, and is not
-                directly associated with ts-morph library, so use the examples at your own risk.{' '}
+              <p>                <a href="https://github.com/cancerberosgx/mirada">mirada</a> is an attempt to author TypeScript type definitions for Opencv.js. CUrgently they are generated automatically and I since I still have some doubts I wanted more experienced opencv users to be able to test them easily online and give me feedback.
               </p>
-
+              <p><strong>IMPORTANT</strong>: In the examples the global variables <code>cv</code> and <code>Mirada</code> must be used. Imported object won't work. This is currently a limitation of this playground and not opencv.js or Mirada, since the code is tranpiled from TypeScript and  evaluated dynamically so there's no easy way to support local scope references.</p>
               <p>
-                At the left you have a list of examples, by select them their source code will be shown on the editor.
-                At the right there is list of TypeScript files that the examples consume and are given in the{' '}
-                <code>files</code> parameter of the <code>execute()</code> method.
+                It uses monaco-editor which is the same technology used by vscode desktop editor so the experience should be similar. Please let me know if you have any feedback, ideas or comments. The ultimate objective is to contribute with these type definitions to opencv project.
               </p>
-
-              <p>Currently the example code have some limitations when you try to edit or write new ones: </p>
-              <ul>
-                <li>
-                  You only will be able to write code <strong>inside</strong> the <code>execute()</code>. You can
-                  declare types outside the method, but all valued declarations must be inside.
-                </li>
-                <li>You won't be able to import anything</li>
-                <li>
-                  You use ts-morph library thought the <code>tsMorph</code> variable.
-                </li>
-              </ul>
-
-              <p>
-                Using the <button>Create Url</button> button you will be able to represent the current state of the
-                example code and sample files in the URL so you can share it (with me) if you have accomplished
-                something interesting or reproduce some issue.{' '}
-              </p>
-
               <p>I hope you find this page useful, enjoy</p>
             </section>
 
@@ -103,26 +96,9 @@ export class Header extends AbstractComponent {
   }
 }
 
-// const mapStateToProps = (state: State) => ({
-//   state: state
-// })
-
-// const styles = (theme: Theme) => ({
-//   nav: {
-//     backgroundColor: theme.backgroundColor,
-//     color: theme.foregroundColor,
-//     '@global': {
-//       '.brand': {
-//         padding: '0 1em 0.9em 0'
-//       },
-//       '.modal': {
-//         backgroundColor: `${theme.colorPrimary} `
-//       },
-//       '.brand *': {
-//         color: theme.colorPrimary
-//       }
-//     }
-//   }
-// })
-
-// export const Header = withStyles(styles)(connect(mapStateToProps)(Header_))
+async function handleInputFiles(files: File[]) {
+  const file = files.find(f => ['image/jpeg', 'image/png'].includes(f.getMimeType() + ''))
+  if (file) {
+    file.show(document.getElementById('outputCanvas')! as any)
+  }
+}
