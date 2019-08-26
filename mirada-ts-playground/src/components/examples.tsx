@@ -1,22 +1,24 @@
 import * as React from 'react'
-import { State, Example } from '../store/types'
+import { State } from '../store/state'
 import { connect } from 'react-redux'
-import { dispatch } from '..'
-import { EXAMPLES_ACTIONS } from '../store/examples'
+import { Example } from '../store/examples';
+import { AbstractComponent } from '../util/component';
+// import { dispatch } from '..'
+// import { EXAMPLES_ACTIONS } from '../store/examples'
 
-interface P {
-  examples: Example[]
-}
+// interface P {
+//   examples: Example[]
+// }
 
-class Examples_ extends React.Component<P, {}> {
+export class Examples extends AbstractComponent {
   render() {
     return (
       <article className="examples">
         <h3>ts-morph examples</h3>
         <ul>
-          {this.props.examples.map(example => (
-            <li className={`example ${example.selected ? 'selected' : ''}`} key={example.name}>
-              <a onClick={e => dispatch({ type: EXAMPLES_ACTIONS.SELECT, example })}>{example.name}</a> (
+          {this.state.examples.map(example => (
+            <li className={`example ${example.name===this.state.example.name ? 'selected' : ''}`} key={example.name}>
+              <a onClick={e => this.setState( {example })}>{example.name}</a> (
               {example.description})
             </li>
           ))}
@@ -26,8 +28,8 @@ class Examples_ extends React.Component<P, {}> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  examples: state.examples
-})
+// const mapStateToProps = (state: State) => ({
+//   examples: state.examples
+// })
 
-export const Examples = connect(mapStateToProps)(Examples_)
+// export const Examples = connect(mapStateToProps)(Examples_)

@@ -1,19 +1,7 @@
 import * as React from 'react'
-import withStyles, { WithSheet } from 'react-jss'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
-import { Link } from 'react-router-dom'
-import { dispatch } from '..'
-import { stateToString } from '../store/dispatch/getStateFromLocation'
-import { LAYOUT_ACTIONS } from '../store/layout'
-import { State } from '../store/types'
-import { Theme } from '../theme/theme'
+import { AbstractComponent } from '../util/component';
 
-interface P extends WithSheet<typeof styles, Theme>, RouteComponentProps<any> {
-  state: State
-}
-
-class Header_ extends React.Component<P, {}> {
+export class Header extends AbstractComponent{
   componentDidMount() {
     document.onkeydown = function(e) {
       if (e.keyCode == 27) {
@@ -25,15 +13,14 @@ class Header_ extends React.Component<P, {}> {
     }
   }
   render() {
-    const { classes, state } = this.props
     return (
       <div>
-        <nav className={`${classes.nav}`}>
+        <nav  >
           <a href="#" className={`brand`}>
             <span aria-hidden="true" data-icon="&#x21dd;" />
             <span>ts-morph Playground</span>
           </a>
-          <select
+          {/* <select
             className="button"
             onChange={e =>
               dispatch({
@@ -46,13 +33,13 @@ class Header_ extends React.Component<P, {}> {
                 {t.name} theme
               </option>
             ))}
-          </select>
+          </select> */}
           <label htmlFor="whats_this_modal" className="button">
             What's this?
           </label>
-          <Link className="button" to={'/state/' + stateToString(state)}>
+          {/* <Link className="button" to={'/state/' + stateToString(state)}>
             Create Url
-          </Link>
+          </Link> */}
         </nav>
 
         <div className="modal">
@@ -116,26 +103,26 @@ class Header_ extends React.Component<P, {}> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  state: state
-})
+// const mapStateToProps = (state: State) => ({
+//   state: state
+// })
 
-const styles = (theme: Theme) => ({
-  nav: {
-    backgroundColor: theme.backgroundColor,
-    color: theme.foregroundColor,
-    '@global': {
-      '.brand': {
-        padding: '0 1em 0.9em 0'
-      },
-      '.modal': {
-        backgroundColor: `${theme.colorPrimary} `
-      },
-      '.brand *': {
-        color: theme.colorPrimary
-      }
-    }
-  }
-})
+// const styles = (theme: Theme) => ({
+//   nav: {
+//     backgroundColor: theme.backgroundColor,
+//     color: theme.foregroundColor,
+//     '@global': {
+//       '.brand': {
+//         padding: '0 1em 0.9em 0'
+//       },
+//       '.modal': {
+//         backgroundColor: `${theme.colorPrimary} `
+//       },
+//       '.brand *': {
+//         color: theme.colorPrimary
+//       }
+//     }
+//   }
+// })
 
-export const Header = withStyles(styles)(connect(mapStateToProps)(Header_))
+// export const Header = withStyles(styles)(connect(mapStateToProps)(Header_))

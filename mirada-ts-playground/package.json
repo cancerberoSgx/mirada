@@ -11,7 +11,7 @@
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120 --jsx-bracket-same-line true \"src/**/*.ts*\"",
     "clean": "rm -rf dist docs",
     "pack": "npm run pack-examples && npm run pack-files",
-    "pack-files": "npx embed-json-in-ts --mode fs2json --input \"node_modules/mirada/dist/src/**/*.d.ts\" --output src/examples/magica.json &&  rm -rf src/examples/magica.json",
+    "pack-files": "npx embed-json-in-ts --mode fs2json --input \"node_modules/mirada/dist/src/**/*.d.ts\" --output src/examples/mirada.json &&  rm -rf src/examples/mirada.json",
     "pack-examples": "npx embed-json-in-ts --mode string --input \"src/examples/toPack/**/*.ts*\" --output src/examples/packed --preserveExtension --debug",
     "all": "npm run clean && npm run pack && npm run prettier && npm run build"
   },

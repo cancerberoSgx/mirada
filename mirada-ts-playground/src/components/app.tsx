@@ -1,88 +1,72 @@
 import * as React from 'react'
-import withStyles, { WithSheet } from 'react-jss'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
-import { executeSelectedExample } from '../store/dispatch/executeSelectedExample'
-import { State } from '../store/types'
-import { commonStyles } from '../theme/style'
-import { Theme } from '../theme/theme'
-import { Editor } from './editor'
 import { Examples } from './examples'
-import { Files } from './files'
 import { ForkRibbon } from './forkRibbon'
 import { Header } from './header'
-import { Output } from './output'
-
-interface P extends WithSheet<typeof styles>, RouteComponentProps<any> {
-  state: State
-}
-
-class App_ extends React.Component<P, {}> {
-  render() {
-    const { classes, state } = this.props
-    return (
-      <article className={classes.root}>
+import './styles.css'
+export const App = ()=>      <article>
         <ForkRibbon />
-        <Header {...(this.props as any)} />
-        <div className={classes.wrapper}>
-          <div className={classes.examples}>
+        <Header/>
+        <div>
+          <div>
                      <Examples />
           </div>
-          <div className={classes.files}>
+          <div >
             {/* <Files /> */}
           </div>
-          <div className={classes.examplesEditor}>
-            {state.selectedFile && <button onClick={ev => executeSelectedExample(state)}>Execute</button>}
-            <Editor />
+          <div >
+            {/* {state.selectedFile && <button onClick={ev => executeSelectedExample(state)}>Execute</button>}
+            {/* <Editor /> */}
+             <div id="editorContainer"   />
+            <div   />
           </div>
               <canvas id="outputCanvas" width="400" height="400"></canvas>
-          {state.output && state.output.text && (
-            <div className={classes.output}>
+          {/* {state.output && state.output.text && ( */}
+            {/* <div className={classes.output}> */}
               {/* <Output /> */}
              
-            </div>
+            {/* </div> */}
           )}
         </div>
       </article>
-    )
-  }
-}
+    // )
+  // }
+// }
 
-const mapStateToProps = (state: State) => ({
-  state: state
-})
+// const mapStateToProps = (state: State) => ({
+//   state: state
+// })
 
-const styles = (theme: Theme) => ({
-  ...commonStyles(theme),
-  root: {
-    backgroundColor: theme.backgroundColor,
-    color: theme.foregroundColor,
-    margin: 0,
-    padding: '0.3em 1em'
-  },
-  wrapper: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gridGap: '10px',
-    gridAutoRows: 'minmax(100px, auto)',
-    paddingTop: '3em'
-  },
-  examples: {
-    gridColumn: '1/3',
-    gridRow: 1
-  },
-  files: {
-    gridColumn: '3/5',
-    gridRow: 1
-  },
-  examplesEditor: {
-    gridColumn: '1/3',
-    gridRow: 2
-  },
-  output: {
-    gridColumn: '3/5',
-    gridRow: 2
-  }
-})
+// const styles = (theme: Theme) => ({
+//   ...commonStyles(theme),
+//   root: {
+//     backgroundColor: theme.backgroundColor,
+//     color: theme.foregroundColor,
+//     margin: 0,
+//     padding: '0.3em 1em'
+//   },
+//   wrapper: {
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(4, 1fr)',
+//     gridGap: '10px',
+//     gridAutoRows: 'minmax(100px, auto)',
+//     paddingTop: '3em'
+//   },
+//   examples: {
+//     gridColumn: '1/3',
+//     gridRow: 1
+//   },
+//   files: {
+//     gridColumn: '3/5',
+//     gridRow: 1
+//   },
+//   examplesEditor: {
+//     gridColumn: '1/3',
+//     gridRow: 2
+//   },
+//   output: {
+//     gridColumn: '3/5',
+//     gridRow: 2
+//   }
+// })
 
-export const App = withStyles(styles)(connect(mapStateToProps)(App_))
+// export const App = withStyles(styles)(connect(mapStateToProps)(App_))
