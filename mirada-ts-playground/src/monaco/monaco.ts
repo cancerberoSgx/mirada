@@ -110,15 +110,6 @@ export function installEditor() {
     // editor.setSelection(def.range)
   })
   installListeners()
-
-  getStore().add((event) => {
-    if (event.oldState.example !== event.newState.example) {
-    setEditorFile(event.newState.example.name, event.newState.example.code)
-      // setEditorFile(event.newState.example)
-      // editorInstance!.setModel(getModel(event.newState.example))
-    }
-  })
-
 }
 
 function getModel(example = getStore().getState().example) {
@@ -129,7 +120,6 @@ function getModel(example = getStore().getState().example) {
   }
   return m
 }
-
 
   export function  setEditorFile(name:string, content:string) {
     // const model = monaco.editor.getModels().find(m => m.uri.path === buildModelUrl(name))

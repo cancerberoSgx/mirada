@@ -19,6 +19,8 @@ import { getInitialState } from './store/state';
 import { App } from './components/app';
 import { _setStore, getStore } from './store/store';
 import { installEditor } from './monaco/monaco';
+import { onExecuteRequestInstall } from './handlers/onExecuteRequest';
+import { onExampleSelectedInstall } from './handlers/onExampleSelect';
 
 async function start() {
 await initMonacoWorkers()
@@ -41,5 +43,8 @@ getStore().setState(s)
     await loadFormatProxies()
   await sleep (10)
   await loadOpencv()
+  await sleep (10)
+  await onExecuteRequestInstall()
+  await onExampleSelectedInstall()
 }
 start()

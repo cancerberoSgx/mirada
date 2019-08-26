@@ -10,6 +10,7 @@ export interface State {
   // result: RunResult | undefined
   code: string
   working: boolean
+  executeRequest?: boolean
   // showAllResultsOutput: boolean
   // fields: ExampleField[]
 }
