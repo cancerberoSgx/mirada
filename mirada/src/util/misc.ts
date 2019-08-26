@@ -1,5 +1,5 @@
 import { withoutExtension } from 'misc-utils-of-mine-generic'
-import { relative, resolve as pathResolve } from 'path'
+import { join, relative, resolve as pathResolve } from 'path'
 
 export function buildError(e: any) {
   console.error(e)
@@ -10,7 +10,7 @@ export function buildError(e: any) {
 }
 
 export function resolveNodeModule(p: string) {
-  var r = withoutExtension(relative(__dirname, pathResolve(p)))
+  var r = withoutExtension(relative(join(__dirname, '..'), pathResolve(p)))
   if (!r.startsWith('.')) {
     r = './' + r
   }

@@ -2,9 +2,7 @@
 import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int, Mat, OutputArray, OutputArrayOfArrays, Scalar, size_t } from './_types'
 /*
  * # Operations on arrays
- *
  * 
- *     
  */
 /**
  * The function [cv::absdiff](#d2/de8/group__core__array_1ga6fef31bc8c4071cbc114a758a2b79c14})

@@ -2,21 +2,12 @@
 import { cvhalDFT, int, size_t, uchar } from './_types'
 /*
  * # Interface
- *
- * 
- * 
- * 
- * 
- * 
  * Define your functions to override default implementations: 
  * 
  * ```cpp
  * #undef hal_add8u
  * #define hal_add8u my_add8u
  * ```
- * 
- *  
- *     
  */
 /**
  * @param context pointer to context storing all necessary data

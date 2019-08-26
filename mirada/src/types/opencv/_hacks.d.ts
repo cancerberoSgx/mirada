@@ -9,8 +9,7 @@ export declare class Range {
 export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
-// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to
-// simplify and make it work
+// Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
 export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
 export { Scalar as GScalar }
 export { Point as Point2f }
@@ -23,25 +22,40 @@ export { Size as Size2l }
 export { Rect as Rect_ }
 
 export declare class Point {
-  public constructor(x?: number, y?: number);
+  public constructor(x: number, y: number);
   public x: number;
   public y: number;
 }
+
 
 export declare class Size {
-  public constructor(width?: number, height?: number);
+  public constructor(width: number, height: number);
   public width: number;
   public height: number;
 }
 
+
 export declare class Rect {
-  public constructor(x?: number, y?: number, width?: number, height?: number);
+  public constructor();
+  public constructor(point: Point, size: Size);
+  public constructor(x: number, y: number, width: number, height: number);
   public x: number;
   public y: number;
   public width: number;
   public height: number;
 }
 
+
+// declare class RotatedRect {
+//   public center: Point
+//   public size: Size
+//   angle: number
+//   public constructor()
+//   public constructor(center: Point, size: Size, angle: number)
+//   public static rotatedRectPoints(obj:any):any
+//   public static rotatedRectBoundingRect(obj:any):any
+//   public static rotatedRectBoundingRect2f(obj:any):any
+// }
 
 export declare class TermCriteria {
   public type: number
@@ -93,25 +107,25 @@ export declare class RectVector extends Rect implements Vector<Rect>{
   delete(): void
 }
 
+
+
 import { LineTypes, Mat, RotatedRect } from '.'
-import { read } from 'fs';
 
 export declare function matFromImageData(imageData: ImageData): Mat
 
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
-/** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
   public delete(): void
   public data: ImageData
   public ucharPtr(i: any, j: any): any
-  public charPtr(i: any,j: any):any
-  public charPtr(i: any,j: any):any
-  public shortPtr(i: any,j: any):any
-  public ushortPtr(i: any,j: any):any
-  public intPtr(i: any,j: any):any
-  public floatPtr(i: any,j: any):any
-  public doublePtr(i: any,j: any):any
+  public charPtr(i: any, j: any): any
+  public charPtr(i: any, j: any): any
+  public shortPtr(i: any, j: any): any
+  public ushortPtr(i: any, j: any): any
+  public intPtr(i: any, j: any): any
+  public floatPtr(i: any, j: any): any
+  public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
   public roi(rect: Rect): Mat
 }
@@ -131,6 +145,15 @@ export declare const CV_32S: number
 export declare const CV_8S: number
 export declare const CV_8UC4: number
 export declare const CV_32F: number
+
+export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
+export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
+export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
+
+export declare class VideoCapture {
+  public constructor(videoSource: HTMLVideoElement | string)
+}
+
 
 // Missing imports: 
 export type Mat4 = any
@@ -193,13 +216,3 @@ export type uint64_t = any
 export type uint32_t = any
 export type int32_t = any
 export type int64_t = any
-
-export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
-export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
-export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
-
-export declare class VideoCapture {
-  public constructor(videoSource: HTMLVideoElement | string)
-  public video: HTMLVideoElement
-  public read(frame: Mat):void
-}

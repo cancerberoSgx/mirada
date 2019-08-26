@@ -2,9 +2,7 @@
 import { double, InputArray, InputOutputArray, int, OutputArray, Point, Rect, Scalar } from './_types'
 /*
  * # Miscellaneous Image Transformations
- *
  * 
- *     
  */
 /**
  * The function transforms a grayscale image to a binary image according to the formulae:

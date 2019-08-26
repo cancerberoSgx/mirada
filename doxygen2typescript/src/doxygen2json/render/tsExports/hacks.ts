@@ -58,16 +58,16 @@ export declare class Rect {
 
 export { Rect as Rect_ }
 
-declare class RotatedRect {
-  public center: Point
-  public size: Size
-  angle: number
-  public constructor()
-  public constructor(center: Point, size: Size, angle: number)
-  public static rotatedRectPoints(obj:any):any
-  public static rotatedRectBoundingRect(obj:any):any
-  public static rotatedRectBoundingRect2f(obj:any):any
-}
+// declare class RotatedRect {
+//   public center: Point
+//   public size: Size
+//   angle: number
+//   public constructor()
+//   public constructor(center: Point, size: Size, angle: number)
+//   public static rotatedRectPoints(obj:any):any
+//   public static rotatedRectBoundingRect(obj:any):any
+//   public static rotatedRectBoundingRect2f(obj:any):any
+// }
 
 export declare class TermCriteria {
   public type: number

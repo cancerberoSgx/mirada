@@ -23,15 +23,28 @@ ${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n'
   fixMissingExtends(o)
   fixClasses(o)
   if (o.singleDeclaration) {
-    writeSingleDeclaration(o, [...files, '_types.d.ts'])
+    // writeSingleDeclaration(o, [...files, '_types.d.ts'])
+     const s = [...files, '_types.d.ts'].filter(notSame).map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
+      writeFileSync(join(o.tsOutputFolder, '_single.d.ts'), s)
   }
   fixMissingImports(o)
 }
 
-function writeSingleDeclaration(o: Doxygen2tsOptions, files: string[]) {
-  const s = files.map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
-  writeFileSync(join(o.tsOutputFolder, '_single.d.ts'), s)
-}
+const index = `
+import * as _CV from './_types'
+export type CV = typeof _CV
+// declare global {
+//   var cv: CV
+// }
+// export { cv }
+export * from './_types'
+export * from './_hacks'
+`.trim()
+
+// function writeSingleDeclaration(o: Doxygen2tsOptions, files: string[]) {
+//   const s = files.map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
+//   // writeFileSync(join(o.tsOutputFolder, '_single.d.ts'), s)
+// }
 
 function getExternalTypeReferences(content: string) {
   const p = new Project()
@@ -61,7 +74,6 @@ export function fixMissingExtends(o: Doxygen2tsOptions) {
     writeFileSync(join(o.tsOutputFolder, k + '.d.ts'), s)
   })
 }
-
 
 // export function fixMissingImportNames(o: Doxygen2tsOptions) {
 //   const missingExtends = {
@@ -115,26 +127,21 @@ ${readFileSync(o.tsOutputFolder + '/_hacks.d.ts').toString()}\n\n
 ${missing.map(t => `export type ${t} = any`).join('\n')}
 `.trim()
   )
-
-  p.getSourceFiles().forEach(f => f.refreshFromFileSystemSync())
-  prefix = `Cannot find name '`
-  // let missing2 =
-  p.getPreEmitDiagnostics()
-    .filter(d => d.getSourceFile().getBaseName() !== '_single.d.ts')
-    .map(d => ({ message: d.getMessageText().toString(), file: d.getSourceFile().getBaseNameWithoutExtension() }))
-    .filter(s => s.message.startsWith(prefix))
-    .map(s => ({ ...s, message: s.message.substring(prefix.length) }))
-    .map(s => ({ file: s.file, name: s.message.substring(0, s.message.indexOf('\'') !== -1 ? s.message.indexOf('\'') : s.message.length) }))
-    .forEach(f => {
-      const s = readFileSync(join(o.tsOutputFolder, f.file + '.d.ts')).toString()
-        .replace(`} from './_types'`, `, ${f.name}} from './_types'`)
-      writeFileSync(join(o.tsOutputFolder, f.file + '.d.ts'), s)
-    })
-  //  Object.keys(missingExtends).forEach(k => {
-  //     const s = readFileSync(join(o.tsOutputFolder, k + '.d.ts')).toString()
-  //       .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
-  //     writeFileSync(join(o.tsOutputFolder, k + '.d.ts'), s)
+  // p.getSourceFiles().forEach(f => f.refreshFromFileSystemSync())
+  // prefix = `Cannot find name '`
+  // p.getPreEmitDiagnostics()
+  //   .filter(d => d.getSourceFile().getBaseName() !== '_single.d.ts')
+  //   .map(d => ({ message: d.getMessageText().toString(), file: d.getSourceFile().getBaseNameWithoutExtension() }))
+  //   .filter(s => s.message.startsWith(prefix))
+  //   .map(s => ({ ...s, message: s.message.substring(prefix.length) }))
+  //   .map(s => ({ file: s.file, name: s.message.substring(0, s.message.indexOf('\'') !== -1 ? s.message.indexOf('\'') : s.message.length) }))
+  //   .forEach(f => {
+  //     const s = readFileSync(join(o.tsOutputFolder, f.file + '.d.ts')).toString()
+  //       .replace(`} from './_types'`, `, ${f.name}} from './_types'`)
+  //     writeFileSync(join(o.tsOutputFolder, f.file + '.d.ts'), s)
   //   })
+
+
 
   // dedup(missing2, (a, b) => a.file !== b.file && a.name !== a.name).forEach(f => {
   //   const s = readFileSync(join(o.tsOutputFolder, f.file + '.d.ts')).toString()
@@ -146,11 +153,3 @@ ${missing.map(t => `export type ${t} = any`).join('\n')}
   // .fore
 
 }
-
-
-const index = `
-import * as _CV from './_types'
-export type CV = typeof _CV
-export * from './_types'
-export * from './_hacks'
-`.trim()

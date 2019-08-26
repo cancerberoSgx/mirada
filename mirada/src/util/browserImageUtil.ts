@@ -1,6 +1,6 @@
 import { imageData } from '..'
-import { toRgba } from './imageUtil'
 import { Mat } from '../types/opencv'
+import { toRgba } from './imageUtil'
 
 export function getImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -41,7 +41,7 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasEle
       canvas!.setAttribute('height', img.naturalHeight + '')
       canvas!.getContext('2d')!.drawImage(img, 0, 0)
       resolve({ canvas, width: img.naturalWidth, height: img.naturalHeight })
-    URL.revokeObjectURL(url)
+      URL.revokeObjectURL(url)
     }
     img.src = url
   })

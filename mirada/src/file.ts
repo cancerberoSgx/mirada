@@ -1,11 +1,11 @@
 import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
+import { getDefaultCodec } from './format'
+import { ImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, writeFile } from './util/fileUtil'
-import { getDefaultCodec } from './format'
 import { imageData } from './util/imageUtil'
-import { ImageData, Mat } from './types/opencv'
 import fileType = require('file-type')
 
 /**
@@ -61,8 +61,8 @@ export class File {
   /**
    * Shows this image in given HTML canvas or image element.
    */
-  show(el: HTMLCanvasElement|HTMLImageElement) {
-  if (!inBrowser()) {
+  show(el: HTMLCanvasElement | HTMLImageElement) {
+    if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
     cv.imshow(el, this.asMat())
@@ -137,7 +137,7 @@ export class File {
 	/**
 	 * Loads file form existing HTMLCanvasElement or HTMLImageElement
 	 */
-  public static fromCanvas(el: HTMLCanvasElement|HTMLImageElement|string): File {
+  public static fromCanvas(el: HTMLCanvasElement | HTMLImageElement | string): File {
     if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
@@ -175,7 +175,7 @@ export class File {
   }
 
   public static isFile(f: any): f is File {
-    return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data && 
+    return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data &&
       typeof (f as File).constructor !== 'undefined' && !!(f as File).asImageData && !!(f as File).asMat
   }
 

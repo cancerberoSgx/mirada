@@ -31,7 +31,7 @@ IMPORTANT: formats are lowercase and in general the common extension of files
 
 ▸ **decode**(`buffer`: ArrayBuffer, `format?`: undefined | string): *Promise‹ImageData›*
 
-*Defined in [types/mirada.ts:34](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/types/mirada.ts#L34)*
+*Defined in [types/mirada.ts:35](https://github.com/cancerberoSgx/mirada/blob/ef78036/mirada/src/types/mirada.ts#L35)*
 
 Given an array buffer that contains the content of an encoded image it will return a
 decoded ImageData object. The format parameter could be needed by some poor decoders
@@ -52,7 +52,7 @@ ___
 
 ▸ **encode**(`data`: ImageData, `format`: string): *Promise‹ArrayBuffer›*
 
-*Defined in [types/mirada.ts:38](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/types/mirada.ts#L38)*
+*Defined in [types/mirada.ts:39](https://github.com/cancerberoSgx/mirada/blob/ef78036/mirada/src/types/mirada.ts#L39)*
 
 given an image data representing an unencoded raw image it will return an array buffer containing the enconcoded image content in given format.
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **getSupportedDecodeFormats**(): *string[]*
 
-*Defined in [types/mirada.ts:42](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/types/mirada.ts#L42)*
+*Defined in [types/mirada.ts:43](https://github.com/cancerberoSgx/mirada/blob/ef78036/mirada/src/types/mirada.ts#L43)*
 
 if provided an error will be thrown in case users request to decode to a format not included in this list.
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **getSupportedEncodeFormats**(): *string[]*
 
-*Defined in [types/mirada.ts:46](https://github.com/cancerberoSgx/mirada/blob/19d9b36/mirada/src/types/mirada.ts#L46)*
+*Defined in [types/mirada.ts:47](https://github.com/cancerberoSgx/mirada/blob/ef78036/mirada/src/types/mirada.ts#L47)*
 
 if provided an error will be thrown in case users request to encode to a format not included in this list.
 

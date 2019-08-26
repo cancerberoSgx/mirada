@@ -4,7 +4,7 @@
   "description": "ts-morph example gallery and playground application 100% in the browser",
   "private": true,
   "scripts": {
-    "build": "npm run clean && npm run pack && npx tsc && sh build-workers.sh && npx parcel build src/index.html -d docs --no-content-hash --detailed-report --public-url './' && npm run copy",
+    "build": "npm run clean && npm run pack && npx tsc && sh build-workers.sh && npx parcel build src/index.html -d docs --no-content-hash --detailed-report --public-url './' && npm run copy && rm -rf ../../demos/docs/mirada-ts-playground && mkdir -p ../../demos/docs/mirada-ts-playground && cp -r docs/* ../../demos/docs/mirada-ts-playground",
     "build-local": "npm run build && gzip docs/*.* && npx http-server docs --gzip",
     "copy": "cp -r src/index.appcache node_modules/mirada/dist/src/opencv.js static/* docs && cp -r node_modules/mirada/dist/src/opencv.js static/* dist",
     "start": "mkdir -p dist docs&& npm run pack && npm run copy && && cp docs/*.worker.js dist && npx parcel start  --no-hmr --open --no-source-maps --no-autoinstall src/index.html",

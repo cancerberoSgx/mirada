@@ -2,12 +2,6 @@
 import { double, int, Size } from './_types'
 /*
  * # Object Detection
- *
- * 
- * 
- * 
- * 
- * 
  * ## Haar Feature-based Cascade Classifier for Object Detection 
  * 
  * 
@@ -28,8 +22,7 @@ import { double, int, Size } from './_types'
  * 
  * 
  * 
- * In the new C++ interface it is also possible to use LBP (local binary pattern) features in addition to Haar-like features. .. [Viola01] Paul Viola and Michael J. Jones. Rapid Object Detection using a Boosted Cascade of Simple Features. IEEE CVPR, 2001. The paper is available online at  
- *     
+ * In the new C++ interface it is also possible to use LBP (local binary pattern) features in addition to Haar-like features. .. [Viola01] Paul Viola and Michael J. Jones. Rapid Object Detection using a Boosted Cascade of Simple Features. IEEE CVPR, 2001. The paper is available online at
  */
 export declare function createFaceDetectionMaskGenerator(): any
 

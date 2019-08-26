@@ -2,10 +2,6 @@
 import { bool, double, InputArray, int, Mat, OutputArray, Point2f, Size } from './_types'
 /*
  * # Geometric Image Transformations
- *
- * 
- * 
- * 
  * The functions in this section perform various geometrical transformations of 2D images. They do not change the image content but deform the pixel grid and map this deformed grid to the destination image. In fact, to avoid sampling artifacts, the mapping is done in the reverse order, from destination to the source. That is, for each pixel `$(x, y)$` of the destination image, the functions compute coordinates of the corresponding "donor" pixel in the source image and copy the pixel value:
  * 
  * `\[\texttt{dst} (x,y)= \texttt{src} (f_x(x,y), f_y(x,y))\]`
@@ -24,8 +20,7 @@ import { bool, double, InputArray, int, Mat, OutputArray, Point2f, Size } from '
  * 
  * 
  * 
- * The geometrical transformations do not work with `CV_8S` or `CV_32S` images. 
- *     
+ * The geometrical transformations do not work with `CV_8S` or `CV_32S` images.
  */
 /**
  * The function converts a pair of maps for remap from one representation to another. The following

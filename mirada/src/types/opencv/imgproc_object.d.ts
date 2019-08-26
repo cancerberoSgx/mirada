@@ -2,9 +2,7 @@
 import { InputArray, int, OutputArray } from './_types'
 /*
  * # Object Detection
- *
  * 
- *     
  */
 /**
  * The function slides through image , compares the overlapped patches of size `$w \\times h$` against

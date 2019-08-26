@@ -1,8 +1,7 @@
 
-import { Mat_ } from './_hacks'
-import { bool, double, FileNode, InputArray, int, Ptr, Rect, Size } from './_types'
+import { bool, double, FileNode, InputArray, int, Mat, Ptr, Rect, Size } from './_types'
 
-export declare class CascadeClassifier extends Mat_ {
+export declare class CascadeClassifier extends Mat {
 
   public cc: Ptr
 

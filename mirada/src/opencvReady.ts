@@ -1,17 +1,13 @@
 import { existsSync } from 'fs'
 import { getGlobal, isNode } from 'misc-utils-of-mine-generic'
 import { loadFormatProxies } from './format'
-import { buildError, resolveNodeModule } from './util/misc'
 import { FS } from './types/emscripten'
+import { buildError, resolveNodeModule } from './util/misc'
 
 export const FS_ROOT = '/work'
-// /**
-//  * An exposed promise that is resolved when the library is ready to be used. 
-//  * At that time the global variable 'cv' should be available and ready.
-//  */
-// export const opencvReady = new Deferred<void>()
 
 let FS_: FS
+
 /**
  * gets the emscripten FS API
  */
@@ -77,7 +73,12 @@ function loadOpencvNode(o: LoadOptions = {}) {
         console.error('Error has occurred in WebAssembly Module', e, e.stack)
       }
     }
-    g.cv = require(resolved)
+    try {
+      g.cv = require(resolved)
+    } catch (error) {
+      console.error('An error occurred when trying to load opencv.js form ' + resolved, error, error.stack)
+      throw error
+    }
   })
 }
 
@@ -86,7 +87,6 @@ async function finishSetup() {
   opencvLoaded = true
   await loadFormatProxies()
   FS_ = getGlobal().Module.FS
-  // opencvReady.resolve()
 }
 
 function loadOpencvBrowser(o: LoadOptions = {}) {

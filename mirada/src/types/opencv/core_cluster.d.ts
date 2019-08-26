@@ -2,9 +2,7 @@
 import { double, InputArray, InputOutputArray, int, OutputArray, TermCriteria, _EqPredicate } from './_types'
 /*
  * # Clustering
- *
  * 
- *     
  */
 /**
  * The function kmeans implements a k-means algorithm that finds the centers of cluster_count clusters

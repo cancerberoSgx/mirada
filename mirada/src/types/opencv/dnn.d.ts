@@ -2,10 +2,6 @@
 import { bool, double, InputArray, InputArrayOfArrays, int, Mat, Net, OutputArray, OutputArrayOfArrays, Size, size_t, uchar } from './_types'
 /*
  * # Deep Neural Network module
- *
- * 
- * 
- * 
  * This module contains:
  * 
  * 
@@ -16,7 +12,7 @@ import { bool, double, InputArray, InputArrayOfArrays, int, Mat, Net, OutputArra
  *  * functionality for loading serialized networks models from different frameworks.
  * 
  * 
- * Functionality of this module is designed only for forward pass computations (i.e. network testing). A network training is in principle not supported.     
+ * Functionality of this module is designed only for forward pass computations (i.e. network testing). A network training is in principle not supported.
  */
 /**
  * if `crop` is true, input image is resized so one side after resize is equal to corresponding

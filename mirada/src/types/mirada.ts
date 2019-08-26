@@ -1,5 +1,6 @@
 import { ImageData } from './opencv'
 import './_opencvCustom'
+
 /**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec instances
  * 

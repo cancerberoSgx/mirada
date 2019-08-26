@@ -6,10 +6,6 @@ OpenCv JavaScript/TypeScript API for Node.js and Browser on top of OpenCv.js, ad
 
 - [Install](#install)
 - [Usage](#usage)
-- [Reference API](#reference-api)
-- [Command line](#command-line)
-- [TODO](#todo)
-- [Initial design notes](#initial-design-notes)
 
 <!-- tocstop -->
 

@@ -2,10 +2,6 @@
 import { bool, double, float, InputArray, InputArrayOfArrays, InputOutputArray, int, Mat, OutputArray, OutputArrayOfArrays, Point2d, Rect, Size, size_t, TermCriteria, Vec3d } from './_types'
 /*
  * # Camera Calibration and 3D Reconstruction
- *
- * 
- * 
- * 
  * The functions in this section use a so-called pinhole camera model. In this model, a scene view is formed by projecting 3D points into the image plane using a perspective transformation.
  * 
  * `\[s \; m' = A [R|t] M'\]`
@@ -83,9 +79,7 @@ import { bool, double, float, InputArray, InputArrayOfArrays, InputOutputArray, 
  *  * A calibration sample in order to do 3D reconstruction can be found at opencv_source_code/samples/cpp/build3dmodel.cpp
  *  * A calibration example on stereo calibration can be found at opencv_source_code/samples/cpp/stereo_calib.cpp
  *  * A calibration example on stereo matching can be found at opencv_source_code/samples/cpp/stereo_match.cpp
- *  * (Python) A camera calibration sample can be found at opencv_source_code/samples/python/calibrate.py 
- * 
- *     
+ *  * (Python) A camera calibration sample can be found at opencv_source_code/samples/python/calibrate.py
  */
 /**
  * the overall RMS re-projection error.

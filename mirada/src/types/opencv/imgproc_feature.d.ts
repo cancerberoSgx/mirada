@@ -2,9 +2,7 @@
 import { bool, double, InputArray, InputOutputArray, int, OutputArray, Size, TermCriteria } from './_types'
 /*
  * # Feature Detection
- *
  * 
- *     
  */
 /**
  * The function finds edges in the input image and marks them in the output map edges using the Canny

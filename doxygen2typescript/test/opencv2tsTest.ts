@@ -39,13 +39,18 @@ test('opencv2ts', async t => {
 })
 
 const testTs = `
-import {cv} from './opencv'
-const m = new cv.Mat()
-var a = m.rows+1
+import './opencv'
+const source = cv.imread('inputCangas')
+const dest = new cv.Mat()
+let M = cv.Mat.ones(5, 5, cv.CV_8U)
+let anchor = new cv.Point(-1, -1)
+cv.dilate(source, dest, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue())
+const canvas = document.getElementById('outputCanvas')
+cv.imshow('outputCanvas', dest)
 `.trim()
 
 const testErrorTs = `
-import {cv} from './opencv'
+import './opencv'
 const m = new cv.Mat()
 m.nonExistent()
 `.trim()

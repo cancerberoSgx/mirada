@@ -2,11 +2,7 @@
 import { double, InputArray, int, OutputArray } from './_types'
 /*
  * # Inpainting
- *
- * 
- * 
- * 
- * the inpainting algorithm     
+ * the inpainting algorithm
  */
 /**
  * The function reconstructs the selected image area from the pixel near the area boundary. The

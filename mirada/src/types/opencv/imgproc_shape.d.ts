@@ -2,9 +2,7 @@
 import { bool, double, float, InputArray, int, Moments, OutputArray, OutputArrayOfArrays, Point, Point2f, Rect, RotatedRect } from './_types'
 /*
  * # Structural Analysis and Shape Descriptors
- *
  * 
- *     
  */
 /**
  * The function [cv::approxPolyDP](#d3/dc0/group__imgproc__shape_1ga0012a5fdaea70b8a9970165d98722b4c})

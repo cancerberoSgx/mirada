@@ -2,9 +2,7 @@
 import { bool, double, float, InputArray, InputArrayOfArrays, int, OutputArray, Size } from './_types'
 /*
  * # Histograms
- *
  * 
- *     
  */
 /**
  * The function

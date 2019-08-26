@@ -1,5 +1,5 @@
-export * from './util'
 export { File } from './file'
 export * from './format/'
 export * from './opencvReady'
 export * from './types/mirada'
+export * from './util'

@@ -2,9 +2,7 @@
 import { InputArray, InputOutputArray } from './_types'
 /*
  * # Drawing Function of Keypoints and Matches
- *
  * 
- *     
  */
 /**
  * For Python API, flags are modified as cv.DRAW_MATCHES_FLAGS_DEFAULT,

@@ -2,9 +2,7 @@
 import { bool, double, InputArray, InputOutputArray, int, Mat, OutputArray, OutputArrayOfArrays, RotatedRect, Size, TermCriteria } from './_types'
 /*
  * # Object Tracking
- *
  * 
- *     
  */
 /**
  * number of levels in constructed pyramid. Can be less than maxLevel.

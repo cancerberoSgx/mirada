@@ -1,6 +1,6 @@
 import { inBrowser } from 'misc-utils-of-mine-generic'
-import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
 import { FormatCodec } from '../types/mirada'
+import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
 
 // type AnyConstructor = {
 //   [a:string]:any

@@ -2,9 +2,7 @@
 import { InputArray, int, OutputArray } from './_types'
 /*
  * # Color Space Conversions
- *
  * 
- *     
  */
 /**
  * The function converts an input image from one color space to another. In case of a transformation

@@ -2,10 +2,6 @@
 import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, int, Point, Point2d, Rect, Scalar, Size, Size2d, Size2l } from './_types'
 /*
  * # Drawing Functions
- *
- * 
- * 
- * 
  * Drawing functions work with matrices/images of arbitrary depth. The boundaries of the shapes can be rendered with antialiasing (implemented only for 8-bit images for now). All the functions include the parameter color that uses an RGB value (that may be constructed with the Scalar constructor ) for color images and brightness for grayscale images. For color images, the channel ordering is normally *Blue, Green, Red*. This is what imshow, imread, and imwrite expect. So, if you form a color using the Scalar constructor, it should look like:
  * 
  * `\[\texttt{Scalar} (blue \_ component, green \_ component, red \_ component[, alpha \_ component])\]`
@@ -16,8 +12,7 @@ import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, int, Po
  * 
  * 
  * 
- * The functions do not support alpha-transparency when the target image is 4-channel. In this case, the color[3] is simply copied to the repainted pixels. Thus, if you want to paint semi-transparent shapes, you can paint them in a separate buffer and then blend it with the main image. 
- *     
+ * The functions do not support alpha-transparency when the target image is 4-channel. In this case, the color[3] is simply copied to the repainted pixels. Thus, if you want to paint semi-transparent shapes, you can paint them in a separate buffer and then blend it with the main image.
  */
 /**
  * The function [cv::arrowedLine](#d6/d6e/group__imgproc__draw_1ga0a165a3ca093fd488ac709fdf10c05b2})
