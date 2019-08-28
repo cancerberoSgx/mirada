@@ -10,15 +10,12 @@ test('fft', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   cv.cvtColor(src, src, cv.COLOR_RGB2RGBA)
   cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0)
-
   // get optimal size of DFT
   let optimalRows = cv.getOptimalDFTSize(src.rows)
   let optimalCols = cv.getOptimalDFTSize(src.cols)
   let s0 = cv.Scalar.all(0)
   let padded = new cv.Mat()
-  cv.copyMakeBorder(src, padded, 0, optimalRows - src.rows, 0,
-    optimalCols - src.cols, cv.BORDER_CONSTANT, s0)
-
+  cv.copyMakeBorder(src, padded, 0, optimalRows - src.rows, 0, optimalCols - src.cols, cv.BORDER_CONSTANT, s0)
   // use cv.MatVector to distribute space for real part and imaginary part
   let plane0 = new cv.Mat()
   padded.convertTo(plane0, cv.CV_32F)
@@ -28,10 +25,8 @@ test('fft', async t => {
   planes.push_back(plane0)
   planes.push_back(plane1)
   cv.merge(planes, complexI)
-
   // in-place dft transform
   cv.dft(complexI, complexI)
-
   // compute log(1 + sqrt(Re(DFT(img))**2 + Im(DFT(img))**2))
   cv.split(complexI, planes)
   cv.magnitude(planes.get(0), planes.get(1), planes.get(0))
@@ -39,13 +34,10 @@ test('fft', async t => {
   let m1 = cv.Mat.ones(mag.rows, mag.cols, mag.type())
   cv.add(mag, m1, mag)
   cv.log(mag, mag)
-
   // crop the spectrum, if it has an odd number of rows or columns
   let rect = new cv.Rect(0, 0, mag.cols & -2, mag.rows & -2)
   mag = mag.roi(rect)
-
-  // rearrange the quadrants of Fourier image
-  // so that the origin is at the image center
+  // rearrange the quadrants of Fourier image so that the origin is at the image center
   let cx = mag.cols / 2
   let cy = mag.rows / 2
   let tmp = new cv.Mat()
@@ -74,7 +66,6 @@ test('fft', async t => {
   cv.normalize(mag, mag, 0, 1, cv.NORM_MINMAX)
 
   const f = File.fromMat(toRgba(mag), 'tmp1.png')
-  // await f.write('tmp1.png');
   t.deepEqual(f.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
   t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaFft.png')), 0)

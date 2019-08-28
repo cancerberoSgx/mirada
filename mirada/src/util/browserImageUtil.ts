@@ -88,10 +88,10 @@ export class CameraHelper {
   start() {
     if (!this.streaming) {
       this.startCamera('qvga', this.onVideoStarted, this.videoInput)
-    } 
+    }
   }
   stop() {
-   if (this.streaming) {
+    if (this.streaming) {
       this.stopCamera()
       this.onVideoStopped()
     }

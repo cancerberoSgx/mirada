@@ -2,18 +2,13 @@ import test from 'ava'
 import * as jimp from 'jimp'
 import { loadOpencv } from '../src'
 
-
 test('library loads manually without proxy', async t => {
   await loadOpencv()
   t.true(cv.getBuildInformation().includes('General configuration for OpenCV'))
 })
 
 test('cv.dilate loading image with jimp library', async t => {
-  // Wait until the library is ready
   await loadOpencv()
-
-  // use jimp.read() to load jpeg, then we can access the ImageData with `bitmap` and 
-  // pass it directly to `cv.matFromImageData`to build the Mat
   var img = await jimp.read('test/assets/shape.jpg')
   t.deepEqual([img.bitmap.width, img.bitmap.height, img.bitmap.data.byteLength], [125, 146, 73000])
   var src = cv.matFromImageData(img.bitmap)
