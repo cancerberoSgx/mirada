@@ -47,11 +47,6 @@ export async function fromArrayBuffer(a: ArrayBuffer) {
   return file.asMat()
 }
 
-export async function fromInputFile(a: HTMLInputElement) {
-  const files = await File.fromHtmlFileInputElement(a)
-  return files.map(f=>f.asMat())
-}
-
 export async function fromUrl(f: string) {
   const file = await File.fromUrl(f)
   return file.asMat()

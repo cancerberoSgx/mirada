@@ -45,6 +45,6 @@ export function isFile(f: string, FS = cv.FS) {
   }
 }
 
-export const  fileUtil = {
+export const fileUtil = {
   isDir, isFile
 }

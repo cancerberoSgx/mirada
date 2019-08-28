@@ -1,10 +1,9 @@
-import { ImageData } from './opencv'
 import { FS as _FS } from './emscripten'
-import { CV } from './opencv'
+import { CV, ImageData } from './opencv'
 declare global {
   var cv: CV & { FS: _FS }
 }
-export {cv, CV, _FS as FS}
+export { cv, CV, _FS as FS }
 
 /**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec instances
@@ -37,11 +36,11 @@ export interface FormatCodec {
  * decoded ImageData object. The format parameter could be needed by some poor decoders 
  * that don't support file type sniffing. For example, magica or jimp libraries don't need this.
  */
-  decode(buffer: ArrayBuffer, format?: string): Promise<ImageData>
+  decode(buffer: ArrayBuffer, format?: string): Promise<ImageData | undefined>
   /**
    * given an image data representing an unencoded raw image it will return an array buffer containing the enconcoded image content in given format.
    */
-  encode(data: ImageData, format: string): Promise<ArrayBuffer>
+  encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined>
   /**
    * if provided an error will be thrown in case users request to decode to a format not included in this list.
    */

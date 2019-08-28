@@ -9,7 +9,7 @@ export function onExecuteRequestInstall() {
   getStore().add(event => {
     handle(event)
   })
-} 
+}
 async function handle(event: { oldState: State; partial: Partial<State>; newState: State }) {
   const t0 = performance.now()
   if (event.newState.executeRequest) {
@@ -29,16 +29,16 @@ async function handle(event: { oldState: State; partial: Partial<State>; newStat
     } catch (ex) {
       console.error(ex)
       result = {
-        time: performance.now()-t0,
+        time: performance.now() - t0,
         evalError: `ERROR: ${ex} 
 ${(ex.stack || '').split('\n').join('\n')}
 Evaluated code: 
 ${toEval}`
       }
     }
-    result= result || {
-        time: performance.now()-t0,
-        }
+    result = result || {
+      time: performance.now() - t0
+    }
     getStore().setState({
       result,
       executeRequest: false,

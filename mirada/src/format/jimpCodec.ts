@@ -21,11 +21,11 @@ class JimpProxy implements FormatProxyClass {
 export class JimpCodec implements FormatCodec {
   constructor(protected jimp: Jimp) {
   }
-  async decode(buffer: ArrayBuffer): Promise<ImageData> {
+  async decode(buffer: ArrayBuffer): Promise<ImageData | undefined> {
     const img = await this.jimp.create(Buffer.from(buffer))
     return img.bitmap
   }
-  async encode(data: ImageData, format: string): Promise<ArrayBuffer> {
+  async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {
     const mime = getMimeTypeForExtension(format)
     if (!mime) {
       throw new Error('format not supported' + format)

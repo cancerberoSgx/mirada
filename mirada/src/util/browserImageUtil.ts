@@ -1,6 +1,12 @@
 import { toImageData } from '..'
+import { File } from '../file'
 import { Mat } from '../types/opencv'
 import { toRgba } from './imageUtil'
+
+export async function fromInputFileElement(a: HTMLInputElement) {
+  const files = await File.fromHtmlFileInputElement(a)
+  return files.map(f => f.asMat())
+}
 
 export function fetchImageData(url: string) {
   return new Promise<ImageData>((resolve, reject) => {
@@ -47,19 +53,19 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasEle
   })
 }
 
-export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = false): HTMLCanvasElement {
+export function renderInCanvas(mat: Mat, canvas?: HTMLCanvasElement, appendToBody = false, rgba = true): HTMLCanvasElement {
   if (!canvas) {
     canvas = document.createElement('canvas')
     appendToBody && document.body.append(canvas)
   }
-  var img = toRgba(mat)
+  var img = rgba ? toRgba(mat) : mat
   var imgData = getHtmlImageData(img)
   var ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   canvas.width = imgData.width
   canvas.height = imgData.height
   ctx.putImageData(imgData, 0, 0)
-  img.delete()
+  rgba && img.delete()
   return canvas
 }
 

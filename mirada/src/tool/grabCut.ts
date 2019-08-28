@@ -1,5 +1,5 @@
 
-import { File, toImageData, loadOpencv } from '..'
+import { File, loadOpencv, toImageData } from '..'
 import { ImageData, Rect, Scalar } from '../types/opencv'
 import { toRgba } from '../util/imageUtil'
 

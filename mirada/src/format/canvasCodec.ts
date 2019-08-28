@@ -2,11 +2,6 @@ import { inBrowser } from 'misc-utils-of-mine-generic'
 import { FormatCodec } from '../types/mirada'
 import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
 
-// type AnyConstructor = {
-//   [a:string]:any
-//   new (...args:any[]):any
-// }
-// // type Jimp = AnyConstructor
 /**
   Example of declaring a format codec that uses DOM canvas instance which must be provided by the user.
   
@@ -22,44 +17,43 @@ class JimpProxy implements FormatProxyClass {
 export class CanvasCodec implements FormatCodec {
   constructor() {
   }
-  async decode(buffer: ArrayBuffer): Promise<ImageData> {
+  async decode(buffer: ArrayBuffer): Promise<ImageData | undefined> {
     if (!inBrowser()) {
       throw new Error('This Codec needs a DOM / Browser ro execute')
     }
-    // var c :HTMLCanvasElement= getCanvas()
-    // var img:HTMLImageElement = get Iimage()
     const { canvas, height, width } = await renderArrayBufferInCanvas(buffer)
-    var imgData = canvas!.getContext('2d')!.getImageData(0, 0, height, width)
+    var imgData = canvas!.getContext('2d')!.getImageData(0, 0, width, height)
     return imgData
-    // resolve(imgData)
-    //  c.
-    // c!.getContext('2d')!.putImageData(imagedata, dx, dy)(new Uint8ClampedArray(buffer), dx, dy)
-    // var b = new Blob([buffer])
-    // b.type
-    // if(!c.isConnected)
-    //   var img = toRgba(mat)
-    // var imgData = htmlImageData(img)
-    // var ctx = canvas.getContext('2d')!
-    // ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // canvas.width = imgData.width
-    // canvas.height = imgData.height
-    // ctx.putImageData(imgData, 0, 0)
-    // img.delete()
-    //     var f = await File.fromArrayBuffer(buffer)
-    // renderInCanvas(, name))
-    //     renderInCanvas(mat)
-    //     const img = await this.jimp.create(Buffer.from(buffer));
-    // return img.bitmap;
   }
-  async encode(data: ImageData, format: string): Promise<ArrayBuffer> {
+
+  async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {
     if (!inBrowser()) {
       throw new Error('This Codec needs a DOM / Browser ro execute')
     }
+
     throw new Error('TODO')
+
+    //     // const f = File.fromData(data)
+    //     const mat = cv.matFromImageData(data)
+    //     const rgba = toRgba(mat)
+    //     const canvas = renderInCanvas(mat)
+    //     mat.delete()
+    //     return new Promise((resolve, reject)=>{
+    //  canvas.toBlob(b=>{
+    //       if(!b){
+    //         return resolve(undefined)
+    //       }
+    //       // b.
+    //   const r = new FileReader()
+    //   r.onloadend = ()=>{
+    //     resolve(r.result as any||undefined)
+    //   }
+    //   r.onerror = r.onabort = ()=>{
+    //     r.error ? reject(r.error) : resolve(undefined)
+    //   }
+    //   // r.
+    //   r.readAsArrayBuffer(b)
+    //     }, getMimeTypeForExtension(format)||'image/png' , quality)
+    //   })
   }
 }
-
-// interface DomProvider {
-//   canvas(): Promise<HTMLCanvasElement>
-//   image(): Promise<HTMLImageElement>
-// }

@@ -18,16 +18,12 @@ export async function loadUrl() {
     const d = window.location.hash.split('state=')[1]
     const state = JSON.parse(atob(d))
     const s = getStore().getState()
-    const examples =
-    getStore().setState({
+    const examples = getStore().setState({
       ...state.code,
-      example: {...s.example, ...state.example,
-        code: state.code,
-      },
-      examples:  [...s.examples , ...s.examples.find(e=>e.name===state.example.name) ? [] : [state.example]], 
+      example: { ...s.example, ...state.example, code: state.code },
+      examples: [...s.examples, ...(s.examples.find(e => e.name === state.example.name) ? [] : [state.example])]
     })
     return true
   }
   return false
 }
-

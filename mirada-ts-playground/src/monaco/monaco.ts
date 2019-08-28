@@ -5,8 +5,8 @@ import { mirada } from '../examples/mirada'
 import { isDesktop } from '../util/style'
 import { install as navigateExternalDefinitionsInstall } from './navigateExternalDefinitions'
 
-export function getEditorText(){
- return  editorInstance!.getModel()!.getValue()
+export function getEditorText() {
+  return editorInstance!.getModel()!.getValue()
 }
 
 function buildModelUrl(name: string) {
@@ -68,15 +68,14 @@ export function installEditor() {
           enabled: false
         }
   })
-  navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => {
-  })
+  navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => {})
   installListeners()
 }
 
 function getModel(example = getStore().getState().example) {
   let m = monaco.editor.getModels().find(m => m.uri.path === example.name)
   if (!m) {
-      m = monaco.editor.createModel(example.code, 'typescript', buildModelUrl(example.name))
+    m = monaco.editor.createModel(example.code, 'typescript', buildModelUrl(example.name))
   }
   return m
 }
@@ -85,7 +84,6 @@ export function setEditorFile(name: string, content: string) {
   const model = getModel(getStore().getState().example)
   editorInstance!.setModel(model!)
 }
-
 
 function cursorSelectionChanged(e: monaco.editor.ICursorSelectionChangedEvent): void {
   // dispatch({

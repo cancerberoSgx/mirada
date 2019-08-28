@@ -1,7 +1,7 @@
 import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
-import { getDefaultCodec } from './format'
+import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
 import { ImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, writeFile } from './util/fileUtil'
@@ -47,7 +47,7 @@ export class File {
    * Returns an array buffer containing the image encoded in given format or inferring format from its name.
    */
   async asArrayBuffer(format = this.getExtension()) {
-    return await getDefaultCodec().encode(this.asImageData(), format)
+    return await encodeOrThrow(this.asImageData(), format)
   }
 
   /**
@@ -89,7 +89,7 @@ export class File {
    * Loads file from given array buffer containing an encoded image.
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name?: string) {
-    var data = await getDefaultCodec().decode(buffer)
+    var data = await decodeOrThrow(buffer)
     return File.fromData(data, name || File.getBufferFileName(buffer))
   }
 
@@ -137,7 +137,7 @@ export class File {
 	/**
 	 * Loads file form existing HTMLElement or HTMLImageElement
 	 */
-  public static fromCanvas(el: HTMLElement   | string): File {
+  public static fromCanvas(el: HTMLElement | string): File {
     if (!inBrowser()) {
       throw new Error('This method is only supported in the browser')
     }
@@ -156,7 +156,7 @@ export class File {
    * Given paths, urls or files it will try to load them all and return a list of File for those succeed.
    */
   public static async resolve(files: string | File | undefined | (string | File | undefined)[]) {
-    var a = (asArray<undefined | string | File>(files || [])).filter(notUndefined)
+    var a = asArray(files || []).filter(notUndefined) as (string | File)[]
     var result = await serial(a.map(f => async () => {
       if (typeof f === 'string') {
         if (isFile(f)) {
@@ -183,24 +183,28 @@ export class File {
     return typeof f === 'string' ? f : f.name
   }
 
-  public static fromData(data: ImageData, name: string) {
-    return new File(name, cv.matFromImageData(data))
+  public static fromData(data: ImageData, name?: string) {
+    return new File(File._buildName(name), cv.matFromImageData(data))
+  }
+
+  private static _buildName(name: string | undefined): string {
+    return name || unique('file') + '.png'
   }
 
   public static fromMat(mat: Mat, name?: string) {
-    return new File(name || unique('file') + '.png', mat)
+    return new File(File._buildName(name), mat)
   }
 
   public static async fromUrl(url: string, o: RequestInit & FileOptions = {}) {
     const p = getDefaultCodec()
     const response = await fetch(url)
     const buffer = await response.arrayBuffer()
-    var data = await p.decode(buffer)
+    var data = await decodeOrThrow(buffer)
     return File.fromData(data, o.name || getFileNameFromUrl(url))
   }
 
   public static async fromFile(path: string, o: FileOptions = {}) {
-    const data = await getDefaultCodec().decode(readFile(path).buffer)
+    const data = await decodeOrThrow(readFile(path).buffer)
     return File.fromData(data, o.name || basename(path))
   }
 

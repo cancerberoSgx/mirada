@@ -1,4 +1,4 @@
-(async () => {
+;(async () => {
   const canvas = document.getElementById('outputCanvas')!
   var img = await cv.imread(canvas)
   let dst = new cv.Mat()

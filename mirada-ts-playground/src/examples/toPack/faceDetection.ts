@@ -8,26 +8,23 @@
   let faceCascade = new cv.CascadeClassifier()
   let eyeCascade = new cv.CascadeClassifier()
 
-  async function fetchArrayBufferView(f: string) {
-    const r = await fetch(f)
-    return new Uint8ClampedArray(await r.arrayBuffer())
-  }
-  async function loadDataFile(url: string) {
-    // Heads up! we need to verify that the files don't already exists if not it throws! 
-    const name = url.substring(url.lastIndexOf('/') + 1, url.length)
+  async function loadDataFile(url: string, name?: string) {
+    name = name || url.substring(url.lastIndexOf('/') + 1, url.length)
+    // Heads up! we need to verify that the files don't already exists if not it throws!
     if (!cv.FS.readdir('/').includes(name)) {
-      await cv.FS.createDataFile('/', name, await fetchArrayBufferView(url), true, false, false)
+      const r = await fetch(url)
+      await cv.FS.createDataFile('/', name, new Uint8ClampedArray(await r.arrayBuffer()), true, false, false)
     }
     return name
   }
   // load pre-trained classifier files. They are available at the same location than the index.html.
-  // the two previous functions take care of fetching them and creating the Files (emscripten FS). 
+  // the previous function take care of fetching them and creating the Files (emscripten FS).
   faceCascade.load(await loadDataFile('haarcascade_frontalface_default.xml'))
   eyeCascade.load(await loadDataFile('haarcascade_eye.xml'))
 
   // detect faces
-  let msize = new cv.Size(0, 0)
-  faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, msize, msize)
+  let mSize = new cv.Size(0, 0)
+  faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, mSize, mSize)
 
   for (let i = 0; i < faces.size(); ++i) {
     let roiGray = gray.roi(faces.get(i))

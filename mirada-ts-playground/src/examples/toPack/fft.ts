@@ -1,8 +1,6 @@
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
-
-(async () => {
-
+;(async () => {
   const src = await Mirada.fromUrl('lenna.jpg')
   cv.cvtColor(src, src, cv.COLOR_RGB2RGBA)
   cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0)
@@ -12,8 +10,7 @@ declare var Mirada: typeof Mirada_
   let optimalCols = cv.getOptimalDFTSize(src.cols)
   let s0 = cv.Scalar.all(0)
   let padded = new cv.Mat()
-  cv.copyMakeBorder(src, padded, 0, optimalRows - src.rows, 0,
-    optimalCols - src.cols, cv.BORDER_CONSTANT, s0)
+  cv.copyMakeBorder(src, padded, 0, optimalRows - src.rows, 0, optimalCols - src.cols, cv.BORDER_CONSTANT, s0)
 
   // use cv.MatVector to distribute space for real part and imaginary part
   let plane0 = new cv.Mat()
@@ -69,7 +66,12 @@ declare var Mirada: typeof Mirada_
   // The pixel value of cv.CV_32S type image ranges from 0 to 1.
   cv.normalize(mag, mag, 0, 1, cv.NORM_MINMAX)
   const output = Mirada.toRgba(mag)
-  // const f = File.fromMat(toRgba(mag), 'tmp1.png')
   cv.imshow(document.getElementById('outputCanvas')!, output)
-  src.delete(); padded.delete(); planes.delete(); complexI.delete(); m1.delete(); tmp.delete(); output.delete()
+  src.delete()
+  padded.delete()
+  planes.delete()
+  complexI.delete()
+  m1.delete()
+  tmp.delete()
+  output.delete()
 })()

@@ -11,7 +11,7 @@ import { _setStore, getStore } from './store/store'
 import { installEditor } from './monaco/monaco'
 import { onExecuteRequestInstall } from './handlers/onExecuteRequest'
 import { onExampleSelectedInstall } from './handlers/onExampleSelect'
-import { loadUrl, createUrl } from './util/urlState';
+import { loadUrl, createUrl } from './util/urlState'
 
 async function start() {
   await initMonacoWorkers()
@@ -29,7 +29,7 @@ async function start() {
 
   await onExecuteRequestInstall()
   await onExampleSelectedInstall()
-  
+
   getStore().setState(s)
 
   await sleep(10)
@@ -39,12 +39,12 @@ async function start() {
   await loadOpencv()
   await sleep(10)
 
-await loadUrl()
+  await loadUrl()
   getStore().add(createUrl)
   await sleep(600)
 
-// at last, load an image and request execution of default example
-cv.imshow(document.getElementById('outputCanvas')!, await fromUrl('lenna.jpg'))
-  getStore().setState({executeRequest:true, working: true})
+  // at last, load an image and request execution of default example
+  cv.imshow(document.getElementById('outputCanvas')!, await fromUrl('lenna.jpg'))
+  getStore().setState({ executeRequest: true, working: true })
 }
 start()
