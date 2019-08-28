@@ -62,9 +62,6 @@ export class File {
    * Shows this image in given HTML canvas or image element.
    */
   show(el: HTMLElement) {
-    if (!inBrowser()) {
-      throw new Error('This method is only supported in the browser')
-    }
     cv.imshow(el, this.asMat())
   }
 
@@ -89,8 +86,15 @@ export class File {
    * Loads file from given array buffer containing an encoded image.
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name?: string) {
-    var data = await decodeOrThrow(buffer)
-    return File.fromData(data, name || File.getBufferFileName(buffer))
+    try {
+    name = name ||File.getBufferFileName(buffer)
+    const format = getFileExtension(name)
+    var data = await decodeOrThrow(buffer, format)
+    return File.fromData(data, name)
+    } catch (error) {
+      console.error(error);
+      throw error
+    }
   }
 
   /** 

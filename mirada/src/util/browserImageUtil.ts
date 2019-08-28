@@ -2,6 +2,7 @@ import { toImageData } from '..'
 import { File } from '../file'
 import { Mat } from '../types/opencv'
 import { toRgba } from './imageUtil'
+import { arrayBufferToUrl } from './base64';
 
 export async function fromInputFileElement(a: HTMLInputElement) {
   const files = await File.fromHtmlFileInputElement(a)
@@ -33,9 +34,8 @@ export function fetchImageData(url: string) {
   * 
   * This method is useful as a decoder for the browser without libraries
  */
-export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasElement, appendToBody = false): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
-  var blob = new Blob([new Uint8ClampedArray(a)])
-  var url = URL.createObjectURL(blob)
+export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, name?: string, canvas?: HTMLCanvasElement, appendToBody = false): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
+const url =  arrayBufferToUrl(a, mime, name)
   var img = new Image()
   return new Promise(resolve => {
     img.onload = () => {
@@ -47,7 +47,9 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, canvas?: HTMLCanvasEle
       canvas!.setAttribute('height', img.naturalHeight + '')
       canvas!.getContext('2d')!.drawImage(img, 0, 0)
       resolve({ canvas, width: img.naturalWidth, height: img.naturalHeight })
-      URL.revokeObjectURL(url)
+    }
+    img.onerror=(e)=>{
+      console.log('ERROR', e);
     }
     img.src = url
   })

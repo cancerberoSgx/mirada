@@ -10,11 +10,15 @@ import { ImageData } from '../types/opencv'
  * 
  */
 export async function installFormatProxy(proxy: FormatProxy) {
-
   proxies.push(proxy)
 }
 
+export async function unInstallFormatProxies( ) {
+  proxies.length=0
+}
+
 const proxies: FormatProxy[] = []
+
 const codecs: FormatCodec[] = []
 
 let _proxyLoaded = false
@@ -37,24 +41,31 @@ export async function loadFormatProxies() {
   }
 }
 
+export function unloadFormatProxies() {
+  codecs.length=0
+}
+
 export function getDefaultCodec() {
   var c = codecs.length ? codecs[0] : undefined
   if (!c) {
-    throw new Error('No code found. you need to provide a proxy and wait for loadFormatProxies()')
+    throw new Error('No codec found. you need to provide a proxy and wait for loadFormatProxies()')
   }
   return c
 }
 
 export async function decodeOrThrow(buffer: ArrayBuffer, format?: string) {
-  return checkThrow(await getDefaultCodec().decode(buffer, format),
+  const r = await getDefaultCodec().decode(buffer, format)
+  checkThrow(r,
     `Fail to decode buffer. ${format ? `requested format: ${format}` : ''}. Detected format: ${File.getBufferFileType(buffer) && File.getBufferFileType(buffer).mime || 'unknown'}`)
+    return r as ImageData
 
 }
 
-
 export async function encodeOrThrow(data: ImageData, format: string, quality?: number) {
-  return checkThrow(await getDefaultCodec().encode(data, format, quality),
+  const r = await getDefaultCodec().encode(data, format, quality)
+  checkThrow(r,
     'Fail to encode to requested format ' + format + '. Given: ' + format)
+    return r as ArrayBuffer
 }
 
 // function prop<T,S>(o:T, p:keyof T, map: S|((k:keyof T)=>S)):S {

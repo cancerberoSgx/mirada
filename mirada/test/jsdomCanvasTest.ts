@@ -5,7 +5,7 @@ import { createCanvas, loadMirada } from './testUtil'
 test.before(loadMirada)
 
 test('fromFile', async t => {
-  var el = createCanvas()
+  var el = createCanvas() as any
   var img = await jimp.read('test/assets/shape.jpg')
   t.deepEqual([img.bitmap.width, img.bitmap.height, img.bitmap.data.byteLength], [125, 146, 73000])
   var src = cv.matFromImageData(img.bitmap)

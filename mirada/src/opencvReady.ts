@@ -59,7 +59,7 @@ function loadOpencvNode(o: LoadOptions = {}) {
     }
     g.Module = {
       preRun: () => {
-        if (isNode()) {
+        if (typeof window !== 'object') {
           g.Module.FS.mkdir(FS_ROOT)
           g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: o.cwd || process.cwd() || '.' }, FS_ROOT)
         }
@@ -71,6 +71,7 @@ function loadOpencvNode(o: LoadOptions = {}) {
       },
       onAbort: (e: any) => {
         console.error('Error has occurred in WebAssembly Module', e, e.stack)
+        console.trace()
       }
     }
     try {
