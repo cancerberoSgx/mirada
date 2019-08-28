@@ -14,7 +14,7 @@ export function formatCode(code: string, o: Options) {
 }
 
 const defaultFormat: TsCodeFormatSettings = {
-  trailingSemicolons: 'always',
+  trailingSemicolons: 'never',
   indentSize: 2,
   convertTabsToSpaces: true,
   quotePreference: 'single',

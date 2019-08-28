@@ -32,6 +32,7 @@
     "@types/node": "^12.7.2",
     "@types/shelljs": "^0.8.5",
     "ava": "^2.3.0",
+    "jimp": "^0.6.4",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typescript": "^3.5.3"

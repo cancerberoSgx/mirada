@@ -4,6 +4,8 @@ import { fft_ts } from '../examples/packed/fft_ts'
 import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
 import { watershed_ts } from '../examples/packed/watershed_ts'
 import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
+import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts';
+import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts';
 
 export interface Example {
   name: string
@@ -17,7 +19,8 @@ export enum ExampleTag {
   ia = 'ia',
   fs = 'fs',
   grabCut = 'grabCut',
-  feature = 'feature'
+  feature = 'feature',
+  video = "video"
 }
 
 export function examples(): Example[] {
@@ -46,6 +49,19 @@ export function examples(): Example[] {
       code: featuresEllipse_ts,
       description: 'TODO'
     },
+    {
+      name: '/contourFunctionsShape.ts',
+      tags: [ExampleTag.feature],
+      code: contourFunctionsShape_ts,
+      description: 'TODO'
+    },    
+        {
+      name: '/lucasKanadeOpticalFlow.ts',
+      tags: [ExampleTag.video],
+      code: lucasKanadeOpticalFlow_ts,
+      description: 'TODO'
+    },
+    
     {
       name: '/fft.ts',
       tags: [ExampleTag.fft],

@@ -12,6 +12,7 @@ test('opencv2ts', async t => {
     tsOutputFolder: 'tmp/src/opencv',
     // jsonTypes: true,
     // xmlTypes: true,
+    refType: 'typedoc',
     renderLocation: false,
     // singleDeclaration: true,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
@@ -39,14 +40,29 @@ test('opencv2ts', async t => {
 })
 
 const testTs = `
-import './opencv'
-const source = cv.imread('inputCangas')
-const dest = new cv.Mat()
-let M = cv.Mat.ones(5, 5, cv.CV_8U)
-let anchor = new cv.Point(-1, -1)
-cv.dilate(source, dest, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue())
-const canvas = document.getElementById('outputCanvas')
-cv.imshow('outputCanvas', dest)
+import { deepEqual, ok } from 'assert';
+import * as Jimp from 'jimp';
+import { getGlobal } from 'misc-utils-of-mine-generic';
+import { resolve } from 'path';
+import { Mat, Point } from './opencv';
+(async () => {
+  getGlobal().Module = { onRuntimeInitialized }
+  getGlobal().cv = require(resolve('../../mirada/static/opencv.js'))
+  async function onRuntimeInitialized() {
+    var jimpSrc = await Jimp.read('../../mirada/test/assets/shape.jpg')
+    var source: Mat = cv.matFromImageData(jimpSrc.bitmap)
+    const dest: Mat = new cv.Mat()
+    let M: Mat = cv.Mat.ones(5, 5, cv.CV_8U)
+    let anchor: Point = new cv.Point(-1, -1)
+    cv.dilate(source, dest, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue())
+    ok(cv.getBuildInformation().includes('General configuration for OpenCV'))
+    var img = new Jimp({ width: dest.cols, height: dest.rows, data: Buffer.from(dest.data) })
+    source.delete()
+    dest.delete()
+    M.delete()
+    deepEqual(Jimp.distance(img, await Jimp.read('../../mirada/test/assets/shape2.jpg')), 0.015625)
+  }
+})()
 `.trim()
 
 const testErrorTs = `

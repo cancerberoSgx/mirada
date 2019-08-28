@@ -5,16 +5,16 @@ import { Options } from './main';
 
 interface ToJsDocOptions extends Doxygen2tsOptionsBase {
   node: Described;
-  asterix?: boolean;
+  asterisk?: boolean;
   wrap?: boolean;
 }
 
 export function toJsDoc(o: ToJsDocOptions) {
-  o.asterix = typeof o.asterix === 'undefined' ? false : o.asterix
+  o.asterisk = typeof o.asterisk === 'undefined' ? false : o.asterisk
   o.wrap = typeof o.wrap === 'undefined' ? true : o.wrap
   o.renderLocation = typeof o.renderLocation === 'undefined' ? true : o.renderLocation
   var node = o.node.detaileddescriptionNode
-  var body = o.asterix ? `${toMarkdown({ ...o, node }).trim().split('\n').join('\n * ')}` : `${toMarkdown({ ...o, node })}`.trim()
+  var body = o.asterisk ? `${toMarkdown({ ...o, node }).trim().split('\n').join('\n * ')}` : `${toMarkdown({ ...o, node })}`.trim()
   if(!body){
     return ''
   }

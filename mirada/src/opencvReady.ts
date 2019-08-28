@@ -15,7 +15,7 @@ export function getFS() {
   return FS_
 }
 
-interface LoadOptions {
+export interface LoadOptions {
   onloadCallback?: () => void
   opencvUrl?: string
   /**

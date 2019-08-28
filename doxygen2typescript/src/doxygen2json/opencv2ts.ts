@@ -7,7 +7,7 @@ import { parseDoxygen } from './parseDoxygen'
 import { getCompoundDefName } from './render'
 import { writeIndexTs } from './render/exports'
 import { buildDts } from './render/main'
-import { canRenderFileNamed } from './render/tsExports/hacks'
+import { canRenderFileNamed } from './render/exportsHacks'
 
 export function opencv2ts(o: Doxygen2tsOptions) {
   rm('-rf', o.tsOutputFolder)
@@ -39,7 +39,7 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       .results
       .forEach(d => {
         const cName = getCompoundDefName(d.def)
-        let fileName = join(o.tsOutputFolder, cName) + '.d.ts'
+        let fileName = join(o.tsOutputFolder, cName) + '.ts'
         if (test('-f', fileName) || !canRenderFileNamed(fileName)) {
           return
         }
@@ -56,4 +56,4 @@ export function opencv2ts(o: Doxygen2tsOptions) {
   writeIndexTs(o)
 }
 
-export         const withoutTypeScriptExtension = (f:string)=>f.substring(0, f.length-'.d.ts'.length)
+export const withoutTypeScriptExtension = (f: string) => f.substring(0, f.length - '.ts'.length)

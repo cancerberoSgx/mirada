@@ -53,7 +53,7 @@ export function doxygen2ts(options: Doxygen2tsOptions) {
       .results
       .forEach(d => {
         const cName = getCompoundDefName(d.def)
-        const fileName = join(options.tsOutputFolder, cName) + '.d.ts'
+        const fileName = join(options.tsOutputFolder, cName) + '.ts'
         mkdirSync(dirname(fileName), { recursive: true })
         writeFileSync(fileName, d.content)
       })
