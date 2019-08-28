@@ -1,5 +1,5 @@
 
-import { InputArray, double, bool, int, Mat, OutputArray, InputArrayOfArrays, Size, OutputArrayOfArrays, Net, uchar, size_t } from './_types'
+import { bool, double, InputArray, InputArrayOfArrays, int, Mat, Net, OutputArray, OutputArrayOfArrays, Size, size_t, uchar } from './_types'
 /*
  * # Deep Neural Network module
  * This module contains:

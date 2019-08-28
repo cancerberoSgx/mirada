@@ -1,5 +1,5 @@
 
-import { InputArrayOfArrays, Size, InputOutputArray, OutputArrayOfArrays, OutputArray, int, TermCriteria, double, InputArray, bool, float, size_t, Mat, Point2d, Rect, Vec3d } from './_types'
+import { bool, double, float, InputArray, InputArrayOfArrays, InputOutputArray, int, Mat, OutputArray, OutputArrayOfArrays, Point2d, Rect, Size, size_t, TermCriteria, Vec3d } from './_types'
 /*
  * # Camera Calibration and 3D Reconstruction
  * The functions in this section use a so-called pinhole camera model. In this model, a scene view is formed by projecting 3D points into the image plane using a perspective transformation.

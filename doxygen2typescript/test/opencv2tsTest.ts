@@ -1,18 +1,16 @@
 import test from 'ava'
 import { writeFileSync } from 'fs'
 import { exec, ls, mkdir, rm } from 'shelljs'
-import { opencv2ts } from '../src'
+import { opencv2ts, Doxygen2tsOptions } from '../src'
 
 test('opencv2ts', async t => {
-  rm('-rf', 'tmp')
-  mkdir('-p', 'tmp')
-  t.true(ls('tmp/src/opencv/**/*.ts').length === 0)
-  opencv2ts({
+  const o : Doxygen2tsOptions= {
     opencvBuildFolder: '../../opencv/build_js',
     tsOutputFolder: 'tmp/src/opencv',
     // jsonTypes: true,
     // xmlTypes: true,
     refType: 'typedoc',
+    // onlyFix: true,
     renderLocation: false,
     // singleDeclaration: true,
     // locationFilePrefix: 'https://github.com/opencv/opencv/tree/master/modules/core/include/',
@@ -23,7 +21,13 @@ test('opencv2ts', async t => {
       trailingSemicolons: 'never',
       jsdocLineMaxLength: 100
     },
-  })
+  }
+  if(!o.onlyFix){
+    rm('-rf', 'tmp')
+    mkdir('-p', 'tmp')
+    t.true(ls('tmp/src/opencv/**/*.ts').length === 0)
+  }
+  opencv2ts(o)
   t.true(ls('tmp/src/opencv/**/*.ts').length > 0)
   t.true(ls('tmp/dist/**/*.js').length === 0)
 

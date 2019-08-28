@@ -8,6 +8,7 @@ import { renderImportHacks } from './exportsHacks';
 import { withoutTypeScriptExtension } from '../opencv2ts';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
+  if(!o.onlyFix) {
   const files = [
     ...ls(o.tsOutputFolder)
       .filter(e => e.endsWith('.ts'))
@@ -24,15 +25,16 @@ declare global {
 }
 `)
   writeFileSync(join(o.tsOutputFolder, '_types.ts'), `
-${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n')}
-  `.trim())
+${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n')}\n`.trim())
+    if (o.singleDeclaration) {
+    const s = [...files, '_types.ts'].filter(notSame).map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
+    writeFileSync(join(o.tsOutputFolder, '_single.ts'), s)
+  }
+  }
   fixMissingExtends(o)
   fixClasses(o)
-  if (o.singleDeclaration) {
-     const s = [...files, '_types.ts'].filter(notSame).map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
-      writeFileSync(join(o.tsOutputFolder, '_single.ts'), s)
-  }
   fixMissingImports(o)
+  fixJsDocs(o)
 }
 
 const index = `
@@ -58,7 +60,7 @@ ${content}
   writeFileSync(join(o.tsOutputFolder, f), s)
 }
 
-export function fixMissingExtends(o: Doxygen2tsOptions) {
+function fixMissingExtends(o: Doxygen2tsOptions) {
   const missingExtends = {
     'Mat': 'Mat_',
     'MatExpr': 'Mat',
@@ -71,7 +73,7 @@ export function fixMissingExtends(o: Doxygen2tsOptions) {
   })
 }
 
-export function fixMissingImportNames(o: Doxygen2tsOptions) {
+function fixMissingImportNames(o: Doxygen2tsOptions) {
   const missingExtends = {
     'CascadeClassifier': 'Mat'
   }
@@ -82,7 +84,7 @@ export function fixMissingImportNames(o: Doxygen2tsOptions) {
   })
 }
 
-export function fixClasses(o: Doxygen2tsOptions) {
+function fixClasses(o: Doxygen2tsOptions) {
   const removeMembers = {
     'MatExpr': 'size'
   }
@@ -123,11 +125,19 @@ ${readFileSync(o.tsOutputFolder + '/_hacks.ts').toString()}\n\n
 ${missing.map(t => `export type ${t} = any`).join('\n')}
 `.trim()
   )
-
-    const missingImports  = [{file: 'CascadeClassifier', name: 'Mat'}]
- missingImports.forEach(f => {
+  const missingImports = [{ file: 'CascadeClassifier', name: 'Mat' }]
+  missingImports.forEach(f => {
     const s = readFileSync(join(o.tsOutputFolder, f.file + '.ts')).toString()
       .replace(`} from './_types'`, `, ${f.name}} from './_types'`)
-      writeFileSync(join(o.tsOutputFolder, f.file + '.ts'), s)
+    writeFileSync(join(o.tsOutputFolder, f.file + '.ts'), s)
   })
+}
+
+function fixJsDocs(o: Doxygen2tsOptions) {
+  ls(o.tsOutputFolder + '/*.ts').filter(notSame)
+    .forEach(k => {
+      const s = readFileSync(k).toString()
+        .replace(/\*\s+\@param/gm, `* @param`)
+      writeFileSync(k, s)
+    })
 }

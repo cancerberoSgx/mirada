@@ -81,9 +81,9 @@ export declare class Algorithm {
    *    In order to make this method work, the derived class must overwrite [Algorithm::read](const
    * [FileNode]& fn).
    *   
-   *   @param filename Name of the file to read.
+   * @param filename Name of the file to read.
    *   
-   *   @param objname The optional name of the node to read (if empty, the first top-level node will be
+   * @param objname The optional name of the node to read (if empty, the first top-level node will be
    * used)
    */
   public static load(arg0: any, filename: String, objname?: String): Ptr
@@ -95,9 +95,9 @@ export declare class Algorithm {
    *   Ptr<SVM> svm = Algorithm::loadFromString<SVM>(myStringModel);
    *   ```
    *   
-   *   @param strModel The string variable containing the model you want to load.
+   * @param strModel The string variable containing the model you want to load.
    *   
-   *   @param objname The optional name of the node to read (if empty, the first top-level node will be
+   * @param objname The optional name of the node to read (if empty, the first top-level node will be
    * used)
    */
   public static loadFromString(arg1: any, strModel: String, objname?: String): Ptr

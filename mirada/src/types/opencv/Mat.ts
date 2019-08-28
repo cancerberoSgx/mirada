@@ -1,5 +1,5 @@
 
-import { MatAllocator, int, uchar, MatSize, MatStep, UMatData, Size, Scalar, size_t, Rect, bool, typename, Vec, Matx, Point_, Point3_, MatCommaInitializer_, Point, MatIterator_, MatConstIterator_, OutputArray, double, InputArray, AccessFlag, UMatUsageFlags, UMat, MatExpr, Mat_ } from './_types'
+import { AccessFlag, bool, double, InputArray, int, MatAllocator, MatCommaInitializer_, MatConstIterator_, MatExpr, MatIterator_, MatSize, MatStep, Matx, Mat_, OutputArray, Point, Point3_, Point_, Rect, Scalar, Size, size_t, typename, uchar, UMat, UMatData, UMatUsageFlags, Vec } from './_types'
 
 /**
  * <a name="d3/d63/classcv_1_1Mat_1CVMat_Details"></a> The class [Mat](#d3/d63/classcv_1_1Mat})
@@ -267,11 +267,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param rows Number of rows in a 2D array.
+   * @param rows Number of rows in a 2D array.
    *   
-   *   @param cols Number of columns in a 2D array.
+   * @param cols Number of columns in a 2D array.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    */
   public constructor(rows: int, cols: int, type: int)
@@ -280,10 +280,10 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
+   * @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
    * the number of columns go in the reverse order.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    */
   public constructor(size: Size, type: int)
@@ -292,14 +292,14 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param rows Number of rows in a 2D array.
+   * @param rows Number of rows in a 2D array.
    *   
-   *   @param cols Number of columns in a 2D array.
+   * @param cols Number of columns in a 2D array.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param s An optional value to initialize each matrix element with. To set all the matrix elements
+   * @param s An optional value to initialize each matrix element with. To set all the matrix elements
    * to the particular value after the construction, use the assignment operator Mat::operator=(const
    * Scalar& value) .
    */
@@ -309,13 +309,13 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
+   * @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
    * the number of columns go in the reverse order.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param s An optional value to initialize each matrix element with. To set all the matrix elements
+   * @param s An optional value to initialize each matrix element with. To set all the matrix elements
    * to the particular value after the construction, use the assignment operator Mat::operator=(const
    * Scalar& value) .
    */
@@ -325,11 +325,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims Array dimensionality.
+   * @param ndims Array dimensionality.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    */
   public constructor(ndims: int, sizes: any, type: int)
@@ -338,9 +338,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    */
   public constructor(sizes: any, type: int)
@@ -349,14 +349,14 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims Array dimensionality.
+   * @param ndims Array dimensionality.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param s An optional value to initialize each matrix element with. To set all the matrix elements
+   * @param s An optional value to initialize each matrix element with. To set all the matrix elements
    * to the particular value after the construction, use the assignment operator Mat::operator=(const
    * Scalar& value) .
    */
@@ -366,12 +366,12 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param s An optional value to initialize each matrix element with. To set all the matrix elements
+   * @param s An optional value to initialize each matrix element with. To set all the matrix elements
    * to the particular value after the construction, use the assignment operator Mat::operator=(const
    * Scalar& value) .
    */
@@ -381,7 +381,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
+   * @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
    * copied by these constructors. Instead, the header pointing to m data or its sub-array is constructed
    * and associated with it. The reference counter, if any, is incremented. So, when you modify the
    * matrix formed using such a constructor, you also modify the corresponding elements of m . If you
@@ -393,20 +393,20 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param rows Number of rows in a 2D array.
+   * @param rows Number of rows in a 2D array.
    *   
-   *   @param cols Number of columns in a 2D array.
+   * @param cols Number of columns in a 2D array.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param data Pointer to the user data. Matrix constructors that take data and step parameters do
+   * @param data Pointer to the user data. Matrix constructors that take data and step parameters do
    * not allocate matrix data. Instead, they just initialize the matrix header that points to the
    * specified data, which means that no data is copied. This operation is very efficient and can be used
    * to process external data using OpenCV functions. The external data is not automatically deallocated,
    * so you should take care of it.
    *   
-   *   @param step Number of bytes each matrix row occupies. The value should include the padding bytes
+   * @param step Number of bytes each matrix row occupies. The value should include the padding bytes
    * at the end of each row, if any. If the parameter is missing (set to AUTO_STEP ), no padding is
    * assumed and the actual step is calculated as cols*elemSize(). See Mat::elemSize.
    */
@@ -416,19 +416,19 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
+   * @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and
    * the number of columns go in the reverse order.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param data Pointer to the user data. Matrix constructors that take data and step parameters do
+   * @param data Pointer to the user data. Matrix constructors that take data and step parameters do
    * not allocate matrix data. Instead, they just initialize the matrix header that points to the
    * specified data, which means that no data is copied. This operation is very efficient and can be used
    * to process external data using OpenCV functions. The external data is not automatically deallocated,
    * so you should take care of it.
    *   
-   *   @param step Number of bytes each matrix row occupies. The value should include the padding bytes
+   * @param step Number of bytes each matrix row occupies. The value should include the padding bytes
    * at the end of each row, if any. If the parameter is missing (set to AUTO_STEP ), no padding is
    * assumed and the actual step is calculated as cols*elemSize(). See Mat::elemSize.
    */
@@ -438,20 +438,20 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims Array dimensionality.
+   * @param ndims Array dimensionality.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param data Pointer to the user data. Matrix constructors that take data and step parameters do
+   * @param data Pointer to the user data. Matrix constructors that take data and step parameters do
    * not allocate matrix data. Instead, they just initialize the matrix header that points to the
    * specified data, which means that no data is copied. This operation is very efficient and can be used
    * to process external data using OpenCV functions. The external data is not automatically deallocated,
    * so you should take care of it.
    *   
-   *   @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
+   * @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
    * set to the element size). If not specified, the matrix is assumed to be continuous.
    */
   public constructor(ndims: int, sizes: any, type: int, data: any, steps?: any)
@@ -460,18 +460,18 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param sizes Array of integers specifying an n-dimensional array shape.
+   * @param sizes Array of integers specifying an n-dimensional array shape.
    *   
-   *   @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
+   * @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or CV_8UC(n),
    * ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
    *   
-   *   @param data Pointer to the user data. Matrix constructors that take data and step parameters do
+   * @param data Pointer to the user data. Matrix constructors that take data and step parameters do
    * not allocate matrix data. Instead, they just initialize the matrix header that points to the
    * specified data, which means that no data is copied. This operation is very efficient and can be used
    * to process external data using OpenCV functions. The external data is not automatically deallocated,
    * so you should take care of it.
    *   
-   *   @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
+   * @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
    * set to the element size). If not specified, the matrix is assumed to be continuous.
    */
   public constructor(sizes: any, type: int, data: any, steps?: any)
@@ -480,16 +480,16 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
+   * @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
    * copied by these constructors. Instead, the header pointing to m data or its sub-array is constructed
    * and associated with it. The reference counter, if any, is incremented. So, when you modify the
    * matrix formed using such a constructor, you also modify the corresponding elements of m . If you
    * want to have an independent copy of the sub-array, use Mat::clone() .
    *   
-   *   @param rowRange Range of the m rows to take. As usual, the range start is inclusive and the range
+   * @param rowRange Range of the m rows to take. As usual, the range start is inclusive and the range
    * end is exclusive. Use Range::all() to take all the rows.
    *   
-   *   @param colRange Range of the m columns to take. Use Range::all() to take all the columns.
+   * @param colRange Range of the m columns to take. Use Range::all() to take all the columns.
    */
   public constructor(m: Mat, rowRange: Range, colRange?: Range)
 
@@ -497,13 +497,13 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
+   * @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
    * copied by these constructors. Instead, the header pointing to m data or its sub-array is constructed
    * and associated with it. The reference counter, if any, is incremented. So, when you modify the
    * matrix formed using such a constructor, you also modify the corresponding elements of m . If you
    * want to have an independent copy of the sub-array, use Mat::clone() .
    *   
-   *   @param roi Region of interest.
+   * @param roi Region of interest.
    */
   public constructor(m: Mat, roi: Rect)
 
@@ -511,13 +511,13 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
+   * @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
    * copied by these constructors. Instead, the header pointing to m data or its sub-array is constructed
    * and associated with it. The reference counter, if any, is incremented. So, when you modify the
    * matrix formed using such a constructor, you also modify the corresponding elements of m . If you
    * want to have an independent copy of the sub-array, use Mat::clone() .
    *   
-   *   @param ranges Array of selected ranges of m along each dimensionality.
+   * @param ranges Array of selected ranges of m along each dimensionality.
    */
   public constructor(m: Mat, ranges: Range)
 
@@ -525,13 +525,13 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
+   * @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is
    * copied by these constructors. Instead, the header pointing to m data or its sub-array is constructed
    * and associated with it. The reference counter, if any, is incremented. So, when you modify the
    * matrix formed using such a constructor, you also modify the corresponding elements of m . If you
    * want to have an independent copy of the sub-array, use Mat::clone() .
    *   
-   *   @param ranges Array of selected ranges of m along each dimensionality.
+   * @param ranges Array of selected ranges of m along each dimensionality.
    */
   public constructor(m: Mat, ranges: Range)
 
@@ -539,7 +539,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param vec STL vector whose elements form the matrix. The matrix has a single column and the
+   * @param vec STL vector whose elements form the matrix. The matrix has a single column and the
    * number of rows equal to the number of vector elements. Type of the matrix matches the type of vector
    * elements. The constructor can handle arbitrary types, for which there is a properly declared
    * DataType . This means that the vector elements must be primitive numbers or uni-type numerical
@@ -549,7 +549,7 @@ export declare class Mat extends Mat_ {
    * will be added to the vector because it can potentially yield vector data reallocation, and, thus,
    * the matrix data pointer will be invalid.
    *   
-   *   @param copyData Flag to specify whether the underlying data of the STL vector should be copied to
+   * @param copyData Flag to specify whether the underlying data of the STL vector should be copied to
    * (true) or shared with (false) the newly constructed matrix. When the data is copied, the allocated
    * buffer is managed using Mat reference counting mechanism. While the data is shared, the reference
    * counter is NULL, and you should not deallocate the data until the matrix is not destructed.
@@ -643,22 +643,22 @@ export declare class Mat extends Mat_ {
    *   
    *   [copyMakeBorder]
    *   
-   *   @param dtop Shift of the top submatrix boundary upwards.
+   * @param dtop Shift of the top submatrix boundary upwards.
    *   
-   *   @param dbottom Shift of the bottom submatrix boundary downwards.
+   * @param dbottom Shift of the bottom submatrix boundary downwards.
    *   
-   *   @param dleft Shift of the left submatrix boundary to the left.
+   * @param dleft Shift of the left submatrix boundary to the left.
    *   
-   *   @param dright Shift of the right submatrix boundary to the right.
+   * @param dright Shift of the right submatrix boundary to the right.
    */
   public adjustROI(dtop: int, dbottom: int, dleft: int, dright: int): Mat
 
   /**
    *   This is an internally used method called by the [MatrixExpressions] engine.
    *   
-   *   @param m Destination array.
+   * @param m Destination array.
    *   
-   *   @param type Desired destination array depth (or -1 if it should be the same as the source type).
+   * @param type Desired destination array depth (or -1 if it should be the same as the source type).
    */
   public assignTo(m: Mat, type?: int): Mat
 
@@ -692,7 +692,7 @@ export declare class Mat extends Mat_ {
    * If matrix is of type `CV_32F` then use `[Mat.at]<float>(y,x)`.
    * If matrix is of type `CV_64F` then use `[Mat.at]<double>(y,x)`.
    *   
-   *   @param i0 Index along the dimension 0
+   * @param i0 Index along the dimension 0
    */
   public at(arg13: any, i0?: int): any
 
@@ -700,7 +700,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param i0 Index along the dimension 0
+   * @param i0 Index along the dimension 0
    */
   public at(arg14: any, i0?: int): any
 
@@ -708,9 +708,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public at(arg15: any, row: int, col: int): any
 
@@ -718,9 +718,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public at(arg16: any, row: int, col: int): any
 
@@ -728,11 +728,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param i0 Index along the dimension 0
+   * @param i0 Index along the dimension 0
    *   
-   *   @param i1 Index along the dimension 1
+   * @param i1 Index along the dimension 1
    *   
-   *   @param i2 Index along the dimension 2
+   * @param i2 Index along the dimension 2
    */
   public at(arg17: any, i0: int, i1: int, i2: int): any
 
@@ -740,11 +740,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param i0 Index along the dimension 0
+   * @param i0 Index along the dimension 0
    *   
-   *   @param i1 Index along the dimension 1
+   * @param i1 Index along the dimension 1
    *   
-   *   @param i2 Index along the dimension 2
+   * @param i2 Index along the dimension 2
    */
   public at(arg18: any, i0: int, i1: int, i2: int): any
 
@@ -752,7 +752,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param idx Array of Mat::dims indices.
+   * @param idx Array of Mat::dims indices.
    */
   public at(arg19: any, idx: any): any
 
@@ -760,7 +760,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param idx Array of Mat::dims indices.
+   * @param idx Array of Mat::dims indices.
    */
   public at(arg20: any, idx: any): any
 
@@ -781,7 +781,7 @@ export declare class Mat extends Mat_ {
    * function only in what argument(s) it accepts. special versions for 2D arrays (especially convenient
    * for referencing image pixels)
    *   
-   *   @param pt Element position specified as Point(j,i) .
+   * @param pt Element position specified as Point(j,i) .
    */
   public at(arg23: any, pt: Point): Point
 
@@ -790,7 +790,7 @@ export declare class Mat extends Mat_ {
    * function only in what argument(s) it accepts. special versions for 2D arrays (especially convenient
    * for referencing image pixels)
    *   
-   *   @param pt Element position specified as Point(j,i) .
+   * @param pt Element position specified as Point(j,i) .
    */
   public at(arg24: any, pt: Point): Point
 
@@ -871,16 +871,16 @@ export declare class Mat extends Mat_ {
    *       CV_Assert(n == 3);
    *   ```
    *   
-   *   @param elemChannels Number of channels or number of columns the matrix should have. For a 2-D
+   * @param elemChannels Number of channels or number of columns the matrix should have. For a 2-D
    * matrix, when the matrix has only 1 column, then it should have elemChannels channels; When the
    * matrix has only 1 channel, then it should have elemChannels columns. For a 3-D matrix, it should
    * have only one channel. Furthermore, if the number of planes is not one, then the number of rows
    * within every plane has to be 1; if the number of rows within every plane is not 1, then the number
    * of planes has to be 1.
    *   
-   *   @param depth The depth the matrix should have. Set it to -1 when any depth is fine.
+   * @param depth The depth the matrix should have. Set it to -1 when any depth is fine.
    *   
-   *   @param requireContinuous Set it to true to require the matrix to be continuous
+   * @param requireContinuous Set it to true to require the matrix to be continuous
    */
   public checkVector(elemChannels: int, depth?: int, requireContinuous?: bool): int
 
@@ -895,7 +895,7 @@ export declare class Mat extends Mat_ {
    * operation, regardless of the matrix size. The underlying data of the new matrix is shared with the
    * original matrix. See also the [Mat::row] description.
    *   
-   *   @param x A 0-based column index.
+   * @param x A 0-based column index.
    */
   public col(x: int): Mat
 
@@ -903,9 +903,9 @@ export declare class Mat extends Mat_ {
    *   The method makes a new header for the specified column span of the matrix. Similarly to [Mat::row]
    * and [Mat::col] , this is an O(1) operation.
    *   
-   *   @param startcol An inclusive 0-based start index of the column span.
+   * @param startcol An inclusive 0-based start index of the column span.
    *   
-   *   @param endcol An exclusive 0-based ending index of the column span.
+   * @param endcol An exclusive 0-based ending index of the column span.
    */
   public colRange(startcol: int, endcol: int): Mat
 
@@ -913,7 +913,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param r Range structure containing both the start and the end indices.
+   * @param r Range structure containing both the start and the end indices.
    */
   public colRange(r: Range): Mat
 
@@ -923,15 +923,15 @@ export declare class Mat extends Mat_ {
    *   
    *   `\\[m(x,y) = saturate \\_ cast<rType>( \\alpha (*this)(x,y) + \\beta )\\]`
    *   
-   *   @param m output matrix; if it does not have a proper size or type before the operation, it is
+   * @param m output matrix; if it does not have a proper size or type before the operation, it is
    * reallocated.
    *   
-   *   @param rtype desired output matrix type or, rather, the depth since the number of channels are the
+   * @param rtype desired output matrix type or, rather, the depth since the number of channels are the
    * same as the input has; if rtype is negative, the output matrix will have the same type as the input.
    *   
-   *   @param alpha optional scale factor.
+   * @param alpha optional scale factor.
    *   
-   *   @param beta optional delta added to the scaled values.
+   * @param beta optional delta added to the scaled values.
    */
   public convertTo(m: OutputArray, rtype: int, alpha?: double, beta?: double): OutputArray
 
@@ -952,7 +952,7 @@ export declare class Mat extends Mat_ {
    *   When the operation mask is specified, if the [Mat::create] call shown above reallocates the
    * matrix, the newly allocated matrix is initialized with all zeros before copying the data.
    *   
-   *   @param m Destination matrix. If it does not have a proper size or type before the operation, it is
+   * @param m Destination matrix. If it does not have a proper size or type before the operation, it is
    * reallocated.
    */
   public copyTo(m: OutputArray): OutputArray
@@ -961,10 +961,10 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Destination matrix. If it does not have a proper size or type before the operation, it is
+   * @param m Destination matrix. If it does not have a proper size or type before the operation, it is
    * reallocated.
    *   
-   *   @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
+   * @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
    * elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels.
    */
   public copyTo(m: OutputArray, mask: InputArray): OutputArray
@@ -1002,11 +1002,11 @@ export declare class Mat extends Mat_ {
    *    because cvtColor, as well as the most of OpenCV functions, calls [Mat::create()] for the output
    * array internally.
    *   
-   *   @param rows New number of rows.
+   * @param rows New number of rows.
    *   
-   *   @param cols New number of columns.
+   * @param cols New number of columns.
    *   
-   *   @param type New matrix type.
+   * @param type New matrix type.
    */
   public create(rows: int, cols: int, type: int): void
 
@@ -1014,9 +1014,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size Alternative new matrix size specification: Size(cols, rows)
+   * @param size Alternative new matrix size specification: Size(cols, rows)
    *   
-   *   @param type New matrix type.
+   * @param type New matrix type.
    */
   public create(size: Size, type: int): Size
 
@@ -1024,11 +1024,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims New array dimensionality.
+   * @param ndims New array dimensionality.
    *   
-   *   @param sizes Array of integers specifying a new array shape.
+   * @param sizes Array of integers specifying a new array shape.
    *   
-   *   @param type New matrix type.
+   * @param type New matrix type.
    */
   public create(ndims: int, sizes: any, type: int): void
 
@@ -1036,9 +1036,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param sizes Array of integers specifying a new array shape.
+   * @param sizes Array of integers specifying a new array shape.
    *   
-   *   @param type New matrix type.
+   * @param type New matrix type.
    */
   public create(sizes: any, type: int): void
 
@@ -1047,7 +1047,7 @@ export declare class Mat extends Mat_ {
    * floating-point vectors of the same shape and size. The result is another 3-element vector of the
    * same shape and type as operands.
    *   
-   *   @param m Another cross-product operand.
+   * @param m Another cross-product operand.
    */
   public cross(m: InputArray): Mat
 
@@ -1072,7 +1072,7 @@ export declare class Mat extends Mat_ {
    *   The method makes a new header for the specified matrix diagonal. The new matrix is represented as
    * a single-column matrix. Similarly to [Mat::row] and [Mat::col], this is an O(1) operation.
    *   
-   *   @param d index of the diagonal, with the following values:
+   * @param d index of the diagonal, with the following values:
    *   d=0 is the main diagonal.d<0 is a diagonal from the lower half. For example, d=-1 means the
    * diagonal is set immediately below the main one.d>0 is a diagonal from the upper half. For example,
    * d=1 means the diagonal is set immediately above the main one. For example: Matm=(Mat_<int>(3,3)<<
@@ -1101,7 +1101,7 @@ export declare class Mat extends Mat_ {
    * vectors. The vectors must have the same size and type. If the matrices have more than one channel,
    * the dot products from all the channels are summed together.
    *   
-   *   @param m another dot-product operand.
+   * @param m another dot-product operand.
    */
   public dot(m: InputArray): InputArray
 
@@ -1203,7 +1203,7 @@ export declare class Mat extends Mat_ {
    * matrix inversion object is returned by the method and can be used further as a part of more complex
    * matrix expressions or can be assigned to a matrix.
    *   
-   *   @param method Matrix inversion method. One of cv::DecompTypes
+   * @param method Matrix inversion method. One of cv::DecompTypes
    */
   public inv(method?: int): MatExpr
 
@@ -1295,10 +1295,10 @@ export declare class Mat extends Mat_ {
    * that helps reconstruct the original matrix size and the position of the extracted submatrix within
    * the original matrix. The method locateROI does exactly that.
    *   
-   *   @param wholeSize Output parameter that contains the size of the whole matrix containing this as a
+   * @param wholeSize Output parameter that contains the size of the whole matrix containing this as a
    * part.
    *   
-   *   @param ofs Output parameter that contains an offset of this inside the whole matrix.
+   * @param ofs Output parameter that contains an offset of this inside the whole matrix.
    */
   public locateROI(wholeSize: Size, ofs: Point): Size
 
@@ -1312,16 +1312,16 @@ export declare class Mat extends Mat_ {
    *   Mat C = A.mul(5/B); // equivalent to divide(A, B, C, 5)
    *   ```
    *   
-   *   @param m Another array of the same type and the same size as *this, or a matrix expression.
+   * @param m Another array of the same type and the same size as *this, or a matrix expression.
    *   
-   *   @param scale Optional scale factor.
+   * @param scale Optional scale factor.
    */
   public mul(m: InputArray, scale?: double): MatExpr
 
   /**
    *   The method removes one or more rows from the bottom of the matrix.
    *   
-   *   @param nelems Number of removed rows. If it is greater than the total number of rows, an exception
+   * @param nelems Number of removed rows. If it is greater than the total number of rows, an exception
    * is thrown.
    */
   public pop_back(nelems?: size_t): void
@@ -1330,7 +1330,7 @@ export declare class Mat extends Mat_ {
    *   The methods return `uchar*` or typed pointer to the specified matrix row. See the sample in
    * [Mat::isContinuous] to know how to use these methods.
    *   
-   *   @param i0 A 0-based row index.
+   * @param i0 A 0-based row index.
    */
   public ptr(i0?: int): uchar
 
@@ -1344,9 +1344,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public ptr(row: int, col: int): uchar
 
@@ -1354,9 +1354,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public ptr(row: int, col: int): uchar
 
@@ -1412,9 +1412,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public ptr(arg39: any, row: int, col: int): any
 
@@ -1422,9 +1422,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param row Index along the dimension 0
+   * @param row Index along the dimension 0
    *   
-   *   @param col Index along the dimension 1
+   * @param col Index along the dimension 1
    */
   public ptr(arg40: any, row: int, col: int): any
 
@@ -1469,7 +1469,7 @@ export declare class Mat extends Mat_ {
    * method of the STL vector class. When elem is [Mat] , its type and the number of columns must be the
    * same as in the container matrix.
    *   
-   *   @param elem Added element(s).
+   * @param elem Added element(s).
    */
   public push_back(arg47: any, elem: any): any
 
@@ -1477,7 +1477,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param elem Added element(s).
+   * @param elem Added element(s).
    */
   public push_back(arg48: any, elem: Mat_): Mat_
 
@@ -1485,7 +1485,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param elem Added element(s).
+   * @param elem Added element(s).
    */
   public push_back(arg49: any, elem: any): any
 
@@ -1493,7 +1493,7 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param m Added line(s).
+   * @param m Added line(s).
    */
   public push_back(m: Mat): Mat
 
@@ -1518,7 +1518,7 @@ export declare class Mat extends Mat_ {
    * nothing happens. If the matrix is reallocated, the first [Mat::rows] rows are preserved. The method
    * emulates the corresponding method of the STL vector class.
    *   
-   *   @param sz Number of rows.
+   * @param sz Number of rows.
    */
   public reserve(sz: size_t): void
 
@@ -1526,7 +1526,7 @@ export declare class Mat extends Mat_ {
    *   The method reserves space for sz bytes. If the matrix already has enough space to store sz bytes,
    * nothing happens. If matrix has to be reallocated its previous content could be lost.
    *   
-   *   @param sz Number of bytes.
+   * @param sz Number of bytes.
    */
   public reserveBuffer(sz: size_t): void
 
@@ -1553,9 +1553,9 @@ export declare class Mat extends Mat_ {
    *                             // This involves copying all the elements
    *   ```
    *   
-   *   @param cn New number of channels. If the parameter is 0, the number of channels remains the same.
+   * @param cn New number of channels. If the parameter is 0, the number of channels remains the same.
    *   
-   *   @param rows New number of rows. If the parameter is 0, the number of rows remains the same.
+   * @param rows New number of rows. If the parameter is 0, the number of rows remains the same.
    */
   public reshape(cn: int, rows?: int): Mat
 
@@ -1576,7 +1576,7 @@ export declare class Mat extends Mat_ {
    * min(Mat::rows, sz) rows are preserved. The methods emulate the corresponding methods of the STL
    * vector class.
    *   
-   *   @param sz New number of rows.
+   * @param sz New number of rows.
    */
   public resize(sz: size_t): void
 
@@ -1584,9 +1584,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param sz New number of rows.
+   * @param sz New number of rows.
    *   
-   *   @param s Value assigned to the newly added elements.
+   * @param s Value assigned to the newly added elements.
    */
   public resize(sz: size_t, s: Scalar): Scalar
 
@@ -1626,7 +1626,7 @@ export declare class Mat extends Mat_ {
    *   A.row(j).copyTo(A.row(i));
    *   ```
    *   
-   *   @param y A 0-based row index.
+   * @param y A 0-based row index.
    */
   public row(y: int): Mat
 
@@ -1634,9 +1634,9 @@ export declare class Mat extends Mat_ {
    *   The method makes a new header for the specified row span of the matrix. Similarly to [Mat::row]
    * and [Mat::col] , this is an O(1) operation.
    *   
-   *   @param startrow An inclusive 0-based start index of the row span.
+   * @param startrow An inclusive 0-based start index of the row span.
    *   
-   *   @param endrow An exclusive 0-based ending index of the row span.
+   * @param endrow An exclusive 0-based ending index of the row span.
    */
   public rowRange(startrow: int, endrow: int): Mat
 
@@ -1644,16 +1644,16 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param r Range structure containing both the start and the end indices.
+   * @param r Range structure containing both the start and the end indices.
    */
   public rowRange(r: Range): Mat
 
   /**
    *   This is an advanced variant of the [Mat::operator=(const Scalar& s)] operator.
    *   
-   *   @param value Assigned scalar converted to the actual array type.
+   * @param value Assigned scalar converted to the actual array type.
    *   
-   *   @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
+   * @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
    * elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels
    */
   public setTo(value: InputArray, mask?: InputArray): Mat
@@ -1699,7 +1699,7 @@ export declare class Mat extends Mat_ {
   /**
    *   The method creates a square diagonal matrix from specified main diagonal.
    *   
-   *   @param d One-dimensional matrix that represents the main diagonal.
+   * @param d One-dimensional matrix that represents the main diagonal.
    */
   public static diag(d: Mat): Mat
 
@@ -1716,11 +1716,11 @@ export declare class Mat extends Mat_ {
    *   In case of multi-channels type, identity matrix will be initialized only for the first channel,
    * the others will be set to 0's
    *   
-   *   @param rows Number of rows.
+   * @param rows Number of rows.
    *   
-   *   @param cols Number of columns.
+   * @param cols Number of columns.
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static eye(rows: int, cols: int, type: int): MatExpr
 
@@ -1728,9 +1728,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size Alternative matrix size specification as Size(cols, rows) .
+   * @param size Alternative matrix size specification as Size(cols, rows) .
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static eye(size: Size, type: int): MatExpr
 
@@ -1754,11 +1754,11 @@ export declare class Mat extends Mat_ {
    *   In case of multi-channels type, only the first channel will be initialized with 1's, the others
    * will be set to 0's.
    *   
-   *   @param rows Number of rows.
+   * @param rows Number of rows.
    *   
-   *   @param cols Number of columns.
+   * @param cols Number of columns.
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static ones(rows: int, cols: int, type: int): MatExpr
 
@@ -1766,9 +1766,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size Alternative to the matrix size specification Size(cols, rows) .
+   * @param size Alternative to the matrix size specification Size(cols, rows) .
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static ones(size: Size, type: int): MatExpr
 
@@ -1776,11 +1776,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims Array dimensionality.
+   * @param ndims Array dimensionality.
    *   
-   *   @param sz Array of integers specifying the array shape.
+   * @param sz Array of integers specifying the array shape.
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static ones(ndims: int, sz: any, type: int): MatExpr
 
@@ -1798,11 +1798,11 @@ export declare class Mat extends Mat_ {
    *    In the example above, a new matrix is allocated only if A is not a 3x3 floating-point matrix.
    * Otherwise, the existing matrix A is filled with zeros.
    *   
-   *   @param rows Number of rows.
+   * @param rows Number of rows.
    *   
-   *   @param cols Number of columns.
+   * @param cols Number of columns.
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static zeros(rows: int, cols: int, type: int): MatExpr
 
@@ -1810,9 +1810,9 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param size Alternative to the matrix size specification Size(cols, rows) .
+   * @param size Alternative to the matrix size specification Size(cols, rows) .
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static zeros(size: Size, type: int): MatExpr
 
@@ -1820,11 +1820,11 @@ export declare class Mat extends Mat_ {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param ndims Array dimensionality.
+   * @param ndims Array dimensionality.
    *   
-   *   @param sz Array of integers specifying the array shape.
+   * @param sz Array of integers specifying the array shape.
    *   
-   *   @param type Created matrix type.
+   * @param type Created matrix type.
    */
   public static zeros(ndims: int, sz: any, type: int): MatExpr
 }

@@ -10,6 +10,9 @@ import { buildDts } from './render/main'
 import { canRenderFileNamed } from './render/exportsHacks'
 
 export function opencv2ts(o: Doxygen2tsOptions) {
+  if(o.onlyFix) {
+    return writeIndexTs(o)
+  }
   rm('-rf', o.tsOutputFolder)
   mkdir('-p', o.tsOutputFolder)
   const defs = getBindingsCppMemberdefs(o)

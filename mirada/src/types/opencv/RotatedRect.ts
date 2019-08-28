@@ -1,5 +1,5 @@
 
-import { float, Point2f, Size2f, Rect, Rect_ } from './_types'
+import { float, Point2f, Rect, Rect_, Size2f } from './_types'
 
 /**
  * Each rectangle is specified by the center point (mass center), length of each side (represented by
@@ -45,11 +45,11 @@ export declare class RotatedRect {
   /**
    *   full constructor
    *   
-   *   @param center The rectangle mass center.
+   * @param center The rectangle mass center.
    *   
-   *   @param size Width and height of the rectangle.
+   * @param size Width and height of the rectangle.
    *   
-   *   @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
+   * @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
    * the rectangle becomes an up-right rectangle.
    */
   public constructor(center: Point2f, size: Size2f, angle: float)
@@ -67,7 +67,7 @@ export declare class RotatedRect {
   /**
    *   returns 4 vertices of the rectangle
    *   
-   *   @param pts The points array for storing rectangle vertices. The order is bottomLeft, topLeft,
+   * @param pts The points array for storing rectangle vertices. The order is bottomLeft, topLeft,
    * topRight, bottomRight.
    */
   public points(pts: Point2f): Point2f

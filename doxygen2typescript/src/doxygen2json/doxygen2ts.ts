@@ -12,6 +12,7 @@ import { getCompoundDefName } from './render'
 import { buildDts } from './render/main'
 
 export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
+  onlyFix?: boolean;
   opencvBuildFolder: string
   tsOutputFolder: string
   jsonTypes?: boolean

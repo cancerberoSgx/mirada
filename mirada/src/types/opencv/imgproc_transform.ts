@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, int, bool, Mat, Size, Point2f, double } from './_types'
+import { bool, double, InputArray, int, Mat, OutputArray, Point2f, Size } from './_types'
 /*
  * # Geometric Image Transformations
  * The functions in this section perform various geometrical transformations of 2D images. They do not change the image content but deform the pixel grid and map this deformed grid to the destination image. In fact, to avoid sampling artifacts, the mapping is done in the reverse order, from destination to the source. That is, for each pixel `$(x, y)$` of the destination image, the functions compute coordinates of the corresponding "donor" pixel in the source image and copy the pixel value:

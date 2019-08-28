@@ -1,5 +1,5 @@
 
-import { size_t, bool } from './_types'
+import { bool, size_t } from './_types'
 
 /**
  * Class re-implementing the boost version of it This helps not depending on boost, it also does not do
@@ -19,7 +19,7 @@ export declare class DynamicBitset {
   /**
    *   only constructor we use in our code
    *   
-   *   @param sz the size of the bitset (in bits)
+   * @param sz the size of the bitset (in bits)
    */
   public constructor(sz: size_t)
 
@@ -50,7 +50,7 @@ export declare class DynamicBitset {
   /**
    *   set a bit to true
    *   
-   *   @param index the index of the bit to set to 1
+   * @param index the index of the bit to set to 1
    */
   public set(index: size_t): void
 
@@ -64,7 +64,7 @@ export declare class DynamicBitset {
    *   
    *   true if the bit is set
    *   
-   *   @param index the index of the bit to check
+   * @param index the index of the bit to check
    */
   public test(index: size_t): bool
 }

@@ -1,15 +1,15 @@
 import test from 'ava'
 import { create, distance, read } from 'jimp'
-import { File, fromFile, toRgba} from '../src'
+import { File, fromFile, toRgba } from '../src'
+import { Mat } from '../src/types/opencv'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
-import { Mat } from '../src/types/opencv';
 // import { CV } from '../src/types/opencv';
 
 test.before(loadMirada)
 
 test('watershed', async t => {
-  const src: Mat= await fromFile('test/assets/coins.png')
+  const src: Mat = await fromFile('test/assets/coins.png')
   let dst = new cv.Mat()
   let gray = new cv.Mat()
   let opening = new cv.Mat()

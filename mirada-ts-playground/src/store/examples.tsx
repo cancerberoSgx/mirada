@@ -4,8 +4,9 @@ import { fft_ts } from '../examples/packed/fft_ts'
 import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
 import { watershed_ts } from '../examples/packed/watershed_ts'
 import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
-import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts';
-import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts';
+import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
+import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts'
+import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
 
 export interface Example {
   name: string
@@ -20,7 +21,7 @@ export enum ExampleTag {
   fs = 'fs',
   grabCut = 'grabCut',
   feature = 'feature',
-  video = "video"
+  video = 'video'
 }
 
 export function examples(): Example[] {
@@ -54,18 +55,24 @@ export function examples(): Example[] {
       tags: [ExampleTag.feature],
       code: contourFunctionsShape_ts,
       description: 'TODO'
-    },    
-        {
-      name: '/lucasKanadeOpticalFlow.ts',
-      tags: [ExampleTag.video],
-      code: lucasKanadeOpticalFlow_ts,
-      description: 'TODO'
     },
-    
+    //     {
+    //   name: '/lucasKanadeOpticalFlow.ts',
+    //   tags: [ExampleTag.video],
+    //   code: lucasKanadeOpticalFlow_ts,
+    //   description: 'TODO'
+    // },
+
     {
       name: '/fft.ts',
       tags: [ExampleTag.fft],
       code: fft_ts,
+      description: 'TODO'
+    },
+    {
+      name: '/faceDetectionCamera.ts',
+      tags: [ExampleTag.video],
+      code: faceDetectionCamera_ts,
       description: 'TODO'
     },
     {

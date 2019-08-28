@@ -1,5 +1,5 @@
 
-import { Matrix, BucketKey, Bucket, size_t, LshStats } from './_types'
+import { Bucket, BucketKey, LshStats, Matrix, size_t } from './_types'
 
 /**
  * Lsh hash table. As its key is a sub-feature, and as usually the size of it is pretty small, we keep
@@ -20,9 +20,9 @@ export declare class LshTable {
   /**
    *   Default constructor Create the mask and allocate the memory
    *   
-   *   @param feature_size is the size of the feature (considered as a ElementType[])
+   * @param feature_size is the size of the feature (considered as a ElementType[])
    *   
-   *   @param key_size is the number of bits that are turned on in the feature
+   * @param key_size is the number of bits that are turned on in the feature
    */
   public constructor(feature_size: any, key_size: any)
 
@@ -31,16 +31,16 @@ export declare class LshTable {
   /**
    *   Add a feature to the table
    *   
-   *   @param value the value to store for that feature
+   * @param value the value to store for that feature
    *   
-   *   @param feature the feature itself
+   * @param feature the feature itself
    */
   public add(value: any, feature: any): void
 
   /**
    *   Add a set of features to the table
    *   
-   *   @param dataset the values to store
+   * @param dataset the values to store
    */
   public add(dataset: Matrix): Matrix
 
@@ -57,7 +57,7 @@ export declare class LshTable {
   /**
    *   Return the Subsignature of a feature
    *   
-   *   @param feature the feature to analyze
+   * @param feature the feature to analyze
    */
   public getKey(feature: any): size_t
 

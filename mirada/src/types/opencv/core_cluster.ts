@@ -1,5 +1,5 @@
 
-import { InputArray, int, InputOutputArray, TermCriteria, OutputArray, double, _EqPredicate } from './_types'
+import { double, InputArray, InputOutputArray, int, OutputArray, TermCriteria, _EqPredicate } from './_types'
 /*
  * # Clustering
  * 

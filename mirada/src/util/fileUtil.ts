@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch'
 import { FS_ROOT } from '../opencvReady'
 
 /**
@@ -46,5 +47,15 @@ export function isFile(f: string, FS = cv.FS) {
 }
 
 export const fileUtil = {
-  isDir, isFile
+  isDir, isFile, removeFile, writeFile, getFilePath, readFile, getFileName
+}
+
+export async function loadDataFile(url: string, name?: string) {
+  name = name || url.substring(url.lastIndexOf('/') + 1, url.length)
+  // Heads up! we need to verify that the files don't already exists if not it throws!
+  if (!cv.FS.readdir('/').includes(name)) {
+    const r = await fetch(url)
+    await cv.FS.createDataFile('/', name, new Uint8ClampedArray(await r.arrayBuffer()), true, false, false)
+  }
+  return name
 }

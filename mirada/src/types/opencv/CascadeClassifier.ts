@@ -1,5 +1,5 @@
 
-import { Ptr, InputArray, Rect, double, int, Size, bool, FileNode , Mat} from './_types'
+import { bool, double, FileNode, InputArray, int, Mat, Ptr, Rect, Size } from './_types'
 
 export declare class CascadeClassifier extends Mat {
 
@@ -8,7 +8,7 @@ export declare class CascadeClassifier extends Mat {
   public constructor()
 
   /**
-   *   @param filename Name of the file from which the classifier is loaded.
+   * @param filename Name of the file from which the classifier is loaded.
    */
   public constructor(filename: String)
 
@@ -18,22 +18,22 @@ export declare class CascadeClassifier extends Mat {
    * (Python) A face detection example using cascade classifiers can be found at
    * opencv_source_code/samples/python/facedetect.py
    *   
-   *   @param image Matrix of the type CV_8U containing an image where objects are detected.
+   * @param image Matrix of the type CV_8U containing an image where objects are detected.
    *   
-   *   @param objects Vector of rectangles where each rectangle contains the detected object, the
+   * @param objects Vector of rectangles where each rectangle contains the detected object, the
    * rectangles may be partially outside the original image.
    *   
-   *   @param scaleFactor Parameter specifying how much the image size is reduced at each image scale.
+   * @param scaleFactor Parameter specifying how much the image size is reduced at each image scale.
    *   
-   *   @param minNeighbors Parameter specifying how many neighbors each candidate rectangle should have
+   * @param minNeighbors Parameter specifying how many neighbors each candidate rectangle should have
    * to retain it.
    *   
-   *   @param flags Parameter with the same meaning for an old cascade as in the function
+   * @param flags Parameter with the same meaning for an old cascade as in the function
    * cvHaarDetectObjects. It is not used for a new cascade.
    *   
-   *   @param minSize Minimum possible object size. Objects smaller than that are ignored.
+   * @param minSize Minimum possible object size. Objects smaller than that are ignored.
    *   
-   *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
+   * @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
   public detectMultiScale(image: InputArray, objects: Rect, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
@@ -42,26 +42,26 @@ export declare class CascadeClassifier extends Mat {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param image Matrix of the type CV_8U containing an image where objects are detected.
+   * @param image Matrix of the type CV_8U containing an image where objects are detected.
    *   
-   *   @param objects Vector of rectangles where each rectangle contains the detected object, the
+   * @param objects Vector of rectangles where each rectangle contains the detected object, the
    * rectangles may be partially outside the original image.
    *   
-   *   @param numDetections Vector of detection numbers for the corresponding objects. An object's number
+   * @param numDetections Vector of detection numbers for the corresponding objects. An object's number
    * of detections is the number of neighboring positively classified rectangles that were joined
    * together to form the object.
    *   
-   *   @param scaleFactor Parameter specifying how much the image size is reduced at each image scale.
+   * @param scaleFactor Parameter specifying how much the image size is reduced at each image scale.
    *   
-   *   @param minNeighbors Parameter specifying how many neighbors each candidate rectangle should have
+   * @param minNeighbors Parameter specifying how many neighbors each candidate rectangle should have
    * to retain it.
    *   
-   *   @param flags Parameter with the same meaning for an old cascade as in the function
+   * @param flags Parameter with the same meaning for an old cascade as in the function
    * cvHaarDetectObjects. It is not used for a new cascade.
    *   
-   *   @param minSize Minimum possible object size. Objects smaller than that are ignored.
+   * @param minSize Minimum possible object size. Objects smaller than that are ignored.
    *   
-   *   @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
+   * @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
   public detectMultiScale(image: InputArray, objects: Rect, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
@@ -101,7 +101,7 @@ export declare class CascadeClassifier extends Mat {
   public isOldFormatCascade(): bool
 
   /**
-   *   @param filename Name of the file from which the classifier is loaded. The file may contain an old
+   * @param filename Name of the file from which the classifier is loaded. The file may contain an old
    * HAAR classifier trained by the haartraining application or a new cascade classifier trained by the
    * traincascade application.
    */

@@ -12,23 +12,23 @@ export declare class Logger {
   /**
    *   Print log message
    *   
-   *   @param level Log level
+   * @param level Log level
    *   
-   *   @param fmt Message format
+   * @param fmt Message format
    */
   public static log(level: int, fmt: any, arg124: any): int
 
   /**
    *   Sets the logging destination
    *   
-   *   @param name Filename or NULL for console
+   * @param name Filename or NULL for console
    */
   public static setDestination(name: any): void
 
   /**
    *   Sets the logging level. All messages with lower priority will be ignored.
    *   
-   *   @param level Logging level
+   * @param level Logging level
    */
   public static setLevel(level: int): void
 

@@ -1,5 +1,5 @@
 
-import { InputArray, OutputArray, double, bool, Rect, RotatedRect, int, OutputArrayOfArrays, Point, float, Moments, Point2f } from './_types'
+import { bool, double, float, InputArray, int, Moments, OutputArray, OutputArrayOfArrays, Point, Point2f, Rect, RotatedRect } from './_types'
 /*
  * # Structural Analysis and Shape Descriptors
  * 

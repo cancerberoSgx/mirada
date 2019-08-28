@@ -1,5 +1,5 @@
 
-import { Ptr, InputArrayOfArrays, bool, FileNode, FileStorage } from './_types'
+import { bool, FileNode, FileStorage, InputArrayOfArrays, Ptr } from './_types'
 
 /**
  * This matcher trains [cv::flann::Index](#d1/db2/classcv_1_1flann_1_1Index}) on a train descriptor
@@ -20,7 +20,7 @@ export declare class FlannBasedMatcher {
   /**
    *   If the collection is not empty, the new descriptors are added to existing train descriptors.
    *   
-   *   @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
+   * @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
    * train image.
    */
   public add(descriptors: InputArrayOfArrays): InputArrayOfArrays
@@ -28,7 +28,7 @@ export declare class FlannBasedMatcher {
   public clear(): void
 
   /**
-   *   @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
+   * @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
    * that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
    * object copy with the current parameters but with empty train data.
    */

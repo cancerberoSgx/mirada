@@ -1,5 +1,5 @@
 
-import { Mat, int } from './_types'
+import { int, Mat } from './_types'
 
 /**
  * For details, see, for example, *Visual Categorization with Bags of Keypoints* by Gabriella Csurka,
@@ -16,7 +16,7 @@ export declare class BOWTrainer {
   /**
    *   The training set is clustered using clustermethod to construct the vocabulary.
    *   
-   *   @param descriptors Descriptors to add to a training set. Each row of the descriptors matrix is a
+   * @param descriptors Descriptors to add to a training set. Each row of the descriptors matrix is a
    * descriptor.
    */
   public add(descriptors: Mat): Mat
@@ -34,7 +34,7 @@ export declare class BOWTrainer {
    * variant of the method, train descriptors stored in the object are clustered. In the second variant,
    * input descriptors are clustered.
    *   
-   *   @param descriptors Descriptors to cluster. Each row of the descriptors matrix is a descriptor.
+   * @param descriptors Descriptors to cluster. Each row of the descriptors matrix is a descriptor.
    * Descriptors are not added to the inner train descriptor set.
    */
   public cluster(descriptors: Mat): Mat

@@ -1,5 +1,5 @@
 
-import { InputArrayOfArrays, bool, Ptr, Mat, InputArray, DMatch, int, float, FileNode, FileStorage } from './_types'
+import { bool, DMatch, FileNode, FileStorage, float, InputArray, InputArrayOfArrays, int, Mat, Ptr } from './_types'
 
 /**
  * It has two groups of match methods: for matching descriptors of an image with another image or with
@@ -14,7 +14,7 @@ export declare class DescriptorMatcher {
   /**
    *   If the collection is not empty, the new descriptors are added to existing train descriptors.
    *   
-   *   @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
+   * @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
    * train image.
    */
   public add(descriptors: InputArrayOfArrays): InputArrayOfArrays
@@ -22,7 +22,7 @@ export declare class DescriptorMatcher {
   public clear(): void
 
   /**
-   *   @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
+   * @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
    * that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
    * object copy with the current parameters but with empty train data.
    */
@@ -39,20 +39,20 @@ export declare class DescriptorMatcher {
    * query descriptor. The matches are returned in the distance increasing order. See
    * [DescriptorMatcher::match] for the details about query and train descriptors.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+   * @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
    * collection stored in the class object.
    *   
-   *   @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
+   * @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
    *   
-   *   @param k Count of best matches found per each query descriptor or less if a query descriptor has
+   * @param k Count of best matches found per each query descriptor or less if a query descriptor has
    * less than k possible matches in total.
    *   
-   *   @param mask Mask specifying permissible matches between an input query and train matrices of
+   * @param mask Mask specifying permissible matches between an input query and train matrices of
    * descriptors.
    *   
-   *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+   * @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
@@ -62,17 +62,17 @@ export declare class DescriptorMatcher {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
+   * @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
    *   
-   *   @param k Count of best matches found per each query descriptor or less if a query descriptor has
+   * @param k Count of best matches found per each query descriptor or less if a query descriptor has
    * less than k possible matches in total.
    *   
-   *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+   * @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
    * descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    *   
-   *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+   * @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
@@ -85,15 +85,15 @@ export declare class DescriptorMatcher {
    * be matched. Namely, queryDescriptors[i] can be matched with trainDescriptors[j] only if
    * mask.at<uchar>(i,j) is non-zero.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+   * @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
    * collection stored in the class object.
    *   
-   *   @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
+   * @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
    * descriptor. So, matches size may be smaller than the query descriptors count.
    *   
-   *   @param mask Mask specifying permissible matches between an input query and train matrices of
+   * @param mask Mask specifying permissible matches between an input query and train matrices of
    * descriptors.
    */
   public match(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, mask?: InputArray): InputArray
@@ -102,12 +102,12 @@ export declare class DescriptorMatcher {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
+   * @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
    * descriptor. So, matches size may be smaller than the query descriptors count.
    *   
-   *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+   * @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
    * descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    */
   public match(queryDescriptors: InputArray, matches: DMatch, masks?: InputArrayOfArrays): InputArray
@@ -117,21 +117,21 @@ export declare class DescriptorMatcher {
    * the query descriptor and the training descriptor is equal or smaller than maxDistance. Found matches
    * are returned in the distance increasing order.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+   * @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
    * collection stored in the class object.
    *   
-   *   @param matches Found matches.
+   * @param matches Found matches.
    *   
-   *   @param maxDistance Threshold for the distance between matched descriptors. Distance means here
+   * @param maxDistance Threshold for the distance between matched descriptors. Distance means here
    * metric distance (e.g. Hamming distance), not the distance between coordinates (which is measured in
    * Pixels)!
    *   
-   *   @param mask Mask specifying permissible matches between an input query and train matrices of
+   * @param mask Mask specifying permissible matches between an input query and train matrices of
    * descriptors.
    *   
-   *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+   * @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
@@ -141,18 +141,18 @@ export declare class DescriptorMatcher {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param queryDescriptors Query set of descriptors.
+   * @param queryDescriptors Query set of descriptors.
    *   
-   *   @param matches Found matches.
+   * @param matches Found matches.
    *   
-   *   @param maxDistance Threshold for the distance between matched descriptors. Distance means here
+   * @param maxDistance Threshold for the distance between matched descriptors. Distance means here
    * metric distance (e.g. Hamming distance), not the distance between coordinates (which is measured in
    * Pixels)!
    *   
-   *   @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+   * @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
    * descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    *   
-   *   @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+   * @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
@@ -177,7 +177,7 @@ export declare class DescriptorMatcher {
   public write(fs: Ptr, name?: String): Ptr
 
   /**
-   *   @param descriptorMatcherType Descriptor matcher type. Now the following matcher types are
+   * @param descriptorMatcherType Descriptor matcher type. Now the following matcher types are
    * supported:
    *   BruteForce (it uses L2 )BruteForce-L1BruteForce-HammingBruteForce-Hamming(2)FlannBased
    */

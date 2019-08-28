@@ -1,5 +1,5 @@
 
-import { MatExpr, Scalar, Mat, int, double, Size } from './_types'
+import { double, int, Mat, MatExpr, Scalar, Size } from './_types'
 
 export declare class MatOp {
 

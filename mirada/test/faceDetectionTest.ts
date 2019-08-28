@@ -17,11 +17,10 @@ test('faceDetection', async t => {
 
   // load pre-trained classifier files (./test/assets/*.xml)
   // Note that current local folder is mounted at /work
-  // Showing two two ways of reference files:
-
+  // Showing two two ways of reference files. 
   // Using absolute path:
   faceCascade.load('/work/test/assets/haarcascade_frontalface_default.xml')
-  // Using relative path (we need to change the current working directory using FS.chdir() first)
+  // Using relative path (we need to change the current working directory using FS.chdir() first): 
   cv.FS.chdir('/work')
   eyeCascade.load('test/assets/haarcascade_eye.xml')
 
@@ -51,9 +50,7 @@ test('faceDetection', async t => {
   t.deepEqual(f.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
   t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaFaceDetection.jpg')), 0)
-
   src.delete(); gray.delete(); faceCascade.delete(); f.delete()
   eyeCascade.delete(); faces.delete(); eyes.delete()
-
 })
 

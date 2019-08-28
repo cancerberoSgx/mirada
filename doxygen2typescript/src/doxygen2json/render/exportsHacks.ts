@@ -166,7 +166,7 @@ import {RotatedRect, LineTypes} from '.'
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
 export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
 export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
-
+export declare function matFromArray(rows: number, cols: number, type: any, array: any): Mat
 import '../_cv'
 
   `.trim()

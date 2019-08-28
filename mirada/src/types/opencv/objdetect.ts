@@ -1,5 +1,5 @@
 
-import { int, double, Size } from './_types'
+import { double, int, Size } from './_types'
 /*
  * # Object Detection
  * ## Haar Feature-based Cascade Classifier for Object Detection 

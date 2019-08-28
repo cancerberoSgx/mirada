@@ -1,5 +1,5 @@
 
-import { Mat, InputArray, int, double, OutputArray, FileNode, FileStorage } from './_types'
+import { double, FileNode, FileStorage, InputArray, int, Mat, OutputArray } from './_types'
 
 /**
  * The class is used to calculate a special basis for a set of vectors. The basis will consist of
@@ -86,15 +86,15 @@ export declare class PCA {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param data input samples stored as matrix rows or matrix columns.
+   * @param data input samples stored as matrix rows or matrix columns.
    *   
-   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
+   * @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
    * data.
    *   
-   *   @param flags operation flags; currently the parameter is only used to specify the data layout
+   * @param flags operation flags; currently the parameter is only used to specify the data layout
    * (PCA::Flags)
    *   
-   *   @param maxComponents maximum number of components that PCA should retain; by default, all the
+   * @param maxComponents maximum number of components that PCA should retain; by default, all the
    * components are retained.
    */
   public constructor(data: InputArray, mean: InputArray, flags: int, maxComponents?: int)
@@ -103,15 +103,15 @@ export declare class PCA {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param data input samples stored as matrix rows or matrix columns.
+   * @param data input samples stored as matrix rows or matrix columns.
    *   
-   *   @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
+   * @param mean optional mean value; if the matrix is empty (noArray()), the mean is computed from the
    * data.
    *   
-   *   @param flags operation flags; currently the parameter is only used to specify the data layout
+   * @param flags operation flags; currently the parameter is only used to specify the data layout
    * (PCA::Flags)
    *   
-   *   @param retainedVariance Percentage of variance that PCA should retain. Using this parameter will
+   * @param retainedVariance Percentage of variance that PCA should retain. Using this parameter will
    * let the PCA decided how many components to retain but it will always keep at least 2.
    */
   public constructor(data: InputArray, mean: InputArray, flags: int, retainedVariance: double)
@@ -123,7 +123,7 @@ export declare class PCA {
    * is small if the number of components is large enough (but still much smaller than the original
    * vector dimensionality). As a result, [PCA] is used.
    *   
-   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size are
+   * @param vec coordinates of the vectors in the principal component subspace, the layout and size are
    * the same as of PCA::project output vectors.
    */
   public backProject(vec: InputArray): Mat
@@ -132,10 +132,10 @@ export declare class PCA {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param vec coordinates of the vectors in the principal component subspace, the layout and size are
+   * @param vec coordinates of the vectors in the principal component subspace, the layout and size are
    * the same as of PCA::project output vectors.
    *   
-   *   @param result reconstructed vectors; the layout and size are the same as of PCA::project input
+   * @param result reconstructed vectors; the layout and size are the same as of PCA::project input
    * vectors.
    */
   public backProject(vec: InputArray, result: OutputArray): InputArray
@@ -146,7 +146,7 @@ export declare class PCA {
    * method returns the matrix that the second form writes to the result. So the first form can be used
    * as a part of expression while the second form can be more efficient in a processing loop.
    *   
-   *   @param vec input vector(s); must have the same dimensionality and the same layout as the input
+   * @param vec input vector(s); must have the same dimensionality and the same layout as the input
    * data used at PCA phase, that is, if DATA_AS_ROW are specified, then vec.cols==data.cols (vector
    * dimensionality) and vec.rows is the number of vectors to project, and the same is true for the
    * PCA::DATA_AS_COL case.
@@ -157,12 +157,12 @@ export declare class PCA {
    *   This is an overloaded member function, provided for convenience. It differs from the above
    * function only in what argument(s) it accepts.
    *   
-   *   @param vec input vector(s); must have the same dimensionality and the same layout as the input
+   * @param vec input vector(s); must have the same dimensionality and the same layout as the input
    * data used at PCA phase, that is, if DATA_AS_ROW are specified, then vec.cols==data.cols (vector
    * dimensionality) and vec.rows is the number of vectors to project, and the same is true for the
    * PCA::DATA_AS_COL case.
    *   
-   *   @param result output vectors; in case of PCA::DATA_AS_COL, the output matrix has as many columns
+   * @param result output vectors; in case of PCA::DATA_AS_COL, the output matrix has as many columns
    * as the number of input vectors, this means that result.cols==vec.cols and the number of rows match
    * the number of principal components (for example, maxComponents parameter passed to the constructor).
    */

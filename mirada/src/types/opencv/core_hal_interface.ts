@@ -1,5 +1,5 @@
 
-import { cvhalDFT, uchar, size_t, int } from './_types'
+import { cvhalDFT, int, size_t, uchar } from './_types'
 /*
  * # Interface
  * Define your functions to override default implementations: 
