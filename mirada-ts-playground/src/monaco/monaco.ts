@@ -1,7 +1,7 @@
-import * as monaco from 'monaco-editor'
-import { getStore } from '../store/store'
 import { objectKeys, throttle } from 'misc-utils-of-mine-generic'
+import * as monaco from 'monaco-editor'
 import { mirada } from '../examples/mirada'
+import { getStore } from '../store/store'
 import { isDesktop } from '../util/style'
 import { install as navigateExternalDefinitionsInstall } from './navigateExternalDefinitions'
 
@@ -65,10 +65,10 @@ export function installEditor() {
     minimap: isDesktop()
       ? undefined
       : {
-          enabled: false
-        }
+        enabled: false
+      }
   })
-  navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => {})
+  navigateExternalDefinitionsInstall(editorInstance!, (editor, model, def) => { })
   installListeners()
 }
 

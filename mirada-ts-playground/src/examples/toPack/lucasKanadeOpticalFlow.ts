@@ -1,7 +1,7 @@
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
+import * as Mirada from 'mirada'
+declare var cv: Mirada.CV
 
-; (async () => {
+(async () => {
   let videoInput = document.getElementById('videoInput')! as HTMLVideoElement
   const canvas = document.getElementById('outputCanvas')! as HTMLCanvasElement
   let cap = new cv.VideoCapture(videoInput)
@@ -11,7 +11,7 @@ declare var Mirada: typeof Mirada_
   let maxLevel = 2
   let criteria = new cv.TermCriteria(cv.TermCriteria_EPS | cv.TermCriteria_COUNT, 10, 0.03)
   // create some random colors
-  let color: Mirada_.Scalar[] = []
+  let color: Mirada.Scalar[] = []
   for (let i = 0; i < maxCorners; i++) {
     color.push(
       new cv.Scalar(

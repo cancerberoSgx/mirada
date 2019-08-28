@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { AbstractComponent } from '../util/component'
-import { getEditorText } from '../monaco/monaco'
 import { File } from 'mirada'
-import { memoryReport } from '../util/misc'
 import { printMs } from 'misc-utils-of-mine-generic'
+import * as React from 'react'
+import { getEditorText } from '../monaco/monaco'
+import { AbstractComponent } from '../util/component'
+import { memoryReport } from '../util/misc'
 
 export class Header extends AbstractComponent {
   timer: NodeJS.Timeout | undefined
@@ -24,9 +24,9 @@ export class Header extends AbstractComponent {
     document.onkeydown = function(e) {
       if (e.keyCode == 27) {
         var mods = document.querySelectorAll('.modal > [type=checkbox]')
-        ;[].forEach.call(mods, function(mod: any) {
-          mod.checked = false
-        })
+          ;[].forEach.call(mods, function(mod: any) {
+            mod.checked = false
+          })
       }
     }
   }

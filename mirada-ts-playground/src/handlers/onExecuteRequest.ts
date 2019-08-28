@@ -1,8 +1,8 @@
-import { State, Result } from '../store/state'
-import { getStore } from '../store/store'
-import { Project, ScriptTarget } from 'ts-morph'
 import * as Mirada_ from 'mirada'
 import { getGlobal } from 'misc-utils-of-mine-generic'
+import { Project, ScriptTarget } from 'ts-morph'
+import { Result, State } from '../store/state'
+import { getStore } from '../store/store'
 
 export function onExecuteRequestInstall() {
   getGlobal().Mirada = Mirada_

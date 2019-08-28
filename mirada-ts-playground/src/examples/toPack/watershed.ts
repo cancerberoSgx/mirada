@@ -1,6 +1,7 @@
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
-;(async () => {
+import * as Mirada from 'mirada'
+declare var cv: Mirada.CV
+
+(async () => {
   const src = await Mirada.fromUrl('coins.png')
   let dst = new cv.Mat()
   let gray = new cv.Mat()

@@ -6,14 +6,16 @@
   "scripts": {
     "build": "npm run clean && npm run pack && npx tsc && sh build-workers.sh && npx parcel build src/index.html -d docs --no-content-hash --detailed-report --public-url './' && npm run copy && rm -rf ../../demos/docs/mirada-ts-playground && mkdir -p ../../demos/docs/mirada-ts-playground && cp -r docs/* ../../demos/docs/mirada-ts-playground",
     "build-local": "npm run build && gzip docs/*.* && npx http-server docs --gzip",
-    "copy": "cp -r src/index.appcache node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/* docs && cp -r node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/*  dist",
+    "copy": "cp -r src/index.appcache node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/* static/* docs && cp -r node_modules/mirada/dist/src/opencv.js ../mirada/test/assets/* static/* dist",
     "start": "mkdir -p dist docs && npm run pack && npm run copy &&  cp docs/*.worker.js dist && npx parcel start --no-hmr --open --no-source-maps --no-autoinstall src/index.html",
-    "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120 --jsx-bracket-same-line true \"src/**/*.ts*\"",
+    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "lint": " npm run organizeImports && npm run format",
     "clean": "rm -rf dist docs",
     "pack": "npm run pack-examples && npm run pack-files",
     "pack-files": "npx embed-json-in-ts --mode fs2json --input \"node_modules/mirada/dist/src/**/*.d.ts\" --output src/examples/mirada.json &&  rm -rf src/examples/mirada.json",
     "pack-examples": "npx embed-json-in-ts --mode string --input \"src/examples/toPack/**/*.ts*\" --output src/examples/packed --preserveExtension --debug",
-    "all": "npm run clean && npm run pack && npm run prettier && npm run build"
+    "all": "npm run clean && npm run pack && npm run lint && npm run build"
   },
   "keywords": [
     "TypeScript",
@@ -28,36 +30,23 @@
   "dependencies": {
     "connected-react-router": "^6.5.2",
     "import": "0.0.6",
-    "js-base64": "^2.5.1",
     "mirada": "file:../mirada",
     "misc-utils-of-mine-generic": "^0.2.29",
     "monaco-editor": "^0.17.1",
     "picnic": "^6.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-jss": "^8.6.1",
-    "react-redux": "^7.1.1",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1",
-    "redux": "^4.0.4",
-    "redux-saga": "^1.0.5",
     "ts-morph": "^3.1.3"
   },
   "devDependencies": {
-    "@types/history": "^4.7.3",
-    "@types/js-base64": "^2.3.1",
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
-    "@types/react-jss": "^8.6.4",
-    "@types/react-redux": "^7.1.2",
-    "@types/react-router": "^5.0.3",
-    "@types/react-router-dom": "^4.3.5",
     "babel-polyfill": "^6.26.0",
     "embed-json-in-ts": "0.0.9",
     "http-server": "^0.11.1",
     "parcel": "^1.12.3",
-    "prettier": "^1.18.2",
+    "ts-refactor": "0.0.9",
     "typescript": "^3.5.3"
   },
   "repository": "https://github.com/cancerberoSgx/ts-morph-playground"

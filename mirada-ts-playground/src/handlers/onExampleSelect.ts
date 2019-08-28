@@ -1,7 +1,7 @@
-import { getStore } from '../store/store'
+import { sleep } from 'misc-utils-of-mine-generic'
 import { setEditorFile } from '../monaco/monaco'
 import { State } from '../store/state'
-import { sleep } from 'misc-utils-of-mine-generic'
+import { getStore } from '../store/store'
 
 /** handle example changes and responsible of update state.code - nothing else */
 export function onExampleSelectedInstall() {

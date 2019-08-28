@@ -1,7 +1,7 @@
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
+import * as Mirada from 'mirada'
+declare var cv: Mirada.CV
 
-;(async () => {
+(async () => {
   const video = document.getElementById('videoInput')! as HTMLVideoElement
   const src = new cv.Mat(video.height, video.width, cv.CV_8UC4)
   const dst = new cv.Mat(video.height, video.width, cv.CV_8UC1)

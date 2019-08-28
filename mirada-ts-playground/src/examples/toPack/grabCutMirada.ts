@@ -1,6 +1,6 @@
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
-;(async () => {
+import * as Mirada from 'mirada'
+
+(async () => {
   // This example uses Mirada high level tool for grabCut
   const canvas = document.getElementById('outputCanvas')!
   var image = await Mirada.File.fromCanvas(canvas)

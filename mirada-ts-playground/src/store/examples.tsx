@@ -1,13 +1,14 @@
+import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
 import { dilate_ts } from '../examples/packed/dilate_ts'
+import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
 import { faceDetection_ts } from '../examples/packed/faceDetection_ts'
+import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
 import { fft_ts } from '../examples/packed/fft_ts'
 import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
-import { watershed_ts } from '../examples/packed/watershed_ts'
-import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
-import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
 import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts'
-import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
+import { trackbar_ts } from '../examples/packed/trackbar_ts'
 import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts'
+import { watershed_ts } from '../examples/packed/watershed_ts'
 
 export interface Example {
   name: string
@@ -15,6 +16,7 @@ export interface Example {
   tags: ExampleTag[]
   description: string
 }
+
 export enum ExampleTag {
   simple = 'simple',
   fft = 'fft',
@@ -22,7 +24,8 @@ export enum ExampleTag {
   fs = 'fs',
   grabCut = 'grabCut',
   feature = 'feature',
-  video = 'video'
+  video = 'video',
+  controls = "controls"
 }
 
 export function examples(): Example[] {
@@ -63,11 +66,16 @@ export function examples(): Example[] {
       code: lucasKanadeOpticalFlow_ts,
       description: 'TODO'
     },
-
     {
       name: '/fft.ts',
       tags: [ExampleTag.fft],
       code: fft_ts,
+      description: 'TODO'
+    },
+    {
+      name: '/trackbar.ts',
+      tags: [ExampleTag.controls],
+      code: trackbar_ts,
       description: 'TODO'
     },
     {

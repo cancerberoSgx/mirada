@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { getStore } from '../store/store'
 import { State } from '../store/state'
+import { getStore } from '../store/store'
 
-export interface AbstractProps {}
+export interface AbstractProps { }
 
 export class AbstractComponent<
   P extends AbstractProps = AbstractProps,
   S extends State = State
-> extends React.Component<P, S> {
+  > extends React.Component<P, S> {
   protected isRoot = true
 
   constructor(p: P, s: State) {

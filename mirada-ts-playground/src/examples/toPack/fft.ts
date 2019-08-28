@@ -1,6 +1,7 @@
-import * as Mirada_ from 'mirada'
-declare var Mirada: typeof Mirada_
-;(async () => {
+import * as Mirada from 'mirada'
+declare var cv: Mirada.CV
+
+(async () => {
   const src = await Mirada.fromUrl('lenna.jpg')
   cv.cvtColor(src, src, cv.COLOR_RGB2RGBA)
   cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0)

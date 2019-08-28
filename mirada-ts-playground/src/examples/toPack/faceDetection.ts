@@ -1,4 +1,4 @@
-;(async () => {
+(async () => {
   const canvas = document.getElementById('outputCanvas')!
   var src = await cv.imread(canvas)
   let gray = new cv.Mat()
@@ -7,7 +7,6 @@
   let eyes = new cv.RectVector()
   let faceCascade = new cv.CascadeClassifier()
   let eyeCascade = new cv.CascadeClassifier()
-
   async function loadDataFile(url: string, name?: string) {
     name = name || url.substring(url.lastIndexOf('/') + 1, url.length)
     // Heads up! we need to verify that the files don't already exists if not it throws!
@@ -21,11 +20,9 @@
   // the previous function take care of fetching them and creating the Files (emscripten FS).
   faceCascade.load(await loadDataFile('haarcascade_frontalface_default.xml'))
   eyeCascade.load(await loadDataFile('haarcascade_eye.xml'))
-
   // detect faces
   let mSize = new cv.Size(0, 0)
   faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, mSize, mSize)
-
   for (let i = 0; i < faces.size(); ++i) {
     let roiGray = gray.roi(faces.get(i))
     let roiSrc = src.roi(faces.get(i))
