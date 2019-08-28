@@ -1,10 +1,8 @@
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
-
 ;(async () => {
-
   // heads up - Mirada supports CameraHelper that simplify this code - but in this example we want to do it all manually
-  
+
   async function test() {
     const height = parseInt(videoInput.getAttribute('height')!)
     const width = parseInt(videoInput.getAttribute('width')!)

@@ -1,6 +1,5 @@
 import * as Mirada_ from 'mirada'
 declare var Mirada: typeof Mirada_
-
 ;(async () => {
   const src = await Mirada.fromUrl('coins.png')
   let dst = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3)

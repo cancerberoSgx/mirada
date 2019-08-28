@@ -7,6 +7,7 @@ import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
 import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
 import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts'
 import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
+import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts'
 
 export interface Example {
   name: string
@@ -56,12 +57,12 @@ export function examples(): Example[] {
       code: contourFunctionsShape_ts,
       description: 'TODO'
     },
-    //     {
-    //   name: '/lucasKanadeOpticalFlow.ts',
-    //   tags: [ExampleTag.video],
-    //   code: lucasKanadeOpticalFlow_ts,
-    //   description: 'TODO'
-    // },
+    {
+      name: '/lucasKanadeOpticalFlow.ts',
+      tags: [ExampleTag.video],
+      code: lucasKanadeOpticalFlow_ts,
+      description: 'TODO'
+    },
 
     {
       name: '/fft.ts',
@@ -73,6 +74,12 @@ export function examples(): Example[] {
       name: '/faceDetectionCamera.ts',
       tags: [ExampleTag.video],
       code: faceDetectionCamera_ts,
+      description: 'TODO'
+    },
+    {
+      name: '/videoDisplay.ts',
+      tags: [ExampleTag.video],
+      code: videoDisplay_ts,
       description: 'TODO'
     },
     {

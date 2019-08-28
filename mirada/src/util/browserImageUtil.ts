@@ -1,6 +1,6 @@
 import { toImageData } from '..'
 import { File } from '../file'
-import { Mat } from '../types/opencv'
+import { Mat, VideoCapture } from '../types/opencv'
 import { toRgba } from './imageUtil'
 import { arrayBufferToUrl } from './base64';
 
@@ -81,11 +81,10 @@ export class CameraHelper {
   streaming = false
   protected stream: MediaStream | undefined
   protected onCameraStartedCallback: ((stream?: MediaStream, videoInput?: HTMLVideoElement) => any) | undefined
-
   constructor(public videoInput: HTMLVideoElement, public outputCanvas: HTMLCanvasElement, public callback: () => void) {
     this.onVideoCanPlay = this.onVideoCanPlay.bind(this)
     this.onVideoStarted = this.onVideoStarted.bind(this)
-    this.onVideoStopped = this.onVideoStopped.bind(this)
+    this.onVideoStopped = this.onVideoStopped.bind(this) 
   }
   start() {
     if (!this.streaming) {
