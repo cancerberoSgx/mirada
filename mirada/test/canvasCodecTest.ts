@@ -1,11 +1,10 @@
 import test from 'ava'
-import { File, installFormatProxy, JimpCodec, loadFormatProxies, unInstallFormatProxies, unloadFormatProxies, loadOpencv, CanvasCodec } from '../src'
-import { loadMirada, createCanvas, loadDOM } from './testUtil'
-import fileType = require('file-type')
+import { Image, loadImage } from 'canvas'
+import { readFileSync, writeFileSync } from 'fs'
 import Jimp from 'jimp'
-import { sleep } from 'misc-utils-of-mine-generic';
-import { loadImage, Canvas, Image } from 'canvas';
-import { writeFileSync, readFileSync } from 'fs';
+import { CanvasCodec, File, installFormatProxy, loadFormatProxies, loadOpencv, unInstallFormatProxies, unloadFormatProxies } from '../src'
+import { createCanvas, loadDOM } from './testUtil'
+import fileType = require('file-type')
 
 test.before(async () => {
   loadDOM()

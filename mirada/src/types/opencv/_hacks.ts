@@ -74,7 +74,9 @@ export declare function FS_createDataFile(arg0: string, path: string, data: Uint
 
 declare class Vector<T> {
   get(i: number): T
+  get(i: number, j: number, data: any): T
   set(i: number, t: T): void
+  put(i: number, j: number, data: any): any
   size(): number
   push_back(n: T): any
   resize(count: number, value?: T): void
@@ -93,6 +95,7 @@ export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 export declare class RectVector extends Rect implements Vector<Rect>{
   get(i: number): Rect
   set(i: number, t: Rect): void
+  put(i: number, j: number, data: any): any
   size(): number
   push_back(n: Rect): void
   resize(count: number, value?: Rect | undefined): void

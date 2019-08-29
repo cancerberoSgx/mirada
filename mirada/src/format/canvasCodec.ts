@@ -1,8 +1,8 @@
-import { inBrowser, getMimeTypeForExtension, tryTo } from 'misc-utils-of-mine-generic'
+import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
 import { FormatCodec } from '../types/mirada'
+import { renderInCanvas } from '../util'
 import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
-import { toRgba, renderInCanvas } from '../util';
-import fileType = require('file-type');
+import fileType = require('file-type')
 
 /**
   Example of declaring a format codec that uses DOM canvas instance which must be provided by the user.
@@ -20,10 +20,10 @@ export class CanvasCodec implements FormatCodec {
   constructor() {
   }
   async decode(buffer: ArrayBuffer, format?: string): Promise<ImageData | undefined> {
-    let tt : fileType.FileTypeResult|undefined
-    const mime = format ?getMimeTypeForExtension(format): (tt=fileType(buffer))&&tt.mime || undefined
-    if(!mime){
-      return 
+    let tt: fileType.FileTypeResult | undefined
+    const mime = format ? getMimeTypeForExtension(format) : (tt = fileType(buffer)) && tt.mime || undefined
+    if (!mime) {
+      return
     }
     const { canvas, height, width } = await renderArrayBufferInCanvas(buffer, mime)
     var imgData = canvas!.getContext('2d')!.getImageData(0, 0, width, height)
@@ -32,28 +32,28 @@ export class CanvasCodec implements FormatCodec {
 
   async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {
     try {
-         const mat = cv.matFromImageData(data)
-        const canvas = renderInCanvas(mat)
-        mat.delete()
-        return new Promise((resolve, reject)=>{
-     canvas.toBlob(b=>{
-          if(!b){
+      const mat = cv.matFromImageData(data)
+      const canvas = renderInCanvas(mat)
+      mat.delete()
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(b => {
+          if (!b) {
             return resolve(undefined)
           }
-      const r = new FileReader()
-      r.onloadend = (a)=>{
-        resolve(r.result as any||undefined)
-      }
-      r.onerror = r.onabort = ()=>{
-        r.error ? reject(r.error) : resolve(undefined)
-      }
-      r.readAsArrayBuffer(b)
-        }, getMimeTypeForExtension(format)||'image/png' , quality)
+          const r = new FileReader()
+          r.onloadend = (a) => {
+            resolve(r.result as any || undefined)
+          }
+          r.onerror = r.onabort = () => {
+            r.error ? reject(r.error) : resolve(undefined)
+          }
+          r.readAsArrayBuffer(b)
+        }, getMimeTypeForExtension(format) || 'image/png', quality)
       })
     } catch (error) {
-      console.error(error);
-      
+      console.error(error)
+
     }
-     
+
   }
 }

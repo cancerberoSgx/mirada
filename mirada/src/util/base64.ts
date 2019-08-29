@@ -46,7 +46,7 @@ export function arrayBufferToBase64(buffer: ArrayBuffer) {
   var binary = arrayBufferToString(buffer)
   return btoa(binary)
 }
-export function arrayBufferToUrl(buffer: ArrayBuffer, mime: string, name?:string) {
+export function arrayBufferToUrl(buffer: ArrayBuffer, mime: string, name?: string) {
   var b64 = arrayBufferToBase64(buffer)
   return base64ToUrl(b64, mime, name)
 }

@@ -72,6 +72,7 @@ import { Mat, Point } from './opencv';
 const testErrorTs = `
 import './opencv'
 const m = new cv.Mat()
+var testCv = cv
 m.nonExistent()
 `.trim()
 

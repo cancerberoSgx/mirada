@@ -70,6 +70,5 @@ test('fft', async t => {
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
   t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaFft.png')), 0)
   src.delete(); padded.delete(); planes.delete(); complexI.delete(); m1.delete(); tmp.delete(); f.delete()
-
 })
 

@@ -9,6 +9,8 @@ import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOptical
 import { trackbar_ts } from '../examples/packed/trackbar_ts'
 import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts'
 import { watershed_ts } from '../examples/packed/watershed_ts'
+import { denseOpticalFlow_ts } from '../examples/packed/denseOpticalFlow_ts';
+import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts';
 
 export interface Example {
   name: string
@@ -25,7 +27,8 @@ export enum ExampleTag {
   grabCut = 'grabCut',
   feature = 'feature',
   video = 'video',
-  controls = "controls"
+  controls = "controls",
+  opticalFlow = "opticalFlow"
 }
 
 export function examples(): Example[] {
@@ -62,10 +65,24 @@ export function examples(): Example[] {
     },
     {
       name: '/lucasKanadeOpticalFlow.ts',
-      tags: [ExampleTag.video],
+      tags: [ExampleTag.video, ExampleTag.opticalFlow],
       code: lucasKanadeOpticalFlow_ts,
       description: 'TODO'
     },
+        {
+      name: '/denseOpticalFlow.ts',
+      tags: [ExampleTag.video, ExampleTag.opticalFlow],
+      code: denseOpticalFlow_ts,
+      description: 'TODO'
+    },
+            {
+      name: '/faceRecognOtherModelsTest.ts',
+      tags: [ExampleTag.video, ExampleTag.opticalFlow],
+      code: faceRecognOtherModelsTest_ts,
+      description: 'TODO'
+    },
+    
+
     {
       name: '/fft.ts',
       tags: [ExampleTag.fft],

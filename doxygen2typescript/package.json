@@ -33,15 +33,17 @@
     "@types/shelljs": "^0.8.5",
     "ava": "^2.3.0",
     "jimp": "^0.6.4",
+    "markdown-toc": "^1.2.0",
+    "npx": "^10.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.2"
   },
   "dependencies": {
     "jsdom": "^15.1.1",
     "misc-utils-of-mine-generic": "^0.2.29",
     "shelljs": "^0.8.3",
-    "ts-simple-ast-extra": "^0.3.10"
+    "ts-simple-ast-extra": "^0.3.11"
   },
   "repository": {
     "type": "git",

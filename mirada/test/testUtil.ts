@@ -1,8 +1,8 @@
-import { Canvas, createCanvas as createCanvas_, Image, ImageData, loadImage } from 'canvas'
+import { Canvas, createCanvas as createCanvas_, Image, ImageData } from 'canvas'
 import Jimp from 'jimp'
 import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
 import { getGlobal } from 'misc-utils-of-mine-generic'
-import { installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, unInstallFormatProxies, unloadFormatProxies } from '../src'
+import { installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv } from '../src'
 
 let loaded = false
 
@@ -35,10 +35,10 @@ export function loadDOM<T extends HTMLElement = HTMLElement>(body = '', selector
 <!DOCTYPE html><html>  <head>    <title>test</title>  </head>  <body>  ${body}  </body></html>`.trim()
   const dom = new JSDOM(html, { virtualConsole: new VirtualConsole() })
   const window = dom.window
-  getGlobal(). document =window.document
-  getGlobal(). atob =window.atob
-  getGlobal(). btoa =window.btoa
-  getGlobal(). FileReader = (window as any).FileReader
+  getGlobal().document = window.document
+  getGlobal().atob = window.atob
+  getGlobal().btoa = window.btoa
+  getGlobal().FileReader = (window as any).FileReader
   getGlobal().Image = require('canvas').Image
   const document = window.document
   const d: DomRepresentation = { window, document, el: document.querySelector<T>(selector || 'body') || document.body }

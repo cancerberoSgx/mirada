@@ -13,8 +13,8 @@ export async function installFormatProxy(proxy: FormatProxy) {
   proxies.push(proxy)
 }
 
-export async function unInstallFormatProxies( ) {
-  proxies.length=0
+export async function unInstallFormatProxies() {
+  proxies.length = 0
 }
 
 const proxies: FormatProxy[] = []
@@ -42,7 +42,7 @@ export async function loadFormatProxies() {
 }
 
 export function unloadFormatProxies() {
-  codecs.length=0
+  codecs.length = 0
 }
 
 export function getDefaultCodec() {
@@ -57,7 +57,7 @@ export async function decodeOrThrow(buffer: ArrayBuffer, format?: string) {
   const r = await getDefaultCodec().decode(buffer, format)
   checkThrow(r,
     `Fail to decode buffer. ${format ? `requested format: ${format}` : ''}. Detected format: ${File.getBufferFileType(buffer) && File.getBufferFileType(buffer).mime || 'unknown'}`)
-    return r as ImageData
+  return r as ImageData
 
 }
 
@@ -65,7 +65,7 @@ export async function encodeOrThrow(data: ImageData, format: string, quality?: n
   const r = await getDefaultCodec().encode(data, format, quality)
   checkThrow(r,
     'Fail to encode to requested format ' + format + '. Given: ' + format)
-    return r as ArrayBuffer
+  return r as ArrayBuffer
 }
 
 // function prop<T,S>(o:T, p:keyof T, map: S|((k:keyof T)=>S)):S {

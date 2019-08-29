@@ -87,12 +87,12 @@ export class File {
    */
   public static async fromArrayBuffer(buffer: ArrayBuffer, name?: string) {
     try {
-    name = name ||File.getBufferFileName(buffer)
-    const format = getFileExtension(name)
-    var data = await decodeOrThrow(buffer, format)
-    return File.fromData(data, name)
+      name = name || File.getBufferFileName(buffer)
+      const format = getFileExtension(name)
+      var data = await decodeOrThrow(buffer, format)
+      return File.fromData(data, name)
     } catch (error) {
-      console.error(error);
+      console.error(error)
       throw error
     }
   }

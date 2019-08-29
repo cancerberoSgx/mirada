@@ -1,8 +1,8 @@
 import { toImageData } from '..'
 import { File } from '../file'
-import { Mat, VideoCapture } from '../types/opencv'
+import { Mat } from '../types/opencv'
+import { arrayBufferToUrl } from './base64'
 import { toRgba } from './imageUtil'
-import { arrayBufferToUrl } from './base64';
 
 export async function fromInputFileElement(a: HTMLInputElement) {
   const files = await File.fromHtmlFileInputElement(a)
@@ -35,7 +35,7 @@ export function fetchImageData(url: string) {
   * This method is useful as a decoder for the browser without libraries
  */
 export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, name?: string, canvas?: HTMLCanvasElement, appendToBody = false): Promise<{ canvas: HTMLCanvasElement, width: number, height: number }> {
-const url =  arrayBufferToUrl(a, mime, name)
+  const url = arrayBufferToUrl(a, mime, name)
   var img = new Image()
   return new Promise(resolve => {
     img.onload = () => {
@@ -48,8 +48,8 @@ const url =  arrayBufferToUrl(a, mime, name)
       canvas!.getContext('2d')!.drawImage(img, 0, 0)
       resolve({ canvas, width: img.naturalWidth, height: img.naturalHeight })
     }
-    img.onerror=(e)=>{
-      console.log('ERROR', e);
+    img.onerror = (e) => {
+      console.log('ERROR', e)
     }
     img.src = url
   })
@@ -84,7 +84,7 @@ export class CameraHelper {
   constructor(public videoInput: HTMLVideoElement, public outputCanvas: HTMLCanvasElement, public callback: () => void) {
     this.onVideoCanPlay = this.onVideoCanPlay.bind(this)
     this.onVideoStarted = this.onVideoStarted.bind(this)
-    this.onVideoStopped = this.onVideoStopped.bind(this) 
+    this.onVideoStopped = this.onVideoStopped.bind(this)
   }
   start() {
     if (!this.streaming) {
