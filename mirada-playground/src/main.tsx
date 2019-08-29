@@ -32,7 +32,6 @@ async function main() {
     working: false
   })
   await start()
-  // const tool = new ImageSelect
 }
 
 main()

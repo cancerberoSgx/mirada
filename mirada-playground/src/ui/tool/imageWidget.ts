@@ -1,18 +1,19 @@
 import { tryTo } from 'misc-utils-of-mine-generic';
-import * as cv from 'mirada'
-import { Tool } from './selectRectTool';
-import { renderInCanvas } from 'mirada';
+// import * as cv from 'mirada'
+import { Tool, Region } from './selectRectTool';
+import { renderInCanvas, Mat, File   } from 'mirada';
 
 export class ImageWidget {
-  protected buffer: cv.Mat;
+  protected buffer: Mat;
 
   protected images: {
-    [n: string]: ImageFile;
+    [n: string]: File;
   } = {};
   protected activeTool: Tool|undefined
 
-  constructor(public readonly  canvas: HTMLCanvasElement, private image: ImageFile) {
+  constructor(public readonly  canvas: HTMLCanvasElement, private image: File) {
     this.buffer = this.image.mat.clone();
+    this.load(this.image)
   }
 
   save(n: string = this.image.name) {
@@ -22,11 +23,11 @@ export class ImageWidget {
     this.images[n] = this.image;
   }
 
-  load(i: ImageFile | string) {
+  load(i: File | string) {
     if (typeof i === 'string' && this.images[i]) {
       this.image = this.images[i];
     }
-    if (ImageFile.isFile(i)) {
+    if (File.isFile(i)) {
       this.image = i;
       this.images[this.image.name] = this.image;
     }
@@ -34,9 +35,9 @@ export class ImageWidget {
     this.canvas.height = this.buffer.rows;
     this.render();
   }
-  public render(r?: R) {
+  public render(r?: Region) {
     if(r){
-     renderInCanvas(this.buffer, {canvas:this.canvas, forceSameSize: false, region: {...r}})
+     renderInCanvas(this.buffer, {canvas:this.canvas, forceSameSize: true, region: r})
     }else {
     cv.imshow(this.canvas, this.buffer);
     }
@@ -55,20 +56,8 @@ export class ImageWidget {
     // t.canvas =this.canvas
   // }
 }
-interface R {
-  // pt1: cv.Point;
-  // pt2: cv.Point;
-  x: number
-  y:number
-  width:number
-  height:number
-  color?: any;
-  thickness?: any;
-  lineType?: any;
-  shift?: any;
-}
 
-class ImageFile extends cv.File {
+// class File extends File {
   // get width() {
   //   return this.mat.cols;
   // }
@@ -78,4 +67,4 @@ class ImageFile extends cv.File {
   // get image() {
   //   return this.mat;
   // }
-}
+// }

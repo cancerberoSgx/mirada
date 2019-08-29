@@ -50,7 +50,7 @@ export interface Options {
   rgba?: boolean;
   canvas?: HTMLCanvasElement;
   region?: Rect;
-  regionDirtyPosition?: Point;
+  // regionDirtyPosition?: Point;
   clear?: boolean;
   forceSameSize?: boolean;
 }
@@ -81,7 +81,7 @@ export function renderInCanvas(mat: Mat, options?: Options): HTMLCanvasElement {
     ctx.putImageData(imgData, 0, 0)
   }
   else {
-    ctx.putImageData(imgData, options.region.x, options.region.y, options.regionDirtyPosition && options.regionDirtyPosition.x || options.region.x, options.regionDirtyPosition && options.regionDirtyPosition.y || options.region.y, options.region.width, options.region.height)
+    ctx.putImageData(imgData, options.region.x, options.region.y,  options.region.x,  options.region.y, options.region.width, options.region.height)
   }
   options.rgba && img.delete()
   return options.canvas

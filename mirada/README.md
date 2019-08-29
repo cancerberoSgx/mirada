@@ -44,6 +44,7 @@ See [mirada-cli project page](../mirada-cli).
 
 ## TODO
 - [ ] docs
+- [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/
 - [ ] include recording in playgrounds: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element
 - [ ] camera helpers ../mirada-ts-playground/src/examples/toPack/faceDetectionCamera.ts
 - [ ] make an example FormatProxy for loading svg
