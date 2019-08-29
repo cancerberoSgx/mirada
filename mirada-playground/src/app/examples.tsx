@@ -1,15 +1,15 @@
 export function examples(): Example[] {
   return [
     {
-       name: 'test', 
-    tags: [ExampleTag.test] ,
-    code: `TODO`
+      name: 'test',
+      tags: [ExampleTag.test],
+      code: `TODO`
     },
     {
-       name: 'grabCut', 
-       tags: [ExampleTag.grabCut] ,
-        code: `TODO`
-       }
+      name: 'grabCut',
+      tags: [ExampleTag.grabCut],
+      code: `TODO`
+    }
   ]
 }
 export interface Example {

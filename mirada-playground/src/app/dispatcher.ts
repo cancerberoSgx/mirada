@@ -1,6 +1,16 @@
 
-import { Example } from "./examples";
-import { getStore } from './store';
+import { Example } from "./examples"
+import { getStore } from './store'
+
+
+
+export async function setExample(example?: Example) {
+  var state = getStore().getState()
+  getStore().setState({
+    working: true,
+  })
+  const script = example ? example.code : state.code
+}
 
 
 
@@ -23,29 +33,3 @@ import { getStore } from './store';
 //     })
 //   }
 // }
-
-export async function setExample(example?: Example) {
-  var state = getStore().getState()
-  //   var fields = example && example.fields ? example.fields : state.fields || []
-  getStore().setState({
-    working: true,
-    // fields,
-  })
-  //   var inputFiles = [...await serial((example ? example.inputFiles : state.inputFiles.map(f => f.name)).filter(f => !state.inputFiles.find(f2 => f2.name == f)).map(file => async () => File.fromUrl(file))), ...state.inputFiles].filter(notUndefined)
-  const script = example ? example.code : state.code
-  // var result = await callRun({
-  //   code,
-  //   inputFiles,
-  //   fields: arrayToObject(fields.map(f => f.id), f => { var f3 = fields.find(f2 => f2.id === f); return f3 ? f3.value : undefined })
-  // })
-  // getStore().setState({
-  //   example: example || state.example,
-  //   code,
-  //   result,
-  //   fields,
-  //   inputFiles,
-  //   working: false
-  // })
-  // await sleep(100)
-}
-

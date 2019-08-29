@@ -1,14 +1,12 @@
-// import { ExampleTag } from 'magica-examples'
 import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
 import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
 import { Dropdown, Menu, Modal } from 'semantic-ui-react'
 import { setExample } from '../app/dispatcher'
+import { ExampleTag } from "../app/examples"
 import { About } from './about'
 import { AbstractComponent } from './common/component'
-import { memoryReport, printMs } from "./common/util"
-import { ExampleTag } from "../app/examples";
-import { test } from './app';
+import { memoryReport } from "./common/util"
 
 export class Header extends AbstractComponent {
 
@@ -31,6 +29,8 @@ export class Header extends AbstractComponent {
   memEl: HTMLDivElement | null = null;
 
   render() {
+    console.log('header')
+
     return <Menu inverted fixed="top" id="header">
       <Dropdown text='Examples' pointing className='link item'>
         <Dropdown.Menu>
@@ -43,7 +43,7 @@ export class Header extends AbstractComponent {
           </Dropdown.Item>
 
           <Dropdown.Divider />
-          <Dropdown.Header>Categories ({enumNoValueKeys(ExampleTag ).length})</Dropdown.Header>
+          <Dropdown.Header>Categories ({enumNoValueKeys(ExampleTag).length})</Dropdown.Header>
           {enumKeys(ExampleTag).map(tag =>
             <Dropdown.Item key={tag}>
               <Dropdown text={tag} fluid>
@@ -59,9 +59,9 @@ export class Header extends AbstractComponent {
       </Dropdown>
 
       <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
-     
+
       <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
-           <Menu.Item >  <button onClick={test}>click me</button></Menu.Item>
+      {/* <Menu.Item >  <button onClick={test}>click me</button></Menu.Item> */}
 
       <Menu.Menu position="right">
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>
