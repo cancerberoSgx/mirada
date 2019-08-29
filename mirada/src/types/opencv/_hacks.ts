@@ -27,13 +27,11 @@ export declare class Point {
   public y: number;
 }
 
-
 export declare class Size {
   public constructor(width: number, height: number);
   public width: number;
   public height: number;
 }
-
 
 export declare class Rect {
   public constructor();
@@ -44,7 +42,6 @@ export declare class Rect {
   public width: number;
   public height: number;
 }
-
 
 export declare class TermCriteria {
   public type: number

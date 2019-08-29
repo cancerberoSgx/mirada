@@ -1,5 +1,4 @@
-import { File, grabCut, renderInCanvas } from 'mirada';
-import { Mat } from 'mirada/dist/src/types/opencv';
+import { File, renderInCanvas, tool, Mat,  } from 'mirada';
 import { sleep } from 'misc-utils-of-mine-generic';
 import * as React from 'react';
 import { Container } from 'semantic-ui-react';
@@ -20,7 +19,7 @@ export const App = () => <div>
 let image: File
 export async function start() {
   image = await File.fromUrl('lenna.jpg')
-  await renderInCanvas(image.asMat(), document.querySelector<HTMLCanvasElement>('#inputCanvas')!)
+  await renderInCanvas(image.asMat(), {canvas: document.querySelector<HTMLCanvasElement>('#inputCanvas')!})
 }
 
 interface Options {
@@ -40,11 +39,11 @@ export async function test() {
 }
 
 export async function grabCutExample(o: Options) {
-  const result = await grabCut({
+  const result = await tool.grabCut({
     image: File.fromMat(o.src),
     x: 50, y: 50, width: 260, height: 280
   })
   const m = cv.matFromImageData(result.image)
-  await renderInCanvas(m, o.canvas)
+  await renderInCanvas(m, o)
   m.delete()
 }

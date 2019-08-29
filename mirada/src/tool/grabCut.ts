@@ -11,7 +11,7 @@ export interface GrabCutOptions extends Rect {
   frameColor?: Scalar
 }
 
-interface GrabCutResult {
+export interface GrabCutResult {
   image: ImageData
 }
 

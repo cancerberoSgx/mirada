@@ -1,4 +1,4 @@
-import * as Mirada from 'mirada'
+import * as Mirada from 'mirada';
 
 (async () => {
   // This example uses Mirada high level tool for grabCut

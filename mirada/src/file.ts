@@ -12,14 +12,14 @@ import fileType = require('file-type')
  * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.
  */
 export class File {
-  constructor(public readonly name: string, protected mat: Mat) {
+  constructor(public readonly name: string, protected _mat: Mat) {
 
   }
 
   size() {
     return {
-      width: this.mat.cols,
-      height: this.mat.rows
+      width: this._mat.cols,
+      height: this._mat.rows
     }
   }
 
@@ -32,15 +32,27 @@ export class File {
   }
 
   asMat(): Mat {
-    return this.mat
+    return this._mat
   }
 
   asImageData(): ImageData {
-    return toImageData(this.mat)
+    return toImageData(this._mat)
   }
 
   asDataUrl() {
     return 'data:' + this.getMimeType() + ';' + this.name + ';base64,' + this.asBase64()
+  }
+
+  get width() {
+    return this._mat.cols
+  }
+
+  get height() {
+    return this._mat.rows
+  }
+
+  get mat() {
+    return this._mat
   }
 
   /**
@@ -71,7 +83,7 @@ export class File {
   }
 
   delete(): any {
-    this.mat && this.mat.delete()
+    this._mat && this._mat.delete()
   }
 
   /** 
@@ -171,7 +183,7 @@ export class File {
         }
       }
       else {
-        ok(ArrayBuffer.isView(f.mat.data.buffer))
+        ok(ArrayBuffer.isView(f._mat.data.buffer))
         return f
       }
     }))
@@ -179,7 +191,7 @@ export class File {
   }
 
   public static isFile(f: any): f is File {
-    return !!f && !!(f as File).name && !!(f as File).mat && !!(f as File).mat.data &&
+    return !!f && !!(f as File).name && !!(f as File)._mat && !!(f as File)._mat.data &&
       typeof (f as File).constructor !== 'undefined' && !!(f as File).asImageData && !!(f as File).asMat
   }
 

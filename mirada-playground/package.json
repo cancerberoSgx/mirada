@@ -29,9 +29,10 @@
     "babel-polyfill": "^6.26.0",
     "parcel": "^1.12.3",
     "ts-refactor": "0.0.9",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.2"
   },
   "dependencies": {
+    "magica": "^0.2.14",
     "mirada": "file:../mirada",
     "misc-utils-of-mine-generic": "^0.2.29",
     "react": "^16.9.0",

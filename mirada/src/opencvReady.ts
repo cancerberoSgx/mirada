@@ -83,7 +83,6 @@ function loadOpencvNode(o: LoadOptions = {}) {
   })
 }
 
-
 async function finishSetup() {
   opencvLoaded = true
   await loadFormatProxies()

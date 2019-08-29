@@ -1,7 +1,9 @@
 import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
+import { denseOpticalFlow_ts } from '../examples/packed/denseOpticalFlow_ts'
 import { dilate_ts } from '../examples/packed/dilate_ts'
 import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
 import { faceDetection_ts } from '../examples/packed/faceDetection_ts'
+import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts'
 import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
 import { fft_ts } from '../examples/packed/fft_ts'
 import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
@@ -9,8 +11,7 @@ import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOptical
 import { trackbar_ts } from '../examples/packed/trackbar_ts'
 import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts'
 import { watershed_ts } from '../examples/packed/watershed_ts'
-import { denseOpticalFlow_ts } from '../examples/packed/denseOpticalFlow_ts';
-import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts';
+import { dnnHighLevelGeneration_ts } from '../examples/packed/dnnHighLevelGeneration_ts';
 
 export interface Example {
   name: string
@@ -28,7 +29,8 @@ export enum ExampleTag {
   feature = 'feature',
   video = 'video',
   controls = "controls",
-  opticalFlow = "opticalFlow"
+  opticalFlow = "opticalFlow",
+  dnn = "dnn"
 }
 
 export function examples(): Example[] {
@@ -69,19 +71,26 @@ export function examples(): Example[] {
       code: lucasKanadeOpticalFlow_ts,
       description: 'TODO'
     },
-        {
+    {
+      name: '/dnnHighLevelGeneration.ts',
+      tags: [ExampleTag.dnn],
+      code: dnnHighLevelGeneration_ts,
+      description: 'TODO'
+    },
+
+    {
       name: '/denseOpticalFlow.ts',
       tags: [ExampleTag.video, ExampleTag.opticalFlow],
       code: denseOpticalFlow_ts,
       description: 'TODO'
     },
-            {
+    {
       name: '/faceRecognOtherModelsTest.ts',
       tags: [ExampleTag.video, ExampleTag.opticalFlow],
       code: faceRecognOtherModelsTest_ts,
       description: 'TODO'
     },
-    
+
 
     {
       name: '/fft.ts',

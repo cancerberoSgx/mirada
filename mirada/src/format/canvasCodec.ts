@@ -1,7 +1,6 @@
 import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
+import { renderArrayBufferInCanvas, renderInCanvas } from "../browser/canvasRender"
 import { FormatCodec } from '../types/mirada'
-import { renderInCanvas } from '../util'
-import { renderArrayBufferInCanvas } from '../util/browserImageUtil'
 import fileType = require('file-type')
 
 /**
@@ -19,6 +18,7 @@ class JimpProxy implements FormatProxyClass {
 export class CanvasCodec implements FormatCodec {
   constructor() {
   }
+
   async decode(buffer: ArrayBuffer, format?: string): Promise<ImageData | undefined> {
     let tt: fileType.FileTypeResult | undefined
     const mime = format ? getMimeTypeForExtension(format) : (tt = fileType(buffer)) && tt.mime || undefined
@@ -33,7 +33,7 @@ export class CanvasCodec implements FormatCodec {
   async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {
     try {
       const mat = cv.matFromImageData(data)
-      const canvas = renderInCanvas(mat)
+      const canvas = renderInCanvas(mat, { forceSameSize: true, rgba: true })
       mat.delete()
       return new Promise((resolve, reject) => {
         canvas.toBlob(b => {
@@ -52,8 +52,6 @@ export class CanvasCodec implements FormatCodec {
       })
     } catch (error) {
       console.error(error)
-
     }
-
   }
 }

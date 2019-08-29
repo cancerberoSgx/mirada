@@ -1,4 +1,3 @@
-import { grabCut } from './grabCut'
-export const tool = {
-  grabCut
-}
+import * as grabCut from './grabCut'
+
+export const tool = { ...grabCut }

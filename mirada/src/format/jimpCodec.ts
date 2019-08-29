@@ -5,7 +5,9 @@ type AnyConstructor = {
   [a: string]: any
   new(...args: any[]): any
 }
+
 type Jimp = AnyConstructor
+
 /**
   Example of declaring a Jimp proxy as a class
   
@@ -21,10 +23,12 @@ class JimpProxy implements FormatProxyClass {
 export class JimpCodec implements FormatCodec {
   constructor(protected jimp: Jimp) {
   }
+
   async decode(buffer: ArrayBuffer): Promise<ImageData | undefined> {
     const img = await this.jimp.create(Buffer.from(buffer))
     return img.bitmap
   }
+
   async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {
     const mime = getMimeTypeForExtension(format)
     if (!mime) {
