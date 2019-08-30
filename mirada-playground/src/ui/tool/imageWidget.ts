@@ -1,6 +1,6 @@
 import { File, Mat, renderInCanvas } from 'mirada'
 import { tryTo } from 'misc-utils-of-mine-generic'
-import { Rectangle } from "./tool"
+import { Rectangle } from '../../app/state';
 
 export class ImageWidget {
   protected buffer: Mat;
@@ -33,11 +33,11 @@ export class ImageWidget {
     this.canvas.height = this.buffer.rows
     this.render()
   }
-  public render(r?: Rectangle) {
+  public async render(r?: Rectangle) {
     if (r) {
-      renderInCanvas(this.buffer, { canvas: this.canvas, forceSameSize: true, region: r })
+      await renderInCanvas(this.buffer, { canvas: this.canvas, forceSameSize: true, region: r })
     } else {
-      cv.imshow(this.canvas, this.buffer)
+     await  cv.imshow(this.canvas, this.buffer)
     }
   }
 }

@@ -1,23 +1,62 @@
 import { ImageWidget } from './imageWidget'
 import { AbstractTool } from './tool'
+import { File,  tool} from 'mirada';
+import { GrabCutView } from './grabCutView';
+import { StateChangeType, SelectionChangeListener, SelectionChangeEvent, addStateChangeListener } from '../../app/stateChangeExpert';
+
 interface Options {
 
 }
 
-export class GrabCut extends AbstractTool {
+
+export class GrabCut extends AbstractTool<GrabCutView> {
   protected canvasOffset = { x: 0, y: 0 }
+static NAME = 'Grab Cut'
+static DESCRIPTION = `Intelligent way of removing the background. It doesn't need to be a solid color!. Use the selection tools to define the important regions`
   protected rect = { x: 0, y: 0, width: 0, height: 0 }
   protected drag = false
 
+
+async selectionChangeListener(e: SelectionChangeEvent){
+  const image = await File.fromFile('test/assets/lenna.jpg')
+  const result = await cv.grabCutt({
+    image,
+    x: 50,
+    y: 50,
+    width: 260,
+    height: 280
+  })
+  // const f = File.fromData(result.image, 'result.png')
+  // t.deepEqual(f.size(), { width: 400, height: 400 })
+  // t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
+  // t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaGrabCut.png')), 0)
+  image.delete()
+  f.delete()
+}
+
+// <T extends StateChangeType<T extends StateChangeType>(e: StateChangeEvent<T>)
   constructor(protected image: ImageWidget, options?: Options) {
     super(image, options)
-    this.name = 'Grab Cut'
-    this.description = `Intelligent way of removing the background. It doesn't need to be a solid color!. Use the selection tools to define the important regions`
+    this.name = GrabCut.NAME
+    this.description = GrabCut.DESCRIPTION
+    this.viewClass= GrabCutView
+// this.selectionChangeListener = this.selectionChangeListener.bind(this)
+this.selectionChangeListener = this.selectionChangeListener.bind(this)
+    addStateChangeListener('selectionChanged', {
+  type: 'selectionChanged', 
+  fn: this.selectionChangeListener
+    })
+    // this.installView(GrabCutView)
     // this.onMouseDown = this.onMouseDown.bind(this)
     // this.onMouseUp = this.onMouseUp.bind(this)
     // this.onMouseMove = throttle(this.onMouseMove.bind(this), this.options.mouseMoveThrottle)
   }
 
+  // getView(){
+    // const view:GrabCutView = new GrabCutView({}, this.getState(), this)
+    // return view
+    // t
+  // }
   // public  setActive(b: boolean) {
   //   super.setActive(b)
   // if (!b) {

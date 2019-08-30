@@ -7,8 +7,8 @@
     "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
-    "start": " npm run build-only && npx parcel serve src/index.html -d docs ",
-    "copy": "mkdir -p docs; cp node_modules/mirada/dist/src/opencv.js static/* docs",
+    "start": " npm run build-only && npx parcel serve src/index.html -d dist ",
+    "copy": "mkdir -p dist docs; cp node_modules/mirada/dist/src/opencv.js static/* dist &&  cp node_modules/mirada/dist/src/opencv.js static/* docs",
     "build": "npm run clean  && npm run build-only && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/index.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && rm -rf ../../demos/docs/mirada-playground && mkdir -p ../../demos/docs/mirada-playground &&  mv docs/* ../../demos/docs/mirada-playground/",
     "build-only": "P=$PWD &&  cd ../mirada && npm run build && npm run copy && cd \"$P\" && npx tsc && npm run copy ",
     "all": "npm run clean && npm run lint && npm run build"

@@ -1,6 +1,8 @@
 import { ImageWidget } from '../ui/tool/imageWidget'
 import { Tool, tools } from '../ui/tool/tool'
 import { Example, examples } from './examples'
+import { ToolView } from '../ui/tool/toolView';
+import { SelectRectTool } from '../ui/tool/selectRectTool';
 
 export interface State {
   example: Example
@@ -8,11 +10,21 @@ export interface State {
   examples: Example[];
   code: string
   working: boolean
-  // tool: Tool,
-  tools: Tool[]
-  activeTools: Tool[]
+  tools: Tool<ToolView>[]
+  activeTools: Tool<ToolView>[]
   image: ImageWidget
-  // fields: ExampleField[]
+  selection: Selection
+   showToolInitialTip: boolean
+   
+  grabCutTool: {
+
+  }
+    selectRectTool: SelectRectToolState
+}
+
+interface Selection {
+  rectangles: Rectangle[]
+    selectionModel: 'exclusive'|'union',
 }
 
 export async function getInitialState(): Promise<State> {
@@ -24,10 +36,19 @@ export async function getInitialState(): Promise<State> {
     code: '',
     working: true,
     activeTools: [tools[0]],
+    showToolInitialTip: true,
     tools,
-    image: null as any
-    // fields: []
+    selection: { rectangles: [], 
+    selectionModel: 'exclusive', },
+    image: null as any,
+      selectRectTool: {
+      },
+       grabCutTool: {firstTime: true}
   }
+}
+
+interface SelectRectToolState {
+
 }
 
 export interface Field {
@@ -35,9 +56,9 @@ export interface Field {
   value: string
 }
 
-// export interface ParserError {
-//   line: number
-//   column: number
-//   msg: string
-//   e: any
-// }
+export interface Rectangle {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}

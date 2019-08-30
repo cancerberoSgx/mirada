@@ -1,4 +1,4 @@
-import * as cv from 'mirada'
+import * as cv from 'mirada';
 
 (async () => {
   const canvas = document.getElementById('outputCanvas')!

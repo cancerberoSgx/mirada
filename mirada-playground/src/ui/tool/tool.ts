@@ -1,20 +1,39 @@
-import { Emitter, unique } from 'misc-utils-of-mine-generic'
-import { State } from '../../app/state'
+import { Emitter, unique, checkThrow } from 'misc-utils-of-mine-generic'
+import { State, Rectangle } from '../../app/state'
 import { getStore } from '../../app/store'
 import { ImageWidget } from './imageWidget'
+import { notUndefined } from 'misc-utils-of-mine-typescript';
+import { AbstractComponent } from '../common/component';
+import { ToolView } from './toolView';
 
-export interface Tool extends Emitter {
+export interface Tool<V extends ToolView = ToolView> extends Emitter {
   setActive(b: boolean): void;
   active: boolean;
   name: string
   description: string
+  // getView():  ()=>V 
+  viewClass: typeof ToolView 
 }
 
-export abstract class AbstractTool extends Emitter implements Tool {
+export abstract class AbstractTool<V extends ToolView = ToolView> extends Emitter implements Tool<V> {
   active = false;
+  view: V = null as any
+viewClass: typeof ToolView = null as any
+//  getView(): ()=>V {
+//    checkThrow(this.viewClass, 'Expected to have a view class, ')
+//    if(!this.view ){
+//      this.view = new (this.viewClass as any)({}, this.state, this)
+//    }
+//    return ()=>this.view
+// }
+
+  // protected installView(v: typeof ToolView) {
+  //   this.viewClass = new (v as any)({}, this.state, this)
+  // }
+
   name = unique('abstractTool')
-  protected ctx: CanvasRenderingContext2D;
   description = 'TODO'
+  protected ctx: CanvasRenderingContext2D;
   protected options: Required<Options>
   constructor(protected image: ImageWidget, options?: Options) {
     super()
@@ -23,8 +42,10 @@ export abstract class AbstractTool extends Emitter implements Tool {
   }
   setActive(b: boolean) {
     this.active = b
+    const activeTools = [...this.state.activeTools.filter(t => t !== this), ...(b ? [this] : [])].filter(notUndefined)
+    debugger
     this.setState({
-      activeTools: [...this.state.activeTools.filter(t => t !== this), ...b ? [this] : []]
+      activeTools
     })
   }
   add(l: (e: SelectionEvent<'selection'>) => void) {
@@ -42,7 +63,7 @@ type Events = 'selection'
 
 interface SelectionEvent<N extends Events> {
   name: N;
-  rect: Rectangle;
+  rect: Rectangle
 }
 
 export interface Options {
@@ -57,13 +78,6 @@ export const defaultToolOptions: Required<Options> = {
   lineWidth: 10,
   fillStyle: 'rgba(100,200,90, .5)',
   mouseMoveThrottle: 50
-}
-
-export interface Rectangle {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
 }
 
 export const tools: Tool[] = []

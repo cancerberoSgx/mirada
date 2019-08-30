@@ -18,6 +18,9 @@ export function memoryReport() {
 }
 
 
+export type Fn<args extends any[] = any[], returnValue extends  any=any> = (...args: args)=>returnValue
+
+
 // export function asDataUrl(f: IFile): string | undefined {
 //   var mime = f.name.endsWith('png') ? 'image/png' : 'image/jpeg'
 //   return 'data:' + mime + ';' + f.name + ';base64,' + File.toBase64(File.asFile(f))

@@ -1,4 +1,4 @@
-import * as monaco from 'monaco-editor'
+// import * as monaco from 'monaco-editor'
 // import { getMonacoDefinitionAtPosition } from './tsWorker'
 
 // let definitionProviderRegistered = false
@@ -10,10 +10,10 @@ import * as monaco from 'monaco-editor'
  * onMouseUp listener that checks against the last provided definition in that position and set a new model to
  * the editor, revealing position and selecting the target Range.
  */
-export function install(
-  editor: monaco.editor.ICodeEditor,
-  fn: (editor: monaco.editor.ICodeEditor, model: monaco.editor.IModel, def: monaco.languages.Location) => void
-) {
+// export function install(
+//   editor: monaco.editor.ICodeEditor,
+//   fn: (editor: monaco.editor.ICodeEditor, model: monaco.editor.IModel, def: monaco.languages.Location) => void
+// ) {
   // if (!definitionProviderRegistered) {
   //   monaco!.languages.registerDefinitionProvider('typescript', {
   //     provideDefinition(model, position, token) {
@@ -42,4 +42,4 @@ export function install(
   //     }
   //   }
   // })
-}
+// }

@@ -1,4 +1,4 @@
-import { Mat, Point, Rect } from '../types/opencv'
+import { Mat, Rect } from '../types/opencv'
 import { arrayBufferToUrl } from '../util/base64'
 import { toRgba } from '../util/imageUtil'
 import { getHtmlImageData } from './imageCreation'
@@ -81,7 +81,7 @@ export function renderInCanvas(mat: Mat, options?: Options): HTMLCanvasElement {
     ctx.putImageData(imgData, 0, 0)
   }
   else {
-    ctx.putImageData(imgData, options.region.x, options.region.y,  options.region.x,  options.region.y, options.region.width, options.region.height)
+    ctx.putImageData(imgData, options.region.x, options.region.y, options.region.x, options.region.y, options.region.width, options.region.height)
   }
   options.rgba && img.delete()
   return options.canvas

@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { ForkRibbon } from './forkRibbon'
+import { ForkRibbon } from '../util/forkRibbon'
 import { Header } from './header'
 import './styles.css'
+
+// this is not a component on purpose so react doesn't touch the DOM around our canvas
 export const App = () => (
   <article>
     <ForkRibbon />
@@ -10,11 +12,12 @@ export const App = () => (
       <div className="editor">
         <div id="editorContainer" />
       </div>
-      <div className="output">
-        <canvas id="outputCanvas" width="400" height="400"></canvas>
-        <video id="videoInput" width="320" height="240" muted></video>
+      <div id="outputContainer" className="output">
+        <div className="wrapper">
+          <canvas id="outputCanvas" width="400" height="400"/>
+        <video id="videoInput" width="320" height="240" muted/>
+        </div>
       </div>
     </div>
-    <ForkRibbon />
   </article>
 )

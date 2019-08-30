@@ -15,9 +15,11 @@ declare var cv: Mirada.CV
     cv.imshow(canvas, dst)
   }
   trackbar.addEventListener('input', listener)
+
+  await sleep(600)
   listener()
-  setTimeout(() => {
-    trackbar.removeEventListener('input', listener)
-    document.getElementById('trackbar')!.remove()
-  }, 10000)
+  await sleep(12000)
+  trackbar.removeEventListener('input', listener)
+  document.getElementById('trackbar')!.remove()
+  async function sleep(ms = 1000) { await new Promise(resolve => setTimeout(resolve, ms)) }
 })()

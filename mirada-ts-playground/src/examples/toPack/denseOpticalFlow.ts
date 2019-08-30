@@ -1,4 +1,5 @@
-import * as cv from 'mirada';
+import * as cv from 'mirada'
+import * as Mirada from 'mirada';
 
 (async () => {
   let video = document.getElementById('videoInput')! as HTMLVideoElement
@@ -27,7 +28,7 @@ import * as cv from 'mirada';
   let rgb = new cv.Mat(video.height, video.width, cv.CV_8UC3)
 
   const FPS = 30
-  const videoHelper = new cv.CameraHelper(video, canvas, processVideo)
+  const videoHelper = new Mirada.CameraHelper(video, canvas, processVideo)
   function processVideo() {
     try {
       if (!videoHelper.streaming) {

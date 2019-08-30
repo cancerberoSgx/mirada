@@ -1,5 +1,11 @@
+// It takes a while the first time to load the external training models !
+// Ported from https://github.com/opencv/opencv/blob/master/samples/dnn/js_face_recognition.html
+// Notice that the other live video examples behave much better but this one is interesting
+// since it consumes dmm models from other third parties / formats and external urls.
+
 import * as cv from 'mirada'
 import * as Mirada from 'mirada';
+
 
 (async () => {
 
@@ -62,6 +68,10 @@ import * as Mirada from 'mirada';
   }
   //! [Recognize]
 
+  // Load a couple of dnn trained models from external urls (for which cors is allowed)
+  // Notice we here use async/await instead callbacks and again loadDataFile() to make 
+  // sure the files are written to given path. Models have different formats and are loaded with
+  // cv.readNetFromCaffe and cv.readNetFromTorch 
   async function loadModels() {
     await Mirada.loadDataFile('https://raw.githubusercontent.com/opencv/opencv/master/samples/dnn/face_detector/deploy_lowres.prototxt', 'face_detector.prototxt')
     await Mirada.loadDataFile('https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel', 'face_detector.caffemodel')
@@ -69,6 +79,10 @@ import * as Mirada from 'mirada';
     netDet = cv.readNetFromCaffe('face_detector.prototxt', 'face_detector.caffemodel')
     netRecogn = cv.readNetFromTorch('face_recognition.t7')
   }
+
+  // What follows take care of reading the camera and execute the operations - we could use 
+  // Mirada's Camera helper but I choose to leave the plain code for documentation purposes.
+
   // Create a camera object.
   var output = document.getElementById('outputCanvas')! as HTMLCanvasElement
   var camera = document.getElementById("videoInput")! as HTMLVideoElement
@@ -77,9 +91,9 @@ import * as Mirada from 'mirada';
 
   // Get a permission from user to use a camera.
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    .then(function (stream) {
+    .then(function(stream) {
       camera.srcObject = stream
-      camera.onloadedmetadata = function (e) {
+      camera.onloadedmetadata = function(e) {
         camera.play()
       }
     })
@@ -88,8 +102,6 @@ import * as Mirada from 'mirada';
   var cap = new cv.VideoCapture(camera)
   var frame = new cv.Mat(camera.height, camera.width, cv.CV_8UC4)
   var frameBGR = new cv.Mat(camera.height, camera.width, cv.CV_8UC3)
-  //! [Open a camera stream]
-
   //! [Define frames processing]
   var isRunning = false
   const FPS = 30  // Target number of frames processed per second.
@@ -99,12 +111,14 @@ import * as Mirada from 'mirada';
     cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR)
 
     var faces = detectFaces(frameBGR)
-    faces.forEach(function (rect) {
-      cv.rectangle(frame, { x: rect.x, y: rect.y }, { x: rect.x + rect.width, y: rect.y + rect.height }, [0, 255, 0, 255])
+    faces.forEach(function(rect) {
+      cv.rectangle(frame, { x: rect.x, y: rect.y },
+        { x: rect.x + rect.width, y: rect.y + rect.height }, [0, 255, 0, 255])
 
       var face = frameBGR.roi(rect)
       var name = recognize(face)
-      cv.putText(frame, name, { x: rect.x, y: rect.y }, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255])
+      cv.putText(frame, name, { x: rect.x, y: rect.y },
+        cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255])
     })
     cv.imshow(output, frame)
     if (isRunning) {
@@ -112,22 +126,24 @@ import * as Mirada from 'mirada';
       setTimeout(captureFrame, delay)
     }
   }
-  //! [Define frames processing]
 
+  //! [Define frames processing]
   async function toggle() {
     if (isRunning) {
       isRunning = false
     } else {
       if (netDet == undefined || netRecogn == undefined) {
-        await loadModels()  // Load models and run a pipeline;
+        await loadModels()  // Load models which starts the whole pipeline
         isRunning = true
         captureFrame()
       }
     }
   }
+
   setTimeout(async () => {
     await toggle()
-    await new Promise(resolve => setTimeout(resolve, 10000))
+    // as with other js examples, we stop the camera input after some seconds.
+    await new Promise(resolve => setTimeout(resolve, 15000))
     await toggle()
   }, 500)
 })()

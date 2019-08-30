@@ -46,9 +46,12 @@ See [mirada-cli project page](../mirada-cli).
 - [ ] docs
 - [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/
 - [ ] include recording in playgrounds: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element
-- [ ] camera helpers ../mirada-ts-playground/src/examples/toPack/faceDetectionCamera.ts
 - [ ] make an example FormatProxy for loading svg
-. [x] ensureDataFile()
+- [ ] the morphing with slide effect but against two different videos ? (like obama and trump speeches and come
+  from one to the other and back again with the slider) - see http://overengineer.net/enabling-cors-for-html5-video-element-screenshots
+- [x] camera helpers ../mirada-ts-playground/src/examples/toPack/faceDetectionCamera.ts
+- [x] ensureDataFile()
+- [x] learnopencv.com/non-photorealistic-rendering-using-opencv-python-c/
 - [x] don't waste more time manually porting docs. build the doxygen2typescript thing
 
 ## Initial design notes
@@ -60,6 +63,7 @@ Initially a proposal to opencv.js team to add the npm experience:
  * TypeScript typings
 
 Later: 
+
  * CLI
  * scripts to generate wasm build  with different configs. 
  * custom wasm build - more optimized - .wasm instead of .s

@@ -10,6 +10,7 @@ export function onExecuteRequestInstall() {
     handle(event)
   })
 }
+
 async function handle(event: { oldState: State; partial: Partial<State>; newState: State }) {
   const t0 = performance.now()
   if (event.newState.executeRequest) {
