@@ -14,8 +14,8 @@ export const App = () => (
       </div>
       <div id="outputContainer" className="output">
         <div className="wrapper">
-          <canvas id="outputCanvas" width="400" height="400"/>
-        <video id="videoInput" width="320" height="240" muted/>
+          <canvas id="outputCanvas" width="400" height="400" />
+          <video id="videoInput" width="320" height="240" muted />
         </div>
       </div>
     </div>

@@ -2,44 +2,70 @@ import * as Mirada from 'mirada'
 declare var cv: Mirada.CV
 
 (async () => {
+
   var url1 = 'https://cancerberosgx.github.io/demos/media/video1.mp4';
   var url2 = 'https://cancerberosgx.github.io/demos/media/video2.mp4';
-  const FPS = 30;
 let   processing = false;
+  const FPS = 30;
+  installControls();
 
-   main();
+  // const canvas1 = document.getElementById('customCanvas1')! as HTMLCanvasElement;
+  // const canvas2 = document.getElementById('customCanvas2')! as HTMLCanvasElement;
+  const outputCanvas = document.getElementById('outputCanvas')! as HTMLCanvasElement;
+  const video1 = document.getElementById('customVideo1')! as HTMLVideoElement;
+  const video2 = document.getElementById('customVideo2')! as HTMLVideoElement;
+  let trackbar = document.getElementById('trackbar')! as HTMLInputElement
 
- async  function setupVideo(video: HTMLVideoElement, canvas: HTMLCanvasElement, url: string) {
-   debugger
-    const src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-    const dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-    const cap = new cv.VideoCapture(video);
-    const processVideo = () => {
+  //  main();
+// 
+//  let src1:cv.Mat = null as any
+//  let src2:cv.Mat
+//  let dst:cv.Mat
+// let cap1: cv.VideoCapture
+// let cap2: cv.VideoCapture
+const height=Math.min(video1.height, video2.height)
+const width=Math.min(video1.width, video2.width)
+
+    const  src1 = new cv.Mat(height, width, cv.CV_8UC4);
+   const   src2 = new cv.Mat(width,width, cv.CV_8UC4);
+ const    dst = new cv.Mat(height, width, cv.CV_8UC1);
+ const   cap1 = new cv.VideoCapture(video1);
+ const   cap2 = new cv.VideoCapture(video2);
+    video1.src = url1
+    video2.src = url2
+  processing = true
+  // await video1.play()
+await Promise.all([video1.play(), video2.play()]);
+  setTimeout(uninstallControls, 15000)
+processVideo()
+
+// async function main() {
+
+// }
+
+
+  function processVideo  () {
       try {
         if (!processing) {
-          src.delete();
-          dst.delete();
+          src1.delete();
+          src2.delete();
+          dst.delete()
           return;
         }
         else {
-          
+          const begin = Date.now();          
+cap1.read(src1)
+          cap2.read(src2);
+          // src2.resize()
 //            var orange = await Mirada.fromUrl('orange.png')
 //   // var apple = await Mirada.fromUrl('apple.png')
-//   // let dst = new cv.Mat()
-//   // let trackbar = document.getElementById('trackbar')! as HTMLInputElement
+  // let dst = new cv.Mat()
 //   // const listener = () => {
-//     let alpha = 0.4//trackbar.valueAsNumber / parseInt(trackbar.max)
-//     let beta = (1.0 - alpha)
-//     cv.addWeighted(orange, alpha, apple, beta, 0.0, dst, -1)
-//     cv.imshow(canvas, dst)
-
-          const begin = Date.now();
-
-// cap.read(src)
-
-          cap.read(src);
-          cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-          cv.imshow(canvas, dst);
+    let alpha = trackbar.valueAsNumber / parseInt(trackbar.max)
+    let beta = 1.0 - alpha
+    
+    cv.addWeighted(src1, alpha, src2, beta, 0.0, dst, -1)
+    cv.imshow(outputCanvas, dst)
           const delay = 1000 / FPS - (Date.now() - begin);
           setTimeout(processVideo, delay);
         }
@@ -48,57 +74,31 @@ let   processing = false;
         console.error(err);
       }
     };
-    video.src = url
-    await video.play()
-    return  processVideo
-  }
 
-async function main() {
-  installControls();
-  const canvas1 = document.getElementById('customCanvas1')! as HTMLCanvasElement;
-  const canvas2 = document.getElementById('customCanvas2')! as HTMLCanvasElement;
-  const video1 = document.getElementById('customVideo1')! as HTMLVideoElement;
-  const video2 = document.getElementById('customVideo2')! as HTMLVideoElement;
-  var [start1, start2] = await Promise.all([setupVideo(video1, canvas1, url1), await setupVideo(video2, canvas2, url2)]);
-  processing = true
-  start1(); start2()
-  setTimeout(()=>{
 
-  }, 15000)
-}
-
-function installControls() {
+function  uninstallControls() {
+  processing=false
 if(document.querySelector('#outputContainer>.customWrapper')) {
   document.querySelector('#outputContainer>.customWrapper')!.remove()
-  alert('please reload the page')
-  return
+  // alert('please reload the page')
+  // return
 }
-  const el = document.querySelector('#outputContainer>.wrapper')!;
-  el.classList.add('hidden');
-  el.insertAdjacentHTML('beforebegin', `
-<table class="customWrapper" >
-  <tr>
-    <td>
-     <p>Video1</p>
-     <canvas id="customCanvas1" width="400" height="400" /><br/>
-    <input type="range" id="trackbar1" value="50" min="0" max="100" step="1"/>
-    </td>
-    <td>
-  <p>Video2</p>
-    <canvas id="customCanvas2" width="400" height="400" /><br/>
-    <input type="range" id="trackbar2" value="50" min="0" max="100" step="1"/>
-    </td>
-  </tr>
-  <tr>
-    <td><video crossOrigin="anonymous" id="customVideo1" width="320" height="240" muted /></td>
-    <td><video crossOrigin="anonymous" id="customVideo2" width="320" height="240" muted /></td>
-  </tr>
-</table>
-`);
-
+}
+function installControls() {
+uninstallControls()
+  const el = document.querySelector('#outputContainer>.wrapper')!
+  el.insertAdjacentHTML('afterend', `
+<div class="customWrapper" >
+  <h5>Below are two input videos - use this slider to  morph between them</h5>
+  <input type="range" id="trackbar" value="50" min="0" max="100" step="1" />
+  <label  >input 1<br /><video crossOrigin="anonymous" id="customVideo1" 
+    width="320" height="240" muted /></label>
+  <label  >input 2<br /><video crossOrigin="anonymous" id="customVideo2" 
+    width="320" height="240" muted /></label>
+</div>
+ `);
 }
 })()
-
 
   // const video = document.getElementById('videoInput')! as HTMLVideoElement
 // const  [processVideo, processVideo2]  = 
@@ -116,6 +116,13 @@ if(document.querySelector('#outputContainer>.customWrapper')) {
 
 // const  [start1, start2] = await Promise.all([setupVideo(video1, canvas1, url1),await setupVideo(video2, canvas2, url2) ])
 
+
+
+//  async  function setupVideo(video: HTMLVideoElement, canvas: HTMLCanvasElement, url: string) {
+//    debugger
+    
+//     return  processVideo
+//   }
 
 
   // // const canvas = document.getElementById('outputCanvas')!
@@ -145,7 +152,7 @@ if(document.querySelector('#outputContainer>.customWrapper')) {
 // }
   // let cap1 = new cv.VideoCapture(video1)
   // // take first frame of the video
-  // let frame1 = new cv.Mat(video1.height, video1.width, cv.CV_8UC4)
+  // let frame1 = new cv.Mat(height, video1.width, cv.CV_8UC4)
   // cap1.read(frame1)
   // let cap2 = new cv.VideoCapture(video2)
   // let frame2 = new cv.Mat(video2.height, video2.width, cv.CV_8UC4)
@@ -157,26 +164,26 @@ if(document.querySelector('#outputContainer>.customWrapper')) {
 //   const canvas = document.getElementById('outputCanvas')! as HTMLCanvasElement
 //   let cap = new cv.VideoCapture(video)
 //   // take first frame of the video
-//   let frame1 = new cv.Mat(video.height, video.width, cv.CV_8UC4)
+//   let frame1 = new cv.Mat(width, video.width, cv.CV_8UC4)
 //   cap.read(frame1)
 
 //   let prvs = new cv.Mat()
 //   cv.cvtColor(frame1, prvs, cv.COLOR_RGBA2GRAY)
 //   frame1.delete()
 //   let hsv = new cv.Mat()
-//   let hsv0 = new cv.Mat(video.height, video.width, cv.CV_8UC1)
-//   let hsv1 = new cv.Mat(video.height, video.width, cv.CV_8UC1, new cv.Scalar(255))
-//   let hsv2 = new cv.Mat(video.height, video.width, cv.CV_8UC1)
+//   let hsv0 = new cv.Mat(width, video.width, cv.CV_8UC1)
+//   let hsv1 = new cv.Mat(width, video.width, cv.CV_8UC1, new cv.Scalar(255))
+//   let hsv2 = new cv.Mat(width, video.width, cv.CV_8UC1)
 //   let hsvVec = new cv.MatVector()
 //   hsvVec.push_back(hsv0); hsvVec.push_back(hsv1); hsvVec.push_back(hsv2)
 
-//   let frame2 = new cv.Mat(video.height, video.width, cv.CV_8UC4)
-//   let next = new cv.Mat(video.height, video.width, cv.CV_8UC1)
-//   let flow = new cv.Mat(video.height, video.width, cv.CV_32FC2)
+//   let frame2 = new cv.Mat(width, video.width, cv.CV_8UC4)
+//   let next = new cv.Mat(width, video.width, cv.CV_8UC1)
+//   let flow = new cv.Mat(width, video.width, cv.CV_32FC2)
 //   let flowVec = new cv.MatVector()
-//   let mag = new cv.Mat(video.height, video.width, cv.CV_32FC1)
-//   let ang = new cv.Mat(video.height, video.width, cv.CV_32FC1)
-//   let rgb = new cv.Mat(video.height, video.width, cv.CV_8UC3)
+//   let mag = new cv.Mat(width, video.width, cv.CV_32FC1)
+//   let ang = new cv.Mat(width, video.width, cv.CV_32FC1)
+//   let rgb = new cv.Mat(width, video.width, cv.CV_8UC3)
 
 //   const FPS = 30
 //   const videoHelper = new Mirada.CameraHelper(video, canvas, processVideo)
