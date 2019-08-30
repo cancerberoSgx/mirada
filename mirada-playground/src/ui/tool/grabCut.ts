@@ -18,20 +18,20 @@ static DESCRIPTION = `Intelligent way of removing the background. It doesn't nee
 
 
 async selectionChangeListener(e: SelectionChangeEvent){
-  const image = await File.fromFile('test/assets/lenna.jpg')
-  const result = await cv.grabCutt({
-    image,
-    x: 50,
-    y: 50,
-    width: 260,
-    height: 280
-  })
+  // const image = await File.fromFile('test/assets/lenna.jpg')
+  // const result = await cv.grabCutt({
+  //   image,
+  //   x: 50,
+  //   y: 50,
+  //   width: 260,
+  //   height: 280
+  // })
   // const f = File.fromData(result.image, 'result.png')
   // t.deepEqual(f.size(), { width: 400, height: 400 })
   // t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
   // t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaGrabCut.png')), 0)
-  image.delete()
-  f.delete()
+  // image.delete()
+  // f.delete()
 }
 
 // <T extends StateChangeType<T extends StateChangeType>(e: StateChangeEvent<T>)

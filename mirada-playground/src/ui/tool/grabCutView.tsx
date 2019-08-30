@@ -13,7 +13,7 @@ export class GrabCutView extends ToolView {
   // return this.state.script!=nextState.script || this.state.showAllResultsOutput != nextState.showAllResultsOutput || JSON.stringify(this.getOutput(this.state).map(f => f.name)) != JSON.stringify(this.getOutput(nextState).map(f => f.name))
   // }
   render() {
-    if(this.state.grabCutTool.showToolInitialTip){
+    if(this.state.showToolInitialTip){
       // this.setState({...this.state.showToolInitialTip})
       // return helpModal()
     }
