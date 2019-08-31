@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src="../../node_modules/fabric/dist/fabric.js"></script>
+</head>
+<body>
+  <label><input type="checkbox" id="checkbox" checked="true">Rectangle free draw</label>
+  <button id="changeCanvasPosition">Change Canvas Position</button>
+  <div class="wrapper" style="margin-left: 200px; margin-top: 200px;">
+    <canvas id="canvas" width="500" height="500" style="border: 2px solid black"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.querySelector('#canvas')
+    var fabricCanvas = new fabric.Canvas(canvas);
+    const checkbox = document.querySelector('#checkbox')
+    let initialPos, rect, dragging = false, freeDrawing = checkbox.checked
+    const options = {
+      drawRect: true
+    }
+    function onMouseDown(e) {
+      dragging = true;
+      if (freeDrawing) {
+        initialPos = { ...e.pointer }
+        rect = new fabric.Rect({
+          left: initialPos.x,
+          top: initialPos.y,
+          width: 0, height: 0,
+          stroke: 'red', strokeWidth: 1, fill: ''
+        });
+        options.drawRect && fabricCanvas.add(rect);
+      }
+    }
+    function update(pointer) {
+      let x, width, y, height
+      if (initialPos.x > pointer.x) {
+        x = Math.max(0, pointer.x)
+        width = initialPos.x - x
+      } else {
+        x = initialPos.x
+        width = pointer.x - initialPos.x
+      }
+      if (initialPos.y > pointer.y) {
+        y = Math.max(0, pointer.y)
+        height = initialPos.y - y
+      } else {
+        height = pointer.y - initialPos.y
+        y = initialPos.y
+      }
+      // Object.assign(rect, {x, y, width, height, dirty: true})
+      if(options.drawRect){
+        rect.left = x
+        rect.top = y
+        rect.width = width
+        rect.height = height
+        rect.dirty = true
+        fabricCanvas.requestRenderAllBound()
+      }
+    }
+    function onMouseMove(e) {
+      if (!dragging || !freeDrawing) {
+        return
+      }
+      requestAnimationFrame(() => update(e.pointer))
+    }
+    function onMouseUp(e) {
+        dragging = false;
+      if (!freeDrawing) {return}
+      if (options.drawRect && (rect.width == 0 || rect.height === 0)) {
+        fabricCanvas.remove(rect)
+      }
+      if(!options.drawRect){
+        fabricCanvas.add(rect)
+      }
+    }
+    function install() {
+      freeDrawing = true; dragging = false; rect = null
+      fabricCanvas.on('mouse:down', onMouseDown);
+      fabricCanvas.on('mouse:move', onMouseMove);
+      fabricCanvas.on('mouse:up', onMouseUp);
+    }
+    function uninstall() {
+      freeDrawing = false; dragging = false; rect = null
+      fabricCanvas.off('mouse:down', onMouseDown);
+      fabricCanvas.off('mouse:move', onMouseMove);
+      fabricCanvas.off('mouse:up', onMouseUp);
+    }
+
+    // the following is OOT - it's just for the controls above
+
+    checkbox.addEventListener('change', e =>
+      e.currentTarget.checked ? install() : uninstall()
+    )
+    freeDrawing && install()
+    document.querySelector('#changeCanvasPosition').addEventListener('click', () => {
+      // const el = document.querySelector(`.${fabricCanvas.containerClass}`)
+      const el = document.querySelector(`.wrapper`)
+      el.style.marginTop = Math.trunc(Math.random() * 300) + 'px'
+      el.style.marginLeft = Math.trunc(Math.random() * 200) + 'px'
+    })
+
+
+  </script>
+</body>
+
+</html>

@@ -1,14 +1,21 @@
 import { File } from '../file'
-import { Command_asRgba, Command_asRgbaImpl, Command_roi, Command_roiImpl } from "./handlers"
+import { Command_asRgba, Command_asRgbaImpl, Command_roi, Command_roiImpl, Command_grabCut, Command_grabCutImpl } from "./handlers"
 
 export enum CommandName {
   asRgba = 'asRgba',
-  roi = 'roi'
+  roi = 'roi',
+  grabCut = 'grabCut'
 }
 
 export interface Command<T extends CommandName> {
   name: T;
+  /**
+   * Input file name.
+   */
   in: string;
+  /**
+   * Output file names. If not given the input file will be replaced.
+   */
   out?: string;
 }
 
@@ -55,11 +62,13 @@ export interface CommandHandler<N extends CommandName> {
 }
 
 export interface CommandsByName {
-  [CommandName.asRgba]: Command_asRgba;
-  [CommandName.roi]: Command_roi;
+  [CommandName.asRgba]: Command_asRgba
+  [CommandName.roi]: Command_roi
+  [CommandName.grabCut]: Command_grabCut
 }
 
 export interface HandlersByName {
-  [CommandName.asRgba]: Command_asRgbaImpl;
-  [CommandName.roi]: Command_roiImpl;
+  [CommandName.asRgba]: Command_asRgbaImpl
+  [CommandName.roi]: Command_roiImpl
+  [CommandName.grabCut]: Command_grabCutImpl
 }
