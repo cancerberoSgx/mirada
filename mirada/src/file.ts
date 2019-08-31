@@ -2,12 +2,12 @@ import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
 import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
+import { Chain } from './tool/chain'
 import { ImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
-import { isFile, readFile, writeFile } from './util/fileUtil'
+import { isFile, readFile, removeFile, writeFile } from './util/fileUtil'
 import { toImageData, toRgba } from './util/imageUtil'
 import fileType = require('file-type')
-import { Chain } from './util/chain';
 
 /**
  * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.
@@ -56,6 +56,14 @@ export class File {
     return this._mat
   }
 
+  /** 
+   * It removes the the file from file system and also delete() this file's Mat 
+   */
+  remove(deleteMat = true) {
+    deleteMat && this.delete()
+    this.name && isFile(this.name) && removeFile(this.name)
+    return this
+  }
   /**
    * Returns an array buffer containing the image encoded in given format or inferring format from its name.
    */
@@ -72,6 +80,12 @@ export class File {
     return this
   }
 
+  setMat(mat: Mat) {
+    this.delete()
+    this._mat = mat
+    return this
+  }
+
   /**
    * Shows this image in given HTML canvas or image element.
    */
@@ -85,26 +99,29 @@ export class File {
     return arrayBufferToBase64(encoded)
   }
 
-  delete(): any {
-    this._mat && this._mat.delete()
+  delete() {
+    try {
+      this._mat && this._mat.delete()
+    } catch (error) {
+    }
   }
 
   /**
    * Converts the Mat of this file to RGBA channel type. It will replace the current mat and delete the original.
    */
- toRgba() {
+  toRgba() {
     const dst = toRgba(this.mat)
     this.mat.delete()
     this._mat = dst
     return this
   }
 
-  asChain(clone=false) {
+  asChain(clone = false) {
     return new Chain(clone ? this._mat.clone() : this._mat)
   }
 
-  clone(){
-    return File.fromMat(this.mat.clone(), this.name)
+  clone(name = this.name) {
+    return File.fromMat(this.mat.clone(), name)
   }
 
   /** 
@@ -232,7 +249,11 @@ export class File {
     return new File(File._buildName(name), mat)
   }
 
-  public static async fromUrl(url: string, o: RequestInit & FileOptions = {}) {
+  toString() {
+    return `[File "${this.name}"]`
+  }
+
+  public static async fromUrl(url: string, o: RequestInit & { name?: string } = {}) {
     const p = getDefaultCodec()
     const response = await fetch(url)
     const buffer = await response.arrayBuffer()
@@ -240,9 +261,9 @@ export class File {
     return File.fromData(data, o.name || getFileNameFromUrl(url))
   }
 
-  public static async fromFile(path: string, o: FileOptions = {}) {
+  public static async fromFile(path: string, name = basename(path)) {
     const data = await decodeOrThrow(readFile(path).buffer)
-    return File.fromData(data, o.name || basename(path))
+    return File.fromData(data, name)
   }
 
 }

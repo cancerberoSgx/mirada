@@ -56,14 +56,14 @@ export function compareL2(f1: Mat | File, f2: Mat | File) {
   const a = asMat(f1), b = asMat(f2)
   if (a.rows > 0 && a.rows == b.rows && a.cols > 0 && a.cols == a.cols) {
     // Calculate the L2 relative error between images.
-    const errorL2 = cv.norm1(a, b, cv.NORM_L2);
+    const errorL2 = cv.norm1(a, b, cv.NORM_L2)
     // Convert to a reasonable scale, since L2 error is summed across all pixels of the image.
     const similarity = errorL2 / (a.rows * a.cols)
-    return similarity;
+    return similarity
   }
   else {
     //Images have a different size
-    return 1.0;  // Return a bad value
+    return 1.0  // Return a bad value
   }
 }
 export function asMat(f: File | Mat) {

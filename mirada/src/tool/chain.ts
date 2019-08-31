@@ -1,9 +1,9 @@
-import { Mat, CVDataType, BorderTypes, Rect, Range, Point} from '../types/opencv';
-import { toRgba } from '../util/imageUtil';
-import { File } from '../file';
+import { File } from '../file'
+import { BorderTypes, CVDataType, Mat, Point, Rect } from '../types/opencv'
+import { toRgba } from '../util/imageUtil'
 
 export class Chain {
-  constructor(protected mat: Mat = new cv.Mat()){
+  constructor(protected mat: Mat = new cv.Mat()) {
 
   }
   filter2D(kernel: Mat, depth?: CVDataType, anchor?: Point, delta?: number, border?: BorderTypes) {
@@ -14,13 +14,13 @@ export class Chain {
     this.mat = toRgba(this.mat, this.mat)
     return this
   }
-  roi(expr:Rect|Mat) {
+  roi(expr: Rect | Mat) {
     const dst = this.mat.roi(expr)
     this.mat.delete()
     this.mat = dst
     return this
   }
-  asFile(name?:string){
+  asFile(name?: string) {
     return File.fromMat(this.mat, name)
   }
 }

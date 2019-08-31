@@ -108,7 +108,7 @@ export declare class VideoCapture {
 
 
 
-import { LineTypes, Mat, RotatedRect, NormTypes } from '.'
+import { LineTypes, Mat, NormTypes, RotatedRect } from '.'
 import '../_cv'
 
 export declare function matFromImageData(imageData: ImageData): Mat
@@ -119,12 +119,12 @@ export declare class Mat_ extends Vector<Mat> {
   public data: Uint8Array
   public data8S: Int8Array
   public data8U: Uint8Array
-  public data16U: Uint16Array 
-  public data16S: Int16Array 
-  public data32U: Uint32Array 
-  public data32S: Int32Array 
-  public data64F: Float64Array 
-  public data32F: Float32Array 
+  public data16U: Uint16Array
+  public data16S: Int16Array
+  public data32U: Uint32Array
+  public data32S: Int32Array
+  public data64F: Float64Array
+  public data32F: Float32Array
   public ucharPtr(i: any, j: any): any
   public charPtr(i: any, j: any): any
   public shortPtr(i: any, j: any): any
@@ -136,7 +136,7 @@ export declare class Mat_ extends Vector<Mat> {
   /**
    * Sometimes, you will have to play with certain region of images. For eye detection in images, first face detection is done all over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. It improves accuracy (because eyes are always on faces) and performance (because we search for a small area)
    */
-  public roi(expr:Rect|Mat_, rowRange?: Range, colRange?: Range, res?: Mat_): Mat
+  public roi(expr: Rect | Mat_, rowRange?: Range, colRange?: Range, res?: Mat_): Mat
 }
 
 export declare class ImageData {
