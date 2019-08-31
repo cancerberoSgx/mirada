@@ -70,6 +70,7 @@ export declare function onRuntimeInitialized(): any
 export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
 
 declare class Vector<T> {
+  delete(): void
   get(i: number): T
   get(i: number, j: number, data: any): T
   set(i: number, t: T): void
@@ -107,7 +108,7 @@ export declare class VideoCapture {
 
 
 
-import { LineTypes, Mat, RotatedRect } from '.'
+import { LineTypes, Mat, RotatedRect, NormTypes } from '.'
 import '../_cv'
 
 export declare function matFromImageData(imageData: ImageData): Mat
@@ -115,9 +116,15 @@ export declare function matFromImageData(imageData: ImageData): Mat
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
-  public delete(): void
-  public data: ImageData
-  public data32F: any
+  public data: Uint8Array
+  public data8S: Int8Array
+  public data8U: Uint8Array
+  public data16U: Uint16Array 
+  public data16S: Int16Array 
+  public data32U: Uint32Array 
+  public data32S: Int32Array 
+  public data64F: Float64Array 
+  public data32F: Float32Array 
   public ucharPtr(i: any, j: any): any
   public charPtr(i: any, j: any): any
   public shortPtr(i: any, j: any): any
@@ -126,7 +133,10 @@ export declare class Mat_ extends Vector<Mat> {
   public floatPtr(i: any, j: any): any
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
-  public roi(rect: Rect): Mat
+  /**
+   * Sometimes, you will have to play with certain region of images. For eye detection in images, first face detection is done all over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. It improves accuracy (because eyes are always on faces) and performance (because we search for a small area)
+   */
+  public roi(expr:Rect|Mat_, rowRange?: Range, colRange?: Range, res?: Mat_): Mat
 }
 
 export declare class ImageData {
@@ -136,43 +146,46 @@ export declare class ImageData {
 }
 
 // TODO this types should be exposed by the tool - want to make it work:
-export declare const CV_8U: any
-export declare const CV_8UC1: any
-export declare const CV_8UC2: any
-export declare const CV_8UC3: any
-export declare const CV_8UC4: any
-export declare const CV_8S: any
-export declare const CV_8SC1: any
-export declare const CV_8SC2: any
-export declare const CV_8SC3: any
-export declare const CV_8SC4: any
-export declare const CV_16U: any
-export declare const CV_16UC1: any
-export declare const CV_16UC2: any
-export declare const CV_16UC3: any
-export declare const CV_16UC4: any
-export declare const CV_16S: any
-export declare const CV_16SC1: any
-export declare const CV_16SC2: any
-export declare const CV_16SC3: any
-export declare const CV_16SC4: any
-export declare const CV_32S: any
-export declare const CV_32SC1: any
-export declare const CV_32SC2: any
-export declare const CV_32SC3: any
-export declare const CV_32SC4: any
-export declare const CV_32F: any
-export declare const CV_32FC1: any
-export declare const CV_32FC2: any
-export declare const CV_32FC3: any
-export declare const CV_32FC4: any
-export declare const CV_64F: any
-export declare const CV_64FC1: any
-export declare const CV_64FC2: any
-export declare const CV_64FC3: any
-export declare const CV_64FC4: any
+export declare const CV_8U: CVDataType
+export declare const CV_8UC1: CVDataType
+export declare const CV_8UC2: CVDataType
+export declare const CV_8UC3: CVDataType
+export declare const CV_8UC4: CVDataType
+export declare const CV_8S: CVDataType
+export declare const CV_8SC1: CVDataType
+export declare const CV_8SC2: CVDataType
+export declare const CV_8SC3: CVDataType
+export declare const CV_8SC4: CVDataType
+export declare const CV_16U: CVDataType
+export declare const CV_16UC1: CVDataType
+export declare const CV_16UC2: CVDataType
+export declare const CV_16UC3: CVDataType
+export declare const CV_16UC4: CVDataType
+export declare const CV_16S: CVDataType
+export declare const CV_16SC1: CVDataType
+export declare const CV_16SC2: CVDataType
+export declare const CV_16SC3: CVDataType
+export declare const CV_16SC4: CVDataType
+export declare const CV_32S: CVDataType
+export declare const CV_32SC1: CVDataType
+export declare const CV_32SC2: CVDataType
+export declare const CV_32SC3: CVDataType
+export declare const CV_32SC4: CVDataType
+export declare const CV_32F: CVDataType
+export declare const CV_32FC1: CVDataType
+export declare const CV_32FC2: CVDataType
+export declare const CV_32FC3: CVDataType
+export declare const CV_32FC4: CVDataType
+export declare const CV_64F: CVDataType
+export declare const CV_64FC1: CVDataType
+export declare const CV_64FC2: CVDataType
+export declare const CV_64FC3: CVDataType
+export declare const CV_64FC4: CVDataType
+export type CVDataType = any
+export declare const CV_L2: any
 
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
+export declare function norm1(a: Mat, b: Mat, type: NormTypes): number
 export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
 export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
 

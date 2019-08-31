@@ -1,4 +1,4 @@
-import { toImageData } from '..'
+import { toImageData } from '../util/imageUtil'
 import { File } from '../file'
 import { Mat } from '../types/opencv'
 

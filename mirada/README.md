@@ -47,6 +47,7 @@ See [mirada-cli project page](../mirada-cli).
 - [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/
 - [ ] include recording in playgrounds: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element
 - [ ] make an example FormatProxy for loading svg
+- [ ] document std::Vector (http://www.cplusplus.com/reference/vector/vector/)
 - [x] the morphing with slide effect but against two different videos ? (like obama and trump speeches and come
   from one to the other and back again with the slider) - see http://overengineer.net/enabling-cors-for-html5-video-element-screenshots
 - [x] camera helpers ../mirada-ts-playground/src/examples/toPack/faceDetectionCamera.ts
@@ -54,7 +55,18 @@ See [mirada-cli project page](../mirada-cli).
 - [x] learnopencv.com/non-photorealistic-rendering-using-opencv-python-c/
 - [x] don't waste more time manually porting docs. build the doxygen2typescript thing
 
+### Ideas 
+
+#### chain utility
+
+- [ ] utility wrapper around Mat, similar to File but focused on method chaining and automatic Mat delete(). Example. File.fromFile('i.png').chain.roi(2,3,4,5).convertTo(cv.CV_U8).threshold(...)
+
+ * chain: returns a new Chain which internally has a clone to source File.mat . each of chained methods will apply
+each method call after `chain` will automatically call delete() and replace this._mat with the result of the operation. All Mat and cv functions should be supported
+
 ## Initial design notes
+
+(obsolte)
 
 Initially a proposal to opencv.js team to add the npm experience:
 

@@ -1,6 +1,7 @@
 import test from 'ava'
 import { create, distance, read } from 'jimp'
-import { File, fromFile, toRgba } from '../src'
+import { File } from '../src/file'
+import { fromFile, toRgba } from '../src/util/imageUtil'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 

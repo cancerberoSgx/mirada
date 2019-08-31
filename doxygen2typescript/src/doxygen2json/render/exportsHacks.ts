@@ -85,7 +85,8 @@ export declare function onRuntimeInitialized(): any
 export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
 
 declare class Vector<T> {
-  get(i: number): T  
+  delete(): void
+  get(i: number): T 
   get(i: number, j:number, data: any): T
   put(i: number, j: number, data: any): any
   set(i: number, t: T): void
@@ -134,9 +135,15 @@ ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
-  public delete(): void
-  public data: ImageData
-  public data32F: any
+  public data: Uint8Array
+  public data8S: Int8Array
+  public data8U: Uint8Array
+  public data16U: Uint16Array 
+  public data16S: Int16Array 
+  public data32U: Uint32Array 
+  public data32S: Int32Array 
+  public data32F: Float32Array
+  public data64F: Float64Array 
   public ucharPtr(i: any, j: any): any
   public charPtr(i: any, j: any): any
   public shortPtr(i: any, j: any): any
@@ -145,7 +152,10 @@ export declare class Mat_ extends Vector<Mat> {
   public floatPtr(i: any, j: any): any
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
-  public roi(rect: Rect): Mat
+  /**
+   * Sometimes, you will have to play with certain region of images. For eye detection in images, first face detection is done all over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. It improves accuracy (because eyes are always on faces) and performance (because we search for a small area)
+   */
+  public roi(expr:Rect|Mat_, rowRange?: Range, colRange?: Range, res?: Mat_): Mat
 }
 
 export declare class ImageData {
@@ -159,14 +169,17 @@ export declare class ImageData {
 
 
 function missingImports() {
-       const cvs  =['CV_8U', 'CV_8UC1', 'CV_8UC2', 'CV_8UC3', 'CV_8UC4', 'CV_8S', 'CV_8SC1', 'CV_8SC2', 'CV_8SC3', 'CV_8SC4', 'CV_16U', 'CV_16UC1', 'CV_16UC2', 'CV_16UC3', 'CV_16UC4', 'CV_16S', 'CV_16SC1', 'CV_16SC2', 'CV_16SC3', 'CV_16SC4', 'CV_32S', 'CV_32SC1', 'CV_32SC2', 'CV_32SC3', 'CV_32SC4', 'CV_32F', 'CV_32FC1', 'CV_32FC2', 'CV_32FC3', 'CV_32FC4', 'CV_64F', 'CV_64FC1', 'CV_64FC2', 'CV_64FC3', 'CV_64FC4', ].filter(notSameNotFalsy)
+  const cvs = ['CV_8U', 'CV_8UC1', 'CV_8UC2', 'CV_8UC3', 'CV_8UC4', 'CV_8S', 'CV_8SC1', 'CV_8SC2', 'CV_8SC3', 'CV_8SC4', 'CV_16U', 'CV_16UC1', 'CV_16UC2', 'CV_16UC3', 'CV_16UC4', 'CV_16S', 'CV_16SC1', 'CV_16SC2', 'CV_16SC3', 'CV_16SC4', 'CV_32S', 'CV_32SC1', 'CV_32SC2', 'CV_32SC3', 'CV_32SC4', 'CV_32F', 'CV_32FC1', 'CV_32FC2', 'CV_32FC3', 'CV_32FC4', 'CV_64F', 'CV_64FC1', 'CV_64FC2', 'CV_64FC3', 'CV_64FC4',].filter(notSameNotFalsy)
   return `
 // TODO this types should be exposed by the tool - want to make it work:
-${cvs.map(c=>`export declare const ${c}: any`).join('\n')}
+${cvs.map(c => `export declare const ${c}: CVDataType`).join('\n')}
 
-import {RotatedRect, LineTypes} from '.'
+export type CVDataType = any
+
+import {RotatedRect, LineTypes, NormTypes} from '.'
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
 export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
+export declare function norm1(a: Mat, b: Mat, type: NormTypes): number
 export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
 export declare function matFromArray(rows: number, cols: number, type: any, array: any): Mat
 import '../_cv'

@@ -5,8 +5,9 @@ import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
 import { ImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, writeFile } from './util/fileUtil'
-import { toImageData } from './util/imageUtil'
+import { toImageData, toRgba } from './util/imageUtil'
 import fileType = require('file-type')
+import { Chain } from './util/chain';
 
 /**
  * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.
@@ -68,6 +69,7 @@ export class File {
   async write(path: string = this.name, format = this.getExtension()) {
     const a = await this.asArrayBuffer(format)
     writeFile(path, new Uint8ClampedArray(a))
+    return this
   }
 
   /**
@@ -75,6 +77,7 @@ export class File {
    */
   show(el: HTMLElement) {
     cv.imshow(el, this.asMat())
+    return this
   }
 
   async asBase64(format = this.getExtension()) {
@@ -84,6 +87,24 @@ export class File {
 
   delete(): any {
     this._mat && this._mat.delete()
+  }
+
+  /**
+   * Converts the Mat of this file to RGBA channel type. It will replace the current mat and delete the original.
+   */
+ toRgba() {
+    const dst = toRgba(this.mat)
+    this.mat.delete()
+    this._mat = dst
+    return this
+  }
+
+  asChain(clone=false) {
+    return new Chain(clone ? this._mat.clone() : this._mat)
+  }
+
+  clone(){
+    return File.fromMat(this.mat.clone(), this.name)
   }
 
   /** 
