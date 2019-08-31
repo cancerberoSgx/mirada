@@ -62,12 +62,12 @@ export function installEditor() {
     model: getModel(),
     language: 'typescript',
     wordWrap: 'on',
-    lineNumbers:  'off',// isDesktop() ? 'on' : 'off',
+    lineNumbers: 'off',// isDesktop() ? 'on' : 'off',
     glyphMargin: false,//isDesktop(),
     folding: isDesktop(),
     minimap: //isDesktop()
       // ? undefined
-     {
+      {
         enabled: false
       }
   })

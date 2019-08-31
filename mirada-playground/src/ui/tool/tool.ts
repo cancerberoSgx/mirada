@@ -1,31 +1,39 @@
-import { Emitter, unique, checkThrow } from 'misc-utils-of-mine-generic'
-import { State, Rectangle } from '../../app/state'
+import { Emitter, unique } from 'misc-utils-of-mine-generic'
+import { Rectangle, State } from '../../app/state'
 import { getStore } from '../../app/store'
+import { AbstractComponent, AbstractProps } from '../common/component'
+import { ComponentWithFields } from '../common/componentWithFields'
 import { ImageWidget } from './imageWidget'
-import { notUndefined } from 'misc-utils-of-mine-typescript';
-import { AbstractComponent } from '../common/component';
-import { ToolView } from './toolView';
 
-export interface Tool<V extends ToolView = ToolView> extends Emitter {
+export interface Tool extends Emitter {
   setActive(b: boolean): void;
   active: boolean;
+  activeExclusive: boolean
   name: string
   description: string
-  // getView():  ()=>V 
-  viewClass: typeof ToolView 
+  viewClass: typeof ToolView
+}
+export class ToolView extends TToolView(ComponentWithFields) { }
+
+type Constructor<T = {}> = new (...args: any[]) => T
+function TToolView<TBase extends Constructor>(Base: TBase) {
+  return class extends AbstractComponent<AbstractProps & { tool: Tool }, State>{
+    tool: Tool = null as any
+  }
 }
 
-export abstract class AbstractTool<V extends ToolView = ToolView> extends Emitter implements Tool<V> {
+export abstract class AbstractTool<V extends ToolView> extends Emitter {
   active = false;
+  activeExclusive = false
   view: V = null as any
-viewClass: typeof ToolView = null as any
-//  getView(): ()=>V {
-//    checkThrow(this.viewClass, 'Expected to have a view class, ')
-//    if(!this.view ){
-//      this.view = new (this.viewClass as any)({}, this.state, this)
-//    }
-//    return ()=>this.view
-// }
+  viewClass: typeof ToolView = null as any
+  //  getView(): ()=>V {
+  //    checkThrow(this.viewClass, 'Expected to have a view class, ')
+  //    if(!this.view ){
+  //      this.view = new (this.viewClass as any)({}, this.state, this)
+  //    }
+  //    return ()=>this.view
+  // }
 
   // protected installView(v: typeof ToolView) {
   //   this.viewClass = new (v as any)({}, this.state, this)
@@ -40,20 +48,30 @@ viewClass: typeof ToolView = null as any
     this.options = { ...defaultToolOptions, ...options }
     this.ctx = this.image.canvas.getContext("2d")!
   }
+
   setActive(b: boolean) {
     this.active = b
-    const activeTools = [...this.state.activeTools.filter(t => t !== this), ...(b ? [this] : [])].filter(notUndefined)
-    debugger
+    if (b && this.state.tools.find(t => t.activeExclusive)) {
+      this.state.tools.filter(t => t !== this).forEach(t => {
+        t.active = false
+      })
+    }
+    // const activeTools = [...this.state.activeTools.filter(t => t !== this), ...(b ? [this] : [])].filter(notUndefined)
+    // debugger
     this.setState({
-      activeTools
+      activeTools: this.state.tools.filter(t => t.active),
+      tools: this.state.tools
     })
   }
+
   add(l: (e: SelectionEvent<'selection'>) => void) {
     super.add(l)
   }
+
   get state() {
     return getStore().getState()
   }
+
   setState(s: Partial<State>) {
     getStore().setState(s)
   }
@@ -76,7 +94,7 @@ export interface Options {
 export const defaultToolOptions: Required<Options> = {
   strokeStyle: 'black',
   lineWidth: 10,
-  fillStyle: 'rgba(100,200,90, .5)',
+  fillStyle: 'rgba(100,200,90, 0.3)',
   mouseMoveThrottle: 50
 }
 

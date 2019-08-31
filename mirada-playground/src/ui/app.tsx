@@ -13,25 +13,26 @@ import { ToolBar } from './tool/toolBAr'
 
 export const App = () => {
   return <div>
-  <Container fluid textAlign="left" id="mainContainer">
-    <Header />
-    <ForkRibbon />
-    <Segment basic className="appBody" >
-      <br />
-      <br />
-      <br />
-      <Grid>
-        <Grid.Column floated='left' width={12}>
-          <canvas id="inputCanvas" data-unique={unique('dont-destroy-me-react')}></canvas>
-        </Grid.Column>
-        <Grid.Column floated='right' width={6}>
-          <canvas id="outputCanvas" data-unique={unique('dont-destroy-me-react')}></canvas>
-          <ToolBar />
-        </Grid.Column>
-      </Grid>
-    </Segment>
-  </Container>
-</div>}
+    <Container fluid textAlign="left" id="mainContainer">
+      <Header />
+      <ForkRibbon />
+      <Segment basic className="appBody" >
+        <br />
+        <br />
+        <br />
+        <Grid>
+          <Grid.Column floated='left' width={12}>
+            <canvas id="inputCanvas" data-unique={unique('dont-destroy-me-react')}></canvas>
+          </Grid.Column>
+          <Grid.Column floated='right' width={6}>
+            <canvas id="outputCanvas" data-unique={unique('dont-destroy-me-react')}></canvas>
+            <ToolBar />
+          </Grid.Column>
+        </Grid>
+      </Segment>
+    </Container>
+  </div>
+}
 
 export async function start() {
   const mat = await File.fromUrl('lenna.jpg')

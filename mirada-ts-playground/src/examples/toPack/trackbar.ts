@@ -3,7 +3,9 @@ declare var cv: Mirada.CV
 
 (async () => {
   const canvas = document.getElementById('outputCanvas')!
-  canvas.insertAdjacentHTML('afterend', `<input type="range" id="trackbar" value="50" min="0" max="100" step="1">`)
+  canvas.insertAdjacentHTML('afterend', `
+  <input type="range" id="trackbar" value="50" min="0" max="100" step="1">
+  `)
   var orange = await Mirada.fromUrl('orange.png')
   var apple = await Mirada.fromUrl('apple.png')
   let dst = new cv.Mat()
@@ -15,8 +17,7 @@ declare var cv: Mirada.CV
     cv.imshow(canvas, dst)
   }
   trackbar.addEventListener('input', listener)
-
-  await sleep(600)
+  await sleep(300)
   listener()
   await sleep(12000)
   trackbar.removeEventListener('input', listener)

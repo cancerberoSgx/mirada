@@ -1,8 +1,6 @@
 import { ImageWidget } from '../ui/tool/imageWidget'
 import { Tool, tools } from '../ui/tool/tool'
 import { Example, examples } from './examples'
-import { ToolView } from '../ui/tool/toolView';
-import { SelectRectTool } from '../ui/tool/selectRectTool';
 
 export interface State {
   example: Example
@@ -10,21 +8,21 @@ export interface State {
   examples: Example[];
   code: string
   working: boolean
-  tools: Tool<ToolView>[]
-  activeTools: Tool<ToolView>[]
+  tools: Tool[]
+  activeTools: Tool[]
   image: ImageWidget
   selection: Selection
-   showToolInitialTip: boolean
-   
-  grabCutTool: {
+  showToolInitialTip: boolean
 
+  grabCutTool: {
+    selectBackgroundPencilEnabled: boolean
   }
-    selectRectTool: SelectRectToolState
+  selectRectTool: SelectRectToolState
 }
 
 interface Selection {
   rectangles: Rectangle[]
-    selectionModel: 'exclusive'|'union',
+  mode: 'exclusive' | 'union',
 }
 
 export async function getInitialState(): Promise<State> {
@@ -38,12 +36,14 @@ export async function getInitialState(): Promise<State> {
     activeTools: [tools[0]],
     showToolInitialTip: true,
     tools,
-    selection: { rectangles: [], 
-    selectionModel: 'exclusive', },
+    selection: {
+      rectangles: [],
+      mode: 'exclusive',
+    },
     image: null as any,
-      selectRectTool: {
-      },
-       grabCutTool: {firstTime: true}
+    selectRectTool: {
+    },
+    grabCutTool: { selectBackgroundPencilEnabled: true }
   }
 }
 

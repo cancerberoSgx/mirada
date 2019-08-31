@@ -47,7 +47,7 @@ See [mirada-cli project page](../mirada-cli).
 - [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/
 - [ ] include recording in playgrounds: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element
 - [ ] make an example FormatProxy for loading svg
-- [ ] the morphing with slide effect but against two different videos ? (like obama and trump speeches and come
+- [x] the morphing with slide effect but against two different videos ? (like obama and trump speeches and come
   from one to the other and back again with the slider) - see http://overengineer.net/enabling-cors-for-html5-video-element-screenshots
 - [x] camera helpers ../mirada-ts-playground/src/examples/toPack/faceDetectionCamera.ts
 - [x] ensureDataFile()

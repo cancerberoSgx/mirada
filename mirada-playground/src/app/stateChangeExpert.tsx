@@ -1,6 +1,5 @@
-import { Fn } from '../ui/common/util';
-import { StateChange, getState } from './store';
-import { ChangeEvent } from 'react';
+import { Fn } from '../ui/common/util'
+import { StateChange } from './store'
 
 
 export type StateChangeType = 'selectionChanged'
@@ -10,12 +9,12 @@ interface StateChangeEvent<T extends StateChangeType> {
   change: StateChange
 }
 
-export type StateChangeListener<T extends StateChangeType> = {type: T, fn: Fn<[StateChangeEvent<T>], void>}
+export type StateChangeListener<T extends StateChangeType> = { type: T, fn: Fn<[StateChangeEvent<T>], void> }
 
 const listeners: StateChangeListener<StateChangeType>[] = []
 
 export function addStateChangeListener<T extends StateChangeType>(type: StateChangeType, l: StateChangeListener<T>) {
-listeners.push(l as any)
+  listeners.push(l as any)
 }
 
 export type SelectionChangeEvent = StateChangeEvent<'selectionChanged'>
@@ -27,15 +26,17 @@ export type SelectionChangeListener = StateChangeListener<'selectionChanged'>
 export function handleStateChange(change: StateChange & {
   emit: Fn<StateChange[], void>;
 }) {
-  const e: SelectionChangeEvent = {change, type: 'selectionChanged'}
-  if(JSON.stringify(change.oldState.selection.rectangles)!==JSON.stringify(change.newState.selection.rectangles)) {
+
+  // for now we just emit everything but probably we will prevent some.
+  change.emit(change)
+
+  const e: SelectionChangeEvent = { change, type: 'selectionChanged' }
+  if (JSON.stringify(change.oldState.selection.rectangles) !== JSON.stringify(change.newState.selection.rectangles)) {
     notify(e)
   }
-  // for now we just emit everything but probably we will prevent some.
-  change.emit(change);
 }
 
 
-function notify<T extends StateChangeType>(e: StateChangeEvent<T> ){
-  listeners.filter(l=>l.type === e.type).forEach(l=>l.fn(e))
+function notify<T extends StateChangeType>(e: StateChangeEvent<T>) {
+  listeners.filter(l => l.type === e.type).forEach(l => l.fn(e))
 }

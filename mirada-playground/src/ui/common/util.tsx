@@ -18,7 +18,7 @@ export function memoryReport() {
 }
 
 
-export type Fn<args extends any[] = any[], returnValue extends  any=any> = (...args: args)=>returnValue
+export type Fn<args extends any[] = any[], returnValue extends any = any> = (...args: args) => returnValue
 
 
 // export function asDataUrl(f: IFile): string | undefined {

@@ -22,10 +22,10 @@ export class Header extends AbstractComponent {
 
   componentDidMount() {
     this.timer = setInterval(() => this.updateMem(), 1000)
-    document.onkeydown = function (e) {
+    document.onkeydown = function(e) {
       if (e.keyCode == 27) {
         var mods = document.querySelectorAll('.modal > [type=checkbox]')
-          ;[].forEach.call(mods, function (mod: any) {
+          ;[].forEach.call(mods, function(mod: any) {
             mod.checked = false
           })
       }

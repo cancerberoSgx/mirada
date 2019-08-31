@@ -1,18 +1,18 @@
-import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts';
-import { denseOpticalFlow_ts } from '../examples/packed/denseOpticalFlow_ts';
-import { dilate_ts } from '../examples/packed/dilate_ts';
-import { dnnHighLevelGeneration_ts } from '../examples/packed/dnnHighLevelGeneration_ts';
-import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts';
-import { faceDetection_ts } from '../examples/packed/faceDetection_ts';
-import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts';
-import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts';
-import { fft_ts } from '../examples/packed/fft_ts';
-import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts';
-import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts';
-import { trackbar_ts } from '../examples/packed/trackbar_ts';
-import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts';
-import { watershed_ts } from '../examples/packed/watershed_ts';
-import { trackbarVideo_ts } from '../examples/packed/trackbarVideo_ts';
+import { contourFunctionsShape_ts } from '../examples/packed/contourFunctionsShape_ts'
+import { denseOpticalFlow_ts } from '../examples/packed/denseOpticalFlow_ts'
+import { dilate_ts } from '../examples/packed/dilate_ts'
+import { dnnHighLevelGeneration_ts } from '../examples/packed/dnnHighLevelGeneration_ts'
+import { faceDetectionCamera_ts } from '../examples/packed/faceDetectionCamera_ts'
+import { faceDetection_ts } from '../examples/packed/faceDetection_ts'
+import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts'
+import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
+import { fft_ts } from '../examples/packed/fft_ts'
+import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
+import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts'
+import { trackbarVideo_ts } from '../examples/packed/trackbarVideo_ts'
+import { trackbar_ts } from '../examples/packed/trackbar_ts'
+import { videoDisplay_ts } from '../examples/packed/videoDisplay_ts'
+import { watershed_ts } from '../examples/packed/watershed_ts'
 
 export interface Example {
   name: string
@@ -40,7 +40,7 @@ export function examples(): Example[] {
       name: '/faceDetection.ts',
       tags: [ExampleTag.ia, ExampleTag.fs],
       code: faceDetection_ts,
-      description: 'Ported directly from opencv.js tutorials.'
+      description: 'Ported directly from opencv.js tutorials. Iit loads a couple of training models , and run each against the image (loaded from current canvas content)'
     },
     {
       name: '/dilate.ts',
@@ -85,8 +85,6 @@ export function examples(): Example[] {
       code: faceRecognOtherModelsTest_ts,
       description: 'TODO'
     },
-
-
     {
       name: '/fft.ts',
       tags: [ExampleTag.fft],
@@ -95,15 +93,15 @@ export function examples(): Example[] {
     },
     {
       name: '/trackbar.ts',
-      tags: [ExampleTag.controls],
+      tags: [ExampleTag.controls, ExampleTag.video],
       code: trackbar_ts,
-      description: 'TODO'
+      description: 'Using cv.addWeighted() two images are blend and render the result in a canvas. Edit the slider below to control the blending. '
     },
     {
       name: '/trackbarVideo.ts',
       tags: [ExampleTag.video, ExampleTag.controls],
       code: trackbarVideo_ts,
-      description: 'TODO'
+      description: 'This example loads two videos and uses cv.addWeighted() the same way as trackbar exmaple , mixing frames configurable with a slider and showing the result in a canvas. Could take some seconds to load the videos. '
     },
     {
       name: '/faceDetectionCamera.ts',

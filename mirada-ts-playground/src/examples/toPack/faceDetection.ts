@@ -1,3 +1,5 @@
+// Ported from opencv tutorials, it loads a coupld of training models , and run each against the image (loaded from current canvas content)
+
 (async () => {
   const canvas = document.getElementById('outputCanvas')!
   var src = await cv.imread(canvas)

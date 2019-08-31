@@ -1,8 +1,8 @@
 import { Emitter } from 'misc-utils-of-mine-generic'
 import { State } from './state'
-import { handleStateChange } from './stateChangeExpert';
+import { handleStateChange } from './stateChangeExpert'
 
-export interface StateChange{ oldState: State, partial: Partial<State>, newState: State }
+export interface StateChange { oldState: State, partial: Partial<State>, newState: State }
 class Store extends Emitter<StateChange> {
 
   constructor(protected state: State) {
