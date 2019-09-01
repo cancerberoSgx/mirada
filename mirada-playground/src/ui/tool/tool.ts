@@ -3,7 +3,7 @@ import { Rectangle, State } from '../../app/state'
 import { getStore } from '../../app/store'
 import { AbstractComponent, AbstractProps } from '../common/component'
 import { ComponentWithFields } from '../common/componentWithFields'
-import { ImageWidget } from './imageWidget'
+import { ImageWidget } from '../imageEditor/imageWidget'
 
 export interface Tool extends Emitter {
   setActive(b: boolean): void;
@@ -27,17 +27,6 @@ export abstract class AbstractTool<V extends ToolView> extends Emitter {
   activeExclusive = false
   view: V = null as any
   viewClass: typeof ToolView = null as any
-  //  getView(): ()=>V {
-  //    checkThrow(this.viewClass, 'Expected to have a view class, ')
-  //    if(!this.view ){
-  //      this.view = new (this.viewClass as any)({}, this.state, this)
-  //    }
-  //    return ()=>this.view
-  // }
-
-  // protected installView(v: typeof ToolView) {
-  //   this.viewClass = new (v as any)({}, this.state, this)
-  // }
 
   name = unique('abstractTool')
   description = 'TODO'
@@ -56,8 +45,6 @@ export abstract class AbstractTool<V extends ToolView> extends Emitter {
         t.active = false
       })
     }
-    // const activeTools = [...this.state.activeTools.filter(t => t !== this), ...(b ? [this] : [])].filter(notUndefined)
-    // debugger
     this.setState({
       activeTools: this.state.tools.filter(t => t.active),
       tools: this.state.tools

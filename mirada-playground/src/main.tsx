@@ -4,11 +4,12 @@ import { sleep } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { render } from 'react-dom'
 import 'semantic-ui-css/semantic.css'
-import { setExample } from './app/dispatcher'
+import { setExample, start } from './app/dispatcher'
+// import { setExample, start } from './app/dispatcher'
 import { getInitialState } from './app/state'
 import { getStore, _setStore } from './app/store'
 import './styles.css'
-import { App, start } from './ui/app'
+import { App } from './ui/app'
 import { createUrl, loadUrl, urlHasState } from './ui/common/urlState'
 
 async function main() {
@@ -28,9 +29,6 @@ async function main() {
   await installFormatProxy(() => new CanvasCodec())
   await loadFormatProxies()
   await loadOpencv()
-  getStore().setState({
-    working: false
-  })
   await start()
 }
 

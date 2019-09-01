@@ -1,8 +1,8 @@
 import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
 import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
-import { Dropdown, Menu, Modal } from 'semantic-ui-react'
-import { setExample } from '../app/dispatcher'
+import { Button, Dropdown, Input, Menu, Modal } from 'semantic-ui-react'
+import { loadFileFromInpuElement, setExample } from '../app/dispatcher'
 import { ExampleTag } from "../app/examples"
 import { About } from './about'
 import { AbstractComponent } from './common/component'
@@ -61,7 +61,10 @@ export class Header extends AbstractComponent {
       <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
 
       <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
-      {/* <Menu.Item >  <button onClick={test}>click me</button></Menu.Item> */}
+      <Menu.Item > <Button onClick={e => this.setState({ toolBarCollapsed: !this.state.toolBarCollapsed })}>{!this.state.toolBarCollapsed ? 'Hide' : 'Show'} Toolbar</Button>
+      </Menu.Item>
+
+      <Input type="file" label="Load" size="small" inverted onChange={async e => loadFileFromInpuElement(e.currentTarget)} />
 
       <Menu.Menu position="right">
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>

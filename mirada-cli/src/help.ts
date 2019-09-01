@@ -20,20 +20,7 @@ Options:
   process.stdout.write(`
 Usage: 
 
-# execute two commands given as JS literal object (notice the file named tmp.mat)
-ojos "name:'grabCut', in:'../imgs/foo.png', rect:'{x:100,y:90,w:79,h:80}', out:'tmp.mat'" \\
-     "name:'toRgba', in:'tmp.mat', out:'out/foo.gif'"
-
-# execute commands defined in file removeBg17.json.ejs evaluated as a template with context given in --variables
-ojos --commands removeBg17.json.ejs \\
-     --variables "bg:'#ffeeee', replaceWith:'rgba(222,122,211,128)'"
-
-# Same as before but variables read from stdin and commands file fetched from url
-cat vars.json | ojos --commands https://app.com/imgproc/features/people22
-
-# daemon mode
-mkpipe ./tmp/pipe1
-ojos --listen ./tmp/pipe1
+TODO
 
 Options:
 

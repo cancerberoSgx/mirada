@@ -26,6 +26,9 @@ export function getStore() {
   return store
 }
 
+export function setState(state: Partial<State>) {
+  store.setState(state)
+}
 export function getState() {
   return store.getState()
 }

@@ -2,7 +2,7 @@ import { Fn } from '../ui/common/util'
 import { StateChange } from './store'
 
 
-export type StateChangeType = 'selectionChanged'
+export type StateChangeType = 'selectionChanged' | 'imageSizeChanged'
 
 interface StateChangeEvent<T extends StateChangeType> {
   type: T
@@ -26,17 +26,22 @@ export type SelectionChangeListener = StateChangeListener<'selectionChanged'>
 export function handleStateChange(change: StateChange & {
   emit: Fn<StateChange[], void>;
 }) {
-
   // for now we just emit everything but probably we will prevent some.
   change.emit(change)
-
-  const e: SelectionChangeEvent = { change, type: 'selectionChanged' }
   if (JSON.stringify(change.oldState.selection.rectangles) !== JSON.stringify(change.newState.selection.rectangles)) {
-    notify(e)
+    notify({ change, type: 'selectionChanged' })
+  }
+
+  console.log(change.oldState.imageSize, change.newState.imageSize)
+
+  if (JSON.stringify(change.oldState.imageSize) !== JSON.stringify(change.newState.imageSize)) {
+    notify({ change, type: 'imageSizeChanged' })
   }
 }
 
 
 function notify<T extends StateChangeType>(e: StateChangeEvent<T>) {
+  // console.log('StateChange notify', e.type);
+
   listeners.filter(l => l.type === e.type).forEach(l => l.fn(e))
 }

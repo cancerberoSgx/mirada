@@ -1,4 +1,5 @@
-import { ImageWidget } from '../ui/tool/imageWidget'
+import { Size } from 'mirada'
+import { ImageWidget } from '../ui/imageEditor/imageWidget'
 import { Tool, tools } from '../ui/tool/tool'
 import { Example, examples } from './examples'
 
@@ -10,15 +11,23 @@ export interface State {
   working: boolean
   tools: Tool[]
   activeTools: Tool[]
-  image: ImageWidget
+  image?: ImageWidget
   selection: Selection
   showToolInitialTip: boolean
 
   grabCutTool: {
     selectBackgroundPencilEnabled: boolean
+    activeShape?: GrabCutToolShape
   }
   selectRectTool: SelectRectToolState
+
+  imageSize: Size,
+  shapesTool: { menuActiveIndex: number }
+  toolBarCollapsed: boolean
+
 }
+
+export type GrabCutToolShape = 'rectangle' | 'brush' | 'select' | 'delete'
 
 interface Selection {
   rectangles: Rectangle[]
@@ -40,10 +49,13 @@ export async function getInitialState(): Promise<State> {
       rectangles: [],
       mode: 'exclusive',
     },
-    image: null as any,
+    imageSize: { width: 0, height: 0 },
+    // image: null as any,
     selectRectTool: {
     },
-    grabCutTool: { selectBackgroundPencilEnabled: true }
+    grabCutTool: { selectBackgroundPencilEnabled: true },
+    toolBarCollapsed: false,
+    shapesTool: { menuActiveIndex: 0 }
   }
 }
 

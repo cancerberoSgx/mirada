@@ -9,10 +9,13 @@ export class ImageWidget {
     [n: string]: File;
   } = {};
 
-  constructor(public readonly canvas: HTMLCanvasElement, private image: File) {
+  constructor(public readonly canvas: HTMLCanvasElement, protected image: File) {
     this.load(this.image)
   }
 
+  get imageSize() {
+    return { width: this.image.width, height: this.image.height }
+  }
   save(n: string = this.image.name) {
     this.delete(n)
     this.images[n] = this.image
@@ -37,10 +40,6 @@ export class ImageWidget {
     this.canvas.width = this.buffer.cols
     this.canvas.height = this.buffer.rows
     this.render()
-
-    tryTo(() => {
-
-    })
   }
 
   get(name = this.image.name) {

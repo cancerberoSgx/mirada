@@ -12,14 +12,31 @@ textarea{
   padding-top: 2em;
 }
 #inputCanvas {
-  position: fixed;
+  position: absolute;
   display: block;
   top: 40px;
   left: 2px;
 }
 #outputCanvas {
-  position: fixed;
+  position: absolute;
   display: block;
   top: 40px;
   left: 50vw;
+}
+.ui.segment.appBody {
+  padding-top: 0;
+  margin-top: 0
+}
+.ui.segment.toolBar {
+z-index: 200;
+  display: block;
+  position: fixed;
+  top: 40px;
+  right: 0px;
+  max-height: 85vh;
+  width: 30vw;
+  max-width: 300px;
+}
+body {
+  overflow: scroll
 }
