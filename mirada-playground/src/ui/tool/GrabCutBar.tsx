@@ -27,7 +27,6 @@ export class GrabCutBar extends AbstractComponent {
             onChange={(e, props) => t.setActive(!!props.checked)}
             checked={this.state.activeTools.includes(t)} label={GrabCut.NAME} />
 
-
           <Button.Group toggle size="medium" vertical fluid >
             <Button onClick={e => this.handleRegionTypeChenge('interest')}><Icon name="smile outline" />Region of interest</Button>
             <Button onClick={e => () => this.handleRegionTypeChenge('background')}><Icon name="remove" />Background</Button>

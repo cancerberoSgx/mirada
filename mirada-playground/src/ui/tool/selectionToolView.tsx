@@ -1,29 +1,31 @@
 import * as React from 'react'
 import { Accordion, Button, Header, Icon, Menu, Popup } from 'semantic-ui-react'
-import { AbstractComponent } from '../common/component'
-import { SelectionTool } from './selectionTool';
+import { AbstractToolView } from './AbstractToolView'
+import { SelectionTool } from './selectionTool'
 
-export class SelectionToolView extends AbstractComponent {
-  
+export class SelectionToolView extends AbstractToolView {
+  toolName = SelectionTool.NAME
+  getTool(): SelectionTool {
+    return super.getTool() as SelectionTool
+  }
   render() {
-    const t = this.state.tools.find(d => d.name === SelectionTool.NAME)! as SelectionTool
-    if(!t){
-      return <span>Loading</span>
-
+    const t = this.getTool()
+    if (!t) {
+      return <h4>Loading</h4>
     }
     return (
       <Menu.Item fluid content={SelectionTool.SHORT_DESCRIPTION}>
-          <Header as="h6">Selection tools</Header>
+        {/* <Header as="h6">Selection tools</Header> */}
 
-        <Popup position="bottom left" flowing={false} mountNode={document.body} size="small" hoverable 
-        style={{ left: '-20vw' }} content={SelectionTool.DESCRIPTION} trigger={<Icon name="help circle" />} />
+        <Popup position="bottom left" flowing={false} mountNode={document.body} size="small" hoverable
+          style={{ left: '-20vw' }} content={SelectionTool.DESCRIPTION} trigger={<Icon name="help circle" />} />
 
-        <Accordion.Title active={this.state.shapesTool.menuActiveIndex.includes(t.toolGroupIndex)} 
-        content={SelectionTool.NAME} index={t.toolGroupIndex} onClick={() => t.handleToolGroupVisibleToggle(t.toolGroupIndex)} />
+        <Accordion.Title active={this.state.shapesTool.menuActiveIndex.includes(t.toolGroupIndex)}
+          content={SelectionTool.NAME} index={t.toolGroupIndex} onClick={() => t.handleToolGroupVisibleToggle(t.toolGroupIndex)} />
 
         <Accordion.Content active={this.state.shapesTool.menuActiveIndex.includes(t.toolGroupIndex)} fluid>
           <Header as="h6">Selection Management tools</Header>
-          
+
           <Button.Group toggle size="medium" vertical fluid>
 
             <Button onClick={e => t.handleSelectionAction('select')}>

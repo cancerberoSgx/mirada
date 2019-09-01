@@ -12,7 +12,7 @@ export interface Tool extends Emitter {
   name: string
   description: string
   toolGroupIndex: number
-     handleToolGroupVisibleToggle(toolGroupIndex: number) :void
+  handleToolGroupVisibleToggle(toolGroupIndex: number): void
   // toolGroupIndex 
   // viewClass: typeof ToolView
 }
@@ -32,15 +32,17 @@ export abstract class AbstractTool extends Emitter {
   active = false;
   activeExclusive = false
   viewClass: typeof AbstractComponent = null as any
-abstract toolGroupIndex:number
+  abstract toolGroupIndex: number
   name = unique('abstractTool')
   description = 'TODO'
-  protected ctx: CanvasRenderingContext2D;
+  // protected ctx: CanvasRenderingContext2D;
+  // protected image: ImageWidget
   // protected options: Required<Options>
-  constructor(protected image: ImageWidget) {
+  constructor() {
     super()
+    // this.image = Managers.image
     // this.options = { ...defaultToolOptions, ...options }
-    this.ctx = this.image.canvas.getContext("2d")!
+    // this.ctx = this.image.canvas.getContext("2d")!
   }
 
   setActive(b: boolean) {
@@ -71,7 +73,7 @@ abstract toolGroupIndex:number
 
   public handleToolGroupVisibleToggle(toolGroupIndex: number) {
     const active = this.state.shapesTool.menuActiveIndex.includes(toolGroupIndex)
-   this. setState({
+    this.setState({
       shapesTool: {
         ...this.state.shapesTool,
         menuActiveIndex: active ? this.state.shapesTool.menuActiveIndex.filter(k => k !== toolGroupIndex) : [...this.state.shapesTool.menuActiveIndex, toolGroupIndex]

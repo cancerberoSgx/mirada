@@ -2,18 +2,32 @@ import { fabric } from 'fabric'
 import { Size } from 'mirada'
 import { checkThrow, unique } from 'misc-utils-of-mine-generic'
 import { cloneCanvasSize, copyBounds, setSize } from '../../util/dom'
+// import { GlobalEvents, GlobalEvent, globalEmit } from "../../app/bus";
 
 interface Options {
   canvas: HTMLCanvasElement
 }
+/** had to copy this one since is not exposed :() */
+// export interface FabricEvent  extends GlobalEvent<'FabricSelection'>{
+export interface FabricEvent {
+  name: 'FabricSelection'
+  e: Event;
+  target?: Object;
+  subTargets?: Object[],
+  button?: number;
+  isClick?: boolean;
+  pointer?: fabric.Point;
+  absolutePointer?: fabric.Point;
+  transform?: { corner: string, original: Object, originX: string, originY: string, width: number };
+}
 
 export class CanvasOverlay {
 
-  enabled: boolean = false
-  target: HTMLCanvasElement;
+  protected enabled: boolean = false
+  protected target: HTMLCanvasElement;
   canvas: fabric.Canvas | undefined
-  container: HTMLDivElement | undefined
-  
+  protected container: HTMLDivElement | undefined
+
   constructor(options: Options) {
     this.target = options.canvas
   }
@@ -23,13 +37,14 @@ export class CanvasOverlay {
     if (this.enabled) {
       if (!this.canvas) {
         const { canvas, container } = createCanvasOverlay(this.target)
+        // canvas.on('selection', e=>globalEmit({name: 'FabricSelection', ...e}))
+        canvas.on('selection', e => this.onSelection(e))
+
         this.canvas = canvas
         this.container = container
         var r = new fabric.Rect({
+          includeDefaultValues: true,
           top: 10, left: 90, width: 100, height: 111,
-          fill: '#77e46666',
-          stroke: 'red',
-          strokeWidth: 3,
         })
         this.canvas.add(r)
         this.canvas.renderAll()
@@ -37,13 +52,17 @@ export class CanvasOverlay {
     } else {
       throw 'TODO'
     }
+    return this.canvas
+  }
+  onSelection(e: fabric.IEvent): void {
+    debugger
+    // setState({º})
   }
 
   updateSize(size: Size) {
     checkThrow(this.container && this.canvas, 'Expected fabric canvas and  container')
     this.canvas!.setWidth(size.width)
     this.canvas!.setHeight(size.height)
-    debugger
     setSize(size, this.container!)
   }
 
@@ -68,7 +87,6 @@ export class CanvasOverlay {
       return CanvasOverlay.instances[elOrIr]
     }
   }
-
 }
 
 export function createCanvasOverlay(target: HTMLCanvasElement) {
@@ -79,12 +97,8 @@ export function createCanvasOverlay(target: HTMLCanvasElement) {
   }
   copyBounds(target, virtual)
   const canvas = new fabric.Canvas(virtual, {
-    backgroundColor: '',
     interactive: true,
-    hoverCursor: 'pointer',
     selection: true,
-    controlsAboveOverlay: true,
-    selectionBorderColor: 'green',
     containerClass: `${virtual.id}Container`
   })
   const container = document.querySelector(`.${virtual.id}Container`)! as HTMLDivElement
@@ -92,31 +106,3 @@ export function createCanvasOverlay(target: HTMLCanvasElement) {
   return { canvas, container }
 }
 
-
-
-// interface FMatOptions extends fabric.IObjectOptions {
-//   mat: Mat
-// }
-
-
-
-// var FMat = fabric.util.createClass(fabric.Image, {
-//   initialize: function(o: FMatOptions) {
-//     this.callSuper('initialize', o);
-//     this.mat = o.mat
-//   },
-// })
-
-
-// new Image().src
-
-
-// class FMat extends fabric.Object {
-//   initialize(o: FMatOptions) {
-//     this.callSuper('initialize', o);
-//     this.color = color || '#000';
-//   },
-//   toString: function() {
-//     return this.callSuper('toString') + ' (color: ' + this.color + ')';
-//   }
-// }

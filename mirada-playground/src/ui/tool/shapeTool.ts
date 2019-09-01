@@ -1,37 +1,46 @@
-import { RegionDefinitionShapes } from '../../app/state'
-import { ImageWidget } from '../imageEditor/imageWidget'
+import { ShapeTypes } from '../../app/state'
+import {  ShapeFreeDrawingOptions } from '../imageEditor/rectangleFreeDrawing'
 import { AbstractTool } from './tool'
-import { RectangleFreeDrawing, RectangleFreeDrawingOptions } from '../imageEditor/rectangleFreeDrawing';
+import { getManagers } from '../../app/start';
 
-export interface ShapeToolOptions extends  RectangleFreeDrawingOptions {
+export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
 
 }
-export class ShapeTool extends AbstractTool {
-  toolGroupIndex: number=1
-  rectDrawing: RectangleFreeDrawing;
 
-  setRegion(s: RegionDefinitionShapes) {
+export class ShapeTool extends AbstractTool {
+  toolGroupIndex: number = 1
+  // drawingTool: ShapeFreeDrawing;
+
+  setRegion(s: ShapeTypes) {
     this.setState({ shapesTool: { ...this.state.shapesTool, activeShape: s } })
   }
 
   protected canvasOffset = { x: 0, y: 0 }
   static NAME = 'Shapes'
-  static SHORT_DESCRIPTION = 'Shape free drawing , grouping and tagging tool'
+  static SHORT_DESCRIPTION = 'Shape drawing, management and classification tool'
   static DESCRIPTION = `Shape free drawing , grouping and tagging tool  TODO longer description`
-
-  constructor(protected image: ImageWidget, options: ShapeToolOptions) {
-    super(image)
+  // protected image: ImageWidget
+  constructor() {
+    super()
     this.name = ShapeTool.NAME
     this.description = ShapeTool.DESCRIPTION
-    this.rectDrawing = new RectangleFreeDrawing(options)
+
+    const drawingOptions = null as any
+    // this.drawingTool = new ShapeFreeDrawing(drawingOptions)
     // this.selectionChangeListener = this.selectionChangeListener.bind(this)
-  //   addStateChangeListener('selectionChanged', {
-  //     type: 'selectionChanged',
-  //     fn: this.selectionChangeListener
-  //   })
+    //   addStateChangeListener('selectionChanged', {
+    //     type: 'selectionChanged',
+    //     fn: this.selectionChangeListener
+    //   })
   }
-  setActive(b:boolean){
-    this.rectDrawing.setEnabled(true)
+  setShape(s: ShapeTypes) {
+
+  }
+
+async   setActive(b: boolean) {
+  // TODO: do this right though the State/Dispatcher and not directly here. 
+    const m = await getManagers()
+    m.shapeDrawing.setEnabled(true)
     super.setActive(b)
   }
 

@@ -32,16 +32,12 @@ export function handleStateChange(change: StateChange & {
     notify({ change, type: 'selectionChanged' })
   }
 
-  console.log(change.oldState.imageSize, change.newState.imageSize)
-
   if (JSON.stringify(change.oldState.imageSize) !== JSON.stringify(change.newState.imageSize)) {
     notify({ change, type: 'imageSizeChanged' })
   }
 }
 
-
 function notify<T extends StateChangeType>(e: StateChangeEvent<T>) {
-  // console.log('StateChange notify', e.type);
-
   listeners.filter(l => l.type === e.type).forEach(l => l.fn(e))
 }
+

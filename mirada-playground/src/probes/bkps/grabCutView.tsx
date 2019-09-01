@@ -1,7 +1,7 @@
 // import * as React from 'react'
 // import { Checkbox, Popup } from 'semantic-ui-react'
-// import { GrabCut } from './grabCut'
-// import { ToolView } from './tool'
+// import { GrabCut } from '../../ui/tool/grabCut'
+// import { ToolView } from '../../ui/tool/tool'
 // export class GrabCutView extends ToolView {
 //   static firstTime = false
 //   render() {

@@ -1,50 +1,65 @@
 import { fabric } from 'fabric'
 import { IEvent, Point } from 'fabric/fabric-impl'
+import { Emitter, throttle } from 'misc-utils-of-mine-generic'
 
-export interface RectangleFreeDrawingOptions {
+export interface ShapeFreeDrawingOptions {
   canvas: fabric.Canvas
-  drawRect?: boolean
-  onlyOne?: boolean
-  rectProps?: RectProps
+  /** rectangle  by default*/
+  shapeKind?: ShapeKinds
+  drawOnMove?: boolean
+  disableAfterFinish?: boolean
+  throttleOnMove?: number
+  shapeOptions?: ShapeOptions
 }
 
-interface RectProps {
-  stroke?: string
-  strokeWidth?: number,
-  fill?: string
-}
+export type FabricObjectOptions = Exclude<(ConstructorParameters<typeof fabric.Object>)[0], undefined>
+export type FabricRectOptions = Exclude<(ConstructorParameters<typeof fabric.Rect>)[0], undefined>
+export type FabricEllipseOptions = Exclude<(ConstructorParameters<typeof fabric.Ellipse>)[0], undefined>
+export type ShapeOptions = Partial<FabricObjectOptions & FabricRectOptions & FabricEllipseOptions>
 
-type RequiredOptions = Required<RectangleFreeDrawingOptions> & {
-  rectProps: Required<RectProps>;
-}
-
-const defaults: RequiredOptions = {
+export type ShapeKinds = 'rectangle' | 'ellipse'
+const defaults: Required<ShapeFreeDrawingOptions> = {
   canvas: null as any,
-  drawRect: true,
-  onlyOne: true,
-  rectProps: {
+  shapeKind: 'rectangle',
+  drawOnMove: true,
+  disableAfterFinish: true,
+  throttleOnMove: 0,
+  shapeOptions: {
     stroke: 'red',
     strokeWidth: 2,
-    fill: ''
+    fill: '',
   }
 }
+interface ShapeEvent {
+  shape: fabric.Object
+}
+type ShapeListener = (e: ShapeEvent) => void
 
-export class RectangleFreeDrawing implements RequiredOptions {
+export class ShapeFreeDrawing  implements Required<ShapeFreeDrawingOptions>  {
+
+  // afterShapeDrawn(l: ShapeListener) {
+    // this.add(l)
+  // }
+
   canvas: fabric.Canvas = null as any
-  drawRect: boolean = defaults.drawRect
-  onlyOne: boolean = defaults.onlyOne
-  rectProps: Required<RectProps> = defaults.rectProps
+  shapeKind: ShapeKinds = 'rectangle'
+  drawOnMove: boolean = defaults.drawOnMove
+  disableAfterFinish: boolean = defaults.disableAfterFinish
+  shapeOptions: ShapeOptions = { ...defaults.shapeOptions }
+  throttleOnMove = 0
   protected dragging = false
   protected enabled = false
-  protected rect: fabric.Rect | undefined
+  protected instance: fabric.Object | undefined
   protected initialPos = { x: 0, y: 0 };
   protected bounds = { x: 0, y: 0, width: 0, height: 0 }
 
-  constructor(o: RectangleFreeDrawingOptions) {
-    Object.assign(this.rectProps, o.rectProps || {})
-    Object.assign(this, { ...o, rectProps: undefined })
+  constructor(o: ShapeFreeDrawingOptions) {
+    // super()
+    // this.afterShapeDrawn = this.afterShapeDrawn.bind(this)
+    Object.assign(this.shapeOptions, o.shapeOptions || {})
+    Object.assign(this, { ...o, shapeOptions: undefined })
     this.onMouseDown = this.onMouseDown.bind(this)
-    this.onMouseMove = this.onMouseMove.bind(this)
+    this.onMouseMove = this.throttleOnMove > 0 ? throttle(this.onMouseMove.bind(this), this.throttleOnMove, { leading: true, trailing: true }) : this.onMouseMove.bind(this)
     this.onMouseUp = this.onMouseUp.bind(this)
     this.update = this.update.bind(this)
   }
@@ -53,13 +68,13 @@ export class RectangleFreeDrawing implements RequiredOptions {
     this.enabled = enabled
     if (this.enabled) {
       this.dragging = false
-      this.rect = undefined
+      this.instance = undefined
       this.canvas.on('mouse:down', this.onMouseDown)
       this.canvas.on('mouse:move', this.onMouseMove)
       this.canvas.on('mouse:up', this.onMouseUp)
     } else {
       this.dragging = false
-      this.rect = undefined
+      this.instance = undefined
       this.canvas.off('mouse:down', this.onMouseDown)
       this.canvas.off('mouse:move', this.onMouseMove)
       this.canvas.off('mouse:up', this.onMouseUp)
@@ -73,16 +88,17 @@ export class RectangleFreeDrawing implements RequiredOptions {
     }
     this.initialPos = { ...e.pointer }
     this.bounds = { x: 0, y: 0, width: 0, height: 0 }
-    if (this.drawRect) {
-      this.rect = new fabric.Rect({
+    if (this.drawOnMove) {
+      this.instance = new fabric.Rect({
+        ...this.shapeOptions,
         left: this.initialPos.x,
         top: this.initialPos.y,
         width: 0, height: 0,
-        ...this.rectProps
       })
-      this.canvas.add(this.rect)
+      this.canvas.add(this.instance)
     }
   }
+
   protected update(pointer: Point) {
     if (this.initialPos.x > pointer.x) {
       this.bounds.x = Math.max(0, pointer.x)
@@ -98,37 +114,42 @@ export class RectangleFreeDrawing implements RequiredOptions {
       this.bounds.height = pointer.y - this.initialPos.y
       this.bounds.y = this.initialPos.y
     }
-    if (this.drawRect && this.rect) {
-      this.rect.left = this.bounds.x
-      this.rect.top = this.bounds.y
-      this.rect.width = this.bounds.width
-      this.rect.height = this.bounds.height
-      this.rect.dirty = true
-      this.canvas.requestRenderAll()//.requestRenderAllBound()
+    if (this.drawOnMove && this.instance) {
+      this.instance.left = this.bounds.x
+      this.instance.top = this.bounds.y
+      this.instance.width = this.bounds.width
+      this.instance.height = this.bounds.height
+      this.instance.dirty = true
+      this.canvas.requestRenderAll()
     }
   }
+
   protected onMouseMove(e: IEvent) {
     if (!this.dragging || !this.enabled || !e.pointer) {
       return
     }
     requestAnimationFrame(() => this.update(e.pointer!))
   }
+
   protected onMouseUp(e: IEvent) {
     this.dragging = false
     if (!this.enabled) { return }
-    if (this.drawRect && this.rect && (this.rect.width == 0 || this.rect.height === 0)) {
-      this.canvas.remove(this.rect)
+    if (this.drawOnMove && this.instance && (this.instance.width == 0 || this.instance.height === 0)) {
+      this.canvas.remove(this.instance)
     }
-    if (!this.drawRect || !this.rect) {
-      this.rect = new fabric.Rect({
+    if (!this.drawOnMove || !this.instance) {
+      this.instance = new fabric.Rect({
+        ...this.shapeOptions,
         ...this.bounds, left: this.bounds.x, top: this.bounds.y,
-        ...this.rectProps
       })
-      this.canvas.add(this.rect)
-      this.rect.dirty = true
-      this.canvas.requestRenderAll()//.requestRenderAllBound()
+      this.canvas.add(this.instance)
     }
-    this.onlyOne && this.setEnabled(false)
+    this.instance.dirty = true
+    this.instance!.setCoords()
+    this.canvas.requestRenderAll()
+
+    this.disableAfterFinish && this.setEnabled(false)
+    // this.emit({ shape: this.instance })
   }
 
 }

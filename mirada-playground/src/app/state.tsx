@@ -1,8 +1,6 @@
 import { Size } from 'mirada'
-import { ImageWidget } from '../ui/imageEditor/imageWidget'
 import { Tool, tools } from '../ui/tool/tool'
 import { Example, examples } from './examples'
-import { CanvasOverlay } from '../ui/imageEditor/canvasOverlay';
 
 export interface State {
   example: Example
@@ -12,16 +10,14 @@ export interface State {
   working: boolean
   tools: Tool[]
   activeTools: Tool[]
-  image?: ImageWidget
-  overlay?: CanvasOverlay
+  // image?: ImageWidget
+  // overlay?: CanvasOverlay
   selection: Selection
-
   showToolInitialTip: boolean
-
   imageSize: Size,
   shapesTool: {
     menuActiveIndex: number[]
-    activeShape: RegionDefinitionShapes
+    activeShape: ShapeTypes
   }
   grabCut: {
     region: GrabCutRegions
@@ -30,9 +26,9 @@ export interface State {
 
 }
 
-export type RegionDefinitionShapes = 'rectangle' | 'brush' | 'ellipse' 
+export type ShapeTypes = 'rectangle' | 'brush' | 'ellipse'
 export type SelectionActions = | 'select' | 'delete' | 'invertSelection' | 'selectAll'
-export type GrabCutRegions = 'interest'|'background'
+export type GrabCutRegions = 'interest' | 'background'
 interface Selection {
   rectangles: Rectangle[]
   mode: 'exclusive' | 'union',
