@@ -1,7 +1,7 @@
 import { fabric } from 'fabric'
 import { IEvent, Point } from 'fabric/fabric-impl'
 
-interface Options {
+export interface RectangleFreeDrawingOptions {
   canvas: fabric.Canvas
   drawRect?: boolean
   onlyOne?: boolean
@@ -14,7 +14,7 @@ interface RectProps {
   fill?: string
 }
 
-type RequiredOptions = Required<Options> & {
+type RequiredOptions = Required<RectangleFreeDrawingOptions> & {
   rectProps: Required<RectProps>;
 }
 
@@ -40,7 +40,7 @@ export class RectangleFreeDrawing implements RequiredOptions {
   protected initialPos = { x: 0, y: 0 };
   protected bounds = { x: 0, y: 0, width: 0, height: 0 }
 
-  constructor(o: Options) {
+  constructor(o: RectangleFreeDrawingOptions) {
     Object.assign(this.rectProps, o.rectProps || {})
     Object.assign(this, { ...o, rectProps: undefined })
     this.onMouseDown = this.onMouseDown.bind(this)

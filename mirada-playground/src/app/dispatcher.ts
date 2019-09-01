@@ -9,6 +9,8 @@ import { tools } from '../ui/tool/tool'
 import { Example } from "./examples"
 import { addStateChangeListener } from './stateChangeExpert'
 import { getState, getStore } from './store'
+import { SelectionTool } from '../ui/tool/selectionTool';
+import { ShapeTool } from '../ui/tool/shapeTool';
 
 export async function setExample(example?: Example) {
   alert('Not implemented yet')
@@ -22,7 +24,7 @@ export async function setExample(example?: Example) {
 
 // }
 
-export async function loadFileFromInputElement(e: HTMLInputElement) {
+export async function loadFileFromInputElement(e: HTMLInputElement, magica = true) {
   getStore().setState({
     working: true,
   })
@@ -36,7 +38,7 @@ export async function loadFileFromInputElement(e: HTMLInputElement) {
   }
 
   // const f = await miradaImplementation() 
-  const f = await magicaImplementation()
+  const f = magica ? await magicaImplementation() : await miradaImplementation()
   getState().image!.load(f)
   getStore().setState({
     working: false,
@@ -45,13 +47,24 @@ export async function loadFileFromInputElement(e: HTMLInputElement) {
 }
 
 let overlay: CanvasOverlay
+
 export async function start() {
   const canvas = document.querySelector<HTMLCanvasElement>('#inputCanvas')!
   const image = new ImageWidget(canvas, await File.fromUrl('lenna.jpg'))
-  tools.push(new GrabCut(image))
-  image.render()
-  await sleep(10)
+  // await sleep(10)
   overlay = CanvasOverlay.setup(canvas)
+  image.render()
+
+  overlay.setEnabled(true)
+    tools.push(new SelectionTool(image))
+  tools.push(new GrabCut(image))
+  tools.push(new ShapeTool(image, {canvas :overlay.canvas!}))
+
+
+  // I'm not afraid of bad practices when I want to see something working :
+Object.assign(  getStore().getState(), { tools, activeTools: [tools[0]], image, working: false, overlay })
+
+
   addStateChangeListener('imageSizeChanged', {
     fn(c) {
       // checkThrow(getState().image, 'expected ImageWidget to be installed')
@@ -59,12 +72,11 @@ export async function start() {
     },
     type: 'imageSizeChanged'
   })
-  overlay.setEnabled(true)
-  getStore().setState({ tools, activeTools: [tools[0]], image, working: false })
+  getStore().setState({...getStore().getState()})
 }
 
 // export const uiHome: {
-//   canvas: HTMLCanvasElement,
+//   canvas: HTMLCanvasElement, 
 //   canvasOverlay: CanvasOverlay
 // } = {
 //   // image: null as any,

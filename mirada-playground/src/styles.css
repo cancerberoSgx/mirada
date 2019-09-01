@@ -40,3 +40,6 @@ z-index: 200;
 body {
   overflow: scroll
 }
+.ui.toggle.checkbox.toolEnabledToggle {
+  margin-bottom: 20px;
+}

@@ -1,7 +1,7 @@
 import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
 import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
-import { Button, Dropdown, Input, Menu, Modal } from 'semantic-ui-react'
+import { Button, Dropdown, Input, Menu, Modal, Popup } from 'semantic-ui-react'
 import { loadFileFromInputElement, setExample } from '../app/dispatcher'
 import { ExampleTag } from "../app/examples"
 import { memoryReport } from "../util/util"
@@ -55,18 +55,52 @@ export class Header extends AbstractComponent {
               </Dropdown>
             </Dropdown.Item>
           )}
+
         </Dropdown.Menu>
       </Dropdown>
 
-      <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
 
-      <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
-      <Menu.Item > <Button onClick={e => this.setState({ toolBarCollapsed: !this.state.toolBarCollapsed })}>{!this.state.toolBarCollapsed ? 'Hide' : 'Show'} Toolbar</Button>
-      </Menu.Item>
+      <Dropdown text='Options' pointing className='link item'>
+        <Dropdown.Menu>
 
-      <Input type="file" label="Load" size="small" inverted onChange={async e => loadFileFromInputElement(e.currentTarget)} />
+          <Dropdown.Item>
+            <Dropdown text="Load" fluid={true} scrolling>
+              <Dropdown.Menu>
+                <Dropdown.Item fluid={true}>
+                  <Popup content="Load files using OpenCV.js which uses HTMLCanvas and no libraries so it only supports JPEG and PNG formats." trigger={
+                    <Input type="file" label="Load (OpenCV)" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget)} />
+                  } />
+                </Dropdown.Item>
+                <Dropdown.Item fluid={true}>
+                  <Popup content="Load files using Magica, which ports ImageMagic and several image codec libraries to support for example GIF, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW, and more." trigger={
+                    <Input type="file" label="Load (ImageMagick)" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget, true)} />
+                  } />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Dropdown.Item>
+
+          <Dropdown.Item>
+            <Dropdown text="Save" fluid={true} scrolling>
+              <Dropdown.Menu>
+                <Dropdown.Item fluid={true}>
+                  <Popup content="To load images from URLs the server must allow CORS which is not common. A image-related website that works is is https://imgur.com/. Also github pages. " trigger={
+                    <Input />
+                  } />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
 
       <Menu.Menu position="right">
+
+
+        <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
+        <Menu.Item > <Button onClick={e => this.setState({ toolBarCollapsed: !this.state.toolBarCollapsed })}>{!this.state.toolBarCollapsed ? 'Hide' : 'Show'} Toolbar</Button>
+        </Menu.Item>
+        <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>
           <Modal.Header>About</Modal.Header>
           <Modal.Content>

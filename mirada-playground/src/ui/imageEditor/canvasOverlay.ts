@@ -13,9 +13,11 @@ export class CanvasOverlay {
   target: HTMLCanvasElement;
   canvas: fabric.Canvas | undefined
   container: HTMLDivElement | undefined
+  
   constructor(options: Options) {
     this.target = options.canvas
   }
+
   setEnabled(enabled: boolean) {
     this.enabled = enabled
     if (this.enabled) {
@@ -33,7 +35,16 @@ export class CanvasOverlay {
         this.canvas.renderAll()
       }
     } else {
+      throw 'TODO'
     }
+  }
+
+  updateSize(size: Size) {
+    checkThrow(this.container && this.canvas, 'Expected fabric canvas and  container')
+    this.canvas!.setWidth(size.width)
+    this.canvas!.setHeight(size.height)
+    debugger
+    setSize(size, this.container!)
   }
 
   private static instances: { [id: string]: CanvasOverlay } = {}
@@ -58,13 +69,6 @@ export class CanvasOverlay {
     }
   }
 
-  updateSize(size: Size) {
-    checkThrow(this.container && this.canvas, 'Expected fabric canvas and  container')
-    this.canvas!.setWidth(size.width)
-    this.canvas!.setHeight(size.height)
-    debugger
-    setSize(size, this.container!)
-  }
 }
 
 export function createCanvasOverlay(target: HTMLCanvasElement) {
