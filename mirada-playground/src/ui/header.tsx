@@ -2,11 +2,11 @@ import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
 import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
 import { Button, Dropdown, Input, Menu, Modal } from 'semantic-ui-react'
-import { loadFileFromInpuElement, setExample } from '../app/dispatcher'
+import { loadFileFromInputElement, setExample } from '../app/dispatcher'
 import { ExampleTag } from "../app/examples"
+import { memoryReport } from "../util/util"
 import { About } from './about'
 import { AbstractComponent } from './common/component'
-import { memoryReport } from "./common/util"
 
 export class Header extends AbstractComponent {
 
@@ -64,7 +64,7 @@ export class Header extends AbstractComponent {
       <Menu.Item > <Button onClick={e => this.setState({ toolBarCollapsed: !this.state.toolBarCollapsed })}>{!this.state.toolBarCollapsed ? 'Hide' : 'Show'} Toolbar</Button>
       </Menu.Item>
 
-      <Input type="file" label="Load" size="small" inverted onChange={async e => loadFileFromInpuElement(e.currentTarget)} />
+      <Input type="file" label="Load" size="small" inverted onChange={async e => loadFileFromInputElement(e.currentTarget)} />
 
       <Menu.Menu position="right">
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>

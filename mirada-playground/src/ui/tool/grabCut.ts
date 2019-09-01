@@ -12,7 +12,6 @@ interface Options {
 
 export class GrabCut extends AbstractTool<GrabCutView> {
   protected canvasOffset = { x: 0, y: 0 }
-  // activeExclusive=true
   static NAME = 'Grab Cut'
   static DESCRIPTION = `Intelligent way of removing the background. It doesn't need to be a solid color!. Use the selection tools to define the important regions`
 

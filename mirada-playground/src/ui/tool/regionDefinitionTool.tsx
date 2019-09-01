@@ -1,7 +1,7 @@
 import { setObjectProperty } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { Accordion, AccordionTitleProps, Button, Icon, Menu } from 'semantic-ui-react'
-import { State } from '../../app/state'
+import { RegionDefinitionShapes, State } from '../../app/state'
 import { AbstractComponent, AbstractProps } from '../common/component'
 
 export class RegionDefinitionTool extends AbstractComponent {
@@ -9,7 +9,6 @@ export class RegionDefinitionTool extends AbstractComponent {
     super(p, s)
     this.handleClick = this.handleClick.bind(this)
   }
-  // handleClick: ((event: MouseEvent<HTMLDivElement, MouseEvent>, data: AccordionTitleProps) => void) | undefined;
   protected handleClick(event: React.MouseEvent<HTMLDivElement>, titleProps: AccordionTitleProps) {
     const { index } = titleProps
     const newIndex = this.state.shapesTool.menuActiveIndex === index ? -1 : index
@@ -73,8 +72,8 @@ export class RegionDefinitionTool extends AbstractComponent {
 
     )
   }
-  setShape(s: 'rectangle' | 'brush') {
-    this.setState({ ...this.state, grabCutTool: { ...this.state.grabCutTool, activeShape: s } })
+  setShape(s: RegionDefinitionShapes) {
+    this.setState({ ...this.state, shapesTool: { ...this.state.shapesTool, activeShape: s } })
   }
 }
 

@@ -1,7 +1,7 @@
 import { fabric } from 'fabric'
 import { Size } from 'mirada'
 import { checkThrow, unique } from 'misc-utils-of-mine-generic'
-import { cloneCanvasSize, copyBounds, setSize } from '../util'
+import { cloneCanvasSize, copyBounds, setSize } from '../../util/dom'
 
 interface Options {
   canvas: HTMLCanvasElement

@@ -1,6 +1,7 @@
 
 import { File } from 'mirada'
 import { checkThrow, sleep } from 'misc-utils-of-mine-generic'
+import { loadMiradaFileFromInputElement } from '../magica'
 import { CanvasOverlay } from '../ui/imageEditor/canvasOverlay'
 import { ImageWidget } from '../ui/imageEditor/imageWidget'
 import { GrabCut } from '../ui/tool/grabCut'
@@ -21,16 +22,24 @@ export async function setExample(example?: Example) {
 
 // }
 
-export async function loadFileFromInpuElement(e: HTMLInputElement) {
+export async function loadFileFromInputElement(e: HTMLInputElement) {
   getStore().setState({
     working: true,
   })
-  const files = await File.fromHtmlFileInputElement(e)
-  checkThrow(getState().image, 'expected ImageWidget to be installed')
-  getState().image!.load(files[0])
+  async function miradaImplementation() {
+    const files = await File.fromHtmlFileInputElement(e)
+    checkThrow(getState().image, 'expected ImageWidget to be installed')
+    return files[0]
+  }
+  async function magicaImplementation() {
+    return await loadMiradaFileFromInputElement(e, getState().image!.canvas)
+  }
+
+  // const f = await miradaImplementation() 
+  const f = await magicaImplementation()
+  getState().image!.load(f)
   getStore().setState({
     working: false,
-    // image:   getState().image
     imageSize: getState().image!.imageSize
   })
 }

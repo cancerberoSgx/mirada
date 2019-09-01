@@ -1,4 +1,4 @@
-import { Fn } from '../ui/common/util'
+import { Fn } from '../util/util'
 import { StateChange } from './store'
 
 

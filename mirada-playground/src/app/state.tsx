@@ -15,19 +15,22 @@ export interface State {
   selection: Selection
   showToolInitialTip: boolean
 
-  grabCutTool: {
-    selectBackgroundPencilEnabled: boolean
-    activeShape?: GrabCutToolShape
-  }
-  selectRectTool: SelectRectToolState
+  // grabCutTool: {
+  // //   selectBackgroundPencilEnabled: boolean
+
+  // }
+  // selectRectTool: SelectRectToolState
 
   imageSize: Size,
-  shapesTool: { menuActiveIndex: number }
+  shapesTool: {
+    menuActiveIndex: number
+    activeShape: RegionDefinitionShapes
+  }
   toolBarCollapsed: boolean
 
 }
 
-export type GrabCutToolShape = 'rectangle' | 'brush' | 'select' | 'delete'
+export type RegionDefinitionShapes = 'rectangle' | 'brush' | 'select' | 'delete'
 
 interface Selection {
   rectangles: Rectangle[]
@@ -51,11 +54,11 @@ export async function getInitialState(): Promise<State> {
     },
     imageSize: { width: 0, height: 0 },
     // image: null as any,
-    selectRectTool: {
-    },
-    grabCutTool: { selectBackgroundPencilEnabled: true },
+    // selectRectTool: {
+    // },
+    // grabCutTool: { activeShape: 'rectangle' },
     toolBarCollapsed: false,
-    shapesTool: { menuActiveIndex: 0 }
+    shapesTool: { menuActiveIndex: 0, activeShape: 'rectangle' }
   }
 }
 

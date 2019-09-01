@@ -1,6 +1,6 @@
 // import { File } from 'magica'
 // import { setExample } from '../../app/dispatcher'
-import { getStore } from '../../app/store'
+import { getStore } from '../app/store'
 
 export function createUrl() {
   var state = getStore().getState()

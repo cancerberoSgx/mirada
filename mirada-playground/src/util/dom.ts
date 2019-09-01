@@ -17,8 +17,8 @@ export function cloneCanvasSize(c: HTMLCanvasElement) {
 
 export function copyBounds(a: HTMLElement, b: HTMLElement, onlyBounds = false) {
   Object.assign(b.style, {
-    ...onlyBounds ? {} : {      
-position: 'absolute',
+    ...onlyBounds ? {} : {
+      position: 'absolute',
       display: 'block',
       zIndex: 100
     },

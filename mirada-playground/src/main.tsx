@@ -10,7 +10,7 @@ import { getInitialState } from './app/state'
 import { getStore, _setStore } from './app/store'
 import './styles.css'
 import { App } from './ui/app'
-import { createUrl, loadUrl, urlHasState } from './ui/common/urlState'
+import { createUrl, loadUrl, urlHasState } from './util/urlState'
 
 async function main() {
   var s = await getInitialState()

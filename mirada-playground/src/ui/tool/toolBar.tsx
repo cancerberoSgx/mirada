@@ -10,7 +10,6 @@ export class ToolBar extends AbstractComponent {
       return ''
     }
     return (
-
       <Segment className="toolBar">
         <Header>Tools</Header>
         Use the Selection tools to to indicate part of the image. Use concrete operation controls to adjust its settings.

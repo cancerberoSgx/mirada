@@ -8,11 +8,9 @@ export class ImageWidget {
   protected images: {
     [n: string]: File;
   } = {};
-
   constructor(public readonly canvas: HTMLCanvasElement, protected image: File) {
     this.load(this.image)
   }
-
   get imageSize() {
     return { width: this.image.width, height: this.image.height }
   }
@@ -22,6 +20,12 @@ export class ImageWidget {
   }
   delete(i: File | string) {
     var image = typeof i === 'string' ? this.images[i] : i || undefined
+    try {
+      image && image.delete()
+      delete this.images[this.image.name]
+    } catch (error) {
+
+    }
     tryTo(() => image && image.delete())
   }
   load(i: File | string) {
@@ -41,18 +45,14 @@ export class ImageWidget {
     this.canvas.height = this.buffer.rows
     this.render()
   }
-
   get(name = this.image.name) {
     return this.images[name] || this.image
   }
 
-  // set(f: File) {
-  //   throw new Error('Method not implemented.');
-  // }
-  // getCurrent(){
-  //   return this.buffer
-  // }
-
+  updateFromCanvas(c = this.canvas) {
+    this.delete(this.image)
+    this.load(File.fromCanvas(c))
+  }
   public async render(r?: Rectangle) {
     if (r) {
       await renderInCanvas(this.buffer, { canvas: this.canvas, forceSameSize: true, region: r })
