@@ -7,19 +7,20 @@ import { cloneCanvasSize, copyBounds, setSize } from '../../util/dom'
 interface Options {
   canvas: HTMLCanvasElement
 }
-/** had to copy this one since is not exposed :() */
-// export interface FabricEvent  extends GlobalEvent<'FabricSelection'>{
-export interface FabricEvent {
-  name: 'FabricSelection'
-  e: Event;
-  target?: Object;
-  subTargets?: Object[],
-  button?: number;
-  isClick?: boolean;
-  pointer?: fabric.Point;
-  absolutePointer?: fabric.Point;
-  transform?: { corner: string, original: Object, originX: string, originY: string, width: number };
-}
+// let fabricTypes
+// /** had to copy this one since is not exposed :() */
+// // export interface FabricEvent  extends GlobalEvent<'FabricSelection'>{
+// export interface FabricEvent {
+//   name: 'FabricSelection'
+//   e: Event;
+//   target?: Object;
+//   subTargets?: Object[],
+//   button?: number;
+//   isClick?: boolean;
+//   pointer?: fabric.Point;
+//   absolutePointer?: fabric.Point;
+//   transform?: { corner: string, original: Object, originX: string, originY: string, width: number };
+// }
 
 export class CanvasOverlay {
 
@@ -37,9 +38,25 @@ export class CanvasOverlay {
     if (this.enabled) {
       if (!this.canvas) {
         const { canvas, container } = createCanvasOverlay(this.target)
-        // canvas.on('selection', e=>globalEmit({name: 'FabricSelection', ...e}))
-        canvas.on('selection', e => this.onSelection(e))
+        canvas.on('object:selected', e=>{
+     debugger
+        })
+        canvas.on('selection:created', e=>{ 
+     debugger
 
+        })
+               canvas.on('selection:cleared', e=>{ 
+     debugger
+
+        })
+          canvas.on('object:added', e=>{ 
+     debugger
+
+        })
+                  canvas.on('object:removed', e=>{ 
+     debugger
+
+        })
         this.canvas = canvas
         this.container = container
         var r = new fabric.Rect({
@@ -54,10 +71,10 @@ export class CanvasOverlay {
     }
     return this.canvas
   }
-  onSelection(e: fabric.IEvent): void {
-    debugger
-    // setState({º})
-  }
+  // onSelection(e: fabric.IEvent): void {
+  //   debugger
+  //   // setState({º})
+  // }
 
   updateSize(size: Size) {
     checkThrow(this.container && this.canvas, 'Expected fabric canvas and  container')

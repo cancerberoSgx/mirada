@@ -1,7 +1,7 @@
 import { ShapeTypes } from '../../app/state'
-import {  ShapeFreeDrawingOptions } from '../imageEditor/rectangleFreeDrawing'
+import {  ShapeFreeDrawingOptions } from '../imageEditor/shapeFreeDrawing'
 import { AbstractTool } from './tool'
-import { getManagers } from '../../app/start';
+import { getManagers, getShapeDrawing } from '../../app/start';
 
 export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
 
@@ -39,8 +39,8 @@ export class ShapeTool extends AbstractTool {
 
 async   setActive(b: boolean) {
   // TODO: do this right though the State/Dispatcher and not directly here. 
-    const m = await getManagers()
-    m.shapeDrawing.setEnabled(true)
+    const manager = await  getShapeDrawing()
+   manager.setEnabled(true)
     super.setActive(b)
   }
 

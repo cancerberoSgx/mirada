@@ -14,14 +14,8 @@ textarea{
 #inputCanvas {
   position: absolute;
   display: block;
-  top: 40px;
+  top: 58 px;
   left: 2px;
-}
-#outputCanvas {
-  position: absolute;
-  display: block;
-  top: 40px;
-  left: 50vw;
 }
 .ui.segment.appBody {
   padding-top: 0;

@@ -55,6 +55,7 @@ export class ShapeFreeDrawing  implements Required<ShapeFreeDrawingOptions>  {
 
   constructor(o: ShapeFreeDrawingOptions) {
     // super()
+    this.canvas = o.canvas
     // this.afterShapeDrawn = this.afterShapeDrawn.bind(this)
     Object.assign(this.shapeOptions, o.shapeOptions || {})
     Object.assign(this, { ...o, shapeOptions: undefined })

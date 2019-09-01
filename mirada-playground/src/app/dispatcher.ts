@@ -1,6 +1,5 @@
 
 import { File } from 'mirada'
-import { checkThrow } from 'misc-utils-of-mine-generic'
 import { loadMiradaFileFromInputElement } from '../magica'
 import { Example } from "./examples"
 import { getStore } from './store'
@@ -18,17 +17,8 @@ export async function loadFileFromInputElement(e: HTMLInputElement, magica = tru
   getStore().setState({
     working: true,
   })
-  async function miradaImplementation() { 
-    const files = await File.fromHtmlFileInputElement(e)
-    return files[0]
-  }
-  async function magicaImplementation() {
-    return await loadMiradaFileFromInputElement(e, image!.canvas)
-  }
-  // const f = await miradaImplementation() 
-  const f = magica ? await magicaImplementation() : await miradaImplementation()
+  const f = magica ? await magicaImplementation(e) : await miradaImplementation(e)
   const image = await getImageWidget()
-    // checkThrow(image, 'expected ImageWidget to be installed')
   image!.load(f)
   getStore().setState({
     working: false,
@@ -36,5 +26,11 @@ export async function loadFileFromInputElement(e: HTMLInputElement, magica = tru
   })
 }
 
-
-
+  async function miradaImplementation(e: HTMLInputElement) { 
+    const files = await File.fromHtmlFileInputElement(e)
+    return files[0]
+  }
+  async function magicaImplementation(e: HTMLInputElement) {
+      const image = await getImageWidget()
+    return await loadMiradaFileFromInputElement(e, image!.canvas)
+  }

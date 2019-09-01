@@ -4,7 +4,7 @@ import { Accordion, Header, Menu, Segment } from 'semantic-ui-react'
 import { AbstractComponent } from '../common/component'
 import { SelectionToolView } from './selectionToolView'
 import { ShapeToolView } from './shapeToolView'
-import { GrabCutBar } from './GrabCutBar';
+import { GrabCutView } from './grabCutViewr';
 
 export class ToolBar extends AbstractComponent {
 
@@ -20,7 +20,7 @@ export class ToolBar extends AbstractComponent {
         <Accordion as={Menu} vertical fluid>
           <SelectionToolView />
           <ShapeToolView />
-          <GrabCutBar />
+          <GrabCutView />
         </Accordion>
 
       </Segment>)

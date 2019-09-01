@@ -1,28 +1,29 @@
 import { File } from 'mirada'
 import { CanvasOverlay } from '../ui/imageEditor/canvasOverlay'
 import { ImageWidget } from '../ui/imageEditor/imageWidget'
-import { ShapeFreeDrawing } from '../ui/imageEditor/rectangleFreeDrawing'
+import { ShapeFreeDrawing } from '../ui/imageEditor/shapeFreeDrawing'
 import { GrabCut } from '../ui/tool/grabCut'
 import { SelectionTool } from '../ui/tool/selectionTool'
 import { ShapeTool } from '../ui/tool/shapeTool'
 import { tools } from '../ui/tool/tool'
 import { addStateChangeListener } from './stateChangeExpert'
 import { getStore } from './store'
-import { Deferred } from 'misc-utils-of-mine-generic';
+import { Deferred, sleep } from 'misc-utils-of-mine-generic';
 
 const started = new Deferred()
 
+// declare
 export async function start() {
   if(started.status==='resolved'){
     return
   }
   htmlCanvas = document.querySelector<HTMLCanvasElement>('#inputCanvas')!
   image = new ImageWidget(htmlCanvas, await File.fromUrl('lenna.jpg'))
-  // await sleep(10)
-  overlay = CanvasOverlay.setup(htmlCanvas)
-  shapeDrawing= new ShapeFreeDrawing({ canvas: overlay.canvas! })
+  await sleep(10)
+  overlay = await CanvasOverlay.setup(htmlCanvas)
+  fabricCanvas = await overlay.setEnabled(true)
+  shapeDrawing= new ShapeFreeDrawing({ canvas: fabricCanvas })
   image.render()
-  fabricCanvas = overlay.setEnabled(true)
   tools.push(new SelectionTool(image))
   tools.push(new GrabCut(image))
   tools.push(new ShapeTool())
@@ -51,19 +52,19 @@ export async function getManagers() {
   }
   await started
   managers = {
-  get overlay() {
+  async getOverlay() {
     return overlay
   },
-  get image() {
+  async getImage() {
     return image
   },
-  get fabricCanvas() {
+  async getFabricCanvas() {
     return fabricCanvas && fabricCanvas
   },
-  get drawingTool() {
+  async getDrawingTool() {
     return fabricDrawing
   },
-  get shapeDrawing() {
+  async getShapeDrawing() {
     return shapeDrawing
   }  
 }
@@ -72,12 +73,18 @@ return managers
 
 export async function getImageWidget() {
 const m = await getManagers()
-return m.image
+return await  m.getImage()
 }
+
+export async function getShapeDrawing() {
+const m = await getManagers()
+return await  m.getShapeDrawing()
+}
+
 let managers: {
-   readonly overlay: CanvasOverlay;
-    readonly image: ImageWidget;
-    readonly fabricCanvas: fabric.Canvas;
-    readonly drawingTool: ShapeFreeDrawing;
-    readonly shapeDrawing: ShapeFreeDrawing;
+   getOverlay():Promise<CanvasOverlay>
+    getImage():Promise<ImageWidget>
+    getFabricCanvas():Promise<fabric.Canvas>
+    getDrawingTool():Promise<ShapeFreeDrawing>
+    getShapeDrawing():Promise<ShapeFreeDrawing>
 } 
