@@ -1,6 +1,6 @@
 import { File, Mat, renderInCanvas } from 'mirada'
 import { tryTo } from 'misc-utils-of-mine-generic'
-import { Rectangle } from '../../app/state'
+import { Rectangle } from '../app/state'
 
 export class ImageWidget {
   protected buffer: Mat = null as any;

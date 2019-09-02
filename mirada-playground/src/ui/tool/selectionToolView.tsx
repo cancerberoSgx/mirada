@@ -1,52 +1,31 @@
 import * as React from 'react'
-import { Accordion, Button, Header, Icon, Menu, Popup } from 'semantic-ui-react'
-import { AbstractToolView } from './AbstractToolView'
-import { SelectionTool } from './selectionTool'
+import { Button, Icon, Popup } from 'semantic-ui-react'
+import { SelectionActions } from '../../app/state'
+import { AbstractComponent } from '../common/component'
 
-export class SelectionToolView extends AbstractToolView {
-  toolName = SelectionTool.NAME
-  getTool(): SelectionTool {
-    return super.getTool() as SelectionTool
-  }
+export class SelectionToolView extends AbstractComponent {
   render() {
-    const t = this.getTool()
-    if (!t) {
-      return <h4>Loading</h4>
-    }
     return (
-      <Menu.Item fluid content={SelectionTool.SHORT_DESCRIPTION}>
-        {/* <Header as="h6">Selection tools</Header> */}
+      <Button.Group toggle size="medium" vertical fluid>
 
-        <Popup position="bottom left" flowing={false} mountNode={document.body} size="small" hoverable
-          style={{ left: '-20vw' }} content={SelectionTool.DESCRIPTION} trigger={<Icon name="help circle" />} />
+        <Button onClick={e => this.handleSelectionAction('select')}>
+          <Popup position="bottom left" flowing={false} mountNode={document.body} size="small" hoverable style={{ left: '-10vw' }} content="Select existing shapes with this markee tool to move resize or rotate or delete them. By dragging bigger rectangles you can select and apply transformation on several shapes. Also keyboard is supported like ctrl, shift, ect." trigger={
+            <span><Icon name="mouse pointer" /> Select</span>} />
+        </Button>
 
-        <Accordion.Title active={this.state.shapesTool.menuActiveIndex.includes(t.toolGroupIndex)}
-          content={SelectionTool.NAME} index={t.toolGroupIndex} onClick={() => t.handleToolGroupVisibleToggle(t.toolGroupIndex)} />
+        <Button onClick={e => this.handleSelectionAction('delete')}><Icon name="delete" />Delete Selected</Button>
 
-        <Accordion.Content active={this.state.shapesTool.menuActiveIndex.includes(t.toolGroupIndex)} fluid>
-          <Header as="h6">Selection Management tools</Header>
+        <Button onClick={e => this.handleSelectionAction('invertSelection')}><Icon name="idea" />Invert Selection</Button>
+        <Button onClick={e => this.handleSelectionAction('selectAll')}><Icon name="hand rock" />Select All</Button>
 
-          <Button.Group toggle size="medium" vertical fluid>
-
-            <Button onClick={e => t.handleSelectionAction('select')}>
-              <Popup position="bottom left" flowing={false} mountNode={document.body} size="small" hoverable style={{ left: '-10vw' }} content="Select existing shapes with this markee tool to move resize or rotate or delete them. By dragging bigger rectangles you can select and apply transformation on several shapes. Also keyboard is supported like ctrl, shift, ect." trigger={
-                <span><Icon name="mouse pointer" /> Select</span>} />
-            </Button>
-
-            <Button onClick={e => t.handleSelectionAction('delete')}><Icon name="delete" />Delete Selected</Button>
-
-            <Button onClick={e => t.handleSelectionAction('invertSelection')}><Icon name="idea" />Invert Selection</Button>
-            <Button onClick={e => t.handleSelectionAction('selectAll')}><Icon name="hand rock" />Select All</Button>
-
-          </Button.Group>
-        </Accordion.Content>
-      </Menu.Item>
+      </Button.Group>
 
     )
   }
+  handleSelectionAction(s: SelectionActions) {
+    throw 'TODO'
+  }
 }
-
-
 
 
 

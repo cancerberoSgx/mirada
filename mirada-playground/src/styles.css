@@ -11,6 +11,9 @@ textarea{
 .ui.segment.appBody, .ui.segment.outputSegment {
   padding-top: 2em;
 }
+.ui.menu .pointing.dropdown.item .menu {
+  margin-bottom: 0;
+}
 #inputCanvas {
   position: absolute;
   display: block;

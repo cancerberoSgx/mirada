@@ -1,27 +1,12 @@
 import { fabric } from 'fabric'
 import { Size } from 'mirada'
 import { checkThrow, unique } from 'misc-utils-of-mine-generic'
-import { cloneCanvasSize, copyBounds, setSize } from '../../util/dom'
+import { cloneCanvasSize, copyBounds, setSize } from '../util/dom'
 // import { GlobalEvents, GlobalEvent, globalEmit } from "../../app/bus";
 
 interface Options {
   canvas: HTMLCanvasElement
 }
-// let fabricTypes
-// /** had to copy this one since is not exposed :() */
-// // export interface FabricEvent  extends GlobalEvent<'FabricSelection'>{
-// export interface FabricEvent {
-//   name: 'FabricSelection'
-//   e: Event;
-//   target?: Object;
-//   subTargets?: Object[],
-//   button?: number;
-//   isClick?: boolean;
-//   pointer?: fabric.Point;
-//   absolutePointer?: fabric.Point;
-//   transform?: { corner: string, original: Object, originX: string, originY: string, width: number };
-// }
-
 export class CanvasOverlay {
 
   protected enabled: boolean = false
@@ -38,25 +23,25 @@ export class CanvasOverlay {
     if (this.enabled) {
       if (!this.canvas) {
         const { canvas, container } = createCanvasOverlay(this.target)
-        canvas.on('object:selected', e=>{
-     debugger
-        })
-        canvas.on('selection:created', e=>{ 
-     debugger
+        //     canvas.on('object:selected', e=>{
+        //  debugger
+        //     })
+        //     canvas.on('selection:created', e=>{ 
+        //  debugger
 
-        })
-               canvas.on('selection:cleared', e=>{ 
-     debugger
+        //     })
+        //            canvas.on('selection:cleared', e=>{ 
+        //  debugger
 
-        })
-          canvas.on('object:added', e=>{ 
-     debugger
+        //     })
+        //       canvas.on('object:added', e=>{ 
+        //  debugger
 
-        })
-                  canvas.on('object:removed', e=>{ 
-     debugger
+        //     })
+        //               canvas.on('object:removed', e=>{ 
+        //  debugger
 
-        })
+        //     })
         this.canvas = canvas
         this.container = container
         var r = new fabric.Rect({

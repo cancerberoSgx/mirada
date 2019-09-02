@@ -1,9 +1,7 @@
 import { Emitter, unique } from 'misc-utils-of-mine-generic'
 import { Rectangle, State } from '../../app/state'
-import { getStore } from '../../app/store'
+import { getState, getStore, setState } from '../../app/store'
 import { AbstractComponent, AbstractProps } from '../common/component'
-// import { ComponentWithFields } from '../common/componentWithFields'
-import { ImageWidget } from '../imageEditor/imageWidget'
 
 export interface Tool extends Emitter {
   setActive(b: boolean): void;
@@ -11,7 +9,7 @@ export interface Tool extends Emitter {
   activeExclusive: boolean
   name: string
   description: string
-  toolGroupIndex: number
+  shortDescription: string
   handleToolGroupVisibleToggle(toolGroupIndex: number): void
   // toolGroupIndex 
   // viewClass: typeof ToolView
@@ -35,6 +33,7 @@ export abstract class AbstractTool extends Emitter {
   abstract toolGroupIndex: number
   name = unique('abstractTool')
   description = 'TODO'
+  shortDescription = 'TODO'
   // protected ctx: CanvasRenderingContext2D;
   // protected image: ImageWidget
   // protected options: Required<Options>
@@ -46,16 +45,7 @@ export abstract class AbstractTool extends Emitter {
   }
 
   setActive(b: boolean) {
-    this.active = b
-    if (b && this.state.tools.find(t => t.activeExclusive)) {
-      this.state.tools.filter(t => t !== this).forEach(t => {
-        t.active = false
-      })
-    }
-    this.setState({
-      activeTools: this.state.tools.filter(t => t.active),
-      tools: this.state.tools
-    })
+    setToolActive(this, b)
   }
 
   add(l: (e: SelectionEvent<'selection'>) => void) {
@@ -82,6 +72,24 @@ export abstract class AbstractTool extends Emitter {
   }
 
 
+}
+
+
+export function setToolActive(t: Tool, b: boolean) {
+  t.active = b
+  if (b && getState().tools.find(t => t.activeExclusive)) {
+    getState().tools.filter(t => t !== t).forEach(t => {
+      t.active = false
+    })
+  }
+  setState({
+    activeTools: getState().tools.filter(t => t.active),
+    tools: getState().tools
+  })
+}
+
+export function getTool(n: string) {
+  return tools.find(t => t.name === n)!
 }
 
 type Events = 'selection'

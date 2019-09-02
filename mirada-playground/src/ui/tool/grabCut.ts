@@ -2,7 +2,7 @@ import { File, tool } from 'mirada'
 import { serial } from 'misc-utils-of-mine-generic'
 import { GrabCutRegions } from '../../app/state'
 import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert'
-import { ImageWidget } from '../imageEditor/imageWidget'
+import { ImageWidget } from '../../imageEditor/imageWidget'
 import { AbstractTool } from './tool'
 
 export class GrabCut extends AbstractTool {

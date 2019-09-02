@@ -1,7 +1,7 @@
 import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
 import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
-import { Button, Dropdown, Input, Menu, Modal, Popup } from 'semantic-ui-react'
+import { Button, Dropdown, Icon, Input, Menu, Modal, Popup } from 'semantic-ui-react'
 import { loadFileFromInputElement, setExample } from '../app/dispatcher'
 import { ExampleTag } from "../app/examples"
 import { memoryReport } from "../util/util"
@@ -60,37 +60,30 @@ export class Header extends AbstractComponent {
       </Dropdown>
 
 
-      <Dropdown text='Options' pointing className='link item'>
+      <Dropdown text='Files' pointing simple className='link item'>
         <Dropdown.Menu>
 
-          <Dropdown.Item>
-            <Dropdown text="Load" fluid={true} scrolling>
-              <Dropdown.Menu>
-                <Dropdown.Item fluid={true}>
-                  <Popup content="Load files using OpenCV.js which uses HTMLCanvas and no libraries so it only supports JPEG and PNG formats." trigger={
-                    <Input type="file" label="Load (OpenCV)" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget)} />
-                  } />
-                </Dropdown.Item>
-                <Dropdown.Item fluid={true}>
-                  <Popup content="Load files using Magica, which ports ImageMagic and several image codec libraries to support for example GIF, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW, and more." trigger={
-                    <Input type="file" label="Load (ImageMagick)" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget, true)} />
-                  } />
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+          <Dropdown.Item >
+            <Input type="file" label="Load with OpenCV" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget)} />
+            <Popup content="Load files using OpenCV.js `cv.imread()` which uses the DOM. Supports JPEG and PNG image formats." trigger={<Icon name="help circle" size="large" />} />
           </Dropdown.Item>
 
-          <Dropdown.Item>
-            <Dropdown text="Save" fluid={true} scrolling>
-              <Dropdown.Menu>
-                <Dropdown.Item fluid={true}>
-                  <Popup content="To load images from URLs the server must allow CORS which is not common. A image-related website that works is is https://imgur.com/. Also github pages. " trigger={
-                    <Input />
-                  } />
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+          <Dropdown.Item >
+            <Input type="file" label="Load with ImageMagick" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget, true)} />
+            <Popup content="Load files with npmjs.com/magica a project of mine that ports ImageMagic and several of its image format delegate libraries to support read and write a lots of formats like: GIF, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW, and more." trigger={
+              <Icon name="help circle" size="large" />} />
           </Dropdown.Item>
+
+          <Dropdown.Divider />
+          <Dropdown text='Save' pointing className='link item'>
+            <Dropdown.Menu>
+              <Dropdown.Item style={{ maxWidth: '40vw' }} >
+                {`SVG, PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`.replace(/\s+/g, '').toLowerCase().split(',').map(format => <Button size="tiny" content={format} />)}
+              </Dropdown.Item>
+            </Dropdown.Menu>
+
+          </Dropdown>
+
         </Dropdown.Menu>
       </Dropdown>
 

@@ -1,6 +1,6 @@
 import { fabric } from 'fabric'
 import { IEvent, Point } from 'fabric/fabric-impl'
-import { Emitter, throttle } from 'misc-utils-of-mine-generic'
+import { throttle } from 'misc-utils-of-mine-generic'
 
 export interface ShapeFreeDrawingOptions {
   canvas: fabric.Canvas
@@ -35,10 +35,10 @@ interface ShapeEvent {
 }
 type ShapeListener = (e: ShapeEvent) => void
 
-export class ShapeFreeDrawing  implements Required<ShapeFreeDrawingOptions>  {
+export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
 
   // afterShapeDrawn(l: ShapeListener) {
-    // this.add(l)
+  // this.add(l)
   // }
 
   canvas: fabric.Canvas = null as any

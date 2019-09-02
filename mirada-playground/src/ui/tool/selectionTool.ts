@@ -1,17 +1,13 @@
 import { File, tool } from 'mirada'
 import { serial } from 'misc-utils-of-mine-generic'
-import { SelectionActions } from '../../app/state'
 import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert'
-import { ImageWidget } from '../imageEditor/imageWidget'
+import { ImageWidget } from '../../imageEditor/imageWidget'
 import { AbstractTool } from './tool'
 
 export class SelectionTool extends AbstractTool {
 
   toolGroupIndex = 0
 
-  handleSelectionAction(s: SelectionActions) {
-    throw 'TODO'
-  }
 
   static NAME = 'Selection'
   static SHORT_DESCRIPTION = 'Selection management'

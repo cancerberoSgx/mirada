@@ -16,7 +16,6 @@ export const App = () => {
             <canvas id="inputCanvas" data-unique={unique('dont-destroy-me-react')} />
           </Grid.Column>
           <Grid.Column floated='right' width={5}>
-            {/* <canvas id="outputCanvas" data-unique={unique('dont-destroy-me-react')} /> */}
             <ToolBar />
           </Grid.Column>
         </Grid>

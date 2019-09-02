@@ -1,20 +1,20 @@
 import { File } from 'mirada'
-import { CanvasOverlay } from '../ui/imageEditor/canvasOverlay'
-import { ImageWidget } from '../ui/imageEditor/imageWidget'
-import { ShapeFreeDrawing } from '../ui/imageEditor/shapeFreeDrawing'
+import { Deferred, sleep } from 'misc-utils-of-mine-generic'
+import { CanvasOverlay } from '../imageEditor/canvasOverlay'
+import { ImageWidget } from '../imageEditor/imageWidget'
+import { ShapeFreeDrawing } from '../imageEditor/shapeFreeDrawing'
 import { GrabCut } from '../ui/tool/grabCut'
 import { SelectionTool } from '../ui/tool/selectionTool'
 import { ShapeTool } from '../ui/tool/shapeTool'
 import { tools } from '../ui/tool/tool'
 import { addStateChangeListener } from './stateChangeExpert'
 import { getStore } from './store'
-import { Deferred, sleep } from 'misc-utils-of-mine-generic';
 
 const started = new Deferred()
 
 // declare
 export async function start() {
-  if(started.status==='resolved'){
+  if (started.status === 'resolved') {
     return
   }
   htmlCanvas = document.querySelector<HTMLCanvasElement>('#inputCanvas')!
@@ -22,7 +22,7 @@ export async function start() {
   await sleep(10)
   overlay = await CanvasOverlay.setup(htmlCanvas)
   fabricCanvas = await overlay.setEnabled(true)
-  shapeDrawing= new ShapeFreeDrawing({ canvas: fabricCanvas })
+  shapeDrawing = new ShapeFreeDrawing({ canvas: fabricCanvas })
   image.render()
   tools.push(new SelectionTool(image))
   tools.push(new GrabCut(image))
@@ -47,44 +47,44 @@ let fabricCanvas: fabric.Canvas
 let shapeDrawing: ShapeFreeDrawing
 
 export async function getManagers() {
-  if(managers){
+  if (managers) {
     return managers
   }
   await started
   managers = {
-  async getOverlay() {
-    return overlay
-  },
-  async getImage() {
-    return image
-  },
-  async getFabricCanvas() {
-    return fabricCanvas && fabricCanvas
-  },
-  async getDrawingTool() {
-    return fabricDrawing
-  },
-  async getShapeDrawing() {
-    return shapeDrawing
-  }  
-}
-return managers
+    async getOverlay() {
+      return overlay
+    },
+    async getImage() {
+      return image
+    },
+    async getFabricCanvas() {
+      return fabricCanvas && fabricCanvas
+    },
+    async getDrawingTool() {
+      return fabricDrawing
+    },
+    async getShapeDrawing() {
+      return shapeDrawing
+    }
+  }
+  return managers
 }
 
 export async function getImageWidget() {
-const m = await getManagers()
-return await  m.getImage()
+  const m = await getManagers()
+  return await m.getImage()
 }
 
 export async function getShapeDrawing() {
-const m = await getManagers()
-return await  m.getShapeDrawing()
+  const m = await getManagers()
+  return await m.getShapeDrawing()
 }
 
 let managers: {
-   getOverlay():Promise<CanvasOverlay>
-    getImage():Promise<ImageWidget>
-    getFabricCanvas():Promise<fabric.Canvas>
-    getDrawingTool():Promise<ShapeFreeDrawing>
-    getShapeDrawing():Promise<ShapeFreeDrawing>
+  getOverlay(): Promise<CanvasOverlay>
+  getImage(): Promise<ImageWidget>
+  getFabricCanvas(): Promise<fabric.Canvas>
+  getDrawingTool(): Promise<ShapeFreeDrawing>
+  getShapeDrawing(): Promise<ShapeFreeDrawing>
 } 

@@ -3,7 +3,7 @@
 import 'babel-polyfill'
 import { fabric } from 'fabric'
 import { sleep } from 'misc-utils-of-mine-generic'
-import { ShapeFreeDrawing, ShapeKinds } from '../ui/imageEditor/shapeFreeDrawing';
+import { ShapeFreeDrawing, ShapeKinds } from '../imageEditor/shapeFreeDrawing';
 
 
 (async () => {
