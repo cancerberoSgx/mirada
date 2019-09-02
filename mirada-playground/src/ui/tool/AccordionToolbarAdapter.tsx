@@ -4,12 +4,10 @@ import { AbstractComponent } from '../common/component'
 import { Tool } from './tool'
 
 export interface AP {
-  // c: (p:any)=>JSX.Element
   toolGroupIndex: number;
   tool: Tool;
   children: string | React.ReactNode | React.ReactNode[]
 }
-
 
 export class AccordionToolbarAdapter extends AbstractComponent<AP> {
   render() {

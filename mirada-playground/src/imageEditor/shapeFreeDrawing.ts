@@ -33,14 +33,12 @@ const defaults: Required<ShapeFreeDrawingOptions> = {
 interface ShapeEvent {
   shape: fabric.Object
 }
-type ShapeListener = (e: ShapeEvent) => void
 
+// type ShapeListener = (e: ShapeEvent) => void
 export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
-
   // afterShapeDrawn(l: ShapeListener) {
   // this.add(l)
   // }
-
   canvas: fabric.Canvas = null as any
   shapeKind: ShapeKinds = 'rectangle'
   drawOnMove: boolean = defaults.drawOnMove
@@ -66,6 +64,7 @@ export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
   }
 
   setEnabled(enabled: boolean) {
+    debugger
     this.enabled = enabled
     if (this.enabled) {
       this.dragging = false

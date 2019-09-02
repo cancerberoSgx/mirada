@@ -45,7 +45,17 @@ export abstract class AbstractTool extends Emitter {
   }
 
   setActive(b: boolean) {
-    setToolActive(this, b)
+  this.active = b
+  if (b && getState().tools.find(t => this.activeExclusive)) {
+    getState().tools.filter(t => t !== t).forEach(t => {
+      this.active = false
+    })
+  }
+  setState({
+    activeTools: getState().tools.filter(t => this.active),
+    tools: getState().tools
+  })
+    this.setActive( b)
   }
 
   add(l: (e: SelectionEvent<'selection'>) => void) {
@@ -59,8 +69,7 @@ export abstract class AbstractTool extends Emitter {
   setState(s: Partial<State>) {
     getStore().setState(s)
   }
-
-
+  
   public handleToolGroupVisibleToggle(toolGroupIndex: number) {
     const active = this.state.shapesTool.menuActiveIndex.includes(toolGroupIndex)
     this.setState({
@@ -75,18 +84,9 @@ export abstract class AbstractTool extends Emitter {
 }
 
 
-export function setToolActive(t: Tool, b: boolean) {
-  t.active = b
-  if (b && getState().tools.find(t => t.activeExclusive)) {
-    getState().tools.filter(t => t !== t).forEach(t => {
-      t.active = false
-    })
-  }
-  setState({
-    activeTools: getState().tools.filter(t => t.active),
-    tools: getState().tools
-  })
-}
+// export function setToolActive(t: Tool, b: boolean) {
+
+// }
 
 export function getTool(n: string) {
   return tools.find(t => t.name === n)!

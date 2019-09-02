@@ -3,17 +3,14 @@ import { Button, Checkbox, Icon } from 'semantic-ui-react'
 import { GrabCutRegions } from '../../app/state'
 import { AbstractComponent } from '../common/component'
 import { GrabCut } from './grabCut'
-import { getTool, setToolActive } from './tool'
+import { getTool } from './tool'
 
 export class GrabCutView extends AbstractComponent {
   render() {
     const t = getTool(GrabCut.NAME)
     return (<>
       <Checkbox toggle className="toolEnabledToggle"
-        onChange={(e, props) => {
-          setToolActive(t!, true)
-          // t.setActive(!!props.checked)
-        }}
+        onChange={e=>t.setActive(true)}
         checked={this.state.activeTools.includes(t)} label={GrabCut.NAME} />
 
       <Button.Group toggle size="medium" vertical fluid >

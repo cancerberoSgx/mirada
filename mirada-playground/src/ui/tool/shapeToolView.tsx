@@ -4,7 +4,7 @@ import { ShapeTypes } from '../../app/state'
 import { getState, setState } from '../../app/store'
 import { AbstractComponent } from '../common/component'
 import { ShapeTool } from './shapeTool'
-import { getTool, setToolActive } from './tool'
+import { getTool } from './tool'
 
 export class ShapeToolView extends AbstractComponent {
   render() {
@@ -17,8 +17,10 @@ export class ShapeToolView extends AbstractComponent {
     )
   }
   protected setShape(s: ShapeTypes) {
+    console.log('VIEW');
+    
     setState({ shapesTool: { ...getState().shapesTool, activeShape: s } })
-    setToolActive(getTool(ShapeTool.NAME)!, true)
+   getTool(ShapeTool.NAME)!.setActive(true)
     // this.getTool()!.setActive(true)
   }
 

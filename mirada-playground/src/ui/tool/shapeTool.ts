@@ -25,7 +25,7 @@ export class ShapeTool extends AbstractTool {
     this.name = ShapeTool.NAME
     this.description = ShapeTool.DESCRIPTION
 
-    const drawingOptions = null as any
+    // const drawingOptions = null as any
     // this.drawingTool = new ShapeFreeDrawing(drawingOptions)
     // this.selectionChangeListener = this.selectionChangeListener.bind(this)
     //   addStateChangeListener('selectionChanged', {
@@ -33,12 +33,15 @@ export class ShapeTool extends AbstractTool {
     //     fn: this.selectionChangeListener
     //   })
   }
-  setShape(s: ShapeTypes) {
+  // setShape(s: ShapeTypes) {
 
-  }
+  // }
 
   async   setActive(b: boolean) {
+    console.log('ttoooo');
+
     // TODO: do this right though the State/Dispatcher and not directly here. 
+    debugger
     const manager = await getShapeDrawing()
     manager.setEnabled(true)
     super.setActive(b)
