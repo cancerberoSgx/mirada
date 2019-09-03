@@ -10,9 +10,8 @@ export class GrabCutView extends AbstractComponent {
     const t = getTool(GrabCut.NAME)
     return (<>
       <Checkbox toggle className="toolEnabledToggle"
-        onChange={e=>t.setActive(true)}
+        onChange={e => t.setActive(e.currentTarget.checked)}
         checked={this.state.activeTools.includes(t)} label={GrabCut.NAME} />
-
       <Button.Group toggle size="medium" vertical fluid >
         <Button onClick={e => this.handleRegionTypeChenge('interest')}><Icon name="smile outline" />Region of interest</Button>
         <Button onClick={e => () => this.handleRegionTypeChenge('background')}><Icon name="remove" />Background</Button>

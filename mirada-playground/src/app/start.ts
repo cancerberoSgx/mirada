@@ -2,17 +2,16 @@ import { File } from 'mirada'
 import { Deferred, sleep } from 'misc-utils-of-mine-generic'
 import { CanvasOverlay } from '../imageEditor/canvasOverlay'
 import { ImageWidget } from '../imageEditor/imageWidget'
-import { ShapeFreeDrawing } from '../imageEditor/shapeFreeDrawing'
+import { ShapeFreeDrawing } from '../imageEditor/shapeDrawer'
+import { ShapeTool } from '../ui/tool/drawingTool'
 import { GrabCut } from '../ui/tool/grabCut'
 import { SelectionTool } from '../ui/tool/selectionTool'
-import { ShapeTool } from '../ui/tool/shapeTool'
 import { tools } from '../ui/tool/tool'
 import { addStateChangeListener } from './stateChangeExpert'
 import { getStore } from './store'
 
 const started = new Deferred()
 
-// declare
 export async function start() {
   if (started.status === 'resolved') {
     return
@@ -52,10 +51,10 @@ export async function getManagers() {
   }
   await started
   managers = {
-    async getOverlay() {
+    async getCanvasOveraly() {
       return overlay
     },
-    async getImage() {
+    async getImageWidget() {
       return image
     },
     async getFabricCanvas() {
@@ -73,17 +72,20 @@ export async function getManagers() {
 
 export async function getImageWidget() {
   const m = await getManagers()
-  return await m.getImage()
+  return await m.getImageWidget()
 }
-
+export async function getFabricCanvas() {
+  const m = await getManagers()
+  return await m.getFabricCanvas()
+}
 export async function getShapeDrawing() {
   const m = await getManagers()
   return await m.getShapeDrawing()
 }
 
 let managers: {
-  getOverlay(): Promise<CanvasOverlay>
-  getImage(): Promise<ImageWidget>
+  getCanvasOveraly(): Promise<CanvasOverlay>
+  getImageWidget(): Promise<ImageWidget>
   getFabricCanvas(): Promise<fabric.Canvas>
   getDrawingTool(): Promise<ShapeFreeDrawing>
   getShapeDrawing(): Promise<ShapeFreeDrawing>

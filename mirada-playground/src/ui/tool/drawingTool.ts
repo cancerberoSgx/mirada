@@ -1,6 +1,6 @@
 import { getShapeDrawing } from '../../app/start'
 import { ShapeTypes } from '../../app/state'
-import { ShapeFreeDrawingOptions } from '../../imageEditor/shapeFreeDrawing'
+import { ShapeFreeDrawingOptions } from '../../imageEditor/shapeDrawer'
 import { AbstractTool } from './tool'
 
 export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
@@ -9,7 +9,6 @@ export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
 
 export class ShapeTool extends AbstractTool {
   toolGroupIndex: number = 1
-  // drawingTool: ShapeFreeDrawing;
 
   setRegion(s: ShapeTypes) {
     this.setState({ shapesTool: { ...this.state.shapesTool, activeShape: s } })
@@ -19,7 +18,6 @@ export class ShapeTool extends AbstractTool {
   static NAME = 'Shapes'
   static SHORT_DESCRIPTION = 'Shape drawing, management and classification tool'
   static DESCRIPTION = `Shape free drawing , grouping and tagging tool  TODO longer description`
-  // protected image: ImageWidget
   constructor() {
     super()
     this.name = ShapeTool.NAME
@@ -38,10 +36,10 @@ export class ShapeTool extends AbstractTool {
   // }
 
   async   setActive(b: boolean) {
-    console.log('ttoooo');
+    // console.log('ttoooo');
 
     // TODO: do this right though the State/Dispatcher and not directly here. 
-    debugger
+    // debugger
     const manager = await getShapeDrawing()
     manager.setEnabled(true)
     super.setActive(b)

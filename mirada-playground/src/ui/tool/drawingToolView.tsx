@@ -3,7 +3,7 @@ import { Button, Icon } from 'semantic-ui-react'
 import { ShapeTypes } from '../../app/state'
 import { getState, setState } from '../../app/store'
 import { AbstractComponent } from '../common/component'
-import { ShapeTool } from './shapeTool'
+import { ShapeTool } from './drawingTool'
 import { getTool } from './tool'
 
 export class ShapeToolView extends AbstractComponent {
@@ -17,10 +17,10 @@ export class ShapeToolView extends AbstractComponent {
     )
   }
   protected setShape(s: ShapeTypes) {
-    console.log('VIEW');
-    
+    console.log('VIEW')
+
     setState({ shapesTool: { ...getState().shapesTool, activeShape: s } })
-   getTool(ShapeTool.NAME)!.setActive(true)
+    getTool(ShapeTool.NAME)!.setActive(true)
     // this.getTool()!.setActive(true)
   }
 

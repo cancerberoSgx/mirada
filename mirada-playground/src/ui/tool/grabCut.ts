@@ -44,10 +44,7 @@ export class GrabCut extends AbstractTool {
       }))
       this.image.load(f)
     }
-
   }
-
-
 }
 
 

@@ -10,8 +10,6 @@ export interface State {
   working: boolean
   tools: Tool[]
   activeTools: Tool[]
-  // image?: ImageWidget
-  // overlay?: CanvasOverlay
   selection: Selection
   showToolInitialTip: boolean
   imageSize: Size,
@@ -23,14 +21,16 @@ export interface State {
     region: GrabCutRegions
   }
   toolBarCollapsed: boolean
-
 }
+
+type EditorObject = fabric.Object
 
 export type ShapeTypes = 'rectangle' | 'brush' | 'ellipse'
 export type SelectionActions = | 'select' | 'delete' | 'invertSelection' | 'selectAll'
 export type GrabCutRegions = 'interest' | 'background'
 interface Selection {
   rectangles: Rectangle[]
+  objects: EditorObject[],
   mode: 'exclusive' | 'union',
 }
 
@@ -46,6 +46,7 @@ export async function getInitialState(): Promise<State> {
     showToolInitialTip: true,
     tools,
     selection: {
+      objects: [],
       rectangles: [],
       mode: 'exclusive',
     },
@@ -56,10 +57,6 @@ export async function getInitialState(): Promise<State> {
       region: 'interest'
     }
   }
-}
-
-interface SelectRectToolState {
-
 }
 
 export interface Field {

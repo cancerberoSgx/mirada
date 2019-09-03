@@ -1,14 +1,14 @@
+import { fabric } from 'fabric'
 import { File, tool } from 'mirada'
 import { serial } from 'misc-utils-of-mine-generic'
+import { getFabricCanvas } from '../../app/start'
+import { SelectionActions } from '../../app/state'
 import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert'
+import { getState } from '../../app/store'
 import { ImageWidget } from '../../imageEditor/imageWidget'
 import { AbstractTool } from './tool'
 
 export class SelectionTool extends AbstractTool {
-
-  toolGroupIndex = 0
-
-
   static NAME = 'Selection'
   static SHORT_DESCRIPTION = 'Selection management'
   static DESCRIPTION = `TODO`
@@ -22,6 +22,23 @@ export class SelectionTool extends AbstractTool {
       fn: this.selectionChangeListener
     })
   }
+
+  async onAction(s: SelectionActions) {
+    const c = await getFabricCanvas()
+    if (s === 'delete') {
+      c.getActiveObjects().forEach(e => c.remove(e))
+      c.renderAll()
+    } else if (s == 'select') {
+      // do nothing
+    } else if (s == 'selectAll') {
+      const sel = selectAll(c)
+      this.setState({ selection: { ...getState().selection, objects: [...sel.getObjects()] } })
+    } else {
+      throw 'TODO'
+    }
+
+  }
+
 
   async selectionChangeListener(e: SelectionChangeEvent) {
     if (!this.active) {
@@ -46,3 +63,13 @@ export class SelectionTool extends AbstractTool {
 }
 
 
+
+export function selectAll(c: fabric.Canvas) {
+  c.discardActiveObject()
+  var sel = new fabric.ActiveSelection(c.getObjects(), {
+    canvas: c,
+  })
+  c.setActiveObject(sel)
+  c.requestRenderAll()
+  return sel
+}

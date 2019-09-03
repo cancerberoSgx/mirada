@@ -2,13 +2,12 @@ import { fabric } from 'fabric'
 import { Size } from 'mirada'
 import { checkThrow, unique } from 'misc-utils-of-mine-generic'
 import { cloneCanvasSize, copyBounds, setSize } from '../util/dom'
-// import { GlobalEvents, GlobalEvent, globalEmit } from "../../app/bus";
 
 interface Options {
   canvas: HTMLCanvasElement
 }
-export class CanvasOverlay {
 
+export class CanvasOverlay {
   protected enabled: boolean = false
   protected target: HTMLCanvasElement;
   canvas: fabric.Canvas | undefined
@@ -22,34 +21,31 @@ export class CanvasOverlay {
     this.enabled = enabled
     if (this.enabled) {
       if (!this.canvas) {
-        const { canvas, container } = createCanvasOverlay(this.target)
+        const { canvas, container } = CanvasOverlay.createCanvasOverlay(this.target)
         //     canvas.on('object:selected', e=>{
         //  debugger
         //     })
-        //     canvas.on('selection:created', e=>{ 
-        //  debugger
-
-        //     })
+        // canvas.on('selection:created', e=>{ 
+        // })
         //            canvas.on('selection:cleared', e=>{ 
         //  debugger
 
         //     })
-        //       canvas.on('object:added', e=>{ 
-        //  debugger
-
-        //     })
+        // canvas.on('object:added', e => {
+        //   const selection = asArray(e.target)
+        // })
         //               canvas.on('object:removed', e=>{ 
         //  debugger
 
         //     })
         this.canvas = canvas
         this.container = container
-        var r = new fabric.Rect({
-          includeDefaultValues: true,
-          top: 10, left: 90, width: 100, height: 111,
-        })
-        this.canvas.add(r)
-        this.canvas.renderAll()
+        // var r = new fabric.Rect({
+        //   includeDefaultValues: true,
+        //   top: 10, left: 90, width: 100, height: 111,
+        // })
+        // this.canvas.add(r)
+        // this.canvas.renderAll()
       }
     } else {
       throw 'TODO'
@@ -89,22 +85,22 @@ export class CanvasOverlay {
       return CanvasOverlay.instances[elOrIr]
     }
   }
-}
 
-export function createCanvasOverlay(target: HTMLCanvasElement) {
-  const virtual = cloneCanvasSize(target)
-  document.body.append(virtual)
-  if (!virtual.id) {
-    virtual.id = unique('CanvasOverlayVirtual')
+  static createCanvasOverlay(target: HTMLCanvasElement) {
+    const virtual = cloneCanvasSize(target)
+    document.body.append(virtual)
+    if (!virtual.id) {
+      virtual.id = unique('CanvasOverlayVirtual')
+    }
+    copyBounds(target, virtual)
+    const canvas = new fabric.Canvas(virtual, {
+      interactive: true,
+      selection: true,
+      containerClass: `${virtual.id}Container`
+    })
+    const container = document.querySelector(`.${virtual.id}Container`)! as HTMLDivElement
+    copyBounds(target, container)
+    return { canvas, container }
   }
-  copyBounds(target, virtual)
-  const canvas = new fabric.Canvas(virtual, {
-    interactive: true,
-    selection: true,
-    containerClass: `${virtual.id}Container`
-  })
-  const container = document.querySelector(`.${virtual.id}Container`)! as HTMLDivElement
-  copyBounds(target, container)
-  return { canvas, container }
 }
 

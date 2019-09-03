@@ -34,11 +34,7 @@ interface ShapeEvent {
   shape: fabric.Object
 }
 
-// type ShapeListener = (e: ShapeEvent) => void
 export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
-  // afterShapeDrawn(l: ShapeListener) {
-  // this.add(l)
-  // }
   canvas: fabric.Canvas = null as any
   shapeKind: ShapeKinds = 'rectangle'
   drawOnMove: boolean = defaults.drawOnMove
@@ -52,9 +48,7 @@ export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
   protected bounds = { x: 0, y: 0, width: 0, height: 0 }
 
   constructor(o: ShapeFreeDrawingOptions) {
-    // super()
     this.canvas = o.canvas
-    // this.afterShapeDrawn = this.afterShapeDrawn.bind(this)
     Object.assign(this.shapeOptions, o.shapeOptions || {})
     Object.assign(this, { ...o, shapeOptions: undefined })
     this.onMouseDown = this.onMouseDown.bind(this)
@@ -149,7 +143,6 @@ export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
     this.canvas.requestRenderAll()
 
     this.disableAfterFinish && this.setEnabled(false)
-    // this.emit({ shape: this.instance })
   }
 
 }
