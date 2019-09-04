@@ -1,8 +1,8 @@
-import { existsSync } from 'fs'
-import { getGlobal, isNode } from 'misc-utils-of-mine-generic'
-import { loadFormatProxies } from './format'
-import { FS } from './types/emscripten'
-import { buildError, resolveNodeModule } from './util/misc'
+import { existsSync } from 'fs';
+import { getGlobal, isNode } from 'misc-utils-of-mine-generic';
+import { loadFormatProxies } from './format';
+import { FS } from './types/emscripten';
+import { buildError, resolveNodeModule } from './util/misc';
 
 export const FS_ROOT = '/work'
 

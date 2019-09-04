@@ -9,7 +9,7 @@ import { AbstractTool } from './tool'
 export class ShapeToolView extends AbstractComponent {
   render() {
     return (
-      <Button.Group toggle size="medium" vertical fluid >
+      <Button.Group toggle size="medium"  >
         <Button onClick={e => this.setShape('rectangle')}><Icon name="square outline" />Rectangle</Button>
         <Button onClick={e => this.setShape('brush')}><Icon name="paint brush" />Brush</Button>
         <Button onClick={e => this.setShape('ellipse')}><Icon name="ellipsis horizontal" />Ellipse</Button>

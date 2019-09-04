@@ -1,7 +1,7 @@
-import test from 'ava'
-import * as opencv from '../src'
-import { ColorConversionCodes, ImageData, InputArray, Mat, Point, Rect, SortFlags, ThresholdTypes, VideoCapture } from '../src'
-import { loadMirada } from './testUtil'
+import test from 'ava';
+import * as opencv from '../src';
+import { ColorConversionCodes, ImageData, InputArray, Mat, Point, Rect, SortFlags, ThresholdTypes, VideoCapture } from '../src';
+import { loadMirada } from './testUtil';
 
 test.before(loadMirada)
 

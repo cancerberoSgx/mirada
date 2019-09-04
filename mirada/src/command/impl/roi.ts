@@ -1,6 +1,6 @@
-import { File, Rect } from '../..'
-import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
-import { Command, CommandName, Options1 } from '../types'
+import { File, Rect } from '../..';
+import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand';
+import { Command, CommandName, Options1 } from '../types';
 
 /**
  * Region of interest - Bounding box selection.

@@ -1,5 +1,5 @@
-import { withoutExtension } from 'misc-utils-of-mine-generic'
-import { join, relative, resolve as pathResolve } from 'path'
+import { withoutExtension } from 'misc-utils-of-mine-generic';
+import { join, relative, resolve as pathResolve } from 'path';
 
 export function buildError(e: any) {
   console.error(e)

@@ -1,5 +1,5 @@
 
-import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, int, Point, Point2d, Rect, Scalar, Size, Size2d, Size2l } from './_types'
+import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, int, Point, Point2d, Rect, Scalar, Size, Size2d, Size2l } from './_types';
 /*
  * # Drawing Functions
  * Drawing functions work with matrices/images of arbitrary depth. The boundaries of the shapes can be rendered with antialiasing (implemented only for 8-bit images for now). All the functions include the parameter color that uses an RGB value (that may be constructed with the Scalar constructor ) for color images and brightness for grayscale images. For color images, the channel ordering is normally *Blue, Green, Red*. This is what imshow, imread, and imwrite expect. So, if you form a color using the Scalar constructor, it should look like:

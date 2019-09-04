@@ -1,5 +1,5 @@
 
-import { int } from './_types'
+import { int } from './_types';
 
 export declare class Logger {
 

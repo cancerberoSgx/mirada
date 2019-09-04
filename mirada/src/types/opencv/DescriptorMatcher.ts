@@ -1,5 +1,5 @@
 
-import { bool, DMatch, FileNode, FileStorage, float, InputArray, InputArrayOfArrays, int, Mat, Ptr } from './_types'
+import { bool, DMatch, FileNode, FileStorage, float, InputArray, InputArrayOfArrays, int, Mat, Ptr } from './_types';
 
 /**
  * It has two groups of match methods: for matching descriptors of an image with another image or with

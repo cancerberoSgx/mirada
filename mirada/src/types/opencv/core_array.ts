@@ -1,5 +1,5 @@
 
-import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int, Mat, OutputArray, OutputArrayOfArrays, Scalar, size_t } from './_types'
+import { bool, double, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int, Mat, OutputArray, OutputArrayOfArrays, Scalar, size_t } from './_types';
 /*
  * # Operations on arrays
  * 

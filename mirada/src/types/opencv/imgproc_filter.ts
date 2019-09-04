@@ -1,5 +1,5 @@
 
-import { bool, double, InputArray, int, Mat, OutputArray, OutputArrayOfArrays, Point, Scalar, Size, TermCriteria } from './_types'
+import { bool, double, InputArray, int, Mat, OutputArray, OutputArrayOfArrays, Point, Scalar, Size, TermCriteria } from './_types';
 /*
  * # Image Filtering
  * Functions and classes described in this section are used to perform various linear or non-linear filtering operations on 2D images (represented as [Mat]'s). It means that for each pixel location `$(x,y)$` in the source image (normally, rectangular), its neighborhood is considered and used to compute the response. In case of a linear filter, it is a weighted sum of pixel values. In case of morphological operations, it is the minimum or maximum values, and so on. The computed response is stored in the destination image at the same location `$(x,y)$`. It means that the output image will be of the same size as the input image. Normally, the functions support multi-channel arrays, in which case every channel is processed independently. Therefore, the output image will also have the same number of channels as the input one.

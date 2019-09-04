@@ -66,6 +66,16 @@ export class ImageWidget {
     this.buffer = cv.matFromImageData(data)
   }
 
+  imageResize(x: number, y: number) {
+    // this.imageOffset(x,y)
+    // this.image.asMat()
+    // cv.resize( this.image.asMat(),  this.image.asMat(), new cv.Size(x, y))
+    cv.resize( this.image.asMat(),  this.buffer, new cv.Size(x, y))
+    this.resizeCanvas(x,y)
+    // this.load(this.image)
+    // this.buffer.resize(new cv.Size(x, y))
+  }
+
   get(name = this.image.name) {
     return this.images[name] || this.image
   }

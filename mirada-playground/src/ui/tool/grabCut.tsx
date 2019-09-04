@@ -13,38 +13,22 @@ export class GrabCutView extends React.Component<{}, {interest:boolean,backgroun
     this.state={interest:false,background:false}
   }
   render() {
-    return (<>
-      {/* <Checkbox toggle className="toolEnabledToggle"
-        onChange={(e, p) => GrabCut.INSTANCE().setActive(!!p.checked)}
-        checked={GrabCut.INSTANCE().active} label={GrabCut.INSTANCE().name} /> */}
-      <Button.Group  size="medium" vertical fluid >
-   <Label><Checkbox  checked={this.state.interest}  toggle secondary label="Region of interest"  onChange={async (e, p) => { 
-    //  this.handleRegionTypeChange('interest');
+    return (  
+      <Button.Group  size="medium">
+   <Label><Checkbox  checked={this.state.interest}  toggle  label="Region of interest"  onChange={async (e, p) => { 
         this.setState({interest: !!p.checked})
       GrabCut.INSTANCE().setActive(!!p.checked);
       (await getShapeDrawing()).setEnabled(!!p.checked);
-        // GrabCut.INSTANCE().setActive(!!p.false);
-      // const c = (await getCanvasOverlay()).canvas!
-      // c.getObjects().forEach(s=>c.remove(s))
       }}/><Icon name="smile outline"/>  </Label> 
-       <Label> <Checkbox  checked={this.state.background}  toggle secondary label="Background"  onChange={async (e, p) => { 
-    //  this.handleRegionTypeChange('interest');
+       <Label> <Checkbox  checked={this.state.background}  toggle  label="Background"  onChange={async (e, p) => { 
         this.setState({background: !!p.checked})
       GrabCut.INSTANCE().setActive(!!p.checked);
       (await getShapeDrawing()).setEnabled(!!p.checked);
-        // GrabCut.INSTANCE().setActive(!!p.false);
-      // const c = (await getCanvasOverlay()).canvas!
-      // c.getObjects().forEach(s=>c.remove(s))
       }}/><Icon name="remove"/>  </Label> 
-
-        {/* <Button onClick={e => this.handleRegionTypeChange('background')}><Icon name="remove" />Background</Button> */}
       </Button.Group>
-    </>
+  
     )
   }
-//   protected handleRegionTypeChange(region: GrabCutRegions) {
-//     this.setState({ grabCut: { ...this.state.grabCut, region } })
-//   }
 }
 
 export class GrabCut extends AbstractTool {

@@ -1,5 +1,5 @@
 
-import { bool, double, InputArray, InputOutputArray, int, Mat, OutputArray, OutputArrayOfArrays, RotatedRect, Size, TermCriteria } from './_types'
+import { bool, double, InputArray, InputOutputArray, int, Mat, OutputArray, OutputArrayOfArrays, RotatedRect, Size, TermCriteria } from './_types';
 /*
  * # Object Tracking
  * 

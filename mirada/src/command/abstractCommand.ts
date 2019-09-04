@@ -1,6 +1,6 @@
-import { File } from '..'
-import { isFile } from '../util/fileUtil'
-import { Command, CommandHandler, CommandName, CommandsByName, Options1, Result1 } from './types'
+import { File } from '..';
+import { isFile } from '../util/fileUtil';
+import { Command, CommandHandler, CommandName, CommandsByName, Options1, Result1 } from './types';
 
 
 export abstract class AbstractCommandHandler<N extends CommandName> implements CommandHandler<N> {

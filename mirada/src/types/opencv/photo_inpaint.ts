@@ -1,5 +1,5 @@
 
-import { double, InputArray, int, OutputArray } from './_types'
+import { double, InputArray, int, OutputArray } from './_types';
 /*
  * # Inpainting
  * the inpainting algorithm

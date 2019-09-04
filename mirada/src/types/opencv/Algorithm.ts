@@ -1,5 +1,5 @@
 
-import { bool, FileNode, FileStorage, Ptr } from './_types'
+import { bool, FileNode, FileStorage, Ptr } from './_types';
 
 /**
  * especially for classes of algorithms, for which there can be multiple implementations. The examples

@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch'
-import { FS_ROOT } from '../opencvReady'
+import fetch from 'cross-fetch';
+import { FS_ROOT } from '../opencvReady';
 
 /**
  * if given a file it ignores its contents and alwasys read again from FS

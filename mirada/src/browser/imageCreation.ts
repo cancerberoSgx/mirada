@@ -1,6 +1,6 @@
-import { File } from '../file'
-import { Mat } from '../types/opencv'
-import { toImageData } from '../util/imageUtil'
+import { File } from '../file';
+import { Mat } from '../types/opencv';
+import { toImageData } from '../util/imageUtil';
 
 export async function fromInputFileElement(a: HTMLInputElement) {
   const files = await File.fromHtmlFileInputElement(a)

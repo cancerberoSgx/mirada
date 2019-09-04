@@ -1,8 +1,8 @@
-import { dedup, serial } from 'misc-utils-of-mine-generic'
-import { File } from '../file'
-import { AbstractCommandHandler } from './abstractCommand'
-import { handlerImplementations } from "./implementations"
-import { Command, CommandName, Options, Options1, Result, Result1 } from './types'
+import { dedup, serial } from 'misc-utils-of-mine-generic';
+import { File } from '../file';
+import { AbstractCommandHandler } from './abstractCommand';
+import { handlerImplementations } from "./implementations";
+import { Command, CommandName, Options, Options1, Result, Result1 } from './types';
 /**
  * Declarative opencv operations. the idea is to be able to represent opencv operations as commands (json
  * serializable objects) so we can execute them as scripts. This provides with a declarative language which

@@ -1,9 +1,9 @@
-import test from 'ava'
-import { compareL2 } from '../src'
-import { deleteResult, execute } from '../src/command/execute'
-import { CommandName } from '../src/command/types'
-import { File } from '../src/file'
-import { loadMirada } from './testUtil'
+import test from 'ava';
+import { compareL2 } from '../src';
+import { deleteResult, execute } from '../src/command/execute';
+import { CommandName } from '../src/command/types';
+import { File } from '../src/file';
+import { loadMirada } from './testUtil';
 
 test.before(loadMirada)
 
@@ -71,18 +71,18 @@ test('execute ok 2', async t => {
   deleteResult(r)
 })
 
-test('floodfill', async t => {
+test.only('floodfill', async t => {
   const r = await execute({
     commands: [{
       name: CommandName.floodFill,
       in: 'test/assets/coins.png',
       out: 'tmpOutput2.png',
       seed: new cv.Point(5, 6),
-      newVal: new cv.Scalar(128)
+      newVal: new cv.Scalar(44, 222, 111)
     }]
   })
   t.deepEqual(r.error, undefined)
   t.deepEqual(r.out.map(f => f.name), ['tmpOutput2.png'])
-  // r.out[0].write()
+  r.out[0].write()
   deleteResult(r)
 })

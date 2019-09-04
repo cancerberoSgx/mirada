@@ -1,5 +1,5 @@
 
-import { AsyncArray, bool, double, ErrorCallback, float, float16_t, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int, int64, schar, short, size_t, uchar, uint64, unsigned, ushort, _Tp } from './_types'
+import { AsyncArray, bool, double, ErrorCallback, float, float16_t, InputArray, InputArrayOfArrays, InputOutputArray, InputOutputArrayOfArrays, int, int64, schar, short, size_t, uchar, uint64, unsigned, ushort, _Tp } from './_types';
 /*
  * # Utility and system functions and macros
  * 

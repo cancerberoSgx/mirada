@@ -14,7 +14,7 @@ export class SelectionToolView extends AbstractComponent {
   render() {
     const tool = SelectionTool.INSTANCE
     return (
-      <Button.Group toggle size="medium" vertical fluid>
+      <Button.Group toggle size="medium">
         <Button onClick={e => tool.onAction('select')}>
           <Popup position="bottom left" flowing={false}
             mountNode={document.body} size="small" hoverable style={{ left: '-10vw' }}
@@ -24,7 +24,7 @@ export class SelectionToolView extends AbstractComponent {
         </Button>
         <Button onClick={e => tool.onAction('delete')}>
           <Icon name="delete" />Delete Selection</Button>
-        <Button onClick={e => tool.onAction('invertSelection')}>
+        <Button onClick={e => alert('TODO')}>
           <Icon name="idea" />Invert Selection</Button>
         <Button onClick={e => tool.onAction('selectAll')}>
           <Icon name="hand rock" />Select All</Button>

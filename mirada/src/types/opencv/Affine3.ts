@@ -1,5 +1,5 @@
 
-import { float_type, int, Mat, Mat3, Mat4, Vec3 } from './_types'
+import { float_type, int, Mat, Mat3, Mat4, Vec3 } from './_types';
 
 /**
  * It represents a 4x4 homogeneous transformation matrix `$T$`

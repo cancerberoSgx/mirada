@@ -43,6 +43,10 @@ body {
   width: 30vw;
   overflow-y: scroll;
 }
+
+.toolBar .ui.buttons{
+display: inline
+}
 .ui.toggle.checkbox.toolEnabledToggle {
   margin-bottom: 20px;
 }

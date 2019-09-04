@@ -10,16 +10,16 @@ export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
 // Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
-export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
-export { Scalar as GScalar }
-export { Point as Point2f }
-export { Point as KeyPoint }
-export { Point as Point2l }
-export { Size as Point2d }
-export { Size as Size2d }
-export { Size as Size2f }
-export { Size as Size2l }
-export { Rect as Rect_ }
+export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat';
+export { Scalar as GScalar };
+export { Point as Point2f };
+export { Point as KeyPoint };
+export { Point as Point2l };
+export { Size as Point2d };
+export { Size as Size2d };
+export { Size as Size2f };
+export { Size as Size2l };
+export { Rect as Rect_ };
 
 export declare class Point {
   public constructor(x: number, y: number);
@@ -108,8 +108,8 @@ export declare class VideoCapture {
 
 
 
-import { LineTypes, Mat, NormTypes, RotatedRect } from '.'
-import '../_cv'
+import { LineTypes, Mat, NormTypes, RotatedRect } from '.';
+import '../_cv';
 
 export declare function matFromImageData(imageData: ImageData): Mat
 export declare function matFromArray(a: number, b: number, type: any, array: number[]): Mat

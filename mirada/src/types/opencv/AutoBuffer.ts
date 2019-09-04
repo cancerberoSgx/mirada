@@ -1,5 +1,5 @@
 
-import { size_t } from './_types'
+import { size_t } from './_types';
 
 /**
  * The class is used for temporary buffers in functions and methods. If a temporary buffer is usually

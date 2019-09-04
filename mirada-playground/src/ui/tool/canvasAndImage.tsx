@@ -13,6 +13,7 @@ export class CanvasAndImageView extends AbstractComponent<AbstractProps, State> 
     this.onChange = this.onChange.bind(this)
   }
   protected canvasSizeEl: HTMLDivElement | null = null
+  protected imageResizeEl: HTMLTableDataCellElement | null=null
   protected imageOffsetEl: HTMLDivElement | null = null
   protected step = 10
   render() {
@@ -35,7 +36,7 @@ export class CanvasAndImageView extends AbstractComponent<AbstractProps, State> 
           </tr>
           <tr  >
             <td>Resize image</td>
-          <td>
+          <td ref={c => this.imageResizeEl = c}>
               <Input type="number" min="1" step={this.step} onChange={this.onChange} defaultValue="400" />
               <Input type="number" min="1" step={this.step} onChange={this.onChange} defaultValue="400" />
             </td>
@@ -47,7 +48,8 @@ export class CanvasAndImageView extends AbstractComponent<AbstractProps, State> 
   protected async onChange(e: any) {
     const canvasSize = Array.from(this.canvasSizeEl!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
     const imageOffset = Array.from(this.imageOffsetEl!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
-    await CanvasAndImage.INSTANCE.applyCanvasAndImage(canvasSize, imageOffset)
+    const imageResize = Array.from(this.imageResizeEl!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
+    await CanvasAndImage.INSTANCE.applyCanvasAndImage(canvasSize, imageOffset, imageResize)
   }
 }
 
@@ -57,8 +59,11 @@ export class CanvasAndImage extends AbstractTool {
   name = 'Canvas and Image'
   description = 'Resize the canvas area and translate the image inside it.'
   shortDescription = 'Canvas resize and image translate'
-  async  applyCanvasAndImage(canvasSize?: number[], imageOffset?: number[]) {
+  async  applyCanvasAndImage(canvasSize?: number[], imageOffset?: number[], imageResize?: number[]) {
     const i = await getImageWidget()
+    if (imageResize && imageResize.length >= 2) {
+      i.imageResize(imageResize[0], imageResize[1])
+    }
     if (canvasSize && canvasSize.length >= 2) {
       i.resizeCanvas(canvasSize[0], canvasSize[1])
       const o = await getCanvasOverlay()

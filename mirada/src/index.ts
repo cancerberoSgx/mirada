@@ -1,10 +1,10 @@
-export * from './browser'
-export * from './command'
-export * from './file'
-export * from './format/'
-export * from './opencvReady'
-export * from './tool'
-export * from './types/mirada'
-export * from './types/opencv'
-export * from './util'
-import './types/_cv'
+export * from './browser';
+export * from './command';
+export * from './file';
+export * from './format/';
+export * from './opencvReady';
+export * from './tool';
+export * from './types/mirada';
+export * from './types/opencv';
+export * from './util';
+import './types/_cv';

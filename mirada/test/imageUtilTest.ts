@@ -1,7 +1,7 @@
-import test from 'ava'
-import { File, Mat } from '../src'
-import { compareL2, fromFile } from '../src/util/imageUtil'
-import { loadMirada } from './testUtil'
+import test from 'ava';
+import { File, Mat } from '../src';
+import { compareL2, fromFile } from '../src/util/imageUtil';
+import { loadMirada } from './testUtil';
 
 test.before(loadMirada)
 

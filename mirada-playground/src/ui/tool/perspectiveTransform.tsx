@@ -1,4 +1,3 @@
-import 'magica'
 import * as React from 'react'
 import { Icon } from 'semantic-ui-react'
 import { getImageWidget } from '../../app/start'
@@ -25,19 +24,19 @@ export class PerspectiveTransformView extends AbstractComponent<AbstractProps, S
           <td>
             <table ref={c => this.srcEl = c}>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 56, y: 65 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} selectButton={true} onChange={this.onChange} defaultValue={{ x: 56, y: 65 }} /></td>
                 <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 368, y: 52 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} selectButton={true} onChange={this.onChange} defaultValue={{ x: 368, y: 52 }} /></td>
                 <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 28, y: 387 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} selectButton={true} onChange={this.onChange} defaultValue={{ x: 28, y: 387 }} /></td>
                 <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 389, y: 390 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} selectButton={true} onChange={this.onChange} defaultValue={{ x: 389, y: 390 }} /></td>
                 <td><Icon name="arrow right" /></td>
               </tr>
             </table>
@@ -45,16 +44,16 @@ export class PerspectiveTransformView extends AbstractComponent<AbstractProps, S
           <td>
             <table ref={c => this.dstEl = c}>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 56, y: 65 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} selectButton={true} defaultValue={{ x: 56, y: 65 }} /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 368, y: 52 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} selectButton={true} defaultValue={{ x: 368, y: 52 }} /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 28, y: 387 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} selectButton={true} defaultValue={{ x: 28, y: 387 }} /></td>
               </tr>
               <tr>
-                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} defaultValue={{ x: 389, y: 390 }} /></td>
+                <td><Point min={{ x: this.max * -1, y: this.max * -1 }} max={{ x: this.max, y: this.max }} step={{ x: this.step, y: this.step }} targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} onChange={this.onChange} selectButton={true} defaultValue={{ x: 389, y: 390 }} /></td>
               </tr>
             </table>
           </td>
@@ -64,8 +63,8 @@ export class PerspectiveTransformView extends AbstractComponent<AbstractProps, S
     )
   }
   protected async onChange(e: any) {
-    const src = Array.from(this.srcEl!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
-    const dst = Array.from(this.dstEl!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
+    const src = Array.from(this.srcEl!.querySelectorAll<HTMLInputElement>('input[type="number"]')).map(i => i.valueAsNumber || 0)
+    const dst = Array.from(this.dstEl!.querySelectorAll<HTMLInputElement>('input[type="number"]')).map(i => i.valueAsNumber || 0)
     await this.tool.applyPerspectiveTransform(src, dst)
   }
 }
