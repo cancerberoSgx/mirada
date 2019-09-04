@@ -3,20 +3,22 @@ import { Deferred, sleep } from 'misc-utils-of-mine-generic'
 import { CanvasOverlay } from '../imageEditor/canvasOverlay'
 import { ImageWidget } from '../imageEditor/imageWidget'
 import { ShapeFreeDrawing } from '../imageEditor/shapeDrawer'
+import { AffineTransform } from '../ui/tool/affineTransform'
+import { CanvasAndImage } from '../ui/tool/canvasAndImage'
 import { ShapeTool } from '../ui/tool/drawingTool'
 import { GrabCut } from '../ui/tool/grabCut'
+import { PerspectiveTransform } from '../ui/tool/perspectiveTransform'
 import { SelectionTool } from '../ui/tool/selectionTool'
 import { tools } from '../ui/tool/tool'
 import { addStateChangeListener } from './stateChangeExpert'
 import { getStore } from './store'
-import { CanvasAndImage } from '../ui/tool/canvasAndImage';
-import { PerspectiveTransform } from '../ui/tool/perspectiveTransform';
-import { AffineTransform } from '../ui/tool/affineTransform';
 
-const started = new Deferred()
+const _started = new Deferred()
+
+export const started = ()=>_started.status==='resolved'
 
 export async function start() {
-  if (started.status === 'resolved') {
+  if (_started.status === 'resolved') {
     return
   }
   htmlCanvas = document.querySelector<HTMLCanvasElement>('#inputCanvas')!
@@ -42,12 +44,15 @@ export async function start() {
   })
   getStore().setState({ ...getStore().getState() })
   // overlay.canvas!.on('object:added', )
-  started.resolve(null)
+  _started.resolve(null)
 }
 
 let image: ImageWidget
 let overlay: CanvasOverlay
 let htmlCanvas: HTMLCanvasElement
+export function getHtmlCanvasSync(){
+  return htmlCanvas
+}
 let fabricDrawing: ShapeFreeDrawing
 let fabricCanvas: fabric.Canvas
 let shapeDrawing: ShapeFreeDrawing
@@ -56,7 +61,7 @@ export async function getManagers() {
   if (managers) {
     return managers
   }
-  await started
+  await _started
   managers = {
     async getCanvasOverlay() {
       return overlay

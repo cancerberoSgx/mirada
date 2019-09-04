@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Button, Dropdown, Icon, Input, Menu, Modal, Popup } from 'semantic-ui-react'
-import { loadFileFromInputElement, handleFileSave } from '../app/dispatcher'
+import { handleFileSave, loadFileFromInputElement } from '../app/dispatcher'
 import { memoryReport } from "../util/util"
 import { About } from './about'
 import { AbstractComponent } from './common/component'
@@ -45,8 +45,8 @@ export class Header extends AbstractComponent {
               <Dropdown.Item>
                 <div style={{ maxWidth: '40vw', whiteSpace: 'normal' }}>
                   {`PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`
-                    .replace(/\s+/g, '').toLowerCase().split(',').map(format => 
-                      <Button size="tiny"  onClick={e=>handleFileSave(format)} content={format} style={{ width: '60px' }} />
+                    .replace(/\s+/g, '').toLowerCase().split(',').map(format =>
+                      <Button size="tiny" onClick={e => handleFileSave(format)} content={format} style={{ width: '60px' }} />
                     )}
                 </div>
               </Dropdown.Item>

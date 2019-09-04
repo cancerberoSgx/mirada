@@ -1,10 +1,10 @@
-import { getShapeDrawing } from '../../app/start'
-import { AbstractTool } from './tool'
 import * as React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
+import { getShapeDrawing } from '../../app/start'
 import { ShapeTypes } from '../../app/state'
 import { getState, setState } from '../../app/store'
 import { AbstractComponent } from '../common/component'
+import { AbstractTool } from './tool'
 
 export class ShapeToolView extends AbstractComponent {
   render() {
@@ -23,22 +23,16 @@ export class ShapeToolView extends AbstractComponent {
 }
 
 export class ShapeTool extends AbstractTool {
-  static INSTANCE =  new ShapeTool()
-  static toolBarEntry= { tool: () =>ShapeTool.INSTANCE, el: () => <ShapeToolView /> }
-  protected constructor() {
-    super()
-    this.name = 'Shapes'
-    this.description = 'Shape drawing tool'
-    this.shortDescription = 'Shape drawing tool'
-  }
+  static INSTANCE = new ShapeTool()
+  static toolBarEntry = { tool: () => ShapeTool.INSTANCE, el: () => <ShapeToolView /> }
+  name = 'Shapes'
+  description = 'Shape drawing tool'
+  shortDescription = 'Shape drawing tool'
   async setActive(b: boolean) {
     const manager = await getShapeDrawing()
     manager.setEnabled(true)
     super.setActive(b)
   }
-  // setRegion(s: ShapeTypes) {
-  //   this.setState({ shapesTool: { ...this.state.shapesTool, activeShape: s } })
-  // }
 }
 
 

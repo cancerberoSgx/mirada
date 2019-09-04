@@ -24,6 +24,7 @@ test('execute error missing mandatory property', async t => {
     error: 'In command 1: expr is mandatory'
   })
 })
+
 test('execute unExistent input file', async t => {
   const r = await execute({
     commands: [
@@ -58,3 +59,26 @@ test('execute ok 1', async t => {
   deleteResult(r)
 })
 
+
+test('execute ok 2', async t => {
+  const r = await execute({
+    commands: [
+      { name: CommandName.roi, in:'test/assets/lenna.jpg', out: 'tmpOutput.png', expr: { x: 100, y: 100, width: 100, height: 80 } }
+    ]
+  })
+  t.deepEqual(r.error, undefined)
+  t.deepEqual(r.out.map(f => f.name), [ 'tmpOutput.png'])
+  deleteResult(r)
+})
+
+test.skip('execute ok 3', async t => {
+  const r = await execute({
+    commands: [
+      { name: CommandName.floodFill, in:'test/assets/coins.png', out: 'tmpOutput2.png',seed: new cv.Point(5,6), newVal: new cv.Scalar(128) }
+    ]
+  })
+  t.deepEqual(r.error, undefined)
+  t.deepEqual(r.out.map(f => f.name), [ 'tmpOutput2.png'])
+  r.out[0].write()
+  deleteResult(r)
+})

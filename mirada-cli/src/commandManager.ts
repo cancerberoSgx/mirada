@@ -1,4 +1,4 @@
-import { commands } from './commands';
+import { commands } from './commands'
 
 
 // import { GrabCut } from './grabCut'

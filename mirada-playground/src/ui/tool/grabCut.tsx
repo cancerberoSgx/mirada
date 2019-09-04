@@ -1,36 +1,58 @@
+import { IObjectAdded } from 'fabric/fabric-impl'
 import { File, tool } from 'mirada'
-import { serial } from 'misc-utils-of-mine-generic'
-import { GrabCutRegions } from '../../app/state'
-import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert'
-import { ImageWidget } from '../../imageEditor/imageWidget'
-import { AbstractTool } from './tool'
 import * as React from 'react'
-import { Button, Checkbox, Icon } from 'semantic-ui-react'
+import { Button, Checkbox, Icon, Label } from 'semantic-ui-react'
+import { getCanvasOverlay, getImageWidget, getShapeDrawing } from '../../app/start'
+import { GrabCutRegions } from '../../app/state'
 import { AbstractComponent } from '../common/component'
-import { getImageWidget, getCanvasOverlay } from '../../app/start';
-import { IObjectAdded } from 'fabric/fabric-impl';
+import { AbstractTool } from './tool'
 
-export class GrabCutView extends AbstractComponent {
+export class GrabCutView extends React.Component<{}, {interest:boolean,background:boolean}> {
+  constructor(p:any,s:any){
+    super(p,s)
+    this.state={interest:false,background:false}
+  }
   render() {
     return (<>
-      <Checkbox toggle className="toolEnabledToggle"
+      {/* <Checkbox toggle className="toolEnabledToggle"
         onChange={(e, p) => GrabCut.INSTANCE().setActive(!!p.checked)}
-        checked={GrabCut.INSTANCE().active} label={GrabCut.INSTANCE().name} />
-      <Button.Group toggle size="medium" vertical fluid >
-        <Button onClick={e => this.handleRegionTypeChange('interest')}><Icon name="smile outline" />Region of interest</Button>
-        <Button onClick={e => this.handleRegionTypeChange('background')}><Icon name="remove" />Background</Button>
+        checked={GrabCut.INSTANCE().active} label={GrabCut.INSTANCE().name} /> */}
+      <Button.Group  size="medium" vertical fluid >
+   <Label><Checkbox  checked={this.state.interest}  toggle secondary label="Region of interest"  onChange={async (e, p) => { 
+    //  this.handleRegionTypeChange('interest');
+        this.setState({interest: !!p.checked})
+      GrabCut.INSTANCE().setActive(!!p.checked);
+      (await getShapeDrawing()).setEnabled(!!p.checked);
+        // GrabCut.INSTANCE().setActive(!!p.false);
+      // const c = (await getCanvasOverlay()).canvas!
+      // c.getObjects().forEach(s=>c.remove(s))
+      }}/><Icon name="smile outline"/>  </Label> 
+       <Label> <Checkbox  checked={this.state.background}  toggle secondary label="Background"  onChange={async (e, p) => { 
+    //  this.handleRegionTypeChange('interest');
+        this.setState({background: !!p.checked})
+      GrabCut.INSTANCE().setActive(!!p.checked);
+      (await getShapeDrawing()).setEnabled(!!p.checked);
+        // GrabCut.INSTANCE().setActive(!!p.false);
+      // const c = (await getCanvasOverlay()).canvas!
+      // c.getObjects().forEach(s=>c.remove(s))
+      }}/><Icon name="remove"/>  </Label> 
+
+        {/* <Button onClick={e => this.handleRegionTypeChange('background')}><Icon name="remove" />Background</Button> */}
       </Button.Group>
     </>
     )
   }
-  protected handleRegionTypeChange(region: GrabCutRegions) {
-    this.setState({ grabCut: { ...this.state.grabCut, region } })
-  }
+//   protected handleRegionTypeChange(region: GrabCutRegions) {
+//     this.setState({ grabCut: { ...this.state.grabCut, region } })
+//   }
 }
 
 export class GrabCut extends AbstractTool {
   protected canvasOffset = { x: 0, y: 0 }
   protected static _instance: GrabCut
+  name = 'Grab Cut'
+  description = `Intelligent way of removing the background. It doesn't need to be a solid color and is intelligent separate the main object from its background. First select the region of interest (the object that's not the background) by drawing a containing rectangle. Sometimes is enough with just that but some images are very complex and require more work. You can also define what's the background and also use the brush tool that's more precise than rectangles. Remember that drawn shapes can be moved, resized and deleted if needed. `
+  shortDescription = 'Intelligent background removal'
   static toolBarEntry = { tool: GrabCut.INSTANCE, el: () => <GrabCutView /> }
   static INSTANCE() {
     if (!GrabCut._instance) {
@@ -41,9 +63,6 @@ export class GrabCut extends AbstractTool {
   protected selectionChangeListenerRegistered = false
   protected constructor() {
     super()
-    this.name = 'Grab Cut'
-    this.description = `Intelligent way of removing the background. It doesn't need to be a solid color and is intelligent separate the main object from its background. First select the region of interest (the object that's not the background) by drawing a containing rectangle. Sometimes is enough with just that but some images are very complex and require more work. You can also define what's the background and also use the brush tool that's more precise than rectangles. Remember that drawn shapes can be moved, resized and deleted if needed. `
-    this.shortDescription = 'Intelligent background removal'
     this.selectionChangeListener = this.selectionChangeListener.bind(this)
     getCanvasOverlay().then(o => {
       o.canvas!.on('selection:created', this.selectionChangeListener)
@@ -66,4 +85,3 @@ export class GrabCut extends AbstractTool {
 }
 
 
-  

@@ -16,103 +16,103 @@ export interface Command {
 }
 
 export const commands: Command[] = [
-  
+
   {
     name: 'asRgba',
     signature: "interface Command_asRgba {\n  name: T;\n  in: string;\n  out?: string;\n  \n}",
     doc: "Convert the image to RGBA channel type which is often needed before rendering/encoding. ",
     properties: [
-    { 
-        name: 'name', 
-        type: 'string', 
+      {
+        name: 'name',
+        type: 'string',
         doc: "",
         optional: false
       },
-      { 
-        name: 'in', 
-        type: 'string', 
+      {
+        name: 'in',
+        type: 'string',
         doc: "Input file name.",
         optional: false
       },
-      { 
-        name: 'out', 
-        type: 'string', 
+      {
+        name: 'out',
+        type: 'string',
         doc: "Output file names. If not given the input file will be replaced.",
         optional: true
       }
     ]
   },
-    
+
   {
     name: 'roi',
     signature: "interface Command_roi {\n  expr: Rect\n  name: T;\n  in: string;\n  out?: string;\n  \n}",
     doc: "Region of interest - Bounding box selection.",
     properties: [
-    { 
-        name: 'expr', 
-        type: 'Rect', 
+      {
+        name: 'expr',
+        type: 'Rect',
         doc: "The rectangle containing the region of interest. ",
         optional: false
       },
-      { 
-        name: 'name', 
-        type: 'string', 
+      {
+        name: 'name',
+        type: 'string',
         doc: "",
         optional: false
       },
-      { 
-        name: 'in', 
-        type: 'string', 
+      {
+        name: 'in',
+        type: 'string',
         doc: "Input file name.",
         optional: false
       },
-      { 
-        name: 'out', 
-        type: 'string', 
+      {
+        name: 'out',
+        type: 'string',
         doc: "Output file names. If not given the input file will be replaced.",
         optional: true
       }
     ]
   },
-    
+
   {
     name: 'grabCut',
     signature: "interface Command_grabCut {\n  rect?: Rect\n  mask?: string\n  frameColor?: string\n  name: T;\n  in: string;\n  out?: string;\n  \n}",
     doc: "",
     properties: [
-    { 
-        name: 'rect', 
-        type: 'Rect', 
+      {
+        name: 'rect',
+        type: 'Rect',
         doc: "If given the region outside rect will be considered the background to remove (uses cv.GC_INIT_WITH_RECT).",
         optional: true
       },
-      { 
-        name: 'mask', 
-        type: 'string', 
+      {
+        name: 'mask',
+        type: 'string',
         doc: "If given (and rect is not) its the name of an image used as a mask where its elements may have one of the GrabCutClasses to declare background and foreground regions.",
         optional: true
       },
-      { 
-        name: 'frameColor', 
-        type: 'string', 
+      {
+        name: 'frameColor',
+        type: 'string',
         doc: "If given a rectangle of given color will be drawn (requires `rect`)",
         optional: true
       },
-      { 
-        name: 'name', 
-        type: 'string', 
+      {
+        name: 'name',
+        type: 'string',
         doc: "",
         optional: false
       },
-      { 
-        name: 'in', 
-        type: 'string', 
+      {
+        name: 'in',
+        type: 'string',
         doc: "Input file name.",
         optional: false
       },
-      { 
-        name: 'out', 
-        type: 'string', 
+      {
+        name: 'out',
+        type: 'string',
         doc: "Output file names. If not given the input file will be replaced.",
         optional: true
       }

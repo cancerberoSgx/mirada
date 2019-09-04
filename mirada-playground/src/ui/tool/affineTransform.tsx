@@ -1,10 +1,10 @@
+import 'magica'
 import * as React from 'react'
 import { Input } from 'semantic-ui-react'
 import { getImageWidget } from '../../app/start'
 import { State } from '../../app/state'
 import { AbstractComponent, AbstractProps } from '../common/component'
 import { AbstractTool } from './tool'
-import 'magica'
 
 export class AffineTransformView extends AbstractComponent<AbstractProps, State> {
   constructor(p: any, s: any) {
@@ -40,15 +40,12 @@ export class AffineTransformView extends AbstractComponent<AbstractProps, State>
 }
 
 export class AffineTransform extends AbstractTool {
-  static INSTANCE =  new AffineTransform()
-  static toolBarEntry = { tool: () =>  AffineTransform.INSTANCE, el: () => <AffineTransformView /> }
+  static INSTANCE = new AffineTransform()
+  static toolBarEntry = { tool: () => AffineTransform.INSTANCE, el: () => <AffineTransformView /> }
   name = 'Affine transform'
   description = 'Rotate, scale, skew, translate'
   shortDescription = 'Rotate, scale, skew, translate'
-   protected constructor(){
-    super()
-  }
-   async  applyAffineTransform(inputs: number[]) {
+  async  applyAffineTransform(inputs: number[]) {
     const i = await getImageWidget()
     const size = { width: i.imageSize.width, height: i.imageSize.height }
     const src = i.get().clone().asMat()

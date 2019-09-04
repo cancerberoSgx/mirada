@@ -1,14 +1,15 @@
 import * as React from 'react'
 import { Accordion, Button, Menu, Segment } from 'semantic-ui-react'
 import { getImageWidget } from '../app/start'
-import { AffineTransform } from './tool/affineTransform'
-import { CanvasAndImage } from './tool/canvasAndImage'
-import { PerspectiveTransform } from './tool/perspectiveTransform'
 import { AbstractComponent } from './common/component'
 import { AccordionToolbarAdapter } from './tool/AccordionToolbarAdapter'
+import { AffineTransform } from './tool/affineTransform'
+import { CanvasAndImage } from './tool/canvasAndImage'
 import { ShapeTool } from './tool/drawingTool'
 import { GrabCut } from './tool/grabCut'
+import { PerspectiveTransform } from './tool/perspectiveTransform'
 import { SelectionTool } from './tool/selectionTool'
+import { SelectedShapes } from './tool/selectedShapes';
 
 const tools = [
   SelectionTool.toolBarEntry,
@@ -16,7 +17,8 @@ const tools = [
   GrabCut.toolBarEntry,
   AffineTransform.toolBarEntry,
   PerspectiveTransform.toolBarEntry,
-  CanvasAndImage.toolBarEntry
+  CanvasAndImage.toolBarEntry,
+  SelectedShapes.toolBarEntry
 ]
 
 export class ToolBar extends AbstractComponent {

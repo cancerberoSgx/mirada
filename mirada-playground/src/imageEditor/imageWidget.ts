@@ -49,7 +49,7 @@ export class ImageWidget {
     this.canvas.width = x
     this.canvas.height = y
     const data = asImageData(this.buffer)
-    this.canvas.getContext('2d')!.putImageData(new ImageData(data.data, data.width, data.height), 0, 0, 0, 0, 
+    this.canvas.getContext('2d')!.putImageData(new ImageData(data.data, data.width, data.height), 0, 0, 0, 0,
       Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
     tryTo(() => this.buffer.delete())
     this.buffer = cv.matFromImageData(data)
@@ -60,7 +60,7 @@ export class ImageWidget {
     const data = asImageData(this.buffer)
     c.fillStyle = "white"
     c.fillRect(0, 0, this.canvas.width, this.canvas.height)
-    c.putImageData(new ImageData(data.data, data.width, data.height), x, y, 0, 0, 
+    c.putImageData(new ImageData(data.data, data.width, data.height), x, y, 0, 0,
       Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
     tryTo(() => this.buffer.delete())
     this.buffer = cv.matFromImageData(data)

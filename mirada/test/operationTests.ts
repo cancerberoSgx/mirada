@@ -1,10 +1,27 @@
 import test from 'ava'
-import { create, distance, read } from 'jimp'
-import { File, fromFile, Mat, tool, toRgba, compare, compareL2 } from '../src'
-import { loadMirada } from './testUtil'
-import fileType = require('file-type')
+import { File, fromFile, Mat, tool, toRgba, compare, compareL2, asImageData } from '../src'
+import { loadMirada, write } from './testUtil'
+import {distance, create, read} from 'jimp'
+import fileType = require('file-type');
 
 test.before(loadMirada)
+
+test('floodFill', async t => {
+  const seed = new cv.Point(4, 4);
+  const img = cv.Mat.zeros(100, 100, cv.CV_8UC1);
+  cv.circle(img, seed, 20, new cv.Scalar(128), 3);
+  // await write(img, 'tmp1.png')
+  //Create a mask from edges in the original image
+  const mask = cv.Mat.zeros(img.rows + 2, img.cols + 2, cv.CV_8UC1);
+  cv.Canny(img, mask, 100, 200);
+  cv.copyMakeBorder(mask, mask, 1, 1, 1, 1, cv.BORDER_REPLICATE);
+  //Fill mask with value 128
+  const fillValue = 128;
+  cv.floodFill(img, mask, seed, new cv.Scalar(255), 0, new cv.Scalar(), new cv.Scalar(), 4 | cv.FLOODFILL_MASK_ONLY | (fillValue << 8));
+  t.deepEqual(compareL2(await File.fromFile('test/assets/floodfill.png'), File.fromMat(await toRgba(mask))), 0)
+  await write(await toRgba(mask), 'tmp2.png')
+})
+
 
 test('warpAffine', async t => {
   const f = await File.fromFile('test/assets/lenna.jpg')

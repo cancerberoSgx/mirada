@@ -1,10 +1,14 @@
 import { File } from '../file'
-import { Command_asRgba, Command_asRgbaImpl, Command_roi, Command_roiImpl, Command_grabCut, Command_grabCutImpl } from "./handlers"
+import { Command_roi, Command_roiImpl } from "./impl/roi";
+import { Command_asRgba, Command_asRgbaImpl } from "./impl/asRgba";
+import { Command_floodFill, Command_floodFillImpl } from "./impl/floodfill";
+import { Command_grabCut, Command_grabCutImpl } from "./impl/grabCut";
 
 export enum CommandName {
   asRgba = 'asRgba',
   roi = 'roi',
-  grabCut = 'grabCut'
+  grabCut = 'grabCut',
+  floodFill = 'floodFill'
 }
 
 export interface Command<T extends CommandName> {
@@ -65,10 +69,12 @@ export interface CommandsByName {
   [CommandName.asRgba]: Command_asRgba
   [CommandName.roi]: Command_roi
   [CommandName.grabCut]: Command_grabCut
+  [CommandName.floodFill]: Command_floodFill
 }
 
 export interface HandlersByName {
   [CommandName.asRgba]: Command_asRgbaImpl
   [CommandName.roi]: Command_roiImpl
   [CommandName.grabCut]: Command_grabCutImpl
+  [CommandName.floodFill]: Command_floodFillImpl
 }

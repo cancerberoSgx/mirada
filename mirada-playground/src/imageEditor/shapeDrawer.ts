@@ -27,7 +27,7 @@ const defaults: Required<ShapeFreeDrawingOptions> = {
   shapeOptions: {
     stroke: 'red',
     strokeWidth: 2,
-    fill: '',
+    fill: ''
   }
 }
 interface ShapeEvent {
@@ -86,8 +86,11 @@ export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
         ...this.shapeOptions,
         left: this.initialPos.x,
         top: this.initialPos.y,
-        width: 0, height: 0,
+        width: 0, 
+        height: 0,
       })
+      this.instance.set('fill', 'rgb(33,222,155)')
+      this.instance.set('opacity', .4)
       this.canvas.add(this.instance)
     }
   }

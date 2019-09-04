@@ -20,7 +20,7 @@ export abstract class AbstractTool {
   name = unique('abstractTool')
   description = 'TODO'
   shortDescription = 'TODO'
-
+  protected constructor(){}
   setActive(b: boolean) {
     this.active = b
     if (b && getState().tools.find(t => this.activeExclusive)) {

@@ -1,14 +1,14 @@
 import { File as MagicaFile } from 'magica'
-import { Command } from './commands';
 
 export interface Options {
+  output?: string
   debug?: boolean;
-  // input: string[];
+  input?: string | true
   // output?: string;
-  help?: undefined|true|string
+  help?: undefined | true | string
 
-  listen?: true|string
-  
+  listen?: true | string
+
   // command: 'grab-cut'
   // format?: string
   //TODO: config : from json file

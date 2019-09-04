@@ -1,14 +1,14 @@
-import { fabric } from 'fabric';
-import { File, tool } from 'mirada';
-import { serial } from 'misc-utils-of-mine-generic';
-import * as React from 'react';
-import { Button, Icon, Popup } from 'semantic-ui-react';
-import { getFabricCanvas, getImageWidget } from '../../app/start';
-import { SelectionActions } from '../../app/state';
-import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert';
-import { getState } from '../../app/store';
-import { AbstractComponent } from '../common/component';
-import { AbstractTool } from './tool';
+import { fabric } from 'fabric'
+import { File, tool } from 'mirada'
+import { serial } from 'misc-utils-of-mine-generic'
+import * as React from 'react'
+import { Button, Icon, Popup } from 'semantic-ui-react'
+import { getFabricCanvas, getImageWidget } from '../../app/start'
+import { SelectionActions } from '../../app/state'
+import { addStateChangeListener, SelectionChangeEvent } from '../../app/stateChangeExpert'
+import { getState } from '../../app/store'
+import { AbstractComponent } from '../common/component'
+import { AbstractTool } from './tool'
 
 export class SelectionToolView extends AbstractComponent {
   render() {
@@ -16,11 +16,11 @@ export class SelectionToolView extends AbstractComponent {
     return (
       <Button.Group toggle size="medium" vertical fluid>
         <Button onClick={e => tool.onAction('select')}>
-          <Popup position="bottom left" flowing={false} 
-          mountNode={document.body} size="small" hoverable style={{ left: '-10vw' }} 
-          content="Select existing shapes with this  marquee tool to move resize or rotate or delete them. By dragging bigger rectangles you can select and apply transformation on several shapes. Also keyboard is supported like ctrl, shift, ect." 
-          trigger={
-            <span><Icon name="mouse pointer" /> Select</span>} />
+          <Popup position="bottom left" flowing={false}
+            mountNode={document.body} size="small" hoverable style={{ left: '-10vw' }}
+            content="Select existing shapes with this  marquee tool to move resize or rotate or delete them. By dragging bigger rectangles you can select and apply transformation on several shapes. Also keyboard is supported like ctrl, shift, ect."
+            trigger={
+              <span><Icon name="mouse pointer" /> Select</span>} />
         </Button>
         <Button onClick={e => tool.onAction('delete')}>
           <Icon name="delete" />Delete Selection</Button>
@@ -34,12 +34,12 @@ export class SelectionToolView extends AbstractComponent {
 }
 
 export class SelectionTool extends AbstractTool {
-  static INSTANCE =  new SelectionTool()
-  static toolBarEntry= { tool: () =>SelectionTool.INSTANCE, el: () => <SelectionToolView /> }
-  protected constructor( ) {
+  static INSTANCE = new SelectionTool()
+  static toolBarEntry = { tool: () => SelectionTool.INSTANCE, el: () => <SelectionToolView /> }
+  protected constructor() {
     super()
     this.name = 'Selection'
-    this.description =  'Selection management'
+    this.description = 'Selection management'
     this.shortDescription = 'Selection management'
     this.selectionChangeListener = this.selectionChangeListener.bind(this)
     addStateChangeListener('selectionChanged', {
@@ -47,7 +47,7 @@ export class SelectionTool extends AbstractTool {
       fn: this.selectionChangeListener
     })
   }
-  
+
   async onAction(s: SelectionActions) {
     const c = await getFabricCanvas()
     if (s === 'delete') {
