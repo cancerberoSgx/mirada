@@ -9,6 +9,9 @@ import { SelectionTool } from '../ui/tool/selectionTool'
 import { tools } from '../ui/tool/tool'
 import { addStateChangeListener } from './stateChangeExpert'
 import { getStore } from './store'
+import { CanvasAndImage } from '../ui/tool/canvasAndImage';
+import { PerspectiveTransform } from '../ui/tool/perspectiveTransform';
+import { AffineTransform } from '../ui/tool/affineTransform';
 
 const started = new Deferred()
 
@@ -23,9 +26,12 @@ export async function start() {
   fabricCanvas = await overlay.setEnabled(true)
   shapeDrawing = new ShapeFreeDrawing({ canvas: fabricCanvas })
   image.render()
-  tools.push(new SelectionTool(image))
-  tools.push(new GrabCut(image))
-  tools.push(new ShapeTool())
+  tools.push(SelectionTool.INSTANCE)
+  tools.push(GrabCut.INSTANCE)
+  tools.push(ShapeTool.INSTANCE)
+  tools.push(CanvasAndImage.INSTANCE)
+  tools.push(AffineTransform.INSTANCE)
+  tools.push(PerspectiveTransform.INSTANCE)
   // I'm not afraid of bad practices when I want to see something working :
   Object.assign(getStore().getState(), { tools, activeTools: [tools[0]], working: false } as any)
   addStateChangeListener('imageSizeChanged', {

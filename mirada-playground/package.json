@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "fabric": "^3.4.0",
-    "magica": "^0.2.15",
+    "file-saver": "^2.0.2",
+    "magica": "file:../../magica",
     "mirada": "file:../mirada",
     "misc-utils-of-mine-generic": "^0.2.30",
     "p-map": "^3.0.0",

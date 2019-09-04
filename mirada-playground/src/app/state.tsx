@@ -1,12 +1,12 @@
+import { Object } from 'fabric/fabric-impl'
 import { Size } from 'mirada'
 import { Tool, tools } from '../ui/tool/tool'
-import { Example, examples } from './examples'
-import { Object } from 'fabric/fabric-impl';
+// import { Example, examples } from './examples'
 
 export interface State {
-  example: Example
+  // example: Example
   inputFiles: File[]
-  examples: Example[];
+  // examples: Example[];
   code: string
   working: boolean
   tools: Tool[]
@@ -44,11 +44,11 @@ interface Selection {
 }
 
 export async function getInitialState(): Promise<State> {
-  var example = examples()[0]
+  // var example = examples()[0]
   return {
-    example,
+    // example,
     inputFiles: [],
-    examples: [...examples()],
+    // examples: [...examples()],
     code: '',
     working: true,
     activeTools: [tools[0]],

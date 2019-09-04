@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { Input, Icon } from 'semantic-ui-react';
-import { getImageWidget } from '../app/start';
-import { AbstractComponent, AbstractProps } from '../ui/common/component';
-import { AbstractTool, getTool } from '../ui/tool/tool';
-import { State } from '../app/state';
+import * as React from 'react'
+import { Icon, Input } from 'semantic-ui-react'
+import { getImageWidget } from '../../app/start'
+import { State } from '../../app/state'
+import { AbstractComponent, AbstractProps } from '../common/component'
+import { AbstractTool } from './tool'
+import 'magica'
 
 export class PerspectiveTransformView extends AbstractComponent<AbstractProps, State> {
   protected tool: PerspectiveTransform;
@@ -25,22 +26,22 @@ export class PerspectiveTransformView extends AbstractComponent<AbstractProps, S
               <tr>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="56" /></td>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="65" /></td>
-                <td><Icon name="arrow right"/></td>
+                <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="368" /></td>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="52" /></td>
-                <td><Icon name="arrow right"/></td>
+                <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="28" /></td>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="387" /></td>
-                <td><Icon name="arrow right"/></td>
+                <td><Icon name="arrow right" /></td>
               </tr>
               <tr>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="389" /></td>
                 <td><Input type="number" min={this.max * -1} max={this.max} step={this.step} onChange={this.onChange} defaultValue="390" /></td>
-                <td><Icon name="arrow right"/></td>
+                <td><Icon name="arrow right" /></td>
               </tr>
             </table>
           </td>
@@ -82,19 +83,18 @@ export class PerspectiveTransform extends AbstractTool {
   name = 'Perspective transform'
   description = "Define Point to point perspective transformation"
   shortDescription = "Define Point to point perspective transformation"
-
   async  applyPerspectiveTransform(inputs: number[], outputs: number[]) {
     const i = await getImageWidget()
     const size = { width: i.imageSize.width, height: i.imageSize.height }
     const src = i.get().clone().asMat()
-    let dst = new cv.Mat();
-    let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, inputs);
-    let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, outputs);
-    let M = cv.getPerspectiveTransform(srcTri, dstTri);
-    cv.warpPerspective(src, dst, M, size, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+    let dst = new cv.Mat()
+    let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, inputs)
+    let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, outputs)
+    let M = cv.getPerspectiveTransform(srcTri, dstTri)
+    cv.warpPerspective(src, dst, M, size, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar())
     i.setBuffer(dst)
     i.render()
-    src.delete(); M.delete(); srcTri.delete(); dstTri.delete();
+    src.delete(); M.delete(); srcTri.delete(); dstTri.delete()
   }
 }
 

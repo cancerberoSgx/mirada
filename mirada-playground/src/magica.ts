@@ -31,7 +31,7 @@ export async function writeToCanvas(f: File, canvas: HTMLCanvasElement) {
   await loadHtmlCanvasElement(f, canvas.getContext('2d')!)
 }
 
-export async function readFromCanvas(canvas: HTMLCanvasElement) {
+export async function readFromCanvas(canvas: HTMLCanvasElement, name?: string) {
   const imageData = canvas.getContext('2d')!.getImageData(0, 0, canvas.width, canvas.height)
-  return await File.fromHTMLImageData(imageData)
+  return await File.fromHTMLImageData(imageData, name)
 }

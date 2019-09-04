@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { Input } from 'semantic-ui-react';
-import { getImageWidget } from '../app/start';
-import { AbstractComponent, AbstractProps } from '../ui/common/component';
-import { AbstractTool, getTool } from '../ui/tool/tool';
-import { State } from '../app/state';
+import * as React from 'react'
+import { Input } from 'semantic-ui-react'
+import { getImageWidget } from '../../app/start'
+import { State } from '../../app/state'
+import { AbstractComponent, AbstractProps } from '../common/component'
+import { AbstractTool } from './tool'
+import 'magica'
 
 export class AffineTransformView extends AbstractComponent<AbstractProps, State> {
-  protected tool: AffineTransform;
   constructor(p: any, s: any) {
     super(p, s)
     this.onChange = this.onChange.bind(this)
-    this.tool = new AffineTransform()
   }
   protected el: HTMLDivElement | null = null
   protected step = 0.05
@@ -36,13 +35,13 @@ export class AffineTransformView extends AbstractComponent<AbstractProps, State>
   }
   protected async onChange(e: any) {
     const inputs = Array.from(this.el!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
-    await this.tool.applyAffineTransform(inputs)
+    await AffineTransform.toolBarEntry.tool().applyAffineTransform(inputs)
   }
 }
 
 export class AffineTransform extends AbstractTool {
-  static INSTANCE = new AffineTransform()
-  static toolBarEntry = { tool: () => AffineTransform.INSTANCE, el: () => <AffineTransformView /> }
+  static INSTANCE =  new AffineTransform()
+  static toolBarEntry = { tool: () =>  AffineTransform.INSTANCE, el: () => <AffineTransformView /> }
   name = 'Affine transform'
   description = 'Rotate, scale, skew, translate'
   shortDescription = 'Rotate, scale, skew, translate'
@@ -50,13 +49,13 @@ export class AffineTransform extends AbstractTool {
     const i = await getImageWidget()
     const size = { width: i.imageSize.width, height: i.imageSize.height }
     const src = i.get().clone().asMat()
-    let dst = new cv.Mat();
-    let srcTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0, 0, 0, 1, 1, 0]);
-    let dstTri = cv.matFromArray(3, 1, cv.CV_32FC2, inputs);
-    let M = cv.getAffineTransform(srcTri, dstTri);
-    cv.warpAffine(src, dst, M, size, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+    let dst = new cv.Mat()
+    let srcTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0, 0, 0, 1, 1, 0])
+    let dstTri = cv.matFromArray(3, 1, cv.CV_32FC2, inputs)
+    let M = cv.getAffineTransform(srcTri, dstTri)
+    cv.warpAffine(src, dst, M, size, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar())
     i.setBuffer(dst)
     i.render()
-    src.delete(); M.delete(); srcTri.delete(); dstTri.delete();
+    src.delete(); M.delete(); srcTri.delete(); dstTri.delete()
   }
 }

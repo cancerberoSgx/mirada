@@ -1,9 +1,6 @@
-import { enumNoValueKeys } from 'misc-utils-of-mine-generic'
-import { enumKeys } from 'misc-utils-of-mine-typescript'
 import * as React from 'react'
 import { Button, Dropdown, Icon, Input, Menu, Modal, Popup } from 'semantic-ui-react'
-import { loadFileFromInputElement, setExample } from '../app/dispatcher'
-import { ExampleTag } from "../app/examples"
+import { loadFileFromInputElement, handleFileSave } from '../app/dispatcher'
 import { memoryReport } from "../util/util"
 import { About } from './about'
 import { AbstractComponent } from './common/component'
@@ -15,9 +12,11 @@ export class Header extends AbstractComponent {
   componentDidMount() {
     this.timer = setInterval(() => this.updateMem(), 1000)
   }
+
   componentWillUnmount() {
     this.timer && clearInterval(this.timer)
   }
+
   updateMem(): void {
     if (this.memEl) {
       this.memEl.innerHTML = memoryReport().usedMb + ' ' + memoryReport().percent
@@ -28,30 +27,6 @@ export class Header extends AbstractComponent {
 
   render() {
     return <Menu inverted fixed="top" id="header">
-      {/* <Dropdown text='Examples' pointing className='link item'>
-        <Dropdown.Menu>
-          <Dropdown.Item>
-            <Dropdown text={`All (${this.state.examples.length})`} fluid={true} scrolling>
-              <Dropdown.Menu>
-                {this.state.examples.map(example => <Dropdown.Item key={example.name} fluid={true} onClick={e => setExample(example)}>{example.name}</Dropdown.Item>)}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Header>Categories ({enumNoValueKeys(ExampleTag).length})</Dropdown.Header>
-          {enumKeys(ExampleTag).map(tag =>
-            <Dropdown.Item key={tag}>
-              <Dropdown text={tag} fluid>
-                <Dropdown.Menu>
-                  {this.state.examples.filter(e => e.tags.includes(tag as any)).map(e =>
-                    <Dropdown.Item key={tag + e.name} fluid onClick={ev => setExample(e)}><Dropdown.Header>{e.name}</Dropdown.Header></Dropdown.Item>
-                  )}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Dropdown.Item>
-          )}
-        </Dropdown.Menu>
-      </Dropdown> */}
 
       <Dropdown text='Files' pointing simple className='link item'>
         <Dropdown.Menu>
@@ -68,8 +43,11 @@ export class Header extends AbstractComponent {
           <Dropdown text='Save' pointing className='link item'>
             <Dropdown.Menu>
               <Dropdown.Item>
-                <div  style={{ maxWidth: '40vw', whiteSpace: 'normal' }} >
-                {`SVG, PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`.replace(/\s+/g, '').toLowerCase().split(',').map(format => <Button size="tiny" content={format} style={{ width: '60px' }}  />)}
+                <div style={{ maxWidth: '40vw', whiteSpace: 'normal' }}>
+                  {`PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`
+                    .replace(/\s+/g, '').toLowerCase().split(',').map(format => 
+                      <Button size="tiny"  onClick={e=>handleFileSave(format)} content={format} style={{ width: '60px' }} />
+                    )}
                 </div>
               </Dropdown.Item>
             </Dropdown.Menu>

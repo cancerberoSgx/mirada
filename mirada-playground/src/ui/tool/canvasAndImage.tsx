@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { Input } from 'semantic-ui-react';
-import { getImageWidget } from '../app/start';
-import { AbstractComponent, AbstractProps } from '../ui/common/component';
-import { AbstractTool, getTool } from '../ui/tool/tool';
-import { State } from '../app/state';
+import * as React from 'react'
+import { Input } from 'semantic-ui-react'
+import { getImageWidget } from '../../app/start'
+import { State } from '../../app/state'
+import { AbstractComponent, AbstractProps } from '../common/component'
+import { AbstractTool } from './tool'
+import 'magica'
 
 export class CanvasAndImageView extends AbstractComponent<AbstractProps, State> {
   protected tool: CanvasAndImage;
@@ -22,11 +23,11 @@ export class CanvasAndImageView extends AbstractComponent<AbstractProps, State> 
           <tr ref={c => this.canvasSizeEl = c}>
             <td>Canvas size</td>
             <td><Input type="number" min="1" step={this.step} onChange={this.onChange} defaultValue="400" /></td>
-            <td><Input type="number" min="1"  step={this.step} onChange={this.onChange} defaultValue="400" /></td>
+            <td><Input type="number" min="1" step={this.step} onChange={this.onChange} defaultValue="400" /></td>
           </tr>
           <tr ref={c => this.imageOffsetEl = c}>
             <td>Image offset</td>
-            <td><Input type="number" min="0"  step={this.step} onChange={this.onChange} defaultValue="0" /></td>
+            <td><Input type="number" min="0" step={this.step} onChange={this.onChange} defaultValue="0" /></td>
             <td><Input type="number" min="0" step={this.step} onChange={this.onChange} defaultValue="0" /></td>
           </tr>
         </table>
@@ -51,7 +52,7 @@ export class CanvasAndImage extends AbstractTool {
     if (canvasSize && canvasSize.length >= 2) {
       i.resizeCanvas(canvasSize[0], canvasSize[1])
     }
-     if (imageOffset && imageOffset.length >= 2) {
+    if (imageOffset && imageOffset.length >= 2) {
       i.imageOffset(imageOffset[0], imageOffset[1])
     }
   }

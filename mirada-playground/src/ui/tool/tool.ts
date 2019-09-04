@@ -53,7 +53,6 @@ export abstract class AbstractTool {
   }
 }
 
-
 export function getTool(n: string) {
   return tools.find(t => t.name === n)!
 }

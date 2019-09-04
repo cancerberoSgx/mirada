@@ -1,5 +1,5 @@
+import { Fn } from 'misc-utils-of-mine-generic'
 import { StateChange } from './store'
-import {Fn} from 'misc-utils-of-mine-generic'
 
 export type StateChangeType = 'selectionChanged' | 'imageSizeChanged'
 
