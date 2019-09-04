@@ -7,7 +7,7 @@ import fileType = require('file-type')
   Example of declaring a format codec that uses DOM canvas instance which must be provided by the user.
   
 ```ts
-import * as Jimp from 'jimp'
+import  jimp from 'jimp'
 class JimpProxy implements FormatProxyClass {
   async create() {
    return new JimpFormatCodec(Jimp)

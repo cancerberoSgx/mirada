@@ -3,30 +3,23 @@ import { sleep } from 'misc-utils-of-mine-generic'
 import { File } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
-// import { sleep } from 'misc-utils-of-mine-generic';
 
 test.beforeEach(loadMirada)
 
 test.serial('fromFile', async t => {
-  console.log('fromFile 1')
-  // await loadMirada()
   const file = await File.fromFile('test/assets/lenna.jpg')
   t.deepEqual(file.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await file.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
   file.delete()
   await sleep(100)
-  console.log('fromFile 2')
 })
 
 test.serial('fromUrl', async t => {
-  console.log('fromUrl 1')
-  // await loadMirada()
   const file = await File.fromUrl('https://cancerberosgx.github.io/demos/geometrizejs-cli/bridge.jpg')
   t.deepEqual(file.size(), { width: 500, height: 333 })
   t.deepEqual(fileType(await file.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
   file.delete()
   await sleep(100)
-  console.log('fromUrl 2')
 })
 
 // test.serial('write/read jimp codec', async t => {

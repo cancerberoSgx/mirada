@@ -4,7 +4,6 @@ import { File, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, unI
 import fileType = require('file-type')
 
 test.serial('write/read jimp codec', async t => {
-  console.log('write/read jimp codec 1')
   unInstallFormatProxies()
   unloadFormatProxies()
   await installFormatProxy(() => new JimpCodec(Jimp))
@@ -26,7 +25,6 @@ test.serial('write/read jimp codec', async t => {
   t.deepEqual(Jimp.distance(await Jimp.read('tmpJimp2.jpg'), await Jimp.read('test/assets/shape.jpg')), 0.125)
   t.deepEqual(Jimp.distance(await Jimp.read('tmpJimp1.jpg'), await Jimp.read('tmpJimp2.jpg')), 0.125)
   t.deepEqual(Jimp.distance(await Jimp.read('tmpJimp2.jpg'), await Jimp.read('test/assets/shape4.jpg')), 0)
-  console.log('write/read jimp codec 1')
 })
 
 // test('write/read canvas codec', async t => {

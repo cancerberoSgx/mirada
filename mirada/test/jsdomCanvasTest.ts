@@ -1,5 +1,5 @@
 import test from 'ava'
-import * as jimp from 'jimp'
+import jimp from 'jimp'
 import { createCanvas, loadMirada } from './testUtil'
 
 test.before(loadMirada)

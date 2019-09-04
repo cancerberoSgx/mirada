@@ -25,10 +25,8 @@ export class ColorsView extends AbstractComponent<AbstractProps, State> {
     }
     return (<>
 
-      <div style={{whiteSpace: 'nowrap'}}>
         Foreground: <Color value={{ r: 221, g: 222, b: 223, a: .6 }} onChange={c => console.log(c)} selectButton 
         targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} />
-      </div>
 
       Background: <Color value={{ r: 0, g: 0, b: 0, a: 0.5 }} onChange={c => console.log(c)} selectButton 
       targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} />

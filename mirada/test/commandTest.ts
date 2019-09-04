@@ -1,5 +1,5 @@
 import test from 'ava'
-import { compareL2 } from '../src'
+import { compareL2, del, fromFile } from '../src'
 import { deleteResult, execute } from '../src/command/execute'
 import { CommandName } from '../src/command/types'
 import { File } from '../src/file'
@@ -71,7 +71,7 @@ test('execute ok 2', async t => {
   deleteResult(r)
 })
 
-test.only('floodfill', async t => {
+test('floodfill', async t => {
   const r = await execute({
     commands: [{
       name: CommandName.floodFill,
@@ -83,6 +83,8 @@ test.only('floodfill', async t => {
   })
   t.deepEqual(r.error, undefined)
   t.deepEqual(r.out.map(f => f.name), ['tmpOutput2.png'])
-  r.out[0].write()
+  const f = await fromFile('test/assets/coins.png')
+  t.deepEqual([r.out[0]!.asMat().cols, r.out[0]!.asMat().rows], [f.cols, f.rows])
   deleteResult(r)
+  del(f)
 })

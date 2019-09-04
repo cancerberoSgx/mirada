@@ -155,9 +155,14 @@ export declare class Mat_ extends Vector<Mat> {
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
   /**
-   * Sometimes, you will have to play with certain region of images. For eye detection in images, first face detection is done all over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. It improves accuracy (because eyes are always on faces) and performance (because we search for a small area)
+   * Sometimes, you will have to play with certain region of images. 
+   * For eye detection in images, first face detection is done all 
+   * over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. 
+   * It improves accuracy (because eyes are always on faces) and performance (because we search for a small area). 
+   * 
+   * Heads up : in JS seems only one argument is expected.
    */
-  public roi(expr:Rect|Mat_, rowRange?: Range, colRange?: Range, res?: Mat_): Mat
+  public roi(expr: Rect | Mat_): Mat
 }
 
 export declare class ImageData {

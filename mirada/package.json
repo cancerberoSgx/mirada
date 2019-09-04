@@ -33,25 +33,25 @@
   "devDependencies": {
     "@types/js-base64": "^2.3.1",
     "@types/jsdom": "^12.2.4",
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.4",
     "ava": "^2.3.0",
     "babel-polyfill": "^6.26.0",
     "canvas": "^2.6.0",
-    "file-type": "^12.2.0",
-    "jimp": "^0.6.4",
+    "file-type": "^12.3.0",
+    "jimp": "^0.6.8",
     "jsdom": "^15.1.1",
-    "magica": "^0.2.14",
+    "magica": "^0.2.15",
     "markdown-toc": "^1.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typedoc": "^0.15.0",
-    "typedoc-plugin-markdown": "^2.1.4",
-    "typescript": "^3.5.3"
+    "typedoc-plugin-markdown": "^2.1.9",
+    "typescript": "^3.6.2"
   },
   "dependencies": {
     "cross-fetch": "^3.0.4",
     "js-base64": "^2.5.1",
-    "misc-utils-of-mine-generic": "^0.2.29"
+    "misc-utils-of-mine-generic": "^0.2.30"
   },
   "repository": {
     "type": "git",

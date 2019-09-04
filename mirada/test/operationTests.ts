@@ -1,5 +1,5 @@
 import test from 'ava'
-import { create, distance, read } from 'jimp'
+import jimp from 'jimp'
 import { compareL2, File, fromFile, Mat, tool, toRgba } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
@@ -33,7 +33,7 @@ test('grabCut', async t => {
   const f = File.fromData(result.image, 'result.png')
   t.deepEqual(f.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
-  t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaGrabCut.png')), 0)
+  t.deepEqual(jimp.distance(await jimp.create(await f.asArrayBuffer() as any), await jimp.read('test/assets/lennaGrabCut.png')), 0)
   image.delete()
   f.delete()
 })
@@ -55,7 +55,7 @@ test('fillEllipse', async t => {
   const f = File.fromMat(dst, 'tmp1.png')
   t.deepEqual(f.size(), { width: 125, height: 146 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'png', mime: 'image/png' })
-  t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/shape3.png')), 0)
+  t.deepEqual(jimp.distance(await jimp.create(await f.asArrayBuffer() as any), await jimp.read('test/assets/shape3.png')), 0)
   src.delete(); dst.delete(); contours.delete(); hierarchy.delete(); cnt.delete()
 })
 
@@ -96,7 +96,7 @@ test('faceDetection', async t => {
   const f = File.fromMat(toRgba(src), 'tmp1.jpg')
   t.deepEqual(f.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
-  t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/lennaFaceDetection.jpg')), 0)
+  t.deepEqual(jimp.distance(await jimp.create(await f.asArrayBuffer() as any), await jimp.read('test/assets/lennaFaceDetection.jpg')), 0)
   src.delete(); gray.delete(); faceCascade.delete(); f.delete()
   eyeCascade.delete(); faces.delete(); eyes.delete()
 })
@@ -151,7 +151,7 @@ test('watershed', async t => {
   const f = File.fromMat(toRgba(src), 'tmp1.jpg')
   t.deepEqual(f.size(), { width: 252, height: 312 })
   t.deepEqual(fileType(await f.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
-  t.deepEqual(distance(await create(await f.asArrayBuffer() as any), await read('test/assets/coinsWatershed.jpg')), 0)
+  t.deepEqual(jimp.distance(await jimp.create(await f.asArrayBuffer() as any), await jimp.read('test/assets/coinsWatershed.jpg')), 0)
   src.delete(); dst.delete(); gray.delete(); opening.delete(); coinsBg.delete(); f.delete()
   coinsFg.delete(); distTrans.delete(); unknown.delete(); markers.delete(); M.delete()
 
