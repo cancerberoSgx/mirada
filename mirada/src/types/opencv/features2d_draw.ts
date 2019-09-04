@@ -1,5 +1,5 @@
 
-import { InputArray, InputOutputArray } from './_types';
+import { InputArray, InputOutputArray } from './_types'
 /*
  * # Drawing Function of Keypoints and Matches
  * 

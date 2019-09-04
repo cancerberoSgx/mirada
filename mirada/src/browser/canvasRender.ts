@@ -1,7 +1,7 @@
-import { Mat, Rect } from '../types/opencv';
-import { arrayBufferToUrl } from '../util/base64';
-import { toRgba } from '../util/imageUtil';
-import { asHtmlImageData } from './imageCreation';
+import { Mat, Rect } from '../types/opencv'
+import { arrayBufferToUrl } from '../util/base64'
+import { toRgba } from '../util/imageUtil'
+import { asHtmlImageData } from './imageCreation'
 
 export interface ABOptions {
   name?: string;

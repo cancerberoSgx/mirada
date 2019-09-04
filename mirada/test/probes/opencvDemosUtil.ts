@@ -1,4 +1,4 @@
-import { getGlobal } from 'misc-utils-of-mine-generic';
+import { getGlobal } from 'misc-utils-of-mine-generic'
 
 /**
  * Ported from doc/js_tutorials/js_assets/utils.js - only useful in tests

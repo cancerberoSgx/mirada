@@ -1,8 +1,8 @@
-import { checkThrow, serial } from 'misc-utils-of-mine-generic';
-import { File } from '../file';
-import { loadOpencv } from '../opencvReady';
-import { FormatCodec, FormatProxy } from '../types/mirada';
-import { ImageData } from '../types/opencv';
+import { checkThrow, serial } from 'misc-utils-of-mine-generic'
+import { File } from '../file'
+import { loadOpencv } from '../opencvReady'
+import { FormatCodec, FormatProxy } from '../types/mirada'
+import { ImageData } from '../types/opencv'
 
 /**
  * Nor or opencv.js or this library implement any image format so users are 

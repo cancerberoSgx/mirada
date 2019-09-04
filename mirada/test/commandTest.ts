@@ -1,9 +1,9 @@
-import test from 'ava';
-import { compareL2 } from '../src';
-import { deleteResult, execute } from '../src/command/execute';
-import { CommandName } from '../src/command/types';
-import { File } from '../src/file';
-import { loadMirada } from './testUtil';
+import test from 'ava'
+import { compareL2 } from '../src'
+import { deleteResult, execute } from '../src/command/execute'
+import { CommandName } from '../src/command/types'
+import { File } from '../src/file'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 

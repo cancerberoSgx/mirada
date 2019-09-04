@@ -1,5 +1,5 @@
-import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand';
-import { Command, CommandName, Options1 } from '../types';
+import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
+import { Command, CommandName, Options1 } from '../types'
 
 /**
  * Convert the image to RGBA channel type which is often needed before rendering/encoding.

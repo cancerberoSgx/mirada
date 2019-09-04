@@ -1,8 +1,8 @@
-import test from 'ava';
-import { compareL2, fromFile, toRgba } from '../src';
-import { File } from '../src/file';
-import { replaceColor } from '../src/tool/image';
-import { loadMirada, write } from './testUtil';
+import test from 'ava'
+import { compareL2, fromFile, toRgba } from '../src'
+import { File } from '../src/file'
+import { replaceColor } from '../src/tool/image'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
 
@@ -10,21 +10,21 @@ test('inRange', async t => {
   const img = await fromFile('test/assets/n.png')
   const mask = new cv.Mat()
   const dst = new cv.Mat()
-  const low = new cv.Mat( img.rows, img.cols, img.type(), [0,0,0,0])
-  const high = new cv.Mat( img.rows, img.cols, img.type(), [150,150,150,255])
-  cv.inRange(img,  low, high, mask)
-  const b = new cv.Mat(img.rows,img.cols, img.type(), new cv.Scalar(255,0,0,255) )
+  const low = new cv.Mat(img.rows, img.cols, img.type(), [0, 0, 0, 0])
+  const high = new cv.Mat(img.rows, img.cols, img.type(), [150, 150, 150, 255])
+  cv.inRange(img, low, high, mask)
+  const b = new cv.Mat(img.rows, img.cols, img.type(), new cv.Scalar(255, 0, 0, 255))
   b.copyTo(dst, mask)
   t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), await toRgba(dst)), 0);
- [mask, dst, low, high, b].forEach(m=>m.delete())
+  [mask, dst, low, high, b].forEach(m => m.delete())
 })
 
 
 test('replaceColor', async t => {
   const src = await fromFile('test/assets/n.png')
-  const dst = replaceColor(src, [0,0,0,0], [150,150,150,255],  new cv.Scalar(255,0,0,255))
+  const dst = replaceColor(src, [0, 0, 0, 0], [150, 150, 150, 255], new cv.Scalar(255, 0, 0, 255))
   t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), await toRgba(dst)), 0);
- [src, dst,  ].forEach(m=>m.delete())
+  [src, dst,].forEach(m => m.delete())
 })
 
 test('floodFill', async t => {

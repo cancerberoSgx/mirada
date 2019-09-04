@@ -1,5 +1,5 @@
-import { File } from '../File';
-import { Mat } from '../types/opencv';
+import { File } from '../File'
+import { Mat } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -12,6 +12,10 @@ export function toImageData(img: Mat) {
   }
 }
 export const asImageData = toImageData
+
+export function isMat(m:any):m is Mat{
+  return m && typeof m.rows==='number'&& typeof m.cols==='number'&& typeof m.data==='object'&& typeof m.copyTo==='function'
+}
 
 /**
  * Returns a new image that is identical to given (1, 3 or 4 channels) but has 4 RGBA channels.

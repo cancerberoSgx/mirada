@@ -1,8 +1,8 @@
-import { File } from '../file';
-import { Command_asRgba, Command_asRgbaImpl } from "./impl/asRgba";
-import { Command_floodFill, Command_floodFillImpl } from "./impl/floodfill";
-import { Command_grabCut, Command_grabCutImpl } from "./impl/grabCut";
-import { Command_roi, Command_roiImpl } from "./impl/roi";
+import { File } from '../file'
+import { Command_asRgba, Command_asRgbaImpl } from "./impl/asRgba"
+import { Command_floodFill, Command_floodFillImpl } from "./impl/floodfill"
+import { Command_grabCut, Command_grabCutImpl } from "./impl/grabCut"
+import { Command_roi, Command_roiImpl } from "./impl/roi"
 
 export enum CommandName {
   asRgba = 'asRgba',

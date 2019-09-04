@@ -1,6 +1,6 @@
 // npm run build && rm -rf docs && mkdir -p docs && cp static/* docs &&  npx parcel -d docs test/probes/js_morphological_ops_dilate.html
 
-import { OpenCvBrowserUtils } from './opencvDemosUtil';
+import { OpenCvBrowserUtils } from './opencvDemosUtil'
 
 let utils = new OpenCvBrowserUtils({ errorOutputId: 'errorMessage' })
 

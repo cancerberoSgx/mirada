@@ -1,4 +1,4 @@
-import { Base64 } from 'js-base64';
+import { Base64 } from 'js-base64'
 
 export function dataToUrl(data: string, mimeType: string, fileName?: string) {
   return base64ToUrl(dataToBase64(data), mimeType, fileName)

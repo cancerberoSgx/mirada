@@ -1,5 +1,5 @@
 
-import { int } from './_types';
+import { int } from './_types'
 
 /**
  * This class encapsulates all or almost all necessary information about the error happened in the

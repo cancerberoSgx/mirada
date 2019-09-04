@@ -1,5 +1,5 @@
 
-import { bool, double, InputArray, InputOutputArray, int, OutputArray, Size, TermCriteria } from './_types';
+import { bool, double, InputArray, InputOutputArray, int, OutputArray, Size, TermCriteria } from './_types'
 /*
  * # Feature Detection
  * 

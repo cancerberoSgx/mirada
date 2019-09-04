@@ -1,5 +1,5 @@
-import { ImageData } from './opencv';
-export { FS } from './emscripten';
+import { ImageData } from './opencv'
+export { FS } from './emscripten'
 
 /**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec

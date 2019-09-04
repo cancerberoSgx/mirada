@@ -1,7 +1,7 @@
-import test from 'ava';
-import { create, distance, read } from 'jimp';
-import { compareL2, File, fromFile, Mat, tool, toRgba } from '../src';
-import { loadMirada } from './testUtil';
+import test from 'ava'
+import { create, distance, read } from 'jimp'
+import { compareL2, File, fromFile, Mat, tool, toRgba } from '../src'
+import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 
 test.before(loadMirada)

@@ -1,8 +1,8 @@
-import { Canvas, createCanvas as createCanvas_, Image, ImageData } from 'canvas';
-import Jimp from 'jimp';
-import { DOMWindow, JSDOM, VirtualConsole } from "jsdom";
-import { getGlobal } from 'misc-utils-of-mine-generic';
-import { asImageData, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, Mat, toRgba } from '../src';
+import { Canvas, createCanvas as createCanvas_, Image, ImageData } from 'canvas'
+import Jimp from 'jimp'
+import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
+import { getGlobal } from 'misc-utils-of-mine-generic'
+import { asImageData, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, Mat, toRgba } from '../src'
 
 let loaded = false
 

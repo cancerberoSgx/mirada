@@ -1,5 +1,5 @@
 
-import { bool, double, FileNode, InputArray, int, Mat, Ptr, Rect, Size } from './_types';
+import { bool, double, FileNode, InputArray, int, Mat, Ptr, Rect, Size } from './_types'
 
 export declare class CascadeClassifier extends Mat {
 

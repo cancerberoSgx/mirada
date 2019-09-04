@@ -1,8 +1,8 @@
-import { File } from '../../file';
-import { Point, Scalar } from '../../types/opencv';
-import { toRgba } from '../../util';
-import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand';
-import { Command, CommandName, Options1 } from '../types';
+import { File } from '../../file'
+import { Point, Scalar } from '../../types/opencv'
+import { toRgba } from '../../util'
+import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
+import { Command, CommandName, Options1 } from '../types'
 
 /**
  *

@@ -1,6 +1,6 @@
-import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic';
-import { renderArrayBufferInCanvas, renderInCanvas } from "../browser/canvasRender";
-import { FormatCodec } from '../types/mirada';
+import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
+import { renderArrayBufferInCanvas, renderInCanvas } from "../browser/canvasRender"
+import { FormatCodec } from '../types/mirada'
 import fileType = require('file-type')
 
 /**

@@ -1,5 +1,5 @@
 
-import { double, FileNode, FileStorage, InputArray, int, Mat, OutputArray } from './_types';
+import { double, FileNode, FileStorage, InputArray, int, Mat, OutputArray } from './_types'
 
 /**
  * The class is used to calculate a special basis for a set of vectors. The basis will consist of

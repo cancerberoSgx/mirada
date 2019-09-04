@@ -1,6 +1,6 @@
-import test from 'ava';
-import * as jimp from 'jimp';
-import { createCanvas, loadMirada } from './testUtil';
+import test from 'ava'
+import * as jimp from 'jimp'
+import { createCanvas, loadMirada } from './testUtil'
 
 test.before(loadMirada)
 

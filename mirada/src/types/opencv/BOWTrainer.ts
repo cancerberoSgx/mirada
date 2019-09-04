@@ -1,5 +1,5 @@
 
-import { int, Mat } from './_types';
+import { int, Mat } from './_types'
 
 /**
  * For details, see, for example, *Visual Categorization with Bags of Keypoints* by Gabriella Csurka,

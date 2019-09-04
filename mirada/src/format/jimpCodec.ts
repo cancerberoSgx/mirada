@@ -1,5 +1,5 @@
-import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic';
-import { FormatCodec } from '../types/mirada';
+import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
+import { FormatCodec } from '../types/mirada'
 
 type AnyConstructor = {
   [a: string]: any

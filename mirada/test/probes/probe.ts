@@ -1,9 +1,9 @@
 // npm run build && rm -rf docs && mkdir -p docs && cp static/opencv.js test/assets/* docs && npx parcel -d docs test/probes/probe.html
-import { ok } from 'assert';
-import 'babel-polyfill';
-import { renderInCanvas } from "../../src/browser/canvasRender";
-import { fetchImageData } from '../../src/browser/imageCreation';
-import { loadOpencv } from '../../src/opencvReady';
+import { ok } from 'assert'
+import 'babel-polyfill'
+import { renderInCanvas } from "../../src/browser/canvasRender"
+import { fetchImageData } from '../../src/browser/imageCreation'
+import { loadOpencv } from '../../src/opencvReady'
 
 async function filesTest() {
 

@@ -1,6 +1,6 @@
-import { File } from '../file';
-import { BorderTypes, CVDataType, Mat, Point, Rect } from '../types/opencv';
-import { toRgba } from '../util/imageUtil';
+import { File } from '../file'
+import { BorderTypes, CVDataType, Mat, Point, Rect } from '../types/opencv'
+import { toRgba } from '../util/imageUtil'
 
 export class Chain {
   constructor(protected mat: Mat = new cv.Mat()) {

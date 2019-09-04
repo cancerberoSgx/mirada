@@ -1,5 +1,5 @@
 
-import { bool, DetectionROI, double, FileNode, FileStorage, float, InputArray, InputOutputArray, int, Point, Rect, Size, size_t, UMat } from './_types';
+import { bool, DetectionROI, double, FileNode, FileStorage, float, InputArray, InputOutputArray, int, Point, Rect, Size, size_t, UMat } from './_types'
 
 /**
  * the HOG descriptor algorithm introduced by Navneet Dalal and Bill Triggs Dalal2005 .

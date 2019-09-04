@@ -1,5 +1,5 @@
 
-import { AccessFlag, bool, double, InputArray, int, MatAllocator, MatCommaInitializer_, MatConstIterator_, MatExpr, MatIterator_, MatSize, MatStep, Matx, Mat_, OutputArray, Point, Point3_, Point_, Rect, Scalar, Size, size_t, typename, uchar, UMat, UMatData, UMatUsageFlags, Vec } from './_types';
+import { AccessFlag, bool, double, InputArray, int, MatAllocator, MatCommaInitializer_, MatConstIterator_, MatExpr, MatIterator_, MatSize, MatStep, Matx, Mat_, OutputArray, Point, Point3_, Point_, Rect, Scalar, Size, size_t, typename, uchar, UMat, UMatData, UMatUsageFlags, Vec } from './_types'
 
 /**
  * <a name="d3/d63/classcv_1_1Mat_1CVMat_Details"></a> The class [Mat](#d3/d63/classcv_1_1Mat})

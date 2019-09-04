@@ -1,6 +1,6 @@
-import { Rect } from '../../types/opencv';
-import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand';
-import { Command, CommandName, Options1 } from '../types';
+import { Rect } from '../../types/opencv'
+import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
+import { Command, CommandName, Options1 } from '../types'
 
 export interface Command_grabCut extends Command<CommandName.grabCut> {
   /**

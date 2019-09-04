@@ -1,5 +1,5 @@
 
-import { float, Point2f, Rect, Rect_, Size2f } from './_types';
+import { float, Point2f, Rect, Rect_, Size2f } from './_types'
 
 /**
  * Each rectangle is specified by the center point (mass center), length of each side (represented by

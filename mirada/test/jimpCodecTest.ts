@@ -1,6 +1,6 @@
-import test from 'ava';
-import Jimp from 'jimp';
-import { File, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, unInstallFormatProxies, unloadFormatProxies } from '../src';
+import test from 'ava'
+import Jimp from 'jimp'
+import { File, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, unInstallFormatProxies, unloadFormatProxies } from '../src'
 import fileType = require('file-type')
 
 test.serial('write/read jimp codec', async t => {
