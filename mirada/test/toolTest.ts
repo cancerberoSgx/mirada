@@ -12,7 +12,9 @@ test.only('floodfill', async t => {
     src: await fromFile('test/assets/coins.png'),
     dst: new cv.Mat(),
     seed: new cv.Point(5, 6),
-    newColorOrImage:  new cv.Scalar(255, 0, 0, 255)
+    newColorOrImage:  new cv.Scalar(255, 0, 0, 255),
+    lowDiff: new cv.Scalar(9, 255, 255, 255),
+    upDiff: new cv.Scalar(9, 255, 255, 255)
   }
   floodFill(o)
   t.deepEqual([o.dst!.cols, o.dst!.rows], [o.src.cols, o.src.rows])
