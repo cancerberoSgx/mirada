@@ -75,7 +75,7 @@ declare class Vector<T> {
   get(i: number, j: number, data: any): T
   set(i: number, t: T): void
   put(i: number, j: number, data: any): any
-  size(): number
+  // size(): number
   push_back(n: T): any
   resize(count: number, value?: T): void
   delete(): void
@@ -112,7 +112,7 @@ import { LineTypes, Mat, NormTypes, RotatedRect } from '.'
 import '../_cv'
 
 export declare function matFromImageData(imageData: ImageData): Mat
-
+export declare function matFromArray(a:number, b:number, type: any, array: number[]): Mat
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
@@ -213,7 +213,7 @@ export type Bucket = any
 export type LshStats = any
 export type MatAllocator = any
 export type uchar = any
-export type MatSize = any
+export type MatSize = ()=>Size
 export type MatStep = any
 export type UMatData = any
 export type typename = any

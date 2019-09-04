@@ -24,10 +24,9 @@ export function fetchImageData(url: string) {
   })
 }
 
-export function getHtmlImageData(img: Mat) {
+export function asHtmlImageData(img: Mat) {
   var imgData = toImageData(img)
   const htmlImageData = new ImageData(imgData.data, imgData.width, imgData.height)
   return htmlImageData
 }
-
 

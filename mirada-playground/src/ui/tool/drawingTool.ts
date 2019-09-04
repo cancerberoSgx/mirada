@@ -3,9 +3,9 @@ import { ShapeTypes } from '../../app/state'
 import { ShapeFreeDrawingOptions } from '../../imageEditor/shapeDrawer'
 import { AbstractTool } from './tool'
 
-export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
+// export interface ShapeToolOptions extends ShapeFreeDrawingOptions {
 
-}
+// }
 
 export class ShapeTool extends AbstractTool {
   toolGroupIndex: number = 1
@@ -16,13 +16,13 @@ export class ShapeTool extends AbstractTool {
 
   protected canvasOffset = { x: 0, y: 0 }
   static NAME = 'Shapes'
-  static SHORT_DESCRIPTION = 'Shape drawing, management and classification tool'
-  static DESCRIPTION = `Shape free drawing , grouping and tagging tool  TODO longer description`
+  // static SHORT_DESCRIPTION = 'Shape drawing tool'
+  // static DESCRIPTION = 'Shape drawing tool'
   constructor() {
     super()
     this.name = ShapeTool.NAME
-    this.description = ShapeTool.DESCRIPTION
-
+    this.description = 'Shape drawing tool'
+    this.shortDescription = 'Shape drawing tool'
     // const drawingOptions = null as any
     // this.drawingTool = new ShapeFreeDrawing(drawingOptions)
     // this.selectionChangeListener = this.selectionChangeListener.bind(this)
@@ -32,12 +32,10 @@ export class ShapeTool extends AbstractTool {
     //   })
   }
   // setShape(s: ShapeTypes) {
-
   // }
 
   async   setActive(b: boolean) {
     // console.log('ttoooo');
-
     // TODO: do this right though the State/Dispatcher and not directly here. 
     // debugger
     const manager = await getShapeDrawing()

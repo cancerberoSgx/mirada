@@ -3,23 +3,15 @@ import * as React from 'react'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { ForkRibbon } from './common/forkRibbon'
 import { Header } from './header'
-import { ToolBar } from './tool/toolBAr'
+import { ToolBar } from './tool/toolBar';
 
 export const App = () => {
-  return <div>
-    <Container fluid textAlign="left" id="mainContainer">
+  return (<Container fluid textAlign="left" id="mainContainer">
       <Header />
       <ForkRibbon />
       <Segment basic className="appBody" >
-        <Grid>
-          <Grid.Column floated='left' width={10}>
-            <canvas id="inputCanvas" data-unique={unique('dont-destroy-me-react')} />
-          </Grid.Column>
-          <Grid.Column floated='right' width={5}>
-            <ToolBar />
-          </Grid.Column>
-        </Grid>
+        <canvas id="inputCanvas" data-unique={unique('dont-destroy-me-react')} />
+        <ToolBar />
       </Segment>
-    </Container>
-  </div>
+    </Container>)
 }

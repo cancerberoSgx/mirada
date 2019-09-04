@@ -15,11 +15,9 @@ export class Header extends AbstractComponent {
   componentDidMount() {
     this.timer = setInterval(() => this.updateMem(), 1000)
   }
-
   componentWillUnmount() {
     this.timer && clearInterval(this.timer)
   }
-
   updateMem(): void {
     if (this.memEl) {
       this.memEl.innerHTML = memoryReport().usedMb + ' ' + memoryReport().percent
@@ -29,10 +27,8 @@ export class Header extends AbstractComponent {
   memEl: HTMLDivElement | null = null;
 
   render() {
-    console.log('header')
-
     return <Menu inverted fixed="top" id="header">
-      <Dropdown text='Examples' pointing className='link item'>
+      {/* <Dropdown text='Examples' pointing className='link item'>
         <Dropdown.Menu>
           <Dropdown.Item>
             <Dropdown text={`All (${this.state.examples.length})`} fluid={true} scrolling>
@@ -41,7 +37,6 @@ export class Header extends AbstractComponent {
               </Dropdown.Menu>
             </Dropdown>
           </Dropdown.Item>
-
           <Dropdown.Divider />
           <Dropdown.Header>Categories ({enumNoValueKeys(ExampleTag).length})</Dropdown.Header>
           {enumKeys(ExampleTag).map(tag =>
@@ -55,45 +50,38 @@ export class Header extends AbstractComponent {
               </Dropdown>
             </Dropdown.Item>
           )}
-
         </Dropdown.Menu>
-      </Dropdown>
-
+      </Dropdown> */}
 
       <Dropdown text='Files' pointing simple className='link item'>
         <Dropdown.Menu>
-
           <Dropdown.Item >
             <Input type="file" label="Load with OpenCV" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget)} />
             <Popup content="Load files using OpenCV.js `cv.imread()` which uses the DOM. Supports JPEG and PNG image formats." trigger={<Icon name="help circle" size="large" />} />
           </Dropdown.Item>
-
           <Dropdown.Item >
             <Input type="file" label="Load with ImageMagick" size="small" onChange={async e => loadFileFromInputElement(e.currentTarget, true)} />
             <Popup content="Load files with npmjs.com/magica a project of mine that ports ImageMagic and several of its image format delegate libraries to support read and write a lots of formats like: GIF, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW, and more." trigger={
               <Icon name="help circle" size="large" />} />
           </Dropdown.Item>
-
           <Dropdown.Divider />
           <Dropdown text='Save' pointing className='link item'>
             <Dropdown.Menu>
-              <Dropdown.Item style={{ maxWidth: '40vw' }} >
-                {`SVG, PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`.replace(/\s+/g, '').toLowerCase().split(',').map(format => <Button size="tiny" content={format} />)}
+              <Dropdown.Item>
+                <div  style={{ maxWidth: '40vw', whiteSpace: 'normal' }} >
+                {`SVG, PDF, GIF, JPG, PNG, TIFF, WEBP, RAW, PSD, JP2, JPK, EXR, HDR, JNG, PCX, TGA, XCF, XPM, MAT, CRW`.replace(/\s+/g, '').toLowerCase().split(',').map(format => <Button size="tiny" content={format} style={{ width: '60px' }}  />)}
+                </div>
               </Dropdown.Item>
             </Dropdown.Menu>
-
           </Dropdown>
-
         </Dropdown.Menu>
       </Dropdown>
 
       <Menu.Menu position="right">
-
-
         <Menu.Item ><div ref={c => this.memEl = c}></div></Menu.Item>
         <Menu.Item > <Button onClick={e => this.setState({ toolBarCollapsed: !this.state.toolBarCollapsed })}>{!this.state.toolBarCollapsed ? 'Hide' : 'Show'} Toolbar</Button>
         </Menu.Item>
-        <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div >WORKING</div> : 'IDLE'}</Menu.Item>
+        <Menu.Item className={this.state.working ? "working" : ""} >{this.state.working ? <div>WORKING</div> : 'IDLE'}</Menu.Item>
         <Modal trigger={<Menu.Item as='a'>About</Menu.Item>}>
           <Modal.Header>About</Modal.Header>
           <Modal.Content>

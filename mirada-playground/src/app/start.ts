@@ -51,7 +51,7 @@ export async function getManagers() {
   }
   await started
   managers = {
-    async getCanvasOveraly() {
+    async getCanvasOverlay() {
       return overlay
     },
     async getImageWidget() {
@@ -84,7 +84,7 @@ export async function getShapeDrawing() {
 }
 
 let managers: {
-  getCanvasOveraly(): Promise<CanvasOverlay>
+  getCanvasOverlay(): Promise<CanvasOverlay>
   getImageWidget(): Promise<ImageWidget>
   getFabricCanvas(): Promise<fabric.Canvas>
   getDrawingTool(): Promise<ShapeFreeDrawing>

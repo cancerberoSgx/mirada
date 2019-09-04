@@ -1,6 +1,6 @@
 import test from 'ava'
 import * as jimp from 'jimp'
-import { loadOpencv } from '../src'
+import { loadOpencv, File } from '../src'
 
 test('library loads manually without proxy', async t => {
   await loadOpencv()
@@ -22,3 +22,4 @@ test('cv.dilate loading image with jimp library', async t => {
   dst.delete()
   t.deepEqual(jimp.distance(img, await jimp.read('test/assets/shape2.jpg')), 0.015625)
 })
+

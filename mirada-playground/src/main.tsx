@@ -6,10 +6,10 @@ import { render } from 'react-dom'
 import 'semantic-ui-css/semantic.css'
 import { start } from "./app/start"
 import { getInitialState } from './app/state'
-import { _setStore } from './app/store'
+import { _setStore, getStore } from './app/store'
 import './styles.css'
 import { App } from './ui/app'
-// import { createUrl, loadUrl, urlHasState } from './util/urlState'
+import { loadUrl, urlHasState, createUrl } from './util/urlState';
 
 async function main() {
   var s = await getInitialState()
@@ -19,7 +19,7 @@ async function main() {
   //   await loadUrl()
   // }
   // else {
-  // await setExample(s.example)
+  // // await setExample(s.example)
   // }
   // getStore().add(() => {
   //   createUrl()

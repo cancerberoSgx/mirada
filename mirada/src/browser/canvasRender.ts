@@ -1,7 +1,7 @@
 import { Mat, Rect } from '../types/opencv'
 import { arrayBufferToUrl } from '../util/base64'
 import { toRgba } from '../util/imageUtil'
-import { getHtmlImageData } from './imageCreation'
+import { asHtmlImageData } from './imageCreation'
 
 export interface ABOptions {
   name?: string;
@@ -50,7 +50,6 @@ export interface Options {
   rgba?: boolean;
   canvas?: HTMLCanvasElement;
   region?: Rect;
-  // regionDirtyPosition?: Point;
   clear?: boolean;
   forceSameSize?: boolean;
 }
@@ -67,7 +66,7 @@ export function renderInCanvas(mat: Mat, options?: Options): HTMLCanvasElement {
     options.appendToBody && !options.canvas.isConnected && document.body.append(options.canvas)
   }
   const img = options.rgba ? toRgba(mat) : mat
-  const imgData = getHtmlImageData(img)
+  const imgData = asHtmlImageData(img)
   const ctx = options.canvas.getContext('2d')!
   if (options.clear) {
     ctx.clearRect(0, 0, options.canvas.width, options.canvas.height)

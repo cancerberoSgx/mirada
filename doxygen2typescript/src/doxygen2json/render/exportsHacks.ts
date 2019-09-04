@@ -90,7 +90,6 @@ declare class Vector<T> {
   get(i: number, j:number, data: any): T
   put(i: number, j: number, data: any): any
   set(i: number, t: T): void
-  size(): number
   push_back(n: T): any
   resize(count: number, value?: T): void
   delete(): void
@@ -108,7 +107,7 @@ export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 export declare class RectVector extends Rect implements Vector<Rect>{
   get(i: number): Rect
   set(i: number, t: Rect): void   
-  size(): number
+  // size(): number
   push_back(n: Rect):void
   resize(count: number, value?: Rect | undefined): void 
   delete(): void  
@@ -120,6 +119,8 @@ export declare class VideoCapture {
   public video: HTMLVideoElement
 }
 
+export type MatSize = ()=>Size
+
 `
 }
 
@@ -128,7 +129,8 @@ function mat_() {
   return `
 import {Mat} from '.'
 
-export declare function  matFromImageData(imageData: ImageData): Mat
+export declare function matFromImageData(imageData: ImageData): Mat
+export declare function matFromArray(a:number, b:number, type: any, array: number[]): Mat
 
 // Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
 ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}

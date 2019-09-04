@@ -1,7 +1,8 @@
 import { fabric } from 'fabric'
 import { Size } from 'mirada'
-import { checkThrow, unique } from 'misc-utils-of-mine-generic'
+import { checkThrow, unique, asArray } from 'misc-utils-of-mine-generic'
 import { cloneCanvasSize, copyBounds, setSize } from '../util/dom'
+import { setState, getState } from '../app/store';
 
 interface Options {
   canvas: HTMLCanvasElement
@@ -29,12 +30,14 @@ export class CanvasOverlay {
         // })
         //            canvas.on('selection:cleared', e=>{ 
         //  debugger
-
         //     })
-        // canvas.on('object:added', e => {
-        //   const selection = asArray(e.target)
-        // })
-        //               canvas.on('object:removed', e=>{ 
+        canvas.on('object:added', e => {
+          const added = asArray(e.target)
+          console.log(e, added);
+          // setState({selection: getState().selection, {object}})
+          
+        })
+                      // canvas.on('object:removed', e=>{ 
         //  debugger
 
         //     })

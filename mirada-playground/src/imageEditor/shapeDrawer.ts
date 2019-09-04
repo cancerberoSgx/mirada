@@ -58,7 +58,6 @@ export class ShapeFreeDrawing implements Required<ShapeFreeDrawingOptions>  {
   }
 
   setEnabled(enabled: boolean) {
-    debugger
     this.enabled = enabled
     if (this.enabled) {
       this.dragging = false

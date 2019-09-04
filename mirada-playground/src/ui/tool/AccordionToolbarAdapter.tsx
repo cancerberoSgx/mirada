@@ -19,7 +19,7 @@ export class AccordionToolbarAdapter extends AbstractComponent<AP> {
         <Accordion.Title active={this.state.shapesTool.menuActiveIndex.includes(this.props.toolGroupIndex)} content={t.name} index={this.props.toolGroupIndex} onClick={() => t.handleToolGroupVisibleToggle(this.props.toolGroupIndex)} />
 
         <Accordion.Content active={this.state.shapesTool.menuActiveIndex.includes(this.props.toolGroupIndex)} fluid>
-          <Header as="h6">{t.shortDescription}}</Header>
+          <Header as="h6">{t.shortDescription}</Header>
 
           {this.props.children}
 

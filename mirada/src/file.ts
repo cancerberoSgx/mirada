@@ -3,11 +3,12 @@ import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
 import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
 import { Chain } from './tool/chain'
-import { ImageData, Mat } from './types/opencv'
+import { ImageData as CVImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, removeFile, writeFile } from './util/fileUtil'
 import { toImageData, toRgba } from './util/imageUtil'
 import fileType = require('file-type')
+import { asHtmlImageData } from './browser/imageCreation';
 
 /**
  * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.
@@ -36,8 +37,12 @@ export class File {
     return this._mat
   }
 
-  asImageData(): ImageData {
+  asImageData(): CVImageData {
     return toImageData(this._mat)
+  }
+
+  asHTMLImageData(): ImageData {
+    return asHtmlImageData(this._mat)
   }
 
   asDataUrl() {
@@ -237,7 +242,7 @@ export class File {
     return typeof f === 'string' ? f : f.name
   }
 
-  public static fromData(data: ImageData, name?: string) {
+  public static fromData(data: CVImageData, name?: string) {
     return new File(File._buildName(name), cv.matFromImageData(data))
   }
 

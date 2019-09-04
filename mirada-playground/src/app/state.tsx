@@ -1,6 +1,7 @@
 import { Size } from 'mirada'
 import { Tool, tools } from '../ui/tool/tool'
 import { Example, examples } from './examples'
+import { Object } from 'fabric/fabric-impl';
 
 export interface State {
   example: Example
@@ -11,6 +12,7 @@ export interface State {
   tools: Tool[]
   activeTools: Tool[]
   selection: Selection
+  editor: EditorState
   showToolInitialTip: boolean
   imageSize: Size,
   shapesTool: {
@@ -23,14 +25,21 @@ export interface State {
   toolBarCollapsed: boolean
 }
 
+interface EditorState {
+  objects: Object[]
+  selection: EditorObject[]
+}
+
 type EditorObject = fabric.Object
 
 export type ShapeTypes = 'rectangle' | 'brush' | 'ellipse'
-export type SelectionActions = | 'select' | 'delete' | 'invertSelection' | 'selectAll'
+
+export type SelectionActions = 'select' | 'delete' | 'invertSelection' | 'selectAll'
+
 export type GrabCutRegions = 'interest' | 'background'
+
 interface Selection {
   rectangles: Rectangle[]
-  objects: EditorObject[],
   mode: 'exclusive' | 'union',
 }
 
@@ -45,8 +54,11 @@ export async function getInitialState(): Promise<State> {
     activeTools: [tools[0]],
     showToolInitialTip: true,
     tools,
-    selection: {
+    editor: {
       objects: [],
+      selection: []
+    },
+    selection: {
       rectangles: [],
       mode: 'exclusive',
     },

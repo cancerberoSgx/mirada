@@ -17,11 +17,8 @@ export class ShapeToolView extends AbstractComponent {
     )
   }
   protected setShape(s: ShapeTypes) {
-    console.log('VIEW')
-
     setState({ shapesTool: { ...getState().shapesTool, activeShape: s } })
     getTool(ShapeTool.NAME)!.setActive(true)
-    // this.getTool()!.setActive(true)
   }
 
 }

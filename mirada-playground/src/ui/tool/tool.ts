@@ -34,15 +34,15 @@ export abstract class AbstractTool {
     })
   }
 
-  get state() {
+  protected get state() {
     return getStore().getState()
   }
 
-  setState(s: Partial<State>) {
+  protected setState(s: Partial<State>) {
     getStore().setState(s)
   }
 
-  public handleToolGroupVisibleToggle(toolGroupIndex: number) {
+  handleToolGroupVisibleToggle(toolGroupIndex: number) {
     const active = this.state.shapesTool.menuActiveIndex.includes(toolGroupIndex)
     this.setState({
       shapesTool: {

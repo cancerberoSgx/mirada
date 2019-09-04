@@ -11,10 +11,10 @@ export function toImageData(img: Mat) {
     height: img.rows
   }
 }
+export const asImageData = toImageData
 
 /**
- * Returns a new image that is identical to given (1, 3 or 4 channels) 
- * but has 4 RGBA channels.
+ * Returns a new image that is identical to given (1, 3 or 4 channels) but has 4 RGBA channels.
  */
 export function toRgba(mat: Mat, dst = new cv.Mat()) {
   const depth = mat.type() % 8
@@ -51,7 +51,9 @@ export async function fromUrl(f: string) {
   return file.asMat()
 }
 
-/** Compare two images by getting the L2 error (square-root of sum of squared error). The lower the result the more similar are the images. */
+/** 
+ * Compare two images by getting the L2 error (square-root of sum of squared error). The lower the result the more similar are the images. 
+ */
 export function compareL2(f1: Mat | File, f2: Mat | File) {
   const a = asMat(f1), b = asMat(f2)
   if (a.rows > 0 && a.rows == b.rows && a.cols > 0 && a.cols == a.cols) {
@@ -63,9 +65,10 @@ export function compareL2(f1: Mat | File, f2: Mat | File) {
   }
   else {
     //Images have a different size
-    return 1.0  // Return a bad value
+    return 1.0
   }
 }
+
 export function asMat(f: File | Mat) {
   return File.isFile(f) ? f.asMat() : f
 }

@@ -6,13 +6,6 @@ import { ImageWidget } from '../../imageEditor/imageWidget'
 import { AbstractTool } from './tool'
 
 export class GrabCut extends AbstractTool {
-
-  toolGroupIndex = 2
-
-  setRegion(s: GrabCutRegions) {
-    this.setState({ grabCut: { ...this.state.grabCut, region: s } })
-  }
-
   protected canvasOffset = { x: 0, y: 0 }
   static NAME = 'Grab Cut'
   static SHORT_DESCRIPTION = 'Intelligent background removal'
@@ -21,13 +14,16 @@ export class GrabCut extends AbstractTool {
     super()
     this.name = GrabCut.NAME
     this.description = GrabCut.DESCRIPTION
+    this.shortDescription = GrabCut.SHORT_DESCRIPTION
     this.selectionChangeListener = this.selectionChangeListener.bind(this)
     addStateChangeListener('selectionChanged', {
       type: 'selectionChanged',
       fn: this.selectionChangeListener
     })
   }
-
+  setRegion(s: GrabCutRegions) {
+    this.setState({ grabCut: { ...this.state.grabCut, region: s } })
+  }
   async selectionChangeListener(e: SelectionChangeEvent) {
     if (!this.active) {
       return
@@ -42,7 +38,7 @@ export class GrabCut extends AbstractTool {
         })
         f = File.fromData(result.image, 'grabCut.png')
       }))
-      this.image.load(f)
+      this.image.load(f) 
     }
   }
 }

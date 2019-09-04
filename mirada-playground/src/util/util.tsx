@@ -1,5 +1,3 @@
-// import { File, IFile } from 'magica'
-
 export function printMs(ms: number) {
   return (ms / 1000) + ''.padEnd(4, ' ') + ' seconds'
 }
@@ -17,8 +15,7 @@ export function memoryReport() {
   }
 }
 
-
-export type Fn<args extends any[] = any[], returnValue extends any = any> = (...args: args) => returnValue
+// export type Fn<args extends any[] = any[], returnValue extends any = any> = (...args: args) => returnValue
 
 
 // export function asDataUrl(f: IFile): string | undefined {

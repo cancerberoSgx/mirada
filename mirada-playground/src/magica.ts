@@ -9,8 +9,6 @@ export async function scale(f: File, scale: string) {
   })
   checkThrow(!result.error && result.outputFiles.length, 'Expected no errors in magicas run()')
   return result.outputFiles[0] as File
-  // await loadHtmlCanvasElement( result.outputFiles[0] as File)
-  // await loadHtmlCanvasElement( result.outputFiles[0] as File), canvas
 }
 
 export async function loadMiradaFileFromInputElement(e: HTMLInputElement, canvas: HTMLCanvasElement) {
@@ -20,15 +18,10 @@ export async function loadMiradaFileFromInputElement(e: HTMLInputElement, canvas
   return await MiradaFile.fromCanvas(canvas)
 }
 
-
-// export async function magicaToMirada(file: File)
 export async function scaleCanvas(c: HTMLCanvasElement, s: string) {
   const f = await readFromCanvas(c)
   const f2 = await scale(f, s)
   await writeToCanvas(f2, c)
-  // const f = await scale()
-  // await loadHtmlCanvasElement( result.outputFiles[0] as File)
-  // await loadHtmlCanvasElement( result.outputFiles[0] as File), canvas
 }
 
 export async function writeToCanvas(f: File, canvas: HTMLCanvasElement) {
@@ -42,6 +35,3 @@ export async function readFromCanvas(canvas: HTMLCanvasElement) {
   const imageData = canvas.getContext('2d')!.getImageData(0, 0, canvas.width, canvas.height)
   return await File.fromHTMLImageData(imageData)
 }
-// var data = getCanvasContext().getImageData(0, 0, b.width, b.height)
-//   b.close()
-//   return await File.fromHTMLImageData(data, 'f.rgba')

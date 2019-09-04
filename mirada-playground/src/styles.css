@@ -8,6 +8,14 @@ textarea{
   background-color: red;
   border-color: black;
 }
+.ui.input > input {
+  max-width: 60px;
+  padding: .3em 0 .3em 0;
+}
+body {
+  overflow: scroll;
+}
+
 .ui.segment.appBody, .ui.segment.outputSegment {
   padding-top: 2em;
 }
@@ -17,25 +25,23 @@ textarea{
 #inputCanvas {
   position: absolute;
   display: block;
-  top: 58 px;
+  top: 58px;
   left: 2px;
+  border: 1px solid black;
 }
 .ui.segment.appBody {
   padding-top: 0;
-  margin-top: 0
+  margin-top: 0;
 }
 .ui.segment.toolBar {
-z-index: 200;
+  z-index: 200;
   display: block;
   position: fixed;
   top: 40px;
   right: 0px;
   max-height: 85vh;
   width: 30vw;
-  max-width: 300px;
-}
-body {
-  overflow: scroll
+  overflow-y: scroll;
 }
 .ui.toggle.checkbox.toolEnabledToggle {
   margin-bottom: 20px;

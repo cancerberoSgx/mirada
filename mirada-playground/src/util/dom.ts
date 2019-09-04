@@ -8,6 +8,7 @@ export function cloneCanvas(oldCanvas: HTMLCanvasElement) {
   context.drawImage(oldCanvas, 0, 0)
   return newCanvas
 }
+
 export function cloneCanvasSize(c: HTMLCanvasElement) {
   var d = document.createElement('canvas')
   d.width = c.width

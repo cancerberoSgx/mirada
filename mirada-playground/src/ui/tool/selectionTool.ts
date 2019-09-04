@@ -11,18 +11,18 @@ import { AbstractTool } from './tool'
 export class SelectionTool extends AbstractTool {
   static NAME = 'Selection'
   static SHORT_DESCRIPTION = 'Selection management'
-  static DESCRIPTION = `TODO`
+  static DESCRIPTION = 'Selection management'
   constructor(protected image: ImageWidget) {
     super()
     this.name = SelectionTool.NAME
     this.description = SelectionTool.DESCRIPTION
+    this.shortDescription = SelectionTool.SHORT_DESCRIPTION
     this.selectionChangeListener = this.selectionChangeListener.bind(this)
     addStateChangeListener('selectionChanged', {
       type: 'selectionChanged',
       fn: this.selectionChangeListener
     })
   }
-
   async onAction(s: SelectionActions) {
     const c = await getFabricCanvas()
     if (s === 'delete') {
@@ -31,15 +31,12 @@ export class SelectionTool extends AbstractTool {
     } else if (s == 'select') {
       // do nothing
     } else if (s == 'selectAll') {
-      const sel = selectAll(c)
-      this.setState({ selection: { ...getState().selection, objects: [...sel.getObjects()] } })
+      const sel = SelectionTool.selectAll(c)
+      this.setState({ editor: { ...getState().editor, objects: [...sel.getObjects()] } })
     } else {
       throw 'TODO'
     }
-
   }
-
-
   async selectionChangeListener(e: SelectionChangeEvent) {
     if (!this.active) {
       return
@@ -56,15 +53,8 @@ export class SelectionTool extends AbstractTool {
       }))
       this.image.load(f)
     }
-
   }
-
-
-}
-
-
-
-export function selectAll(c: fabric.Canvas) {
+  static selectAll(c: fabric.Canvas) {
   c.discardActiveObject()
   var sel = new fabric.ActiveSelection(c.getObjects(), {
     canvas: c,
@@ -72,4 +62,6 @@ export function selectAll(c: fabric.Canvas) {
   c.setActiveObject(sel)
   c.requestRenderAll()
   return sel
+}
+
 }
