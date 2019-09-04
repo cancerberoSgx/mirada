@@ -21,7 +21,7 @@ export type SelectionChangeEvent = StateChangeEvent<'selectionChanged'>
 export type SelectionChangeListener = StateChangeListener<'selectionChanged'>
 
 // this guy will be an knowledge expert about the model changes - anti-pattern!
-// high level state change ewert emotion and prioritization for performance
+// high level state change prioritization for performance
 export function handleStateChange(change: StateChange & {
   emit: Fn<StateChange[], void>;
 }) {
@@ -30,7 +30,6 @@ export function handleStateChange(change: StateChange & {
   if (JSON.stringify(change.oldState.selection.rectangles) !== JSON.stringify(change.newState.selection.rectangles)) {
     notify({ change, type: 'selectionChanged' })
   }
-
   if (JSON.stringify(change.oldState.imageSize) !== JSON.stringify(change.newState.imageSize)) {
     notify({ change, type: 'imageSizeChanged' })
   }

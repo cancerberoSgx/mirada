@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { Accordion, Button, Menu, Segment } from 'semantic-ui-react'
-import { getImageWidget } from '../../app/start'
-import { AffineTransform } from './affineTransform'
-import { CanvasAndImage } from './canvasAndImage'
-import { PerspectiveTransform } from './perspectiveTransform'
-import { AbstractComponent } from '../common/component'
-import { AccordionToolbarAdapter } from './AccordionToolbarAdapter'
-import { ShapeTool } from './drawingTool'
-import { GrabCut } from './grabCut'
-import { SelectionTool } from './selectionTool'
+import { getImageWidget } from '../app/start'
+import { AffineTransform } from './tool/affineTransform'
+import { CanvasAndImage } from './tool/canvasAndImage'
+import { PerspectiveTransform } from './tool/perspectiveTransform'
+import { AbstractComponent } from './common/component'
+import { AccordionToolbarAdapter } from './tool/AccordionToolbarAdapter'
+import { ShapeTool } from './tool/drawingTool'
+import { GrabCut } from './tool/grabCut'
+import { SelectionTool } from './tool/selectionTool'
 
 const tools = [
   SelectionTool.toolBarEntry,

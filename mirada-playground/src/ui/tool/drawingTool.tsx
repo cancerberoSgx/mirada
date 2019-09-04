@@ -20,26 +20,25 @@ export class ShapeToolView extends AbstractComponent {
     setState({ shapesTool: { ...getState().shapesTool, activeShape: s } })
     ShapeTool.INSTANCE.setActive(true)
   }
-
 }
 
 export class ShapeTool extends AbstractTool {
   static INSTANCE =  new ShapeTool()
   static toolBarEntry= { tool: () =>ShapeTool.INSTANCE, el: () => <ShapeToolView /> }
-  constructor() {
+  protected constructor() {
     super()
     this.name = 'Shapes'
     this.description = 'Shape drawing tool'
     this.shortDescription = 'Shape drawing tool'
   }
-  async   setActive(b: boolean) {
+  async setActive(b: boolean) {
     const manager = await getShapeDrawing()
     manager.setEnabled(true)
     super.setActive(b)
   }
-  setRegion(s: ShapeTypes) {
-    this.setState({ shapesTool: { ...this.state.shapesTool, activeShape: s } })
-  }
+  // setRegion(s: ShapeTypes) {
+  //   this.setState({ shapesTool: { ...this.state.shapesTool, activeShape: s } })
+  // }
 }
 
 

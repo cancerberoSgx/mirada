@@ -1,12 +1,9 @@
 import { Object } from 'fabric/fabric-impl'
 import { Size } from 'mirada'
 import { Tool, tools } from '../ui/tool/tool'
-// import { Example, examples } from './examples'
 
 export interface State {
-  // example: Example
   inputFiles: File[]
-  // examples: Example[];
   code: string
   working: boolean
   tools: Tool[]
@@ -43,12 +40,21 @@ interface Selection {
   mode: 'exclusive' | 'union',
 }
 
+export interface Field {
+  id: string
+  value: string
+}
+
+export interface Rectangle {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export async function getInitialState(): Promise<State> {
-  // var example = examples()[0]
   return {
-    // example,
     inputFiles: [],
-    // examples: [...examples()],
     code: '',
     working: true,
     activeTools: [tools[0]],
@@ -69,16 +75,4 @@ export async function getInitialState(): Promise<State> {
       region: 'interest'
     }
   }
-}
-
-export interface Field {
-  id: string
-  value: string
-}
-
-export interface Rectangle {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
 }

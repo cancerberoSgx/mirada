@@ -35,7 +35,7 @@ export class AffineTransformView extends AbstractComponent<AbstractProps, State>
   }
   protected async onChange(e: any) {
     const inputs = Array.from(this.el!.querySelectorAll('input')).map(i => i.valueAsNumber || 0)
-    await AffineTransform.toolBarEntry.tool().applyAffineTransform(inputs)
+    await AffineTransform.INSTANCE.applyAffineTransform(inputs)
   }
 }
 
@@ -45,7 +45,10 @@ export class AffineTransform extends AbstractTool {
   name = 'Affine transform'
   description = 'Rotate, scale, skew, translate'
   shortDescription = 'Rotate, scale, skew, translate'
-  async  applyAffineTransform(inputs: number[]) {
+   protected constructor(){
+    super()
+  }
+   async  applyAffineTransform(inputs: number[]) {
     const i = await getImageWidget()
     const size = { width: i.imageSize.width, height: i.imageSize.height }
     const src = i.get().clone().asMat()

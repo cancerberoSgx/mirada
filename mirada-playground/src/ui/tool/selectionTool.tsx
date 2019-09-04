@@ -36,7 +36,7 @@ export class SelectionToolView extends AbstractComponent {
 export class SelectionTool extends AbstractTool {
   static INSTANCE =  new SelectionTool()
   static toolBarEntry= { tool: () =>SelectionTool.INSTANCE, el: () => <SelectionToolView /> }
-  constructor( ) {
+  protected constructor( ) {
     super()
     this.name = 'Selection'
     this.description =  'Selection management'
@@ -63,7 +63,7 @@ export class SelectionTool extends AbstractTool {
     }
   }
 
-  async selectionChangeListener(e: SelectionChangeEvent) {
+  protected async selectionChangeListener(e: SelectionChangeEvent) {
     if (!this.active) {
       return
     }

@@ -32,45 +32,36 @@ export class ImageWidget {
 
   load(i: File | string) {
     if (typeof i === 'string' && this.images[i]) {
-      // tryTo(()=> this.image.delete())
       this.image = this.images[i]
     }
     if (File.isFile(i)) {
-      // tryTo(()=> this.image.delete())
       this.image = i
     }
     this.images[this.image.name] = this.image
     tryTo(() => this.buffer.delete())
     this.buffer = this.image.mat.clone()
-    // this.resizeCanvas();
     this.canvas.width = this.buffer.cols
     this.canvas.height = this.buffer.rows
     this.render()
   }
 
   async resizeCanvas(x: number, y: number) {
-    const c = this.canvas.getContext('2d')!
     this.canvas.width = x
     this.canvas.height = y
     const data = asImageData(this.buffer)
-    // this.canvas.getContext('2d')!.putImageData(data, 0,0, 0, 0,Math.min(0, Math.max(data.width, this.canvas.width)), Math.min(0, Math.max(data.height, this.canvas.height)))
-    c.putImageData(new ImageData(data.data, data.width, data.height), 0, 0, 0, 0, Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
+    this.canvas.getContext('2d')!.putImageData(new ImageData(data.data, data.width, data.height), 0, 0, 0, 0, 
+      Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
     tryTo(() => this.buffer.delete())
     this.buffer = cv.matFromImageData(data)
-    // this.updateFromCanvas()
-
-    // this.buffer = fromcan
-    //  await renderInCanvas(this.buffer, { canvas: this.canvas, forceSameSize: false })
   }
+
   imageOffset(x: number, y: number) {
     const c = this.canvas.getContext('2d')!
     const data = asImageData(this.buffer)
-    // const data = this.image.asHTMLImageData()    
     c.fillStyle = "white"
     c.fillRect(0, 0, this.canvas.width, this.canvas.height)
-    // c.putImageData(data, x,y)//, 0, 0,Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
-    c.putImageData(new ImageData(data.data, data.width, data.height), x, y, 0, 0, Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
-    // this.updateFromCanvas()
+    c.putImageData(new ImageData(data.data, data.width, data.height), x, y, 0, 0, 
+      Math.max(0, Math.min(data.width, this.canvas.width)), Math.max(0, Math.min(data.height, this.canvas.height)))
     tryTo(() => this.buffer.delete())
     this.buffer = cv.matFromImageData(data)
   }
@@ -93,7 +84,6 @@ export class ImageWidget {
     return this.buffer
   }
 
-  // public async render(r: Rectangle={x:0,y:0,width:this.canvas.width, height: this.canvas.height}) {
   public async render(r?: Rectangle) {
     if (r) {
       await renderInCanvas(this.buffer, { canvas: this.canvas, forceSameSize: true, region: r })

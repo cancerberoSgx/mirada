@@ -27,7 +27,7 @@ export async function start() {
   shapeDrawing = new ShapeFreeDrawing({ canvas: fabricCanvas })
   image.render()
   tools.push(SelectionTool.INSTANCE)
-  tools.push(GrabCut.INSTANCE)
+  tools.push(GrabCut.INSTANCE())
   tools.push(ShapeTool.INSTANCE)
   tools.push(CanvasAndImage.INSTANCE)
   tools.push(AffineTransform.INSTANCE)
@@ -41,6 +41,7 @@ export async function start() {
     type: 'imageSizeChanged'
   })
   getStore().setState({ ...getStore().getState() })
+  // overlay.canvas!.on('object:added', )
   started.resolve(null)
 }
 
@@ -79,6 +80,14 @@ export async function getManagers() {
 export async function getImageWidget() {
   const m = await getManagers()
   return await m.getImageWidget()
+}
+export async function getCanvas() {
+  const m = await getImageWidget()
+  return m.canvas
+}
+export async function getCanvasOverlay() {
+  const m = await getManagers()
+  return await m.getCanvasOverlay()
 }
 export async function getFabricCanvas() {
   const m = await getManagers()
