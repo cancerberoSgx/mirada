@@ -1,6 +1,7 @@
 import { ok } from 'assert'
 import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
+import { asHtmlImageData } from './browser/imageCreation'
 import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
 import { Chain } from './tool/chain'
 import { ImageData as CVImageData, Mat } from './types/opencv'
@@ -8,7 +9,6 @@ import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, removeFile, writeFile } from './util/fileUtil'
 import { toImageData, toRgba } from './util/imageUtil'
 import fileType = require('file-type')
-import { asHtmlImageData } from './browser/imageCreation';
 
 /**
  * A thin layer on top of cv.Mat with lots of utilities to load, write, encode, etc.

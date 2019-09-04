@@ -2,7 +2,7 @@ import { Canvas, createCanvas as createCanvas_, Image, ImageData } from 'canvas'
 import Jimp from 'jimp'
 import { DOMWindow, JSDOM, VirtualConsole } from "jsdom"
 import { getGlobal } from 'misc-utils-of-mine-generic'
-import { installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, Mat, toRgba, asImageData } from '../src'
+import { asImageData, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, Mat, toRgba } from '../src'
 
 let loaded = false
 
@@ -47,9 +47,9 @@ export function loadDOM<T extends HTMLElement = HTMLElement>(body = '', selector
 
 
 export async function write(img: Mat, s: string) {
-  const i = await toRgba(img);
-  const d = asImageData(i);
-  const j = new Jimp(d.width, d.height, '#FF00FF');
-  j.bitmap = { ...d, data: Buffer.from(d.data.buffer) };
-  j.write(s);
+  const i = await toRgba(img)
+  const d = asImageData(i)
+  const j = new Jimp(d.width, d.height, '#FF00FF')
+  j.bitmap = { ...d, data: Buffer.from(d.data.buffer) }
+  j.write(s)
 }

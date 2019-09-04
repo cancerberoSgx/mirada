@@ -36,7 +36,7 @@ export class JimpCodec implements FormatCodec {
     }
     var img = new this.jimp({ ...data, data: Buffer.from(data.data.buffer) })
     // console.log({mime}, typeof mime);
-    
+
     const buffer = await img.getBufferAsync(mime)
     return buffer
   }

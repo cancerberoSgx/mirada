@@ -6,7 +6,7 @@ import { Command, CommandHandler, CommandName, CommandsByName, Options1, Result1
 export abstract class AbstractCommandHandler<N extends CommandName> implements CommandHandler<N> {
   abstract run(c: Options1<N>): Promise<Result1>
   abstract validate(c: Partial<CommandsByName[N]>): Promise<undefined | string>
-  
+
 }
 
 export function checkCommandInOut(c: Partial<Command<CommandName>>) {

@@ -63,7 +63,7 @@ export class CameraHelper {
     this.outputCanvas.height = this.videoInput.videoHeight
     this.callback()
   }
-  
+
   protected onVideoStopped() {
     this.streaming = false
     this.outputCanvas.getContext('2d')!.clearRect(0, 0, this.outputCanvas.width, this.outputCanvas.height)

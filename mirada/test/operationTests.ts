@@ -1,23 +1,23 @@
 import test from 'ava'
-import { File, fromFile, Mat, tool, toRgba, compare, compareL2, asImageData } from '../src'
+import { create, distance, read } from 'jimp'
+import { compareL2, File, fromFile, Mat, tool, toRgba } from '../src'
 import { loadMirada, write } from './testUtil'
-import {distance, create, read} from 'jimp'
-import fileType = require('file-type');
+import fileType = require('file-type')
 
 test.before(loadMirada)
 
 test('floodFill', async t => {
-  const seed = new cv.Point(4, 4);
-  const img = cv.Mat.zeros(100, 100, cv.CV_8UC1);
-  cv.circle(img, seed, 20, new cv.Scalar(128), 3);
+  const seed = new cv.Point(4, 4)
+  const img = cv.Mat.zeros(100, 100, cv.CV_8UC1)
+  cv.circle(img, seed, 20, new cv.Scalar(128), 3)
   // await write(img, 'tmp1.png')
   //Create a mask from edges in the original image
-  const mask = cv.Mat.zeros(img.rows + 2, img.cols + 2, cv.CV_8UC1);
-  cv.Canny(img, mask, 100, 200);
-  cv.copyMakeBorder(mask, mask, 1, 1, 1, 1, cv.BORDER_REPLICATE);
+  const mask = cv.Mat.zeros(img.rows + 2, img.cols + 2, cv.CV_8UC1)
+  cv.Canny(img, mask, 100, 200)
+  cv.copyMakeBorder(mask, mask, 1, 1, 1, 1, cv.BORDER_REPLICATE)
   //Fill mask with value 128
-  const fillValue = 128;
-  cv.floodFill(img, mask, seed, new cv.Scalar(255), 0, new cv.Scalar(), new cv.Scalar(), 4 | cv.FLOODFILL_MASK_ONLY | (fillValue << 8));
+  const fillValue = 128
+  cv.floodFill(img, mask, seed, new cv.Scalar(255), 0, new cv.Scalar(), new cv.Scalar(), 4 | cv.FLOODFILL_MASK_ONLY | (fillValue << 8))
   t.deepEqual(compareL2(await File.fromFile('test/assets/floodfill.png'), File.fromMat(await toRgba(mask))), 0)
   await write(await toRgba(mask), 'tmp2.png')
 })
@@ -27,15 +27,15 @@ test('warpAffine', async t => {
   const f = await File.fromFile('test/assets/lenna.jpg')
   var src = f.asMat()
   var dst = new cv.Mat()
-  t.deepEqual([src.type(), src.depth(), src.channels(), src.size()], [24, 0, 4, { width: 400, height: 400 }]);
-  let srcTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0, 0, 0, 1, 1, 0]);
-  let dstTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0.6, 0.2, 0.1, 1.3, 1.5, 0.3]);
-  let dsize = new cv.Size(src.rows, src.cols);
-  let M = cv.getAffineTransform(srcTri, dstTri);
-  cv.warpAffine(src, dst, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+  t.deepEqual([src.type(), src.depth(), src.channels(), src.size()], [24, 0, 4, { width: 400, height: 400 }])
+  let srcTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0, 0, 0, 1, 1, 0])
+  let dstTri = cv.matFromArray(3, 1, cv.CV_32FC2, [0.6, 0.2, 0.1, 1.3, 1.5, 0.3])
+  let dsize = new cv.Size(src.rows, src.cols)
+  let M = cv.getAffineTransform(srcTri, dstTri)
+  cv.warpAffine(src, dst, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar())
   const f2 = await fromFile('test/assets/lennaAffine.png')
   t.deepEqual(compareL2(dst, f2), 0)
-  src.delete(); dst.delete(); f2.delete();  M.delete(); srcTri.delete(); dstTri.delete()
+  src.delete(); dst.delete(); f2.delete(); M.delete(); srcTri.delete(); dstTri.delete()
 })
 
 test('grabCut', async t => {

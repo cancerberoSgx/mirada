@@ -1,6 +1,6 @@
 import test from 'ava'
 import * as jimp from 'jimp'
-import { loadOpencv, File } from '../src'
+import { loadOpencv } from '../src'
 
 test('library loads manually without proxy', async t => {
   await loadOpencv()

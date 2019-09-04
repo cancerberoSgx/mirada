@@ -14,7 +14,7 @@ export class Chain {
     this.mat = toRgba(this.mat, this.mat)
     return this
   }
-  roi(expr: Rect ) {
+  roi(expr: Rect) {
     const dst = this.mat.roi(expr)
     this.mat.delete()
     this.mat = dst
