@@ -1,7 +1,7 @@
 import test from 'ava'
-import { CannyOptions, compareL2, del, File, FloodFillOptions, fromFile, ReplaceColorOptions, toRgba } from 'mirada'
-import { canny, floodFill, replaceColor } from '../src/'
-import { loadMirada } from './testUtil'
+import {  compareL2, del, File, fromFile, toRgba } from 'mirada'
+import { canny, floodFill, replaceColor, FloodFillOptions, CannyOptions , ReplaceColorOptions, WarpPerspective, WarpPerspectiveOptions} from '../src'
+import { loadMirada, write } from './testUtil'
 
 test('d', t => t.true(true))
 
@@ -41,7 +41,41 @@ test('canny', async t => {
     src, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
   }
   const dst = canny(o)
-  // write(dst, 'tmp-canny.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(dst), true), 0)
+  del(dst, src)
+})
+
+test.only('warPerspective', async t => {
+  console.log('sebsbs');
+  
+ const src = await fromFile('test/assets/lenna.jpg')
+
+  //  await toRgba(src, src )
+  // cv.cvtColor(src, src, )
+    const dst = cv.Mat.zeros( src.rows, src.cols, src.type() );
+  // console.log(src.type(), src.channels(), dst.type(), dst.channels());
+  
+  const o: WarpPerspectiveOptions = {
+    src, 
+    dst,
+    inputs: [
+      56, 65,
+      368, 52, 
+      28, 387, 
+      389, 390
+      ],  
+      outputs: [
+        56, 65,
+      368, 52, 
+      28, 387, 
+      389, 390
+        ], 
+        size: dst.size()
+  }
+  await  new WarpPerspective().exec(o)
+  // const dst =
+  write(o.dst!, 'tmp-WarpPerspective.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lenna.jpg'), toRgba(o.dst!), true), 0)
+  // t.true(true)
   del(dst, src)
 })

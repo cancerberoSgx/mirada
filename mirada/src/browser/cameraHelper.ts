@@ -1,3 +1,7 @@
+
+/**
+ * @deprecated Obsoleted by VideoRenderer
+ */
 export class CameraHelper {
   streaming = false;
   protected stream: MediaStream | undefined;

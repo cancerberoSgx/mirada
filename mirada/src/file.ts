@@ -3,7 +3,6 @@ import fetch from 'cross-fetch'
 import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeForExtension, inBrowser, notUndefined, serial, unique } from 'misc-utils-of-mine-generic'
 import { asHtmlImageData } from './browser/imageCreation'
 import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
-import { Chain } from './tool/chain'
 import { ImageData as CVImageData, Mat } from './types/opencv'
 import { arrayBufferToBase64, urlToBase64 } from './util/base64'
 import { isFile, readFile, removeFile, writeFile } from './util/fileUtil'
@@ -119,10 +118,6 @@ export class File {
     this.mat.delete()
     this._mat = dst
     return this
-  }
-
-  asChain(clone = false) {
-    return new Chain(clone ? this._mat.clone() : this._mat)
   }
 
   clone(name = this.name) {

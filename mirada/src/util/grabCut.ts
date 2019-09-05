@@ -2,6 +2,10 @@ import { File, loadOpencv, Rect, toImageData } from '..'
 import { Scalar } from '../types/opencv'
 import { toRgba } from './imageUtil'
 
+/**
+ * @deprecated 
+ * Will be removed
+ */
 export async function grabCut_obsolete(o: GrabCutObsoleteOptions): Promise<GrabCutOsoleteResult> {
   await loadOpencv()
   var src = o.image.asMat()

@@ -5,7 +5,7 @@ export interface ImageOperation {
   name: string
   description: string
   //TODO field descriptions
-  exec(o: OperationExecBaseOptions): Mat
+  exec(o: OperationExecBaseOptions): Promise<Mat>
   //tODO: 
   // validOptions(o:Partial<GrabCutOptions>):boolean
 }
