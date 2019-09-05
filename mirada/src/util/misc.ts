@@ -15,4 +15,16 @@ export function resolveNodeModule(p: string) {
     r = './' + r
   }
   return r
-} 
+}
+
+export function msFrom(t0: number) {
+  return (now() - t0) / 1000000
+}
+export function timeFrom(t0: number) {
+  return `${((now() - t0) / 1000000).toPrecision(1)} ms`
+}
+
+const isBrowser = typeof performance !== 'undefined' && typeof performance.now === 'function'
+export function now() {
+  return isBrowser ? performance.now() : 0
+}

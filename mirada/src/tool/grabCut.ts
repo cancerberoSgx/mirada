@@ -1,19 +1,6 @@
-
-import { File, loadOpencv, toImageData } from '..'
-import { ImageData, Rect, Scalar } from '../types/opencv'
+import { loadOpencv, toImageData } from '..'
 import { toRgba } from '../util/imageUtil'
-
-export interface GrabCutOptions extends Rect {
-  image: File
-  /** 
-   * If given a rectangle frame will be drawn on given coordinates with that color.
-   */
-  frameColor?: Scalar
-}
-
-export interface GrabCutResult {
-  image: ImageData
-}
+import { GrabCutOptions, GrabCutResult } from './types';
 
 export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
   await loadOpencv()

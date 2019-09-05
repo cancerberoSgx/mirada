@@ -1,16 +1,5 @@
-import { Mat } from '../types/opencv'
 import { del, isMat } from '../util'
-
-export interface ImageToolBaseOptions {
-  src: Mat,
-  dst?: Mat
-}
-
-export interface ReplaceColorOptions extends ImageToolBaseOptions {
-  lowColor: Range | number[],
-  highColor: Range | number[],
-  newColorOrImage: Range | number[] | Mat,
-}
+import { ReplaceColorOptions } from './types';
 
 export function replaceColor(o: ReplaceColorOptions) {
   o.dst = o.dst || new cv.Mat()

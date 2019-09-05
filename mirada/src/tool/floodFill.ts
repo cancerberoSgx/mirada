@@ -1,29 +1,13 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
-import { Mat, Point, Scalar } from '../types/opencv'
 import { del, isMat } from '../util'
-import { CannyConcreteOptions } from './canny'
-
-type Preprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'gaussianBlur' } & GaussianBlur)
-interface GaussianBlur {
-  blur?: number;
-}
-export interface FloodFillOptions {
-  src: Mat;
-  seed: Point;
-  dst?: Mat;
-  preprocess?: Preprocess[]
-  newColorOrImage?: Scalar | number[] | Mat;
-  connectivity?: 4 | 8;
-  lowDiff?: Scalar | number[]
-  upDiff?: Scalar | number[]
-}
+import { FloodFillOptions, CannyConcreteOptions,  GaussianBlurOptions } from './types';
 
 export function floodFill(o: FloodFillOptions) {
   const preprocess = o.preprocess || [{ name: 'gaussianBlur' }, { name: 'canny' }]
   const dst = o.dst = o.dst || new cv.Mat()
   o.src.copyTo(dst)
 
-  const blur = preprocess.find(p => p.name === 'gaussianBlur') as GaussianBlur
+  const blur = preprocess.find(p => p.name === 'gaussianBlur') as GaussianBlurOptions 
   if (blur) {
     checkThrow(!blur.blur || blur.blur === 1 || blur.blur % 2 !== 0, 'Blur size must be odd and greater than 2')
     cv.medianBlur(o.src, dst, blur.blur || 3)

@@ -34,3 +34,4 @@ test('can use import * as opencv from "mirada" and assign global cv to reference
   t.notThrows(() => test1(src, opencv.COLOR_BGR2BGR555, i, g))
 })
 
+

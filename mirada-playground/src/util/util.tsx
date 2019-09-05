@@ -22,3 +22,15 @@ export function memoryReport() {
 //   var mime = f.name.endsWith('png') ? 'image/png' : 'image/jpeg'
 //   return 'data:' + mime + ';' + f.name + ';base64,' + File.toBase64(File.asFile(f))
 // }
+
+export function msFrom(t0: number) {
+  return (now() - t0) / 1000000
+}
+export function timeFrom(t0: number) {
+  return `${((now() - t0) / 1000000).toPrecision(1)} ms`
+}
+
+const isBrowser = typeof performance !== 'undefined' && typeof performance.now === 'function'
+export function now() {
+  return isBrowser ? performance.now() : 0
+}

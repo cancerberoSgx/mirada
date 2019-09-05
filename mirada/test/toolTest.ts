@@ -1,9 +1,9 @@
 import test from 'ava'
-import { compareL2, del, fromFile, toRgba } from '../src'
+import { compareL2, del, fromFile, toRgba, FloodFillOptions, ReplaceColorOptions, CannyOptions } from '../src'
 import { File } from '../src/file'
-import { canny, CannyOptions } from '../src/tool/canny'
-import { floodFill, FloodFillOptions } from "../src/tool/floodFill"
-import { replaceColor, ReplaceColorOptions } from '../src/tool/replaceColor'
+import { canny } from '../src/tool/canny'
+import { floodFill } from "../src/tool/floodFill"
+import { replaceColor } from '../src/tool/replaceColor'
 import { loadMirada } from './testUtil'
 
 test.before(loadMirada)

@@ -1,9 +1,10 @@
 import { File } from '../../file'
-import { floodFill, FloodFillOptions } from '../../tool/floodFill'
+import { floodFill } from '../../tool/floodFill'
 import { Point, Scalar } from '../../types/opencv'
 import { del, toRgba } from '../../util'
 import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
 import { Command, CommandName, Options1 } from '../types'
+import { FloodFillOptions } from '../../tool';
 
 /**
  *
