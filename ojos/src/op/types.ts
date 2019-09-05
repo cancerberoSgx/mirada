@@ -5,29 +5,23 @@ export interface ImageOperation {
   name: string
   description: string
   //TODO field descriptions
-  execute(o: OperationExecuteOptions): any
+  exec(o: OperationExecBaseOptions): Mat
   //tODO: 
   // validOptions(o:Partial<GrabCutOptions>):boolean
 }
-export interface OperationExecuteOptions {
+
+export interface OperationExecBaseOptions {
   src: Mat,
   dst?: Mat
 }
 
-
-
-export interface ImageToolBaseOptions {
-  src: Mat,
-  dst?: Mat
-}
-
-export interface ReplaceColorOptions extends ImageToolBaseOptions {
+export interface ReplaceColorOptions extends OperationExecBaseOptions {
   lowColor: Scalar | number[],
   highColor: Scalar | number[],
   newColorOrImage: Scalar | number[] | Mat,
 }
 
-export interface FloodFillOptions extends ImageToolBaseOptions {
+export interface FloodFillOptions extends OperationExecBaseOptions {
   seed: Point;
   preprocess?: FloodFillPreprocess[]
   newColorOrImage?: Scalar | number[] | Mat;
@@ -38,14 +32,14 @@ export interface FloodFillOptions extends ImageToolBaseOptions {
 
 export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'gaussianBlur' } & GaussianBlurConcreteOptions)
 
-export interface GaussianBlurOptions extends ImageToolBaseOptions, GaussianBlurConcreteOptions {
+export interface GaussianBlurOptions extends OperationExecBaseOptions, GaussianBlurConcreteOptions {
 }
 
 export interface GaussianBlurConcreteOptions {
   blur?: number;
 }
 
-export interface CannyOptions extends CannyConcreteOptions, ImageToolBaseOptions {
+export interface CannyOptions extends CannyConcreteOptions, OperationExecBaseOptions {
 }
 
 export interface CannyConcreteOptions {

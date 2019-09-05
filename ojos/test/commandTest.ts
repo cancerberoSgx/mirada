@@ -6,7 +6,7 @@ import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
-test('d', t=>t.true(true))
+test('d', t => t.true(true))
 
 test('execute error missing mandatory property', async t => {
   const r = await execute({

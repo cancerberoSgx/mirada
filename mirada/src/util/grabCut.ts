@@ -1,6 +1,6 @@
-import { loadOpencv, toImageData, Rect ,File } from '..'
+import { File, loadOpencv, Rect, toImageData } from '..'
+import { Scalar } from '../types/opencv'
 import { toRgba } from './imageUtil'
-import { Scalar } from '../types/opencv';
 
 export async function grabCut_obsolete(o: GrabCutObsoleteOptions): Promise<GrabCutOsoleteResult> {
   await loadOpencv()

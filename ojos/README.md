@@ -13,7 +13,8 @@ npm install ojos
 YBD
 
 ## TODO
-
+- [ ] warpPerspective
+- [ ] blur https://docs.opencv.org/3.4/dc/dd3/tutorial_gausian_median_blur_bilateral_filter.html
 - [ ] ingegrate mirada-cli generateCommands script here
 - [ ] more codecs 
   - svg experiments

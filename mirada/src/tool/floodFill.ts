@@ -1,13 +1,13 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
 import { del, isMat } from '../util'
-import { FloodFillOptions, CannyConcreteOptions,  GaussianBlurOptions, GaussianBlurConcreteOptions } from './types';
+import { CannyConcreteOptions, FloodFillOptions, GaussianBlurConcreteOptions } from './types'
 
 export function floodFill(o: FloodFillOptions) {
   const preprocess = o.preprocess || [{ name: 'gaussianBlur' }, { name: 'canny' }]
   const dst = o.dst = o.dst || new cv.Mat()
   o.src.copyTo(dst)
 
-  const blur = preprocess.find(p => p.name === 'gaussianBlur') as GaussianBlurConcreteOptions 
+  const blur = preprocess.find(p => p.name === 'gaussianBlur') as GaussianBlurConcreteOptions
   if (blur) {
     checkThrow(!blur.blur || blur.blur === 1 || blur.blur % 2 !== 0, 'Blur size must be odd and greater than 2')
     cv.medianBlur(o.src, dst, blur.blur || 3)

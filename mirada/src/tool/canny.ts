@@ -1,6 +1,6 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
 import { del } from '../util'
-import { CannyOptions } from './types';
+import { CannyOptions } from './types'
 
 export function canny(o: CannyOptions) {
   checkThrow(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0, 'Aperture size must be odd and greater than 2')

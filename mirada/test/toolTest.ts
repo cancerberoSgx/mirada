@@ -1,5 +1,5 @@
 import test from 'ava'
-import { compareL2, del, fromFile, toRgba, FloodFillOptions, ReplaceColorOptions, CannyOptions } from '../src'
+import { CannyOptions, compareL2, del, FloodFillOptions, fromFile, ReplaceColorOptions, toRgba } from '../src'
 import { File } from '../src/file'
 import { canny } from '../src/tool/canny'
 import { floodFill } from "../src/tool/floodFill"

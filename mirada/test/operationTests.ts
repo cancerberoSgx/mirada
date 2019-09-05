@@ -1,6 +1,6 @@
 import test from 'ava'
 import jimp from 'jimp'
-import { compareL2, File, fromFile, Mat, tool, toRgba, grabCut_obsolete } from '../src'
+import { compareL2, File, fromFile, grabCut_obsolete, Mat, toRgba } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 

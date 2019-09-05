@@ -1,5 +1,5 @@
 import { del, isMat } from '../util'
-import { ReplaceColorOptions } from './types';
+import { ReplaceColorOptions } from './types'
 
 export function replaceColor(o: ReplaceColorOptions) {
   o.dst = o.dst || new cv.Mat()

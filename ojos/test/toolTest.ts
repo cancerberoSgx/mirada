@@ -1,11 +1,11 @@
 import test from 'ava'
-import { compareL2, del, fromFile, toRgba, FloodFillOptions, ReplaceColorOptions, CannyOptions, File } from 'mirada'
-import { canny, floodFill,replaceColor , } from '../src/'
+import { CannyOptions, compareL2, del, File, FloodFillOptions, fromFile, ReplaceColorOptions, toRgba } from 'mirada'
+import { canny, floodFill, replaceColor } from '../src/'
 import { loadMirada } from './testUtil'
 
-test('d', t=>t.true(true))
+test('d', t => t.true(true))
 
-test.before(loadMirada )
+test.before(loadMirada)
 
 test('floodFill', async t => {
   const o: FloodFillOptions = {

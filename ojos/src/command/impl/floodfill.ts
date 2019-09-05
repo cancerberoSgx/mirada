@@ -1,5 +1,5 @@
 import { del, File, Point, Scalar, toRgba } from 'mirada'
-import { floodFill, FloodFillOptions } from '../../tool'
+import { floodFill, FloodFillOptions } from '../../op'
 import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
 import { Command, CommandName, Options1 } from '../types'
 

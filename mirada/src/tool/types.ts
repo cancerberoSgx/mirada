@@ -1,12 +1,11 @@
-import { File } from '..';
-import { ImageData, Rect, Scalar, Mat , Point} from '../types/opencv';
+import { Mat, Point, Scalar } from '../types/opencv'
 
 
 export interface ImageOperation {
-  name:string
-  description:string
+  name: string
+  description: string
   //TODO field descriptions
-  execute(o:OperationExecuteOptions):any
+  execute(o: OperationExecuteOptions): any
   //tODO: 
   // validOptions(o:Partial<GrabCutOptions>):boolean
 }
@@ -42,7 +41,7 @@ export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | (
 export interface GaussianBlurOptions extends ImageToolBaseOptions, GaussianBlurConcreteOptions {
 }
 
-export interface GaussianBlurConcreteOptions  {
+export interface GaussianBlurConcreteOptions {
   blur?: number;
 }
 
