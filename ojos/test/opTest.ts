@@ -1,7 +1,7 @@
 import test from 'ava'
-import {  compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { canny, floodFill, replaceColor, FloodFillOptions, CannyOptions , ReplaceColorOptions, WarpPerspective, WarpPerspectiveOptions} from '../src'
-import { loadMirada, write } from './testUtil'
+import { compareL2, del, File, fromFile, toRgba } from 'mirada'
+import { canny, CannyOptions, floodFill, FloodFillOptions, replaceColor, ReplaceColorOptions, WarpPerspective, WarpPerspectiveOptions } from '../src'
+import { loadMirada } from './testUtil'
 
 test('d', t => t.true(true))
 
@@ -46,36 +46,50 @@ test('canny', async t => {
 })
 
 test.only('warPerspective', async t => {
-  console.log('sebsbs');
-  
- const src = await fromFile('test/assets/lenna.jpg')
-
-  //  await toRgba(src, src )
-  // cv.cvtColor(src, src, )
-    const dst = cv.Mat.zeros( src.rows, src.cols, src.type() );
-  // console.log(src.type(), src.channels(), dst.type(), dst.channels());
-  
-  const o: WarpPerspectiveOptions = {
-    src, 
+  const src = await fromFile('test/assets/lenna.jpg')
+  let dst = cv.Mat.zeros(src.rows, src.cols, src.type())
+  let o: WarpPerspectiveOptions = {
+    src,
     dst,
     inputs: [
       56, 65,
-      368, 52, 
-      28, 387, 
+      368, 52,
+      28, 387,
       389, 390
-      ],  
-      outputs: [
-        56, 65,
-      368, 52, 
-      28, 387, 
+    ],
+    outputs: [
+      56, 65,
+      368, 52,
+      28, 387,
       389, 390
-        ], 
-        size: dst.size()
+    ],
+    size: dst.size()
   }
-  await  new WarpPerspective().exec(o)
-  // const dst =
-  write(o.dst!, 'tmp-WarpPerspective.png')
+  await new WarpPerspective().exec(o)
+  // write(o.dst!, 'tmp-WarpPerspective.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/lenna.jpg'), toRgba(o.dst!), true), 0)
   // t.true(true)
+
+  o = {
+    src,
+    inputs: [
+      56, 65,
+      368, 52,
+      28, 387,
+      389, 390
+    ],
+    outputs: [
+      23, 75,
+      388, 12,
+      68, 337,
+      359, 330
+    ],
+    size: dst.size()
+  }
+  await new WarpPerspective().exec(o)
+
+  // write(o.dst!, 'tmp-WarpPerspective2.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaPerspective.png'), toRgba(o.dst!), true), 0)
+
   del(dst, src)
 })

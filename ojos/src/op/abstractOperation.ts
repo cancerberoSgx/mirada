@@ -7,9 +7,9 @@ export abstract class AbstractOperation implements ImageOperation {
   abstract exec(o: OperationExecBaseOptions): Promise<Mat>
 
   verifyDst(o: OperationExecBaseOptions) {
-   if(!o.dst){
-     o.dst = new cv.Mat()
-   }
-   return o.dst
+    if (!o.dst) {
+      o.dst = new cv.Mat()
+    }
+    return o.dst
   }
 }
