@@ -17,8 +17,8 @@ export function memoryReport() {
   }
 }
 
-export function scalarToRgbColor(c:RGBColor|Scalar, alphaMultiplier=1/255.0): RGBColor {
-  return Array.isArray(c) ? {r: c[0],g: c[0],b: c[0],a: between(c[0]*alphaMultiplier, 0, 1)} : c as RGBColor
+export function scalarToRgbColor( c: Scalar, alphaMultiplier=1/255.0): RGBColor {
+  return  {r: c[0],g: c[1],b: c[2],a: between(c[3]*alphaMultiplier, 0, 1)}
 }
 /**
  * the color piker library i'm using represents alpha channel with different scales depending on the widget... 

@@ -1,15 +1,17 @@
 import * as React from 'react'
 import {  RGBColor, ColorResult , ChromePicker,} from 'react-color';
-import { scalarToRgbColor } from '../../util/util';
+import { scalarToRgbColor, rgbColorToScalar } from '../../util/util';
 import { Scalar } from 'mirada';
+import { isArray } from 'util';
+
 interface P extends S {
-  onChange: (c: RGBColor) => void;
+  onChange: (c: Scalar) => void;
   targetEl?: () => Promise<HTMLCanvasElement>
   selectButton?: boolean
 }
 
 interface S {
-  value: RGBColor|Scalar;
+  value: Scalar;
   displayColorPicker?: boolean;
   selectActive?: boolean
 }
@@ -24,11 +26,11 @@ export class Color extends React.Component<P, S> {
     this.state = {
       displayColorPicker: false,
       selectActive: false,
-      value: p.value || {
+      value:  p.value || {
         r: '241',
         g: '112',
         b: '19',
-        a: '1',
+        a: '100',
       }
     };
   }
@@ -38,7 +40,7 @@ export class Color extends React.Component<P, S> {
     if (el) {
       const p = { x: e.offsetX - el.offsetLeft, y: e.offsetY - el.offsetTop }
       const [r, g, b, a] = document.querySelector<HTMLCanvasElement>('#inputCanvas')!.getContext('2d')!.getImageData(p.x, p.y, 1, 1).data
-      const value = { r, g, b, a }
+      const value = [ r, g, b, a ]
       this.setState({ value })
       this.props.onChange && this.props.onChange(value)
       if (this.props.selectButton) {
@@ -69,8 +71,9 @@ export class Color extends React.Component<P, S> {
   };
 
   protected handleChange = (color: ColorResult) => {
-    this.setState({ value: color.rgb });
-    this.props.onChange(color.rgb);
+    const value = rgbColorToScalar(color.rgb) 
+    this.setState({ value});
+    this.props.onChange(value);
   };
 
   render() {

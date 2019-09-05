@@ -42,7 +42,7 @@
     "magica": "file:../../magica",
     "mirada": "file:../mirada",
     "misc-utils-of-mine-generic": "^0.2.30",
-    "p-map": "^3.0.0",
+    "ojos": "file:../ojos",
     "react": "^16.9.0",
     "react-color": "^2.17.3",
     "react-dom": "^16.9.0",
