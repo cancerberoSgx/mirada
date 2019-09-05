@@ -28,8 +28,11 @@ export class Command_floodFillImpl extends AbstractCommandHandler<CommandName.fl
     const src = f!.asMat()
     const dst = new cv.Mat()
     const o2: FloodFillOptions = {
-      blur: 5, dst, src, seed: o.command.seed,
-      cannyThreshold: [0, 255],
+    dst, src, seed: o.command.seed,
+      preprocess: [
+        {name: 'gaussianBlur',    blur: 5,},
+        {name: 'canny', L2gradient: true}
+      ],
       newColorOrImage: [255,0,0,222],
       connectivity: 4
     }
