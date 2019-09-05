@@ -58,14 +58,14 @@ export async function fromUrl(f: string) {
 /** 
  * Compare two images by getting the L2 error (square-root of sum of squared error). The lower the result the more similar are the images. 
  */
-export function compareL2(f1: Mat | File, f2: Mat | File, destroyBoth=false) {
+export function compareL2(f1: Mat | File, f2: Mat | File, destroyBoth = false) {
   const a = asMat(f1), b = asMat(f2)
   if (a.rows > 0 && a.rows == b.rows && a.cols > 0 && a.cols == a.cols) {
     // Calculate the L2 relative error between images.
     const errorL2 = cv.norm1(a, b, cv.NORM_L2)
     // Convert to a reasonable scale, since L2 error is summed across all pixels of the image.
     const similarity = errorL2 / (a.rows * a.cols)
-    destroyBoth && del(a,b)
+    destroyBoth && del(a, b)
     return similarity
   }
   else {

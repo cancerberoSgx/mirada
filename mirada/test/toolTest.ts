@@ -1,10 +1,10 @@
 import test from 'ava'
-import { compareL2, fromFile, toRgba, del } from '../src'
+import { compareL2, del, fromFile, toRgba } from '../src'
 import { File } from '../src/file'
+import { canny, CannyOptions } from '../src/tool/canny'
 import { floodFill, FloodFillOptions } from "../src/tool/floodFill"
 import { replaceColor, ReplaceColorOptions } from '../src/tool/replaceColor'
-import { loadMirada, write } from './testUtil'
-import { CannyOptions, canny } from '../src/tool/canny';
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -32,7 +32,7 @@ test('replaceColor', async t => {
     newColorOrImage: new cv.Scalar(255, 0, 0, 255)
   }
   const dst = replaceColor(o)
-  t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0);
+  t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0)
   del(dst, src)
 })
 
@@ -43,6 +43,6 @@ test('canny', async t => {
   }
   const dst = canny(o)
   // write(dst, 'tmp-canny.png')
-  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(dst), true), 0);
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(dst), true), 0)
   del(dst, src)
 })
