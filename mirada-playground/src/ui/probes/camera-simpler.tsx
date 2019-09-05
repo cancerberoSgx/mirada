@@ -4,7 +4,7 @@ import * as React from 'react'
 import 'babel-polyfill';
 import {loadOpencv, VideoReader,  Scalar, DIST_L2, bitwise_not} from 'mirada'
 import {  ReplaceColorOptions, OperationExecBaseOptions,  CannyOptions, FloodFillOptions, replaceColor, canny} from 'ojos'
-import { msFrom, now, scalarToRgbColor, rgbColorToScalar } from '../../util/util';
+import { msFrom, now,  } from '../../util/util';
 import { RemoveProperties, setObjectProperty, objectKeys } from 'misc-utils-of-mine-generic';
 import { Color } from '../common/color';
 

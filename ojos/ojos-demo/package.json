@@ -1,0 +1,45 @@
+{
+  "name": "ojos-playground",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist docs",
+    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "lint": " npm run organizeImports && npm run format",
+    "start": "npx tsc && npm run copy && npx parcel src/videoFilterDemo.html ",
+    "copy": "mkdir -p dist && cp node_modules/mirada/dist/src/opencv.js dist/",
+    "build": "npm run clean  && npm run lint && npx tsc && npm run copy && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/index.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && rm -rf ../../demos/docs/ojos-playground && mkdir -p ../../demos/docs/ojos-playground &&  mv docs/* ../../demos/docs/ojos-playground/",
+    "all": "npm run clean && npm run lint && npm run build"
+  },
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/file-saver": "^2.0.1",
+    "@types/node": "^12.7.4",
+    "@types/react": "^16.9.2",
+    "@types/react-color": "^3.0.1",
+    "@types/react-dom": "^16.9.0",
+    "babel-polyfill": "^6.26.0",
+    "parcel": "^1.12.3",
+    "ts-refactor": "0.0.9",
+    "webrtc-adapter": "^7.3.0",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "file-saver": "^2.0.2",
+    "mirada": "file:../../mirada",
+    "misc-utils-of-mine-generic": "^0.2.30",
+    "ojos": "file:../",
+    "react": "^16.9.0",
+    "react-color": "^2.17.3",
+    "react-dom": "^16.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancerberoSgx/mirada.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/mirada"
+  }
+}

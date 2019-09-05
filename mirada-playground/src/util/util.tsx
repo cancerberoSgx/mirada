@@ -16,17 +16,6 @@ export function memoryReport() {
     percent: (100 * m.usedJSHeapSize / m.totalJSHeapSize).toFixed(1) + '%',
   }
 }
-
-export function scalarToRgbColor( c: Scalar, alphaMultiplier=1/255.0): RGBColor {
-  return  {r: c[0],g: c[1],b: c[2],a: between(c[3]*alphaMultiplier, 0, 1)}
-}
-/**
- * the color piker library i'm using represents alpha channel with different scales depending on the widget... 
- */
-export function rgbColorToScalar(c:RGBColor, alphaMultiplier=255.0 ): Scalar {
-  return [c.r, c.g, c.b, typeof c.a!=='undefined' ? Math.round(c.a*alphaMultiplier) : 255]
-}
-
 export function msFrom(t0: number) {
   return (now() - t0) / 1000000
 }
