@@ -85,7 +85,7 @@ export class PerspectiveTransform extends AbstractTool {
     let dst = new cv.Mat()
     let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, inputs)
     let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, outputs)
-    let M = cv.getPerspectiveTransform(srcTri, dstTri)
+    let M = cv.getPerspectiveTransform(srcTri, dstTri, cv.SOLVEPNP_AP3P)
     cv.warpPerspective(src, dst, M, size, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar())
     i.setBuffer(dst)
     i.render()
@@ -93,3 +93,13 @@ export class PerspectiveTransform extends AbstractTool {
   }
 }
 
+export enum SolveMethodEnum  {
+SOLVEPNP_ITERATIVE='SOLVEPNP_ITERATIVE',
+SOLVEPNP_EPNP='SOLVEPNP_EPNP',
+SOLVEPNP_P3P='SOLVEPNP_P3P',
+SOLVEPNP_DLS='SOLVEPNP_DLS',
+SOLVEPNP_UPNP='SOLVEPNP_UPNP',
+SOLVEPNP_AP3P='SOLVEPNP_AP3P',
+SOLVEPNP_IPPE='SOLVEPNP_IPPE',
+SOLVEPNP_IPPE_SQUARE='SOLVEPNP_IPPE_SQUARE'
+ç

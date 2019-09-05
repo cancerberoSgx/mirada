@@ -43,6 +43,7 @@ See [Reference API docs](api). Important types:
 See [mirada-cli project page](../mirada-cli).
 
 ## TODO
+- [ ] move tool and commands to another project
 - [ ] docs
 - [ ] integrate the new videoCapturer and replace the old one src/browser/videoCapture.ts
 - [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/

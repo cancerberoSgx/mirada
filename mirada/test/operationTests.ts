@@ -1,6 +1,6 @@
 import test from 'ava'
 import jimp from 'jimp'
-import { compareL2, File, fromFile, Mat, tool, toRgba } from '../src'
+import { compareL2, File, fromFile, Mat, tool, toRgba, grabCut_obsolete } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
 
@@ -23,7 +23,7 @@ test('warpAffine', async t => {
 
 test('grabCut', async t => {
   const image = await File.fromFile('test/assets/lenna.jpg')
-  const result = await tool.grabCut({
+  const result = await grabCut_obsolete({
     image,
     x: 50,
     y: 50,

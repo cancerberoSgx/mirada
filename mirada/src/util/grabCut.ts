@@ -1,8 +1,8 @@
-import { loadOpencv, toImageData } from '..'
-import { toRgba } from '../util/imageUtil'
-import { GrabCutOptions, GrabCutResult } from './types';
+import { loadOpencv, toImageData, Rect ,File } from '..'
+import { toRgba } from './imageUtil'
+import { Scalar } from '../types/opencv';
 
-export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
+export async function grabCut_obsolete(o: GrabCutObsoleteOptions): Promise<GrabCutOsoleteResult> {
   await loadOpencv()
   var src = o.image.asMat()
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
@@ -34,4 +34,19 @@ export async function grabCut(o: GrabCutOptions): Promise<GrabCutResult> {
   return {
     image
   }
+}
+
+/**
+ * TODO remove this - just wrap opencv API
+ */
+export interface GrabCutObsoleteOptions extends Rect {
+  image: File;
+  /**
+   * If given a rectangle frame will be drawn on given coordinates with that color.
+   */
+  frameColor?: Scalar;
+}
+
+export interface GrabCutOsoleteResult {
+  image: ImageData;
 }

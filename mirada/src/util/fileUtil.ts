@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch'
 import { FS_ROOT } from '../opencvReady'
-
+export interface a{}
 /**
  * if given a file it ignores its contents and alwasys read again from FS
  */

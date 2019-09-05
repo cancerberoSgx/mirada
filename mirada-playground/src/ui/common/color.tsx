@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { SketchPicker, ColorChangeHandler, RGBColor, ColorResult } from 'react-color';
+import {  RGBColor, ColorResult , ChromePicker,} from 'react-color';
+import { scalarToRgbColor } from '../../util/util';
+import { Scalar } from 'mirada';
 interface P extends S {
   onChange: (c: RGBColor) => void;
   targetEl?: () => Promise<HTMLCanvasElement>
@@ -7,13 +9,13 @@ interface P extends S {
 }
 
 interface S {
-  value: RGBColor;
+  value: RGBColor|Scalar;
   displayColorPicker?: boolean;
   selectActive?: boolean
 }
 
 export class Color extends React.Component<P, S> {
-  picker: SketchPicker | null = null
+  picker: ChromePicker | null = null
 
   constructor(p: P, s: S) {
     super(p, s);
@@ -73,7 +75,6 @@ export class Color extends React.Component<P, S> {
 
   render() {
     return (<>
-      
       <div style={this.styles().swatch} onClick={this.handleClick}>
         <div style={this.styles().color} />
       </div>
@@ -82,18 +83,19 @@ export class Color extends React.Component<P, S> {
           <label style={{ marginLeft: 10, display: 'inline-block', verticalAlign: 'super' }}> <input style={{  display: 'inline-block', verticalAlign: 'super' }} type="checkbox" checked={this.state.selectActive} onChange={this.onSelect} />Select</label> : ''}
       {this.state.displayColorPicker ? <div style={this.styles().popover}>
         <div style={this.styles().cover} onClick={this.handleClose} />
-        <SketchPicker color={this.state.value}  onChange={this.handleChange} ref={c => this.picker = c} />
+        <ChromePicker color={scalarToRgbColor(this.state.value)}  onChange={this.handleChange} ref={c => this.picker = c} />
       </div> : null}
     </>);
   }
 
   protected styles() {
+    const v = scalarToRgbColor(this.state.value)
     return {
       color: {
         width: '36px',
         height: '14px',
         borderRadius: '2px',
-        background: `rgba(${this.state.value.r}, ${this.state.value.g}, ${this.state.value.b}, ${this.state.value.a})`,
+        background: `rgba(${v.r}, ${v.g}, ${v.b}, ${v.a})`,
       },
       swatch: {
         padding: '5px',

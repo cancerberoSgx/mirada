@@ -12,10 +12,10 @@ test('floodFill', async t => {
   const o: FloodFillOptions = {
     src: await fromFile('test/assets/coins.png'),
     dst: new cv.Mat(),
-    seed: new cv.Point(5, 6),
     preprocess: [
       { name: 'gaussianBlur' }, { name: 'canny' }
     ],
+    seed: new cv.Point(5, 6),
     newColorOrImage: new cv.Scalar(222, 0, 0, 0),
     lowDiff: new cv.Scalar(19, 19, 91, 255),
     upDiff: new cv.Scalar(229, 255, 255, 255) // when low values flood pass through edges of color similar to the low channel

@@ -1,17 +1,21 @@
 import { File } from '..';
 import { ImageData, Rect, Scalar, Mat , Point} from '../types/opencv';
 
-export interface GrabCutOptions extends Rect {
-  image: File;
-  /**
-   * If given a rectangle frame will be drawn on given coordinates with that color.
-   */
-  frameColor?: Scalar;
+
+export interface ImageOperation {
+  name:string
+  description:string
+  //TODO field descriptions
+  execute(o:OperationExecuteOptions):any
+  //tODO: 
+  // validOptions(o:Partial<GrabCutOptions>):boolean
+}
+export interface OperationExecuteOptions {
+  src: Mat,
+  dst?: Mat
 }
 
-export interface GrabCutResult {
-  image: ImageData;
-}
+
 
 export interface ImageToolBaseOptions {
   src: Mat,
@@ -19,15 +23,13 @@ export interface ImageToolBaseOptions {
 }
 
 export interface ReplaceColorOptions extends ImageToolBaseOptions {
-  lowColor: Range | number[],
-  highColor: Range | number[],
-  newColorOrImage: Range | number[] | Mat,
+  lowColor: Scalar | number[],
+  highColor: Scalar | number[],
+  newColorOrImage: Scalar | number[] | Mat,
 }
 
-export interface FloodFillOptions {
-  src: Mat;
+export interface FloodFillOptions extends ImageToolBaseOptions {
   seed: Point;
-  dst?: Mat;
   preprocess?: FloodFillPreprocess[]
   newColorOrImage?: Scalar | number[] | Mat;
   connectivity?: 4 | 8;
@@ -35,9 +37,12 @@ export interface FloodFillOptions {
   upDiff?: Scalar | number[]
 }
 
-export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'gaussianBlur' } & GaussianBlurOptions)
+export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'gaussianBlur' } & GaussianBlurConcreteOptions)
 
-export interface GaussianBlurOptions {
+export interface GaussianBlurOptions extends ImageToolBaseOptions, GaussianBlurConcreteOptions {
+}
+
+export interface GaussianBlurConcreteOptions  {
   blur?: number;
 }
 
