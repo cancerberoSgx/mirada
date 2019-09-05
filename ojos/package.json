@@ -1,7 +1,7 @@
 {
   "name": "ojos",
   "version": "0.0.1",
-  "description": "Extra utilities and abstractions on top of mirada - my opencv.s based library",
+  "description": "High level API on top of Mirada (opencv.js) supporting bth browser and node.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -14,7 +14,9 @@
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
     "build": "npm run clean && npx tsc",
-    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js"  ,
+      "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish"
+
   },
   "keywords": [
     "typescript",

@@ -1,4 +1,4 @@
-import { Mat, Point, Scalar } from 'mirada'
+import { BorderTypes, Mat, Size } from 'mirada'
 
 
 export interface ImageOperation {
@@ -15,39 +15,16 @@ export interface OperationExecBaseOptions {
   dst?: Mat
 }
 
-export interface ReplaceColorOptions extends OperationExecBaseOptions {
-  lowColor: Scalar | number[],
-  highColor: Scalar | number[],
-  newColorOrImage: Scalar | number[] | Mat,
-}
-
-export interface FloodFillOptions extends OperationExecBaseOptions {
-  seed: Point;
-  preprocess?: FloodFillPreprocess[]
-  newColorOrImage?: Scalar | number[] | Mat;
-  connectivity?: 4 | 8;
-  lowDiff?: Scalar | number[]
-  upDiff?: Scalar | number[]
-}
-
-export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'gaussianBlur' } & GaussianBlurConcreteOptions)
-
-export interface GaussianBlurOptions extends OperationExecBaseOptions, GaussianBlurConcreteOptions {
-}
-
-export interface GaussianBlurConcreteOptions {
-  blur?: number;
-}
-
-export interface CannyOptions extends CannyConcreteOptions, OperationExecBaseOptions {
-}
-
-export interface CannyConcreteOptions {
-  threshold1?: number;
+export interface WithBorderType {
   /**
-   * Observation: When this has low values flood pass through edges of color similar to the low channel
+   * border mode used to extrapolate pixels outside of the image, see [BorderTypes]
    */
-  threshold2?: number;
-  apertureSize?: number;
-  L2gradient?: boolean;
+  borderType?: BorderTypes
+}
+
+export interface WithKSize {
+  /**
+   * blurring kernel size. In general only odd numbers greater than 2 are accepted 
+   */
+  ksize: Size,
 }

@@ -1,6 +1,19 @@
 import { del } from 'mirada'
 import { checkThrow } from 'misc-utils-of-mine-generic'
-import { CannyOptions } from './types'
+import { OperationExecBaseOptions } from './types'
+
+export interface CannyOptions extends CannyConcreteOptions, OperationExecBaseOptions {
+}
+
+export interface CannyConcreteOptions {
+  threshold1?: number;
+  /**
+   * Observation: When this has low values flood pass through edges of color similar to the low channel
+   */
+  threshold2?: number;
+  apertureSize?: number;
+  L2gradient?: boolean;
+}
 
 export function canny(o: CannyOptions) {
   checkThrow(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0, 'Aperture size must be odd and greater than 2')

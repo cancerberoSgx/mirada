@@ -8,6 +8,7 @@
 /tsconfig.json
 /declarations.d.ts
 *.tgz
+probes
 test
 typescript-ast-query-editor
 formatCodeSettings.json

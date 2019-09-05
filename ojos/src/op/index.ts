@@ -1,5 +1,7 @@
 export * from './canny'
 export * from './floodFill'
+export * from './gaussianBlur'
+export * from './medianBlur'
 export * from './replaceColor'
 export * from './types'
 export * from './warpPerspective'

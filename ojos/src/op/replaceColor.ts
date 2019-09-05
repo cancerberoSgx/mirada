@@ -1,5 +1,11 @@
-import { del, isMat } from 'mirada'
-import { ReplaceColorOptions } from './types'
+import { del, isMat, Mat, Scalar } from 'mirada'
+import { OperationExecBaseOptions } from './types'
+
+export interface ReplaceColorOptions extends OperationExecBaseOptions {
+  lowColor: Scalar | number[],
+  highColor: Scalar | number[],
+  newColorOrImage: Scalar | number[] | Mat,
+}
 
 export function replaceColor(o: ReplaceColorOptions) {
   o.dst = o.dst || new cv.Mat()

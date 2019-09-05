@@ -6,9 +6,13 @@ export abstract class AbstractOperation implements ImageOperation {
   description: string = 'TODO'
   abstract exec(o: OperationExecBaseOptions): Promise<Mat>
 
-  verifyDst(o: OperationExecBaseOptions) {
+  verifyDst(o: OperationExecBaseOptions, sameSizeAndType = false) {
     if (!o.dst) {
-      o.dst = new cv.Mat()
+      if (sameSizeAndType) {
+        o.dst = cv.Mat.zeros(o.src.rows, o.src.cols, o.src.type())
+      } else {
+        o.dst = new cv.Mat()
+      }
     }
     return o.dst
   }

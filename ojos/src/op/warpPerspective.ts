@@ -1,12 +1,11 @@
-import { BorderTypes, isMat, Mat, Scalar, Size, SolvePnPMethod } from 'mirada'
+import { isMat, Mat, Scalar, Size, SolvePnPMethod } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions } from './types'
+import { OperationExecBaseOptions, WithBorderType } from './types'
 
-export interface WarpPerspectiveOptions extends OperationExecBaseOptions {
+export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType {
   inputs: Scalar | Mat
   outputs: Scalar | Mat
   solveMethod?: SolvePnPMethod
-  borderMode?: BorderTypes
   borderValue?: Scalar
   size?: Size
 }
@@ -25,7 +24,7 @@ export class WarpPerspective extends AbstractOperation {
     let dstTri = isMat(o.outputs) ? o.outputs : cv.matFromArray(4, 1, cv.CV_32FC2, o.outputs)
     let M = cv.getPerspectiveTransform(srcTri, dstTri)
     cv.warpPerspective(o.src, dst!, M, o.size || dst.size(),
-      o.solveMethod || cv.INTER_LINEAR, o.borderMode || cv.BORDER_CONSTANT, o.borderMode || new cv.Scalar())
+      o.solveMethod || cv.INTER_LINEAR, o.borderType || cv.BORDER_CONSTANT, o.borderType || new cv.Scalar())
     return dst
   }
 }
