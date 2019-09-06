@@ -1,11 +1,23 @@
 import { BorderTypes, Mat, Size } from 'mirada'
 
 
-export interface ImageOperation {
+export interface ImageOperation<T extends OperationExecBaseOptions> {
   name: string
   description: string
+  /**
+   * The operation doesn't support "in-place" modifications. (passing the same mat as src and dst)
+   */
+  noInPlace: boolean
+  /**
+   * Does the dst mat need to be of the same size and type as src?
+   */
+  sameSizeAndType: boolean
+  /**
+   * valid channel numbers of input images
+   */
+  validChannels: number[] | undefined
   //TODO field descriptions
-  exec(o: OperationExecBaseOptions): Promise<Mat>
+  exec(o?: T): Promise<Mat>
   //tODO: 
   // validOptions(o:Partial<GrabCutOptions>):boolean
 }

@@ -1,19 +1,60 @@
 import { Mat } from 'mirada'
+import { RemoveProperties } from 'misc-utils-of-mine-generic'
 import { ImageOperation, OperationExecBaseOptions } from './types'
 
-export abstract class AbstractOperation implements ImageOperation {
+export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
+
+export abstract class AbstractOperation<T extends OperationExecBaseOptions> implements ImageOperation<T> {
   abstract name: string;
   description: string = 'TODO'
-  abstract exec(o: OperationExecBaseOptions): Promise<Mat>
+  noInPlace = false
+  sameSizeAndType = false
+  protected isInPlace = false
+  validChannels: number[] | undefined = undefined
 
-  verifyDst(o: OperationExecBaseOptions, sameSizeAndType = false) {
-    if (!o.dst) {
-      if (sameSizeAndType) {
-        o.dst = cv.Mat.zeros(o.src.rows, o.src.cols, o.src.type())
+  constructor(protected defaultOptions?: T) {
+
+  }
+
+  async exec(o?: T) {
+    const options = this.checkOptions(o)
+    this.checkInPlaceBefore(options)
+    await this._exec(options)
+    this.checkInPlaceAfter(options)
+    return options.dst!
+  }
+  protected abstract _exec(o: MandatoryDst<T>): Promise<void>
+
+  protected checkOptions(o?: T) {
+    if (!o && !this.defaultOptions) {
+      throw new Error('No options provided not in the constructor or in exec() call. Aborting.')
+    }
+    const options: T = { ...this.defaultOptions, ...o } as T
+    if (this.validChannels && this.validChannels.length && !this.validChannels.includes(options.src.channels())) {
+      throw new Error(`Invalid number of channels for input image which has ${options.src.channels()} and must be in [${this.validChannels.join(',')}]`)
+    }
+    if (!options.dst) {
+      if (this.sameSizeAndType) {
+        options.dst = cv.Mat.zeros(options.src.rows, options.src.cols, options.src.type())
       } else {
-        o.dst = new cv.Mat()
+        options.dst = new cv.Mat()
       }
     }
-    return o.dst
+    return options as MandatoryDst<T>
+  }
+
+  protected checkInPlaceBefore(o: OperationExecBaseOptions) {
+    if (this.noInPlace && o.dst === o.src) {
+      this.isInPlace = true
+      o.dst = o.src.clone()
+    }
+  }
+  protected checkInPlaceAfter(o: OperationExecBaseOptions) {
+    if (this.isInPlace && this.noInPlace && o.dst) {
+      this.isInPlace = false
+      o.dst.copyTo(o.src)
+      o.dst.delete()
+      o.dst = o.src
+    }
   }
 }

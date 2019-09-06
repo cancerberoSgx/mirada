@@ -1,14 +1,17 @@
 import Jimp from 'jimp'
-import { asImageData, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, Mat, toRgba } from 'mirada'
+import { asImageData, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv, LoadOptions, Mat, toRgba } from 'mirada'
 
 let loaded = false
 
 export async function loadMirada() {
+  await loadMirada2()
+}
+export async function loadMirada2(o?: LoadOptions) {
   if (!loaded) {
     loaded = true
     await installFormatProxy(() => new JimpCodec(Jimp))
     await loadFormatProxies()
-    await loadOpencv()
+    await loadOpencv(o)
   }
 }
 

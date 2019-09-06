@@ -50,3 +50,6 @@ apps
 static
 bkps
 /api
+/ojos-demo
+/probes
+formatCodeSettings.json

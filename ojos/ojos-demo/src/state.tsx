@@ -20,6 +20,7 @@ export interface State extends StateTools {
   fps: number;  
   order: ToolNames[]
 }
+
 export interface StateTools {
   replaceColor: ToolProps<ReplaceColorOptions>;
   canny: ToolProps<CannyOptions>;
@@ -31,7 +32,6 @@ export interface StateTools {
 let _state: State
 export const getState: () => State = () => {
   if (!_state) {
-
 const tools:StateTools = {
   replaceColor: {
         name: ToolNames.replaceColor,
@@ -39,14 +39,6 @@ const tools:StateTools = {
         lowColor: new cv.Scalar(0, 0, 0, 255),
         highColor: new cv.Scalar(150, 150, 150, 255),
         newColorOrImage: new cv.Scalar(255, 0, 0, 255)
-      },
-      canny: {
-        description: 'TODO',
-        name: ToolNames.canny,
-        threshold1: 1,
-        threshold2: 222,
-        apertureSize: 3,
-        L2gradient: false
       },
       convertTo: {
         description: new ConvertTo().description,
@@ -69,9 +61,16 @@ const tools:StateTools = {
         newColorOrImage: new cv.Scalar(222, 0, 0, 0),
         lowDiff: new cv.Scalar(19, 19, 91, 255),
         upDiff: new cv.Scalar(229, 255, 255, 255)
-      }
+      },
+      canny: {
+        description: 'TODO',
+        name: ToolNames.canny,
+        threshold1: 1,
+        threshold2: 222,
+        apertureSize: 3,
+        L2gradient: false
+      },
 }
-
     _state = {
       fps: 0,
       ...tools,

@@ -1,8 +1,8 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { canny, CannyOptions, floodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
-import { loadMirada, write } from './testUtil'
 import { ConvertTo } from '../src/op/convertTo'
+import { loadMirada } from './testUtil'
 
 
 test.before(loadMirada)
@@ -11,7 +11,7 @@ test('d', t => t.true(true))
 
 test('convertTo', async t => {
   const src = await fromFile('test/assets/n.png')
-  const dst = await new ConvertTo().exec({ src, alpha: 1.8, beta: 0})
+  const dst = await new ConvertTo().exec({ src, alpha: 1.8, beta: 0 })
   t.deepEqual(compareL2(await File.fromFile('test/assets/nConvertTo.png'), dst), 0)
   del(src, dst)
 })

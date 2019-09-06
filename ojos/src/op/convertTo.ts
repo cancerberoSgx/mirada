@@ -1,7 +1,5 @@
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType, WithKSize } from './types'
-import { intBetween } from '../util'
-import { Mat, Scalar, get, set } from 'mirada'
+import { OperationExecBaseOptions } from './types'
 
 export interface ConvertToOptions extends OperationExecBaseOptions, ConvertToConcreteOptions {
 }
@@ -15,12 +13,12 @@ export interface ConvertToConcreteOptions {
   dtype?: number
 }
 
-export class ConvertTo extends AbstractOperation {
+export class ConvertTo extends AbstractOperation<ConvertToOptions> {
   name: string = "ConvertTo"
-  async exec(o: ConvertToOptions) {
-    const dst = this.verifyDst(o)
-      o.src.convertTo(dst, o.dtype||-1, o.alpha||1.0, o.beta||0.0)
-    return dst
+  protected async _exec(o: ConvertToOptions) {
+    // const dst = this.verifyDst(o)
+    o.src.convertTo(o.dst!, o.dtype || -1, o.alpha || 1.0, o.beta || 0.0)
+    // return dst
   }
 }
 

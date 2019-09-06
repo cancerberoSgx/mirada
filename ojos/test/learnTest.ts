@@ -1,6 +1,6 @@
 import test from 'ava'
-import { compareL2, File, fromFile, toRgba, Mat, Scalar, del } from 'mirada'
-import { loadMirada, write } from './testUtil'
+import { compareL2, del, File, fromFile, toRgba } from 'mirada'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -34,24 +34,24 @@ test('floodFill', async t => {
 
 test('pixels 1', async t => {
 
-  let mat = cv.Mat.ones(10, 10, cv.CV_8UC3);
-  let view = mat.data;
-  const RValue = 3;
-  const GValue = 7;
-  const BValue = 197;
+  let mat = cv.Mat.ones(10, 10, cv.CV_8UC3)
+  let view = mat.data
+  const RValue = 3
+  const GValue = 7
+  const BValue = 197
   // Alter matrix[2, 1].
-  let step = 3 * 10;
+  let step = 3 * 10
 
-  view[2 * step + 3] = RValue;
-  view[2 * step + 3 + 1] = GValue;
-  view[2 * step + 3 + 2] = BValue;
+  view[2 * step + 3] = RValue
+  view[2 * step + 3 + 1] = GValue
+  view[2 * step + 3 + 2] = BValue
 
   // Access matrix[2, 1].
-  view = mat.ptr(2);
+  view = mat.ptr(2)
 
-  t.deepEqual(view[3], RValue);
-  t.deepEqual(view[3 + 1], GValue);
-  t.deepEqual(view[3 + 2], BValue);
+  t.deepEqual(view[3], RValue)
+  t.deepEqual(view[3 + 1], GValue)
+  t.deepEqual(view[3 + 2], BValue)
   // write(mat, 'tmppixels1.jpg')
   del(mat)
 })

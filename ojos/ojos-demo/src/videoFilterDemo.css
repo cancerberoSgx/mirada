@@ -1,0 +1,12 @@
+ol label {
+  margin-right: 1em;
+  padding-right: 1em;
+  border-right: 1px solid #a1a1a1;
+}
+ol .enable {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+ol li {
+  margin-top: 1em;
+}

@@ -11,13 +11,14 @@ export interface GaussianBlurConcreteOptions extends WithBorderType, WithKSize {
 
 /**
  */
-export class GaussianBlur extends AbstractOperation {
+export class GaussianBlur extends AbstractOperation<GaussianBlurOptions> {
   name: string = "GaussianBlur"
-  async exec(o: GaussianBlurOptions) {
+  sameSizeAndType = true
+  protected async _exec(o: GaussianBlurOptions) {
     //TODO: check invalid kernel size
-    const dst = this.verifyDst(o, true)
-    cv.GaussianBlur(o.src, dst, o.ksize, o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
-    return dst
+    // const dst = this.verifyDst(o, true)
+    cv.GaussianBlur(o.src, o.dst!, o.ksize, o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
+    // return dst
   }
 }
 

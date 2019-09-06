@@ -11,13 +11,13 @@ export interface MedianBlurConcreteOptions extends WithBorderType {
 
 /**
  */
-export class MedianBlur extends AbstractOperation {
+export class MedianBlur extends AbstractOperation<MedianBlurOptions> {
   name: string = "MedianBlur"
-  async exec(o: MedianBlurOptions) {
+  protected async _exec(o: MedianBlurOptions) {
     checkThrow(!o.ksize || o.ksize === 1 || o.ksize % 2 !== 0, 'MedianBlur Blur size must be odd and greater than 2')
-    const dst = this.verifyDst(o, true)
-    cv.medianBlur(o.src, dst, o.ksize)
-    return dst
+    // const dst = this.verifyDst(o, true)
+    cv.medianBlur(o.src, o.dst!, o.ksize)
+    // return dst
   }
 }
 
