@@ -15,10 +15,7 @@ export class GaussianBlur extends AbstractOperation<GaussianBlurOptions> {
   name: string = "GaussianBlur"
   sameSizeAndType = true
   protected async _exec(o: GaussianBlurOptions) {
-    //TODO: check invalid kernel size
-    // const dst = this.verifyDst(o, true)
     cv.GaussianBlur(o.src, o.dst!, o.ksize, o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
-    // return dst
   }
 }
 

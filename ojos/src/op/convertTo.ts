@@ -5,7 +5,13 @@ export interface ConvertToOptions extends OperationExecBaseOptions, ConvertToCon
 }
 
 export interface ConvertToConcreteOptions {
+  /**
+   *  Color scale factor.
+   */
   alpha?: number
+  /**
+   * Delta added to the scaled values.
+   */
   beta?: number
   /**
    * Output image depth, for example, cv.CV_8U
@@ -16,9 +22,7 @@ export interface ConvertToConcreteOptions {
 export class ConvertTo extends AbstractOperation<ConvertToOptions> {
   name: string = "ConvertTo"
   protected async _exec(o: ConvertToOptions) {
-    // const dst = this.verifyDst(o)
     o.src.convertTo(o.dst!, o.dtype || -1, o.alpha || 1.0, o.beta || 0.0)
-    // return dst
   }
 }
 

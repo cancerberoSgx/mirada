@@ -2,12 +2,26 @@ import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { canny, CannyOptions, floodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
 import { ConvertTo } from '../src/op/convertTo'
-import { loadMirada } from './testUtil'
-
+import { loadMirada, write } from './testUtil'
+import { Threshold } from '../src/op/threshold'
+import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 
 test.before(loadMirada)
 
-test('d', t => t.true(true))
+test('adaptiveThreshold', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+  new AdaptiveThreshold().exec({ src, dst: src, maxval: 200, adaptiveMethod: cv.ADAPTIVE_THRESH_GAUSSIAN_C, blockSize: 3, thresholdType: cv.THRESH_BINARY, C: 2 })
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaAdaptiveThreshold.png'), await toRgba(src)), 0)
+  del(src)
+})
+
+test('threshold', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  new Threshold().exec({ src, dst: src, maxval: 200, thresh: 177, type: cv.THRESH_BINARY })
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaThreshold.png'), src), 0)
+  del(src)
+})
 
 test('convertTo', async t => {
   const src = await fromFile('test/assets/n.png')

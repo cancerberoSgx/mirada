@@ -26,10 +26,7 @@ export class BoxFilter extends AbstractOperation<BoxFilterOptions> {
   name: string = "BoxFilter"
   sameSizeAndType = true
   protected async _exec(o: BoxFilterOptions) {
-    //TODO: check invalid kernel size
-    // const dst = this.verifyDst(o, true)
     cv.boxFilter(o.src, o.dst!, o.depth || -1, o.ksize, o.anchor || new cv.Point(-1, -1), o.normalize, o.borderType || cv.BORDER_DEFAULT)
-    // return o.dst
   }
 }
 
