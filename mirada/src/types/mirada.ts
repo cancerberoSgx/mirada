@@ -2,6 +2,42 @@ import { ImageData } from './opencv'
 export { FS } from './emscripten'
 
 /**
+ * Important: this options will be applied only in the first call to [loadOpencv] or when [force] is given.
+ */
+export interface LoadOptions {
+  /**
+   * Callback function to be called when library is ready to be used. (equivalent to promise resolve).
+   */
+  onloadCallback?: () => void
+
+  /**
+   * The location of opencv.js file to load. In the case of browser it can be a relative or absolute URL.
+   */
+  opencvJsLocation?: string
+
+  /**
+   * (Node.js only): current working dir. By default is '.'.
+   */
+  cwd?: string
+
+  /**
+   * Loads opencv_exception.js instead of default opencv.js file which has better exception handling for 
+   * development at some cost on speed.
+   */
+  opencvJsExceptions?: boolean
+
+  /**
+   * Format proxies to be installed and loaded.
+   */
+  formatProxies?: FormatProxy[]
+
+  /**
+   * It will force the library loading - reloading it if it's already loaded
+   */
+  force?: boolean
+}
+
+/**
  * User provided image formats encode/decode implementation. The proxy is responsible of creating codec
  * instances
  *

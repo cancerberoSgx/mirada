@@ -38,20 +38,34 @@ process()
 export class VideoReader {
   ctx: CanvasRenderingContext2D;
   mat: Mat = null as any
+  protected size: Size
+
+  /**
+   * Indicates if the video is currently being processed
+   */
   streaming: boolean = false
-  static defaultOptions: Options = {
+
+  protected static defaultOptions: Options = {
     size: 'canvas',
     constraints: {
       audio: false,
       video: true
     }
   }
-  protected size: Size
 
   constructor(protected video: HTMLVideoElement, protected canvas: HTMLCanvasElement, protected o: Options = VideoReader.defaultOptions) {
     this.o = { ...VideoReader.defaultOptions, ...o }
     this.ctx = canvas.getContext('2d')!
     this.size = this.getSize()
+  }
+
+  /**
+   * reads current video frame into [mat]
+   */
+  read() {
+    this.o.noMatCheck || this.matCheck()
+    this.ctx.drawImage(this.video, 0, 0, this.size.width, this.size.height)
+    this.mat.data.set(this.ctx.getImageData(0, 0, this.size.width, this.size.height).data)
   }
 
   canPlay() {
@@ -88,12 +102,6 @@ export class VideoReader {
           }
     }
     return this.size
-  }
-
-  read() {
-    this.o.noMatCheck || this.matCheck()
-    this.ctx.drawImage(this.video, 0, 0, this.size.width, this.size.height)
-    this.mat.data.set(this.ctx.getImageData(0, 0, this.size.width, this.size.height).data)
   }
 
   private matCheck() {

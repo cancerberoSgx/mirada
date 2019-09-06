@@ -1,27 +1,19 @@
 import { existsSync } from 'fs'
-import { getGlobal, isNode } from 'misc-utils-of-mine-generic'
-import { loadFormatProxies } from './format'
+import { getGlobal, isNode, notFalsy, serial } from 'misc-utils-of-mine-generic'
+import { installFormatProxy, loadFormatProxies } from './format'
 import { FS } from './types/emscripten'
+import { FormatProxy, LoadOptions } from './types/mirada'
 import { buildError, resolveNodeModule } from './util/misc'
 
 export const FS_ROOT = '/work'
 
-let FS_: FS
+let FS_: FS|undefined
 
 /**
  * gets the emscripten FS API
  */
 export function getFS() {
-  return FS_
-}
-
-export interface LoadOptions {
-  onloadCallback?: () => void
-  opencvUrl?: string
-  /**
-   * node.js : current working dir. By default is '.'
-   */
-  cwd?: string
+  return FS_!
 }
 
 /**
@@ -35,6 +27,11 @@ export interface LoadOptions {
  * in the case of the browser it could be in an external server.
  */
 export function loadOpencv(options: LoadOptions = {}) {
+  if(options.force){
+    opencvLoaded=false
+    getGlobal().Module=undefined
+    FS_=undefined
+  }
   if (opencvLoaded) {
     options.onloadCallback && options.onloadCallback()
     return Promise.resolve()
@@ -48,24 +45,25 @@ export function loadOpencv(options: LoadOptions = {}) {
 }
 let opencvLoaded = false
 
-function loadOpencvNode(o: LoadOptions = {}) {
+function loadOpencvNode(o: LoadOptions) {
   return new Promise<FS>(resolve => {
-    const paths = ['./node_modules/mirada/dist/src/opencv.js', './dist/src/opencv.js']
+    const fileName = o.opencvJsExceptions ? 'opencv_exception.js' : 'opencv.js'
+    const paths = [o.opencvJsLocation, `./node_modules/mirada/dist/src/${fileName}`, `./dist/src/${fileName}`].filter(notFalsy)
     const g = getGlobal()
     var path = paths.find(existsSync)
     const resolved = path && resolveNodeModule(path)
     if (!resolved) {
-      throw buildError(`opencv.js not found. in any of these: ${paths.join(', ')}`)
+      throw buildError(`${fileName} not found. in any of these: ${paths.join(', ')}`)
     }
     g.Module = {
       preRun: () => {
-        if (typeof window !== 'object') {
+        if (typeof window !== 'object' && !g.Module.FS.analyzePath(FS_ROOT).exists) {
           g.Module.FS.mkdir(FS_ROOT)
           g.Module.FS.mount(g.Module.FS.filesystems.NODEFS, { root: o.cwd || process.cwd() || '.' }, FS_ROOT)
         }
       },
       onRuntimeInitialized: async () => {
-        await finishSetup()
+        await finishSetup(o)
         o.onloadCallback && o.onloadCallback()
         resolve()
       },
@@ -75,21 +73,25 @@ function loadOpencvNode(o: LoadOptions = {}) {
       }
     }
     try {
+      // console.log(resolved)      
       g.cv = require(resolved)
     } catch (error) {
-      console.error('An error occurred when trying to load opencv.js form ' + resolved, error, error.stack)
+      console.error(`An error occurred when trying to load ${fileName} form ` + resolved, error, error.stack)
       throw error
     }
   })
 }
 
-async function finishSetup() {
+async function finishSetup(o: LoadOptions) {
   opencvLoaded = true
+  await serial((o.formatProxies || []).map(p => async () => {
+    await installFormatProxy(p)
+  }))
   await loadFormatProxies()
   FS_ = getGlobal().Module.FS
 }
 
-function loadOpencvBrowser(o: LoadOptions = {}) {
+function loadOpencvBrowser(o: LoadOptions) {
   return new Promise<FS>((resolve, reject) => {
     let script = document.createElement('script')!
     script.setAttribute('async', '')
@@ -97,23 +99,24 @@ function loadOpencvBrowser(o: LoadOptions = {}) {
     script.addEventListener('load', async () => {
       const g = getGlobal()
       if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
-        await finishSetup()
+        await finishSetup(o)
         o.onloadCallback && o.onloadCallback()
         resolve()
       }
       else {
         g.cv = typeof g.cv === 'undefined' ? {} : g.cv
         g.cv.onRuntimeInitialized = async () => {
-          await finishSetup()
+          await finishSetup(o)
           o.onloadCallback && o.onloadCallback()
           resolve()
         }
       }
     })
+    const src = o.opencvJsLocation || (o.opencvJsExceptions ? 'opencv_exception.js' : 'opencv.js')
     script.addEventListener('error', () => {
-      reject('Failed to load ' + o.opencvUrl)
+      reject('Failed to load ' + src)
     })
-    script.src = o.opencvUrl || 'opencv.js'
+    script.src = src
     let node = document.getElementsByTagName('script')[0]
     node.parentNode!.insertBefore(script, node)
   })

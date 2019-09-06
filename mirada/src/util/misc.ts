@@ -10,6 +10,9 @@ export function buildError(e: any) {
 }
 
 export function resolveNodeModule(p: string) {
+  // if(isAbsolute(p)){
+  //   return p
+  // }
   var r = withoutExtension(relative(join(__dirname, '..'), pathResolve(p)))
   if (!r.startsWith('.')) {
     r = './' + r

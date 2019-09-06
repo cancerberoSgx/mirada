@@ -1,6 +1,6 @@
 import test from 'ava'
 import { File, Mat } from '../src'
-import { compareL2, fromFile } from '../src/util/imageUtil'
+import { compareL2, del, fromFile, get, set } from '../src/util/imageUtil'
 import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
@@ -18,4 +18,18 @@ test('compareL2', async t => {
   m1.delete(); m2.delete()
   f.delete()
   src.delete()
+})
+
+test('get / set', async t => {
+  let mat = cv.Mat.ones(10, 10, cv.CV_8UC3)
+  set(mat, 2, 1, [1, 222, 222])
+  set(mat, 3, 2, [1, 222, 1])
+  set(mat, 3, 3, [111, 111, 1])
+  set(mat, 2, 3, [111, 111, 111])
+  t.deepEqual(get(mat, 2, 1), [1, 222, 222])
+  t.deepEqual(get(mat, 3, 2), [1, 222, 1])
+  t.deepEqual(get(mat, 3, 3), [111, 111, 1])
+  t.deepEqual(get(mat, 2, 3), [111, 111, 111])
+  del(mat)
+  t.true(true)
 })

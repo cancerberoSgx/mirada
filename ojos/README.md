@@ -21,7 +21,8 @@ YBD
 - [ ] high level Widgets (Point, Color)
       - [ ] fabric-like support for editor GUI  on top ? 
       - GUIs for real use cases like grabcut
-      
+- [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
+
 ### Operations
 
  * represent each opencv commands / functions / methods  / with an operation which define:

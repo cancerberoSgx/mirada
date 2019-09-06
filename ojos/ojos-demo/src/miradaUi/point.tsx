@@ -9,7 +9,7 @@ interface P {
   onChange: (p: IPoint) => void
   defaultValue?: IPoint
   selectButton?: boolean
-  targetEl?: () => Promise<HTMLElement>
+  targetEl?: () => HTMLElement
 }
 interface S extends IPoint {
   selectActive?: boolean
@@ -34,21 +34,21 @@ export class Point extends React.Component<P, S> {
     this.setState({ ...this.state, ...p })
   }
   protected async onSelectListener(e: MouseEvent) {
-    const el = this.props.targetEl && await this.props.targetEl()!
+    const el = this.props.targetEl && this.props.targetEl()!
     if (el) {
       const p = { x: e.offsetX - el.offsetLeft, y: e.offsetY - el.offsetTop }
       this.setState({ ...this.state, ...p })
       this.props.onChange && this.props.onChange(p)
-      if(this.props.selectButton){
-         el.removeEventListener('click', this.onSelectListener)
+      if (this.props.selectButton) {
+        el.removeEventListener('click', this.onSelectListener)
       }
     }
   }
   protected async onSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const checked = e.currentTarget.checked
-    const el = this.props.targetEl && await this.props.targetEl()
+    const el = this.props.targetEl && this.props.targetEl()
     if (el) {
-      if (checked||this.props.selectButton) {
+      if (checked || this.props.selectButton) {
         el.addEventListener('click', this.onSelectListener)
       } else {
         el.removeEventListener('click', this.onSelectListener)
@@ -72,8 +72,8 @@ export class Point extends React.Component<P, S> {
           <input ref={c => this.y = c} type="number" min={min.y} max={max.y} step={step.y}
             onChange={this.onChange} defaultValue={defaultValue.y + ''} value={this.state.y} /></label>
         {this.props.targetEl ?
-        this.props.selectButton ? <button onClick={this.onSelect as any}>Select</button> : 
-          <label> <input type="checkbox" checked={this.state.selectActive} onChange={this.onSelect} />Select</label> : ''}
+          this.props.selectButton ? <button onClick={this.onSelect as any}>Select</button> :
+            <label> <input type="checkbox" checked={this.state.selectActive} onChange={this.onSelect} />Select</label> : ''}
       </span>
     )
   }

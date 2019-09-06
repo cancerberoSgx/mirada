@@ -14,7 +14,7 @@
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
-    "copy": "cp -r static/opencv.js dist/src",
+    "copy": "cp -r static/* dist/src",
     "docs": "npm run docs-readme-toc && npm run docs-api-md && npm run docs-api-html",
     "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --theme markdown --out ./api --mode modules --readme none src/index.ts src/types/opencv/index.ts && rm -rf ../../demos/docs/mirada-opencv-api-md && mkdir -p ../../demos/docs/mirada-opencv-api-md && mv api/* ../../demos/docs/mirada-opencv-api-md",
     "docs-api-html": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --out ./api --readme none --mode modules src/index.ts  && rm -rf ../../demos/docs/mirada-opencv-api-html && mkdir -p ../../demos/docs/mirada-opencv-api-html && mv api/* ../../demos/docs/mirada-opencv-api-html",

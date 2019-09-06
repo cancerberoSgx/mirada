@@ -1,5 +1,5 @@
 import { File } from '../File'
-import { Mat } from '../types/opencv'
+import { Mat, Scalar } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -81,3 +81,27 @@ export function asMat(f: File | Mat) {
 export function del(...m: Mat[]) {
   m.forEach(m => m.delete())
 }
+
+/**
+ * sets the color of pixel at coords (x,y) 
+ */
+export function set(m: Mat, x: number, y: number, val: Scalar) {
+  const c = m.channels()
+  let view = m.data
+  for (let i = 0; i < val.length; i++) {
+    view[y * c * m.cols + x * c + i] = val[i]
+  }
+}
+/**
+ * gets the color of pixel at coords (x,y) 
+ */
+export function get(m: Mat, x: number, y: number) {
+  const c = m.channels()
+  let view = m.data
+  const v = []
+  for (let i = 0; i < c; i++) {
+    v.push(view[y * c * m.cols + x * c + i])
+  }
+  return v
+}
+

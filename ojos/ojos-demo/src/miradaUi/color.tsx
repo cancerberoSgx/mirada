@@ -1,11 +1,11 @@
+import { Scalar } from 'mirada'
 import * as React from 'react'
-import {  ColorResult , ChromePicker,} from 'react-color';
-import { Scalar } from 'mirada';
-import { rgbColorToScalar, scalarToRgbColor } from './util';
+import { ChromePicker, ColorResult } from 'react-color'
+import { rgbColorToScalar, scalarToRgbColor } from './util'
 
 interface P extends S {
   onChange: (c: Scalar) => void;
-  targetEl?: () => Promise<HTMLCanvasElement>
+  targetEl?: () => HTMLCanvasElement
   selectButton?: boolean
 }
 
@@ -18,29 +18,30 @@ interface S {
 export class Color extends React.Component<P, S> {
   picker: ChromePicker | null = null
   constructor(p: P, s: S) {
-    super(p, s);
+    super(p, s)
     this.onSelect = this.onSelect.bind(this)
     this.onSelectListener = this.onSelectListener.bind(this)
     this.state = {
       displayColorPicker: false,
       selectActive: false,
-      value:  p.value || {
+      value: p.value || {
         r: '241',
         g: '112',
         b: '19',
         a: '100',
       }
-    };
+    }
   }
 
+  // canvas click
   protected async onSelectListener(e: MouseEvent) {
-    const el = this.props.targetEl && await this.props.targetEl()!
+    const el = this.props.targetEl && this.props.targetEl()!
     if (el) {
-      const p = { x: e.offsetX - el.offsetLeft, y: e.offsetY - el.offsetTop }
-      const [r, g, b, a] = document.querySelector<HTMLCanvasElement>('#inputCanvas')!.getContext('2d')!.getImageData(p.x, p.y, 1, 1).data
-      const value = [ r, g, b, a ]
-      this.setState({ value })
+      const p = { x: e.offsetX, y: e.offsetY }
+      const [r, g, b, a] = el!.getContext('2d')!.getImageData(p.x, p.y, 1, 1).data
+      const value = [r, g, b, a]
       this.props.onChange && this.props.onChange(value)
+      this.picker!.setState({ value })
       if (this.props.selectButton) {
         el.removeEventListener('click', this.onSelectListener)
       }
@@ -49,7 +50,7 @@ export class Color extends React.Component<P, S> {
 
   protected async onSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const checked = e.currentTarget.checked
-    const el = this.props.targetEl && await this.props.targetEl()
+    const el = this.props.targetEl && this.props.targetEl()
     if (el) {
       if (checked || this.props.selectButton) {
         el.addEventListener('click', this.onSelectListener)
@@ -61,17 +62,17 @@ export class Color extends React.Component<P, S> {
   }
 
   protected handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker });
+    this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
 
   protected handleClose = () => {
-    this.setState({ displayColorPicker: false });
+    this.setState({ displayColorPicker: false })
   };
 
   protected handleChange = (color: ColorResult) => {
-    const value = rgbColorToScalar(color.rgb) 
-    this.setState({ value});
-    this.props.onChange(value);
+    const value = rgbColorToScalar(color.rgb)
+    this.setState({ value })
+    this.props.onChange(value)
   };
 
   render() {
@@ -80,13 +81,16 @@ export class Color extends React.Component<P, S> {
         <div style={this.styles().color} />
       </div>
       {this.props.targetEl ?
-        this.props.selectButton ? <button style={{ marginLeft: 10, display: 'inline-block', verticalAlign: 'super' }} onClick={this.onSelect as any}>Select</button> :
-          <label style={{ marginLeft: 10, display: 'inline-block', verticalAlign: 'super' }}> <input style={{  display: 'inline-block', verticalAlign: 'super' }} type="checkbox" checked={this.state.selectActive} onChange={this.onSelect} />Select</label> : ''}
+        this.props.selectButton ?
+          <button style={{ marginLeft: 10, display: 'inline-block', verticalAlign: 'super' }} onClick={this.onSelect as any}>Select</button> :
+          <label style={{ marginLeft: 10, display: 'inline-block', verticalAlign: 'super' }}>
+            <input style={{ display: 'inline-block', verticalAlign: 'super' }} type="checkbox" checked={this.state.selectActive} onChange={this.onSelect} />Select</label> : ''}
       {this.state.displayColorPicker ? <div style={this.styles().popover}>
         <div style={this.styles().cover} onClick={this.handleClose} />
-        <ChromePicker color={scalarToRgbColor(this.state.value)}  onChange={this.handleChange} ref={c => this.picker = c} />
+        <ChromePicker color={scalarToRgbColor(this.state.value)} onChange={this.handleChange} ref={c => this.picker = c} />
       </div> : null}
-    </>);
+      <h3>{JSON.stringify(scalarToRgbColor(this.state.value))}</h3>
+    </>)
   }
 
   protected styles() {
@@ -119,7 +123,7 @@ export class Color extends React.Component<P, S> {
       }
     } as {
       [s: string]: React.CSSProperties;
-    };
+    }
   }
 }
 

@@ -23,8 +23,8 @@
     "babel-polyfill": "^6.26.0",
     "parcel": "^1.12.3",
     "ts-refactor": "0.0.9",
-    "webrtc-adapter": "^7.3.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.2",
+    "webrtc-adapter": "^7.3.0"
   },
   "dependencies": {
     "file-saver": "^2.0.2",

@@ -11,7 +11,6 @@ test.serial('fromFile', async t => {
   t.deepEqual(file.size(), { width: 400, height: 400 })
   t.deepEqual(fileType(await file.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
   file.delete()
-  await sleep(100)
 })
 
 test.serial('fromUrl', async t => {
@@ -19,7 +18,6 @@ test.serial('fromUrl', async t => {
   t.deepEqual(file.size(), { width: 500, height: 333 })
   t.deepEqual(fileType(await file.asArrayBuffer()), { ext: 'jpg', mime: 'image/jpeg' })
   file.delete()
-  await sleep(100)
 })
 
 // test.serial('write/read jimp codec', async t => {
