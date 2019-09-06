@@ -1,6 +1,6 @@
+import { ThresholdTypes } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
-import { ThresholdTypes } from 'mirada'
 
 export interface ThresholdOptions extends OperationExecBaseOptions, ThresholdConcreteOptions {
 }

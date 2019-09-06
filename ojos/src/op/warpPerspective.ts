@@ -1,12 +1,11 @@
 import { isMat, Mat, Scalar, Size, SolvePnPMethod } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType } from './types'
+import { OperationExecBaseOptions, WithBorderType, WithBorderValue } from './types'
 
-export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType {
+export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType, WithBorderValue {
   inputs: Scalar | Mat
   outputs: Scalar | Mat
   solveMethod?: SolvePnPMethod
-  borderValue?: Scalar
   size?: Size
 }
 

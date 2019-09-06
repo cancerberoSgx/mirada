@@ -45,7 +45,7 @@ bkps
 docs
 magick-wasm
 emscripten_prefix
-ava.config-js.js
+ava.config*.js
 apps
 static
 bkps

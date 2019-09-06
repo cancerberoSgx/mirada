@@ -1,7 +1,7 @@
-import { Mat, Size } from 'mirada'
+import { Mat } from 'mirada'
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
+import { isSize } from '../util'
 import { ImageOperation, OperationExecBaseOptions, WithKSize } from './types'
-import { isSize } from '../util';
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
 
@@ -25,7 +25,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     await this._exec(options)
     this.checkInPlaceAfter(options)
     return options.dst!
-  }  
+  }
 
   protected checkOptions(o?: T) {
     if (!o && !this.defaultOptions) {
@@ -35,10 +35,10 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     if (this.validChannels && this.validChannels.length && !this.validChannels.includes(options.src.channels())) {
       throw new Error(`Invalid number of channels for input image which has ${options.src.channels()} and must be in [${this.validChannels.join(',')}]`)
     }
-    if(isSize( (options as any as WithKSize).ksize)) {
+    if (isSize((options as any as WithKSize).ksize)) {
       const ksize = (options as any as WithKSize).ksize
-      ksize.width = ksize.width<3 ? 3 : ksize.width%2!==1 ? ksize.width-1 : ksize.width
-      ksize.height = ksize.height<3 ? 3 : ksize.height%2!==1 ? ksize.height-1 : ksize.height
+      ksize.width = ksize.width < 3 ? 3 : ksize.width % 2 !== 1 ? ksize.width - 1 : ksize.width
+      ksize.height = ksize.height < 3 ? 3 : ksize.height % 2 !== 1 ? ksize.height - 1 : ksize.height
     }
     if (!options.dst) {
       if (this.sameSizeAndType) {

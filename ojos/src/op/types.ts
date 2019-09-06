@@ -1,4 +1,4 @@
-import { BorderTypes, Mat, Size } from 'mirada'
+import { BorderTypes, Mat, Scalar, Size } from 'mirada'
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
@@ -32,6 +32,10 @@ export interface WithBorderType {
    * border mode used to extrapolate pixels outside of the image, see [BorderTypes]
    */
   borderType?: BorderTypes
+}
+
+export interface WithBorderValue {
+  borderValue?: Scalar
 }
 
 export interface WithKSize {
