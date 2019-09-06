@@ -105,3 +105,11 @@ export function get(m: Mat, x: number, y: number) {
   return v
 }
 
+export function map(mat: Mat, dst: Mat, fn: (p: Scalar, x: number, y: number) => Scalar) {
+  for (let y = 0; y < mat.rows; y++) {
+    for (let x = 0; x < mat.cols; x++) {
+      const v = fn(get(mat, x, y), x, y)
+      set(dst, x, y, v)
+    }
+  }
+}

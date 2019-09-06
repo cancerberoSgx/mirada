@@ -32,7 +32,7 @@ test('floodFill', async t => {
   // await write(await toRgba(mask), 'tmp2.png')
 })
 
-test.only('pixels 1', async t => {
+test('pixels 1', async t => {
 
   let mat = cv.Mat.ones(10, 10, cv.CV_8UC3);
   let view = mat.data;

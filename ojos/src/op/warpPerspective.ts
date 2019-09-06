@@ -14,7 +14,7 @@ export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBo
  * Input should be float type and 1, 3or 4 channels. In doubt use toRgba().
  */
 export class WarpPerspective extends AbstractOperation {
-  name: string = "warpPerspective"
+  name = "warpPerspective"
   async exec(o: WarpPerspectiveOptions) {
     if (o.dst === o.src) {
       throw new Error('warpPerspective cannot operate in-place.')

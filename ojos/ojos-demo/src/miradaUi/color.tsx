@@ -21,16 +21,7 @@ export class Color extends React.Component<P, S> {
     super(p, s)
     this.onSelect = this.onSelect.bind(this)
     this.onSelectListener = this.onSelectListener.bind(this)
-    this.state = {
-      displayColorPicker: false,
-      selectActive: false,
-      value: p.value || {
-        r: '241',
-        g: '112',
-        b: '19',
-        a: '100',
-      }
-    }
+    this.state = p
   }
 
   // canvas click
@@ -89,7 +80,7 @@ export class Color extends React.Component<P, S> {
         <div style={this.styles().cover} onClick={this.handleClose} />
         <ChromePicker color={scalarToRgbColor(this.state.value)} onChange={this.handleChange} ref={c => this.picker = c} />
       </div> : null}
-      <h3>{JSON.stringify(scalarToRgbColor(this.state.value))}</h3>
+      {/* <h3>{JSON.stringify(scalarToRgbColor(this.state.value))}</h3> */}
     </>)
   }
 

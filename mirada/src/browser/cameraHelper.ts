@@ -57,7 +57,7 @@ export class CameraHelper {
       this.videoInput.removeEventListener('canplay', this.onVideoCanPlay)
     }
     if (this.stream) {
-      this.stream.getVideoTracks()[0].stop()
+      this.stream.getVideoTracks().forEach(t=>t.stop())
     }
   }
 

@@ -1,15 +1,9 @@
 import { loadOpencv, Mat, VideoReader } from 'mirada'
-import { canny, replaceColor } from 'ojos'
 import * as React from 'react'
 import * as rd from 'react-dom'
 import { Controls } from "./controls"
-import { now } from './miradaUi/util'
 import { getState, State } from "./state"
-
-export let fpsFramesCounter = 0
-export function resetFpsFramesCounter() {
-  fpsFramesCounter = 0
-}
+import { processFunction } from './processFunction'
 
 export async function start() {
   renderRootLayout()
@@ -17,7 +11,7 @@ export async function start() {
   renderApp()
 }
 
-type Managers = {
+export type Managers = {
   video: HTMLVideoElement;
   canvas: HTMLCanvasElement;
   c: VideoReader;
@@ -35,26 +29,7 @@ export function getManagers() {
   return _managers
 }
 
-let processFunction = function(this: Managers) {
-  let t0 = now()
-  this.c.read()
-  const src = this.c.mat
-  const dst = this.dst
-  src.copyTo(dst)
-  if (getState().replaceColor.active) {
-    replaceColor({ ...getState().replaceColor, src: dst, dst })
-  }
-  if (getState().canny.active) {
-    cv.blur(dst, dst, { width: 5, height: 5 }, { x: -1, y: -1 }, cv.BORDER_REFLECT)
-    canny({ ...getState().canny, src: dst, dst })
-  }
-  cv.imshow(this.canvas, dst)
-  fpsFramesCounter++
-  setTimeout(this.processFunction, 0)
-}
-
-async function loadVCamAndStartProcessing() {
-  renderRootLayout()
+export async function loadVCamAndStartProcessing() {
   await loadOpencv()
   const video = document.querySelector<HTMLVideoElement>('video')!
   const canvas = document.querySelector<HTMLCanvasElement>('canvas')!

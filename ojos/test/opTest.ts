@@ -9,16 +9,10 @@ test.before(loadMirada)
 
 test('d', t => t.true(true))
 
-test.only('convertTo', async t => {
-  // const src1 = await fromFile('test/assets/b.jpg')
-  // cv.cvtColor(src1, src, cv.CV_8UC3, 3)
-  // src.
+test('convertTo', async t => {
   const src = await fromFile('test/assets/n.png')
-  src.convertTo(src, cv.CV_8U, 1.5, 20)
-  // write( src, 'tmp221.jpg')
   const dst = await new ConvertTo().exec({ src, alpha: 1.8, beta: 0})
-  write( dst, 'tmp221.jpg')
-  t.true(compareL2(await File.fromFile('test/assets/bBoxFilter.png'), dst) < 0.02)
+  t.deepEqual(compareL2(await File.fromFile('test/assets/nConvertTo.png'), dst), 0)
   del(src, dst)
 })
 

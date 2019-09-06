@@ -2,7 +2,7 @@ import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { WarpPerspective, WarpPerspectiveOptions } from '../src'
 
-test.only('WarpPerspective identity', async (t) => {
+test('WarpPerspective identity', async (t) => {
   const src = await fromFile('test/assets/lenna.jpg')
   let dst = cv.Mat.zeros(src.rows, src.cols, src.type())
   let o: WarpPerspectiveOptions = {
@@ -27,7 +27,7 @@ test.only('WarpPerspective identity', async (t) => {
   del(dst, src)
 })
 
-test.only('WarpPerspective change1', async (t) => {
+test('WarpPerspective change1', async (t) => {
   const src = await fromFile('test/assets/lenna.jpg')
   const o: WarpPerspectiveOptions = {
     src,
