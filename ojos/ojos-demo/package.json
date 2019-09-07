@@ -9,7 +9,7 @@
     "lint": " npm run organizeImports && npm run format",
     "start": "npx tsc && npm run copy && npx parcel src/videoFilterDemo/videoFilterDemo.html ",
     "copy": "mkdir -p dist && cp node_modules/mirada/dist/src/opencv.js dist/",
-    "build": "npm run clean  && npm run lint && npx tsc && npm run copy && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/videoFilterDemo/videoFilterDemo.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && rm -rf ../../demos/docs/ojos-demo && mkdir -p ../../demos/docs/ojos-demo &&  mv docs/* ../../demos/docs/ojos-demo/",
+    "build": "npm run clean  && npm run lint && npx tsc && npm run copy && export NODE_ENV=production && node --max-old-space-size=5000 node_modules/parcel/bin/cli.js build src/videoFilterDemo/videoFilterDemo.html -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' && cp node_modules/mirada/dist/src/opencv.js docs && rm -rf ../../../demos/docs/ojos-demo && mkdir -p ../../../demos/docs/ojos-demo &&  mv docs/* ../../../demos/docs/ojos-demo/",
     "all": "npm run clean && npm run lint && npm run build"
   },
   "author": "Sebastián Gurin",

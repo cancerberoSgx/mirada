@@ -2,8 +2,8 @@ import { loadOpencv, Mat, VideoReader } from 'mirada'
 import * as React from 'react'
 import * as rd from 'react-dom'
 import { Controls } from "./controls"
-import { getState, State } from "./state"
 import { processFunction } from './processFunction'
+import { getState, State } from "./state"
 
 export async function start() {
   renderRootLayout()

@@ -29,7 +29,7 @@ export class Color extends React.Component<P, S> {
     const el = this.props.targetEl && this.props.targetEl()!
     if (el) {
       const p = { x: e.offsetX, y: e.offsetY }
-      const value = Array.from(el!.getContext('2d')!.getImageData(p.x, p.y, 1, 1).data )
+      const value = Array.from(el!.getContext('2d')!.getImageData(p.x, p.y, 1, 1).data)
       this.props.onChange && this.props.onChange(value)
       this.picker!.setState({ value })
       if (this.props.selectButton) {

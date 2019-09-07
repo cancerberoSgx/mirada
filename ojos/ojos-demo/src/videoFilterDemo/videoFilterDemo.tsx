@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import './videoFilterDemo.css'
 import { start } from './start'
+import './videoFilterDemo.css'
 
 start()

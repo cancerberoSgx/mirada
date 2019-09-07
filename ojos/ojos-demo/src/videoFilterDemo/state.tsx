@@ -1,6 +1,5 @@
-import { RemoveProperties, objectKeys } from 'misc-utils-of-mine-generic'
-import { CannyOptions, FloodFillOptions, OperationExecBaseOptions, ReplaceColorOptions, ConvertToOptions, ConvertTo, GaussianBlur, GaussianBlurOptions, Threshold, ThresholdOptions, MorphologyExOptions, MorphologyEx } from 'ojos'
-import { morphologyEx } from 'mirada'
+import { RemoveProperties } from 'misc-utils-of-mine-generic'
+import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions } from 'ojos'
 
 export enum ToolNames {
   'replaceColor' = 'replaceColor',
@@ -19,7 +18,7 @@ type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof O
 }
 
 export interface State extends StateTools {
-  fps: number;  
+  fps: number;
   order: ToolNames[]
 }
 
@@ -36,8 +35,8 @@ export interface StateTools {
 let _state: State
 export const getState: () => State = () => {
   if (!_state) {
-const tools:StateTools = {
-  replaceColor: {
+    const tools: StateTools = {
+      replaceColor: {
         name: ToolNames.replaceColor,
         description: 'Will replace pixels between lowColor and highColor with given newColorOrImage',
         lowColor: new cv.Scalar(0, 0, 0, 255),
@@ -53,23 +52,23 @@ const tools:StateTools = {
       threshold: {
         description: new Threshold().description,
         name: ToolNames.threshold,
-        maxval: 128, 
-        thresh: 128, 
+        maxval: 128,
+        thresh: 128,
         type: cv.THRESH_BINARY
       },
       morphologyEx: {
         description: new MorphologyEx().description,
         name: ToolNames.morphologyEx,
-        op: cv.MORPH_DILATE, 
-        kernel: cv.getStructuringElement(cv.MORPH_RECT, {width: 5, height: 7}),
-        iterations: 1, 
+        op: cv.MORPH_DILATE,
+        kernel: cv.getStructuringElement(cv.MORPH_RECT, { width: 5, height: 7 }),
+        iterations: 1,
         // borderType: cv.BORDER_CONSTANT
         //borderValue
       },
       gaussianBlur: {
         description: new GaussianBlur().description,
         name: ToolNames.gaussianBlur,
-        ksize: {width: 5 ,height: 5},
+        ksize: { width: 5, height: 5 },
         sigmaX: 1.2,
         sigmaY: 1.2,
         borderType: cv.BORDER_DEFAULT
@@ -90,11 +89,11 @@ const tools:StateTools = {
         apertureSize: 3,
         L2gradient: false
       },
-}
+    }
     _state = {
       fps: 0,
       ...tools,
-      order: Object.values(tools).map(v=>v.name)
+      order: Object.values(tools).map(v => v.name)
     }
   }
   return _state
