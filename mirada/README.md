@@ -44,7 +44,7 @@ This project focus on providing type declarations for opencv.js, node.js support
 
 But little more. Besides mentioned facades, **this project limits to support existing opencv APIs**, and test both types and implementation works. **It doesn't contain high level APIs or features to keep it simple**. 
 
-Then, the project [ojos](https://www.npmjs.com/package/ojos) provides high level APIs, features and utilities, on top of this project. These are my creation and not present in openCV APIs, some of them just wrappers to existing opencv APIs with defensive checks or defaults, other more elaorated transformations involving several opencv operations. For example, [Video filter demo](https://cancerberosgx.github.io/demos/ojos-demo/videoFilterDemo.html) is based on [ojos](https://www.npmjs.com/package/ojos)
+Then, the project [ojos](https://www.npmjs.com/package/ojos) provides high level APIs, features and utilities, on top of this project. These are my creation and not present in openCV APIs, some of them just wrappers to existing opencv APIs with defensive checks or defaults, other more elaborated transformations involving several opencv operations. For example, [Video filter demo](https://cancerberosgx.github.io/demos/ojos-demo/videoFilterDemo.html) is based on [ojos](https://www.npmjs.com/package/ojos)
 
 
 ## Command line
