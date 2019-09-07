@@ -2,7 +2,7 @@ import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { WarpPerspective, WarpPerspectiveOptions } from '../src'
 import { scalarColor } from '../src/color'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 

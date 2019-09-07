@@ -8,28 +8,28 @@ import { renderImportHacks } from './exportsHacks';
 import { withoutTypeScriptExtension } from '../opencv2ts';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
-  if(!o.onlyFix) {
-  const files = [
-    ...ls(o.tsOutputFolder)
-      .filter(e => e.endsWith('.ts'))
-      .map(f => {
-        addImports(f, o)
-        return f
-      }), '_hacks.ts']
-  writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
-  writeFileSync(join(o.tsOutputFolder, 'index.ts'), index)
-  writeFileSync(join(o.tsOutputFolder, '..', '_cv.ts'), `
+  if (!o.onlyFix) {
+    const files = [
+      ...ls(o.tsOutputFolder)
+        .filter(e => e.endsWith('.ts'))
+        .map(f => {
+          addImports(f, o)
+          return f
+        }), '_hacks.ts']
+    writeFileSync(join(o.tsOutputFolder, '_hacks.ts'), renderImportHacks())
+    writeFileSync(join(o.tsOutputFolder, 'index.ts'), index)
+    writeFileSync(join(o.tsOutputFolder, '..', '_cv.ts'), `
 import { CV } from './opencv'
 declare global {
   var cv: CV 
 }
 `)
-  writeFileSync(join(o.tsOutputFolder, '_types.ts'), `
+    writeFileSync(join(o.tsOutputFolder, '_types.ts'), `
 ${files.map(f => `export * from './${withoutTypeScriptExtension(f)}'`).join('\n')}\n`.trim())
     if (o.singleDeclaration) {
-    const s = [...files, '_types.ts'].filter(notSame).map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
-    writeFileSync(join(o.tsOutputFolder, '_single.ts'), s)
-  }
+      const s = [...files, '_types.ts'].filter(notSame).map(f => `/* ${f} */\n\n${readFileSync(join(o.tsOutputFolder, f)).toString()}`).join('\n')
+      writeFileSync(join(o.tsOutputFolder, '_single.ts'), s)
+    }
   }
   fixMissingExtends(o)
   fixClasses(o)
@@ -122,7 +122,7 @@ export function fixMissingImports(o: Doxygen2tsOptions) {
   writeFileSync(o.tsOutputFolder + '/_hacks.ts', `
 ${readFileSync(o.tsOutputFolder + '/_hacks.ts').toString()}\n\n
 // Missing imports: 
-${missing.map(t => `export type ${t} = any`).join('\n')}
+${missing.map(t => `export type ${t} = ${missingImportType(t)}`).join('\n')}
 `.trim()
   )
   const missingImports = [{ file: 'CascadeClassifier', name: 'Mat' }]
@@ -140,4 +140,14 @@ function fixJsDocs(o: Doxygen2tsOptions) {
         .replace(/\*\s+\@param/gm, `* @param`)
       writeFileSync(k, s)
     })
+}
+
+function missingImportType(t: string) {
+  if (['int', 'double', 'float'].includes(t)) {
+    return 'number'
+  } else if (['bool'].includes(t)) {
+    return 'boolean'
+  } else {
+    return 'any'
+  }
 }

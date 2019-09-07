@@ -1,5 +1,5 @@
-import { Mat, isSize } from 'mirada'
-import { RemoveProperties } from 'misc-utils-of-mine-generic'
+import { del, isSize, Mat } from 'mirada'
+import { array, RemoveProperties } from 'misc-utils-of-mine-generic'
 import { ImageOperation, OperationExecBaseOptions, WithKSize } from './types'
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
@@ -63,6 +63,23 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       o.dst.copyTo(o.src)
       o.dst.delete()
       o.dst = o.src
+    }
+  }
+
+  protected allChannels(o: T, channels: undefined | true | number[], op: (o: T) => void) {
+    if (o.src.channels() === 1 || !channels) {
+      op(o)
+    } else {
+      let rgbaPlanes = new cv.MatVector()
+      cv.split(o.src, rgbaPlanes)
+      const mats: Mat[] = [];
+      (Array.isArray(channels) ? channels : array(o.src.channels() === 4 ? 3 : o.src.channels())).forEach(i => {
+        const M = rgbaPlanes.get(i)
+        mats.push(M)
+        op({ ...o, src: M, dst: M })
+      })
+      cv.merge(rgbaPlanes, o.dst!)
+      del(...mats, rgbaPlanes)
     }
   }
 }

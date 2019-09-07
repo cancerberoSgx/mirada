@@ -1,6 +1,6 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
-import { Bitwise, Canny, CannyOptions, FloodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
+import { Bitwise, Canny, FloodFill, FloodFillOptions, ReplaceColor } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
 import { HistEqualization } from '../src/op/histEqualization'
@@ -87,25 +87,51 @@ test('floodFill', async t => {
   del(o.src, o.dst!)
 })
 
+test('replaceColor inPlace removeRest', async t => {
+  const src = await fromFile('test/assets/n.png')
+  const dst = await new ReplaceColor().exec({
+    src, dst: src, removeRest: true,
+    lowColor: [0, 0, 0, 0],
+    highColor: [150, 150, 150, 255],
+    newColorOrImage: new cv.Scalar(255, 0, 0, 255)
+  })
+  t.true(src === dst)
+  // write(toRgba(dst), 'tmprrr.png')
+  t.deepEqual(compareL2(await fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0)
+  del(dst)
+})
+
 test('replaceColor', async t => {
   const src = await fromFile('test/assets/n.png')
-  const o: ReplaceColorOptions = {
-    src, lowColor: [0, 0, 0, 0], highColor: [150, 150, 150, 255],
-    newColorOrImage: new cv.Scalar(255, 0, 0, 255)
-  }
-  const dst = replaceColor(o)
-  t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0)
-  del(dst, src)
+  const dst = await new ReplaceColor().exec({
+    src,
+    lowColor: [160, 160, 160, 0],
+    highColor: [222, 222, 222, 255],
+    newColorOrImage: new cv.Scalar(55, 120, 110, 255)
+  })
+  t.false(src === dst)
+  t.deepEqual(compareL2(await fromFile('test/assets/nReplaceColor.png'), toRgba(dst), true), 0)
+  del(dst)
 })
 
 test('canny inPlace', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  await new Canny().exec({
+  const dst = await new Canny().exec({
     src, dst: src, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
   })
+  t.true(src === dst)
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(src), true), 0)
   del(src)
 })
 
-
+test('canny allChannels', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  const dst = await new Canny().exec({
+    src, threshold1: 11, threshold2: 994, apertureSize: 5, L2gradient: true, channels: true
+  })
+  // write(toRgba(dst), 'tmprrr.png')
+  t.false(src === dst)
+  t.deepEqual(compareL2(await fromFile('test/assets/hCannyChannels.png'), dst, true), 0)
+  del(src)
+})
 

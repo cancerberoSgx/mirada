@@ -47,10 +47,10 @@ export class Edge extends AbstractOperation<EdgeOptions> {
     if (o.type === 'sobel') {
       checkThrow(typeof o.dx === 'number' && typeof o.dy === 'number' && o.dx < 3 && o.dy < 3, 'dx and dy are mandatory and must be less than 3')
       checkThrow([1, 3, 5, 7].includes(o.ksize || 1), 'If given ksize must be 1, 3, 5, or 7')
-      cv.Sobel(o.src, o.dst!, o.ddepth || -1, o.dx, o.dy, o.ksize = 3, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
+      cv.Sobel(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, o.ksize = 3, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
     } else if (o.type === 'scharr') {
       checkThrow(typeof o.dx === 'number' && typeof o.dy === 'number' && o.dx < 3 && o.dy < 3, 'dx and dy are mandatory and must be less than 3')
-      cv.Scharr(o.src, o.dst!, o.ddepth || -1, o.dx, o.dy, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
+      cv.Scharr(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
     } else if (o.type === 'laplacian') {
       checkThrow(typeof o.ksize === 'undefined' || o.ksize > 0 && o.ksize % 2 === 1, 'If given ksize must be positive and odd')
       cv.Laplacian(o.src, o.dst!, o.ddepth || -1, o.ksize || 1, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)

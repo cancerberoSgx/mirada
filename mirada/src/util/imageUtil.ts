@@ -1,6 +1,6 @@
 import { File } from '../File'
 import { Mat, Point, Scalar, Size } from '../types/opencv'
-import { isNode } from 'misc-utils-of-mine-generic'
+import { isNode, tryTo } from 'misc-utils-of-mine-generic'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -80,7 +80,7 @@ export function asMat(f: File | Mat) {
 }
 
 export function del(...m: Mat[]) {
-  m.forEach(m => m.delete())
+  m.forEach(m =>tryTo(()=> m.delete()))
 }
 
 /**

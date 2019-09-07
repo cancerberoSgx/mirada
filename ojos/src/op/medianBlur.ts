@@ -9,8 +9,6 @@ export interface MedianBlurConcreteOptions extends WithBorderType {
   ksize: number
 }
 
-/**
- */
 export class MedianBlur extends AbstractOperation<MedianBlurOptions> {
   name: string = "MedianBlur"
   protected async _exec(o: MedianBlurOptions) {

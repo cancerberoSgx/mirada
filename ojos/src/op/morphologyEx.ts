@@ -1,4 +1,4 @@
-import { Mat, MorphTypes, Point, isMat, MatData, data2mat } from 'mirada'
+import { Mat, MorphTypes, Point } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithBorderValue } from './types'
 
@@ -16,7 +16,7 @@ export class MorphologyEx extends AbstractOperation<MorphologyExOptions> {
   name: string = "MorphologyEx"
   sameSizeAndType = true
   protected async _exec(o: MorphologyExOptions) {
-    cv.morphologyEx(o.src, o.dst!, o.op, o.kernel, o.anchor || new cv.Point(-1, -1), o.iterations || 1, 
+    cv.morphologyEx(o.src, o.dst!, o.op, o.kernel, o.anchor || new cv.Point(-1, -1), o.iterations || 1,
       o.borderType || cv.BORDER_CONSTANT, o.borderValue || cv.morphologyDefaultBorderValue())
   }
 }
