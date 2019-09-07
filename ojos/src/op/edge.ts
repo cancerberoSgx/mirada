@@ -1,11 +1,11 @@
 import { checkThrow } from 'misc-utils-of-mine-generic'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType } from './types'
+import { OperationExecBaseOptions, WithBorderType, WithChannels } from './types'
 
 export interface EdgeOptions extends OperationExecBaseOptions, EdgeConcreteOptions {
 }
 
-export interface EdgeConcreteOptions extends WithBorderType {
+export interface EdgeConcreteOptions extends WithBorderType, WithChannels {
   type: 'sobel' | 'scharr' | 'laplacian'
   /**
    * Desired depth of the destination image. Combinations:
@@ -44,6 +44,9 @@ export class Edge extends AbstractOperation<EdgeOptions> {
   description = "facade around cv.Sobel, cv.Laplacian and cv.Scharr"
   sameSizeAndType = true
   protected async _exec(o: EdgeOptions) {
+     this.allChannels(o, o.channels, o => this._execOne(o))
+  }
+   protected async _execOne(o: EdgeOptions) {
     if (o.type === 'sobel') {
       checkThrow(typeof o.dx === 'number' && typeof o.dy === 'number' && o.dx < 3 && o.dy < 3, 'dx and dy are mandatory and must be less than 3')
       checkThrow([1, 3, 5, 7].includes(o.ksize || 1), 'If given ksize must be 1, 3, 5, or 7')

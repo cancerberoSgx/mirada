@@ -113,25 +113,3 @@ test('replaceColor', async t => {
   t.deepEqual(compareL2(await fromFile('test/assets/nReplaceColor.png'), toRgba(dst), true), 0)
   del(dst)
 })
-
-test('canny inPlace', async t => {
-  const src = await fromFile('test/assets/lenna.jpg')
-  const dst = await new Canny().exec({
-    src, dst: src, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
-  })
-  t.true(src === dst)
-  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(src), true), 0)
-  del(src)
-})
-
-test('canny allChannels', async t => {
-  const src = await fromFile('test/assets/h.jpg')
-  const dst = await new Canny().exec({
-    src, threshold1: 11, threshold2: 994, apertureSize: 5, L2gradient: true, channels: true
-  })
-  // write(toRgba(dst), 'tmprrr.png')
-  t.false(src === dst)
-  t.deepEqual(compareL2(await fromFile('test/assets/hCannyChannels.png'), dst, true), 0)
-  del(src)
-})
-
