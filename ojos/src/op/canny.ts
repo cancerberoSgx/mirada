@@ -29,11 +29,19 @@ export interface CannyConcreteOptions extends WithChannels {
 export class Canny extends AbstractOperation<CannyOptions> {
   name: string = "Canny"
   noInPlace = true
+
+  protected validate(o:CannyOptions) {
+      if(!(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0)){
+        return 'Aperture size must be odd and greater than 2'
+      }
+  }
+
   protected async _exec(o: CannyOptions) {
-    checkThrow(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0, 'Aperture size must be odd and greater than 2')
     this.allChannels(o, o => this._execOne(o))
   }
   protected _execOne(o: CannyOptions) {
-    cv.Canny(o.src, o.dst!, typeof o.threshold1 === 'undefined' ? 0 : o.threshold1, typeof o.threshold2 === 'undefined' ? 255 : o.threshold2, typeof o.apertureSize === 'undefined' ? 3 : o.apertureSize, o.L2gradient || false)
+    cv.Canny(o.src, o.dst!, typeof o.threshold1 === 'undefined' ? 0 : o.threshold1, 
+      typeof o.threshold2 === 'undefined' ? 255 : o.threshold2, 
+      typeof o.apertureSize === 'undefined' ? 3 : o.apertureSize, o.L2gradient || false)
   }
 }

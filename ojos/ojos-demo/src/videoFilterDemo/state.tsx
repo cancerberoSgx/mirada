@@ -1,19 +1,20 @@
 import { RemoveProperties, mergeRecursive, merge } from 'misc-utils-of-mine-generic'
-import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, HistEqualizationOptions, Edge, EdgeOptions, HistEqualization, WarpPerspectiveOptions, WarpPerspective, SolveMethodEnum, BitwiseOptions, Bitwise } from 'ojos'
+import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, HistEqualizationOptions, Edge, EdgeOptions, HistEqualization, WarpPerspectiveOptions, WarpPerspective, SolveMethodEnum, BitwiseOptions, Bitwise, MathWeightOptions, Math } from 'ojos'
  
 
 export enum ToolNames {
-  'replaceColor' = 'replaceColor',
-  'canny' = 'canny',
-  'convertTo' = 'convertTo',
-  'floodFill' = 'floodFill',
-  'gaussianBlur' = 'gaussianBlur',
-  'threshold' = 'threshold',
-  'morphologyEx' = 'morphologyEx',
-  'histEqualization' = 'histEqualization',
-  'warpPerspective' = 'warpPerspective',
-  'edge' = 'edge',
-  'bitwise' = 'bitwise',
+  replaceColor = 'replaceColor',
+  canny = 'canny',
+  convertTo = 'convertTo',
+  floodFill = 'floodFill',
+  gaussianBlur = 'gaussianBlur',
+  threshold = 'threshold',
+  morphologyEx = 'morphologyEx',
+  histEqualization = 'histEqualization',
+  warpPerspective = 'warpPerspective',
+  edge = 'edge',
+  bitwise = 'bitwise',
+  addWeighted='addWeighted'
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -40,6 +41,7 @@ export interface StateTools {
   warpPerspective: ToolProps<WarpPerspectiveOptions>;
   edge: ToolProps<EdgeOptions>;
   bitwise: ToolProps<BitwiseOptions>;
+  addWeighted: ToolProps<MathWeightOptions>;
 }
 
 let _state: State
@@ -58,6 +60,14 @@ export const getState: () => State = () => {
         name: ToolNames.convertTo,
         alpha: 1.5,
         beta: 12
+      },
+      addWeighted:  {
+        description: 'Renders each frame as a sum of it and the previous one',
+        name: ToolNames.addWeighted,
+        alpha: .5,
+        beta: .5,
+        gamma: 0,
+        src2: null as any
       },
       edge: {
         description: new Edge().description,
@@ -107,7 +117,8 @@ export const getState: () => State = () => {
         name: ToolNames.histEqualization,
         mode: 'CLAHE',
         clipLimit: 1,
-        tileGridSize: new cv.Size(40,40)
+        tileGridSize: new cv.Size(40,40),
+        channels: true
       },
       morphologyEx: {
         description: new MorphologyEx().description,

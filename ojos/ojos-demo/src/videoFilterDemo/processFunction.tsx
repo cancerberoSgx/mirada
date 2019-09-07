@@ -1,9 +1,10 @@
-import { del } from 'mirada'
-import {  ConvertTo, GaussianBlur, MorphologyEx, Threshold, HistEqualization, WarpPerspective, Edge, Bitwise, ReplaceColor, Canny } from 'ojos'
+import { del, Mat, noArray } from 'mirada'
+import { ConvertTo, GaussianBlur, MorphologyEx, Threshold, HistEqualization, WarpPerspective, Edge, Bitwise, ReplaceColor, Canny, Math as Math_ } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
-import { array } from 'misc-utils-of-mine-generic'
+import { array, serial, sleep } from 'misc-utils-of-mine-generic'
 import { randomScalarColor } from '../../../dist/src'
+import { async } from 'q'
 
 export let fpsFramesCounter = 0
 export function resetFpsFramesCounter() {
@@ -27,76 +28,82 @@ const bitwise = new Bitwise()
 const edge = new Edge()
 const replaceColor = new ReplaceColor()
 const canny = new Canny()
-
+const math = new Math_()
 const colors = array(10).map(randomScalarColor)
 
-export let processFunction = function(this: Managers) {
+let prev: Mat = null as any
+export let processFunction = async function (this: Managers) {
   if (!this.c.streaming) {
     del(this.dst)
+    prev && del(prev)
     return
   }
   this.c.read()
   const src = this.c.mat
-  const dst = this.dst
+  let dst = this.dst
   src.copyTo(dst)
-  // // console.log(dst.channels(), dst.type(), src.channels(), src.type(), );
-  
+  const cp = dst.clone()
+
+  if (!prev) {
+    prev = src.clone()
+  }
+
   const state = getState()
-  state.order.forEach(name => {
+  await serial(state.order.map(name => async () => {
+
     if (name === ToolNames.replaceColor && state.replaceColor.active) {
-      replaceColor.exec({ ...state.replaceColor, src: dst, dst })
+      await replaceColor.exec({ ...state.replaceColor, src: dst, dst })
     }
     else if (name === ToolNames.canny && state.canny.active) {
-      // debugger
-      //  const cp = new cv.Mat()
-      //  dst.convertTo(cp, cv.COLOR_RGB2GRAY)
-  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
-   // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
-      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
-  // cv.cvtColor(cp, cp, cv.COLOR_RGBA2RGB, 0)
-      canny.exec({ ...state.canny, src: cp, dst })
-      cp.delete()
-// canny.exec({
-//    src: dst, dst: dst, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
-// })
-
-      // cp.delete()
+      dst.copyTo(cp, noArray())
+      await canny.exec({ ...state.canny, src: cp, dst })
     }
     else if (name === ToolNames.convertTo && state.convertTo.active) {
-      convertTo.exec({ ...state.convertTo, src: dst, dst })
+      await convertTo.exec({ ...state.convertTo, src: dst, dst })
     }
     else if (name === ToolNames.gaussianBlur && state.gaussianBlur.active) {
-      gaussianBlur.exec({ ...state.gaussianBlur, src: dst, dst })
+      await gaussianBlur.exec({ ...state.gaussianBlur, src: dst, dst })
     }
     else if (name === ToolNames.threshold && state.threshold.active) {
-      threshold.exec({ ...state.threshold, src: dst, dst })
+      await threshold.exec({ ...state.threshold, src: dst, dst })
     }
     else if (name === ToolNames.morphologyEx && state.morphologyEx.active) {
-      morphologyEx.exec({ ...state.morphologyEx, src: dst, dst })
+      await morphologyEx.exec({ ...state.morphologyEx, src: dst, dst })
     }
     else if (name === ToolNames.histEqualization && state.histEqualization.active) {
-      histEqualization.exec({ ...state.histEqualization, src: dst, dst })
+      await histEqualization.exec({ ...state.histEqualization, src: dst, dst })
     }
     else if (name === ToolNames.warpPerspective && state.warpPerspective.active) {
-      // warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: dst, dst }) 
-      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
-      warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst, ...state.warpPerspective.drawPoints ? {drawPoints: colors}:{} }) 
-      cp.delete()
-    } 
-    else if (name === ToolNames.edge && state.edge.active) {
-  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
-      edge.exec({ ...state.edge, src: dst, dst})
-    }  
-    else if (name === ToolNames.bitwise && state.bitwise.active) {
-  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
-      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
-  cv.cvtColor(cp, cp, cv.COLOR_RGBA2RGB, 0)
-      bitwise.exec({ ...state.bitwise, src: cp, dst})
-      cp.delete()
+      dst.copyTo(cp, noArray())
+      await warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst, ...state.warpPerspective.drawPoints ? { drawPoints: colors } : {} })
     }
-  })
+    else if (name === ToolNames.edge && state.edge.active) {
+      await edge.exec({ ...state.edge, src: dst, dst })
+    }
+    else if (name === ToolNames.bitwise && state.bitwise.active) {
+      dst.copyTo(cp, noArray())
+      cv.cvtColor(cp, cp, cv.COLOR_RGBA2RGB, 0)
+      await bitwise.exec({ ...state.bitwise, src: cp, dst: cp })
+      cv.cvtColor(cp, dst, cv.COLOR_RGB2RGBA, 0)
+    }
+    else if (name === ToolNames.addWeighted && state.addWeighted.active) {
+      dst.copyTo(cp, noArray())
+      await math.exec({ ...state.addWeighted, type: 'addWeighted', src: cp, dst: cp, src2: prev })
+          cv.cvtColor(cp, dst, cv.COLOR_RGB2RGBA, 0)
+      // cp.convertTo(dst, dst.type())
+    }
+    await sleep(1)
+
+  }))
+
   cv.imshow(this.canvas, dst)
   fpsFramesCounter++
+  // prev.delete()
+  // prev = dst.clone()
+   dst.copyTo(prev, noArray())
+  cp.delete()
+    await sleep(10)
+    this.processFunction()
   // requestAnimationFrame(this.processFunction)
-  setTimeout(this.processFunction, 0)
+  // setTimeout(this.processFunction, 0)
 }

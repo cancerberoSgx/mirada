@@ -10,24 +10,38 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
   noInPlace = false
   sameSizeAndType = false
   protected isInPlace = false
+  protected validateEachExec = false
+  protected validated = false
+
   validChannels: number[] | undefined = undefined
 
   constructor(protected defaultOptions?: T) {
 
   }
-
+  protected validate(o: T): string | undefined {
+    return
+  }
   protected abstract _exec(o: MandatoryDst<T>): Promise<void>
 
   async exec(o?: T) {
     const options = this.checkOptions(o)
     this.checkInPlaceBefore(options)
+    if (!this.validated || this.validateEachExec) {
+      var s = this.validate(options as T)
+      if (s) {
+        throw new Error(`${this.name} validation error: ${s}`)
+      }
+      this.validated = true
+    }
     await this._exec(options)
     this.checkInPlaceAfter(options)
+    this.afterExec(options)
     return options.dst!
   }
- protected  checkInputImage(o:T){
-
- }
+  protected afterExec(options: MandatoryDst<T>) {
+  }
+  protected checkInputImage(o: T) {
+  }
   protected checkOptions(o?: T) {
     if (!o && !this.defaultOptions) {
       throw new Error('No options provided not in the constructor or in exec() call. Aborting.')

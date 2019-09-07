@@ -287,6 +287,31 @@ export class Controls extends React.Component<{}, State> {
           onChange={e => this.setState2({ 'convertTo.beta': e.currentTarget.valueAsNumber })} />
       </label>
     </>
+    ,
+
+    [ToolNames.addWeighted]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.addWeighted.active}
+          onChange={e => this.setState2({ 'addWeighted.active': e.currentTarget.checked })} />
+        addWeighted</label>
+        <label>ratio
+          <input type="range" min="0" max="1" step="0.05" value={this.state.addWeighted.alpha}
+          onChange={e => this.setState2({ 'addWeighted.alpha': e.currentTarget.valueAsNumber,
+          'addWeighted.beta': 1-e.currentTarget.valueAsNumber })} />
+      </label>
+      {/* <label>alpha
+          <input min="0" step="0.05" type="number" value={this.state.addWeighted.alpha}
+          onChange={e => this.setState2({ 'addWeighted.alpha': e.currentTarget.valueAsNumber })} />
+      </label>
+      <label>beta
+          <input step="2" type="number" value={this.state.addWeighted.beta}
+          onChange={e => this.setState2({ 'addWeighted.beta': e.currentTarget.valueAsNumber })} />
+      </label> */}
+          <label>gamma
+          <input step="2" type="number" value={this.state.addWeighted.gamma}
+          onChange={e => this.setState2({ 'addWeighted.gamma': e.currentTarget.valueAsNumber })} />
+      </label>
+    </>
 
   }
 }

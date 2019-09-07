@@ -33,12 +33,15 @@ TODO
 
 ## TODO
 - [ ] more codecs 
+- [ ] inRange
+- [x] addWeighted
 - [x] edge detectors supporting multiple channels ? 
 - svg experiments
 - [ ] high level Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - GUIs for real use cases like grabcut
 - [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
+- [ ] - mirada tyoes: cp.assignTo is not a function
 - [ ] integrate mirada-cli generateCommands script here
   - [ ] use operations interfaces
 - [ ] decide what we do with commands - remove it ? 

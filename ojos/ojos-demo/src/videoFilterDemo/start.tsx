@@ -65,10 +65,8 @@ function renderRootLayout() {
       <video width="500" height="300" playsInline autoPlay></video>
       <canvas width="500" height="300"></canvas>
     </div>
-
     <div id="dynamic-app">
     </div>
-
     <div id="loading">
       <div style="font-size: 80px">Loading...</div>
     </div>
