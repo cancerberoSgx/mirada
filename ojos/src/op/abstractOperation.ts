@@ -31,7 +31,8 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     if (!o && !this.defaultOptions) {
       throw new Error('No options provided not in the constructor or in exec() call. Aborting.')
     }
-    const options: T = { ...this.defaultOptions, ...o } as T
+    Object.assign(o, this.defaultOptions, o)
+    const options: T = o as T
     if (this.validChannels && this.validChannels.length && !this.validChannels.includes(options.src.channels())) {
       throw new Error(`Invalid number of channels for input image which has ${options.src.channels()} and must be in [${this.validChannels.join(',')}]`)
     }

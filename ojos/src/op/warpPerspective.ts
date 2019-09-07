@@ -1,12 +1,32 @@
-import { isMat, Mat, Scalar, Size, SolvePnPMethod } from 'mirada'
+import { DecompTypes, del, Scalar, Size } from 'mirada'
+import { array } from 'misc-utils-of-mine-generic'
+import { randomScalarColor } from '../color'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithBorderValue } from './types'
 
 export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType, WithBorderValue {
-  inputs: Scalar | Mat
-  outputs: Scalar | Mat
-  solveMethod?: SolvePnPMethod
-  size?: Size
+  /**
+   *  Coordinates of quadrangle vertices in the source image.
+   */
+  inputs: Scalar
+  /**
+   * Coordinates of the corresponding quadrangle vertices in the destination image.
+   */
+  outputs: Scalar
+  /**
+   * combination of interpolation methods (INTER_LINEAR or INTER_NEAREST) and the optional flag WARP_INVERSE_MAP, that sets M as the inverse transformation 
+   */
+  flags?: number
+  /**
+   * size of the output image.
+   */
+  size?: Size,
+  // borderType?: (typeof BORDER_CONSTANT)|(typeof BORDER_REPLICATE)
+  /**
+   * method passed to cv::solve (DecompTypes)
+   */
+  solveMethod?: DecompTypes
+  drawPoints?: Scalar[] | true
 }
 
 /**
@@ -16,11 +36,25 @@ export class WarpPerspective extends AbstractOperation<WarpPerspectiveOptions> {
   name = "warpPerspective"
   noInPlace = true
   protected async _exec(o: WarpPerspectiveOptions) {
-    let srcTri = isMat(o.inputs) ? o.inputs : cv.matFromArray(4, 1, cv.CV_32FC2, o.inputs)
-    let dstTri = isMat(o.outputs) ? o.outputs : cv.matFromArray(4, 1, cv.CV_32FC2, o.outputs)
-    let M = cv.getPerspectiveTransform(srcTri, dstTri)
-    cv.warpPerspective(o.src, o.dst!, M, o.size || o.dst!.size(),
-      o.solveMethod || cv.INTER_LINEAR, o.borderType || cv.BORDER_CONSTANT, o.borderType || new cv.Scalar())
+    let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.inputs)
+    let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.outputs)
+    let M = cv.getPerspectiveTransform(srcTri, dstTri, o.solveMethod || cv.DECOMP_LU)
+    let src = o.src
+    if (o.drawPoints) {
+      if (typeof o.drawPoints === 'boolean') {
+        o.drawPoints = array(Math.trunc(o.inputs.length / 2)).map(randomScalarColor)
+      }
+      //  o.drawPoints = array(Math.trunc(o.inputs.length/2)).map(i=>(o.drawPoints as Scalar[])[i])
+      src = o.src.clone()
+      array(Math.trunc(o.inputs.length / 2)).forEach(i => cv.circle(src, new cv.Point(o.outputs[i * 2], o.outputs[i * 2 + 1]), 5, (o.drawPoints as Scalar[])![i], cv.FILLED))
+    }
+    cv.warpPerspective(src, o.dst!, M, o.size || o.dst!.size(),
+      o.flags || cv.INTER_LINEAR, o.borderType || cv.BORDER_CONSTANT, o.borderValue || new cv.Scalar())
+    if (o.drawPoints) {
+      src.delete()
+      array(Math.trunc(o.inputs.length / 2)).forEach(i => cv.circle(o.dst!, new cv.Point(o.inputs[i * 2], o.inputs[i * 2 + 1]), 5, (o.drawPoints as Scalar[])![i]))
+    }
+    del(srcTri, dstTri, M)
   }
 }
 

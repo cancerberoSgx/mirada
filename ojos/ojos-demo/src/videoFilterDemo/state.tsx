@@ -1,5 +1,5 @@
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
-import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions } from 'ojos'
+import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, HistEqualizationOptions, Edge, EdgeOptions, HistEqualization, WarpPerspectiveOptions, WarpPerspective, SolveMethodEnum } from 'ojos'
 
 export enum ToolNames {
   'replaceColor' = 'replaceColor',
@@ -9,6 +9,9 @@ export enum ToolNames {
   'gaussianBlur' = 'gaussianBlur',
   'threshold' = 'threshold',
   'morphologyEx' = 'morphologyEx',
+  'histEqualization' = 'histEqualization',
+  'warpPerspective' = 'warpPerspective',
+  'edge' = 'edge',
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -30,6 +33,9 @@ export interface StateTools {
   gaussianBlur: ToolProps<GaussianBlurOptions>;
   threshold: ToolProps<ThresholdOptions>;
   morphologyEx: ToolProps<MorphologyExOptions>;
+  histEqualization: ToolProps<HistEqualizationOptions>;
+  warpPerspective: ToolProps<WarpPerspectiveOptions>;
+  edge: ToolProps<EdgeOptions>;
 }
 
 let _state: State
@@ -49,12 +55,49 @@ export const getState: () => State = () => {
         alpha: 1.5,
         beta: 12
       },
+      edge: {
+        description: new Edge().description,
+        name: ToolNames.edge,
+        dx: 2, 
+        dy: 1, 
+        ddepth: -1, 
+        delta: 0, 
+        ksize: 5, 
+        scale: 1, 
+        type: 'sobel'
+      },
       threshold: {
         description: new Threshold().description,
         name: ToolNames.threshold,
         maxval: 128,
         thresh: 128,
         type: cv.THRESH_BINARY
+      },
+      gaussianBlur: {
+        description: new GaussianBlur().description,
+        name: ToolNames.gaussianBlur,
+        ksize: { width: 5, height: 5 },
+        sigmaX: 1.2,
+        sigmaY: 1.2,
+        borderType: cv.BORDER_DEFAULT
+      },
+      warpPerspective: {
+        description: new WarpPerspective().description,
+        name: ToolNames.warpPerspective,
+        inputs: [6, 4, 100, 8, 9, 110, 100, 90],
+        outputs: [31, 41, 88, 40, 29, 88, 88, 80]    ,
+        drawPoints: true,
+        flags: cv.INTER_LINEAR  ,
+        borderType: cv.BORDER_CONSTANT,
+        solveMethod: cv.DECOMP_NORMAL  ,
+
+      },
+        histEqualization: {
+        description: new HistEqualization().description,
+        name: ToolNames.histEqualization,
+        mode: 'CLAHE',
+        clipLimit: 1,
+        tileGridSize: new cv.Size(40,40)
       },
       morphologyEx: {
         description: new MorphologyEx().description,
@@ -64,14 +107,6 @@ export const getState: () => State = () => {
         iterations: 1,
         // borderType: cv.BORDER_CONSTANT
         //borderValue
-      },
-      gaussianBlur: {
-        description: new GaussianBlur().description,
-        name: ToolNames.gaussianBlur,
-        ksize: { width: 5, height: 5 },
-        sigmaX: 1.2,
-        sigmaY: 1.2,
-        borderType: cv.BORDER_DEFAULT
       },
       floodFill: {
         description: 'TODO',

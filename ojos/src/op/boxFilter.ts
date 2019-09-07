@@ -9,7 +9,7 @@ export interface BoxFilterConcreteOptions extends WithBorderType, WithKSize {
   /**
    * the output image dept. (-1 to use src.depth()).
    */
-  depth?: number
+  ddepth?: number
   /**
    * anchor point; default value Point(-1,-1) means that the anchor is at the kernel center
    */
@@ -26,7 +26,7 @@ export class BoxFilter extends AbstractOperation<BoxFilterOptions> {
   name: string = "BoxFilter"
   sameSizeAndType = true
   protected async _exec(o: BoxFilterOptions) {
-    cv.boxFilter(o.src, o.dst!, o.depth || -1, o.ksize, o.anchor || new cv.Point(-1, -1), o.normalize, o.borderType || cv.BORDER_DEFAULT)
+    cv.boxFilter(o.src, o.dst!, o.ddepth || -1, o.ksize, o.anchor || new cv.Point(-1, -1), o.normalize, o.borderType || cv.BORDER_DEFAULT)
   }
 }
 

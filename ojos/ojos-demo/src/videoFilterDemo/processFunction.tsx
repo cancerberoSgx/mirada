@@ -1,7 +1,9 @@
 import { del } from 'mirada'
-import { canny, ConvertTo, GaussianBlur, MorphologyEx, replaceColor, Threshold } from 'ojos'
+import { canny, ConvertTo, GaussianBlur, MorphologyEx, replaceColor, Threshold, HistEqualization, WarpPerspective } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
+import { array } from 'misc-utils-of-mine-generic'
+import { randomScalarColor } from '../../../dist/src'
 
 export let fpsFramesCounter = 0
 export function resetFpsFramesCounter() {
@@ -19,6 +21,9 @@ const gaussianBlur = new GaussianBlur()
 const convertTo = new ConvertTo()
 const threshold = new Threshold()
 const morphologyEx = new MorphologyEx()
+const histEqualization = new HistEqualization()
+const warpPerspective = new WarpPerspective()
+const colors = array(10).map(randomScalarColor)
 
 export let processFunction = function(this: Managers) {
   if (!this.c.streaming) {
@@ -48,6 +53,15 @@ export let processFunction = function(this: Managers) {
     }
     else if (name === ToolNames.morphologyEx && state.morphologyEx.active) {
       morphologyEx.exec({ ...state.morphologyEx, src: dst, dst })
+    }
+    else if (name === ToolNames.histEqualization && state.histEqualization.active) {
+      histEqualization.exec({ ...state.histEqualization, src: dst, dst })
+    }
+    else if (name === ToolNames.warpPerspective && state.warpPerspective.active) {
+      // warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: dst, dst }) 
+      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
+      warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst, ...state.warpPerspective.drawPoints ? {drawPoints: colors}:{} }) 
+      cp.delete()
     }
   })
   cv.imshow(this.canvas, dst)

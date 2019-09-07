@@ -23,6 +23,7 @@ export function resolveNodeModule(p: string) {
 export function msFrom(t0: number) {
   return (now() - t0) / 1000000
 }
+
 export function timeFrom(t0: number) {
   return `${((now() - t0) / 1000000).toPrecision(1)} ms`
 }

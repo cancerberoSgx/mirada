@@ -1,38 +1,42 @@
 import { Point as IPoint } from 'mirada'
 import * as React from 'react'
 
-interface P {
+export interface PointProps {
   label?: { x: string, y: string },
   min?: IPoint,
   max?: IPoint,
   step?: IPoint
   onChange: (p: IPoint) => void
-  defaultValue?: IPoint
+  value?: IPoint
   selectButton?: boolean
   targetEl?: () => HTMLElement
 }
+
 interface S extends IPoint {
   selectActive?: boolean
 }
-export class Point extends React.Component<P, S> {
+
+export class Point extends React.Component<PointProps, S> {
   y: HTMLInputElement | null = null
   x: HTMLInputElement | null = null
-  constructor(p: P, s: IPoint) {
+  constructor(p: PointProps, s: IPoint) {
     super(p, s)
     this.onChange = this.onChange.bind(this)
     this.onSelect = this.onSelect.bind(this)
     this.onSelectListener = this.onSelectListener.bind(this)
     this.state = {
-      x: p.defaultValue && p.defaultValue.x || 0,
-      y: p.defaultValue && p.defaultValue.y || 0,
+      x: p.value && p.value.x || 0,
+      y: p.value && p.value.y || 0,
       selectActive: false,
     }
   }
+
   protected onChange() {
     const p = { x: this.x!.valueAsNumber, y: this.y!.valueAsNumber }
     this.props.onChange && this.props.onChange(p)
     this.setState({ ...this.state, ...p })
   }
+
   protected async onSelectListener(e: MouseEvent) {
     const el = this.props.targetEl && this.props.targetEl()!
     if (el) {
@@ -44,6 +48,7 @@ export class Point extends React.Component<P, S> {
       }
     }
   }
+
   protected async onSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const checked = e.currentTarget.checked
     const el = this.props.targetEl && this.props.targetEl()
@@ -56,13 +61,14 @@ export class Point extends React.Component<P, S> {
     }
     this.setState({ ...this.state, selectActive: e.currentTarget.checked })
   }
+
   render() {
     const {
       min = { x: -1000, y: -1000 },
       max = { x: 1000, y: 1000 },
       step = { x: 1, y: 1 },
       label = { x: '', y: '' },
-      defaultValue = { x: 0, y: 0 },
+      value: defaultValue = { x: 0, y: 0 },
     } = this.props
     return (
       <span>

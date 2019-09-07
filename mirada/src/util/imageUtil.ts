@@ -1,5 +1,5 @@
 import { File } from '../File'
-import { Mat, Scalar } from '../types/opencv'
+import { Mat, Scalar, Point, Size } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -123,4 +123,12 @@ export function noArray() {
     _noArray = cv.Mat.ones(0, 0, cv.CV_8U)
   }
   return _noArray
+}
+
+export function pointToSize(p: Point) {
+  return new cv.Size(p.x, p.y)
+}
+
+export function sizeToPoint(s:Size) {
+  return new cv.Point(s.width, s.height)
 }

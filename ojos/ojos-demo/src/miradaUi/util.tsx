@@ -1,4 +1,4 @@
-import { Scalar } from 'mirada'
+import { Scalar, Point, Size } from 'mirada'
 import { RGBColor } from 'react-color'
 
 export function scalarToRgbColor(c: Scalar, alphaMultiplier = 1 / 255.0): RGBColor {
@@ -19,4 +19,12 @@ export function now() {
 
 export function between(n: number, min: number, max: number) {
   return Math.max(min, Math.min(n, max))
+}
+
+export function pointToSize(p: Point) {
+  return new cv.Size(p.x, p.y)
+}
+
+export function sizeToPoint(s:Size) {
+  return new cv.Point(s.width, s.height)
 }

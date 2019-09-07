@@ -11,3 +11,6 @@ export function intBetween(n: number, min: number, max: number) {
 export function isSize(size: any): size is Size {
   return typeof size === 'object' && typeof size.width === 'number'
 }
+
+
+

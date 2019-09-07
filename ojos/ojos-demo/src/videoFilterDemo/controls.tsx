@@ -1,5 +1,5 @@
 import { Scalar } from 'mirada'
-import { enumKeys, objectKeys, setObjectProperty } from 'misc-utils-of-mine-generic'
+import { enumKeys, objectKeys, setObjectProperty, notUndefined, tryTo } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { MorphTypesEnum } from '../../../dist/src'
 import { Color } from '../miradaUi/color'
@@ -7,6 +7,7 @@ import { Point } from '../miradaUi/point'
 import { fpsFramesCounter, resetFpsFramesCounter, stop } from './processFunction'
 import { getManagers, loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
+import { pointToSize, sizeToPoint } from '../miradaUi/util'
 
 export class Controls extends React.Component<{}, State> {
   protected timer: any
@@ -153,26 +154,71 @@ export class Controls extends React.Component<{}, State> {
       </label>
     </>
     ,
+    [ToolNames.warpPerspective]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.warpPerspective.active}
+          onChange={e => this.setState2({ 'warpPerspective.active': e.currentTarget.checked })} />
+        warpPerspective</label>
+      <label>inputs
+        <input value={(this.state.warpPerspective.inputs as Scalar).join(', ')}
+          onChange={e => tryTo(() =>
+            this.setState2({ 'warpPerspective.inputs': e.currentTarget.value.split(',').map((s, i) => parseInt(s.trim()) || (this.state.warpPerspective.inputs as Scalar)[i]) })
+          )} />
+      </label>
+      <label>outputs
+        <input value={(this.state.warpPerspective.outputs as Scalar).join(', ')}
+          onChange={e => tryTo(() =>
+            this.setState2({ 'warpPerspective.outputs': e.currentTarget.value.split(',').map((s, i) => parseInt(s.trim()) || (this.state.warpPerspective.outputs as Scalar)[i]) })
+          )} />
+      </label>
+       <label>drawPoints
+        <input type="checkbox" checked={!!this.state.warpPerspective.drawPoints}
+          onChange={e => this.setState2({ 'warpPerspective.drawPoints': e.currentTarget.checked })} />
+        </label>
+    </>
+    ,
+    [ToolNames.histEqualization]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.histEqualization.active}
+          onChange={e => this.setState2({ 'histEqualization.active': e.currentTarget.checked })} />
+        histEqualization</label>
+      <label>mode
+        <select onChange={e => this.setState2({ 'histEqualization.mode': name })}>
+          {['histEqualization', 'CLAHE'].map(name => <option selected={name === this.state.histEqualization.mode}
+            value={name}>{name}</option>)}
+        </select>
+      </label>
+      <label>clipLimit
+          <input min="1" max="255" step="1" type="number" value={this.state.histEqualization.clipLimit}
+          onChange={e => this.setState2({ 'histEqualization.clipLimit': e.currentTarget.valueAsNumber })} />
+      </label>
+      <label>tileGridSize
+           <Point value={sizeToPoint(this.state.histEqualization.tileGridSize!)}
+          onChange={p => this.setState2({ 'histEqualization.tileGridSize': pointToSize(p) })} />
+      </label>
+    </>
+    ,
     [ToolNames.gaussianBlur]: () => <>
       <label className="enable">
         <input type="checkbox" checked={this.state.gaussianBlur.active}
           onChange={e => this.setState2({ 'gaussianBlur.active': e.currentTarget.checked })} />
         gaussianBlur</label>
       <label>ksize
-          <Point defaultValue={{ x: this.state.gaussianBlur.ksize.width, y: this.state.gaussianBlur.ksize.height }}
+          <Point value={{ x: this.state.gaussianBlur.ksize.width, y: this.state.gaussianBlur.ksize.height }}
           onChange={p => this.setState2({ 'gaussianBlur.ksize': { width: p.x, height: p.y } })} />
       </label>
       <label>sigma
-          <Point defaultValue={{ x: this.state.gaussianBlur.sigmaX, y: this.state.gaussianBlur.sigmaY! }}
+          <Point value={{ x: this.state.gaussianBlur.sigmaX, y: this.state.gaussianBlur.sigmaY! }}
           onChange={p => this.setState2({ 'gaussianBlur.sigmaX': p.x, 'gaussianBlur.sigmaY': p.y })} />
       </label>
     </>
     ,
     [ToolNames.floodFill]: () => <>
-      <label className="enable">
+      {/* <label className="enable">
         <input type="checkbox" checked={this.state.floodFill.active}
           onChange={e => this.setState2({ 'floodFill.active': e.currentTarget.checked })} />
-        floodFill</label>
+        floodFill</label> */}
+      TODO
     </>
     ,
     [ToolNames.convertTo]: () => <>

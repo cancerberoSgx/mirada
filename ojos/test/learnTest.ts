@@ -1,6 +1,6 @@
 import test from 'ava'
-import { compareL2, del, File, fromFile, toRgba, get } from 'mirada'
-import { loadMirada, write } from './testUtil'
+import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -56,67 +56,65 @@ test('pixels 1', async t => {
 test('estimateAffine2D', async t => {
   const src = await fromFile('test/assets/n.png')
   const inputs = cv.matFromArray(4, 1, cv.CV_32FC2, [
-    1, 1, 
-    80,0, 
-    0,80, 
-    80,80
-    ]);
+    1, 1,
+    80, 0,
+    0, 80,
+    80, 80
+  ])
   const outputs = cv.matFromArray(4, 1, cv.CV_32FC2, [
-    21, 51, 
-    70,77, 
-    40,40, 
-    10,70
-    ]);
+    21, 51,
+    70, 77,
+    40, 40,
+    10, 70
+  ])
   const M = cv.estimateAffine2D(inputs, outputs)
-  // console.log(M, M.data);  
-  cv.warpAffine(src, src, M, src.size() )
+  cv.warpAffine(src, src, M, src.size())
   t.deepEqual(compareL2(await File.fromFile('test/assets/nEstimateAffine2D.png'), src), 0)
   t.deepEqual(Array.from(M.data), [
-   23,  55,  97, 126,  87, 139, 227,  63,   0,   0,
-    0,   0,   0,   0, 232, 191,  71, 246,  12,  68,
-  165,  35,  53,  64,  99,  56,  27,  66,  14, 254,
-  212,  63, 103, 102, 102, 102, 102, 102, 182, 191,
-  195, 252, 174,  22,  55,  97,  73,  64
-])
-  // write(src, 'tmp-esttt.png')
+    23, 55, 97, 126, 87, 139, 227, 63, 0, 0,
+    0, 0, 0, 0, 232, 191, 71, 246, 12, 68,
+    165, 35, 53, 64, 99, 56, 27, 66, 14, 254,
+    212, 63, 103, 102, 102, 102, 102, 102, 182, 191,
+    195, 252, 174, 22, 55, 97, 73, 64
+  ])
   del(src, M)
 })
 
 test('equalizeHist', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  t.deepEqual(get(src, 2,2), [196,114,78,255])
-let rgbaPlanes = new cv.MatVector();
-cv.split(src, rgbaPlanes);
-let R = rgbaPlanes.get(0);
-let G = rgbaPlanes.get(1);
-let B = rgbaPlanes.get(2);
-cv.equalizeHist(R, R);
-cv.equalizeHist(G, G);
-cv.equalizeHist(B, B);
-cv.merge(rgbaPlanes, src);
+  t.deepEqual(get(src, 2, 2), [196, 114, 78, 255])
+  let rgbaPlanes = new cv.MatVector()
+  cv.split(src, rgbaPlanes)
+  let R = rgbaPlanes.get(0)
+  let G = rgbaPlanes.get(1)
+  let B = rgbaPlanes.get(2)
+  cv.equalizeHist(R, R)
+  cv.equalizeHist(G, G)
+  cv.equalizeHist(B, B)
+  cv.merge(rgbaPlanes, src)
   // write(src, 'tmp-esttt.png')
-  t.deepEqual(get(src, 2,2), [219,208,182,255])
-  del(src, R,G, B, rgbaPlanes)
+  t.deepEqual(get(src, 2, 2), [219, 208, 182, 255])
+  del(src, R, G, B, rgbaPlanes)
 })
 
 test('CLAHE', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  t.deepEqual(get(src, 2,2), [196,114,78,255])
-let rgbaPlanes = new cv.MatVector();
-cv.split(src, rgbaPlanes);
-let R = rgbaPlanes.get(0);
-let G = rgbaPlanes.get(1);
-let B = rgbaPlanes.get(2);
-cv.equalizeHist(R, R);
-cv.equalizeHist(G, G);
-cv.equalizeHist(B, B);
-//@ts-ignore
-let clahe = new cv.CLAHE(1, new cv.Size(8, 8));
-clahe.apply(R, R);
-clahe.apply(G, G);
-clahe.apply(B, B);
-cv.merge(rgbaPlanes, src);
+  t.deepEqual(get(src, 2, 2), [196, 114, 78, 255])
+  let rgbaPlanes = new cv.MatVector()
+  cv.split(src, rgbaPlanes)
+  let R = rgbaPlanes.get(0)
+  let G = rgbaPlanes.get(1)
+  let B = rgbaPlanes.get(2)
+  cv.equalizeHist(R, R)
+  cv.equalizeHist(G, G)
+  cv.equalizeHist(B, B)
+  //@ts-ignore
+  let clahe = new cv.CLAHE(1, new cv.Size(8, 8))
+  clahe.apply(R, R)
+  clahe.apply(G, G)
+  clahe.apply(B, B)
+  cv.merge(rgbaPlanes, src)
   // write(src, 'tmp-CLAHE.png')
-  t.deepEqual(get(src, 2,2), [231,221,193,255])
-  del(src, R,G, B, clahe, rgbaPlanes)
+  t.deepEqual(get(src, 2, 2), [231, 221, 193, 255])
+  del(src, R, G, B, clahe, rgbaPlanes)
 })

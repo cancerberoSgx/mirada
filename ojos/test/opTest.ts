@@ -1,13 +1,31 @@
 import test from 'ava'
-import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { Bitwise, canny, CannyOptions, FloodFillOptions, replaceColor, ReplaceColorOptions, FloodFill } from '../src'
+import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
+import { Bitwise, canny, CannyOptions, FloodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
+import { HistEqualization } from '../src/op/histEqualization'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada } from './testUtil'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
+
+
+test('histEqualization mode=equalizeHist', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  t.deepEqual(get(src, 2, 2), [196, 114, 78, 255])
+  new HistEqualization().exec({ src, dst: src, mode: 'equalizeHist' })
+  write(src, 'tmp-ss2.png')
+  t.deepEqual(get(src, 2, 2), [219, 208, 182, 255])
+  del(src)
+})
+
+test('histEqualization mode=CLAHE', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  new HistEqualization().exec({ src, dst: src, mode: 'CLAHE', clipLimit: 1, tileGridSize: new cv.Size(8, 8) })
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaHistEqClahe.png'), src), 0)
+  del(src)
+})
 
 test('math add', async t => {
   const src = await fromFile('test/assets/nErode.png')
