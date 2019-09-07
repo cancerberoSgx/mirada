@@ -1,5 +1,5 @@
 import { del } from 'mirada'
-import { canny, replaceColor, ConvertTo, GaussianBlur } from 'ojos'
+import { canny, replaceColor, ConvertTo, GaussianBlur, Threshold, MorphologyEx } from 'ojos'
 import { getState, ToolNames } from "./state"
 import { Managers, getManagers } from './start'
 
@@ -17,6 +17,8 @@ export async function stop() {
 
 const gaussianBlur = new GaussianBlur()
 const convertTo = new ConvertTo()
+const threshold = new Threshold()
+const morphologyEx = new MorphologyEx()
 
 export let processFunction = function (this: Managers) {
   if (!this.c.streaming) {
@@ -40,6 +42,12 @@ export let processFunction = function (this: Managers) {
     }
     else if (name === ToolNames.gaussianBlur && state.gaussianBlur.active) {
       gaussianBlur.exec({ ...state.gaussianBlur, src: dst, dst });
+    }
+    else if (name === ToolNames.threshold && state.threshold.active) {
+      threshold.exec({ ...state.threshold, src: dst, dst });
+    }
+    else if (name === ToolNames.morphologyEx && state.morphologyEx.active) {
+      morphologyEx.exec({ ...state.morphologyEx, src: dst, dst });
     }
   })
   cv.imshow(this.canvas, dst);

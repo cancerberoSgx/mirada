@@ -1,6 +1,6 @@
 import { RemoveProperties, objectKeys } from 'misc-utils-of-mine-generic'
-import { CannyOptions, FloodFillOptions, OperationExecBaseOptions, ReplaceColorOptions, ConvertToOptions, ConvertTo, GaussianBlur, GaussianBlurOptions } from 'ojos'
-import {  BorderTypes } from 'mirada'
+import { CannyOptions, FloodFillOptions, OperationExecBaseOptions, ReplaceColorOptions, ConvertToOptions, ConvertTo, GaussianBlur, GaussianBlurOptions, Threshold, ThresholdOptions, MorphologyExOptions, MorphologyEx } from 'ojos'
+import { morphologyEx } from 'mirada'
 
 export enum ToolNames {
   'replaceColor' = 'replaceColor',
@@ -8,6 +8,8 @@ export enum ToolNames {
   'convertTo' = 'convertTo',
   'floodFill' = 'floodFill',
   'gaussianBlur' = 'gaussianBlur',
+  'threshold' = 'threshold',
+  'morphologyEx' = 'morphologyEx',
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -27,6 +29,8 @@ export interface StateTools {
   floodFill: ToolProps<FloodFillOptions>;
   convertTo: ToolProps<ConvertToOptions>;
   gaussianBlur: ToolProps<GaussianBlurOptions>;
+  threshold: ToolProps<ThresholdOptions>;
+  morphologyEx: ToolProps<MorphologyExOptions>;
 }
 
 let _state: State
@@ -45,6 +49,22 @@ const tools:StateTools = {
         name: ToolNames.convertTo,
         alpha: 1.5,
         beta: 12
+      },
+      threshold: {
+        description: new Threshold().description,
+        name: ToolNames.threshold,
+        maxval: 128, 
+        thresh: 128, 
+        type: cv.THRESH_BINARY
+      },
+      morphologyEx: {
+        description: new MorphologyEx().description,
+        name: ToolNames.morphologyEx,
+        op: cv.MORPH_DILATE, 
+        kernel: cv.getStructuringElement(cv.MORPH_RECT, {width: 5, height: 7}),
+        iterations: 1, 
+        // borderType: cv.BORDER_CONSTANT
+        //borderValue
       },
       gaussianBlur: {
         description: new GaussianBlur().description,

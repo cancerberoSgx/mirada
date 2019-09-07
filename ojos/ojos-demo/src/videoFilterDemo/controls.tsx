@@ -1,11 +1,12 @@
 import { Scalar } from 'mirada'
-import { objectKeys, setObjectProperty } from 'misc-utils-of-mine-generic'
+import { objectKeys, setObjectProperty, enumKeys } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
-import { Color } from './miradaUi/color'
+import { Color } from '../miradaUi/color'
 import { getManagers, loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
-import { Point } from './miradaUi/point'
+import { Point } from '../miradaUi/point'
 import { resetFpsFramesCounter, fpsFramesCounter, stop } from './processFunction'
+import { ThresholdEnum, MorphTypesEnum } from '../../../dist/src'
 
 export class Controls extends React.Component<{}, State> {
   protected timer: any
@@ -114,6 +115,44 @@ export class Controls extends React.Component<{}, State> {
           onChange={e => this.setState2({ 'canny.L2gradient': e.currentTarget.checked })}/></label>
     </>
     ,
+    [ToolNames.threshold]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.threshold.active} 
+      onChange={e => this.setState2({ 'threshold.active': e.currentTarget.checked })}/>
+      threshold</label>
+      <label>maxval
+          <input min="0" max="255" step="2" type="number" value={this.state.threshold.maxval} 
+          onChange={e =>  this.setState2({ 'threshold.maxval': e.currentTarget.valueAsNumber })}/>
+      </label>
+        <label>thresh
+          <input min="0" max="255" step="2" type="number" value={this.state.threshold.thresh} 
+          onChange={e =>  this.setState2({ 'threshold.thresh': e.currentTarget.valueAsNumber })}/>
+      </label>
+      <label>type
+        <select onChange={e=>this.setState2({'threshold.type': (cv as any)[e.currentTarget.value]})}>
+        {['THRESH_BINARY', 'THRESH_TOZERO', 'THRESH_TRUNC'].map(name=><option selected={(cv as any)[name]===this.state.threshold.type} 
+          value={name}>{name}</option>)}
+        </select>
+        </label>
+    </>
+    ,
+    [ToolNames.morphologyEx]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.morphologyEx.active} 
+      onChange={e => this.setState2({ 'morphologyEx.active': e.currentTarget.checked })}/>
+      morphologyEx</label>
+      <label>type
+        <select onChange={e=>this.setState2({'morphologyEx.op': (cv as any)[e.currentTarget.value]})}>
+        {enumKeys(MorphTypesEnum).map(name=><option selected={(cv as any)[name]===this.state.morphologyEx.op} 
+          value={name}>{name}</option>)}
+        </select>
+        </label> 
+         <label>iterations
+          <input min="1" max="255" step="1" type="number" value={this.state.morphologyEx.iterations} 
+          onChange={e =>  this.setState2({ 'morphologyEx.iterations': e.currentTarget.valueAsNumber })}/>
+      </label>
+    </>
+    ,
     [ToolNames.gaussianBlur]: () => <>
       <label className="enable">
         <input type="checkbox" checked={this.state.gaussianBlur.active} 
@@ -154,5 +193,3 @@ export class Controls extends React.Component<{}, State> {
   }
 }
 
-
-const Sep = () => <span>&nbsp; - &nbsp;</span>
