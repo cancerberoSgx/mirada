@@ -4,6 +4,7 @@ import * as rd from 'react-dom'
 import { Controls } from "./controls"
 import { processFunction } from './processFunction'
 import { getState, State } from "./state"
+import { loadUrl } from './urlState'
 
 export async function start() {
   renderRootLayout()
@@ -49,6 +50,7 @@ export async function loadVCamAndStartProcessing() {
 }
 
 function renderApp() {
+  loadUrl()
   document.getElementById('loading')!.remove()
   rd.render(<div>
     <Controls />

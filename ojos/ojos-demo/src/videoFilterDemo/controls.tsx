@@ -7,7 +7,8 @@ import { Point } from '../miradaUi/point'
 import { fpsFramesCounter, resetFpsFramesCounter, stop } from './processFunction'
 import { getManagers, loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
-import { pointToSize, sizeToPoint } from '../miradaUi/util'
+import { pointToSize, sizeToPoint, memoryReport } from '../miradaUi/util'
+import { createUrl } from './urlState'
 
 export class Controls extends React.Component<{}, State> {
   protected timer: any
@@ -35,13 +36,16 @@ export class Controls extends React.Component<{}, State> {
     this.timer = setInterval(() => {
       const fps = Math.round(fpsFramesCounter / (fpxLapse * 1.0))
       resetFpsFramesCounter()
-      this.setState({ fps })
+      const m = memoryReport()
+      this.setState({ fps, mem: m.usedMb + ' ' + m.percent })
     }, fpxLapse * 1000)
   }
 
+  // memEl: HTMLElement | null = null;
   render() {
     return (<>
       <div>FPS: {this.state.fps} &nbsp;
+      <span >{this.state.mem}</span>
       <button onClick={e => {
           this.componentWillUnmount()
           stop()
@@ -50,6 +54,7 @@ export class Controls extends React.Component<{}, State> {
           this.componentDidMount()
           loadVCamAndStartProcessing()
         }}>Start</button>
+        <button onClick={createUrl}>Create URL</button>
       </div>
       <ol>
         {this.state.order.map(name => <li title={this.state[name].description}>
@@ -137,6 +142,19 @@ export class Controls extends React.Component<{}, State> {
       </label>
     </>
     ,
+    [ToolNames.bitwise]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.bitwise.active}
+          onChange={e => this.setState2({ 'bitwise.active': e.currentTarget.checked })} />
+        bitwise</label>
+        <label>type
+        <select onChange={e => this.setState2({ 'bitwise.type':  e.currentTarget.value })}>
+          {['not', 'and', 'or', 'xor'].map(name => <option selected={name=== this.state.bitwise.type}
+            value={name}>{name}</option>)}
+        </select>
+      </label>
+    </>
+    ,
     [ToolNames.morphologyEx]: () => <>
       <label className="enable">
         <input type="checkbox" checked={this.state.morphologyEx.active}
@@ -151,6 +169,31 @@ export class Controls extends React.Component<{}, State> {
       <label>iterations
           <input min="1" max="255" step="1" type="number" value={this.state.morphologyEx.iterations}
           onChange={e => this.setState2({ 'morphologyEx.iterations': e.currentTarget.valueAsNumber })} />
+      </label>
+    </>
+    ,
+    [ToolNames.edge]: () => <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.edge.active}
+          onChange={e => this.setState2({ 'edge.active': e.currentTarget.checked })} />
+        edge</label>
+      <label>type
+        <select onChange={e => this.setState2({ 'edge.type': e.currentTarget.value })}>
+          {['sobel', 'scharr', 'laplacian'].map(name => <option selected={name === this.state.edge.type}
+            value={name}>{name}</option>)}
+        </select>
+      </label>
+      <label>ksize
+          <input min="1" max="7" step="2" type="number" value={this.state.edge.ksize}
+          onChange={e => this.setState2({ 'edge.ksize': e.currentTarget.valueAsNumber })} />
+      </label>
+       <label>scale
+          <input min="0" type="number" value={this.state.edge.scale}
+          onChange={e => this.setState2({ 'edge.scale': e.currentTarget.valueAsNumber })} />
+      </label>
+       <label>delta
+          <input min="0" type="number" value={this.state.edge.delta}
+          onChange={e => this.setState2({ 'edge.delta': e.currentTarget.valueAsNumber })} />
       </label>
     </>
     ,

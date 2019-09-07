@@ -1,5 +1,5 @@
 import { File } from '../File'
-import { Mat, Scalar, Point, Size } from '../types/opencv'
+import { Mat, Point, Scalar, Size } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -92,6 +92,7 @@ export function set(m: Mat, x: number, y: number, val: Scalar) {
     view[y * c * m.cols + x * c + i] = val[i]
   }
 }
+
 /**
  * gets the color of pixel at coords (x,y) 
  */
@@ -114,21 +115,40 @@ export function map(mat: Mat, dst: Mat, fn: (p: Scalar, x: number, y: number) =>
   }
 }
 
-let _noArray: Mat
 /**
  * for overload methods that won't accept undefined as argument, like 'mask' cv.add()
  */
 export function noArray() {
-  if (!_noArray) {
-    _noArray = cv.Mat.ones(0, 0, cv.CV_8U)
-  }
-  return _noArray
+  new cv.Scalar(0)
 }
 
 export function pointToSize(p: Point) {
   return new cv.Size(p.x, p.y)
 }
 
-export function sizeToPoint(s:Size) {
+export function sizeToPoint(s: Size) {
   return new cv.Point(s.width, s.height)
 }
+
+export function isSize(size: any): size is Size {
+  return typeof size === 'object' && typeof size.width === 'number'
+}
+
+/**
+ * a serializable (as in JSON.stringify) representation of Mat instances
+ */
+export interface MatData {
+  cols: number,
+  rows: number,
+  data: number[],
+  type: any
+}
+
+export function mat2data(m: Mat): MatData {
+  return { rows: m.rows, cols: m.cols, type: m.type(), data: Array.from(m.data) }
+}
+
+export function data2mat(d: MatData): Mat {
+  return cv.matFromArray(d.rows, d.cols, d.type, new Uint8Array(d.data))
+}
+

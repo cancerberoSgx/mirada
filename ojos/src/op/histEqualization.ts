@@ -1,4 +1,4 @@
-import { del, Size } from 'mirada'
+import { del, Size, Mat } from 'mirada'
 import { array } from 'misc-utils-of-mine-generic'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
@@ -28,11 +28,14 @@ export class HistEqualization extends AbstractOperation<HistEqualizationOptions>
     } else {
       let rgbaPlanes = new cv.MatVector()
       cv.split(o.src, rgbaPlanes)
-      array(o.src.channels()).forEach(i =>
-        this.histEqualizationOne({ ...o, src: rgbaPlanes.get(i), dst: rgbaPlanes.get(i) })
-      )
+      const mats :Mat[] = []
+      array(o.src.channels()).forEach(i =>{
+      const M = rgbaPlanes.get(i)
+      mats.push(M)
+        this.histEqualizationOne({ ...o, src: M, dst: M })
+        }      )
       cv.merge(rgbaPlanes, o.dst!)
-      del(rgbaPlanes, ...array(o.src.channels()).map(i => rgbaPlanes.get(i)))
+      del(...mats, rgbaPlanes)
     }
   }
 

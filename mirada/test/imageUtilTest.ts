@@ -1,6 +1,6 @@
 import test from 'ava'
 import { File, Mat } from '../src'
-import { compareL2, del, fromFile, get, set } from '../src/util/imageUtil'
+import { compareL2, data2mat, del, fromFile, get, mat2data, set } from '../src/util/imageUtil'
 import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
@@ -32,4 +32,12 @@ test('get / set', async t => {
   t.deepEqual(get(mat, 2, 3), [111, 111, 111])
   del(mat)
   t.true(true)
+})
+
+test('mat2data, data2mat', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  const d = mat2data(src)
+  const src2 = data2mat(d)
+  t.deepEqual(compareL2(src, src2), 0)
+  del(src, src2)
 })

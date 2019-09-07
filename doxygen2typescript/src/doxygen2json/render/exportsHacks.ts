@@ -130,7 +130,7 @@ function mat_() {
 import {Mat} from '.'
 
 export declare function matFromImageData(imageData: ImageData): Mat
-export declare function matFromArray(a:number, b:number, type: any, array: number[]): Mat
+export declare function matFromArray(rows: number, cols: number, type: any, array: number[]|ArrayBufferView): Mat;
 
 // Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
 ${alias.map(a => `export { Mat as ${a} } from './Mat'`).join('\n')}

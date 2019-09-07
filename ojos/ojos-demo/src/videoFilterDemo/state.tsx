@@ -1,5 +1,6 @@
-import { RemoveProperties } from 'misc-utils-of-mine-generic'
-import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, HistEqualizationOptions, Edge, EdgeOptions, HistEqualization, WarpPerspectiveOptions, WarpPerspective, SolveMethodEnum } from 'ojos'
+import { RemoveProperties, mergeRecursive, merge } from 'misc-utils-of-mine-generic'
+import { CannyOptions, ConvertTo, ConvertToOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, HistEqualizationOptions, Edge, EdgeOptions, HistEqualization, WarpPerspectiveOptions, WarpPerspective, SolveMethodEnum, BitwiseOptions, Bitwise } from 'ojos'
+ 
 
 export enum ToolNames {
   'replaceColor' = 'replaceColor',
@@ -12,6 +13,7 @@ export enum ToolNames {
   'histEqualization' = 'histEqualization',
   'warpPerspective' = 'warpPerspective',
   'edge' = 'edge',
+  'bitwise' = 'bitwise',
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -21,6 +23,7 @@ type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof O
 }
 
 export interface State extends StateTools {
+  mem:string,
   fps: number;
   order: ToolNames[]
 }
@@ -36,6 +39,7 @@ export interface StateTools {
   histEqualization: ToolProps<HistEqualizationOptions>;
   warpPerspective: ToolProps<WarpPerspectiveOptions>;
   edge: ToolProps<EdgeOptions>;
+  bitwise: ToolProps<BitwiseOptions>;
 }
 
 let _state: State
@@ -59,12 +63,12 @@ export const getState: () => State = () => {
         description: new Edge().description,
         name: ToolNames.edge,
         dx: 2, 
-        dy: 1, 
-        ddepth: -1, 
+        dy: 1,  
+        ddepth: cv.CV_8U, 
         delta: 0, 
-        ksize: 5, 
+        ksize: 3, 
         scale: 1, 
-        type: 'sobel'
+        type: 'laplacian'
       },
       threshold: {
         description: new Threshold().description,
@@ -72,6 +76,11 @@ export const getState: () => State = () => {
         maxval: 128,
         thresh: 128,
         type: cv.THRESH_BINARY
+      },
+      bitwise: {
+        description: new Bitwise().description,
+        name: ToolNames.bitwise,
+       type: 'not'
       },
       gaussianBlur: {
         description: new GaussianBlur().description,
@@ -103,7 +112,7 @@ export const getState: () => State = () => {
         description: new MorphologyEx().description,
         name: ToolNames.morphologyEx,
         op: cv.MORPH_DILATE,
-        kernel: cv.getStructuringElement(cv.MORPH_RECT, { width: 5, height: 7 }),
+        kernel: cv.getStructuringElement(cv.MORPH_CROSS, { width: 5, height: 7 }),
         iterations: 1,
         // borderType: cv.BORDER_CONSTANT
         //borderValue
@@ -127,9 +136,16 @@ export const getState: () => State = () => {
     }
     _state = {
       fps: 0,
+      mem: '',
       ...tools,
       order: Object.values(tools).map(v => v.name)
     }
   }
   return _state
+}
+
+export function setState(s: Partial<State>) {
+  const ss = getState()
+  // merge(false, true, ss, s)
+  Object.assign(ss, s)
 }

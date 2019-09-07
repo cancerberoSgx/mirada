@@ -1,5 +1,5 @@
 import { del } from 'mirada'
-import { canny, ConvertTo, GaussianBlur, MorphologyEx, replaceColor, Threshold, HistEqualization, WarpPerspective } from 'ojos'
+import { canny, ConvertTo, GaussianBlur, MorphologyEx, replaceColor, Threshold, HistEqualization, WarpPerspective, Edge, Bitwise } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 import { array } from 'misc-utils-of-mine-generic'
@@ -23,6 +23,9 @@ const threshold = new Threshold()
 const morphologyEx = new MorphologyEx()
 const histEqualization = new HistEqualization()
 const warpPerspective = new WarpPerspective()
+const bitwise = new Bitwise()
+const edge = new Edge()
+
 const colors = array(10).map(randomScalarColor)
 
 export let processFunction = function(this: Managers) {
@@ -52,6 +55,7 @@ export let processFunction = function(this: Managers) {
       threshold.exec({ ...state.threshold, src: dst, dst })
     }
     else if (name === ToolNames.morphologyEx && state.morphologyEx.active) {
+      debugger
       morphologyEx.exec({ ...state.morphologyEx, src: dst, dst })
     }
     else if (name === ToolNames.histEqualization && state.histEqualization.active) {
@@ -61,6 +65,17 @@ export let processFunction = function(this: Managers) {
       // warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: dst, dst }) 
       const cp = dst.clone() //TODO: warpPerspective inPlace issue !
       warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst, ...state.warpPerspective.drawPoints ? {drawPoints: colors}:{} }) 
+      cp.delete()
+    } 
+    else if (name === ToolNames.edge && state.edge.active) {
+  cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
+      edge.exec({ ...state.edge, src: dst, dst})
+    }  
+    else if (name === ToolNames.bitwise && state.bitwise.active) {
+  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
+      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
+  cv.cvtColor(cp, cp, cv.COLOR_RGBA2RGB, 0)
+      bitwise.exec({ ...state.bitwise, src: cp, dst})
       cp.delete()
     }
   })

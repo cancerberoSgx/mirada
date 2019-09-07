@@ -107,12 +107,11 @@ export declare class VideoCapture {
 }
 
 
-
 import { LineTypes, Mat, NormTypes, RotatedRect } from '.'
 import '../_cv'
 
 export declare function matFromImageData(imageData: ImageData): Mat
-export declare function matFromArray(a: number, b: number, type: any, array: number[]): Mat
+export declare function matFromArray(rows: number, cols: number, type: any, array: number[] | ArrayBufferView): Mat
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
