@@ -1,4 +1,4 @@
-import { CVDataType, Mat, noArray } from 'mirada'
+import { CVDataType, Mat , noArray} from 'mirada'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
 

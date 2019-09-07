@@ -1,6 +1,5 @@
-import { Mat } from 'mirada'
+import { Mat, isSize } from 'mirada'
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
-import { isSize } from '../util'
 import { ImageOperation, OperationExecBaseOptions, WithKSize } from './types'
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }

@@ -29,13 +29,13 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {
-    "@types/file-type": "^10.9.1",
     "@types/node": "^12.7.4",
     "@types/tinycolor2": "^1.4.2",
     "ava": "^2.3.0",
     "file-type": "^12.3.0",
     "jimp": "^0.6.8",
     "markdown-toc": "^1.2.0",
+    "mirada": "file:../mirada",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typedoc": "^0.15.0",
@@ -44,9 +44,11 @@
     "typescript-member-signatures": "0.0.6"
   },
   "dependencies": {
-    "mirada": "0.0.6",
     "misc-utils-of-mine-generic": "^0.2.30",
     "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "mirada": "0.0.7"
   },
   "repository": {
     "type": "git",

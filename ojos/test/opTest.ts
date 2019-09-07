@@ -1,6 +1,6 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
-import { Bitwise, canny, CannyOptions, FloodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
+import { Bitwise, Canny, CannyOptions, FloodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
 import { HistEqualization } from '../src/op/histEqualization'
@@ -98,14 +98,13 @@ test('replaceColor', async t => {
   del(dst, src)
 })
 
-test('canny', async t => {
+test('canny inPlace', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  const o: CannyOptions = {
-    src, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
-  }
-  const dst = canny(o)
-  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(dst), true), 0)
-  del(dst, src)
+  await new Canny().exec({
+    src, dst: src, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
+  })
+  t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCanny.png'), toRgba(src), true), 0)
+  del(src)
 })
 
 

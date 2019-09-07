@@ -32,15 +32,20 @@ TODO
  * [Markdown Reference API ](https://cancerberosgx.github.io/demos/mirada-opencv-api-html/). 
 
 ## TODO
-- [x] warpPerspective operations
-- [x] blur operations
-- [ ] ingegrate mirada-cli generateCommands script here
 - [ ] more codecs 
+- [ ] playground: declare animations - when user trigger an action the perspective transformation changes over time.
+  - [ ] for this we could use easing (flor/accursed)
+- [ ] edge detectors supporting multiple channels ? 
   - svg experiments
-- [ ] high level Widgets (Point, Color)
+- [ ] high level Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - GUIs for real use cases like grabcut
 - [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
+- [ ] integrate mirada-cli generateCommands script here
+  - [ ] use operations interfaces
+- [ ] decide what we do with commands - remove it ? 
+- [x] warpPerspective operations
+- [x] blur operations
 
 ### Operations
 

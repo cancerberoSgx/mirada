@@ -1,7 +1,7 @@
 import test from 'ava'
 import { File, Mat } from '../src'
-import { compareL2, data2mat, del, fromFile, get, mat2data, set } from '../src/util/imageUtil'
-import { loadMirada } from './testUtil'
+import { compareL2, data2mat, del, fromFile, get, mat2data, set, isMatData, isMat, jsonStringifyWithMat, jsonParseWithMat } from '../src/util/imageUtil'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
 
@@ -34,10 +34,25 @@ test('get / set', async t => {
   t.true(true)
 })
 
-test('mat2data, data2mat', async t => {
+test('mat2data, data2mat, isMatData, isMat', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   const d = mat2data(src)
   const src2 = data2mat(d)
   t.deepEqual(compareL2(src, src2), 0)
+  t.deepEqual([false, true, true, false], [isMatData(src), isMatData(d), isMat(src), isMat(d)])
   del(src, src2)
+})
+
+test('jsonStringifyWithMat, jsonParseWithMat', async t => {
+  const src = await fromFile('test/assets/lenna.jpg')
+  const o = {a: 1, src}
+  const s = jsonStringifyWithMat(o)
+  console.log(s.length) 
+  //  2264540 801682
+  const o2 = jsonParseWithMat(s)
+write(o2.src, 'tmpt.png')
+  console.log(o2, Object.keys(o2), typeof o2.src.data);
+  
+  t.deepEqual(compareL2(src, o2.src), 0)
+  del(src, o2.src)
 })

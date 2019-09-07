@@ -1,5 +1,6 @@
 import { File } from '../File'
 import { Mat, Point, Scalar, Size } from '../types/opencv'
+import { isNode } from 'misc-utils-of-mine-generic'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -115,11 +116,15 @@ export function map(mat: Mat, dst: Mat, fn: (p: Scalar, x: number, y: number) =>
   }
 }
 
+let _noArray: Mat
 /**
  * for overload methods that won't accept undefined as argument, like 'mask' cv.add()
  */
 export function noArray() {
-  new cv.Scalar(0)
+  if (!_noArray) {
+    _noArray = cv.Mat.ones(0, 0, cv.CV_8U)
+  }
+  return _noArray
 }
 
 export function pointToSize(p: Point) {
@@ -140,15 +145,65 @@ export function isSize(size: any): size is Size {
 export interface MatData {
   cols: number,
   rows: number,
-  data: number[],
+  data: string,
   type: any
 }
 
 export function mat2data(m: Mat): MatData {
-  return { rows: m.rows, cols: m.cols, type: m.type(), data: Array.from(m.data) }
+  return {
+    rows: m.rows,
+    cols: m.cols,
+    type: m.type(),
+    data: ab2str(m.data)
+  }
 }
 
 export function data2mat(d: MatData): Mat {
-  return cv.matFromArray(d.rows, d.cols, d.type, new Uint8Array(d.data))
+  return cv.matFromArray(d.rows, d.cols, d.type, str2ab(d.data))
 }
 
+export function isMatData(d: any): d is MatData {
+  return typeof d === 'object' && typeof d.rows === 'number' && typeof d.rows === 'number' && typeof d.type !== 'undefined' && typeof d.data === 'string' && Object.keys(d).sort().join(',') === 'cols,data,rows,type'
+}
+
+let _Buffer = require('buffer/').Buffer as typeof Buffer
+
+if (isNode() && typeof _Buffer !== 'undefined') {
+  _Buffer = Buffer
+}
+
+function ab2str(buf: Uint8Array) {
+  return _Buffer.from(buf).toString('base64');
+}
+
+function str2ab(str: string) {
+  return new Uint8Array(_Buffer.from(str, 'base64'))
+}
+
+/**
+ * Executes JSON.stringify on JSON containing Mat instances.
+ */
+export function jsonStringifyWithMat(s: any): string {
+  return JSON.stringify(s, (key, value) => {
+    if (isMat(value)) {
+      return mat2data(value);
+    }
+    else {
+      return value;
+    }
+  });
+}
+
+/**
+ * Executes JSON.parse on JSON containing Mat instances.
+ */
+export function jsonParseWithMat(d: string) {
+  return JSON.parse(d, (key, value) => {
+    if (isMatData(value)) {
+      return data2mat(value);
+    }
+    else {
+      return value;
+    }
+  });
+}
