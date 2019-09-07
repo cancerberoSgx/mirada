@@ -3,10 +3,23 @@ import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { Bitwise, canny, CannyOptions, floodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
+import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
+
+test('math add', async t => {
+  const src = await fromFile('test/assets/nErode.png')
+  const src2 = await fromFile('test/assets/nMedianBlur.png')
+  const dst = await new Math().exec({ src, src2, type: 'add' })
+  t.deepEqual(compareL2(await File.fromFile('test/assets/nAdd.png'), await toRgba(dst)), 0)
+  del(src, src2, dst)
+})
+
+test.todo('math subtract')
+test.todo('math multiply')
+test.todo('math divide')
 
 test('adaptiveThreshold', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
@@ -20,7 +33,6 @@ test('bitwise not', async t => {
   const src = await fromFile('test/assets/n.png')
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
   await new Bitwise().exec({ src, dst: src, type: 'not' })
-  write(src, 'tmpnot.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/nBitwiseNot.png'), await toRgba(src)), 0)
   del(src)
 })

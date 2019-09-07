@@ -113,3 +113,14 @@ export function map(mat: Mat, dst: Mat, fn: (p: Scalar, x: number, y: number) =>
     }
   }
 }
+
+let _noArray: Mat 
+/**
+ * for overload methods that won't accept undefined as argument, like 'mask' cv.add()
+ */
+export function noArray(){
+  if(!_noArray){
+    _noArray = cv.Mat.ones(0,0, cv.CV_8U)
+  }
+  return _noArray
+}
