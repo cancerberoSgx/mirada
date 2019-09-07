@@ -1,6 +1,7 @@
 import { del, isMat, Mat, Point, Scalar } from 'mirada'
 import { CannyConcreteOptions, FloodFillOptions, MedianBlurConcreteOptions } from '.'
 import { OperationExecBaseOptions } from './types'
+import { AbstractOperation } from './abstractOperation'
 
 export interface FloodFillOptions extends OperationExecBaseOptions {
   seed: Point;
@@ -13,8 +14,15 @@ export interface FloodFillOptions extends OperationExecBaseOptions {
 
 export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'medianBlur' } & MedianBlurConcreteOptions)
 
-export function floodFill(o: FloodFillOptions) {
-  const preprocess = o.preprocess || [{ name: 'medianBlur' }, { name: 'canny' }]
+
+/**
+ * This is a high level API involving several opencv operations. 
+ */
+export class FloodFill extends AbstractOperation<FloodFillOptions> {
+  name: string = "FloodFill"
+  sameSizeAndType = true
+  protected async _exec(o: FloodFillOptions) {
+    const preprocess = o.preprocess || [{ name: 'medianBlur' }, { name: 'canny' }]
   const dst = o.dst = o.dst || new cv.Mat()
   o.src.copyTo(dst)
 
@@ -53,24 +61,5 @@ export function floodFill(o: FloodFillOptions) {
   const r = dst2.roi({ x: 1, y: 1, width: mask.cols - 2, height: mask.rows - 2 })
   r.copyTo(dst)
   del(mask, dst2, r, ...isMat(o.newColorOrImage) ? [] : [b])
-  return dst
+  }
 }
-
-// export function floodFill(o: FloodFillOptions) {
-//   checkThrow(!o.ksize|| o.ksize% 2 !== 0, 'Blur size must be odd')
-//   const originalType = o.dst ? o.dst.type() : o.src.type()
-//   const dst = o.dst = o.dst || new cv.Mat()
-//   cv.medianBlur(o.src, dst, o.ksize|| 5)
-//   cv.cvtColor(dst, dst, cv.CV_8UC1, 3)
-//   const mask = cv.Mat.zeros(dst.rows + 2, dst.cols + 2, cv.CV_8UC1)
-//   const ct = o.cannyThreshold || [0, 255]
-//   cv.Canny(dst, mask, ct[0], ct[1])
-//   cv.copyMakeBorder(mask, mask, 1, 1, 1, 1, cv.BORDER_REPLICATE)
-//   cv.floodFill(dst, mask, o.seed, new cv.Scalar(255, 255, 255, 255), 0, o.lowDiff || new cv.Scalar(255, 255, 255, 255),
-//     o.upDiff || new cv.Scalar(255, 255, 255, 255), (o.connectivity || 4) | cv.FLOODFILL_MASK_ONLY | ((o.fill || 255) << 8))
-//   const r = mask.roi({ x: 1, y: 1, width: mask.cols - 2, height: mask.rows - 2 })
-//   dst.create(o.src.rows, o.src.cols, originalType)
-//   r.copyTo(dst)
-//   del(mask, r)
-//   return dst
-// }

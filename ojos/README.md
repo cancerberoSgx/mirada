@@ -1,20 +1,39 @@
+## Contents
+
+<!-- toc -->
+
+- [What / Why ?](#what--why-)
+- [install](#install)
+- [Usage](#usage)
+- [Reference API](#reference-api)
+- [TODO](#todo)
+  * [Operations](#operations)
+    + [chain utility (WIP)](#chain-utility-wip)
+
+<!-- tocstop -->
+
+## What / Why ?
+
 While mirada supports TypeScript type declarations for opencv.s, support and test for both browser and node.js and basic utilities for files, image formats, browser, etc, this project hosts features and APIs purely mine, built on top of it. 
 
 I want to keep [Mirada](https://github.com/cancerberoSgx/mirada) KISS - with no much more tha TypeScript typings and basic utilities for node.js. And since I observe I'm already polluting it with "extra" features I will start working on those here. 
-
-Also I'm kind of leatning both the topic of CV and the library's API and I don't want to pollute Mirada project with OT tests and bad/incorrect/non-optimal code there. 
-
+ 
 ## install
 
 npm install ojos
 
 ## Usage
 
-YBD
+TODO
+
+## Reference API
+
+ * [HTML Reference API](https://github.com/cancerberoSgx/demos/tree/master/mirada-opencv-api-md). 
+ * [Markdown Reference API ](https://cancerberosgx.github.io/demos/mirada-opencv-api-html/). 
 
 ## TODO
-- [ ] warpPerspective
-- [ ] blur https://docs.opencv.org/3.4/dc/dd3/tutorial_gausian_median_blur_bilateral_filter.html
+- [x] warpPerspective operations
+- [x] blur operations
 - [ ] ingegrate mirada-cli generateCommands script here
 - [ ] more codecs 
   - svg experiments
@@ -38,3 +57,10 @@ YBD
      * template support (see mirada-cli)
    * execution of sequence / composited operations (output Mat become input fo next operations.)
    
+
+#### chain utility (WIP)
+
+- [ ] utility wrapper around Mat, similar to File but focused on method chaining and automatic Mat delete(). Example. File.fromFile('i.png').chain.roi(2,3,4,5).convertTo(cv.CV_U8).threshold(...)
+
+ * chain: returns a new Chain which internally has a clone to source File.mat . each of chained methods will apply
+each method call after `chain` will automatically call delete() and replace this._mat with the result of the operation. All Mat and cv functions should be supported

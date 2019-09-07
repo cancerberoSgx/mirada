@@ -14,7 +14,11 @@
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
     "build": "npm run clean && npx tsc",
-    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js",
+    "docs": "npm run docs-readme-toc && npm run docs-api-md && npm run docs-api-html",
+    "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --theme markdown --out ./api --mode modules --readme none src/index.ts && rm -rf ../../../demos/docs/ojos-api-md && mkdir -p ../../../demos/docs/ojos-api-md && mv api/* ../../../demos/docs/ojos-api-md",
+    "docs-api-html": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --out ./api --readme none --mode modules src/index.ts && rm -rf ../../../demos/docs/ojos-api-html && mkdir -p ../../../demos/docs/ojos-api-html && mv api/* ../../../demos/docs/ojos-api-html",
+    "docs-readme-toc": "npx markdown-toc README.md -i",
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run docs",
     "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish"
   },
   "keywords": [
@@ -33,6 +37,9 @@
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typescript": "^3.6.2",
+    "markdown-toc": "^1.2.0",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.9",
     "typescript-member-signatures": "0.0.6"
   },
   "dependencies": {

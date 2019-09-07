@@ -52,7 +52,7 @@ export class VideoReader {
       video: true
     }
   }
-  protected stream: MediaStream|undefined
+  protected stream: MediaStream | undefined
 
   constructor(protected video: HTMLVideoElement, protected canvas: HTMLCanvasElement, protected o: Options = VideoReader.defaultOptions) {
     this.o = { ...VideoReader.defaultOptions, ...o }
@@ -92,7 +92,7 @@ export class VideoReader {
   stop() {
     if (this.stream) {
       this.stream.getVideoTracks().forEach(t => t.stop())
-      this.streaming=false
+      this.streaming = false
       this.mat.delete()
     }
   }

@@ -2,12 +2,12 @@ import { existsSync } from 'fs'
 import { getGlobal, isNode, notFalsy, serial } from 'misc-utils-of-mine-generic'
 import { installFormatProxy, loadFormatProxies } from './format'
 import { FS } from './types/emscripten'
-import { FormatProxy, LoadOptions } from './types/mirada'
+import { LoadOptions } from './types/mirada'
 import { buildError, resolveNodeModule } from './util/misc'
 
 export const FS_ROOT = '/work'
 
-let FS_: FS|undefined
+let FS_: FS | undefined
 
 /**
  * gets the emscripten FS API
@@ -27,10 +27,10 @@ export function getFS() {
  * in the case of the browser it could be in an external server.
  */
 export function loadOpencv(options: LoadOptions = {}) {
-  if(options.force){
-    opencvLoaded=false
-    getGlobal().Module=undefined
-    FS_=undefined
+  if (options.force) {
+    opencvLoaded = false
+    getGlobal().Module = undefined
+    FS_ = undefined
   }
   if (opencvLoaded) {
     options.onloadCallback && options.onloadCallback()

@@ -1,6 +1,6 @@
 import test from 'ava'
 import jimp from 'jimp'
-import { loadOpencv, del } from '../src'
+import { del, loadOpencv } from '../src'
 
 test.serial('library loads manually without proxy', async t => {
   await loadOpencv()
@@ -28,7 +28,7 @@ test.serial('cv.loadOpencv opencvJsExceptions 2', async t => {
 
 test.serial('cv.loadOpencv opencvJsLocation', async t => {
   await loadOpencv({
-    opencvJsLocation: 'static/opencv_exception.js', 
+    opencvJsLocation: 'static/opencv_exception.js',
     force: true
   })
   t.true(cv.getBuildInformation().includes('-s DISABLE_EXCEPTION_CATCHING=0'))
@@ -36,7 +36,7 @@ test.serial('cv.loadOpencv opencvJsLocation', async t => {
 
 test.serial('cv.loadOpencv opencvJsExceptions', async t => {
   await loadOpencv({
-    opencvJsExceptions: true, 
+    opencvJsExceptions: true,
     force: true
   })
   t.true(cv.getBuildInformation().includes('-s DISABLE_EXCEPTION_CATCHING=0'))

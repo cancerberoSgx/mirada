@@ -1,5 +1,5 @@
 import { del, File, Point, Scalar, toRgba } from 'mirada'
-import { floodFill, FloodFillOptions } from '../../op'
+import {  FloodFillOptions, FloodFill } from '../../op'
 import { AbstractCommandHandler, checkCommandInOut, resolveFile } from '../abstractCommand'
 import { Command, CommandName, Options1 } from '../types'
 
@@ -27,7 +27,7 @@ export class Command_floodFillImpl extends AbstractCommandHandler<CommandName.fl
       newColorOrImage: [255, 0, 0, 222],
       connectivity: 4
     }
-    floodFill(o2)
+    new FloodFill().exec(o2)
     const aux = new cv.Mat()
     const dst2 = !o.command.out ? File.fromMat(toRgba(dst, aux)) : File.fromMat(toRgba(dst, aux)).clone(o.command.out)
     del(dst, src, aux)

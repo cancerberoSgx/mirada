@@ -1,6 +1,6 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { Bitwise, canny, CannyOptions, floodFill, FloodFillOptions, replaceColor, ReplaceColorOptions } from '../src'
+import { Bitwise, canny, CannyOptions, FloodFillOptions, replaceColor, ReplaceColorOptions, FloodFill } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
 import { Math } from '../src/op/math'
@@ -64,7 +64,7 @@ test('floodFill', async t => {
     lowDiff: new cv.Scalar(19, 19, 91, 255),
     upDiff: new cv.Scalar(229, 255, 255, 255) // when low values flood pass through edges of color similar to the low channel
   }
-  floodFill(o)
+  new FloodFill().exec(o)
   t.deepEqual(compareL2(o.dst!, await fromFile('test/assets/coinsFloodFill.png')), 0)
   del(o.src, o.dst!)
 })

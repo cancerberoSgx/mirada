@@ -1,5 +1,4 @@
 import test from 'ava'
-import { sleep } from 'misc-utils-of-mine-generic'
 import { File } from '../src'
 import { loadMirada } from './testUtil'
 import fileType = require('file-type')
