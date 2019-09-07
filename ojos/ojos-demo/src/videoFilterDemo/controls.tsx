@@ -118,7 +118,12 @@ export class Controls extends React.Component<{}, State> {
       </label>
       <label>L2gradient
           <input type="checkbox" checked={this.state.canny.L2gradient}
-          onChange={e => this.setState2({ 'canny.L2gradient': e.currentTarget.checked })} /></label>
+          onChange={e => this.setState2({ 'canny.L2gradient': e.currentTarget.checked })} />
+          </label>
+      <label>channels
+        <input type="checkbox" checked={!!this.state.canny.channels}
+          onChange={e => this.setState2({ 'canny.channels': e.currentTarget.checked })} />
+        </label>
     </>
     ,
     [ToolNames.threshold]: () => <>
@@ -194,7 +199,11 @@ export class Controls extends React.Component<{}, State> {
        <label>delta
           <input min="0" type="number" value={this.state.edge.delta}
           onChange={e => this.setState2({ 'edge.delta': e.currentTarget.valueAsNumber })} />
-      </label>
+      </label> 
+      <label>channels
+        <input type="checkbox" checked={!!this.state.edge.channels}
+          onChange={e => this.setState2({ 'edge.channels': e.currentTarget.checked })} />
+        </label>
     </>
     ,
     [ToolNames.warpPerspective]: () => <>

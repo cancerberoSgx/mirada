@@ -68,6 +68,7 @@ export const getState: () => State = () => {
         delta: 0, 
         ksize: 3, 
         scale: 1, 
+        // channels: false,
         type: 'laplacian'
       },
       threshold: {
@@ -131,7 +132,8 @@ export const getState: () => State = () => {
         threshold1: 1,
         threshold2: 222,
         apertureSize: 3,
-        L2gradient: false
+        L2gradient: false,
+        // channels: false
       },
     }
     _state = {

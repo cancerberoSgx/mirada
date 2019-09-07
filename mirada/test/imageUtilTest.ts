@@ -47,12 +47,7 @@ test('jsonStringifyWithMat, jsonParseWithMat', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   const o = {a: 1, src}
   const s = jsonStringifyWithMat(o)
-  console.log(s.length) 
-  //  2264540 801682
   const o2 = jsonParseWithMat(s)
-write(o2.src, 'tmpt.png')
-  console.log(o2, Object.keys(o2), typeof o2.src.data);
-  
   t.deepEqual(compareL2(src, o2.src), 0)
   del(src, o2.src)
 })

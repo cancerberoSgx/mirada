@@ -1,6 +1,6 @@
 import { del, isSize, Mat } from 'mirada'
-import { array, RemoveProperties } from 'misc-utils-of-mine-generic'
-import { ImageOperation, OperationExecBaseOptions, WithKSize } from './types'
+import { array, RemoveProperties, checkThrow } from 'misc-utils-of-mine-generic'
+import { ImageOperation, OperationExecBaseOptions, WithKSize, WithChannels } from './types'
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
 
@@ -25,13 +25,16 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     this.checkInPlaceAfter(options)
     return options.dst!
   }
+ protected  checkInputImage(o:T){
 
+ }
   protected checkOptions(o?: T) {
     if (!o && !this.defaultOptions) {
       throw new Error('No options provided not in the constructor or in exec() call. Aborting.')
     }
     Object.assign(o, this.defaultOptions, o)
     const options: T = o as T
+    this.checkInputImage(options)
     if (this.validChannels && this.validChannels.length && !this.validChannels.includes(options.src.channels())) {
       throw new Error(`Invalid number of channels for input image which has ${options.src.channels()} and must be in [${this.validChannels.join(',')}]`)
     }
@@ -54,6 +57,8 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     if (this.noInPlace && o.dst === o.src) {
       this.isInPlace = true
       o.dst = o.src.clone()
+    } else {
+      this.isInPlace = false
     }
   }
 
@@ -61,19 +66,20 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     if (this.isInPlace && this.noInPlace && o.dst) {
       this.isInPlace = false
       o.dst.copyTo(o.src)
+      checkThrow(o.dst !== o.src, 'Expected src and dst to be different objects')
       o.dst.delete()
       o.dst = o.src
     }
   }
 
-  protected allChannels(o: T, channels: undefined | true | number[], op: (o: T) => void) {
-    if (o.src.channels() === 1 || !channels) {
+  protected allChannels(o: T & WithChannels, op: (o: T) => void) {
+    if (o.src.channels() === 1 || !o.channels) {
       op(o)
     } else {
       let rgbaPlanes = new cv.MatVector()
       cv.split(o.src, rgbaPlanes)
       const mats: Mat[] = [];
-      (Array.isArray(channels) ? channels : array(o.src.channels() === 4 ? 3 : o.src.channels())).forEach(i => {
+      (Array.isArray(o.channels) ? o.channels : array(o.src.channels() === 4 ? 3 : o.src.channels())).forEach(i => {
         const M = rgbaPlanes.get(i)
         mats.push(M)
         op({ ...o, src: M, dst: M })

@@ -1,5 +1,5 @@
 import { del } from 'mirada'
-import { canny, ConvertTo, GaussianBlur, MorphologyEx, replaceColor, Threshold, HistEqualization, WarpPerspective, Edge, Bitwise } from 'ojos'
+import {  ConvertTo, GaussianBlur, MorphologyEx, Threshold, HistEqualization, WarpPerspective, Edge, Bitwise, ReplaceColor, Canny } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 import { array } from 'misc-utils-of-mine-generic'
@@ -25,6 +25,8 @@ const histEqualization = new HistEqualization()
 const warpPerspective = new WarpPerspective()
 const bitwise = new Bitwise()
 const edge = new Edge()
+const replaceColor = new ReplaceColor()
+const canny = new Canny()
 
 const colors = array(10).map(randomScalarColor)
 
@@ -37,13 +39,28 @@ export let processFunction = function(this: Managers) {
   const src = this.c.mat
   const dst = this.dst
   src.copyTo(dst)
+  // // console.log(dst.channels(), dst.type(), src.channels(), src.type(), );
+  
   const state = getState()
   state.order.forEach(name => {
     if (name === ToolNames.replaceColor && state.replaceColor.active) {
-      replaceColor({ ...state.replaceColor, src: dst, dst })
+      replaceColor.exec({ ...state.replaceColor, src: dst, dst })
     }
     else if (name === ToolNames.canny && state.canny.active) {
-      canny({ ...state.canny, src: dst, dst })
+      // debugger
+      //  const cp = new cv.Mat()
+      //  dst.convertTo(cp, cv.COLOR_RGB2GRAY)
+  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
+   // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
+      const cp = dst.clone() //TODO: warpPerspective inPlace issue !
+  // cv.cvtColor(cp, cp, cv.COLOR_RGBA2RGB, 0)
+      canny.exec({ ...state.canny, src: cp, dst })
+      cp.delete()
+// canny.exec({
+//    src: dst, dst: dst, threshold1: 11, threshold2: 224, apertureSize: 3, L2gradient: true
+// })
+
+      // cp.delete()
     }
     else if (name === ToolNames.convertTo && state.convertTo.active) {
       convertTo.exec({ ...state.convertTo, src: dst, dst })
@@ -55,7 +72,6 @@ export let processFunction = function(this: Managers) {
       threshold.exec({ ...state.threshold, src: dst, dst })
     }
     else if (name === ToolNames.morphologyEx && state.morphologyEx.active) {
-      debugger
       morphologyEx.exec({ ...state.morphologyEx, src: dst, dst })
     }
     else if (name === ToolNames.histEqualization && state.histEqualization.active) {
@@ -68,7 +84,7 @@ export let processFunction = function(this: Managers) {
       cp.delete()
     } 
     else if (name === ToolNames.edge && state.edge.active) {
-  cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
+  // cv.cvtColor(dst, dst, cv.COLOR_RGB2GRAY, 0)
       edge.exec({ ...state.edge, src: dst, dst})
     }  
     else if (name === ToolNames.bitwise && state.bitwise.active) {

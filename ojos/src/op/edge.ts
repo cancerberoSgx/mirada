@@ -43,8 +43,13 @@ export class Edge extends AbstractOperation<EdgeOptions> {
   name: string = "Edge"
   description = "facade around cv.Sobel, cv.Laplacian and cv.Scharr"
   sameSizeAndType = true
+  protected checkInputImage(o:EdgeOptions){
+    if(!o.channels&&o.src.channels()>1){
+      cv.cvtColor(o.src, o.src, cv.COLOR_RGB2GRAY, 0)
+    }
+  }
   protected async _exec(o: EdgeOptions) {
-     this.allChannels(o, o.channels, o => this._execOne(o))
+     this.allChannels(o,  o => this._execOne(o))
   }
    protected async _execOne(o: EdgeOptions) {
     if (o.type === 'sobel') {

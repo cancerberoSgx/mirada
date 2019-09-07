@@ -5,6 +5,7 @@ import { Controls } from "./controls"
 import { processFunction } from './processFunction'
 import { getState, State } from "./state"
 import { loadUrl } from './urlState'
+import { ForkRibbon } from './forkRibbon'
 
 export async function start() {
   renderRootLayout()
@@ -53,23 +54,24 @@ function renderApp() {
   loadUrl()
   document.getElementById('loading')!.remove()
   rd.render(<div>
+    <ForkRibbon/>
     <Controls />
   </div>, document.getElementById('dynamic-app'))
 }
 
 function renderRootLayout() {
   document.getElementById('main')!.innerHTML = `
-  <div>
-    <video width="500" height="300" playsInline autoPlay></video>
-    <canvas width="500" height="300"></canvas>
-  </div>
+    <div>
+      <video width="500" height="300" playsInline autoPlay></video>
+      <canvas width="500" height="300"></canvas>
+    </div>
 
-  <div id="dynamic-app">
-  </div>
+    <div id="dynamic-app">
+    </div>
 
-  <div id="loading">
-    <div style="font-size: 80px">Loading...</div>
-  </div>
+    <div id="loading">
+      <div style="font-size: 80px">Loading...</div>
+    </div>
   `
 }
 

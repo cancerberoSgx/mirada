@@ -33,10 +33,8 @@ TODO
 
 ## TODO
 - [ ] more codecs 
-- [ ] playground: declare animations - when user trigger an action the perspective transformation changes over time.
-  - [ ] for this we could use easing (flor/accursed)
-- [ ] edge detectors supporting multiple channels ? 
-  - svg experiments
+- [x] edge detectors supporting multiple channels ? 
+- svg experiments
 - [ ] high level Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - GUIs for real use cases like grabcut
@@ -46,6 +44,19 @@ TODO
 - [ ] decide what we do with commands - remove it ? 
 - [x] warpPerspective operations
 - [x] blur operations
+
+### ideas for the demo
+
+- [ ] playground: declare animations - when user trigger an action the perspective transformation changes over time.
+  - [ ] for this we could use easing (flor/accursed)
+- [ ] record
+- [ ] load video or image from file or url
+- on mouse over effects - affecting only cursor close region
+- for operations requiring a second mat, we could operate with the previous frame
+  - [ ] like convolution in time - 
+  - smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
+- add face detection even without framework.
+- add shift-cam-ting object tracking even without framework.
 
 ### Operations
 

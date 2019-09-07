@@ -51,7 +51,16 @@ test('canny allChannels', async t => {
     src, threshold1: 11, threshold2: 994, apertureSize: 5, L2gradient: true, channels: true
   })
   t.false(src === dst)
-  t.deepEqual(compareL2(await fromFile('test/assets/hCannyChannels.png'), dst, true), 0)
-  del(src)
+  t.deepEqual(compareL2(await fromFile('test/assets/hCannyChannels.png'), toRgba(dst), true), 0)
+  del(src, dst)
 })
 
+test('canny allChannels inPlace', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  const dst = await new Canny().exec({
+    src, dst: src, threshold1: 11, threshold2: 994, apertureSize: 5, L2gradient: true, channels: true
+  })
+  t.true(src === dst)
+  t.deepEqual(compareL2(await fromFile('test/assets/hCannyChannels.png'), toRgba(src), true), 0)
+  del(src)
+})
