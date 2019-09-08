@@ -84,12 +84,68 @@ export declare function exceptionFromPtr(err: number): any
 export declare function onRuntimeInitialized(): any
 export declare function FS_createDataFile(arg0: string, path: string, data: Uint8Array, arg3: boolean, arg4: boolean, arg5: boolean): any
 
-declare class Vector<T> {
+import { Algorithm } from '.'
+
+/**
+ * Base class for Contrast Limited Adaptive Histogram Equalization.
+ */
+declare class CLAHE extends Algorithm {
+  /**
+   * @param clipLimit Threshold for contrast limiting. Default.  40.0,
+   * @param totalGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column. Default: Size(8, 8) 
+   */
+  constructor(clipLimit?: double, totalGridSize?: Size)
+  /**
+   * Equalizes the histogram of a grayscale image using Contrast Limited Adaptive Histogram Equalization.
+   * @param src Source image of type CV_8UC1 or CV_16UC1.
+   * @param dst Destination image.
+   */
+  apply(src: Mat, dst: Mat): void
+  collectGarbage(): void
+  /**
+   * Returns threshold value for contrast limiting.
+   */
+  getClipLimit(): double
+  /**
+   * Returns Size defines the number of tiles in row and column.
+   */
+  getTilesGridSize(): Size
+  /**
+   * Sets threshold for contrast limiting.
+   */
+  setClipLimit(clipLimit: double): void
+  /**
+   * Sets size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles.
+   * @param tileGridSize defines the number of tiles in row and column.
+   */
+  setTilesGridSize(tileGridSize: Size): void
+
+}
+
+
+// emscripten embind internals
+export declare function getInheritedInstanceCount(...a: any[]): any
+export declare function getLiveInheritedInstances(...a: any[]): any
+export declare function flushPendingDeletes(...a: any[]): any
+export declare function setDelayFunction(...a: any[]): any
+declare class EmscriptenEmbindInstance {
+  isAliasOf(...a: any[]): any
+  clone(...a: any[]): any
+  delete(...a: any[]): any
+  isDeleted(...a: any[]): any
+  deleteLater(...a: any[]): any
+}
+export declare class InternalError extends Error { }
+export declare class BindingError extends Error { }
+export declare class UnboundTypeError extends Error { }
+export declare class PureVirtualError extends Error { }
+export declare class Vector<T> extends EmscriptenEmbindInstance {
   delete(): void
-  get(i: number): T 
-  get(i: number, j:number, data: any): T
-  put(i: number, j: number, data: any): any
+  get(i: number): T
+  get(i: number, j: number, data: any): T
   set(i: number, t: T): void
+  put(i: number, j: number, data: any): any
+  // size(): number
   push_back(n: T): any
   resize(count: number, value?: T): void
   delete(): void
@@ -106,11 +162,17 @@ export declare class DMatchVectorVector extends Vector<Vector<any>> { }
 
 export declare class RectVector extends Rect implements Vector<Rect>{
   get(i: number): Rect
-  set(i: number, t: Rect): void   
-  // size(): number
-  push_back(n: Rect):void
-  resize(count: number, value?: Rect | undefined): void 
-  delete(): void  
+  isAliasOf(...a: any[]): any
+  clone(...a: any[]): any
+  delete(...a: any[]): any
+  isDeleted(...a: any[]): any
+  deleteLater(...a: any[]): any
+  set(i: number, t: Rect): void
+  put(i: number, j: number, data: any): any
+  size(): number
+  push_back(n: Rect): void
+  resize(count: number, value?: Rect | undefined): void
+  delete(): void
 }
 
 export declare class VideoCapture {
@@ -163,6 +225,8 @@ export declare class Mat_ extends Vector<Mat> {
    * Heads up : in JS seems only one argument is expected.
    */
   public roi(expr: Rect | Mat_): Mat
+
+
 }
 
 export declare class ImageData {

@@ -35,11 +35,11 @@
     "file-type": "^12.3.0",
     "jimp": "^0.6.8",
     "markdown-toc": "^1.2.0",
-    "mirada": "file:../mirada",
+    "mirada": "0.0.8",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typedoc": "^0.15.0",
-    "typedoc-plugin-markdown": "^2.1.9",
+    "typedoc-plugin-markdown": "^2.1.10",
     "typescript": "^3.6.2",
     "typescript-member-signatures": "0.0.6"
   },
@@ -48,7 +48,7 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "mirada": "0.0.7"
+    "mirada": "0.0.8"
   },
   "repository": {
     "type": "git",

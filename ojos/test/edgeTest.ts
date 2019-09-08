@@ -19,8 +19,8 @@ test('Sobel channels', async t => {
   const src = await fromFile('test/assets/h.jpg')
   const dst = await new Edge().exec({
     type: 'sobel', ddepth: cv.CV_8U, src, ksize: 3,
-    dx: 0, dy: 1, scale: 2.2, delta: 10, channels: true  
-})
+    dx: 0, dy: 1, scale: 2.2, delta: 10, channels: true
+  })
   t.false(src === dst)
   t.deepEqual(compareL2(await fromFile('test/assets/hSobelChannels.png'), await toRgba(dst)), 0)
   del(src, dst)

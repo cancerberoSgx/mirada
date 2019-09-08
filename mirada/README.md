@@ -54,10 +54,13 @@ See [mirada-cli project page](../mirada-cli).
 ## TODO
 
 - [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
-- [ ] - mirada tyoes: cp.assignTo is not a function
+- [ ] - mirada tyoes: cp.assignTo is not a functionr
+- [  browser tests]
 - [x] cv.CLAHE types
+- [ ] mat.isDeleted and m.isAliasOf are not in the types.  clone  isDeleted  deleteLater 
+- [ ] m.isSubmatrix is not supported in js
 - [ ] move tool and commands to another project
-- [ ] docs
+- [ ] docs - usage- - tuts - getting starterd
 - [ ] integrate the new videoCapturer and replace the old one src/browser/videoCapture.ts
 - [ ] make a demo with a big canvas , several image editor using http://fabricjs.com/
 - [ ] include recording in playgrounds: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element

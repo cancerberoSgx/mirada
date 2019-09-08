@@ -6,6 +6,8 @@ import { ForkRibbon } from './forkRibbon'
 import { processFunction } from './processFunction'
 import { getState, State } from "./state"
 import { loadUrl } from './urlState'
+import { examples } from './examples'
+import {Examples} from './showExamples'
 
 export async function start() {
   renderRootLayout()
@@ -53,10 +55,15 @@ export async function loadVCamAndStartProcessing() {
 function renderApp() {
   loadUrl()
   document.getElementById('loading')!.remove()
-  rd.render(<div>
+  rd.render(App(), document.getElementById('dynamic-app'))
+}
+
+function App(): React.FunctionComponentElement<any> | React.FunctionComponentElement<any>[] {
+  return <div>
     <ForkRibbon />
     <Controls />
-  </div>, document.getElementById('dynamic-app'))
+    <Examples/>
+  </div>;
 }
 
 function renderRootLayout() {

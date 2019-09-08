@@ -27,6 +27,7 @@
     "webrtc-adapter": "^7.3.0"
   },
   "dependencies": {
+    "buffer": "^5.4.2",
     "file-saver": "^2.0.2",
     "mirada": "file:../../mirada",
     "misc-utils-of-mine-generic": "^0.2.30",

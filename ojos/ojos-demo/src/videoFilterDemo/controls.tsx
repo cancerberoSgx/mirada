@@ -6,6 +6,7 @@ import { loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
 import { tools } from './tools'
 import { createUrl } from './urlState'
+import { showExamples } from './showExamples'
 
 export class Controls extends React.Component<{}, State> {
   protected timer: any
@@ -51,6 +52,7 @@ export class Controls extends React.Component<{}, State> {
           loadVCamAndStartProcessing()
         }}>Start</button>
         <button onClick={createUrl}>Create URL</button>
+        <button onClick={showExamples}>Examples</button>
       </div>
       <ol>
         {this.state.order.map(name => <li title={this.state[name].description}>

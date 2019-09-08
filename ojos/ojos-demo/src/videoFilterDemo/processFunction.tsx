@@ -1,8 +1,6 @@
 import { del, Mat, noArray, toRgba } from 'mirada'
 import { array } from 'misc-utils-of-mine-generic'
-import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, ReplaceColor, Threshold, WarpPerspective } from 'ojos'
-import { } from 'q'
-import { randomScalarColor } from '../../../dist/src'
+import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, ReplaceColor, Threshold, WarpPerspective, randomScalarColor } from 'ojos' 
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 

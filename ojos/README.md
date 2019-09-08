@@ -2,13 +2,19 @@
 
 <!-- toc -->
 
-- [What / Why ?](#what--why-)
+- [Demos](#demos)
+- [Summary](#summary)
 - [install](#install)
 - [Usage](#usage)
 - [Reference API](#reference-api)
-- [TODO](#todo)
+- [TODO / ROADMAP](#todo--roadmap)
+  * [ideas for the demo](#ideas-for-the-demo)
+- [Ideas / Motivation](#ideas--motivation)
+  * [What / Why ?](#what--why-)
   * [Operations](#operations)
-    + [chain utility (WIP)](#chain-utility-wip)
+    + [Operation design](#operation-design)
+    + [Operation implementation details:](#operation-implementation-details)
+- [chain utility (WIP)](#chain-utility-wip)
 
 <!-- tocstop -->
 
@@ -61,6 +67,7 @@ TODO
       - GUIs for real use cases like grabcut
 - [ ] integrate mirada-cli generateCommands script here
   - [ ] use operations interfaces
+- [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [ ] decide what we do with commands - remove it ? 
 - [x] addWeighted
 - [x] edge detectors supporting multiple channels ? 
@@ -71,8 +78,10 @@ TODO
 
 - [ ] be able to repeat operations.
 - [ ] support images 
-- [ ]
-- [ ] playground: declare animations - when user trigger an action the perspective transformation changes over time.
+- [ ] examples with screenshots
+- [ ] support loading videos
+- [ ] time-effects like https://hackaday.io/project/10581-free-beer-selfie
+- [ ] declare animations - when user trigger an action the perspective transformation changes over time.
   - [ ] use easing (flor/accursed projects) against properties.
    * assume users are responsible of triggering them manually - by name
 - [ ] record
