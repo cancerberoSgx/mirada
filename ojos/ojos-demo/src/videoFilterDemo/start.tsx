@@ -2,10 +2,10 @@ import { loadOpencv, Mat, VideoReader } from 'mirada'
 import * as React from 'react'
 import * as rd from 'react-dom'
 import { Controls } from "./controls"
+import { ForkRibbon } from './forkRibbon'
 import { processFunction } from './processFunction'
 import { getState, State } from "./state"
 import { loadUrl } from './urlState'
-import { ForkRibbon } from './forkRibbon'
 
 export async function start() {
   renderRootLayout()
@@ -54,7 +54,7 @@ function renderApp() {
   loadUrl()
   document.getElementById('loading')!.remove()
   rd.render(<div>
-    <ForkRibbon/>
+    <ForkRibbon />
     <Controls />
   </div>, document.getElementById('dynamic-app'))
 }

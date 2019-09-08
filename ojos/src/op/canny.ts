@@ -1,4 +1,3 @@
-import { checkThrow } from 'misc-utils-of-mine-generic'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithChannels } from './types'
 
@@ -30,18 +29,18 @@ export class Canny extends AbstractOperation<CannyOptions> {
   name: string = "Canny"
   noInPlace = true
 
-  protected validate(o:CannyOptions) {
-      if(!(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0)){
-        return 'Aperture size must be odd and greater than 2'
-      }
+  protected validate(o: CannyOptions) {
+    if (!(!o.apertureSize || o.apertureSize < 3 || o.apertureSize % 2 !== 0)) {
+      return 'Aperture size must be odd and greater than 2'
+    }
   }
 
-  protected async _exec(o: CannyOptions) {
+  protected _exec(o: CannyOptions) {
     this.allChannels(o, o => this._execOne(o))
   }
   protected _execOne(o: CannyOptions) {
-    cv.Canny(o.src, o.dst!, typeof o.threshold1 === 'undefined' ? 0 : o.threshold1, 
-      typeof o.threshold2 === 'undefined' ? 255 : o.threshold2, 
+    cv.Canny(o.src, o.dst!, typeof o.threshold1 === 'undefined' ? 0 : o.threshold1,
+      typeof o.threshold2 === 'undefined' ? 255 : o.threshold2,
       typeof o.apertureSize === 'undefined' ? 3 : o.apertureSize, o.L2gradient || false)
   }
 }

@@ -35,7 +35,7 @@ export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBo
 export class WarpPerspective extends AbstractOperation<WarpPerspectiveOptions> {
   name = "warpPerspective"
   noInPlace = true
-  protected async _exec(o: WarpPerspectiveOptions) {
+  protected _exec(o: WarpPerspectiveOptions) {
     let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.inputs)
     let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.outputs)
     let M = cv.getPerspectiveTransform(srcTri, dstTri, o.solveMethod || cv.DECOMP_LU)

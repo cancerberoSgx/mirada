@@ -14,7 +14,7 @@ export interface ThresholdConcreteOptions {
 export class Threshold extends AbstractOperation<ThresholdOptions> {
   name: string = 'Threshold'
   sameSizeAndType = true
-  protected async _exec(o: ThresholdOptions) {
+  protected _exec(o: ThresholdOptions) {
     cv.threshold(o.src, o.dst!, o.thresh, o.maxval, o.type)
   }
 }

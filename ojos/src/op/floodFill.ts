@@ -21,7 +21,7 @@ export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | (
 export class FloodFill extends AbstractOperation<FloodFillOptions> {
   name: string = "FloodFill"
   sameSizeAndType = true
-  protected async _exec(o: FloodFillOptions) {
+  protected _exec(o: FloodFillOptions) {
     const preprocess = o.preprocess || [{ name: 'medianBlur' }, { name: 'canny' }]
     const dst = o.dst = o.dst || new cv.Mat()
     o.src.copyTo(dst)

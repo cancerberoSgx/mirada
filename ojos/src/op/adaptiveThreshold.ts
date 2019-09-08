@@ -18,7 +18,7 @@ export class AdaptiveThreshold extends AbstractOperation<AdaptiveThresholdOption
   name: string = 'AdaptiveThreshold'
   validChannels = [1]
   sameSizeAndType = true
-  protected async _exec(o: AdaptiveThresholdOptions) {
+  protected _exec(o: AdaptiveThresholdOptions) {
     checkThrow(!o.blockSize || o.blockSize === 1 || o.blockSize % 2 !== 0, 'MedianBlur Blur size must be odd and greater than 2')
     cv.adaptiveThreshold(o.src, o.dst!, o.maxval, o.adaptiveMethod, o.thresholdType, o.blockSize, o.C)
   }

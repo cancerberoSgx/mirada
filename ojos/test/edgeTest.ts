@@ -1,8 +1,8 @@
 import test from 'ava'
 import { compareL2, del, fromFile, toRgba } from 'mirada'
-import { Edge } from '../src/op/edge'
-import { loadMirada, write } from './testUtil'
 import { Canny } from '../src'
+import { Edge } from '../src/op/edge'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -17,8 +17,10 @@ test('Sobel in place', async t => {
 
 test('Sobel channels', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = await new Edge().exec({ type: 'sobel', ddepth: cv.CV_8U, src, ksize: 3, 
-    dx: 0, dy: 1 , scale: 2.2, delta: 10,  channels: true})
+  const dst = await new Edge().exec({
+    type: 'sobel', ddepth: cv.CV_8U, src, ksize: 3,
+    dx: 0, dy: 1, scale: 2.2, delta: 10, channels: true  
+})
   t.false(src === dst)
   t.deepEqual(compareL2(await fromFile('test/assets/hSobelChannels.png'), await toRgba(dst)), 0)
   del(src, dst)

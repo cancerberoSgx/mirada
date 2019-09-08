@@ -15,7 +15,7 @@ export interface MorphologyExConcreteOptions extends WithBorderType, WithBorderV
 export class MorphologyEx extends AbstractOperation<MorphologyExOptions> {
   name: string = "MorphologyEx"
   sameSizeAndType = true
-  protected async _exec(o: MorphologyExOptions) {
+  protected _exec(o: MorphologyExOptions) {
     cv.morphologyEx(o.src, o.dst!, o.op, o.kernel, o.anchor || new cv.Point(-1, -1), o.iterations || 1,
       o.borderType || cv.BORDER_CONSTANT, o.borderValue || cv.morphologyDefaultBorderValue())
   }

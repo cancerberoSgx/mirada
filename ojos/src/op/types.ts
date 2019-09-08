@@ -16,7 +16,7 @@ export interface ImageOperation<T extends OperationExecBaseOptions> {
    * valid channel numbers of input images
    */
   validChannels: number[] | undefined
-  exec(o?: T): Promise<Mat>
+  exec(o?: T): Mat
   //TODO field descriptions
   //tODO: 
   // validOptions(o:Partial<GrabCutOptions>):boolean

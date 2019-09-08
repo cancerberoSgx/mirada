@@ -1,11 +1,6 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
-import { Bitwise, Canny, FloodFill, FloodFillOptions, ReplaceColor } from '../src'
-import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
-import { ConvertTo } from '../src/op/convertTo'
 import { HistEqualization } from '../src/op/histEqualization'
-import { Math } from '../src/op/math'
-import { Threshold } from '../src/op/threshold'
 import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
@@ -13,8 +8,8 @@ test.before(loadMirada)
 test('histEqualization mode=equalizeHist inPlace', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   t.deepEqual(get(src, 2, 2), [196, 114, 78, 255])
-   const dst = await new HistEqualization().exec({ src, dst: src, mode: 'equalizeHist' })
-    t.true(src === dst)
+  const dst = await new HistEqualization().exec({ src, dst: src, mode: 'equalizeHist' })
+  t.true(src === dst)
   // write(src, 'tmp-ss2.png')
   t.deepEqual(get(src, 2, 2), [209])
   del(src)
@@ -23,9 +18,9 @@ test('histEqualization mode=equalizeHist inPlace', async t => {
 test('histEqualization mode=equalizeHist channels inPlace', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   t.deepEqual(get(src, 2, 2), [196, 114, 78, 255])
-  const dst = await new HistEqualization().exec({ src, dst: src, mode: 'equalizeHist' , channels: true})
-    t.true(src === dst)
-    t.deepEqual(get(src, 2, 2), [219, 208, 182, 255])
+  const dst = await new HistEqualization().exec({ src, dst: src, mode: 'equalizeHist', channels: true })
+  t.true(src === dst)
+  t.deepEqual(get(src, 2, 2), [219, 208, 182, 255])
   del(src)
 })
 
@@ -34,7 +29,7 @@ test.failing('histEqualization mode=CLAHE inPlace dst output image', async t => 
   cv.cvtColor(src!, src!, cv.CV_8UC1, 0)
   const dst = await new HistEqualization().exec({ src, dst: src, mode: 'CLAHE', clipLimit: 1, tileGridSize: new cv.Size(8, 8) })
   t.true(src === dst)
-  console.log(dst);
+  console.log(dst)
   write(dst, 'tmp-ss3.png')
   t.deepEqual([get(dst, 2, 2), get(dst, 112, 122)], [[170], [79]])
   del(dst)
@@ -45,8 +40,8 @@ test.failing('histEqualization mode=CLAHE', async t => {
   cv.cvtColor(src!, src!, cv.CV_8UC1, 0)
   const dst = await new HistEqualization().exec({ src, mode: 'CLAHE', clipLimit: 1, tileGridSize: new cv.Size(8, 8) })
   t.false(src === dst)
-  write( toRgba(dst), 'tmp-ss3.png')
-  write( toRgba(src), 'tmp-ss2.png')
+  write(toRgba(dst), 'tmp-ss3.png')
+  write(toRgba(src), 'tmp-ss2.png')
   t.deepEqual([get(src, 2, 2), get(src, 112, 122)], [[170], [79]])
   del(src)
 })

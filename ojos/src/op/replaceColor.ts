@@ -31,7 +31,7 @@ export interface ReplaceColorOptions extends OperationExecBaseOptions {
 
 export class ReplaceColor extends AbstractOperation<ReplaceColorOptions> {
   name: string = "ReplaceColor"
-  protected async _exec(o: ReplaceColorOptions) {
+  protected _exec(o: ReplaceColorOptions) {
     o.dst = o.dst || new cv.Mat()
     const low = new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowColor)
     const high = new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.highColor)

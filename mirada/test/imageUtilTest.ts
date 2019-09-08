@@ -1,7 +1,7 @@
 import test from 'ava'
 import { File, Mat } from '../src'
-import { compareL2, data2mat, del, fromFile, get, mat2data, set, isMatData, isMat, jsonStringifyWithMat, jsonParseWithMat } from '../src/util/imageUtil'
-import { loadMirada, write } from './testUtil'
+import { compareL2, data2mat, del, fromFile, get, isMat, isMatData, jsonParseWithMat, jsonStringifyWithMat, mat2data, set } from '../src/util/imageUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -45,7 +45,7 @@ test('mat2data, data2mat, isMatData, isMat', async t => {
 
 test('jsonStringifyWithMat, jsonParseWithMat', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  const o = {a: 1, src}
+  const o = { a: 1, src }
   const s = jsonStringifyWithMat(o)
   const o2 = jsonParseWithMat(s)
   t.deepEqual(compareL2(src, o2.src), 0)

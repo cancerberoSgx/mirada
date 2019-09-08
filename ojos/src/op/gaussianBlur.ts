@@ -14,7 +14,7 @@ export interface GaussianBlurConcreteOptions extends WithBorderType, WithKSize {
 export class GaussianBlur extends AbstractOperation<GaussianBlurOptions> {
   name: string = "GaussianBlur"
   sameSizeAndType = true
-  protected async _exec(o: GaussianBlurOptions) {
+  protected _exec(o: GaussianBlurOptions) {
     cv.GaussianBlur(o.src, o.dst!, o.ksize, o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
   }
 }

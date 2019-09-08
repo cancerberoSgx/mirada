@@ -1,6 +1,6 @@
+import { isNode, tryTo } from 'misc-utils-of-mine-generic'
 import { File } from '../File'
 import { Mat, Point, Scalar, Size } from '../types/opencv'
-import { isNode, tryTo } from 'misc-utils-of-mine-generic'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -80,7 +80,7 @@ export function asMat(f: File | Mat) {
 }
 
 export function del(...m: Mat[]) {
-  m.forEach(m =>tryTo(()=> m.delete()))
+  m.forEach(m => tryTo(() => m.delete()))
 }
 
 /**
@@ -163,7 +163,7 @@ export function data2mat(d: MatData): Mat {
 }
 
 export function isMatData(d: any): d is MatData {
-  return typeof d === 'object' && typeof d.rows === 'number' && typeof d.rows === 'number' && typeof d.type !== 'undefined' && typeof d.data === 'string' && Object.keys(d).sort().join(',') === 'cols,data,rows,type'
+  return d && typeof d === 'object' && typeof d.rows === 'number' && typeof d.cols === 'number' && typeof d.type !== 'undefined' && Object.keys(d).sort().join(',') === 'cols,data,rows,type'
 }
 
 let _Buffer = require('buffer/').Buffer as typeof Buffer
@@ -173,7 +173,7 @@ if (isNode() && typeof _Buffer !== 'undefined') {
 }
 
 function ab2str(buf: Uint8Array) {
-  return _Buffer.from(buf).toString('base64');
+  return _Buffer.from(buf).toString('base64')
 }
 
 function str2ab(str: string) {
@@ -186,12 +186,12 @@ function str2ab(str: string) {
 export function jsonStringifyWithMat(s: any): string {
   return JSON.stringify(s, (key, value) => {
     if (isMat(value)) {
-      return mat2data(value);
+      return mat2data(value)
     }
     else {
-      return value;
+      return value
     }
-  });
+  })
 }
 
 /**
@@ -200,10 +200,10 @@ export function jsonStringifyWithMat(s: any): string {
 export function jsonParseWithMat(d: string) {
   return JSON.parse(d, (key, value) => {
     if (isMatData(value)) {
-      return data2mat(value);
+      return data2mat(value)
     }
     else {
-      return value;
+      return value
     }
-  });
+  })
 }

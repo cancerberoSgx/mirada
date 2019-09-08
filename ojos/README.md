@@ -12,17 +12,31 @@
 
 <!-- tocstop -->
 
-## What / Why ?
+## Demos
 
-While mirada supports TypeScript type declarations for opencv.s, support and test for both browser and node.js and basic utilities for files, image formats, browser, etc, this project hosts features and APIs purely mine, built on top of it. 
+ * [Video filter demo](https://cancerberosgx.github.io/demos/ojos-demo/videoFilterDemo.html). 
+   * Filter camera output with opencv operations real time. 
+   * Apply / configure multiple operations at the same time and observe how frames per second and memory consumption is affected. 
+   * Visually compose operation sequences to archive custom filters, animations.
+   * observe execution on mouse-move over images or video
 
-I want to keep [Mirada](https://github.com/cancerberoSgx/mirada) KISS - with no much more tha TypeScript typings and basic utilities for node.js. And since I observe I'm already polluting it with "extra" features I will start working on those here. 
+## Summary
+
+ * JavaScript library on top of [OpenCV.js]()
+ * browser and node.js support (same implementation and API)
+ * TypeScript OpenCV.js types
+ * built on top of [Mirada](https://github.com/cancerberoSgx/mirada)
+ * Easy to use / intelligent / set of opencv operations with formal contracts regarding input/output Mat that can be represented declaratively as data
+
+See [Ideas / Motivation]() section below.
  
 ## install
 
 npm install ojos
 
 ## Usage
+
+TODO - for now see the [tests](https://github.com/cancerberoSgx/mirada/tree/master/ojos/test)
 
 TODO
 
@@ -31,27 +45,36 @@ TODO
  * [HTML Reference API](https://github.com/cancerberoSgx/demos/tree/master/mirada-opencv-api-md). 
  * [Markdown Reference API ](https://cancerberosgx.github.io/demos/mirada-opencv-api-html/). 
 
-## TODO
+## TODO / ROADMAP
 - [ ] more codecs 
 - [ ] inRange
-- [x] addWeighted
-- [x] edge detectors supporting multiple channels ? 
+- [ ] Operation Scripts
+  - [ ] being able to declare operation sequences with data
+  - [ ] support for parameters/templates
+  - [ ] animations
+    - [ ] easing expressions against operation options.
+      - [ ] animations over time
+      - [ ] animations over color frequencies ?  
 - svg experiments
 - [ ] high level Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - GUIs for real use cases like grabcut
-- [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
-- [ ] - mirada tyoes: cp.assignTo is not a function
 - [ ] integrate mirada-cli generateCommands script here
   - [ ] use operations interfaces
 - [ ] decide what we do with commands - remove it ? 
+- [x] addWeighted
+- [x] edge detectors supporting multiple channels ? 
 - [x] warpPerspective operations
 - [x] blur operations
 
 ### ideas for the demo
 
+- [ ] be able to repeat operations.
+- [ ] support images 
+- [ ]
 - [ ] playground: declare animations - when user trigger an action the perspective transformation changes over time.
-  - [ ] for this we could use easing (flor/accursed)
+  - [ ] use easing (flor/accursed projects) against properties.
+   * assume users are responsible of triggering them manually - by name
 - [ ] record
 - [ ] load video or image from file or url
 - on mouse over effects - affecting only cursor close region
@@ -61,23 +84,66 @@ TODO
 - add face detection even without framework.
 - add shift-cam-ting object tracking even without framework.
 
+## Ideas / Motivation
+
+
+### What / Why ?
+
+While mirada supports TypeScript type declarations for opencv.s, support and test for both browser and node.js and basic utilities for files, image formats, browser, etc, this project hosts features and APIs purely mine, built on top of it. 
+
+I want to keep [Mirada](https://github.com/cancerberoSgx/mirada) KISS - with no much more tha TypeScript typings and basic utilities for node.js. And since I observe I'm already polluting it with "extra" features I will start working on those here. 
+
+
 ### Operations
 
- * represent each opencv commands / functions / methods  / with an operation which define:
-    * Options (arguments) and the metadata of this options
-    * name description
-    * based on Mat not on File
-    * try 1-1 with opencv API - only build high level API on top of 1-1 API
+main idea: 
 
- * operation composition
-   * can we done it more interesting than just sequences?
-   * automatic delete()
-   * declarative representation of operations (json?)
-     * template support (see mirada-cli)
-   * execution of sequence / composited operations (output Mat become input fo next operations.)
-   
+ * formalize opencv operations declaratively not only signatures and descriptions but also,  Mat contracts (required formats / initialization / effects / in-place)
+ * Operation implementation should be able to validate options without executing :
+    * Nicely throwing errors (not like currently opencv.js) 
+    * optionally modifying the input automatically ( calling create() cv.cvtColor()) automatically before calling)
 
-#### chain utility (WIP)
+Having this contracts formally declared and implemented allows:
+
+  * consume thie metadata by user apps on any medium/language 
+  * operations being represented declaratively allows to build "scripting" languages on top of it to author "operation sequences / composition" that can be parametrized / templates
+     * this "scripts" should be platform agnostic and could be reused on c++/python/js as long as they implement the operations
+     * an algorithm expressed declaratively can be consumed / rendered interactively to other user audiences without programming backgounrd. 
+  this metadata to build concrete tools like CLI or services that: 
+
+
+#### Operation design
+
+ * represent opencv commands / functions / methods  / with interface declarations and implementations:
+    * options/definition must be fully represented by an interface
+    * options must be serializable, with the exception of src/dst Mat. 
+       * (although we can serialize Mat with mirada jsonStringifyWithMat() methods)
+         * we need Mat serialization for kernels since they are part of the semantic
+    * name, description, property signatures
+    * based on Mat - 
+       * no File/url/resources semantics - since that needs to be provided by the user.
+    * SYNCHRONOUS ! - they should call opencv directly (which is sync) - no fetch or File IO - all required data must be provided in options by users
+    * First represent pure opencv API directly
+       * then if building "artificial" high level features - those dhould use the "low-level" operations an they must explicitly declare that are "high level" - not opencv API
+    * Mat type contracts. Formally declare :
+      * src Mat require special mat type/depth/channel-count
+       * dst Mat needs to be the same type and size of src 
+       * dst Mat will be automatically create() or hsould users provide an initialized Mat
+       * dst/src Mat type/size will be modified ?
+
+#### Operation implementation details:
+  * operations are able to validate an options object without execution
+  * must delete all the resources they created
+  * (open question): should operations be able to prevent errors by automatically initializing / converting / defaulting input options when invalid automatically? I would like so but it could play against performance... perhaps only optionally?
+  * ideally implementations, besides validate() should also  provide fixOptions() API that modifies given options if invalid and possible.
+  * IMO: all operations, optionally, should support inplace Mat access - if opencv don't allow it then they should clone89 convert given mats and then re-assign back the result.
+
+
+
+
+
+
+## chain utility (WIP)
 
 - [ ] utility wrapper around Mat, similar to File but focused on method chaining and automatic Mat delete(). Example. File.fromFile('i.png').chain.roi(2,3,4,5).convertTo(cv.CV_U8).threshold(...)
 

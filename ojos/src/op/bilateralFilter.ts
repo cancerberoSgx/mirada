@@ -31,7 +31,7 @@ export class BilateralFilter extends AbstractOperation<BilateralFilterOptions> {
   noInPlace = true
   sameSizeAndType = true
   validChannels = [1, 3]
-  protected async _exec(o: BilateralFilterOptions) {
+  protected _exec(o: BilateralFilterOptions) {
     cv.bilateralFilter(o.src, o.dst!, o.d || -1, o.sigmaColor, o.sigmaSpace, o.borderType || cv.BORDER_DEFAULT)
   }
 }

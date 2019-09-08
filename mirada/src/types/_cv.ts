@@ -1,5 +1,5 @@
 import { FS } from './emscripten'
-import { CV, Algorithm, double, Size, Mat } from './opencv'
+import { Algorithm, CV, double, Mat, Size } from './opencv'
 
 declare global {
   var cv: CV & { FS: FS } & { CLAHE: CLAHE }

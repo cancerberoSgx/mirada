@@ -52,7 +52,10 @@ Then, the project [ojos](https://www.npmjs.com/package/ojos) provides high level
 See [mirada-cli project page](../mirada-cli).
 
 ## TODO
-- [ ] cv.CLAHE types
+
+- [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
+- [ ] - mirada tyoes: cp.assignTo is not a function
+- [x] cv.CLAHE types
 - [ ] move tool and commands to another project
 - [ ] docs
 - [ ] integrate the new videoCapturer and replace the old one src/browser/videoCapture.ts

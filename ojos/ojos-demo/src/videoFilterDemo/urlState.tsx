@@ -1,5 +1,5 @@
+import { jsonParseWithMat, jsonStringifyWithMat } from 'mirada'
 import { getState, setState } from './state'
-import {mat2data, isMatData, data2mat, jsonStringifyWithMat, jsonParseWithMat} from 'mirada'
 
 export function createUrl() {
   var s = getState()
@@ -10,7 +10,7 @@ export function createUrl() {
 export async function loadUrl() {
   if (urlHasState()) {
     const d = window.location.hash.split('state=')[1]
-    const state = jsonParseWithMat(atob(d))  
+    const state = jsonParseWithMat(atob(d))
     setState(state)
   } else {
 

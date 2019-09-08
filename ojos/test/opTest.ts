@@ -1,12 +1,11 @@
 import test from 'ava'
-import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
-import { Bitwise, Canny, FloodFill, FloodFillOptions, ReplaceColor } from '../src'
+import { compareL2, del, File, fromFile, toRgba } from 'mirada'
+import { Bitwise, FloodFill, FloodFillOptions, ReplaceColor } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
-import { HistEqualization } from '../src/op/histEqualization'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 

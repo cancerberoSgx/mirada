@@ -25,7 +25,7 @@ export interface BoxFilterConcreteOptions extends WithBorderType, WithKSize {
 export class BoxFilter extends AbstractOperation<BoxFilterOptions> {
   name: string = "BoxFilter"
   sameSizeAndType = true
-  protected async _exec(o: BoxFilterOptions) {
+  protected _exec(o: BoxFilterOptions) {
     cv.boxFilter(o.src, o.dst!, o.ddepth || -1, o.ksize, o.anchor || new cv.Point(-1, -1), o.normalize, o.borderType || cv.BORDER_DEFAULT)
   }
 }

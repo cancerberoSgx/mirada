@@ -1,5 +1,4 @@
 import { Mat, noArray } from 'mirada'
-import { checkThrow } from 'misc-utils-of-mine-generic'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
 
@@ -16,14 +15,14 @@ export class Bitwise extends AbstractOperation<BitwiseOptions> {
   name: string = "Bitwise"
   sameSizeAndType = true
   noInPlace = true
-  
-  protected validate(o:BitwiseOptions) {
-      if ( !o.src2&&['add', 'or', 'xoe'].includes(o.type)) {
-        return  'src2 option is required'
-    } 
+
+  protected validate(o: BitwiseOptions) {
+    if (!o.src2 && ['add', 'or', 'xoe'].includes(o.type)) {
+      return 'src2 option is required'
+    }
   }
 
-  protected async _exec(o: BitwiseOptions) {
+  protected _exec(o: BitwiseOptions) {
     // TODO: check mask type and size
     // TODO: check src2 size and type
     if (o.type === 'not') {

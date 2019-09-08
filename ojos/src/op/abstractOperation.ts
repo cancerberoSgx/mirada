@@ -1,6 +1,6 @@
 import { del, isSize, Mat } from 'mirada'
-import { array, RemoveProperties, checkThrow } from 'misc-utils-of-mine-generic'
-import { ImageOperation, OperationExecBaseOptions, WithKSize, WithChannels } from './types'
+import { array, checkThrow, RemoveProperties } from 'misc-utils-of-mine-generic'
+import { ImageOperation, OperationExecBaseOptions, WithChannels, WithKSize } from './types'
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
 
@@ -21,9 +21,9 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
   protected validate(o: T): string | undefined {
     return
   }
-  protected abstract _exec(o: MandatoryDst<T>): Promise<void>
+  protected abstract _exec(o: MandatoryDst<T>): void
 
-  async exec(o?: T) {
+  exec(o?: T) {
     const options = this.checkOptions(o)
     this.checkInPlaceBefore(options)
     if (!this.validated || this.validateEachExec) {
@@ -33,7 +33,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       }
       this.validated = true
     }
-    await this._exec(options)
+    this._exec(options)
     this.checkInPlaceAfter(options)
     this.afterExec(options)
     return options.dst!

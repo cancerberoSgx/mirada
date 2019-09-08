@@ -20,8 +20,8 @@ export interface HistEqualizationConcreteOptions extends WithChannels {
 export class HistEqualization extends AbstractOperation<HistEqualizationOptions> {
   name = "HistEqualization"
   description = "Applies histogram equalization using cv.equalizeHist or cv.CLAHE. In case src image has multiple channels, equalization is applied on each of them independently and then the result is merged"
-sameSizeAndType=true
-  protected async _exec(o: HistEqualizationOptions) {
+  sameSizeAndType = true
+  protected _exec(o: HistEqualizationOptions) {
     this.allChannels(o, o => this.histEqualizationOne(o))
   }
   protected checkInputImage(o: HistEqualizationOptions) {

@@ -1,10 +1,10 @@
 import { CVDataType, Mat, noArray } from 'mirada'
+import { anyUndefined } from '../util'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
-import { checkThrow } from 'misc-utils-of-mine-generic'
-import { anyUndefined } from '../util'
 
 export interface MathOptions extends OperationExecBaseOptions, MathConcreteOptions {
+
 }
 
 interface MathBaseOptions {
@@ -17,16 +17,18 @@ interface MathBaseOptions {
    */
   dtype?: CVDataType
 }
- interface MathWeightConcreteOptions{
+
+interface AddWeightConcreteOptions {
   alpha: number
   beta: number
   gamma: number
 }
 
-export  interface MathWeightOptions extends MathWeightConcreteOptions, MathBaseOptions{
+export interface AddWeightOptions extends AddWeightConcreteOptions, MathBaseOptions, OperationExecBaseOptions {
 
 }
-export interface MathConcreteOptions extends MathBaseOptions, Partial<MathWeightConcreteOptions>{
+
+export interface MathConcreteOptions extends MathBaseOptions, Partial<AddWeightConcreteOptions> {
   type: 'add' | 'subtract' | 'divide' | 'multiply' | 'addWeighted'
   /**
    * only applies to 'add' and 'subtract'
@@ -43,13 +45,13 @@ export class Math extends AbstractOperation<MathOptions> {
   description = `performs math operations per pixel on images, like add, subtract, divide and multiply`
   sameSizeAndType = true
 
-  protected validate(o:MathOptions) {
-      if ( anyUndefined(o.src2, o.alpha, o.beta, o.gamma)&&['addWeighted'].includes(o.type)) {
+  protected validate(o: MathOptions) {
+    if (anyUndefined(o.src2, o.alpha, o.beta, o.gamma) && ['addWeighted'].includes(o.type)) {
       return 'alpha, beta, gamma and src2 must be defined'
-    } 
+    }
   }
-  
-  protected async _exec(o: MathOptions) {
+
+  protected _exec(o: MathOptions) {
     // TODO: check mask type and size
     // TODO: check src2 size and type
     if (o.type === 'add') {
@@ -60,8 +62,8 @@ export class Math extends AbstractOperation<MathOptions> {
       cv.multiply(o.src, o.src2!, o.dst!, o.scale || 1, o.dtype || -1)
     } else if (o.type === 'divide') {
       cv.multiply(o.src, o.src2!, o.dst!, o.scale || 1, o.dtype || -1)
-    }else if (o.type === 'addWeighted') {
-      cv.addWeighted(o.src, o.alpha, o.src2, o.beta,o.gamma, o.dst!, o.dtype ||-1)
+    } else if (o.type === 'addWeighted') {
+      cv.addWeighted(o.src, o.alpha, o.src2, o.beta, o.gamma, o.dst!, o.dtype || -1)
     }
   }
 }
