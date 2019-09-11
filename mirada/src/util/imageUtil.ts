@@ -1,5 +1,5 @@
 import { isNode, tryTo } from 'misc-utils-of-mine-generic'
-import { File } from '../File'
+import { File } from '../file'
 import { Mat, Point, Scalar, Size } from '../types/opencv'
 
 /**
@@ -12,6 +12,7 @@ export function toImageData(img: Mat) {
     height: img.rows
   }
 }
+
 export const asImageData = toImageData
 
 export function isMat(m: any): m is Mat {
