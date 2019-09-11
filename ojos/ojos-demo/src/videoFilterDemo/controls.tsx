@@ -1,43 +1,49 @@
 import { objectKeys, setObjectProperty } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { memoryReport } from '../miradaUi/util'
-import { fpsFramesCounter, resetFpsFramesCounter, stop } from './processFunction'
+import { fpsFramesCounter, resetFpsFramesCounter, stop, setFpsFramesInterval } from './processFunction'
 import { loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
 import { tools } from './tools'
 import { createUrl } from './urlState'
-import { showExamples } from './showExamples'
+import { showExamples, Examples } from './showExamples'
+import { ForkRibbon } from './forkRibbon'
 
 export class Controls extends React.Component<{}, State> {
-  protected timer: any
+  // protected timer: any
 
-  constructor(p: any, s: State) {
-    super(p, s)
+  constructor(p: {}, s: State) {
+    super(p)
     this.state = getState()
+    this.tt = this.tt.bind(this)
   }
+
+
+  componentWillUnmount() {
+    resetFpsFramesCounter(true)
+  }
+
+  componentDidMount() {
+    resetFpsFramesCounter(true)
+    setFpsFramesInterval(this.tt, this.fpxLapse * 1000)
+  }
+
+    fpxLapse = 1
 
   setState2(s: {
     [s: string]: any;
   }) {
-    objectKeys(s).forEach(p => setObjectProperty(this.state, p, s[p]))
-    console.log(this.state.replaceColor.newColorOrImage, s)
-    this.setState(this.state)
+    objectKeys(s).forEach(p => setObjectProperty(getState(), p, s[p]))
+    // console.log(this.state.replaceColor.newColorOrImage, s)
+    this.setState(getState())
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer)
-  }
-
-  componentDidMount() {
-    clearInterval(this.timer)
-    const fpxLapse = 2
-    this.timer = setInterval(() => {
-      const fps = Math.round(fpsFramesCounter / (fpxLapse * 1.0))
+protected tt(){
+      const fps = Math.round(fpsFramesCounter / (this.fpxLapse * 1.0))
       resetFpsFramesCounter()
       const m = memoryReport()
       this.setState({ fps, mem: m.usedMb + ' ' + m.percent })
-    }, fpxLapse * 1000)
-  }
+    }
 
   render() {
     return (<>
@@ -61,6 +67,8 @@ export class Controls extends React.Component<{}, State> {
           {tools()[name].bind(this)()}
         </li>)}
       </ol>
+    <ForkRibbon />
+    <Examples/>
     </>)
   }
 

@@ -38,7 +38,9 @@ See [Ideas / Motivation]() section below.
  
 ## install
 
-npm install ojos
+```
+npm install mirada ojos
+```
 
 ## Usage
 
@@ -67,6 +69,7 @@ TODO
       - GUIs for real use cases like grabcut
 - [ ] integrate mirada-cli generateCommands script here
   - [ ] use operations interfaces
+- [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [ ] decide what we do with commands - remove it ? 
 - [x] addWeighted

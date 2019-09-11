@@ -80,7 +80,7 @@ export function asMat(f: File | Mat) {
 }
 
 export function del(...m: Mat[]) {
-  m.forEach(m => tryTo(() => m.delete()))
+  m.filter(m=>!m.isDeleted()).forEach(m => m.delete())
 }
 
 /**

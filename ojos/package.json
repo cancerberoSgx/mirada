@@ -1,6 +1,6 @@
 {
   "name": "ojos",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "High level API on top of Mirada (opencv.js) supporting bth browser and node.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -35,7 +35,6 @@
     "file-type": "^12.3.0",
     "jimp": "^0.6.8",
     "markdown-toc": "^1.2.0",
-    "mirada": "0.0.8",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typedoc": "^0.15.0",
@@ -44,6 +43,7 @@
     "typescript-member-signatures": "0.0.6"
   },
   "dependencies": {
+    "mirada": "file:../mirada",
     "misc-utils-of-mine-generic": "^0.2.30",
     "tinycolor2": "^1.4.1"
   },

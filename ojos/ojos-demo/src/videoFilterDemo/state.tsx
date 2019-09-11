@@ -158,8 +158,6 @@ export const getState: () => State = () => {
 }
 
 export function setState(s: Partial<State>) {
-  const ss = getState()
-  // merge(false, true, ss, s)
-  Object.assign(ss, s)
+  Object.assign(_state||getState(), s)
 }
 

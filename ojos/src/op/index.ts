@@ -1,3 +1,4 @@
+export * from './abstractOperation'
 export * from './adaptiveThreshold'
 export * from './bilateralFilter'
 export * from './bitwise'

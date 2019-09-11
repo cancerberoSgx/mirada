@@ -1,18 +1,25 @@
 import { del, Mat, noArray, toRgba } from 'mirada'
-import { array } from 'misc-utils-of-mine-generic'
+import { array, Fn } from 'misc-utils-of-mine-generic'
 import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, ReplaceColor, Threshold, WarpPerspective, randomScalarColor } from 'ojos' 
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 
 export let fpsFramesCounter = 0
-export function resetFpsFramesCounter() {
+export let fpsFramesTimer: NodeJS.Timeout=null as any
+export function resetFpsFramesCounter(clear=false) {
+  clear&&fpsFramesTimer && clearInterval(fpsFramesTimer)
   fpsFramesCounter = 0
 }
-
+export function setFpsFramesInterval(f: Fn, t: number) {
+//  fpsFramesTimer&& setInterval(f, t)
+  fpsFramesCounter = 0
+  fpsFramesTimer = setInterval(f, t)
+}
 export function stop() {
   if (getManagers()) {
     getManagers().c.stop()
-    resetFpsFramesCounter()
+    resetFpsFramesCounter(true)
+    // delete getManagers().c
   }
 }
 
@@ -34,6 +41,7 @@ export let processFunction = function(this: Managers) {
   if (!this.c.streaming) {
     del(this.dst)
     prev && del(prev)
+     del(this.c.mat)
     return
   }
   this.c.read()
@@ -41,8 +49,7 @@ export let processFunction = function(this: Managers) {
   let dst = this.dst
   src.copyTo(dst)
   const cp = dst.clone()
-
-  if (!prev) {
+  if (!prev||prev.isDeleted()) {
     prev = src.clone()
   }
 
@@ -50,7 +57,9 @@ export let processFunction = function(this: Managers) {
 
   state.order.forEach(name => {
     if (name === ToolNames.replaceColor && state.replaceColor.active) {
-      replaceColor.exec({ ...state.replaceColor, src: dst, dst })
+      dst.copyTo(cp, noArray())
+      replaceColor.exec({ ...state.replaceColor, src: cp, dst: cp })
+        toRgba(cp, dst)
     }
     else if (name === ToolNames.canny && state.canny.active) {
       dst.copyTo(cp, noArray())
@@ -74,10 +83,13 @@ export let processFunction = function(this: Managers) {
     }
     else if (name === ToolNames.warpPerspective && state.warpPerspective.active) {
       dst.copyTo(cp, noArray())
-      warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst, ...state.warpPerspective.drawPoints ? { drawPoints: colors } : {} })
+      warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst: cp, ...state.warpPerspective.drawPoints ? { drawPoints: colors } : {} })
+      toRgba(cp, dst)
     }
     else if (name === ToolNames.edge && state.edge.active) {
-      edge.exec({ ...state.edge, src: dst, dst })
+      dst.copyTo(cp, noArray())
+      edge.exec({ ...state.edge, src: dst, dst: cp })
+      toRgba(cp, dst)
     }
     else if (name === ToolNames.bitwise && state.bitwise.active) {
       dst.copyTo(cp, noArray())

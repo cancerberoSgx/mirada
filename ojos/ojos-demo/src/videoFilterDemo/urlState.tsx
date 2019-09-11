@@ -1,5 +1,7 @@
 import { jsonParseWithMat, jsonStringifyWithMat } from 'mirada'
-import { getState, setState } from './state'
+import { getState, setState, State } from './state'
+import { getManagers, loadVCamAndStartProcessing, handleNewState } from './start'
+import { resetFpsFramesCounter } from './processFunction'
 
 let _Buffer = require('buffer/').Buffer as typeof Buffer
 
@@ -14,7 +16,10 @@ export async function loadUrl(u=window.location.hash) {
     const d = u.split('state=')[1]
     const s =  _Buffer.from(d, 'base64').toString()
     const state =  jsonParseWithMat(s)
-    setState(state)
+    const s2 = getState()
+    Object.assign(s2, state)
+    setState(s2)
+    // handleNewState(state)
   } else {
 
   }

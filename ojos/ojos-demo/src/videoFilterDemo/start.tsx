@@ -3,17 +3,25 @@ import * as React from 'react'
 import * as rd from 'react-dom'
 import { Controls } from "./controls"
 import { ForkRibbon } from './forkRibbon'
-import { processFunction } from './processFunction'
-import { getState, State } from "./state"
+import { processFunction, resetFpsFramesCounter } from './processFunction'
+import { getState, State, setState } from "./state"
 import { loadUrl } from './urlState'
 import { examples } from './examples'
 import {Examples} from './showExamples'
+import { sleep, objectKeys, setObjectProperty, Fn } from 'misc-utils-of-mine-generic'
 
 export async function start() {
   renderRootLayout()
   await loadVCamAndStartProcessing()
   renderApp()
 }
+
+// export async function setFpsFramesInterval(tt:Fn, ms:number) {
+//   renderRootLayout()
+//   await loadVCamAndStartProcessing()
+//   renderApp()
+// }
+
 
 export type Managers = {
   video: HTMLVideoElement;
@@ -33,8 +41,29 @@ export function getManagers() {
   return _managers
 }
 
+// export async function handleNewState(s:Partial<State>) {
+//   await getManagers().c.stop()
+//   // await resetFpsFramesCounter(true)
+//   await loadVCamAndStartProcessing()
+//   await sleep(100)
+//   // debugger
+//   // const s = 
+//   setState(s)
+//   renderApp()
+//   await sleep(100)
+//   setState(s)
+//   _App.render()
+
+//   // _managers.state = s
+//   // getApp().
+// }
+
+
+
 export async function loadVCamAndStartProcessing() {
+  resetFpsFramesCounter(true)
   await loadOpencv()
+  // reset
   const video = document.querySelector<HTMLVideoElement>('video')!
   const canvas = document.querySelector<HTMLCanvasElement>('canvas')!
   const c = new VideoReader(video, canvas)
@@ -53,18 +82,21 @@ export async function loadVCamAndStartProcessing() {
 }
 
 function renderApp() {
-  loadUrl()
   document.getElementById('loading')!.remove()
-  rd.render(App(), document.getElementById('dynamic-app'))
+  rd.unmountComponentAtNode(document.getElementById('dynamic-app')!)
+  loadUrl()
+  rd.render(<Controls/>, document.getElementById('dynamic-app'))
 }
 
-function App(): React.FunctionComponentElement<any> | React.FunctionComponentElement<any>[] {
-  return <div>
-    <ForkRibbon />
-    <Controls />
-    <Examples/>
-  </div>;
-}
+export function removeApp(){}
+
+// let _App: Controls
+// function getApp() {
+//   if(!_App){
+//     _App = new Controls(getState())
+//   }
+//   return _App;
+// }
 
 function renderRootLayout() {
   document.getElementById('main')!.innerHTML = `
