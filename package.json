@@ -1,0 +1,20 @@
+{
+  "name": "mirada-monorepo",
+  "version": "1.0.0",
+  "description": "repo containing mirada project and others",
+  "private": true,
+  "scripts": {
+    "test": "cd mirada && npm i && npm test; cd ../ojos && npm i && npm test && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cancerberoSgx/mirada.git"
+  },
+  "keywords": [],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/mirada/issues"
+  },
+  "homepage": "https://github.com/cancerberoSgx/mirada#readme"
+}
