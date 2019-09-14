@@ -9,7 +9,8 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
   description: string = 'TODO'
   noInPlace = false
   sameSizeAndType = false
-  protected isInPlace = false
+  isInPlace = false
+  noDst = false
   protected validateEachExec = false
   protected validated = false
 
@@ -18,9 +19,11 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
   constructor(protected defaultOptions?: T) {
 
   }
+
   protected validate(o: T): string | undefined {
     return
   }
+
   protected abstract _exec(o: MandatoryDst<T>): void
 
   exec(o?: T) {
@@ -38,10 +41,13 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     this.afterExec(options)
     return options.dst!
   }
+
   protected afterExec(options: MandatoryDst<T>) {
   }
+
   protected checkInputImage(o: T) {
   }
+  
   protected checkOptions(o?: T) {
     if (!o && !this.defaultOptions) {
       throw new Error('No options provided not in the constructor or in exec() call. Aborting.')
@@ -57,14 +63,27 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       ksize.width = ksize.width < 3 ? 3 : ksize.width % 2 !== 1 ? ksize.width - 1 : ksize.width
       ksize.height = ksize.height < 3 ? 3 : ksize.height % 2 !== 1 ? ksize.height - 1 : ksize.height
     }
+    this.checkDst(options)
+    return options as MandatoryDst<T>
+  }
+
+  protected checkDst(options: T) {
     if (!options.dst) {
-      if (this.sameSizeAndType) {
+      if (this.noDst) {
+        options.dst = options.src.clone()
+      }
+      else if (this.sameSizeAndType) {
         options.dst = cv.Mat.zeros(options.src.rows, options.src.cols, options.src.type())
-      } else {
+      }
+      else {
         options.dst = new cv.Mat()
       }
     }
-    return options as MandatoryDst<T>
+    else {
+      if (this.noDst) {
+        options.src.copyTo(options.dst)
+      }
+    }
   }
 
   protected checkInPlaceBefore(o: OperationExecBaseOptions) {

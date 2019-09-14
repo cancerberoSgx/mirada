@@ -42,6 +42,7 @@
     "glob": "^7.1.4",
     "minimist": "^1.2.0",
     "mirada": "0.0.9",
+    "ojos": "0.0.5",
     "misc-utils-of-mine-generic": "^0.2.29",
     "oboe": "^2.1.4",
     "shelljs": "^0.8.3"

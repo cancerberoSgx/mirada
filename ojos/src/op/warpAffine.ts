@@ -38,6 +38,7 @@ export interface WarpAffineOptions extends OperationExecBaseOptions, WithBorderT
  */
 export class WarpAffine extends AbstractOperation<WarpAffineOptions> {
   name = "WarpAffine"
+  description = `Will use [estimateAffine2D] to calculate affine matrix from given [inputs] and [outputs] and then [warpAffine] to transform.`
   noInPlace = true
   protected _exec(o: WarpAffineOptions) {
     let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.inputs)

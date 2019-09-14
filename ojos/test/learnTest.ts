@@ -1,8 +1,21 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
+import { scalarColor } from '../src'
 import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
+
+test('drawing', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  cv.line(src, { x: 10, y: 5 }, { x: 100, y: 80 }, scalarColor('red'), 2, cv.LINE_8, 0)
+  cv.rectangle(src, { x: 101, y: 15 }, { x: 150, y: 80 }, scalarColor('#9922ee77'), 2, cv.LINE_8, 0)
+  cv.rectangle(src, { x: 1, y: 115 }, { x: 150, y: 180 }, scalarColor('#99221177'), cv.FILLED)
+  cv.circle(src, { x: 261, y: 122 }, 22, scalarColor('#9922eeee'), cv.FILLED)
+  cv.circle(src, { x: 200, y: 150 }, 44, scalarColor('#11ee1255'), 3, cv.LINE_AA, 1)
+  cv.ellipse(src, { x: 200, y: 50 }, { width: 110, height: 60 }, 33, 0, 360, scalarColor('#aaee1299'), 3, cv.LINE_4)
+  cv.ellipse1(src, new cv.RotatedRect({ x: 200, y: 150 }, { width: 110, height: 60 }, 77), scalarColor('#aaee1299'), cv.FILLED, cv.LINE_AA)
+  t.deepEqual(compareL2(await fromFile('test/assets/hDrawing.png'), toRgba(src), true), 0)
+})
 
 test('gradient - warpPolar', async t => {
   const lines = new cv.Mat(255, 255, cv.CV_8U, new cv.Scalar(0))
@@ -38,7 +51,7 @@ test('inRange', async t => {
   cv.inRange(img, low, high, mask)
   const b = new cv.Mat(img.rows, img.cols, img.type(), new cv.Scalar(255, 0, 0, 255))
   b.copyTo(dst, mask)
-  t.deepEqual(compareL2(await File.fromFile('test/assets/nInRange.png'), await toRgba(dst)), 0);
+  t.deepEqual(compareL2(await fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0);
   [mask, dst, low, high, b].forEach(m => m.delete())
 })
 
@@ -53,8 +66,7 @@ test('floodFill', async t => {
   //Fill mask with value 128
   const fillValue = 128
   cv.floodFill(img, mask, seed, new cv.Scalar(255), 0, new cv.Scalar(), new cv.Scalar(), 4 | cv.FLOODFILL_MASK_ONLY | (fillValue << 8))
-  t.deepEqual(compareL2(await File.fromFile('test/assets/floodfill.png'), File.fromMat(await toRgba(mask))), 0)
-  // await write(await toRgba(mask), 'tmp2.png')
+  t.deepEqual(compareL2(await fromFile('test/assets/floodfill.png'), File.fromMat(toRgba(mask)), true), 0)
 })
 
 test('pixels 1', async t => {
@@ -94,7 +106,7 @@ test('estimateAffine2D', async t => {
   ])
   const M = cv.estimateAffine2D(inputs, outputs)
   cv.warpAffine(src, src, M, src.size())
-  t.deepEqual(compareL2(await File.fromFile('test/assets/nEstimateAffine2D.png'), src), 0)
+  t.deepEqual(compareL2(await fromFile('test/assets/nEstimateAffine2D.png'), toRgba(src), true), 0)
   t.deepEqual(Array.from(M.data), [
     23, 55, 97, 126, 87, 139, 227, 63, 0, 0,
     0, 0, 0, 0, 232, 191, 71, 246, 12, 68,
