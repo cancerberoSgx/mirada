@@ -75,6 +75,7 @@ TODO
 - [ ] resize, rotate
 - [ ] utilities for gradients
 - [ ] cv.cvtColor
+- [x] warpAffine
 - [x] inRange
 - [x] addWeighted
 - [x] edge detectors supporting multiple channels ? 

@@ -16,12 +16,15 @@ export interface InRangeConcreteOptions {
   upperb: Mat | Scalar
 }
 
+/**
+ *  [dst]   is set to 255 (all 1 -bits) if [src] is within the specified 1D, 2D, 3D, ... box and 0 otherwise.
+ */
 export class InRange extends AbstractOperation<InRangeOptions> {
   name: string = 'InRange'
-  sameSizeAndType = true
   protected _exec(o: InRangeOptions) {
-
-    cv.inRange(o.src, isMat(o.lowerb) ? o.lowerb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowerb), isMat(o.upperb) ? o.upperb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.upperb), o.dst!)
+    cv.inRange(o.src, 
+    isMat(o.lowerb) ? o.lowerb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowerb), 
+    isMat(o.upperb) ? o.upperb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.upperb), o.dst!)
   }
 }
 
