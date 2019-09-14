@@ -2,13 +2,14 @@ import 'magica'
 import * as React from 'react'
 import { getImageWidget, getCanvasOverlay } from '../../app/start'
 import { AbstractTool } from './tool'
-import { ISelectionCreated, Object } from 'fabric/fabric-impl';
+import {  Object } from 'fabric/fabric-impl';
 
 export class SelectedShapesView extends React.Component<{}, { selected: Object[] }>{
   constructor(p: any, s: any) {
     super(p, s)
     this.state = { selected: [] }
     getCanvasOverlay().then(o => {
+      //@ts-ignore
       o.canvas!.on('selection:created', e => this.setState({ selected: e.selected }))
       o.canvas!.on('selection:cleared', e => this.setState({ selected: [] }))
     })

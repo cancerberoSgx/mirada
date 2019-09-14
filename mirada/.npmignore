@@ -6,6 +6,7 @@
 /.npmignore
 /dist/spec
 /tsconfig.json
+scripts
 /declarations.d.ts
 *.tgz
 test

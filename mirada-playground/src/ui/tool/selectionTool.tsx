@@ -1,5 +1,5 @@
 import { fabric } from 'fabric'
-import { File, tool } from 'mirada'
+import { File, grabCut_obsolete } from 'mirada'
 import { serial } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { Button, Icon, Popup } from 'semantic-ui-react'
@@ -72,7 +72,7 @@ export class SelectionTool extends AbstractTool {
     if (rect.length) {
       let f = i.get()
       await serial(rect.map(r => async () => {
-        const result = await tool.grabCut({
+        const result = await grabCut_obsolete({
           image: f,
           ...r
         })

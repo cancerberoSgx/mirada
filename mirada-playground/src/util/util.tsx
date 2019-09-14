@@ -1,5 +1,3 @@
-import { RGBColor } from 'react-color';
-import {Range, Scalar} from 'mirada'
 export function printMs(ms: number) {
   return (ms / 1000) + ''.padEnd(4, ' ') + ' seconds'
 }
@@ -28,7 +26,4 @@ const isBrowser = typeof performance !== 'undefined' && typeof performance.now =
 export function now() {
   return isBrowser ? performance.now() : 0
 }
-
-export function between(n:number, min:number, max: number){
-  return Math.max(min, Math.min(n, max))
-}
+ 

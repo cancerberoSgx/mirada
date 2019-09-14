@@ -30,8 +30,8 @@ declare var cv: Mirada.CV
   let err = new cv.Mat()
   const FPS = 30
   const v = new Mirada.CameraHelper(videoInput, canvas, processVideo)
-  setTimeout(v.start, 0)
-  setTimeout(v.stop, 10000)
+  setTimeout(()=>v.start(), 0)
+  setTimeout(()=>v.stop(), 15000)
 
   async function processVideo() {
     await new Promise(resolve => setTimeout(resolve, 500))

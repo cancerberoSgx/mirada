@@ -13,10 +13,7 @@ declare var cv: Mirada.CV
   let contourID1 = 5
   let color0 = new cv.Scalar(255, 0, 0)
   let color1 = new cv.Scalar(0, 0, 255)
-  // You can try more different parameters
   let result = cv.matchShapes(contours.get(contourID0), contours.get(contourID1), 1, 0)
-  console.log(result)
-  // matchShapesOutput.innerHTML = result;
   cv.drawContours(dst, contours, contourID0, color0, 1, cv.LINE_8, hierarchy, 100)
   cv.drawContours(dst, contours, contourID1, color1, 1, cv.LINE_8, hierarchy, 100)
   cv.imshow(document.getElementById('outputCanvas')!, dst)

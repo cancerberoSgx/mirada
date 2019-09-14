@@ -7,7 +7,7 @@ const p = JSON.parse(readFileSync('package.json').toString())
 const browser = p.browser
 delete p.browser
 writeFileSync('package.json', JSON.stringify(p, null, 2))
-let error: Error
+let error: Error = null as any
 try {
   equal(exec('npx browserify -o dist/mirada.min.js -s mirada -e dist/src/index.js').code, 0)
   equal(exec('npx terser dist/mirada.min.js -o dist/mirada.min.js').code, 0)

@@ -27,6 +27,6 @@ declare var cv: Mirada.CV
     }
   }
   const v = new Mirada.CameraHelper(video, canvas, processVideo)
-  setTimeout(v.start, 0)
-  setTimeout(v.stop, 10060)
+  setTimeout(()=>v.start(), 0)
+  setTimeout(()=>v.stop(), 10060)
 })()

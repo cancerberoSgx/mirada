@@ -1,5 +1,4 @@
-import { IObjectAdded } from 'fabric/fabric-impl'
-import { File, tool } from 'mirada'
+import { File, grabCut_obsolete } from 'mirada'
 import * as React from 'react'
 import { Button, Checkbox, Icon, Label } from 'semantic-ui-react'
 import { getCanvasOverlay, getImageWidget, getShapeDrawing } from '../../app/start'
@@ -52,14 +51,14 @@ export class GrabCut extends AbstractTool {
       o.canvas!.on('selection:created', this.selectionChangeListener)
     })
   }
-  protected async selectionChangeListener(e: IObjectAdded) {
+  protected async selectionChangeListener(e: any) {
     if (!this.active) {
       return
     }
     const r = { x: e.target.left!, y: e.target.top!, width: e.target.width!, height: e.target.height! }
     const i = await getImageWidget()
     let f = i.get()
-    const result = await tool.grabCut({
+    const result = await grabCut_obsolete({
       image: f,
       ...r
     })

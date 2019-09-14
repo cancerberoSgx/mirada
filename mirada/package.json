@@ -3,7 +3,6 @@
   "version": "0.0.12",
   "description": "Node.js and Browser high level OpenCv API. Based on OpenCv.js and  distributed as npm package with support for TypeScript and  easy APIs for server and browser.",
   "main": "dist/src/index.js",
-  "browser": "dist/mirada.min.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist docs tmp* test-browser-outdir api",
@@ -67,5 +66,6 @@
   },
   "bugs": {
     "url": "https://github.com/cancerberoSgx/mirada"
-  }
+  },
+  "browser": "dist/mirada.min.js"
 }

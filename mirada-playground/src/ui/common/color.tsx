@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {  RGBColor, ColorResult , ChromePicker,} from 'react-color';
 import { Scalar } from 'mirada';
+import { between } from 'misc-utils-of-mine-generic';
 
 interface P extends S {
   onChange: (c: Scalar) => void;
@@ -122,7 +123,6 @@ export class Color extends React.Component<P, S> {
     };
   }
 }
-
 
 export function scalarToRgbColor( c: Scalar, alphaMultiplier=1/255.0): RGBColor {
   return  {r: c[0],g: c[1],b: c[2],a: between(c[3]*alphaMultiplier, 0, 1)}

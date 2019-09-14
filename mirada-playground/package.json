@@ -30,13 +30,13 @@
     "@types/react": "^16.9.2",
     "@types/react-color": "^3.0.1",
     "@types/react-dom": "^16.9.0",
-    "babel-polyfill": "^6.26.0",
     "parcel": "^1.12.3",
     "ts-refactor": "0.0.9",
     "webrtc-adapter": "^7.3.0",
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "fabric": "^3.4.0",
     "file-saver": "^2.0.2",
     "magica": "file:../../magica",

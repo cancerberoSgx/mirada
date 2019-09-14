@@ -8,6 +8,7 @@ import { Point } from '../common/point'
 import { AbstractTool } from './tool'
 import { ChromePicker, CirclePicker, Color as IColor } from 'react-color';
 import { Color } from '../common/color';
+import { scalarColor } from 'ojos'
 
 export class ColorsView extends AbstractComponent<AbstractProps, State> {
   constructor(p: any, s: any) {
@@ -25,10 +26,10 @@ export class ColorsView extends AbstractComponent<AbstractProps, State> {
     }
     return (<>
 
-        Foreground: <Color value={{ r: 221, g: 222, b: 223, a: .6 }} onChange={c => console.log(c)} selectButton 
+        Foreground: <Color value={scalarColor('#ee449999')} onChange={c => console.log(c)} selectButton 
         targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} />
 
-      Background: <Color value={{ r: 0, g: 0, b: 0, a: 0.5 }} onChange={c => console.log(c)} selectButton 
+      Background: <Color value={scalarColor('#112233ff')} onChange={c => console.log(c)} selectButton 
       targetEl={async () => document.querySelector<HTMLCanvasElement>('.upper-canvas')!} />
 
       <Button.Group toggle size="medium">

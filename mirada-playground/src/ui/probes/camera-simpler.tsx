@@ -3,7 +3,7 @@
 import * as React from 'react'
 import 'babel-polyfill';
 import {loadOpencv, VideoReader,  Scalar, DIST_L2, bitwise_not} from 'mirada'
-import {  ReplaceColorOptions, OperationExecBaseOptions,  CannyOptions, FloodFillOptions, replaceColor, canny} from 'ojos'
+import {  ReplaceColorOptions, OperationExecBaseOptions,  CannyOptions, FloodFillOptions, ReplaceColor, Canny} from 'ojos'
 import { msFrom, now,  } from '../../util/util';
 import { RemoveProperties, setObjectProperty, objectKeys } from 'misc-utils-of-mine-generic';
 import { Color } from '../common/color';
@@ -170,11 +170,11 @@ const video = document.querySelector<HTMLVideoElement>('video')!
         src.copyTo(dst)
       // cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY)
       if(getState().replaceColor.active){
-        replaceColor({...getState().replaceColor,src:  dst, dst})
+        new ReplaceColor().exec({...getState().replaceColor,src:  dst, dst})
       }
       if(getState().canny.active){
         cv.blur(dst, dst, {width: 5, height: 5}, {x:-1, y: -1} , cv.BORDER_REFLECT)
-        canny({...getState().canny, src: dst, dst})
+        new Canny().exec({...getState().canny, src: dst, dst})
       }
       // cv.bitwise_xor(src, dst, dst)
       // cv.
