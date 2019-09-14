@@ -52,7 +52,7 @@ export class WarpAffine extends AbstractOperation<WarpAffineOptions> {
       array(Math.trunc(o.inputs.length / 2))
         .forEach(i => cv.circle(src, new cv.Point(o.outputs[i * 2], o.outputs[i * 2 + 1]), 5, (o.drawPoints as Scalar[])![i], cv.FILLED))
     }
-    cv.warpAffine(src,  o.dst!, M, o.size || o.dst!.size(), o.flags || cv.INTER_LINEAR,
+    cv.warpAffine(src, o.dst!, M, o.size || o.dst!.size(), o.flags || cv.INTER_LINEAR,
       o.borderType || cv.BORDER_CONSTANT, o.borderValue || new cv.Scalar())
     if (o.drawPoints) {
       src.delete()

@@ -40,9 +40,8 @@
   },
   "dependencies": {
     "glob": "^7.1.4",
-    "magica": "^0.2.14",
     "minimist": "^1.2.0",
-    "mirada": "file:../mirada",
+    "mirada": "0.0.9",
     "misc-utils-of-mine-generic": "^0.2.29",
     "oboe": "^2.1.4",
     "shelljs": "^0.8.3"

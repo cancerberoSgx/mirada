@@ -1,4 +1,4 @@
-import { File as MagicaFile } from 'magica'
+// import { File as MagicaFile } from 'magica'
 
 export interface Options {
   output?: string
@@ -17,10 +17,10 @@ export interface Result {
   error?: Error
   outputFiles: File[]
 }
-interface File extends MagicaFile {
-  name: string
-  content: Buffer
-}
+// interface File extends MagicaFile {
+//   name: string
+//   content: Buffer
+// }
 
 // export interface Command<O extends CommandOption[]> extends Base<O> {
 //   options: O

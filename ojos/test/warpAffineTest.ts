@@ -1,8 +1,7 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
 import { WarpAffine, WarpAffineOptions } from '../src'
-import { scalarColor } from '../src/color'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -36,19 +35,19 @@ test('change1', async (t) => {
   const o: WarpAffineOptions = {
     src,
     inputs: [
-     1, 1,
-    80, 0,
-    0, 80,
-    80, 80
+      1, 1,
+      80, 0,
+      0, 80,
+      80, 80
     ],
     outputs: [
       21, 51,
-    70, 77,
-    40, 40,
-    10, 70
+      70, 77,
+      40, 40,
+      10, 70
     ],
   }
-const dst =   await new WarpAffine().exec(o)
+  const dst = await new WarpAffine().exec(o)
   t.deepEqual(compareL2(await File.fromFile('test/assets/nEstimateAffine2D.png'), dst, true), 0)
   del(src)
 })

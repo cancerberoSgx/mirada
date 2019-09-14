@@ -22,9 +22,9 @@ export interface InRangeConcreteOptions {
 export class InRange extends AbstractOperation<InRangeOptions> {
   name: string = 'InRange'
   protected _exec(o: InRangeOptions) {
-    cv.inRange(o.src, 
-    isMat(o.lowerb) ? o.lowerb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowerb), 
-    isMat(o.upperb) ? o.upperb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.upperb), o.dst!)
+    cv.inRange(o.src,
+      isMat(o.lowerb) ? o.lowerb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowerb),
+      isMat(o.upperb) ? o.upperb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.upperb), o.dst!)
   }
 }
 

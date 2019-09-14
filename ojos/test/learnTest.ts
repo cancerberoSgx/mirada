@@ -1,8 +1,6 @@
 import test from 'ava'
-import { compareL2, del, File, fromFile, get, Mat, Rect, Size, toRgba } from 'mirada'
-import { Point } from 'misc-utils-of-mine-generic'
-import { scalarColor } from '../src'
-import { loadMirada, write } from './testUtil'
+import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -12,22 +10,22 @@ test('gradient - warpPolar', async t => {
     lines.row(r).setTo(new cv.Scalar(r))
   }
   const dst = new cv.Mat()
-cv.resize(lines, dst, {width: 5, height: 5})
-  t.deepEqual(Array.from(dst.data),  [
-   25,  25,  25,  25,  25,  
-   76,  76,   76,  76,  76, 
-   127, 127, 127, 127,  127, 
-   178, 178, 178, 178, 178, 
-   229,  229, 229, 229, 229
-])
+  cv.resize(lines, dst, { width: 5, height: 5 })
+  t.deepEqual(Array.from(dst.data), [
+    25, 25, 25, 25, 25,
+    76, 76, 76, 76, 76,
+    127, 127, 127, 127, 127,
+    178, 178, 178, 178, 178,
+    229, 229, 229, 229, 229
+  ])
   cv.warpPolar(lines, lines, { width: 5, height: 5 }, new cv.Point(2, 2), 3, cv.INTER_CUBIC | cv.WARP_FILL_OUTLIERS | cv.WARP_INVERSE_MAP)
   t.deepEqual(Array.from(lines.data), [
-  159, 172, 191, 210, 223, 146, 159,
-  191, 223, 236, 128, 128,   0,   0,
-    0, 109,  96,  64,  32,  19,  96,
-   83,  64,  45,  32
-])
-del(dst, lines)
+    159, 172, 191, 210, 223, 146, 159,
+    191, 223, 236, 128, 128, 0, 0,
+    0, 109, 96, 64, 32, 19, 96,
+    83, 64, 45, 32
+  ])
+  del(dst, lines)
 })
 
 
