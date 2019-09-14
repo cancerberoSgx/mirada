@@ -19,7 +19,7 @@
     "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --theme markdown --out ./api --mode modules --readme none src/index.ts src/types/opencv/index.ts && rm -rf ../../demos/docs/mirada-opencv-api-md && mkdir -p ../../demos/docs/mirada-opencv-api-md && mv api/* ../../demos/docs/mirada-opencv-api-md",
     "docs-api-html": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --out ./api --readme none --mode modules src/index.ts  && rm -rf ../../demos/docs/mirada-opencv-api-html && mkdir -p ../../demos/docs/mirada-opencv-api-html && mv api/* ../../demos/docs/mirada-opencv-api-html",
     "docs-readme-toc": "npx markdown-toc README.md -i",
-    "build": "npm run clean && npx tsc&& npm run copy",
+    "build": "npm run clean && npx tsc && npm run copy",
     "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run test-browser && npm run docs",
     "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish"
   },
@@ -33,23 +33,23 @@
   "devDependencies": {
     "@types/js-base64": "^2.3.1",
     "@types/jsdom": "^12.2.4",
-    "@types/node": "^12.7.4",
+    "@types/node": "^12.7.5",
     "ava": "^2.3.0",
     "babel-polyfill": "^6.26.0",
     "canvas": "^2.6.0",
     "file-type": "^12.3.0",
-    "jimp": "^0.6.8",
+    "jimp": "^0.8.2-canary.792.290.0",
     "jsdom": "^15.1.1",
     "magica": "^0.2.15",
     "markdown-toc": "^1.2.0",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
     "typedoc": "^0.15.0",
-    "typedoc-plugin-markdown": "^2.1.9",
-    "typescript": "^3.6.2"
+    "typedoc-plugin-markdown": "^2.2.1",
+    "typescript": "^3.6.3"
   },
   "dependencies": {
-    "buffer": "^5.4.2",
+    "buffer": "^5.4.3",
     "cross-fetch": "^3.0.4",
     "js-base64": "^2.5.1",
     "misc-utils-of-mine-generic": "^0.2.30"

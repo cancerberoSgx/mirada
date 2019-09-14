@@ -50,13 +50,14 @@ Then, the project [ojos](https://www.npmjs.com/package/ojos) provides high level
 ## Command line
 
 See [mirada-cli project page](../mirada-cli).
-
 ## TODO
 
 - [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt fix mirada types
 - [ ] - mirada tyoes: cp.assignTo is not a functionr
 - [  browser tests]
-- [x] cv.CLAHE types
+- [x] cv.CLAHE types 
+- [ ]   Vector<T> extends EmscriptenEmbindInstance       export declare class Algorithm extends EmscriptenEmbindInstance 
+- [x] aMat.row(r).setTo(new cv.Scalar(r))  should work- this could work in hacks.ts export type  InputArray = Mat|Scalar 
 - [ ] mat.isDeleted and m.isAliasOf are not in the types.  clone  isDeleted  deleteLater 
 - [ ] m.isSubmatrix is not supported in js
 - [ ] move tool and commands to another project

@@ -10,7 +10,8 @@ export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
 // Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
-export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
+export {Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
+export type  InputArray = Mat|Scalar
 export { Scalar as GScalar }
 export { Point as Point2f }
 export { Point as KeyPoint }
@@ -75,7 +76,7 @@ import '../_cv'
 /**
  * Base class for Contrast Limited Adaptive Histogram Equalization.
  */
-declare class CLAHE extends Algorithm {
+export declare class CLAHE extends Algorithm {
   /**
    * @param clipLimit Threshold for contrast limiting. Default.  40.0,
    * @param totalGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column. Default: Size(8, 8) 
@@ -114,7 +115,7 @@ export declare function getInheritedInstanceCount(...a: any[]): any
 export declare function getLiveInheritedInstances(...a: any[]): any
 export declare function flushPendingDeletes(...a: any[]): any
 export declare function setDelayFunction(...a: any[]): any
-declare class EmscriptenEmbindInstance {
+export declare class EmscriptenEmbindInstance {
   isAliasOf(...a: any[]): any
   clone(...a: any[]): any
   delete(...a: any[]): any

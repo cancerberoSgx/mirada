@@ -14,7 +14,6 @@ export interface FloodFillOptions extends OperationExecBaseOptions {
 
 export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | ({ name: 'medianBlur' } & MedianBlurConcreteOptions)
 
-
 /**
  * This is a high level API involving several opencv operations. 
  */

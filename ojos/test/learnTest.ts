@@ -1,8 +1,118 @@
 import test from 'ava'
-import { compareL2, del, File, fromFile, get, toRgba } from 'mirada'
-import { loadMirada } from './testUtil'
+import { compareL2, del, File, fromFile, get, toRgba, Size, Rect } from 'mirada'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
+
+import { Mat, noArray } from 'mirada'
+import { scalarColor } from '../src'
+import { Point } from 'misc-utils-of-mine-generic'
+
+interface Options {
+  prev: Mat[]
+  current: Mat
+  timeMask: Mat
+}
+test.only('inRangessss', async t => {
+    interface Options {
+    size: Size
+    type: 'linear'|'circle'
+    circleCenter?: Point
+  }
+  function makeGradient(o:Options){
+  const lines = new cv.Mat(o.size.height, o.size.width, cv.CV_8U, new cv.Scalar(0));
+  for (let r = 0; r < lines.rows; r++) {
+    lines.row(r).setTo(new cv.Scalar(lines.rows-1));
+  }
+  }
+
+  function makeGradientCneter (r: Rect, ){
+    const m = cv.Mat.zeros(r.height, r.width, cv.CV_8UC4)
+  //   // cv.circle(m, {x: Math.round(size.height/2),y:  Math.round(size.width/2)}, 10, scalarColor('black'))
+    cv.rectangle(m, {x: 0,y:0}, {x: m.cols, y:m.rows}, scalarColor('#00000000'), cv.FILLED)
+    for(let y = 1; y<Math.round(r.height/2)&&y<Math.round(r.height/2); y++) {
+      cv.rectangle(m, {x: 0, y, height: Math.round(r.height/2)+y, width: m.cols}, [Math.round(r.height/y)*255, Math.round(r.height/y)*255, Math.round(r.height/y)*255, Math.round(r.height/y)*255])
+    }
+  //   // cv.rectangle(m, {x: 10,y:10}, {x: 40, y:40}, scalarColor('#ffffffff'), cv.FILLED)
+  //   // cv.bitwise_not(m, m)
+    return m
+  }
+  const m = makeGradientCneter({x: 5, y: 5, width:88,height:88})
+    write(toRgba(m), 'tmp-gg.png')
+    t.true(true)
+
+
+  //   //Set linear gradient (255 gray levels)
+  const  lines = new cv.Mat(5, 5, cv.CV_8U, new cv.Scalar(255));
+  //     // write(lines, 'tmp-gg1.png')
+  //     // // cv.rectangle(lines, {x: 1,y:2}, {x: 4, y:3}, new cv.Scalar(128), cv.FILLED)
+      // write(toRgba(lines), 'tmp-gg3222.png');
+
+  for (let r = 0; r < lines.rows; r++){
+      lines.row(r).setTo( new cv.Scalar(Math.max(255,Math.trunc(255/(r+(1*4))))))
+  }
+      write(lines, 'tmp-gssssg2.png')
+
+  // namedWindow("Linear Gradient", CV_WINDOW_NORMAL);
+  // imshow("Linear Gradient", lines);
+
+  // write(lines, 'tmp-gg3.png')
+
+  //Set linear gradient (255 gray levels)
+// test.only('gradient warpPolar', async t => {
+
+//   const lines = new cv.Mat(5,5, cv.CV_8U, new cv.Scalar(0));
+//   cv.warpPolar(lines, lines, { width: 5, height: 5 }, new cv.Point(2, 2), 3, cv.INTER_CUBIC | cv.WARP_FILL_OUTLIERS | cv.WARP_INVERSE_MAP);
+//   write(lines, 'tmp-gg4.png');
+//   t.deepEqual(lines.data, [
+//     159, 172, 191, 210, 223,
+//     146, 159, 191, 223, 236,
+//     128, 128,   0,   0,   0,
+//     109,  96,  64,  32,  19,
+//     96,   83,  64,  45,  32
+//   ]);
+// })
+
+ // //Mask out circle section
+  // const mask = new cv.Mat(lines.size(), cv.CV_8U, new cv.Scalar(0));
+  // cv.circle(mask, new cv.Point(mask.cols / 2, mask.rows / 2), lines.rows/2, new cv.Scalar(255), -1);
+  // const circle_gradient = new cv.Mat()
+  // lines.copyTo(circle_gradient, mask);
+  //     write(toRgba(circle_gradient), 'tmp-gg3.png');
+
+  // namedWindow("Circle Gradient", CV_WINDOW_NORMAL);
+  // imshow("Circle Gradient", circle_gradient);
+  // waitKey(0);
+
+
+})
+
+// const bgr_planes = new cv.MatVector()
+//   cv.split( src, bgr_planes );
+// // async function f(o:Options){
+//   const hist = new cv.Mat()
+//   cv.calcHist(timeMask, 1, noArray(), hist, 32,new cv.Size(1, o.timeMask.cols), ) 
+//   write
+// })
+
+
+
+test('warpPolar', async t => {
+  const lines = new cv.Mat(255, 255, cv.CV_8U, new cv.Scalar(0));
+  for (let r = 0; r < lines.rows; r++) {
+    lines.row(r).setTo(new cv.Scalar(r));
+  }
+  cv.warpPolar(lines, lines, { width: 5, height: 5 }, new cv.Point(2, 2), 3, cv.INTER_CUBIC | cv.WARP_FILL_OUTLIERS | cv.WARP_INVERSE_MAP);
+  write(lines, 'tmp-gg4.png');
+  t.deepEqual(lines.data, [
+    159, 172, 191, 210, 223,
+    146, 159, 191, 223, 236,
+    128, 128, 0, 0, 0,
+    109, 96, 64, 32, 19,
+    96, 83, 64, 45, 32
+  ]);
+})
+
 
 test('inRange', async t => {
   const img = await fromFile('test/assets/n.png')

@@ -5,10 +5,11 @@
     "lib": ["esnext", "dom"], 
     "strict": true, 
     "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
-    "declaration": true
+    "declaration": true,
   },
   "include": ["src", "test"]
 }

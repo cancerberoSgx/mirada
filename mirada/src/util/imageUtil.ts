@@ -1,6 +1,6 @@
 import { isNode, tryTo } from 'misc-utils-of-mine-generic'
 import { File } from '../file'
-import { Mat, Point, Scalar, Size } from '../types/opencv'
+import { Mat, Point, Scalar, Size, EmscriptenEmbindInstance } from '../types/opencv'
 
 /**
  * Creates an CV ImageData object from given image.
@@ -80,7 +80,7 @@ export function asMat(f: File | Mat) {
   return File.isFile(f) ? f.asMat() : f
 }
 
-export function del(...m: Mat[]) {
+export function del(...m: EmscriptenEmbindInstance[]) {
   m.filter(m=>!m.isDeleted()).forEach(m => m.delete())
 }
 

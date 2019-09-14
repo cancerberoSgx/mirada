@@ -4,7 +4,7 @@
   "description": "repo containing mirada project and others",
   "private": true,
   "scripts": {
-    "test": "cd mirada && npm i && npm test; cd ../ojos && npm i && npm test && cd .."
+    "test": "cd mirada && npm i && npm run build && npm test && npm run build && cd ../ojos && npm i && npm run build && npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cancerberoSgx/mirada/issues"
   },
-  "homepage": "https://github.com/cancerberoSgx/mirada#readme"
+  "homepage": "https://github.com/cancerberoSgx/mirada#readme",
+  "devDependencies": {
+    "yamat": "^0.1.3"
+  }
 }

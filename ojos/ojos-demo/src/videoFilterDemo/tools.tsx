@@ -1,5 +1,6 @@
 import { Scalar } from 'mirada'
 import { enumKeys, tryTo } from 'misc-utils-of-mine-generic'
+import { MorphTypesEnum } from 'ojos'
 import * as React from 'react'
 import { Color } from '../miradaUi/color'
 import { Point } from '../miradaUi/point'
@@ -7,7 +8,6 @@ import { pointToSize, sizeToPoint } from '../miradaUi/util'
 import { Controls } from './controls'
 import { getManagers } from './start'
 import { ToolNames } from './state'
-import { MorphTypesEnum } from 'ojos'
 
 export const tools = () => ({
   [ToolNames.replaceColor](this: Controls) {

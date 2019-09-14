@@ -55,7 +55,6 @@ TODO
 
 ## TODO / ROADMAP
 - [ ] more codecs 
-- [ ] inRange
 - [ ] Operation Scripts
   - [ ] being able to declare operation sequences with data
   - [ ] support for parameters/templates
@@ -72,6 +71,7 @@ TODO
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [ ] decide what we do with commands - remove it ? 
+- [x] inRange
 - [x] addWeighted
 - [x] edge detectors supporting multiple channels ? 
 - [x] warpPerspective operations

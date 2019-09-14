@@ -158,6 +158,6 @@ export const getState: () => State = () => {
 }
 
 export function setState(s: Partial<State>) {
-  Object.assign(_state||getState(), s)
+  Object.assign(_state || getState(), s)
 }
 

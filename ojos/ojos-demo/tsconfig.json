@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": ["esnext", "dom"], 
+    "lib": ["esnext", "dom", "dom.iterable", "es2020"], 
     "strict": true, 
     "esModuleInterop": true,
     "jsx": "react",

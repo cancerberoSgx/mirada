@@ -2,13 +2,9 @@ import { loadOpencv, Mat, VideoReader } from 'mirada'
 import * as React from 'react'
 import * as rd from 'react-dom'
 import { Controls } from "./controls"
-import { ForkRibbon } from './forkRibbon'
 import { processFunction, resetFpsFramesCounter } from './processFunction'
-import { getState, State, setState } from "./state"
+import { getState, State } from "./state"
 import { loadUrl } from './urlState'
-import { examples } from './examples'
-import {Examples} from './showExamples'
-import { sleep, objectKeys, setObjectProperty, Fn } from 'misc-utils-of-mine-generic'
 
 export async function start() {
   renderRootLayout()
@@ -85,10 +81,10 @@ function renderApp() {
   document.getElementById('loading')!.remove()
   rd.unmountComponentAtNode(document.getElementById('dynamic-app')!)
   loadUrl()
-  rd.render(<Controls/>, document.getElementById('dynamic-app'))
+  rd.render(<Controls />, document.getElementById('dynamic-app'))
 }
 
-export function removeApp(){}
+export function removeApp() { }
 
 // let _App: Controls
 // function getApp() {

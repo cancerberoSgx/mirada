@@ -1,17 +1,17 @@
 import { del, Mat, noArray, toRgba } from 'mirada'
 import { array, Fn } from 'misc-utils-of-mine-generic'
-import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, ReplaceColor, Threshold, WarpPerspective, randomScalarColor } from 'ojos' 
+import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, randomScalarColor, ReplaceColor, Threshold, WarpPerspective } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 
 export let fpsFramesCounter = 0
-export let fpsFramesTimer: NodeJS.Timeout=null as any
-export function resetFpsFramesCounter(clear=false) {
-  clear&&fpsFramesTimer && clearInterval(fpsFramesTimer)
+export let fpsFramesTimer: NodeJS.Timeout = null as any
+export function resetFpsFramesCounter(clear = false) {
+  clear && fpsFramesTimer && clearInterval(fpsFramesTimer)
   fpsFramesCounter = 0
 }
 export function setFpsFramesInterval(f: Fn, t: number) {
-//  fpsFramesTimer&& setInterval(f, t)
+  //  fpsFramesTimer&& setInterval(f, t)
   fpsFramesCounter = 0
   fpsFramesTimer = setInterval(f, t)
 }
@@ -41,7 +41,7 @@ export let processFunction = function(this: Managers) {
   if (!this.c.streaming) {
     del(this.dst)
     prev && del(prev)
-     del(this.c.mat)
+    del(this.c.mat)
     return
   }
   this.c.read()
@@ -49,7 +49,7 @@ export let processFunction = function(this: Managers) {
   let dst = this.dst
   src.copyTo(dst)
   const cp = dst.clone()
-  if (!prev||prev.isDeleted()) {
+  if (!prev || prev.isDeleted()) {
     prev = src.clone()
   }
 
@@ -59,7 +59,7 @@ export let processFunction = function(this: Managers) {
     if (name === ToolNames.replaceColor && state.replaceColor.active) {
       dst.copyTo(cp, noArray())
       replaceColor.exec({ ...state.replaceColor, src: cp, dst: cp })
-        toRgba(cp, dst)
+      toRgba(cp, dst)
     }
     else if (name === ToolNames.canny && state.canny.active) {
       dst.copyTo(cp, noArray())

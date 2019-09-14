@@ -1,13 +1,13 @@
 import { objectKeys, setObjectProperty } from 'misc-utils-of-mine-generic'
 import * as React from 'react'
 import { memoryReport } from '../miradaUi/util'
-import { fpsFramesCounter, resetFpsFramesCounter, stop, setFpsFramesInterval } from './processFunction'
+import { ForkRibbon } from './forkRibbon'
+import { fpsFramesCounter, resetFpsFramesCounter, setFpsFramesInterval, stop } from './processFunction'
+import { Examples, showExamples } from './showExamples'
 import { loadVCamAndStartProcessing } from './start'
 import { getState, State, ToolNames } from './state'
 import { tools } from './tools'
 import { createUrl } from './urlState'
-import { showExamples, Examples } from './showExamples'
-import { ForkRibbon } from './forkRibbon'
 
 export class Controls extends React.Component<{}, State> {
   // protected timer: any
@@ -28,7 +28,7 @@ export class Controls extends React.Component<{}, State> {
     setFpsFramesInterval(this.tt, this.fpxLapse * 1000)
   }
 
-    fpxLapse = 1
+  fpxLapse = 1
 
   setState2(s: {
     [s: string]: any;
@@ -38,12 +38,12 @@ export class Controls extends React.Component<{}, State> {
     this.setState(getState())
   }
 
-protected tt(){
-      const fps = Math.round(fpsFramesCounter / (this.fpxLapse * 1.0))
-      resetFpsFramesCounter()
-      const m = memoryReport()
-      this.setState({ fps, mem: m.usedMb + ' ' + m.percent })
-    }
+  protected tt() {
+    const fps = Math.round(fpsFramesCounter / (this.fpxLapse * 1.0))
+    resetFpsFramesCounter()
+    const m = memoryReport()
+    this.setState({ fps, mem: m.usedMb + ' ' + m.percent })
+  }
 
   render() {
     return (<>
@@ -67,8 +67,8 @@ protected tt(){
           {tools()[name].bind(this)()}
         </li>)}
       </ol>
-    <ForkRibbon />
-    <Examples/>
+      <ForkRibbon />
+      <Examples />
     </>)
   }
 
