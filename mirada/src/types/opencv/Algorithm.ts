@@ -1,6 +1,6 @@
 
-import { bool, FileNode, FileStorage, Ptr } from './_types'
 import { EmscriptenEmbindInstance } from './_hacks'
+import { bool, FileNode, FileStorage, Ptr } from './_types'
 
 /**
  * especially for classes of algorithms, for which there can be multiple implementations. The examples

@@ -1,5 +1,5 @@
 import { Mat, Size } from '..'
-import { del } from '../util';
+import { del } from '../util'
 
 interface Options {
   size?: 'videoSize' | 'video' | 'canvas'
@@ -94,7 +94,7 @@ export class VideoReader {
     if (this.stream) {
       this.stream.getVideoTracks().forEach(t => t.stop())
       this.streaming = false
-     del( this.mat)
+      del(this.mat)
     }
   }
 

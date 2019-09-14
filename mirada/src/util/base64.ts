@@ -45,7 +45,7 @@ export function getDataUrlFileName(url: string) {
 export function arrayBufferToBase64(buffer: ArrayBuffer) {
   // var binary = arrayBufferToString(buffer)
   // return btoa(binary)
- return  Buffer.from(buffer).toString('base64')
+  return Buffer.from(buffer).toString('base64')
 }
 
 export function arrayBufferToUrl(buffer: ArrayBuffer, mime: string, name?: string) {
