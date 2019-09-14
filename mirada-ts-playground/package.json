@@ -28,18 +28,16 @@
   "author": "Sebastian Gurin",
   "license": "MIT",
   "dependencies": {
-    "connected-react-router": "^6.5.2",
-    "import": "0.0.6",
     "mirada": "file:../mirada",
-    "misc-utils-of-mine-generic": "^0.2.29",
+    "misc-utils-of-mine-generic": "^0.2.31",
     "monaco-editor": "^0.17.1",
     "picnic": "^6.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "ts-morph": "^3.1.3"
+    "ts-morph": "^4.0.1"
   },
   "devDependencies": {
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.5",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "babel-polyfill": "^6.26.0",
@@ -47,7 +45,7 @@
     "http-server": "^0.11.1",
     "parcel": "^1.12.3",
     "ts-refactor": "0.0.9",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.3"
   },
   "repository": "https://github.com/cancerberoSgx/ts-morph-playground"
 }

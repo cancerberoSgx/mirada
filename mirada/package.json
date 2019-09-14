@@ -1,11 +1,12 @@
 {
   "name": "mirada",
-  "version": "0.0.10",
-  "description": "Node.js and Browser high level OpenCv API. Base on OpenCv.js with support for npm, TypeScript and a a single easy to use API compatible with Node.js and browser",
+  "version": "0.0.12",
+  "description": "Node.js and Browser high level OpenCv API. Based on OpenCv.js and  distributed as npm package with support for TypeScript and  easy APIs for server and browser.",
   "main": "dist/src/index.js",
+  "browser": "dist/mirada.min.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "clean": "rm -rf dist docs tmp* test-browser-outdir",
+    "clean": "rm -rf dist docs tmp* test-browser-outdir api",
     "clean-npm": " rm -rf node_modules/ package-lock.json",
     "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
     "test-js": "npm run build && npx ava --serial --concurrency 1 --config ava.config-js.js",
@@ -14,7 +15,7 @@
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" \"test-browser/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
-    "bundle-umd": "npx browserify -o dist/mirada.min.js -s mirada -e dist/src/index.js && npx terser dist/mirada.min.js -o dist/mirada.min.js",
+    "bundle-umd": "npx ts-node scripts/bundle.ts",
     "copy": "cp -r static/* dist/src",
     "docs": "npm run docs-readme-toc && npm run docs-api-md && npm run docs-api-html",
     "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --plugin typedoc-plugin-markdown --theme markdown --out ./api --mode modules --readme none src/index.ts src/types/opencv/index.ts && rm -rf ../../demos/docs/mirada-opencv-api-md && mkdir -p ../../demos/docs/mirada-opencv-api-md && mv api/* ../../demos/docs/mirada-opencv-api-md",
@@ -38,11 +39,9 @@
     "@types/shelljs": "^0.8.5",
     "ansi-colors": "^4.1.1",
     "ava": "^2.3.0",
-    "babel-polyfill": "^6.26.0",
     "browserify": "^16.5.0",
     "canvas": "^2.6.0",
-    "file-type": "^12.3.0",
-    "jimp": "^0.6.8",
+    "jimp": "^0.8.2",
     "jsdom": "^15.1.1",
     "magica": "^0.2.15",
     "markdown-toc": "^1.2.0",
@@ -59,7 +58,8 @@
   "dependencies": {
     "buffer": "^5.4.3",
     "cross-fetch": "^3.0.4",
-    "misc-utils-of-mine-generic": "^0.2.30"
+    "file-type": "^12.3.0",
+    "misc-utils-of-mine-generic": "^0.2.31"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,6 @@ import { faceDetection_ts } from '../examples/packed/faceDetection_ts'
 import { faceRecognOtherModelsTest_ts } from '../examples/packed/faceRecognOtherModelsTest_ts'
 import { featuresEllipse_ts } from '../examples/packed/featuresEllipse_ts'
 import { fft_ts } from '../examples/packed/fft_ts'
-import { grabCutMirada_ts } from '../examples/packed/grabCutMirada_ts'
 import { lucasKanadeOpticalFlow_ts } from '../examples/packed/lucasKanadeOpticalFlow_ts'
 import { trackbarVideo_ts } from '../examples/packed/trackbarVideo_ts'
 import { trackbar_ts } from '../examples/packed/trackbar_ts'
@@ -47,12 +46,6 @@ export function examples(): Example[] {
       tags: [ExampleTag.simple],
       code: dilate_ts,
       description: 'My fist working code porting from openvc tutorials. '
-    },
-    {
-      name: '/grabCutMirada.ts',
-      tags: [ExampleTag.grabCut],
-      code: grabCutMirada_ts,
-      description: 'GrabCut example but instead using plain opencv API it uses a little layer I made on top of it to simplify and understand better understand it that I probably should delete.'
     },
     {
       name: '/featuresEllipse.ts',

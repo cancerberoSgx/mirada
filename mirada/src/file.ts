@@ -128,7 +128,7 @@ export class File {
    * Loads file from given base64 string containing an encoded image.  
   */
   public static fromBase64(base64: string, name?: string) {
-    var buffer = Buffer.from(Base64.decode(base64), 'base64')
+    var buffer = Buffer.from(base64, 'base64')
     return File.fromArrayBuffer(buffer, name || File.getBufferFileName(buffer))
   }
 

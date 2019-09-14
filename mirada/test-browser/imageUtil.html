@@ -6,11 +6,7 @@
   <script>
     (async () => {
       window.miradaTestEnd = false
-
-      await mirada.installFormatProxy(() => new mirada.CanvasCodec())
-      await mirada.loadFormatProxies()
       await mirada.loadOpencv()
-
       try {
         await compareL2Test()
       } catch (error) {

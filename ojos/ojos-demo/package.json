@@ -28,11 +28,10 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
-    "buffer": "^5.4.2",
     "file-saver": "^2.0.2",
     "babel-polyfill": "^6.26.0",
     "mirada": "file:../../mirada",
-    "misc-utils-of-mine-generic": "^0.2.30",
+    "misc-utils-of-mine-generic": "^0.2.31",
     "ojos": "file:..",
     "react": "^16.9.0",
     "react-color": "^2.17.3",

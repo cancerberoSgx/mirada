@@ -1,8 +1,8 @@
 import { existsSync } from 'fs'
 import { getGlobal, isNode, notFalsy, serial } from 'misc-utils-of-mine-generic'
-import { installFormatProxy, loadFormatProxies } from './format'
+import { installFormatProxy, loadFormatProxies, CanvasCodec } from './format'
 import { FS } from './types/emscripten'
-import { LoadOptions } from './types/mirada'
+import { LoadOptions, FormatProxy } from './types/mirada'
 import { buildError, resolveNodeModule } from './util/misc'
 
 export const FS_ROOT = '/work'
@@ -16,6 +16,8 @@ export function getFS() {
   return FS_!
 }
 
+let opencvLoaded = false
+
 /**
  * Loads opencv.js file. It will do it only once no matter if called multiple times. 
  * In the browser a new script element is created to load the file while in Node.js
@@ -26,7 +28,7 @@ export function getFS() {
  * Notice that among the options users can define the location of opencv.js file, which 
  * in the case of the browser it could be in an external server.
  */
-export function loadOpencv(options: LoadOptions = {}) {
+export async function loadOpencv(options: LoadOptions = {}) {
   if (options.force) {
     opencvLoaded = false
     getGlobal().Module = undefined
@@ -34,16 +36,30 @@ export function loadOpencv(options: LoadOptions = {}) {
   }
   if (opencvLoaded) {
     options.onloadCallback && options.onloadCallback()
-    return Promise.resolve()
+    return
   }
+
+  // install and load given format proxies. If none given and in browser we install CanvasCodec
+  const formatProxies = options.formatProxies || [...isNode()?[]:[() => new CanvasCodec()]] as FormatProxy[]
+  await serial(formatProxies.map(p => async () => {
+    await installFormatProxy(p)
+  }))
+  await loadFormatProxies()
+
   if (isNode()) {
-    return loadOpencvNode(options)
+    await loadOpencvNode(options)
   }
   else {
-    return loadOpencvBrowser(options)
+    await loadOpencvBrowser(options)
   }
 }
-let opencvLoaded = false
+
+async function loadFormatCodecs(o: LoadOptions) {
+  await serial((o.formatProxies || []).map(p => async () => {
+    await installFormatProxy(p)
+  }))
+  await loadFormatProxies()
+}
 
 function loadOpencvNode(o: LoadOptions) {
   return new Promise<FS>(resolve => {
@@ -63,7 +79,8 @@ function loadOpencvNode(o: LoadOptions) {
         }
       },
       onRuntimeInitialized: async () => {
-        await finishSetup(o)
+        opencvLoaded = true
+        FS_ = getGlobal().Module.FS
         o.onloadCallback && o.onloadCallback()
         resolve()
       },
@@ -73,22 +90,12 @@ function loadOpencvNode(o: LoadOptions) {
       }
     }
     try {
-      // console.log(resolved)      
       g.cv = require(resolved)
     } catch (error) {
       console.error(`An error occurred when trying to load ${fileName} form ` + resolved, error, error.stack)
       throw error
     }
   })
-}
-
-async function finishSetup(o: LoadOptions) {
-  opencvLoaded = true
-  await serial((o.formatProxies || []).map(p => async () => {
-    await installFormatProxy(p)
-  }))
-  await loadFormatProxies()
-  FS_ = getGlobal().Module.FS
 }
 
 function loadOpencvBrowser(o: LoadOptions) {
@@ -99,14 +106,16 @@ function loadOpencvBrowser(o: LoadOptions) {
     script.addEventListener('load', async () => {
       const g = getGlobal()
       if (typeof g.cv !== 'undefined' && typeof g.cv.getBuildInformation !== 'undefined') {
-        await finishSetup(o)
+        opencvLoaded = true
+        FS_ = getGlobal().Module.FS
         o.onloadCallback && o.onloadCallback()
         resolve()
       }
       else {
         g.cv = typeof g.cv === 'undefined' ? {} : g.cv
         g.cv.onRuntimeInitialized = async () => {
-          await finishSetup(o)
+          opencvLoaded = true
+          FS_ = getGlobal().Module.FS
           o.onloadCallback && o.onloadCallback()
           resolve()
         }
