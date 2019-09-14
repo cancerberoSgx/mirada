@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="mirada.min.js"></script>
+  <script>
+    (async () => {
+      window.miradaTestEnd = false
+
+      await mirada.installFormatProxy(() => new mirada.CanvasCodec())
+      await mirada.loadFormatProxies()
+      await mirada.loadOpencv()
+
+      try {
+        await compareL2Test()
+      } catch (error) {
+        console.log('TEST ERROR: ', error);
+      }
+      window.miradaTestEnd = true
+    })()
+
+    async function compareL2Test() {
+      const src = await mirada.fromUrl('lenna.jpg')
+      equal(mirada.compareL2(src.clone(), await mirada.fromUrl('lenna.jpg'), true), 0, 'Expected compareL2 to be 0 for same images')
+      src.delete()
+    }
+
+    function equal(a, b, msg) {
+      if (a != b) {
+        console.log('TEST ERROR: ' + msg || '');
+      }
+    }
+  </script>
+</body>
+
+</html>

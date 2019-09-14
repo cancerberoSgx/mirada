@@ -1,6 +1,6 @@
 /node_modules
 *.log
-/tmp
+/tmp*
 /src
 /.gitignore
 /.npmignore
@@ -13,7 +13,6 @@ formatCodeSettings.json
 .nyc_output
 coverage
 test-browser-outdir
-guitarra
 dist/test
 dist/test-browser
 test
@@ -24,21 +23,15 @@ nyc.config.js
 TODO.md
 ts-ast
 .vscode
-test-browser
 .travis.yml
 .DS_Store
-/tmp*
 docs
 .cache
 test-browser
 test-browser-outdir
 working_tmp
-scripts
-playground
-bkps
 docs
 ava.config-js.js
-apps
 static
 bkps
 /api
