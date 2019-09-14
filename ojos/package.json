@@ -15,8 +15,8 @@
     "prepare": "npm run build ",
     "build": "npm run clean && npx tsc",
     "docs": "npm run docs-readme-toc && npm run docs-api-md && npm run docs-api-html",
-    "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --theme markdown --out ./api --mode modules --readme none src/index.ts && rm -rf ../../demos/docs/ojos-api-md && mkdir -p ../../demos/docs/ojos-api-md && mv api/* ../../demos/docs/ojos-api-md",
-    "docs-api-html": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --out ./api --readme none --mode modules src/index.ts && rm -rf ../../demos/docs/ojos-api-html && mkdir -p ../../demos/docs/ojos-api-html && mv api/* ../../demos/docs/ojos-api-html",
+    "docs-api-md": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --plugin typedoc-plugin-markdown --theme markdown --out ./api --mode modules --readme none src/index.ts && rm -rf ../../demos/docs/ojos-api-md && mkdir -p ../../demos/docs/ojos-api-md && mv api/* ../../demos/docs/ojos-api-md",
+    "docs-api-html": "rm -rf ./api && mkdir -p ./api && typedoc --ignoreCompilerErrors --plugin none --out ./api --readme none --mode modules src/index.ts && rm -rf ../../demos/docs/ojos-api-html && mkdir -p ../../demos/docs/ojos-api-html && mv api/* ../../demos/docs/ojos-api-html",
     "docs-readme-toc": "npx markdown-toc README.md -i",
     "all": "npm run clean && npm run lint && npm run build && npm test && npm run test-js && npm run docs",
     "all-publish": "npm run all && git commit -a -m 'version patch' && npm version patch && npm publish"
@@ -44,7 +44,7 @@
     "typescript-member-signatures": "0.0.6"
   },
   "dependencies": {
-    "misc-utils-of-mine-generic": "^0.2.30",
+    "misc-utils-of-mine-generic": "^0.2.31",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {

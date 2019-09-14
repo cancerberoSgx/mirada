@@ -1,17 +1,18 @@
 ## TODO
-
+- [ ] cv.cvtColor
+- [ ] fillPoly 
 - [ ] magica codec
 - [ ] svg codec ()
+- [ ] animations
 - [ ] Operation Scripts
   - [ ] being able to declare operation sequences with data
   - [ ] support for parameters/templates
-  - [ ] animations
     - [ ] easing expressions against operation options.
       - [ ] animations over time
       - [ ] animations over color frequencies ?  
 - [ ] high level HTML Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
-      - GUIs for real use cases like grabcut
+      - [ ] GUIs for real use cases like grabcut
 - [ ] integrate mirada-cli generateCommands script here
   - [ ] use operations interfaces
 - [ ] travis
