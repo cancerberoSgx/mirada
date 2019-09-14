@@ -1,5 +1,5 @@
-import { rm, mkdir, exec, cp, mv, ShellString, config } from 'shelljs';
-import { equal, ok } from 'assert';
+import { equal, ok } from 'assert'
+import { config, cp, exec, mkdir, rm, ShellString } from 'shelljs'
 config.silent = true
 
 const out = 'test-browser-outdir'
@@ -27,5 +27,5 @@ tests.forEach(t => {
   const cmd = 'npx ts-node test-browser/run.ts'
   const p = exec(cmd)
   equal(p.code, 0, `Expected "${cmd}" exit with status 0`)
-  ok(t.assert(p), 'Expected test assert OK - stdout was: \n'+p.stdout)
+  ok(t.assert(p), 'Expected test assert OK - stdout was: \n' + p.stdout)
 })
