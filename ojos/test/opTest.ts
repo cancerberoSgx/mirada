@@ -1,17 +1,17 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { Bitwise, FloodFill, FloodFillOptions, ReplaceColor, InRange, scalarColor } from '../src'
+import { Bitwise, FloodFill, FloodFillOptions, InRange, ReplaceColor, scalarColor } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
 test('inRange', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  new InRange().exec({src, dst: src,lowerb: scalarColor('#00661100'), upperb: scalarColor('#ffeeeeff')})
+  new InRange().exec({ src, dst: src, lowerb: scalarColor('#00661100'), upperb: scalarColor('#ffeeeeff') })
   // write(src, 'tmpinrange.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hInRange.png'), await toRgba(src), true), 0)
   del(src)

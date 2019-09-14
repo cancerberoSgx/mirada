@@ -71,6 +71,10 @@ TODO
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [ ] decide what we do with commands - remove it ? 
+- [ ] warpPolar
+- [ ] resize, rotate
+- [ ] utilities for gradients
+- [ ] cv.cvtColor
 - [x] inRange
 - [x] addWeighted
 - [x] edge detectors supporting multiple channels ? 

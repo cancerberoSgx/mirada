@@ -38,7 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "canvas": "^2.6.0",
     "file-type": "^12.3.0",
-    "jimp": "^0.8.2-canary.792.290.0",
+    "jimp": "^0.6.8",
     "jsdom": "^15.1.1",
     "magica": "^0.2.15",
     "markdown-toc": "^1.2.0",
