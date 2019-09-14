@@ -1,5 +1,3 @@
-// import { Base64 } from 'js-base64'
-
 export function dataToUrl(data: string, mimeType: string, fileName?: string) {
   return base64ToUrl(dataToBase64(data), mimeType, fileName)
 }
@@ -19,19 +17,6 @@ export function urlToBase64(s: string) {
   return s.substring(s.indexOf(';base64,') + ';base64,'.length)
 }
 
-// export function urlToData(s: string) {
-//   return Buffer.from(urlToBase64(s), 'base64').toString()
-// }
-
-// export function isBase64(str: string) {
-//   if (str === '' || str.trim() === '') { return false }
-//   try {
-//     return Base64.btoa(Base64.atob(str)) == str
-//   } catch (err) {
-//     return false
-//   }
-// }
-
 /**
  * Extracts the name of a data url like `data:image/jpeg;name=hindenburg.jpg;base64,`..., if any.
  */
@@ -43,8 +28,6 @@ export function getDataUrlFileName(url: string) {
 }
 
 export function arrayBufferToBase64(buffer: ArrayBuffer) {
-  // var binary = arrayBufferToString(buffer)
-  // return btoa(binary)
   return Buffer.from(buffer).toString('base64')
 }
 
@@ -55,9 +38,5 @@ export function arrayBufferToUrl(buffer: ArrayBuffer, mime: string, name?: strin
 
 export function arrayBufferToString(buffer: ArrayBuffer) {
   return Buffer.from(buffer).toString('string')
-  // var binary = ''
-  // var bytes = [].slice.call(new Uint8Array(buffer))
-  // bytes.forEach((b) => binary += String.fromCharCode(b))
-  // return binary
 }
 

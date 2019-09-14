@@ -32,7 +32,6 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {
-    "@types/js-base64": "^2.3.1",
     "@types/jsdom": "^12.2.4",
     "@types/node": "^12.7.5",
     "@types/puppeteer": "^1.19.1",
@@ -60,7 +59,6 @@
   "dependencies": {
     "buffer": "^5.4.3",
     "cross-fetch": "^3.0.4",
-    "js-base64": "^2.5.1",
     "misc-utils-of-mine-generic": "^0.2.30"
   },
   "repository": {
