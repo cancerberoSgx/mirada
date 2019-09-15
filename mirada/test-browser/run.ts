@@ -1,7 +1,7 @@
 import { existsSync } from 'fs'
+import { sleep } from 'misc-utils-of-mine-generic'
 import puppeteer from 'puppeteer'
 import { staticServer } from './staticServer'
-import { sleep } from 'misc-utils-of-mine-generic'
 const colors = require("ansi-colors")
 
 interface Options {
@@ -64,9 +64,9 @@ async function main(o_: Options = {}) {
     throw error
   }
   o.screenshot && await page.screenshot({ path: o.screenshot })
-  const t  =Date.now()
-  if(t-t0<o.maxBlockDuration) {
-    await sleep(o.maxBlockDuration - (t-t0))
+  const t = Date.now()
+  if (t - t0 < o.maxBlockDuration) {
+    await sleep(o.maxBlockDuration - (t - t0))
   }
   await server && server.close()
   await browser.close()

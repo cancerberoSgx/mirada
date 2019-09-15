@@ -1,5 +1,5 @@
 import { Mat, Rect } from '../types/opencv'
-import { arrayBufferToUrl, base64ToUrl, dataToUrl } from '../util/base64'
+import { arrayBufferToUrl, dataToUrl } from '../util/base64'
 import { toRgba } from '../util/imageUtil'
 import { asHtmlImageData } from './imageCreation'
 
@@ -49,7 +49,7 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, options:
 
 export function renderSvgInCanvas(svg: string, options: ABOptions = defaultABOptions): Promise<Result> {
   return new Promise(resolve => {
-    var img = new Image();
+    var img = new Image()
     img.style.display = 'none'
     img.onerror = (e) => {
       console.log('ERROR', e)

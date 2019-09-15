@@ -1,8 +1,8 @@
 import { existsSync } from 'fs'
 import { getGlobal, isNode, notFalsy, serial } from 'misc-utils-of-mine-generic'
-import { installFormatProxy, loadFormatProxies, CanvasCodec } from './format'
+import { CanvasCodec, installFormatProxy, loadFormatProxies } from './format'
 import { FS } from './types/emscripten'
-import { LoadOptions, FormatProxy } from './types/mirada'
+import { FormatProxy, LoadOptions } from './types/mirada'
 import { buildError, resolveNodeModule } from './util/misc'
 
 export const FS_ROOT = '/work'
@@ -40,7 +40,7 @@ export async function loadOpencv(options: LoadOptions = {}) {
   }
 
   // install and load given format proxies. If none given and in browser we install CanvasCodec
-  const formatProxies = options.formatProxies || [...isNode()?[]:[() => new CanvasCodec()]] as FormatProxy[]
+  const formatProxies = options.formatProxies || [...isNode() ? [] : [() => new CanvasCodec()]] as FormatProxy[]
   await serial(formatProxies.map(p => async () => {
     await installFormatProxy(p)
   }))

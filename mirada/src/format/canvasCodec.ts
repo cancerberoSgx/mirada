@@ -1,9 +1,8 @@
 import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
 import { renderArrayBufferInCanvas, renderInCanvas, renderSvgInCanvas } from "../browser/canvasRender"
-import { FormatCodec } from '../types/mirada'
 import { File } from '../file'
+import { FormatCodec } from '../types/mirada'
 import { arrayBufferToString } from '../util/base64'
-// import fileType = require('file-type')
 
 /**
   Example of declaring a format codec that uses DOM canvas instance which must be provided by the user.

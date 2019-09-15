@@ -4,7 +4,7 @@ import { asArray, basename, getFileExtension, getFileNameFromUrl, getMimeTypeFor
 import { asHtmlImageData } from './browser/imageCreation'
 import { decodeOrThrow, encodeOrThrow, getDefaultCodec } from './format'
 import { ImageData as CVImageData, Mat } from './types/opencv'
-import { arrayBufferToBase64, urlToBase64, arrayBufferToString } from './util/base64'
+import { arrayBufferToBase64, arrayBufferToString, urlToBase64 } from './util/base64'
 import { isFile, readFile, removeFile, writeFile } from './util/fileUtil'
 import { toImageData, toRgba } from './util/imageUtil'
 import fileType = require('file-type')
@@ -155,18 +155,19 @@ export class File {
   }
 
   public static getBufferFileType(a: ArrayBuffer) {
-   const t= File.fileType(a)
+    const t = File.fileType(a)
     if (!t) {
       throw new Error('Could not get file type for buffer')
     }
     return t
   }
+  
   public static fileType(a: ArrayBuffer) {
     var t = fileType(a)
-    if(!t) {
+    if (!t) {
       const s = arrayBufferToString(a)
-      if(s.includes('<svg')) {
-        t={
+      if (s.includes('<svg')) {
+        t = {
           ext: 'svg',
           mime: 'image/svg+xml'
         } as any

@@ -1,9 +1,9 @@
 import test from 'ava'
 import jimp from 'jimp'
-import { del, loadOpencv, JimpCodec, fromFile, compareL2 } from '../src'
+import { compareL2, del, fromFile, JimpCodec, loadOpencv } from '../src'
 
 test.serial('loadOpencv and proxies', async t => {
-  await loadOpencv({force: true, formatProxies: [() => new JimpCodec(jimp)]})
+  await loadOpencv({ force: true, formatProxies: [() => new JimpCodec(jimp)] })
   t.true(cv.getBuildInformation().includes('General configuration for OpenCV'))
   const src = await fromFile('test/assets/n.png')
   t.deepEqual(compareL2(src, await fromFile('test/assets/n.png'), true), 0)

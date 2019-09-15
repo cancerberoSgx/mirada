@@ -1,4 +1,4 @@
-import {Buffer} from 'buffer/'
+import { Buffer } from 'buffer/'
 
 export function dataToUrl(data: string, mimeType: string, fileName?: string) {
   return base64ToUrl(dataToBase64(data), mimeType, fileName)
