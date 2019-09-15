@@ -2,9 +2,9 @@ import { render } from 'ejs'
 import * as mirada from 'mirada'
 import { loadOpencv } from 'mirada'
 import { asArray, notFalsy, objectKeys, stringToObject } from 'misc-utils-of-mine-generic'
+import * as ojos from '..'
 import { OperationNames } from '../op/metadata'
 import { ParsedResult, ParseOptions, ScriptContext, ScriptOperation, TemplateContext } from "./types"
-import * as ojos from '..'
 
 async function getTemplateContext(o: ScriptContext): Promise<TemplateContext> {
   await loadOpencv()
@@ -12,7 +12,7 @@ async function getTemplateContext(o: ScriptContext): Promise<TemplateContext> {
     ...o,
     cv,
     FS: cv.FS,
-    mirada, 
+    mirada,
     ojos
   }
 }
@@ -85,7 +85,7 @@ function parseStatementList(s: string): ParsedResult {
   try {
     const restObj = stringToObject(`[ ${s} ]`)
     parseNumberOptions(restObj)
-  return {  ...restObj }
+    return { ...restObj }
   }
   catch (error) {
     throw new Error('Syntax error at rest expression of line "' + s + '". Error: ' + error.message + ' \n ')
@@ -115,10 +115,10 @@ export class OpsGenerator {
           break
         }
       }
-      return line ? !o.options.language || o.options.language === 'statement-map' ? parseStatementMap(line) : 
-        o.options.language === 'statement-list' ? parseStatementList(line) :  
-        o.options.language === 'json' ? parseJson(line) : 
-        undefined : undefined
+      return line ? !o.options.language || o.options.language === 'statement-map' ? parseStatementMap(line) :
+        o.options.language === 'statement-list' ? parseStatementList(line) :
+          o.options.language === 'json' ? parseJson(line) :
+            undefined : undefined
     }
   }
 }

@@ -1,9 +1,8 @@
 import test from 'ava'
 import { compareL2, del, fromFile, toRgba } from 'mirada'
-import { OperationNames, run, scalarColor } from '../src'
+import { OperationNames, run } from '../src'
 import { ScriptOperation } from '../src/opScript/types'
-import { loadMirada, write } from './testUtil'
-import { serial } from 'misc-utils-of-mine-generic'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -104,7 +103,6 @@ Bitwise out1 out2 type: 'not'
   del(...images.map(i => i.mat))
 })
 
-
 test('script statements template', async t => {
   const mat = await fromFile('test/assets/h.jpg')
   const { images } = await run({
@@ -114,10 +112,10 @@ test('script statements template', async t => {
   
   <% vars.a = 2; vars.name='out1' %>
   
-      CvtColor src src code: <%= cv.COLOR_RGBA2GRAY %>
+    CvtColor src src code: <%= cv.COLOR_RGBA2GRAY %>, dstCn: 0
   
   # comment 1
-      GaussianBlur src <%= vars.name%> ksize: <%= vars.a + 3 %>, sigmaX: <%= vars.a + .2 %>
+      GaussianBlur src <%= vars.name %> ksize: <%= vars.a + 3 %>, sigmaX: <%= vars.a + 0.2 %>
   # comment 2
 # comment 3
 Bitwise <%= vars.name %> out2 type: 'not'
@@ -125,6 +123,7 @@ Bitwise <%= vars.name %> out2 type: 'not'
 # comment 4
     `
   })
+  // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
   t.deepEqual(images.map(i => i.name), ['src', 'out1', 'out2'])
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'out2')!.mat), await fromFile('test/assets/hRunScript.png'), true), 0)
   del(...images.map(i => i.mat))
@@ -193,7 +192,7 @@ Circle d f center: { x: 200, y: 150 }, radius: 44, color: <%= ojos.scalarColorSt
 # new Ellipse().exec({ src, dst, center: { x: 7, y: 7 }, angle: 33, size: { width: 7, height: 5 }, color: scalarColor('#aa3366ee'), thickness: 1, lineType: cv.LINE_AA })
 Ellipse f g center: { x: 127, y: 127 }, angle: 33, size: { width: 67, height: 115 }, color: <%= ojos.scalarColorString('#aa3366ee') %>, thickness: 1, lineType: <%= cv.LINE_AA %>
 `
-})
+  })
   t.deepEqual(images.map(i => i.name), ['src', 'a', 'b', 'c', 'd', 'f', 'g'])
   // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'g')!.mat), await fromFile('test/assets/hDrawing2.png'), true), 0)

@@ -1,13 +1,14 @@
 import * as mirada from 'mirada'
 import { FS, Mat } from 'mirada'
 import { RemoveProperties, UnionToIntersection } from 'misc-utils-of-mine-generic'
-import { OperationNames, OperationOptions } from '../op/metadata'
 import * as ojos from '..'
+import { OperationNames, OperationOptions } from '../op/metadata'
 
 export interface RunOptions<T extends ScriptOperation<OperationNames>[] = ScriptOperation<OperationNames>[]> {
   ops: T | string;
   language?: ScriptLanguage;
   src?: ScriptMat | ScriptMat[];
+  debug?: boolean
 }
 
 export interface ScriptMat {
