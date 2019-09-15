@@ -1,9 +1,12 @@
 ## TODO
 - [ ] cv.cvtColor
 - [ ] fillPoly 
+- [ ] roi
+- [ ] toRgba
 - [ ] magica codec
 - [ ] svg codec ()
-- [ ] animations
+- [x] animations
+- [ ] browser test - copy from mirada
 - [ ] Operation Scripts
   - [ ] being able to declare operation sequences with data
   - [ ] support for parameters/templates

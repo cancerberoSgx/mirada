@@ -10,7 +10,7 @@
       try {
         await compareL2Test()
       } catch (error) {
-        console.log('TEST ERROR: ', error);
+        console.log('TEST ERROR: ', error.message, error.stack);
       }
       window.miradaTestEnd = true
     })()

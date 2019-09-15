@@ -1,6 +1,7 @@
 import { existsSync } from 'fs'
 import puppeteer from 'puppeteer'
 import { staticServer } from './staticServer'
+import { sleep } from 'misc-utils-of-mine-generic'
 const colors = require("ansi-colors")
 
 interface Options {
@@ -11,7 +12,7 @@ interface Options {
   serverPrefix?: string
   path?: string
   noExit?: boolean,
-  screenshot?: boolean,
+  screenshot?: string,
   help?: boolean,
   maxBlockDuration?: number
 }
@@ -27,8 +28,9 @@ async function main(o_: Options = {}) {
     noExit: false,
     screenshot: false,
     help: false,
-    maxBlockDuration: 30000
+    maxBlockDuration: 1
   }, o_)
+  const t0 = Date.now()
   if (o.noExit) {
     o.maxBlockDuration = 999999999
   }
@@ -55,8 +57,17 @@ async function main(o_: Options = {}) {
   o.debug && debug(`Opening page address ${url}`)
   await page.goto(url)
 
-  await page.waitForFunction(() => (window as any).miradaTestEnd)
-
+  try {
+    await page.waitForFunction(() => (window as any).miradaTestEnd)
+  } catch (error) {
+    await page.screenshot({ path: o.screenshot || 'tmp-screenshot.png' })
+    throw error
+  }
+  o.screenshot && await page.screenshot({ path: o.screenshot })
+  const t  =Date.now()
+  if(t-t0<o.maxBlockDuration) {
+    await sleep(o.maxBlockDuration - (t-t0))
+  }
   await server && server.close()
   await browser.close()
 }
@@ -64,9 +75,11 @@ async function main(o_: Options = {}) {
 async function debug(s: string) {
   process.stdout.write(colors.blackBright(s + '\n'))
 }
+
 async function error(s: string) {
   process.stdout.write(colors.redBright(s + '\n'))
 }
+
 function printHelpAndExit() {
   debug(`
 Usage: 

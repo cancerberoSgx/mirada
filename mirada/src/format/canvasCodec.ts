@@ -1,7 +1,9 @@
 import { getMimeTypeForExtension } from 'misc-utils-of-mine-generic'
-import { renderArrayBufferInCanvas, renderInCanvas } from "../browser/canvasRender"
+import { renderArrayBufferInCanvas, renderInCanvas, renderSvgInCanvas } from "../browser/canvasRender"
 import { FormatCodec } from '../types/mirada'
-import fileType = require('file-type')
+import { File } from '../file'
+import { arrayBufferToString } from '../util/base64'
+// import fileType = require('file-type')
 
 /**
   Example of declaring a format codec that uses DOM canvas instance which must be provided by the user.
@@ -20,14 +22,13 @@ export class CanvasCodec implements FormatCodec {
   }
 
   async decode(buffer: ArrayBuffer, format?: string): Promise<ImageData | undefined> {
-    let tt: fileType.FileTypeResult | undefined
-    const mime = format ? getMimeTypeForExtension(format) : (tt = fileType(buffer)) && tt.mime || undefined
+    let tt: any
+    const mime = format ? getMimeTypeForExtension(format) : (tt = File.fileType(buffer)) && tt.mime || undefined
     if (!mime) {
       return
     }
-    const { canvas, height, width } = await renderArrayBufferInCanvas(buffer, mime)
-    var imgData = canvas!.getContext('2d')!.getImageData(0, 0, width, height)
-    return imgData
+    const { canvas, height, width } = mime === 'image/svg+xml' ? await renderSvgInCanvas(arrayBufferToString(buffer)) : await renderArrayBufferInCanvas(buffer, mime)
+    return canvas.getContext('2d')!.getImageData(0, 0, width, height)
   }
 
   async encode(data: ImageData, format: string, quality?: number): Promise<ArrayBuffer | undefined> {

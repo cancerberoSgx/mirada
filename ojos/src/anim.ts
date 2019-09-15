@@ -1,4 +1,4 @@
-import { animate as anim, easing, RemoveProperties, checkThrow, Fn, objectKeys } from 'misc-utils-of-mine-generic'
+import { animate as anim, checkThrow, easing, Fn, objectKeys, RemoveProperties } from 'misc-utils-of-mine-generic'
 
 const easingExclude = {
   'quad': 1,

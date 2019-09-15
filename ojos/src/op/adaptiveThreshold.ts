@@ -19,7 +19,7 @@ export interface AdaptiveThresholdConcreteOptions {
  */
 export class AdaptiveThreshold extends AbstractOperation<AdaptiveThresholdOptions> {
   name = 'AdaptiveThreshold'
-  description='transforms a grayscale image to a binary image'
+  description = 'transforms a grayscale image to a binary image'
   validChannels = [1]
   sameSizeAndType = true
   protected _exec(o: AdaptiveThresholdOptions) {

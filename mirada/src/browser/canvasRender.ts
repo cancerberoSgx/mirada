@@ -1,5 +1,5 @@
 import { Mat, Rect } from '../types/opencv'
-import { arrayBufferToUrl } from '../util/base64'
+import { arrayBufferToUrl, base64ToUrl, dataToUrl } from '../util/base64'
 import { toRgba } from '../util/imageUtil'
 import { asHtmlImageData } from './imageCreation'
 
@@ -11,6 +11,12 @@ export interface ABOptions {
 
 const defaultABOptions: ABOptions = {}
 
+export interface Result {
+  canvas: HTMLCanvasElement;
+  width: number;
+  height: number;
+}
+
 /**
  * A sub optimal method to load a image array buffer (encoded in jpg, png) whiteouts knowing its format or size.
   * 1) creates a blob and a url object
@@ -19,11 +25,7 @@ const defaultABOptions: ABOptions = {}
   *
   * This method is useful as a decoder for the browser without libraries
  */
-export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, options: ABOptions = defaultABOptions): Promise<{
-  canvas: HTMLCanvasElement;
-  width: number;
-  height: number;
-}> {
+export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, options: ABOptions = defaultABOptions): Promise<Result> {
   options = { ...defaultABOptions, ...options }
   const url = arrayBufferToUrl(a, mime, options.name)
   var img = new Image()
@@ -42,6 +44,30 @@ export function renderArrayBufferInCanvas(a: ArrayBuffer, mime: string, options:
       console.log('ERROR', e)
     }
     img.src = url
+  })
+}
+
+export function renderSvgInCanvas(svg: string, options: ABOptions = defaultABOptions): Promise<Result> {
+  return new Promise(resolve => {
+    var img = new Image();
+    img.style.display = 'none'
+    img.onerror = (e) => {
+      console.log('ERROR', e)
+      resolve(undefined as any)
+    }
+    img.onload = e => {
+      if (!options.canvas) {
+        options.canvas = document.createElement('canvas')
+        options.appendToBody && document.body.append(options.canvas)
+      }
+      options.canvas!.setAttribute('width', (img.width || 500) + '')
+      options.canvas!.setAttribute('height', (img.height || 500) + '')
+      options.canvas!.getContext('2d')!.drawImage(img, 0, 0)
+      resolve({ canvas: options.canvas, width: img.naturalWidth, height: img.naturalHeight })
+      img.remove()
+    }
+    document.body.append(img)
+    img.src = dataToUrl(svg, 'image/svg+xml', options.name || 'image.svg')
   })
 }
 

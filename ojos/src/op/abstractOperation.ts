@@ -47,7 +47,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
 
   protected checkInputImage(o: T) {
   }
-  
+
   protected checkOptions(o?: T) {
     if (!o && !this.defaultOptions) {
       throw new Error('No options provided not in the constructor or in exec() call. Aborting.')
@@ -64,7 +64,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       ksize.height = ksize.height < 3 ? 3 : ksize.height % 2 !== 1 ? ksize.height - 1 : ksize.height
     }
     this.checkDst(options)
-    return options 
+    return options
   }
 
   protected checkDst(options: T) {

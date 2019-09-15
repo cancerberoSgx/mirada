@@ -28,7 +28,7 @@ export interface CannyConcreteOptions extends WithChannels {
  */
 export class Canny extends AbstractOperation<CannyOptions> {
   name = "Canny"
-  description='finds edges in the input image and marks them in the output map edges using the Canny algorithm. The smallest value between threshold1 and threshold2 is used for edge linking. The largest value is used to find initial segments of strong edges'
+  description = 'finds edges in the input image and marks them in the output map edges using the Canny algorithm. The smallest value between threshold1 and threshold2 is used for edge linking. The largest value is used to find initial segments of strong edges'
   noInPlace = true
 
   protected validate(o: CannyOptions) {

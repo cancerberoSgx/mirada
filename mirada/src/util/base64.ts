@@ -39,6 +39,6 @@ export function arrayBufferToUrl(buffer: ArrayBuffer, mime: string, name?: strin
 }
 
 export function arrayBufferToString(buffer: ArrayBuffer) {
-  return Buffer.from(buffer).toString('string')
+  return Buffer.from(buffer).toString()
 }
 

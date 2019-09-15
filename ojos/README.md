@@ -8,13 +8,6 @@
 - [Usage](#usage)
 - [Reference API](#reference-api)
 - [TODO / ROADMAP](#todo--roadmap)
-  * [ideas for the demo](#ideas-for-the-demo)
-- [Ideas / Motivation](#ideas--motivation)
-  * [What / Why ?](#what--why-)
-  * [Operations](#operations)
-    + [Operation design](#operation-design)
-    + [Operation implementation details:](#operation-implementation-details)
-- [chain utility (WIP)](#chain-utility-wip)
 
 <!-- tocstop -->
 

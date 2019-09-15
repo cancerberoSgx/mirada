@@ -36,7 +36,7 @@ export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBo
  */
 export class WarpPerspective extends AbstractOperation<WarpPerspectiveOptions> {
   name = "WarpPerspective"
-  description='Input should be float type and 1, 3or 4 channels. In doubt use toRgba().'
+  description = 'Input should be float type and 1, 3or 4 channels. In doubt use toRgba().'
   noInPlace = true
   protected _exec(o: WarpPerspectiveOptions) {
     let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, o.inputs)

@@ -21,7 +21,7 @@ export interface InRangeConcreteOptions {
  */
 export class InRange extends AbstractOperation<InRangeOptions> {
   name = 'InRange'
-  description='[dst] is set to 255 (all 1 -bits) if [src] is within the specified 1D, 2D, 3D, ... box and 0 otherwise.'
+  description = '[dst] is set to 255 (all 1 -bits) if [src] is within the specified 1D, 2D, 3D, ... box and 0 otherwise.'
   protected _exec(o: InRangeOptions) {
     cv.inRange(o.src,
       isMat(o.lowerb) ? o.lowerb : new cv.Mat(o.src.rows, o.src.cols, o.src.type(), o.lowerb),

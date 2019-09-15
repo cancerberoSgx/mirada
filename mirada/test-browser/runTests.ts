@@ -18,6 +18,10 @@ const tests: { file: string, assert: (s: ShellString) => boolean }[] = [
   {
     file: 'imageUtil.html',
     assert: s => !s.includes('TEST ERROR:')
+  },
+  {
+    file: 'canvasCodecSvg.html',
+    assert: s => !s.includes('TEST ERROR:')
   }
 ]
 

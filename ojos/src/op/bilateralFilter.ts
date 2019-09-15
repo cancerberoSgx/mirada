@@ -27,8 +27,8 @@ export interface BilateralFilterConcreteOptions extends WithBorderType {
  * Filter size*: Large filters (d > 5) are very slow, so it is recommended to use d=5 for real-time applications, and perhaps d=9 for offline applications that need heavy noise filtering.
  */
 export class BilateralFilter extends AbstractOperation<BilateralFilterOptions> {
-  name  = "BilateralFilter"
-  description=`The function applies bilateral filtering to the input image, as described in bilateralFilter can reduce unwanted noise very well while keeping edges fairly sharp. However, it is very slow compared to most filters. 
+  name = "BilateralFilter"
+  description = `The function applies bilateral filtering to the input image, as described in bilateralFilter can reduce unwanted noise very well while keeping edges fairly sharp. However, it is very slow compared to most filters. 
   
   Sigma values*: For simplicity, you can set the 2 sigma values to be the same. If they are small (< 10), the filter will not have much effect, whereas if they are large (> 150), they will have a very strong effect, making the image look "cartoonish".
   

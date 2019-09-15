@@ -41,7 +41,7 @@ export class HistEqualization extends AbstractOperation<HistEqualizationOptions>
       // o.src!==o.dst &&   o.dst!.channels()>1 && o.mode==='CLAHE' && cv.cvtColor(o.dst!, o.dst!, cv.CV_8UC1, 0)
     }
   }
-  
+
   protected histEqualizationOne(o: HistEqualizationOptions) {
     if (o.mode === 'equalizeHist') {
       cv.equalizeHist(o.src, o.dst!)

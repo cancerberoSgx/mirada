@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from 'fs'
 import Jimp from 'jimp'
 import { CanvasCodec, File, installFormatProxy, loadFormatProxies, loadOpencv, unInstallFormatProxies, unloadFormatProxies } from '../src'
 import { createCanvas, loadDOM } from './testUtil'
-import fileType = require('file-type')
+// import fileType = require('file-type')
 
 test.before(async () => {
   loadDOM()

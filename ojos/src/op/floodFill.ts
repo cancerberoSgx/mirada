@@ -18,8 +18,8 @@ export type FloodFillPreprocess = ({ name: 'canny' } & CannyConcreteOptions) | (
  * This is a high level API for flood fill given color or image starting from given [seed] coords and involves several opencv operations. 
  */
 export class FloodFill extends AbstractOperation<FloodFillOptions> {
-  name  = "FloodFill"
-  description='This is a high level API for flood fill given color or image starting from given [seed] coords and involves several opencv operations. '
+  name = "FloodFill"
+  description = 'This is a high level API for flood fill given color or image starting from given [seed] coords and involves several opencv operations. '
   sameSizeAndType = true
   protected _exec(o: FloodFillOptions) {
     const preprocess = o.preprocess || [{ name: 'medianBlur' }, { name: 'canny' }]

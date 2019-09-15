@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script src="mirada.min.js"></script>
+  <canvas width="500" height="500"></canvas>
+  <script>
+    (async () => {
+      window.miradaTestEnd = false
+      await mirada.loadOpencv()
+      try {
+        await renderSvgTest()
+      } catch (error) {
+        console.log('TEST ERROR: ', error.message, error.stack);
+      }
+      window.miradaTestEnd = true
+    })()
+
+    async function renderSvgTest() {
+      const src = await mirada.fromUrl('image.svg')
+      equal(mirada.compareL2(mirada.toRgba(src), await mirada.fromUrl('imageCanvasCodec.png'), true).toFixed(3), '0.066', 'Expected compareL2 to be 0 for same images')
+      src.delete()
+    }
+
+    function equal(actual, expected, msg) {
+      if (actual != expected) {
+        console.log('TEST ERROR: ' +( msg || '')+ ' expected '+expected+' actual '+actual);
+      }
+    }
+  </script>
+</body>
+
+</html>
