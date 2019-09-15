@@ -1,8 +1,8 @@
 import test from 'ava'
 import { compareL2, del, fromFile, toRgba } from 'mirada'
-import { OperationNames, run, ScriptOperation } from '../src'
-import { loadMirada, write } from './testUtil'
-import { serial } from 'misc-utils-of-mine-generic'
+import { OperationNames, run } from '../src'
+import { ScriptOperation } from '../src/opScript/types'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -87,12 +87,61 @@ test('using same mat', async t => {
       }
     ]
   })
-  // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
   t.deepEqual(images.map(i => i.name), ['src'])
   t.true(images[0].mat === mat)
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'src')!.mat), await fromFile('test/assets/lennaOpRun2.png'), true), 0)
   del(...images.map(i => i.mat))
 })
 
+test('script statements', async t => {
+  const mat = await fromFile('test/assets/h.jpg')
+  cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0)
+  const { images } = await run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
+    src: {
+      mat,
+      name: 'src'
+    },
+    ops: `
+# comment 1
+GaussianBlur src out1 ksize: 5, sigmaX: 2.2
+# comment 2
+# comment 3
+Bitwise out1 out2 type: not
+# comment 4
+    `
+  })
+  t.deepEqual(images.map(i => i.name), ['src', 'out1', 'out2'])
+  t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'out2')!.mat), await fromFile('test/assets/hRunScript.png'), true), 0)
+  del(...images.map(i => i.mat))
+})
 
 
+test('script statements template', async t => {
+  const mat = await fromFile('test/assets/h.jpg')
+  cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0)
+  const { images } = await run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
+    src: {
+      mat,
+      name: 'src'
+    },
+    ops: `
+<% vars.a = 2; vars.name='out1' %>
+# comment 1
+GaussianBlur src <%= vars.name%> ksize: <%= vars.a + 3 %>, sigmaX: <%= vars.a + .2 %>
+# comment 2
+# comment 3
+Bitwise <%= vars.name %> out2 type: not
+# comment 4
+    `
+  })
+  // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
+  t.deepEqual(images.map(i => i.name), ['src', 'out1', 'out2'])
+  // t.true(images[0].mat === mat)
+  t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'out2')!.mat), await fromFile('test/assets/hRunScript.png'), true), 0)
+  del(...images.map(i => i.mat))
+})
+
+
+test.todo('error handling')
+test.todo('<% multi line support %>')
+test.todo('json input')
