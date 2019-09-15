@@ -50,9 +50,9 @@ export interface Option extends Base {
   optional: boolean
 }
 
-export const operationClasses = {
+export const operationClasses = () => ({
   ${ops.map(o => `${o.name}: ${o.name}`).join(',\n  ')}
-}
+})
 
 export interface OperationOptions {
   ${ops.map(o => `${o.name}: ${o.name}Options`).join(',\n  ')}

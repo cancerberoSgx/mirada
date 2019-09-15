@@ -15,6 +15,7 @@
 - [ ] scripts: json string input
 - [ ] scripts: support multi line ops statements with \
 - [ ] scripts  command name case insensitive
+- [ ] scripts: stmt-map support option values with comma test 
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [x] scripts: run() - based on Operation options - src and dst are names

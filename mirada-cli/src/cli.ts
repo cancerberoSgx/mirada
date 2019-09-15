@@ -1,11 +1,11 @@
 
 import { createReadStream, createWriteStream, existsSync } from 'fs'
 import Jimp from 'jimp'
-import { execute, installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv } from 'mirada'
+import { installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv } from 'mirada'
 import { evaluate, tryTo } from 'misc-utils-of-mine-generic'
 import oboe from 'oboe'
 import { Readable } from 'stream'
-import { commands } from './commands'
+// import { commands } from './commands'
 import { printHelp, renderHelpCommand, renderHelpGeneral } from './help'
 import { Options } from './types'
 

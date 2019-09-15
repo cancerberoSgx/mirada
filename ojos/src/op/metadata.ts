@@ -21,7 +21,7 @@ export interface Option extends Base {
   optional: boolean
 }
 
-export const operationClasses = {
+export const operationClasses = () => ({
   AdaptiveThreshold: AdaptiveThreshold,
   BilateralFilter: BilateralFilter,
   Bitwise: Bitwise,
@@ -45,7 +45,7 @@ export const operationClasses = {
   WarpAffine: WarpAffine,
   WarpPerspective: WarpPerspective,
   CvtColor: CvtColor
-}
+})
 
 export interface OperationOptions {
   AdaptiveThreshold: AdaptiveThresholdOptions,

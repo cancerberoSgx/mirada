@@ -12,7 +12,7 @@ export async function run<T extends ScriptOperation[]>(options: RunOptions<T>) {
     if (!src) {
       throw new Error('Input image "' + op.src + '" not found. Aborting.')
     }
-    const Class = operationClasses[op.name] as any
+    const Class = operationClasses()[op.name] as any
     if (!Class) {
       throw new Error('Operation "' + op.name + '" not recognized. Aborting.')
     }

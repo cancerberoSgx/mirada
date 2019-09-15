@@ -2,6 +2,7 @@ import * as mirada from 'mirada'
 import { FS, Mat } from 'mirada'
 import { RemoveProperties, UnionToIntersection } from 'misc-utils-of-mine-generic'
 import { OperationNames, OperationOptions } from '../op/metadata'
+import * as ojos from '..'
 
 export interface RunOptions<T extends ScriptOperation<OperationNames>[] = ScriptOperation<OperationNames>[]> {
   ops: T | string;
@@ -9,7 +10,7 @@ export interface RunOptions<T extends ScriptOperation<OperationNames>[] = Script
   src?: ScriptMat | ScriptMat[];
 }
 
-interface ScriptMat {
+export interface ScriptMat {
   name: string;
   mat: Mat;
 }
@@ -28,7 +29,7 @@ export interface ScriptContext {
   };
 }
 
-export type ScriptLanguage = 'json' | 'statements'
+export type ScriptLanguage = 'json' | 'statement-map' | 'statement-list'
 
 export interface ParseOptions {
   script: string
@@ -39,9 +40,10 @@ export interface TemplateContext extends ScriptContext {
   cv: typeof cv
   mirada: typeof mirada
   FS: FS
+  ojos: typeof ojos
 }
 
-export type AllOptionNames = keyof UnionToIntersection<OperationOptions[keyof OperationOptions]>
+type AllOptionNames = keyof UnionToIntersection<OperationOptions[keyof OperationOptions]>
 
 export type ParsedResult = RemoveProperties<Partial<{ [s in AllOptionNames]: any }>, 'src' | 'dst'> & {
   name: OperationNames
