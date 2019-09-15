@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "ejs": "^2.7.1",
-    "misc-utils-of-mine-generic": "^0.2.31",
+    "misc-utils-of-mine-generic": "^0.2.32",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {

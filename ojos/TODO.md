@@ -7,6 +7,7 @@
 - [ ] svg codec ()
 - [ ] browser test - copy from mirada
 - [ ] scripts: json string input
+- [ ] scripts: support multiline ops statements with \
 - [ ] scripts  command name case insensitive
 - [ ] high level HTML Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 

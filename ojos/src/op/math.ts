@@ -1,5 +1,5 @@
 import { CVDataType, Mat, noArray } from 'mirada'
-import { anyUndefined } from '../util'
+import { anyUndefined } from 'misc-utils-of-mine-generic'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions } from './types'
 

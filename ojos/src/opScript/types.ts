@@ -1,8 +1,7 @@
 import * as mirada from 'mirada'
 import { FS, Mat } from 'mirada'
-import { RemoveProperties } from 'misc-utils-of-mine-generic'
+import { RemoveProperties, UnionToIntersection } from 'misc-utils-of-mine-generic'
 import { OperationNames, OperationOptions } from '../op/metadata'
-import { UnionToIntersection } from '../util'
 
 export interface RunOptions<T extends ScriptOperation<OperationNames>[] = ScriptOperation<OperationNames>[]> {
   ops: T | string;
