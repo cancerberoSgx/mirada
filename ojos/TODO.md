@@ -1,17 +1,20 @@
 ## TODO
-- [ ] cv.cvtColor
+- [x] cv.cvtColor
 - [ ] fillPoly 
+- [ ] filter2D
 - [ ] roi
+- [ ] npm run check-ops - green and implement todos
 - [ ] toRgba
 - [ ] magica codec
 - [ ] svg codec ()
+- [ ] opOptions as array: type mapping between Ops Options to array - so stmts are simpler: `GaussianBlur src out1 ksize: 5, sigmaX: 2.2` could be written as `GaussianBlur src out1 5 2.2` - and so exec: `new GaussianBlur().exec(src, dst, 5, 2.2)`
+  - [x] infrastructure
+  - [ ] support for existing operations (npm run check-ops)
+  - [ ] script stmt support
 - [ ] browser test - copy from mirada
 - [ ] scripts: json string input
-- [ ] scripts: support multiline ops statements with \
+- [ ] scripts: support multi line ops statements with \
 - [ ] scripts  command name case insensitive
-- [ ] high level HTML Widgets (Point, Color, pointList, etc)
-      - [ ] fabric-like support for editor GUI  on top ? 
-      - [ ] GUIs for real use cases like grabcut
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
 - [x] scripts: run() - based on Operation options - src and dst are names
@@ -53,6 +56,10 @@
   - smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
 - add face detection even without framework.
 - add shift-cam-ting object tracking even without framework.
+
+- [ ] a project for high level HTML Widgets (Point, Color, pointList, etc)
+  - [ ] fabric-like support for editor GUI  on top ? 
+  - [ ] GUIs for real use cases like grabcut
 
 ## Ideas / Motivation
 

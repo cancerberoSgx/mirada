@@ -18,6 +18,7 @@ export interface CircleConcreteOptions extends Partial<WithLineType>, WithColor,
 export class Circle extends AbstractOperation<CircleOptions> {
   name = "Circle"
   description = `Draws a simple or filled circle with a given center and radius.`
+  optionsOrder = ['src', 'dst', 'center', 'radius', 'color', 'thickness', 'lineType', 'shift'] as (keyof CircleOptions)[]
   noDst = true
   protected _exec(o: CircleOptions) {
     cv.circle(o.dst!, o.center, o.radius, o.color, o.thickness || 1, o.lineType || cv.LINE_AA, o.shift || 0)

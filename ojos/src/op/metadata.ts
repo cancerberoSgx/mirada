@@ -1,5 +1,5 @@
 
-import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions } from '.' 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions } from '.' 
 
 interface Base {
   name: string
@@ -9,7 +9,8 @@ interface Base {
 export interface OperationMetadata extends Base {
   noInPlace: boolean
   sameSizeAndType: boolean
-  validChannels: number[]
+  validChannels?: number[]
+  optionsOrder?: string[]
   options: Option[]
 }
 
@@ -42,7 +43,8 @@ export const operationClasses = {
   ReplaceColor: ReplaceColor,
   Threshold: Threshold,
   WarpAffine: WarpAffine,
-  WarpPerspective: WarpPerspective
+  WarpPerspective: WarpPerspective,
+  CvtColor: CvtColor
 }
 
 export interface OperationOptions {
@@ -67,7 +69,8 @@ export interface OperationOptions {
   ReplaceColor: ReplaceColorOptions,
   Threshold: ThresholdOptions,
   WarpAffine: WarpAffineOptions,
-  WarpPerspective: WarpPerspectiveOptions
+  WarpPerspective: WarpPerspectiveOptions,
+  CvtColor: CvtColorOptions
 }
 
 export enum OperationNames {
@@ -92,7 +95,8 @@ export enum OperationNames {
   ReplaceColor = 'ReplaceColor',
   Threshold = 'Threshold',
   WarpAffine = 'WarpAffine',
-  WarpPerspective = 'WarpPerspective'
+  WarpPerspective = 'WarpPerspective',
+  CvtColor = 'CvtColor'
 }
 
 let metadata: OperationMetadata[] = null as any
@@ -106,6 +110,7 @@ export function getOperationMetadata() {
         noInPlace: false,
         sameSizeAndType: true,
         validChannels: [1],
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -172,6 +177,7 @@ export function getOperationMetadata() {
         noInPlace: true,
         sameSizeAndType: true,
         validChannels: [1,3],
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -226,10 +232,11 @@ export function getOperationMetadata() {
       
       {
         name: "Bitwise",
-        description: "TODO",
+        description: "",
         noInPlace: true,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -279,7 +286,8 @@ export function getOperationMetadata() {
         description: "smooths an image. Unnormalized box filter is useful for computing various integral characteristics over each pixel neighborhood, such as covariance matrices of image derivatives (used in dense optical flow algorithms, and so on). ",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -345,7 +353,8 @@ export function getOperationMetadata() {
         description: "finds edges in the input image and marks them in the output map edges using the Canny algorithm. The smallest value between threshold1 and threshold2 is used for edge linking. The largest value is used to find initial segments of strong edges",
         noInPlace: true,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "threshold1",
@@ -411,7 +420,8 @@ export function getOperationMetadata() {
         description: "Draws a simple or filled circle with a given center and radius.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: ["src","dst","center","radius","color","thickness","lineType","shift"],        
         options: [
           {
             name: "src",
@@ -461,7 +471,8 @@ export function getOperationMetadata() {
         description: "converts source pixel values to the target data type.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: ["src","dst","dtype","alpha","beta"],        
         options: [
           {
             name: "src",
@@ -511,7 +522,8 @@ export function getOperationMetadata() {
         description: "facade around cv.Sobel, cv.Laplacian and cv.Scharr",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -609,7 +621,8 @@ export function getOperationMetadata() {
         description: "Draws a simple or filled Ellipse with a given center size and rotation angle.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: ["src","dst","center","size","angle","color","thickness","lineType"],        
         options: [
           {
             name: "src",
@@ -667,7 +680,8 @@ export function getOperationMetadata() {
         description: "This is a high level API for flood fill given color or image starting from given [seed] coords and involves several opencv operations. ",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "seed",
@@ -741,7 +755,8 @@ export function getOperationMetadata() {
         description: "convolves the source image with the specified Gaussian kernel. In-place filtering is supported.",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -799,7 +814,8 @@ export function getOperationMetadata() {
         description: "Applies histogram equalization using cv.equalizeHist or cv.CLAHE. In case src image has multiple channels, equalization is applied on each of them independently and then the result is merged",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -857,7 +873,8 @@ export function getOperationMetadata() {
         description: "[dst] is set to 255 (all 1 -bits) if [src] is within the specified 1D, 2D, 3D, ... box and 0 otherwise.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -899,7 +916,8 @@ export function getOperationMetadata() {
         description: "Draws the line segment between pt1 and pt2 points in the image.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: ["src","dst","pt1","pt2","color","thickness","lineType","shift"],        
         options: [
           {
             name: "src",
@@ -949,7 +967,8 @@ export function getOperationMetadata() {
         description: "performs math operations per pixel on images, like add, subtract, divide, addWeighted and multiply",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -1015,7 +1034,8 @@ export function getOperationMetadata() {
         description: "smoothes an image using the median filter with the ksize x ksize aperture.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -1057,7 +1077,8 @@ export function getOperationMetadata() {
         description: "perform advanced morphological transformations using an erosion and dilation as basic operations.",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -1131,7 +1152,8 @@ export function getOperationMetadata() {
         description: "Draws the Rectangle segment between pt1 and pt2 points in the image.",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: ["src","dst","pt1","pt2","color","thickness","lineType","shift"],        
         options: [
           {
             name: "src",
@@ -1181,7 +1203,8 @@ export function getOperationMetadata() {
         description: "Will replace pixels within given boundaries with given color or image's pixels",
         noInPlace: false,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "lowColor",
@@ -1239,7 +1262,8 @@ export function getOperationMetadata() {
         description: "Applies fixed-level thresholding to a multiple-channel array. The function is typically used to get a bi-level (binary) image out of a grayscale image or for removing a noise, that is, filtering out pixels with too small or too large values. There are several types of thresholding supported by the function. They are determined by type parameter.",
         noInPlace: false,
         sameSizeAndType: true,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "src",
@@ -1262,7 +1286,7 @@ export function getOperationMetadata() {
             signature: "thresh: number",
             type: "number",
             typeUnion: [],
-            description: "",
+            description: "threshold value",
             optional: false
           }, 
           {
@@ -1270,7 +1294,7 @@ export function getOperationMetadata() {
             signature: "maxval: number",
             type: "number",
             typeUnion: [],
-            description: "",
+            description: " maximum value to use with the THRESH_BINARY and THRESH_BINARY_INV thresholding types.",
             optional: false
           }, 
           {
@@ -1278,7 +1302,7 @@ export function getOperationMetadata() {
             signature: "type: ThresholdTypes",
             type: "ThresholdTypes",
             typeUnion: ["THRESH_BINARY","THRESH_BINARY_INV","THRESH_TRUNC","THRESH_TOZERO","THRESH_TOZERO_INV","THRESH_MASK","THRESH_OTSU","THRESH_TRIANGLE"],
-            description: "",
+            description: "thresholding type (see ThresholdTypes).",
             optional: false
           }
         ]
@@ -1289,7 +1313,8 @@ export function getOperationMetadata() {
         description: "Will use [estimateAffine2D] to calculate affine matrix from given [inputs] and [outputs] and then [warpAffine] to transform.",
         noInPlace: true,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "inputs",
@@ -1379,7 +1404,8 @@ export function getOperationMetadata() {
         description: "Input should be float type and 1, 3or 4 channels. In doubt use toRgba().",
         noInPlace: true,
         sameSizeAndType: false,
-        validChannels: [],
+        validChannels: undefined,
+        optionsOrder: undefined,        
         options: [
           {
             name: "inputs",
@@ -1459,6 +1485,49 @@ export function getOperationMetadata() {
             type: "Scalar",
             typeUnion: [],
             description: "",
+            optional: true
+          }
+        ]
+      },
+      
+      {
+        name: "CvtColor",
+        description: "converts an input image from one color space to another. In case of a transformation to-from RGB color space, the order of the channels should be specified explicitly (RGB or BGR). Note that the default color format in OpenCV is often referred to as RGB but it is actually BGR (the bytes are reversed). So the first byte in a standard (24-bit) color image will be an 8-bit Blue component, the second byte will be Green, and the third byte will be Red. The fourth, fifth, and sixth bytes would then be the second pixel (Blue, then Green, then Red), and so on.",
+        noInPlace: false,
+        sameSizeAndType: false,
+        validChannels: undefined,
+        optionsOrder: ["src","dst","code","dstCn"],        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }, 
+          {
+            name: "code",
+            signature: "code: ColorConversionCodes",
+            type: "ColorConversionCodes",
+            typeUnion: [],
+            description: "color space conversion code (see ColorConversionCodes).",
+            optional: false
+          }, 
+          {
+            name: "dstCn",
+            signature: "dstCn?: number",
+            type: "number",
+            typeUnion: [],
+            description: "number of channels in the destination image; if the parameter is 0, the number of the channels is derived automatically from src and code.",
             optional: true
           }
         ]

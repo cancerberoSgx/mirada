@@ -63,6 +63,7 @@ export class Edge extends AbstractOperation<EdgeOptions> {
   protected _exec(o: EdgeOptions) {
     this.allChannels(o, o => this._execOne(o))
   }
+
   protected _execOne(o: EdgeOptions) {
     if (o.type === 'sobel') {
       cv.Sobel(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, o.ksize = 3, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)

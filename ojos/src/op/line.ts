@@ -26,6 +26,7 @@ export interface LineConcreteOptions extends Partial<WithLineType>, WithColor, P
 export class Line extends AbstractOperation<LineOptions> {
   name = "Line"
   description = `Draws the line segment between pt1 and pt2 points in the image.`
+  optionsOrder = ['src', 'dst', 'pt1', 'pt2', 'color', 'thickness', 'lineType', 'shift'] as (keyof LineOptions)[]
   noDst = true
   protected _exec(o: LineOptions) {
     cv.line(o.dst!, o.pt1, o.pt2, o.color, o.thickness || 1, o.lineType || cv.LINE_AA, o.shift || 0)

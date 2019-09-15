@@ -1,4 +1,4 @@
-import { del, isSize, Mat } from 'mirada'
+import { del, isMat, isSize, Mat } from 'mirada'
 import { array, checkThrow, RemoveProperties } from 'misc-utils-of-mine-generic'
 import { toSize } from '../util'
 import { ImageOperation, OperationExecBaseOptions, WithChannels, WithKSize } from './types'
@@ -7,14 +7,14 @@ export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<
 
 export abstract class AbstractOperation<T extends OperationExecBaseOptions> implements ImageOperation<T> {
   abstract name: string;
-  description: string = 'TODO'
+  description: string = ''
   noInPlace = false
   sameSizeAndType = false
   isInPlace = false
   noDst = false
   protected validateEachExec = false
   protected validated = false
-
+  optionsOrder?: (keyof T)[]
   validChannels: number[] | undefined = undefined
 
   constructor(protected defaultOptions?: T) {
@@ -27,7 +27,8 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
 
   protected abstract _exec(o: MandatoryDst<T>): void
 
-  exec(o?: T) {
+  exec(...o_: [T] | ((T[keyof T])[])) {
+    const o = this.resolveOptionsObject(...o_)
     const options = this.checkOptions(o)
     this.checkInPlaceBefore(options)
     if (!this.validated || this.validateEachExec) {
@@ -41,6 +42,23 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     this.checkInPlaceAfter(options)
     this.afterExec(options as any)
     return options.dst!
+  }
+
+  protected resolveOptionsObject(...o: [T] | ((T[keyof T])[])) {
+    if (!o || !o.length || !o[0]) {
+      return undefined
+    }
+    if (isMat((o[0] as T).src)) {
+      return o[0] as T
+    }
+    if (!this.optionsOrder || !this.optionsOrder.length) {
+      throw new Error('optionsOrder must be implemented in "' + this.name + '" in order to use array signature for options')
+    }
+    const r: Partial<T> = {}
+    this.optionsOrder.forEach((k, i) => {
+      r[k] = (o as (T[keyof T])[])[i]
+    })
+    return r as T
   }
 
   protected afterExec(options: MandatoryDst<T>) {

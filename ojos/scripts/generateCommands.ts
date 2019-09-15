@@ -3,9 +3,9 @@ import { unquote } from 'misc-utils-of-mine-generic'
 import { resolve } from 'path'
 import { Project } from 'ts-morph'
 import { extractMemberSignatures } from 'typescript-member-signatures'
-import { AbstractOperation, AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective } from '../src'
+import { AbstractOperation, AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor } from '../src'
 
-const allOps = [AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective]
+const allOps = [AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor]
 
 function generateMetadata() {
   const p = new Project({ tsConfigFilePath: 'tsconfig.json', addFilesFromTsConfig: true })
@@ -20,6 +20,7 @@ function generateMetadata() {
       description: i.description,
       noInPlace: i.noInPlace,
       validChannels: i.validChannels,
+      optionsOrder: i.optionsOrder,
       sameSizeAndType: i.sameSizeAndType,
       optionsInterface,
       properties
@@ -37,7 +38,8 @@ interface Base {
 export interface OperationMetadata extends Base {
   noInPlace: boolean
   sameSizeAndType: boolean
-  validChannels: number[]
+  validChannels?: number[]
+  optionsOrder?: string[]
   options: Option[]
 }
 
@@ -70,7 +72,8 @@ export function getOperationMetadata() {
         description: ${JSON.stringify(o.description)},
         noInPlace: ${o.noInPlace},
         sameSizeAndType: ${o.sameSizeAndType},
-        validChannels: ${JSON.stringify(o.validChannels || [])},
+        validChannels: ${JSON.stringify(o.validChannels)},
+        optionsOrder: ${JSON.stringify(o.optionsOrder)},        
         options: [
           ${o.properties.map(s => `{
             name: ${JSON.stringify(s.name)},

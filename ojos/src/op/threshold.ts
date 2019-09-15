@@ -6,8 +6,17 @@ export interface ThresholdOptions extends OperationExecBaseOptions, ThresholdCon
 }
 
 export interface ThresholdConcreteOptions {
+  /**
+   * threshold value
+   */
   thresh: number
+  /**
+   *  maximum value to use with the THRESH_BINARY and THRESH_BINARY_INV thresholding types.
+   */
   maxval: number
+  /**
+   * thresholding type (see ThresholdTypes).
+   */
   type: ThresholdTypes
 }
 

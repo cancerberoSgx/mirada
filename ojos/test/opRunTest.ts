@@ -118,19 +118,24 @@ Bitwise out1 out2 type: not
 
 test('script statements template', async t => {
   const mat = await fromFile('test/assets/h.jpg')
-  cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0)
   const { images } = await run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
     src: {
       mat,
       name: 'src'
     },
     ops: `
-<% vars.a = 2; vars.name='out1' %>
-# comment 1
-GaussianBlur src <%= vars.name%> ksize: <%= vars.a + 3 %>, sigmaX: <%= vars.a + .2 %>
-# comment 2
+  # comment 0
+  
+  <% vars.a = 2; vars.name='out1' %>
+  
+      CvtColor src src code: <%= cv.COLOR_RGBA2GRAY %>
+  
+  # comment 1
+      GaussianBlur src <%= vars.name%> ksize: <%= vars.a + 3 %>, sigmaX: <%= vars.a + .2 %>
+  # comment 2
 # comment 3
 Bitwise <%= vars.name %> out2 type: not
+
 # comment 4
     `
   })
@@ -140,7 +145,6 @@ Bitwise <%= vars.name %> out2 type: not
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'out2')!.mat), await fromFile('test/assets/hRunScript.png'), true), 0)
   del(...images.map(i => i.mat))
 })
-
 
 test.todo('error handling')
 test.todo('<% multi line support %>')

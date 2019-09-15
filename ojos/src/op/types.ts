@@ -3,7 +3,13 @@ import { SizeRepresentation } from '../util'
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
+  /**
+   * Unique name identifying this operation
+   */
   name: string
+  /**
+   * Operation description paragraph
+   */
   description: string
   /**
    * The operation doesn't support "in-place" modifications. (passing the same mat as src and dst)
@@ -21,7 +27,12 @@ export interface ImageOperation<T extends OperationExecBaseOptions> {
    * valid channel numbers of input images
    */
   validChannels: number[] | undefined
-  exec(o?: T): Mat
+  /**
+   * if defined, the operation supports options as array, example: `new GaussianBlur().exec(src, dst, 5, 2.2)` and in the form of stmt : `GaussianBlur src out1 5 2.2` which could be less verbose alternative.
+   */
+  optionsOrder?: (keyof T)[]
+
+  exec(...o_: [T] | ((T[keyof T])[])): Mat
 }
 
 export interface OperationExecBaseOptions {

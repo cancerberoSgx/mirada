@@ -23,6 +23,7 @@ export interface RectangleConcreteOptions extends Partial<WithLineType>, WithCol
 export class Rectangle extends AbstractOperation<RectangleOptions> {
   name = "Rectangle"
   description = `Draws the Rectangle segment between pt1 and pt2 points in the image.`
+  optionsOrder = ['src', 'dst', 'pt1', 'pt2', 'color', 'thickness', 'lineType', 'shift'] as (keyof RectangleOptions)[]
   noDst = true
   protected _exec(o: RectangleOptions) {
     cv.rectangle(o.dst!, o.pt1, o.pt2, o.color, o.thickness || 1, o.lineType || cv.LINE_AA, o.shift || 0)
