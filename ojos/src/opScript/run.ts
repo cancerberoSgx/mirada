@@ -1,9 +1,11 @@
 import { Mat } from 'mirada'
 import { asArray, RemoveProperties } from 'misc-utils-of-mine-generic'
 import { operationClasses, OperationNames, OperationOptions } from '../op/metadata'
+import { ParseOptions, parseStatementLines, template, parseStatement, ScriptLanguage, OpsGenerator } from './script'
 
 export interface RunOptions<T extends ScriptOperation<OperationNames>[] = ScriptOperation<OperationNames>[]> {
-  ops: T
+  ops: T|string
+  language?: ScriptLanguage
   src?: ScriptMat | ScriptMat[]
 }
 
@@ -12,16 +14,29 @@ export interface ScriptMat {
   mat: Mat
 }
 
-export type ScriptOperation<N extends OperationNames = OperationNames> = RemoveProperties<OperationOptions[N], 'src' | 'dst'> & {
+export type ScriptOptions<N extends OperationNames> = Partial<RemoveProperties<OperationOptions[N], 'src' | 'dst'>>
+
+export type ScriptOperation<N extends OperationNames = OperationNames> = ScriptOptions<N> & {
   name: N
   src: string
   dst: string
 }
 
-export function run<T extends ScriptOperation[]>(o: RunOptions<T>) {
-  const images = asArray(o.src || [])
-  o.ops.forEach(op => {
-    const src = images.find(o => o.name === op.src)
+export interface ScriptContext {
+  images: ScriptMat[]
+  options: RunOptions
+}
+
+export async function run<T extends ScriptOperation[]>(options: RunOptions<T>) {
+  const context:ScriptContext = {images: asArray(options.src || []), options}
+ const gen = new OpsGenerator(Array.isArray(options.ops) ? options.ops : {script: options.ops, language: options.language})
+ let op : ScriptOperation<OperationNames>
+ while((op=await gen.next(context) as any)){
+  //  if(!op){}
+//  }
+  // const ops = resolveOps(options)
+  // options.ops.forEach(op => {
+    const src = context.images.find(o => o.name === op.src)
     if (!src) {
       throw new Error('Input image "' + op.src + '" not found. Aborting.')
     }
@@ -29,14 +44,13 @@ export function run<T extends ScriptOperation[]>(o: RunOptions<T>) {
     if (!Class) {
       throw new Error('Operation "' + op.name + '" not recognized. Aborting.')
     }
-    const dst = images.find(o => o.name === op.dst)
+    const dst = context.images.find(o => o.name === op.dst)
     const options = { ...op, src: src.mat, dst: dst ? dst.mat : undefined }
     new Class().exec(options as any)
     if (!dst) {
-      images.push({ name: op.dst, mat: options.dst! })
+      context.images.push({ name: op.dst, mat: options.dst! })
     }
-  })
-  return {
-    images
-  }
+  // })
+ }
+  return context
 }

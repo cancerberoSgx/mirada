@@ -30,6 +30,7 @@
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {
+    "@types/ejs": "^2.6.3",
     "@types/node": "^12.7.5",
     "@types/tinycolor2": "^1.4.2",
     "ava": "^2.3.0",
@@ -47,6 +48,7 @@
     "typescript-member-signatures": "0.0.6"
   },
   "dependencies": {
+    "ejs": "^2.7.1",
     "misc-utils-of-mine-generic": "^0.2.31",
     "tinycolor2": "^1.4.1"
   },

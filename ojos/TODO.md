@@ -6,20 +6,18 @@
 - [ ] magica codec
 - [ ] svg codec ()
 - [ ] browser test - copy from mirada
-- [ ] Operation Scripts
-  - [x] run() - based on Operation options - src and dst are names
-  - [ ] support statement ScriptOperation equivalent
-   - [ ] equivalent to ScriptOptions js-like objects: `name: 'GaussianBlur', src: 'lenna', dst: 'out1', ksize: {width: 5, height: 7}, sigmaX: 2.2`
-   - [ ] or shorter assuming name, src, and dst first: `GaussianBlur lenna out1 ksize: 7, sigmaX: 2.2`
-   - [ ] more CLI like: `GaussianBlur lenna out1 --ksize 5 --sigmaX 2.2`
-  - [ ] support for parameters/templates
-    - [ ] easing expressions against operation options.
-      - [ ] animations over time
+- [ ] scripts: json string input
+- [ ] scripts  command name case insensitive
 - [ ] high level HTML Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - [ ] GUIs for real use cases like grabcut
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
+- [x] scripts: run() - based on Operation options - src and dst are names
+- [x] scripts: statement syntax : `GaussianBlur lenna out1 ksize: 7, sigmaX: 2.2`
+- [x] scripts : template support 
+- [x] scripts template async rendering
+- [x] script run command by command - dont render the entire script, but operation by operation so template can evaluate dynamic data  
 - [x] animations - easing
 - [x] decide what we do with commands - remove it ?  - REMOVED
 - [x] canvas codec loaded in browser bu default
@@ -57,14 +55,16 @@
 
 ## Ideas / Motivation
 
-easing - animations 
- * can we use another domain than time ? for example what would be the meaning of using animations over color frequencies ?  
 ### What / Why ?
 
 While mirada supports TypeScript type declarations for opencv.s, support and test for both browser and node.js and basic utilities for files, image formats, browser, etc, this project hosts features and APIs purely mine, built on top of it. 
 
 I want to keep [Mirada](https://github.com/cancerberoSgx/mirada) KISS - with no much more tha TypeScript typings and basic utilities for node.js. And since I observe I'm already polluting it with "extra" features I will start working on those here. 
 
+### Future / crazy ideas
+
+ * easing - animations : can we use another domain than time ? for example what would be the meaning of using animations over color frequencies ?
+ * unify ops / script with magica so we can use both in same scripts.
 
 ### Operations
 

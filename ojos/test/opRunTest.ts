@@ -1,14 +1,15 @@
 import test from 'ava'
 import { compareL2, del, fromFile, toRgba } from 'mirada'
 import { OperationNames, run, ScriptOperation } from '../src'
-import { loadMirada } from './testUtil'
+import { loadMirada, write } from './testUtil'
+import { serial } from 'misc-utils-of-mine-generic'
 
 test.before(loadMirada)
 
 test('1', async t => {
   const mat = await fromFile('test/assets/n.png')
   cv.cvtColor(mat, mat, cv.COLOR_RGBA2RGB, 0)// we go rgb not because op limitation but because not alpha ff will produce alpha==0
-  const { images } = run<[ScriptOperation<OperationNames.Bitwise>]>({
+  const { images } = await run<[ScriptOperation<OperationNames.Bitwise>]>({
     src: {
       mat,
       name: 'n.png'
@@ -29,7 +30,7 @@ test('1', async t => {
 test('2', async t => {
   const mat = await fromFile('test/assets/lenna.jpg')
   cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0)
-  const { images } = run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
+  const { images } = await run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
     src: {
       mat,
       name: 'src'
@@ -61,7 +62,7 @@ test('2', async t => {
 test('using same mat', async t => {
   const mat = await fromFile('test/assets/lenna.jpg')
   cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0)
-  const { images } = run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
+  const { images } = await run<[ScriptOperation<OperationNames.AdaptiveThreshold>, ScriptOperation<OperationNames.GaussianBlur>]>({
     src: {
       mat,
       name: 'src'
@@ -92,3 +93,6 @@ test('using same mat', async t => {
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'src')!.mat), await fromFile('test/assets/lennaOpRun2.png'), true), 0)
   del(...images.map(i => i.mat))
 })
+
+
+
