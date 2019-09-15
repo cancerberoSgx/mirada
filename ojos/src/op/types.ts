@@ -1,4 +1,5 @@
 import { BorderTypes, LineTypes, Mat, Point, Scalar, Size } from 'mirada'
+import { SizeRepresentation } from '../util';
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
@@ -24,7 +25,13 @@ export interface ImageOperation<T extends OperationExecBaseOptions> {
 }
 
 export interface OperationExecBaseOptions {
-  src: Mat,
+  /**
+   * Input image.
+   */
+  src: Mat
+  /**
+   * Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.
+   */
   dst?: Mat
 }
 
@@ -43,7 +50,7 @@ export interface WithKSize {
   /**
    * blurring kernel size. In general only odd numbers greater than 2 are accepted 
    */
-  ksize: Size,
+  ksize: SizeRepresentation
 }
 
 export interface WithChannels {
@@ -88,15 +95,3 @@ export interface WithCenter {
   center: Point
 }
 
-// export interface OperationsByName {
-//   AdaptiveThreshold: AdaptiveThresholdOptions
-//   BilateralFilter: BilateralFilterOptions
-//   Bitwise: BitwiseOptions
-//   BoxFilter: BoxFilterOptions
-//   Canny: CannyOptions
-//   Circle: CircleOptions
-//   ConvertTo: ConvertToOptions
-//   Edge: EdgeOptions
-//   Ellipse: EllipseOptions
-//   FloodFill: FloodFillOptions
-// }

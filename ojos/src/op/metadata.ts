@@ -1,4 +1,6 @@
 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions } from '.' 
+
 interface Base {
   name: string
   description: string
@@ -18,6 +20,81 @@ export interface Option extends Base {
   optional: boolean
 }
 
+export const operationClasses = {
+  AdaptiveThreshold: AdaptiveThreshold,
+  BilateralFilter: BilateralFilter,
+  Bitwise: Bitwise,
+  BoxFilter: BoxFilter,
+  Canny: Canny,
+  Circle: Circle,
+  ConvertTo: ConvertTo,
+  Edge: Edge,
+  Ellipse: Ellipse,
+  FloodFill: FloodFill,
+  GaussianBlur: GaussianBlur,
+  HistEqualization: HistEqualization,
+  InRange: InRange,
+  Line: Line,
+  Math: Math,
+  MedianBlur: MedianBlur,
+  MorphologyEx: MorphologyEx,
+  Rectangle: Rectangle,
+  ReplaceColor: ReplaceColor,
+  Threshold: Threshold,
+  WarpAffine: WarpAffine,
+  WarpPerspective: WarpPerspective
+}
+
+export interface OperationOptions {
+  AdaptiveThreshold: AdaptiveThresholdOptions,
+  BilateralFilter: BilateralFilterOptions,
+  Bitwise: BitwiseOptions,
+  BoxFilter: BoxFilterOptions,
+  Canny: CannyOptions,
+  Circle: CircleOptions,
+  ConvertTo: ConvertToOptions,
+  Edge: EdgeOptions,
+  Ellipse: EllipseOptions,
+  FloodFill: FloodFillOptions,
+  GaussianBlur: GaussianBlurOptions,
+  HistEqualization: HistEqualizationOptions,
+  InRange: InRangeOptions,
+  Line: LineOptions,
+  Math: MathOptions,
+  MedianBlur: MedianBlurOptions,
+  MorphologyEx: MorphologyExOptions,
+  Rectangle: RectangleOptions,
+  ReplaceColor: ReplaceColorOptions,
+  Threshold: ThresholdOptions,
+  WarpAffine: WarpAffineOptions,
+  WarpPerspective: WarpPerspectiveOptions
+}
+
+export enum OperationNames {
+  AdaptiveThreshold = 'AdaptiveThreshold',
+  BilateralFilter = 'BilateralFilter',
+  Bitwise = 'Bitwise',
+  BoxFilter = 'BoxFilter',
+  Canny = 'Canny',
+  Circle = 'Circle',
+  ConvertTo = 'ConvertTo',
+  Edge = 'Edge',
+  Ellipse = 'Ellipse',
+  FloodFill = 'FloodFill',
+  GaussianBlur = 'GaussianBlur',
+  HistEqualization = 'HistEqualization',
+  InRange = 'InRange',
+  Line = 'Line',
+  Math = 'Math',
+  MedianBlur = 'MedianBlur',
+  MorphologyEx = 'MorphologyEx',
+  Rectangle = 'Rectangle',
+  ReplaceColor = 'ReplaceColor',
+  Threshold = 'Threshold',
+  WarpAffine = 'WarpAffine',
+  WarpPerspective = 'WarpPerspective'
+}
+
 let metadata: OperationMetadata[] = null as any
 
 export function getOperationMetadata() {
@@ -32,10 +109,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -43,7 +120,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -98,10 +175,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -109,7 +186,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -156,10 +233,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -167,7 +244,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -206,10 +283,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -217,7 +294,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -254,8 +331,8 @@ export function getOperationMetadata() {
           }, 
           {
             name: "ksize",
-            signature: "ksize: Size,",
-            type: "Size",
+            signature: "ksize: SizeRepresentation",
+            type: "SizeRepresentation",
             typeUnion: [],
             description: "blurring kernel size. In general only odd numbers greater than 2 are accepted ",
             optional: false
@@ -304,10 +381,10 @@ export function getOperationMetadata() {
           }, 
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -315,7 +392,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -338,10 +415,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -349,7 +426,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -388,10 +465,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -399,7 +476,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -438,10 +515,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -449,7 +526,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -536,10 +613,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -547,7 +624,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -642,10 +719,10 @@ export function getOperationMetadata() {
           }, 
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -653,7 +730,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }
         ]
@@ -668,10 +745,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -679,7 +756,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -708,8 +785,8 @@ export function getOperationMetadata() {
           }, 
           {
             name: "ksize",
-            signature: "ksize: Size,",
-            type: "Size",
+            signature: "ksize: SizeRepresentation",
+            type: "SizeRepresentation",
             typeUnion: [],
             description: "blurring kernel size. In general only odd numbers greater than 2 are accepted ",
             optional: false
@@ -726,10 +803,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -737,7 +814,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -784,10 +861,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -795,7 +872,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -826,10 +903,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -837,7 +914,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -876,10 +953,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -887,7 +964,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -942,10 +1019,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -953,7 +1030,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -984,10 +1061,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -995,7 +1072,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -1058,10 +1135,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -1069,7 +1146,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -1140,10 +1217,10 @@ export function getOperationMetadata() {
           }, 
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -1151,7 +1228,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }
         ]
@@ -1166,10 +1243,10 @@ export function getOperationMetadata() {
         options: [
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -1177,7 +1254,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -1264,10 +1341,10 @@ export function getOperationMetadata() {
           }, 
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -1275,7 +1352,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {
@@ -1354,10 +1431,10 @@ export function getOperationMetadata() {
           }, 
           {
             name: "src",
-            signature: "src: Mat,",
+            signature: "src: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Input image.",
             optional: false
           }, 
           {
@@ -1365,7 +1442,7 @@ export function getOperationMetadata() {
             signature: "dst?: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
             optional: true
           }, 
           {

@@ -1,5 +1,5 @@
 export * from './anim'
 export * from './color'
-export * from './command'
 export * from './op'
+export * from './opScript'
 export * from './types'

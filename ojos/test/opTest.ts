@@ -12,11 +12,9 @@ test.before(loadMirada)
 test('inRange', async t => {
   const src = await fromFile('test/assets/h.jpg')
   new InRange().exec({ src, dst: src, lowerb: scalarColor('#00661100'), upperb: scalarColor('#ffeeeeff') })
-  // write(src, 'tmpinrange.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hInRange.png'), await toRgba(src), true), 0)
   del(src)
 })
-
 
 test('math add', async t => {
   const src = await fromFile('test/assets/nErode.png')
@@ -32,7 +30,7 @@ test.todo('math divide')
 
 test('bitwise not', async t => {
   const src = await fromFile('test/assets/n.png')
-  cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0)
+  cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0) // we go rgb not because op limitation but because not alpha ff will produce alpha==0
   new Bitwise().exec({ src, dst: src, type: 'not' })
   t.deepEqual(compareL2(await File.fromFile('test/assets/nBitwiseNot.png'), await toRgba(src), true), 0)
   del(src)
@@ -46,7 +44,6 @@ test('threshold', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   new Threshold().exec({ src, dst: src, maxval: 200, thresh: 177, type: cv.THRESH_BINARY })
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaThreshold.png'), src, true), 0)
-  // del(src)
 })
 
 test('adaptiveThreshold', async t => {

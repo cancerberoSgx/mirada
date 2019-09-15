@@ -1,6 +1,7 @@
 import { del, isSize, Mat } from 'mirada'
 import { array, checkThrow, RemoveProperties } from 'misc-utils-of-mine-generic'
 import { ImageOperation, OperationExecBaseOptions, WithChannels, WithKSize } from './types'
+import { toSize } from '../util';
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
 
@@ -58,8 +59,8 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     if (this.validChannels && this.validChannels.length && !this.validChannels.includes(options.src.channels())) {
       throw new Error(`Invalid number of channels for input image which has ${options.src.channels()} and must be in [${this.validChannels.join(',')}]`)
     }
-    if (isSize((options as any as WithKSize).ksize)) {
-      const ksize = (options as any as WithKSize).ksize
+    if (isSize(toSize((options as any as WithKSize).ksize))) {
+      const ksize = toSize((options as any as WithKSize).ksize)
       ksize.width = ksize.width < 3 ? 3 : ksize.width % 2 !== 1 ? ksize.width - 1 : ksize.width
       ksize.height = ksize.height < 3 ? 3 : ksize.height % 2 !== 1 ? ksize.height - 1 : ksize.height
     }

@@ -1,3 +1,4 @@
+import { Size } from 'mirada'
 
 export function between(n: number, min: number, max: number) {
   return Math.max(min, Math.min(n, max))
@@ -13,4 +14,10 @@ export function intBetween(n: number, min: number, max: number) {
 
 export function anyUndefined(...a: any[]) {
   return !!a.find(a => typeof a === 'undefined')
+}
+
+export type SizeRepresentation = Size|[number, number]|number
+
+export function toSize(r: SizeRepresentation): Size{
+  return Array.isArray(r) ? {width: r[0], height: r[0]} : typeof r === 'number' ? {width: r, height: r} : r
 }

@@ -8,7 +8,8 @@
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true
   },
   "include": ["src", "test", "scripts"]
 }

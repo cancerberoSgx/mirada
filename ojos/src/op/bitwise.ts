@@ -17,6 +17,9 @@ export class Bitwise extends AbstractOperation<BitwiseOptions> {
   noInPlace = true
 
   protected validate(o: BitwiseOptions) {
+    if (!o.type) {
+      return 'type option is required'
+    }
     if (!o.src2 && ['add', 'or', 'xoe'].includes(o.type)) {
       return 'src2 option is required'
     }

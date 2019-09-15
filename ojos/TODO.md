@@ -5,22 +5,26 @@
 - [ ] toRgba
 - [ ] magica codec
 - [ ] svg codec ()
-- [x] animations
 - [ ] browser test - copy from mirada
 - [ ] Operation Scripts
-  - [ ] being able to declare operation sequences with data
+  - [x] run() - based on Operation options - src and dst are names
+  - [ ] support statement ScriptOperation equivalent
+   - [ ] equivalent to ScriptOptions js-like objects: `name: 'GaussianBlur', src: 'lenna', dst: 'out1', ksize: {width: 5, height: 7}, sigmaX: 2.2`
+   - [ ] or shorter assuming name, src, and dst first: `GaussianBlur lenna out1 ksize: 7, sigmaX: 2.2`
+   - [ ] more CLI like: `GaussianBlur lenna out1 --ksize 5 --sigmaX 2.2`
   - [ ] support for parameters/templates
     - [ ] easing expressions against operation options.
       - [ ] animations over time
-      - [ ] animations over color frequencies ?  
 - [ ] high level HTML Widgets (Point, Color, pointList, etc)
       - [ ] fabric-like support for editor GUI  on top ? 
       - [ ] GUIs for real use cases like grabcut
-- [ ] integrate mirada-cli generateCommands script here
-  - [ ] use operations interfaces
 - [ ] travis
 - [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
-- [ ] decide what we do with commands - remove it ? 
+- [x] animations - easing
+- [x] decide what we do with commands - remove it ?  - REMOVED
+- [x] canvas codec loaded in browser bu default
+- [x] canvas codec support svg image input
+- [x] integrate mirada-cli generateCommands script here-  use operations interfaces
 - [x] line
 - [x] rectangle
 - [x] circle
@@ -40,9 +44,9 @@
 - [ ] support loading videos
 - [ ] time-effects like https://hackaday.io/project/10581-free-beer-selfie
 - [ ] declare animations - when user trigger an action the perspective transformation changes over time.
-  - [ ] use easing (flor/accursed projects) against properties.
-   * assume users are responsible of triggering them manually - by name
-- [ ] record
+  - [x] use easing (flor/accursed projects) against properties.
+  - [ ] assume users are responsible of triggering them manually - by name
+- [ ] record video
 - [ ] load video or image from file or url
 - on mouse over effects - affecting only cursor close region
 - for operations requiring a second mat, we could operate with the previous frame
@@ -53,7 +57,8 @@
 
 ## Ideas / Motivation
 
-
+easing - animations 
+ * can we use another domain than time ? for example what would be the meaning of using animations over color frequencies ?  
 ### What / Why ?
 
 While mirada supports TypeScript type declarations for opencv.s, support and test for both browser and node.js and basic utilities for files, image formats, browser, etc, this project hosts features and APIs purely mine, built on top of it. 
