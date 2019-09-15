@@ -1,6 +1,6 @@
+import { toSize } from '../util'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithKSize } from './types'
-import { toSize } from '../util'
 
 export interface GaussianBlurOptions extends OperationExecBaseOptions, GaussianBlurConcreteOptions {
 }
@@ -18,7 +18,7 @@ export class GaussianBlur extends AbstractOperation<GaussianBlurOptions> {
   description = 'convolves the source image with the specified Gaussian kernel. In-place filtering is supported.'
   sameSizeAndType = true
   protected _exec(o: GaussianBlurOptions) {
-    cv.GaussianBlur(o.src, o.dst!,toSize(o.ksize), o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
+    cv.GaussianBlur(o.src, o.dst!, toSize(o.ksize), o.sigmaX, o.sigmaY || 0, o.borderType || cv.BORDER_CONSTANT)
   }
 }
 

@@ -1,7 +1,7 @@
 import { Point } from 'mirada'
+import { toSize } from '../util'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithKSize } from './types'
-import { toSize } from '../util'
 
 export interface BoxFilterOptions extends OperationExecBaseOptions, BoxFilterConcreteOptions {
 }

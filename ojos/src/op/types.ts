@@ -1,5 +1,5 @@
-import { BorderTypes, LineTypes, Mat, Point, Scalar, Size } from 'mirada'
-import { SizeRepresentation } from '../util';
+import { BorderTypes, LineTypes, Mat, Point, Scalar } from 'mirada'
+import { SizeRepresentation } from '../util'
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
