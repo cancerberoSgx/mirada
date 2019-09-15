@@ -17,13 +17,18 @@ export interface HistEqualizationConcreteOptions extends WithChannels {
   tileGridSize?: Size
 }
 
+/**
+ * Applies histogram equalization using cv.equalizeHist or cv.CLAHE. In case src image has multiple channels, equalization is applied on each of them independently and then the result is merged
+ */
 export class HistEqualization extends AbstractOperation<HistEqualizationOptions> {
   name = "HistEqualization"
   description = "Applies histogram equalization using cv.equalizeHist or cv.CLAHE. In case src image has multiple channels, equalization is applied on each of them independently and then the result is merged"
   sameSizeAndType = true
+
   protected _exec(o: HistEqualizationOptions) {
     this.allChannels(o, o => this.histEqualizationOne(o))
   }
+
   protected checkInputImage(o: HistEqualizationOptions) {
     if (!o.channels) {
       if (o.src.channels() > 1 && o.mode === 'equalizeHist') {
@@ -36,6 +41,7 @@ export class HistEqualization extends AbstractOperation<HistEqualizationOptions>
       // o.src!==o.dst &&   o.dst!.channels()>1 && o.mode==='CLAHE' && cv.cvtColor(o.dst!, o.dst!, cv.CV_8UC1, 0)
     }
   }
+  
   protected histEqualizationOne(o: HistEqualizationOptions) {
     if (o.mode === 'equalizeHist') {
       cv.equalizeHist(o.src, o.dst!)

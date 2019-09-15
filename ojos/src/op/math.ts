@@ -40,11 +40,14 @@ export interface MathConcreteOptions extends MathBaseOptions, Partial<AddWeightC
   scale?: number
 }
 
+/**
+ * performs math operations per pixel on images, like add, subtract, divide, addWeighted and multiply
+ */
 export class Math extends AbstractOperation<MathOptions> {
   name = "Math"
-  description = `performs math operations per pixel on images, like add, subtract, divide and multiply`
+  description = `performs math operations per pixel on images, like add, subtract, divide, addWeighted and multiply`
   sameSizeAndType = true
-
+  
   protected validate(o: MathOptions) {
     if (anyUndefined(o.src2, o.alpha, o.beta, o.gamma) && ['addWeighted'].includes(o.type)) {
       return 'alpha, beta, gamma and src2 must be defined'

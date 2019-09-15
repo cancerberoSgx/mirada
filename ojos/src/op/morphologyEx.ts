@@ -12,8 +12,12 @@ export interface MorphologyExConcreteOptions extends WithBorderType, WithBorderV
   iterations?: number
 }
 
+/**
+ * perform advanced morphological transformations using an erosion and dilation as basic operations.
+ */
 export class MorphologyEx extends AbstractOperation<MorphologyExOptions> {
-  name: string = "MorphologyEx"
+  name = "MorphologyEx"
+  description='perform advanced morphological transformations using an erosion and dilation as basic operations.'
   sameSizeAndType = true
   protected _exec(o: MorphologyExOptions) {
     cv.morphologyEx(o.src, o.dst!, o.op, o.kernel, o.anchor || new cv.Point(-1, -1), o.iterations || 1,

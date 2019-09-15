@@ -19,8 +19,12 @@ export interface ConvertToConcreteOptions {
   dtype?: number
 }
 
+/**
+ * converts source pixel values to the target data type.
+ */
 export class ConvertTo extends AbstractOperation<ConvertToOptions> {
-  name: string = "ConvertTo"
+  name = "ConvertTo"
+  description='converts source pixel values to the target data type.'
   protected _exec(o: ConvertToOptions) {
     o.src.convertTo(o.dst!, o.dtype || -1, o.alpha || 1.0, o.beta || 0.0)
   }

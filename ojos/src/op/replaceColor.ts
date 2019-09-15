@@ -21,6 +21,9 @@ export interface ReplaceColorOptions extends OperationExecBaseOptions {
   removeRest?: boolean
 }
 
+/**
+ * Will replace pixels within given boundaries with given color or image's pixels
+ */
 export class ReplaceColor extends AbstractOperation<ReplaceColorOptions> {
   name = "ReplaceColor"
   description = `Will replace pixels within given boundaries with given color or image's pixels`

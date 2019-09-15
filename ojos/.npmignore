@@ -15,9 +15,9 @@ formatCodeSettings.json
 .nyc_output
 coverage
 test-browser-outdir
-guitarra
 dist/test
 dist/test-browser
+dist/scripts
 test
 .cache
 .travis.yml

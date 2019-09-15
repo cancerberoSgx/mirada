@@ -36,9 +36,9 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       }
       this.validated = true
     }
-    this._exec(options)
+    this._exec(options as any)
     this.checkInPlaceAfter(options)
-    this.afterExec(options)
+    this.afterExec(options as any)
     return options.dst!
   }
 
@@ -64,7 +64,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
       ksize.height = ksize.height < 3 ? 3 : ksize.height % 2 !== 1 ? ksize.height - 1 : ksize.height
     }
     this.checkDst(options)
-    return options as MandatoryDst<T>
+    return options 
   }
 
   protected checkDst(options: T) {

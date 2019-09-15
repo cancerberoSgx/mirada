@@ -1,4 +1,14 @@
-import { BorderTypes, LineTypes, Mat, Point, Scalar, Size } from 'mirada'
+import { BorderTypes, LineTypes, Mat, Point, Scalar, Size, adaptiveThreshold } from 'mirada'
+import { AdaptiveThresholdOptions } from './adaptiveThreshold';
+import { BilateralFilterOptions } from './bilateralFilter';
+import { BitwiseOptions } from './bitwise';
+import { BoxFilterOptions } from './boxFilter';
+import { CannyOptions } from './canny';
+import { CircleOptions } from './circle';
+import { ConvertToOptions } from './convertTo';
+import { EdgeOptions } from './edge';
+import { EllipseOptions } from './ellipse';
+import { FloodFillOptions } from './floodFill';
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
@@ -87,3 +97,16 @@ export interface WithCenter {
    */
   center: Point
 }
+
+// export interface OperationsByName {
+//   AdaptiveThreshold: AdaptiveThresholdOptions
+//   BilateralFilter: BilateralFilterOptions
+//   Bitwise: BitwiseOptions
+//   BoxFilter: BoxFilterOptions
+//   Canny: CannyOptions
+//   Circle: CircleOptions
+//   ConvertTo: ConvertToOptions
+//   Edge: EdgeOptions
+//   Ellipse: EllipseOptions
+//   FloodFill: FloodFillOptions
+// }

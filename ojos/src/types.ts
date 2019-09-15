@@ -1,4 +1,8 @@
-export enum SolveMethodEnum {
+import { SolvePnPMethod } from 'mirada';
+
+let t:SolvePnPMethod
+
+export enum SolvePnPMethodEnum {
   SOLVEPNP_ITERATIVE = 'SOLVEPNP_ITERATIVE',
   SOLVEPNP_EPNP = 'SOLVEPNP_EPNP',
   SOLVEPNP_P3P = 'SOLVEPNP_P3P',
@@ -9,7 +13,19 @@ export enum SolveMethodEnum {
   SOLVEPNP_IPPE_SQUARE = 'SOLVEPNP_IPPE_SQUARE',
 }
 
-export enum ThresholdEnum {
+export enum BorderTypesEnum {
+  BORDER_CONSTANT = 'BORDER_CONSTANT',
+BORDER_REPLICATE = 'BORDER_REPLICATE',
+BORDER_REFLECT = 'BORDER_REFLECT',
+BORDER_WRAP = 'BORDER_WRAP',
+BORDER_REFLECT_101 = 'BORDER_REFLECT_101',
+BORDER_TRANSPARENT = 'BORDER_TRANSPARENT',
+BORDER_REFLECT101 = 'BORDER_REFLECT101',
+BORDER_DEFAULT = 'BORDER_DEFAULT',
+BORDER_ISOLATED = 'BORDER_ISOLATED',
+}
+
+export enum ThresholdTypesEnum {
   THRESH_BINARY = 'THRESH_BINARY',
   THRESH_BINARY_INV = 'THRESH_BINARY_INV',
   THRESH_TRUNC = 'THRESH_TRUNC',
@@ -20,7 +36,7 @@ export enum ThresholdEnum {
   THRESH_TRIANGLE = 'THRESH_TRIANGLE',
 }
 
-export enum AdaptiveThresholdEnum {
+export enum AdaptiveThresholdTypesEnum {
   ADAPTIVE_THRESH_GAUSSIAN_C = 'ADAPTIVE_THRESH_GAUSSIAN_C',
   ADAPTIVE_THRESH_MEAN_C = 'ADAPTIVE_THRESH_MEAN_C'
 }
@@ -34,6 +50,13 @@ export enum MorphTypesEnum {
   MORPH_TOPHAT = 'MORPH_TOPHAT',
   MORPH_BLACKHAT = 'MORPH_BLACKHAT',
 }
+
+export enum MorphShapesEnum {
+MORPH_RECT = 'MORPH_RECT',
+MORPH_CROSS = 'MORPH_CROSS',
+MORPH_ELLIPSE = 'MORPH_ELLIPSE',
+}
+
 
 export enum DecompTypesEnum {
   DECOMP_LU = 'DECOMP_LU',
