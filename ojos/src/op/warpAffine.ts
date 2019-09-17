@@ -1,6 +1,6 @@
 import { DecompTypes, del, Scalar } from 'mirada'
 import { array } from 'misc-utils-of-mine-generic'
-import { randomScalarColor } from '../color'
+import { randomScalarColor } from '../util/color'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithBorderValue, WithSize } from './types'
 

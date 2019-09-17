@@ -1511,7 +1511,7 @@ export declare class Mat extends Mat_ {
    * @param mask Operation mask of the same size as *this. Its non-zero elements indicate which matrix
    * elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels
    */
-  public setTo(value: InputArray, mask?: InputArray): Mat
+  public setTo(value: InputArray | Scalar, mask?: InputArray): Mat
 
   /**
    *   The method returns a matrix step divided by [Mat::elemSize1()] . It can be useful to quickly

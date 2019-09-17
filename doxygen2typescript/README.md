@@ -46,6 +46,7 @@ opencv2ts({
 - [ ] move json2dts to own repo
 - [ ] cli (5)
 - [ ] groups - innerclass (4)
+- [ ] Mat.setTo(scalar)
 - [x] build more examples and check all types are generated
   - [x] grabCut is not exposed
 - [x] method cv.ellipse1 is not generated -   cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8)

@@ -1,12 +1,12 @@
+import { toNumber } from '../util/util'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithChannels, WithDDepth, WithKSize } from './types'
-import { SizeRepresentation, toNumber } from '../util'
 
 export interface EdgeOptions extends OperationExecBaseOptions, EdgeConcreteOptions {
 }
 
-export interface EdgeConcreteOptions extends WithBorderType, WithKSize , WithChannels, WithDDepth {
-  type: 'sobel' | 'scharr' | 'laplacian' 
+export interface EdgeConcreteOptions extends WithBorderType, WithKSize, WithChannels, WithDDepth {
+  type: 'sobel' | 'scharr' | 'laplacian'
   /**
    * Applies only for Scharr and Sobel (and are mandatory in that case). Also must less than 3
    */
@@ -29,16 +29,18 @@ export class Edge extends AbstractOperation<EdgeOptions> {
   name: string = "Edge"
   description = "facade around cv.Sobel, cv.Laplacian and cv.Scharr"
   sameSizeAndType = true
+
   protected checkInputImage(o: EdgeOptions) {
     if (!o.channels && o.src.channels() > 1) {
       cv.cvtColor(o.src, o.src, cv.COLOR_RGB2GRAY, 0)
     }
   }
+
   protected validate(o: EdgeOptions) {
     if (['scharr', 'sobel'].includes(o.type) && !(typeof o.dx === 'number' && typeof o.dy === 'number' && o.dx < 3 && o.dy < 3)) {
       return 'dx and dy are mandatory and must be less than 3'
     }
-    if (['sobel'].includes(o.type) && ![1, 3, 5, 7].includes(toNumber(o.ksize) || 1)) {
+    if (['sobel'].includes(o.type) && ![1, 3, 5, 7].includes(toNumber(o.ksize || 1))) {
       return 'If ksize is given then it must be 1, 3, 5, or 7'
     }
     if (['laplacian'].includes(o.type) && !(typeof o.ksize === 'undefined' || toNumber(o.ksize) > 0 && toNumber(o.ksize) % 2 === 1)) {
@@ -52,11 +54,11 @@ export class Edge extends AbstractOperation<EdgeOptions> {
 
   protected _execOne(o: EdgeOptions) {
     if (o.type === 'sobel') {
-      cv.Sobel(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, o.ksize = 3, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
+      cv.Sobel(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, toNumber(o.ksize || 3), o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
     } else if (o.type === 'scharr') {
       cv.Scharr(o.src, o.dst!, o.ddepth || -1, o.dx!, o.dy!, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
     } else if (o.type === 'laplacian') {
-      cv.Laplacian(o.src, o.dst!, o.ddepth || -1, o.ksize || 1, o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
+      cv.Laplacian(o.src, o.dst!, o.ddepth || -1, toNumber(o.ksize || 1), o.scale || 1, o.delta || 0, o.borderType || cv.BORDER_DEFAULT)
     }
   }
 }

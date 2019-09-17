@@ -36,7 +36,7 @@ export interface HoughLinesPConcreteOptions {
   edgeThreshold?: number
   edgeThreshold2?: number
   edgeApertureSize?: number
-  edgeL2gradient?: number
+  edgeL2gradient?: boolean
 }
 
 /**

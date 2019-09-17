@@ -1,5 +1,5 @@
 import { BorderTypes, LineTypes, Mat, Point, Scalar, Size } from 'mirada'
-import { SizeRepresentation } from '../util'
+import { SizeRepresentation } from '../util/util'
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
@@ -34,7 +34,7 @@ export interface ImageOperation<T extends OperationExecBaseOptions> {
 
   exec(...o_: OperationExecParams<T>): Mat
 
-  resolveOptionsObject(...o: OperationExecParams<T>): T|undefined 
+  resolveOptionsObject(...o: OperationExecParams<T>): T | undefined
 }
 
 export type OperationExecParams<T extends OperationExecBaseOptions> = [T] | [Mat, ...(T[keyof T])[]]
@@ -93,9 +93,9 @@ export interface WithKernelAnchor {
 }
 
 export interface WithDDepth {
-    /**
-   * the output image dept. (-1 to use src.depth()).
-   */
+  /**
+ * the output image dept. (-1 to use src.depth()).
+ */
   ddepth?: number
 }
 

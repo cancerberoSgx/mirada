@@ -17,6 +17,7 @@
   - [ ] support for existing operations (npm run check-ops)
   - [ ] script stmt support
 - [ ] browser test - copy from mirada
+- [ ] operation performance - rollback the ksize option toNumber - SizeRepresentation thing.
 - [ ] scripts: support multi line ops statements with \
 - [ ] scripts  command name case insensitive
 - [ ] travis

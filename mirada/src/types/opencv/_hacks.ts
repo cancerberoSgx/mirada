@@ -27,7 +27,6 @@ export declare class Point {
   public y: number;
 }
 
-
 export declare class Size {
   public constructor(width: number, height: number);
   public width: number;
@@ -78,7 +77,7 @@ import '../_cv'
 /**
  * Base class for Contrast Limited Adaptive Histogram Equalization.
  */
-declare class CLAHE extends Algorithm {
+export declare class CLAHE extends Algorithm {
   /**
    * @param clipLimit Threshold for contrast limiting. Default.  40.0,
    * @param totalGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column. Default: Size(8, 8) 
@@ -200,6 +199,7 @@ export declare class Mat_ extends Vector<Mat> {
   public floatPtr(i: any, j: any): any
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
+  public setTo(value: Mat_ | Scalar, mask?: Mat_): Mat_;
   /**
    * Sometimes, you will have to play with certain region of images. 
    * For eye detection in images, first face detection is done all 

@@ -1,10 +1,10 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, HoughLinesP, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave, Filter2D } from '../src'
+import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, Filter2D, FloodFill, FloodFillOptions, HoughLinesP, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave } from '../src'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
 import { LineSegment } from '../src/op/types'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
@@ -12,7 +12,7 @@ test.todo('options in constructor and exec() overrides')
 
 test('Filter2D', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = new Filter2D().exec({src, dst: src,  kernel: cv.getStructuringElement(cv.MORPH_RECT, {width: 3, height: 1}) } )
+  const dst = new Filter2D().exec({ src, dst: src, kernel: cv.getStructuringElement(cv.MORPH_RECT, { width: 3, height: 1 }) })
   t.true(src === dst)
   // write(toRgba(src), 'tmp-warp.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hFilter2D.png'), await toRgba(src), true), 0)
@@ -58,7 +58,7 @@ test('roi inPlace', async t => {
 
 test('pyrDown inPlace', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = new Pyr().exec({ src, dst: src , type: 'down'})
+  const dst = new Pyr().exec({ src, dst: src, type: 'down' })
   t.true(src === dst)
   t.deepEqual(compareL2(await File.fromFile('test/assets/hPyrDown.png'), await toRgba(src), true), 0)
   del(src)

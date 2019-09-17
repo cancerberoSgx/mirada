@@ -89,7 +89,7 @@ import { Algorithm } from '.'
 /**
  * Base class for Contrast Limited Adaptive Histogram Equalization.
  */
-declare class CLAHE extends Algorithm {
+export declare class CLAHE extends Algorithm {
   /**
    * @param clipLimit Threshold for contrast limiting. Default.  40.0,
    * @param totalGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column. Default: Size(8, 8) 
@@ -119,9 +119,7 @@ declare class CLAHE extends Algorithm {
    * @param tileGridSize defines the number of tiles in row and column.
    */
   setTilesGridSize(tileGridSize: Size): void
-
 }
-
 
 // emscripten embind internals
 export declare function getInheritedInstanceCount(...a: any[]): any

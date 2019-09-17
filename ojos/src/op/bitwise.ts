@@ -24,7 +24,7 @@ export class Bitwise extends AbstractOperation<BitwiseOptions> {
       return 'src2 option is required'
     }
   }
-
+  optionsOrder = ['src', 'dst', 'type', 'mask', 'src2'] as (keyof BitwiseOptions)[]
   protected _exec(o: BitwiseOptions) {
     // TODO: check mask type and size
     // TODO: check src2 size and type

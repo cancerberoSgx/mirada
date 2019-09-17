@@ -1,6 +1,3 @@
-import { SolvePnPMethod } from 'mirada'
-
-let t: SolvePnPMethod
 
 export enum SolvePnPMethodEnum {
   SOLVEPNP_ITERATIVE = 'SOLVEPNP_ITERATIVE',

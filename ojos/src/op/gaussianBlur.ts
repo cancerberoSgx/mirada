@@ -1,4 +1,4 @@
-import { toSize } from '../util'
+import { toSize } from '../util/util'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithKSize } from './types'
 

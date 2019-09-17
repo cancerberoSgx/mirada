@@ -80,7 +80,7 @@ export function asMat(f: File | Mat) {
   return File.isFile(f) ? f.asMat() : f
 }
 
-export function del(...m: EmscriptenEmbindInstance[]) {
+export function del(...m: (EmscriptenEmbindInstance)[]) {
   m.filter(m => !m.isDeleted()).forEach(m => m.delete())
 }
 

@@ -66,7 +66,7 @@ export class Math extends AbstractOperation<MathOptions> {
     } else if (o.type === 'divide') {
       cv.multiply(o.src, o.src2!, o.dst!, o.scale || 1, o.dtype || -1)
     } else if (o.type === 'addWeighted') {
-      cv.addWeighted(o.src, o.alpha, o.src2, o.beta, o.gamma, o.dst!, o.dtype || -1)
+      cv.addWeighted(o.src, (o as AddWeightOptions).alpha, o.src2, (o as AddWeightOptions).beta, (o as AddWeightOptions).gamma, o.dst!, o.dtype || -1)
     }
   }
 }

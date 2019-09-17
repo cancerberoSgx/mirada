@@ -1,5 +1,5 @@
 
-import { bool, FileNode, FileStorage, Ptr } from './_types'
+import { bool, EmscriptenEmbindInstance, FileNode, FileStorage, Ptr } from './_types'
 
 /**
  * especially for classes of algorithms, for which there can be multiple implementations. The examples
@@ -45,7 +45,7 @@ import { bool, FileNode, FileStorage, Ptr } from './_types'
  * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hpp#L3077).
  * 
  */
-export declare class Algorithm {
+export declare class Algorithm extends EmscriptenEmbindInstance {
 
   public constructor()
 

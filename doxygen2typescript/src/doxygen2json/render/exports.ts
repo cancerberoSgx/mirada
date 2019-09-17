@@ -65,7 +65,8 @@ function fixMissingExtends(o: Doxygen2tsOptions) {
   const missingExtends = {
     'Mat': 'Mat_',
     'MatExpr': 'Mat',
-    'CascadeClassifier': 'Mat'
+    'CascadeClassifier': 'Mat',
+    'Algorithm': 'EmscriptenEmbindInstance'
   }
   Object.keys(missingExtends).forEach(k => {
     const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
@@ -88,7 +89,7 @@ function fixMissingExtends(o: Doxygen2tsOptions) {
 function fixClasses(o: Doxygen2tsOptions) {
   const removeMembers = {
     'MatExpr': 'size',
-    'Mat': ['isSubmatrix', 'at', 'assignTo'],
+    'Mat': ['isSubmatrix', 'at', 'assignTo', 'setTo'],
   }
   const p = new Project()
   Object.keys(removeMembers).forEach(k => {

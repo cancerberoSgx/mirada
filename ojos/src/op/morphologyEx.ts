@@ -1,4 +1,4 @@
-import { Mat, MorphTypes, Point } from 'mirada'
+import { MorphTypes } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithBorderType, WithBorderValue, WithKernel } from './types'
 
