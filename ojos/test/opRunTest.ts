@@ -123,7 +123,6 @@ Bitwise <%= vars.name %> out2 type: 'not'
 # comment 4
     `
   })
-  // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
   t.deepEqual(images.map(i => i.name), ['src', 'out1', 'out2'])
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'out2')!.mat), await fromFile('test/assets/hRunScript.png'), true), 0)
   del(...images.map(i => i.mat))
@@ -163,7 +162,6 @@ test('json lang', async t => {
   }
 ]`
   })
-  // await serial(images.map((m,i)=>async ()=> await write(toRgba(m.mat), 'tmp'+i+'.png')))
   t.deepEqual(images.map(i => i.name), ['src', 'a', 'b'])
   t.deepEqual(compareL2(toRgba(images.find(i => i.name === 'b')!.mat), await fromFile('test/assets/lennaOpRun2.png'), true), 0)
   del(...images.map(i => i.mat))
@@ -201,4 +199,4 @@ Ellipse f g center: { x: 127, y: 127 }, angle: 33, size: { width: 67, height: 11
 
 test.todo('error handling')
 test.todo('<% multi line support %>')
-test.todo('statement multiline using \\ ')
+test.todo('statement multiline ending lines with \\ ')

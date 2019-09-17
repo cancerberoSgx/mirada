@@ -3,9 +3,13 @@ import { unquote } from 'misc-utils-of-mine-generic'
 import { resolve } from 'path'
 import { Project } from 'ts-morph'
 import { extractMemberSignatures } from 'typescript-member-signatures'
-import { AbstractOperation, AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor } from '../src'
+import { AbstractOperation, AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, 
+Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, 
+ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr } from '../src'
 
-const allOps = [AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor]
+const allOps = [AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, 
+FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, 
+Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr]
 
 function generateMetadata() {
   const p = new Project({ tsConfigFilePath: 'tsconfig.json', addFilesFromTsConfig: true })

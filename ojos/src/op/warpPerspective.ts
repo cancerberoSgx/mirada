@@ -2,9 +2,9 @@ import { DecompTypes, del, Scalar, Size } from 'mirada'
 import { array } from 'misc-utils-of-mine-generic'
 import { randomScalarColor } from '../color'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType, WithBorderValue } from './types'
+import { OperationExecBaseOptions, WithBorderType, WithBorderValue, WithSize } from './types'
 
-export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType, WithBorderValue {
+export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBorderType, WithBorderValue, Partial<WithSize> {
   /**
    *  Coordinates of quadrangle vertices in the source image.
    */
@@ -17,10 +17,6 @@ export interface WarpPerspectiveOptions extends OperationExecBaseOptions, WithBo
    * Combination of interpolation methods (INTER_LINEAR or INTER_NEAREST) and the optional flag WARP_INVERSE_MAP, that sets M as the inverse transformation 
    */
   flags?: number
-  /**
-   * Size of the output image.
-   */
-  size?: Size,
   /**
    * Method passed to cv::solve (DecompTypes)
    */

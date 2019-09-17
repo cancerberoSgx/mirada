@@ -1,13 +1,25 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { Bitwise, FloodFill, FloodFillOptions, InRange, ReplaceColor, scalarColor } from '../src'
+import { Bitwise, FloodFill, FloodFillOptions, InRange, ReplaceColor, scalarColor, Pyr } from '../src'
 import { AdaptiveThreshold } from '../src/op/adaptiveThreshold'
 import { ConvertTo } from '../src/op/convertTo'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada } from './testUtil'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
+
+test.todo('options in constructor and exec() overrides')
+
+test('pyrDown', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  const dst = new Pyr().exec({src, dst: src})
+  t.true(src===dst)
+  // write(toRgba(dst), 'tmprrr.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/hPyrDown.png'), await toRgba(src), true), 0)
+  del(src)
+})
+test.todo('pyrUp')
 
 test('inRange', async t => {
   const src = await fromFile('test/assets/h.jpg')
@@ -84,7 +96,6 @@ test('replaceColor inPlace removeRest', async t => {
     newColorOrImage: new cv.Scalar(255, 0, 0, 255)
   })
   t.true(src === dst)
-  // write(toRgba(dst), 'tmprrr.png')
   t.deepEqual(compareL2(await fromFile('test/assets/nInRange.png'), toRgba(dst), true), 0)
   del(dst)
 })

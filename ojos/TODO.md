@@ -1,23 +1,31 @@
 ## TODO
-- [x] cv.cvtColor
-- [ ] fillPoly 
+- [ ] operation option default values (specially for required options)
+- [ ] video codecs ? (do we need other interface or adapt current Codec one ? should that be on magica itself? )
+- [ ] npm run check-ops - green and implement TODOs
+- [ ] toRgba
+- [ ] sepFilter2D
 - [ ] filter2D
 - [ ] roi
-- [ ] npm run check-ops - green and implement todos
-- [ ] toRgba
+- [ ] fillPoly 
 - [ ] magica codec
-- [ ] svg codec ()
-- [ ] opOptions as array: type mapping between Ops Options to array - so stmts are simpler: `GaussianBlur src out1 ksize: 5, sigmaX: 2.2` could be written as `GaussianBlur src out1 5 2.2` - and so exec: `new GaussianBlur().exec(src, dst, 5, 2.2)`
+- [ ] svg codec (R/W) based on svg-converter (browser and node.js)
+- [ ] opOptions as array: type mapping between Ops Options to array - so stmts are simpler: `GaussianBlur src out1 ksize: 5, sigmaX: 2.2` can be written as `GaussianBlur src out1 5 2.2` - and so exec: `new GaussianBlur().exec(src, dst, 5, 2.2)`
   - [x] infrastructure
   - [ ] support for existing operations (npm run check-ops)
   - [ ] script stmt support
 - [ ] browser test - copy from mirada
-- [ ] scripts: json string input
+- [x] scripts: json string input
 - [ ] scripts: support multi line ops statements with \
+- [x] scripts: stmt-map support option values with comma test 
 - [ ] scripts  command name case insensitive
-- [ ] scripts: stmt-map support option values with comma test 
 - [ ] travis
-- [ ] an utility to build "time-scan" video effects like in https://hackaday.io/project/10581/logs ? 
+- [ ] API for time-aware video filters (like demo's addWeighted filter)
+  - [ ] should we use cv types like ArrayofArray or matVector ? 
+  - [ ] support n previous frames - not just last one. 
+  - [ ] concrete implementations for "time-scan" video effects like in https://hackaday.io/project/10581/logs
+     - [ ] delays defined by input kernel / mat like there. 
+- [x] cv.cvtColor
+- [x] pyrDown / pyrUp 
 - [x] scripts: run() - based on Operation options - src and dst are names
 - [x] scripts: statement syntax : `GaussianBlur lenna out1 ksize: 7, sigmaX: 2.2`
 - [x] scripts : template support 
@@ -25,8 +33,6 @@
 - [x] script run command by command - dont render the entire script, but operation by operation so template can evaluate dynamic data  
 - [x] animations - easing
 - [x] decide what we do with commands - remove it ?  - REMOVED
-- [x] canvas codec loaded in browser bu default
-- [x] canvas codec support svg image input
 - [x] integrate mirada-cli generateCommands script here-  use operations interfaces
 - [x] line
 - [x] rectangle
@@ -42,21 +48,22 @@
 ### ideas for the demo
 
 - [ ] be able to repeat operations.
-- [ ] support images 
-- [ ] examples with screenshots
-- [ ] support loading videos
+- [ ] load video or image from file or url
+- [ ] https://webrtc.github.io/samples/src/content/getusermedia/getdisplaymedia/
+- [x] examples with screenshots
 - [ ] time-effects like https://hackaday.io/project/10581-free-beer-selfie
 - [ ] declare animations - when user trigger an action the perspective transformation changes over time.
   - [x] use easing (flor/accursed projects) against properties.
   - [ ] assume users are responsible of triggering them manually - by name
-- [ ] record video
-- [ ] load video or image from file or url
-- on mouse over effects - affecting only cursor close region
-- for operations requiring a second mat, we could operate with the previous frame
-  - [ ] like convolution in time - 
-  - smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
-- add face detection even without framework.
-- add shift-cam-ting object tracking even without framework.
+- [ ] record video https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element and download it.
+- [ ] take a screenshot and download it
+- [ ] on mouse over effects - affecting only cursor close region
+- [x] operations requiring a second mat that is the previous frame 
+  - [x] addWeighted smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
+- [ ] add face detection even without framework.
+- [ ] add shift-cam-thing object tracking even without framework.
+
+### Other
 
 - [ ] a project for high level HTML Widgets (Point, Color, pointList, etc)
   - [ ] fabric-like support for editor GUI  on top ? 

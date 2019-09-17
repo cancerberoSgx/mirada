@@ -1,5 +1,5 @@
 
-import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions } from '.' 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions } from '.' 
 
 interface Base {
   name: string
@@ -44,7 +44,8 @@ export const operationClasses = () => ({
   Threshold: Threshold,
   WarpAffine: WarpAffine,
   WarpPerspective: WarpPerspective,
-  CvtColor: CvtColor
+  CvtColor: CvtColor,
+  Pyr: Pyr
 })
 
 export interface OperationOptions {
@@ -70,7 +71,8 @@ export interface OperationOptions {
   Threshold: ThresholdOptions,
   WarpAffine: WarpAffineOptions,
   WarpPerspective: WarpPerspectiveOptions,
-  CvtColor: CvtColorOptions
+  CvtColor: CvtColorOptions,
+  Pyr: PyrOptions
 }
 
 export enum OperationNames {
@@ -96,7 +98,8 @@ export enum OperationNames {
   Threshold = 'Threshold',
   WarpAffine = 'WarpAffine',
   WarpPerspective = 'WarpPerspective',
-  CvtColor = 'CvtColor'
+  CvtColor = 'CvtColor',
+  Pyr = 'Pyr'
 }
 
 let metadata: OperationMetadata[] = null as any
@@ -224,7 +227,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }
         ]
@@ -334,7 +337,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -342,7 +345,7 @@ export function getOperationMetadata() {
             signature: "ksize: SizeRepresentation",
             type: "SizeRepresentation",
             typeUnion: [],
-            description: "blurring kernel size. In general only odd numbers greater than 2 are accepted ",
+            description: "Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.",
             optional: false
           }
         ]
@@ -460,7 +463,7 @@ export function getOperationMetadata() {
             signature: "center: Point",
             type: "Point",
             typeUnion: [],
-            description: "Shape's center coordinates",
+            description: "Shape's center coordinates.",
             optional: false
           }
         ]
@@ -602,7 +605,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -649,14 +652,6 @@ export function getOperationMetadata() {
             optional: false
           }, 
           {
-            name: "size",
-            signature: "size: Size;",
-            type: "Size",
-            typeUnion: [],
-            description: "Ellipse width and height.",
-            optional: false
-          }, 
-          {
             name: "color",
             signature: "color: Scalar",
             type: "Scalar",
@@ -669,7 +664,15 @@ export function getOperationMetadata() {
             signature: "center: Point",
             type: "Point",
             typeUnion: [],
-            description: "Shape's center coordinates",
+            description: "Shape's center coordinates.",
+            optional: false
+          }, 
+          {
+            name: "size",
+            signature: "size: Size",
+            type: "Size",
+            typeUnion: [],
+            description: "Output image or shape size.",
             optional: false
           }
         ]
@@ -795,7 +798,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -803,7 +806,7 @@ export function getOperationMetadata() {
             signature: "ksize: SizeRepresentation",
             type: "SizeRepresentation",
             typeUnion: [],
-            description: "blurring kernel size. In general only odd numbers greater than 2 are accepted ",
+            description: "Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.",
             optional: false
           }
         ]
@@ -834,8 +837,8 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
-            name: "mode",
-            signature: "mode: 'equalizeHist' | 'CLAHE'",
+            name: "type",
+            signature: "type: 'equalizeHist' | 'CLAHE'",
             type: "'equalizeHist' | 'CLAHE'",
             typeUnion: ["equalizeHist","CLAHE"],
             description: "",
@@ -846,15 +849,7 @@ export function getOperationMetadata() {
             signature: "clipLimit?: number",
             type: "number",
             typeUnion: [],
-            description: "Applies only when [mode] is 'CLAHE'",
-            optional: true
-          }, 
-          {
-            name: "tileGridSize",
-            signature: "tileGridSize?: Size",
-            type: "Size",
-            typeUnion: [],
-            description: "Applies only when [mode] is 'CLAHE'",
+            description: "Applies only when [mode] is `CLAHE`",
             optional: true
           }, 
           {
@@ -1066,7 +1061,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }
         ]
@@ -1074,7 +1069,7 @@ export function getOperationMetadata() {
       
       {
         name: "MorphologyEx",
-        description: "perform advanced morphological transformations using an erosion and dilation as basic operations.",
+        description: "perform advanced morphological transformations using an erosion and dilation as basic operations. In case of multi-channel images, each channel is processed independently.",
         noInPlace: false,
         sameSizeAndType: true,
         validChannels: undefined,
@@ -1101,7 +1096,7 @@ export function getOperationMetadata() {
             signature: "op: MorphTypes",
             type: "MorphTypes",
             typeUnion: ["MORPH_ERODE","MORPH_DILATE","MORPH_OPEN","MORPH_CLOSE","MORPH_GRADIENT","MORPH_TOPHAT","MORPH_BLACKHAT"],
-            description: "",
+            description: "Type of a morphological operation.",
             optional: false
           }, 
           {
@@ -1109,7 +1104,7 @@ export function getOperationMetadata() {
             signature: "kernel: Mat",
             type: "Mat",
             typeUnion: [],
-            description: "",
+            description: "Structuring element. It can be created using getStructuringElement.",
             optional: false
           }, 
           {
@@ -1117,7 +1112,7 @@ export function getOperationMetadata() {
             signature: "anchor?: Point",
             type: "Point",
             typeUnion: [],
-            description: "",
+            description: "Anchor position with the kernel. Negative values mean that the anchor is at the kernel center",
             optional: true
           }, 
           {
@@ -1125,7 +1120,7 @@ export function getOperationMetadata() {
             signature: "iterations?: number",
             type: "number",
             typeUnion: [],
-            description: "",
+            description: "The number of iterations is the number of times erosion or dilatation operation will be applied. For instance, an opening operation ([MORPH_OPEN]) with two iterations is equivalent to apply successively: erode -> erode -> dilate -> dilate (and not erode -> dilate -> erode -> dilate). By default 1.",
             optional: true
           }, 
           {
@@ -1133,7 +1128,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -1341,14 +1336,6 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
-            name: "size",
-            signature: "size?: Size,",
-            type: "Size",
-            typeUnion: [],
-            description: "Size of the output image.",
-            optional: true
-          }, 
-          {
             name: "solveMethod",
             signature: "solveMethod?: DecompTypes",
             type: "DecompTypes",
@@ -1385,7 +1372,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -1432,14 +1419,6 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
-            name: "size",
-            signature: "size?: Size,",
-            type: "Size",
-            typeUnion: [],
-            description: "Size of the output image.",
-            optional: true
-          }, 
-          {
             name: "solveMethod",
             signature: "solveMethod?: DecompTypes",
             type: "DecompTypes",
@@ -1476,7 +1455,7 @@ export function getOperationMetadata() {
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
-            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes]",
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }, 
           {
@@ -1518,7 +1497,7 @@ export function getOperationMetadata() {
             name: "code",
             signature: "code: ColorConversionCodes",
             type: "ColorConversionCodes",
-            typeUnion: [],
+            typeUnion: ["COLOR_BGR2BGRA","COLOR_RGB2RGBA","COLOR_BGRA2BGR","COLOR_RGBA2RGB","COLOR_BGR2RGBA","COLOR_RGB2BGRA","COLOR_RGBA2BGR","COLOR_BGRA2RGB","COLOR_BGR2RGB","COLOR_RGB2BGR","COLOR_BGRA2RGBA","COLOR_RGBA2BGRA","COLOR_BGR2GRAY","COLOR_RGB2GRAY","COLOR_GRAY2BGR","COLOR_GRAY2RGB","COLOR_GRAY2BGRA","COLOR_GRAY2RGBA","COLOR_BGRA2GRAY","COLOR_RGBA2GRAY","COLOR_BGR2BGR565","COLOR_RGB2BGR565","COLOR_BGR5652BGR","COLOR_BGR5652RGB","COLOR_BGRA2BGR565","COLOR_RGBA2BGR565","COLOR_BGR5652BGRA","COLOR_BGR5652RGBA","COLOR_GRAY2BGR565","COLOR_BGR5652GRAY","COLOR_BGR2BGR555","COLOR_RGB2BGR555","COLOR_BGR5552BGR","COLOR_BGR5552RGB","COLOR_BGRA2BGR555","COLOR_RGBA2BGR555","COLOR_BGR5552BGRA","COLOR_BGR5552RGBA","COLOR_GRAY2BGR555","COLOR_BGR5552GRAY","COLOR_BGR2XYZ","COLOR_RGB2XYZ","COLOR_XYZ2BGR","COLOR_XYZ2RGB","COLOR_BGR2YCrCb","COLOR_RGB2YCrCb","COLOR_YCrCb2BGR","COLOR_YCrCb2RGB","COLOR_BGR2HSV","COLOR_RGB2HSV","COLOR_BGR2Lab","COLOR_RGB2Lab","COLOR_BGR2Luv","COLOR_RGB2Luv","COLOR_BGR2HLS","COLOR_RGB2HLS","COLOR_HSV2BGR","COLOR_HSV2RGB","COLOR_Lab2BGR","COLOR_Lab2RGB","COLOR_Luv2BGR","COLOR_Luv2RGB","COLOR_HLS2BGR","COLOR_HLS2RGB","COLOR_BGR2HSV_FULL","COLOR_RGB2HSV_FULL","COLOR_BGR2HLS_FULL","COLOR_RGB2HLS_FULL","COLOR_HSV2BGR_FULL","COLOR_HSV2RGB_FULL","COLOR_HLS2BGR_FULL","COLOR_HLS2RGB_FULL","COLOR_LBGR2Lab","COLOR_LRGB2Lab","COLOR_LBGR2Luv","COLOR_LRGB2Luv","COLOR_Lab2LBGR","COLOR_Lab2LRGB","COLOR_Luv2LBGR","COLOR_Luv2LRGB","COLOR_BGR2YUV","COLOR_RGB2YUV","COLOR_YUV2BGR","COLOR_YUV2RGB","COLOR_YUV2RGB_NV12","COLOR_YUV2BGR_NV12","COLOR_YUV2RGB_NV21","COLOR_YUV2BGR_NV21","COLOR_YUV420sp2RGB","COLOR_YUV420sp2BGR","COLOR_YUV2RGBA_NV12","COLOR_YUV2BGRA_NV12","COLOR_YUV2RGBA_NV21","COLOR_YUV2BGRA_NV21","COLOR_YUV420sp2RGBA","COLOR_YUV420sp2BGRA","COLOR_YUV2RGB_YV12","COLOR_YUV2BGR_YV12","COLOR_YUV2RGB_IYUV","COLOR_YUV2BGR_IYUV","COLOR_YUV2RGB_I420","COLOR_YUV2BGR_I420","COLOR_YUV420p2RGB","COLOR_YUV420p2BGR","COLOR_YUV2RGBA_YV12","COLOR_YUV2BGRA_YV12","COLOR_YUV2RGBA_IYUV","COLOR_YUV2BGRA_IYUV","COLOR_YUV2RGBA_I420","COLOR_YUV2BGRA_I420","COLOR_YUV420p2RGBA","COLOR_YUV420p2BGRA","COLOR_YUV2GRAY_420","COLOR_YUV2GRAY_NV21","COLOR_YUV2GRAY_NV12","COLOR_YUV2GRAY_YV12","COLOR_YUV2GRAY_IYUV","COLOR_YUV2GRAY_I420","COLOR_YUV420sp2GRAY","COLOR_YUV420p2GRAY","COLOR_YUV2RGB_UYVY","COLOR_YUV2BGR_UYVY","COLOR_YUV2RGB_Y422","COLOR_YUV2BGR_Y422","COLOR_YUV2RGB_UYNV","COLOR_YUV2BGR_UYNV","COLOR_YUV2RGBA_UYVY","COLOR_YUV2BGRA_UYVY","COLOR_YUV2RGBA_Y422","COLOR_YUV2BGRA_Y422","COLOR_YUV2RGBA_UYNV","COLOR_YUV2BGRA_UYNV","COLOR_YUV2RGB_YUY2","COLOR_YUV2BGR_YUY2","COLOR_YUV2RGB_YVYU","COLOR_YUV2BGR_YVYU","COLOR_YUV2RGB_YUYV","COLOR_YUV2BGR_YUYV","COLOR_YUV2RGB_YUNV","COLOR_YUV2BGR_YUNV","COLOR_YUV2RGBA_YUY2","COLOR_YUV2BGRA_YUY2","COLOR_YUV2RGBA_YVYU","COLOR_YUV2BGRA_YVYU","COLOR_YUV2RGBA_YUYV","COLOR_YUV2BGRA_YUYV","COLOR_YUV2RGBA_YUNV","COLOR_YUV2BGRA_YUNV","COLOR_YUV2GRAY_UYVY","COLOR_YUV2GRAY_YUY2","COLOR_YUV2GRAY_Y422","COLOR_YUV2GRAY_UYNV","COLOR_YUV2GRAY_YVYU","COLOR_YUV2GRAY_YUYV","COLOR_YUV2GRAY_YUNV","COLOR_RGBA2mRGBA","COLOR_mRGBA2RGBA","COLOR_RGB2YUV_I420","COLOR_BGR2YUV_I420","COLOR_RGB2YUV_IYUV","COLOR_BGR2YUV_IYUV","COLOR_RGBA2YUV_I420","COLOR_BGRA2YUV_I420","COLOR_RGBA2YUV_IYUV","COLOR_BGRA2YUV_IYUV","COLOR_RGB2YUV_YV12","COLOR_BGR2YUV_YV12","COLOR_RGBA2YUV_YV12","COLOR_BGRA2YUV_YV12","COLOR_BayerBG2BGR","COLOR_BayerGB2BGR","COLOR_BayerRG2BGR","COLOR_BayerGR2BGR","COLOR_BayerBG2RGB","COLOR_BayerGB2RGB","COLOR_BayerRG2RGB","COLOR_BayerGR2RGB","COLOR_BayerBG2GRAY","COLOR_BayerGB2GRAY","COLOR_BayerRG2GRAY","COLOR_BayerGR2GRAY","COLOR_BayerBG2BGR_VNG","COLOR_BayerGB2BGR_VNG","COLOR_BayerRG2BGR_VNG","COLOR_BayerGR2BGR_VNG","COLOR_BayerBG2RGB_VNG","COLOR_BayerGB2RGB_VNG","COLOR_BayerRG2RGB_VNG","COLOR_BayerGR2RGB_VNG","COLOR_BayerBG2BGR_EA","COLOR_BayerGB2BGR_EA","COLOR_BayerRG2BGR_EA","COLOR_BayerGR2BGR_EA","COLOR_BayerBG2RGB_EA","COLOR_BayerGB2RGB_EA","COLOR_BayerRG2RGB_EA","COLOR_BayerGR2RGB_EA","COLOR_BayerBG2BGRA","COLOR_BayerGB2BGRA","COLOR_BayerRG2BGRA","COLOR_BayerGR2BGRA","COLOR_BayerBG2RGBA","COLOR_BayerGB2RGBA","COLOR_BayerRG2RGBA","COLOR_BayerGR2RGBA","COLOR_COLORCVT_MAX"],
             description: "color space conversion code (see ColorConversionCodes).",
             optional: false
           }, 
@@ -1528,6 +1507,49 @@ export function getOperationMetadata() {
             type: "number",
             typeUnion: [],
             description: "number of channels in the destination image; if the parameter is 0, the number of the channels is derived automatically from src and code.",
+            optional: true
+          }
+        ]
+      },
+      
+      {
+        name: "Pyr",
+        description: " Performs pyramid up or down on an image. PyrUp up samples an image and then blurs it. PyrDown blurs an image and down samples it. By default, size of the output image is computed as 'Size((src.cols+1)/2, (src.rows+1)/2)', but in any case, the following conditions should be satisfied: '|𝚍𝚜𝚝𝚜𝚒𝚣𝚎.𝚠𝚒𝚍𝚝𝚑∗2−src.cols|≤2|𝚍𝚜𝚝𝚜𝚒𝚣𝚎.𝚑𝚎𝚒𝚐𝚑𝚝∗2−src.rows|≤2'.",
+        noInPlace: false,
+        sameSizeAndType: false,
+        validChannels: undefined,
+        optionsOrder: ["src","dst","type","size","bordertype"],        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }, 
+          {
+            name: "type",
+            signature: "type: 'up' | 'down'",
+            type: "'up' | 'down'",
+            typeUnion: ["up","down"],
+            description: "PyrUp or PyrDown.",
+            optional: false
+          }, 
+          {
+            name: "borderType",
+            signature: "borderType?: BorderTypes",
+            type: "BorderTypes",
+            typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
           }
         ]

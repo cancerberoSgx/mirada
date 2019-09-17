@@ -1,0 +1,28 @@
+<!--   
+  dev: 
+  rm -rf docs && mkdir -p docs && cp node_modules/mirada/dist/src/opencv.js docs && npx parcel -d docs probes/operation.html 
+
+  build: 
+  rm -rf docs && mkdir -p docs && npx parcel build -d docs --no-content-hash --detailed-report --no-source-maps --public-url './' probes/operation.html && rm -rf ../../../demos/docs/ojos-demo/operation* && cp docs/* ../../../demos/docs/ojos-demo
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <style>
+  .operationOption h6, .operationOption div {
+    display: inline
+  }
+  .operation h3 {
+    display: inline
+  }
+  </style>
+  <div id="main"></div>
+  <script src="operation.tsx"></script>
+</body>
+</html>

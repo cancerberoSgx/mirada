@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "clean": "rm -rf dist docs",
+    "clean": "rm -rf dist docs tmp*",
     "check-ops":"npx ts-node scripts/checkOpsMetadata.ts",
     "clean-npm": " rm -rf node_modules/ package-lock.json",
     "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",

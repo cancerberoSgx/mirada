@@ -1,34 +1,34 @@
-import { BorderTypes, LineTypes, Mat, Point, Scalar } from 'mirada'
+import { BorderTypes, LineTypes, Mat, Point, Scalar, Size } from 'mirada'
 import { SizeRepresentation } from '../util'
 
 
 export interface ImageOperation<T extends OperationExecBaseOptions> {
   /**
-   * Unique name identifying this operation
+   * Unique name identifying this operation.
    */
   name: string
   /**
-   * Operation description paragraph
+   * Operation description paragraph.
    */
   description: string
   /**
-   * The operation doesn't support "in-place" modifications. (passing the same mat as src and dst)
+   * The operation doesn't support "in-place" modifications. (passing the same mat as [src] and [dst]).
    */
   noInPlace: boolean
   /**
-   * Does the dst mat need to be of the same size and type as src?
+   * Does the dst mat need to be of the same size and type as [src]?.
    */
   sameSizeAndType: boolean
   /**
-   * The operation implementation doesn't support a dst Mat (always write to src)
+   * The operation implementation doesn't support a [dst] Mat (always write to src).
    */
   noDst: boolean
   /**
-   * valid channel numbers of input images
+   * Valid channel numbers of input images.
    */
   validChannels: number[] | undefined
   /**
-   * if defined, the operation supports options as array, example: `new GaussianBlur().exec(src, dst, 5, 2.2)` and in the form of stmt : `GaussianBlur src out1 5 2.2` which could be less verbose alternative.
+   * If defined, the operation supports options as array, example: `new GaussianBlur().exec(src, dst, 5, 2.2)` and in the form of statements : `GaussianBlur src out1 5 2.2` which could be less verbose alternative.
    */
   optionsOrder?: (keyof T)[]
 
@@ -48,7 +48,7 @@ export interface OperationExecBaseOptions {
 
 export interface WithBorderType {
   /**
-   * border mode used to extrapolate pixels outside of the image, see [BorderTypes]
+   * border mode used to extrapolate pixels outside of the image, see [BorderTypes].
    */
   borderType?: BorderTypes
 }
@@ -57,9 +57,16 @@ export interface WithBorderValue {
   borderValue?: Scalar
 }
 
+export interface WithSize {
+  /**
+   * Output image or shape size.
+   */
+  size: Size
+}
+
 export interface WithKSize {
   /**
-   * blurring kernel size. In general only odd numbers greater than 2 are accepted 
+   * Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.
    */
   ksize: SizeRepresentation
 }
@@ -101,7 +108,7 @@ export interface WithShift {
 
 export interface WithCenter {
   /**
-   * Shape's center coordinates
+   * Shape's center coordinates.
    */
   center: Point
 }

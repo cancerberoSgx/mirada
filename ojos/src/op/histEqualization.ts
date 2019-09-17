@@ -1,20 +1,16 @@
 import { del, Size } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithChannels } from './types'
+import { OperationExecBaseOptions, WithChannels, WithSize } from './types'
 
 export interface HistEqualizationOptions extends OperationExecBaseOptions, HistEqualizationConcreteOptions {
 }
 
-export interface HistEqualizationConcreteOptions extends WithChannels {
-  mode: 'equalizeHist' | 'CLAHE'
+export interface HistEqualizationConcreteOptions extends WithChannels, Partial<WithSize> {
+  type: 'equalizeHist' | 'CLAHE'
   /**
-   * Applies only when [mode] is 'CLAHE'
+   * Applies only when [mode] is `CLAHE`
    */
   clipLimit?: number
-  /**
-  * Applies only when [mode] is 'CLAHE'
-  */
-  tileGridSize?: Size
 }
 
 /**
@@ -31,10 +27,10 @@ export class HistEqualization extends AbstractOperation<HistEqualizationOptions>
 
   protected checkInputImage(o: HistEqualizationOptions) {
     if (!o.channels) {
-      if (o.src.channels() > 1 && o.mode === 'equalizeHist') {
+      if (o.src.channels() > 1 && o.type === 'equalizeHist') {
         cv.cvtColor(o.src, o.src, cv.COLOR_RGB2GRAY, 0)
       }
-      if (o.dst && o.src !== o.dst && o.dst.channels() > 1 && o.mode === 'equalizeHist') {
+      if (o.dst && o.src !== o.dst && o.dst.channels() > 1 && o.type === 'equalizeHist') {
         cv.cvtColor(o.dst, o.dst, cv.COLOR_RGB2GRAY, 0)
       }
       // o.src.channels()>1 && o.mode==='CLAHE'  && cv.cvtColor(o.src, o.src, cv.CV_8UC1, 0)
@@ -43,11 +39,10 @@ export class HistEqualization extends AbstractOperation<HistEqualizationOptions>
   }
 
   protected histEqualizationOne(o: HistEqualizationOptions) {
-    if (o.mode === 'equalizeHist') {
+    if (o.type === 'equalizeHist') {
       cv.equalizeHist(o.src, o.dst!)
     } else {
-      //@ts-ignore
-      let clahe = new cv.CLAHE(o.clipLimit || 1, o.tileGridSize || new cv.Size(8, 8))
+      let clahe = new cv.CLAHE(o.clipLimit || 1, o.size || new cv.Size(8, 8))
       clahe.apply(o.src, o.dst!)
       del(clahe)
     }

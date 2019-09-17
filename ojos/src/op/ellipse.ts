@@ -1,20 +1,16 @@
 import { Size } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithCenter, WithColor, WithLineType, WithThickness } from './types'
+import { OperationExecBaseOptions, WithCenter, WithColor, WithLineType, WithThickness, WithSize } from './types'
 
 export interface EllipseOptions extends OperationExecBaseOptions, EllipseConcreteOptions {
 
 }
 
-export interface EllipseConcreteOptions extends Partial<WithLineType>, WithColor, WithCenter, Partial<WithThickness> {
+export interface EllipseConcreteOptions extends Partial<WithLineType>, WithColor, WithCenter, Partial<WithThickness>, WithSize {
   /**
    * Ellipse angle in degrees.
    */
   angle: number;
-  /**
-   * Ellipse width and height.
-   */
-  size: Size;
 }
 
 /**
