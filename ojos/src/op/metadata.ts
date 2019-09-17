@@ -1,5 +1,5 @@
 
-import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions } from '.' 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions, ToRgba, ToRgbaOptions, Roi, RoiOptions } from '.' 
 
 interface Base {
   name: string
@@ -45,7 +45,9 @@ export const operationClasses = () => ({
   WarpAffine: WarpAffine,
   WarpPerspective: WarpPerspective,
   CvtColor: CvtColor,
-  Pyr: Pyr
+  Pyr: Pyr,
+  ToRgba: ToRgba,
+  Roi: Roi
 })
 
 export interface OperationOptions {
@@ -72,7 +74,9 @@ export interface OperationOptions {
   WarpAffine: WarpAffineOptions,
   WarpPerspective: WarpPerspectiveOptions,
   CvtColor: CvtColorOptions,
-  Pyr: PyrOptions
+  Pyr: PyrOptions,
+  ToRgba: ToRgbaOptions,
+  Roi: RoiOptions
 }
 
 export enum OperationNames {
@@ -99,7 +103,9 @@ export enum OperationNames {
   WarpAffine = 'WarpAffine',
   WarpPerspective = 'WarpPerspective',
   CvtColor = 'CvtColor',
-  Pyr = 'Pyr'
+  Pyr = 'Pyr',
+  ToRgba = 'ToRgba',
+  Roi = 'Roi'
 }
 
 let metadata: OperationMetadata[] = null as any
@@ -1551,6 +1557,68 @@ export function getOperationMetadata() {
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
             description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
+          }
+        ]
+      },
+      
+      {
+        name: "ToRgba",
+        description: "Changes image type to 4 channel RGBA. This is often necessary to render in HTML canvas.",
+        noInPlace: false,
+        sameSizeAndType: false,
+        validChannels: undefined,
+        optionsOrder: ["src","dst"],        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }
+        ]
+      },
+      
+      {
+        name: "Roi",
+        description: "Return an image which has a src sub region defined by in given rectangle expression",
+        noInPlace: false,
+        sameSizeAndType: false,
+        validChannels: undefined,
+        optionsOrder: ["src","dst"],        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }, 
+          {
+            name: "expr",
+            signature: "expr: Rect",
+            type: "Rect",
+            typeUnion: [],
+            description: "",
+            optional: false
           }
         ]
       }

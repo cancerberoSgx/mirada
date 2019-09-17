@@ -2,10 +2,11 @@
 - [ ] operation option default values (specially for required options)
 - [ ] video codecs ? (do we need other interface or adapt current Codec one ? should that be on magica itself? )
 - [ ] npm run check-ops - green and implement TODOs
-- [ ] toRgba
+- [x] toRgba
 - [ ] sepFilter2D
 - [ ] filter2D
-- [ ] roi
+- [ ] image warping : https://subscription.packtpub.com/book/application_development/9781785283932/1/ch01lvl1sec16/image-warping
+- [x] roi
 - [ ] fillPoly 
 - [ ] magica codec
 - [ ] svg codec (R/W) based on svg-converter (browser and node.js)
