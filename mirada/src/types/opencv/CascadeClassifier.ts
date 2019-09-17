@@ -1,5 +1,5 @@
 
-import { bool, double, FileNode, InputArray, int, Mat, Ptr, Rect, Size } from './_types'
+import { bool, double, FileNode, InputArray, int, Mat, Ptr, Size } from './_types'
 
 export declare class CascadeClassifier extends Mat {
 
@@ -36,7 +36,7 @@ export declare class CascadeClassifier extends Mat {
    * @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: InputArray, objects: Rect, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
+  public detectMultiScale(image: InputArray, objects: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -64,7 +64,7 @@ export declare class CascadeClassifier extends Mat {
    * @param maxSize Maximum possible object size. Objects larger than that are ignored. If maxSize ==
    * minSize model is evaluated on single scale.
    */
-  public detectMultiScale(image: InputArray, objects: Rect, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
+  public detectMultiScale(image: InputArray, objects: any, numDetections: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -86,7 +86,7 @@ export declare class CascadeClassifier extends Mat {
    *   cerr << "Detection " << detections[0] << " with weight " << weights[0] << endl;
    *   ```
    */
-  public detectMultiScale(image: InputArray, objects: Rect, rejectLevels: any, levelWeights: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size, outputRejectLevels?: bool): InputArray
+  public detectMultiScale(image: InputArray, objects: any, rejectLevels: any, levelWeights: any, scaleFactor?: double, minNeighbors?: int, flags?: int, minSize?: Size, maxSize?: Size, outputRejectLevels?: bool): InputArray
 
   public empty(): bool
 

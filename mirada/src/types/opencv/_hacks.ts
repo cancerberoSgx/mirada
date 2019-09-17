@@ -10,7 +10,7 @@ export declare class Scalar extends Array<number> {
   public static all(...v: number[]): Scalar;
 }
 // Hack: expose Mat super classes like Mat_, InputArray, Vector, OutputArray we make them alias of Mat to simplify and make it work
-export { Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
+export { Mat as InputArray, Mat as InputArrayOfArrays, Mat as InputOutputArray, Mat as InputOutputArrayOfArrays, Mat as MatVector, Mat as OutputArray, Mat as OutputArrayOfArrays } from './Mat'
 export { Scalar as GScalar }
 export { Point as Point2f }
 export { Point as KeyPoint }
@@ -20,7 +20,6 @@ export { Size as Size2d }
 export { Size as Size2f }
 export { Size as Size2l }
 export { Rect as Rect_ }
-export type InputArray = Mat | Scalar
 
 export declare class Point {
   public constructor(x: number, y: number);
@@ -28,11 +27,13 @@ export declare class Point {
   public y: number;
 }
 
+
 export declare class Size {
   public constructor(width: number, height: number);
   public width: number;
   public height: number;
 }
+
 
 export declare class Rect {
   public constructor();
@@ -43,6 +44,7 @@ export declare class Rect {
   public width: number;
   public height: number;
 }
+
 
 export declare class TermCriteria {
   public type: number
@@ -76,7 +78,7 @@ import '../_cv'
 /**
  * Base class for Contrast Limited Adaptive Histogram Equalization.
  */
-export declare class CLAHE extends Algorithm {
+declare class CLAHE extends Algorithm {
   /**
    * @param clipLimit Threshold for contrast limiting. Default.  40.0,
    * @param totalGridSize Size of grid for histogram equalization. Input image will be divided into equally sized rectangular tiles. tileGridSize defines the number of tiles in row and column. Default: Size(8, 8) 
@@ -168,10 +170,14 @@ export declare class VideoCapture {
   public video: HTMLVideoElement
 }
 
+export type MatSize = () => Size
+
+
 
 
 export declare function matFromImageData(imageData: ImageData): Mat
 export declare function matFromArray(rows: number, cols: number, type: any, array: number[] | ArrayBufferView): Mat
+
 
 /** since we don't support inheritance yet we force Mat to extend Mat_ which type defined here: */
 export declare class Mat_ extends Vector<Mat> {
@@ -182,22 +188,29 @@ export declare class Mat_ extends Vector<Mat> {
   public data16S: Int16Array
   public data32U: Uint32Array
   public data32S: Int32Array
-  public data64F: Float64Array
   public data32F: Float32Array
+  public data64F: Float64Array
   public ucharPtr(i: any, j: any): any
   public charPtr(i: any, j: any): any
   public shortPtr(i: any, j: any): any
   public ushortPtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
+  public ucharAt(i: any): any
+  public charAt(i: any): any
   public floatPtr(i: any, j: any): any
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
   /**
-   * Sometimes, you will have to play with certain region of images. For eye detection in images, first face detection is done all over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. It improves accuracy (because eyes are always on faces) and performance (because we search for a small area). 
+   * Sometimes, you will have to play with certain region of images. 
+   * For eye detection in images, first face detection is done all 
+   * over the image and when face is obtained, we select the face region alone and search for eyes inside it instead of searching whole image. 
+   * It improves accuracy (because eyes are always on faces) and performance (because we search for a small area). 
    * 
-   * Heads up : in JS seems only one argument is expected
+   * Heads up : in JS seems only one argument is expected.
    */
   public roi(expr: Rect | Mat_): Mat
+
+
 }
 
 export declare class ImageData {
@@ -242,14 +255,14 @@ export declare const CV_64FC1: CVDataType
 export declare const CV_64FC2: CVDataType
 export declare const CV_64FC3: CVDataType
 export declare const CV_64FC4: CVDataType
+
 export type CVDataType = any
-export declare const CV_L2: any
 
 export declare function ellipse1(dst: Mat, rotatedRect: RotatedRect, ellipseColor: Scalar, arg0: number, line: LineTypes): void
-export declare function norm1(a: Mat, b: Mat, type: NormTypes): number
 export declare function imread(canvasOrImageHtmlElement: HTMLElement | string): Mat
+export declare function norm1(a: Mat, b: Mat, type: NormTypes): number
 export declare function imshow(canvasSource: HTMLElement | string, mat: Mat): void
-
+export declare function matFromArray(rows: number, cols: number, type: any, array: any): Mat
 
 
 // Missing imports: 
@@ -257,24 +270,21 @@ export type Mat4 = any
 export type Mat3 = any
 export type Vec3 = any
 export type float_type = any
-export type int = any
-export type bool = any
+export type int = number
+export type bool = boolean
 export type FileNode = any
 export type FileStorage = any
 export type Ptr = any
 export type size_t = any
-export type double = any
-export type DMatch = any
-export type float = any
+export type double = number
+export type float = number
 export type UMat = any
-export type DetectionROI = any
 export type Matrix = any
 export type BucketKey = any
 export type Bucket = any
 export type LshStats = any
 export type MatAllocator = any
 export type uchar = any
-export type MatSize = () => Size
 export type MatStep = any
 export type UMatData = any
 export type typename = any
@@ -313,6 +323,3 @@ export type uint64_t = any
 export type uint32_t = any
 export type int32_t = any
 export type int64_t = any
-
-
-// Missing imports:

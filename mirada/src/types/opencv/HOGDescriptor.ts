@@ -1,5 +1,5 @@
 
-import { bool, DetectionROI, double, FileNode, FileStorage, float, InputArray, InputOutputArray, int, Point, Rect, Size, size_t, UMat } from './_types'
+import { bool, double, FileNode, FileStorage, float, InputArray, InputOutputArray, int, Point, Size, size_t, UMat } from './_types'
 
 /**
  * the HOG descriptor algorithm introduced by Navneet Dalal and Bill Triggs Dalal2005 .
@@ -145,7 +145,7 @@ export declare class HOGDescriptor {
    *   
    * @param searchLocations Vector of Point includes set of requested locations to be evaluated.
    */
-  public detect(img: InputArray, foundLocations: Point, weights: any, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
+  public detect(img: InputArray, foundLocations: any, weights: any, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
 
   /**
    * @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
@@ -163,7 +163,7 @@ export declare class HOGDescriptor {
    *   
    * @param searchLocations Vector of Point includes locations to search.
    */
-  public detect(img: InputArray, foundLocations: Point, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
+  public detect(img: InputArray, foundLocations: any, hitThreshold?: double, winStride?: Size, padding?: Size, searchLocations?: Point): InputArray
 
   /**
    * @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
@@ -186,7 +186,7 @@ export declare class HOGDescriptor {
    *   
    * @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: InputArray, foundLocations: Rect, foundWeights: any, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
+  public detectMultiScale(img: InputArray, foundLocations: any, foundWeights: any, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
 
   /**
    * @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
@@ -207,7 +207,7 @@ export declare class HOGDescriptor {
    *   
    * @param useMeanshiftGrouping indicates grouping algorithm
    */
-  public detectMultiScale(img: InputArray, foundLocations: Rect, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
+  public detectMultiScale(img: InputArray, foundLocations: any, hitThreshold?: double, winStride?: Size, padding?: Size, scale?: double, finalThreshold?: double, useMeanshiftGrouping?: bool): InputArray
 
   /**
    * @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.
@@ -223,7 +223,7 @@ export declare class HOGDescriptor {
    * @param groupThreshold Minimum possible number of rectangles minus 1. The threshold is used in a
    * group of rectangles to retain it.
    */
-  public detectMultiScaleROI(img: InputArray, foundLocations: any, locations: DetectionROI, hitThreshold?: double, groupThreshold?: int): InputArray
+  public detectMultiScaleROI(img: InputArray, foundLocations: any, locations: any, hitThreshold?: double, groupThreshold?: int): InputArray
 
   /**
    * @param img Matrix of the type CV_8U or CV_8UC3 containing an image where objects are detected.

@@ -1,5 +1,4 @@
 
-import { EmscriptenEmbindInstance } from './_hacks'
 import { bool, FileNode, FileStorage, Ptr } from './_types'
 
 /**
@@ -46,7 +45,7 @@ import { bool, FileNode, FileStorage, Ptr } from './_types'
  * [opencv2/core.hpp](https://github.com/opencv/opencv/tree/master/modules/core/include/opencv2/core.hpp#L3077).
  * 
  */
-export declare class Algorithm extends EmscriptenEmbindInstance {
+export declare class Algorithm {
 
   public constructor()
 

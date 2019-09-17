@@ -5,11 +5,11 @@ import { Project } from 'ts-morph'
 import { extractMemberSignatures } from 'typescript-member-signatures'
 import { AbstractOperation, AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, 
 Ellipse, FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, 
-ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr, ToRgba, Roi, Cartoonize, Wave, HoughLinesP } from '../src'
+ReplaceColor, Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr, ToRgba, Roi, Cartoonize, Wave, HoughLinesP, Filter2D } from '../src'
 
 const allOps = [AdaptiveThreshold, BilateralFilter, Bitwise, BoxFilter, Canny, Circle, ConvertTo, Edge, Ellipse, 
 FloodFill, GaussianBlur, HistEqualization, InRange, Line, Math, MedianBlur, MorphologyEx, Rectangle, ReplaceColor, 
-Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr, ToRgba, Roi, Cartoonize, Wave, HoughLinesP]
+Threshold, WarpAffine, WarpPerspective, CvtColor, Pyr, ToRgba, Roi, Cartoonize, Wave, HoughLinesP, Filter2D]
 
 function generateMetadata() {
   const p = new Project({ tsConfigFilePath: 'tsconfig.json', addFilesFromTsConfig: true })

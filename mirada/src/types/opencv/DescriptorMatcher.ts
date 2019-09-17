@@ -1,5 +1,5 @@
 
-import { bool, DMatch, FileNode, FileStorage, float, InputArray, InputArrayOfArrays, int, Mat, Ptr } from './_types'
+import { bool, FileNode, FileStorage, float, InputArray, InputArrayOfArrays, int, Mat, Ptr } from './_types'
 
 /**
  * It has two groups of match methods: for matching descriptors of an image with another image or with
@@ -56,7 +56,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, k: int, mask?: InputArray, compactResult?: bool): InputArray
+  public knnMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: any, k: int, mask?: InputArray, compactResult?: bool): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -76,7 +76,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public knnMatch(queryDescriptors: InputArray, matches: DMatch, k: int, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
+  public knnMatch(queryDescriptors: InputArray, matches: any, k: int, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
 
   /**
    *   In the first variant of this method, the train descriptors are passed as an input argument. In the
@@ -96,7 +96,7 @@ export declare class DescriptorMatcher {
    * @param mask Mask specifying permissible matches between an input query and train matrices of
    * descriptors.
    */
-  public match(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, mask?: InputArray): InputArray
+  public match(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: any, mask?: InputArray): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -110,7 +110,7 @@ export declare class DescriptorMatcher {
    * @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
    * descriptors and stored train descriptors from the i-th image trainDescCollection[i].
    */
-  public match(queryDescriptors: InputArray, matches: DMatch, masks?: InputArrayOfArrays): InputArray
+  public match(queryDescriptors: InputArray, matches: any, masks?: InputArrayOfArrays): InputArray
 
   /**
    *   For each query descriptor, the methods find such training descriptors that the distance between
@@ -135,7 +135,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: DMatch, maxDistance: float, mask?: InputArray, compactResult?: bool): InputArray
+  public radiusMatch(queryDescriptors: InputArray, trainDescriptors: InputArray, matches: any, maxDistance: float, mask?: InputArray, compactResult?: bool): InputArray
 
   /**
    *   This is an overloaded member function, provided for convenience. It differs from the above
@@ -156,7 +156,7 @@ export declare class DescriptorMatcher {
    * false, the matches vector has the same size as queryDescriptors rows. If compactResult is true, the
    * matches vector does not contain matches for fully masked-out query descriptors.
    */
-  public radiusMatch(queryDescriptors: InputArray, matches: DMatch, maxDistance: float, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
+  public radiusMatch(queryDescriptors: InputArray, matches: any, maxDistance: float, masks?: InputArrayOfArrays, compactResult?: bool): InputArray
 
   public read(fileName: String): String
 

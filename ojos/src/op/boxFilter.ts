@@ -1,20 +1,12 @@
 import { Point } from 'mirada'
 import { toSize } from '../util'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType, WithKSize } from './types'
+import { OperationExecBaseOptions, WithBorderType, WithKSize, WithKernelAnchor, WithDDepth } from './types'
 
 export interface BoxFilterOptions extends OperationExecBaseOptions, BoxFilterConcreteOptions {
 }
 
-export interface BoxFilterConcreteOptions extends WithBorderType, WithKSize {
-  /**
-   * the output image dept. (-1 to use src.depth()).
-   */
-  ddepth?: number
-  /**
-   * anchor point; default value Point(-1,-1) means that the anchor is at the kernel center
-   */
-  anchor?: Point
+export interface BoxFilterConcreteOptions extends WithBorderType, WithKSize , WithKernelAnchor, WithDDepth{
   /**
    * 	flag, specifying whether the kernel is normalized by its area or not.
    */

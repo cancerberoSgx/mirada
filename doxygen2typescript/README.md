@@ -31,23 +31,33 @@ opencv2ts({
 ```
 
 ## TODO - Status - Progress - Roadmap
-- [x] method cv.ellipse1 is not generated -   cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8)
 - [ ] don't expose all class members but only those declared in bindings.cpp
 - [ ] generate .d.ts instead of .ts
+- [ ] remove files not used like Logger, DynamicBitset, Node AutoBuffer, etc
 - [ ] detaileddescription formula - render to svg and embed ? or to a more readable format ? 
 - [ ] support invalid type names like char * using a name map. 
+- [ ] document std::Vector (http://www.cplusplus.com/reference/vector/vector/)
 - [ ] class inheritancegraph - Mat_ extends Mat_
-  - [ ] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
+  - [x] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
 - [ ] class compounds enums names prefix broken. (ex AgastFeatureDetector.AGAST_7_12s becomes AgastFeatureDetector_AGAST_7_12s)
 - [ ] rename src/doxygen2json to 2ts 
 - [ ] verify that type alias (enums) are exposed 
-- [ ] build more examples and check all types are generated
-  - [ ] grabCut is not exposed
 - [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically
 - [ ] move json2dts to own repo
 - [ ] cli (5)
 - [ ] groups - innerclass (4)
+- [x] build more examples and check all types are generated
+  - [x] grabCut is not exposed
+- [x] method cv.ellipse1 is not generated -   cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8)
+- [x] mirada tyoes: cp.assignTo is not a functionr
+- [x] - mat.at() method not defined - only mat.ucharAt  / mat.charAt  
+- [x] types: detectMultiScale - object should be vector<rect> and not Rect - not support generics - we should at least support stc::vector<>
+- [x] cv.CLAHE typings 
+- [x] mat.isDeleted and m.isAliasOf are not in the types.  clone  isDeleted  deleteLater 
+- [x] aMat.row(r).setTo(new cv.Scalar(r))  should work- this could work in hacks.ts export type  InputArray = Mat|Scalar 
+- [x] m.isSubmatrix is not supported in js
 - [x] index.ts that expose the real objects with correct types. (1)
+- [x]   Vector<T> extends EmscriptenEmbindInstance       export declare class Algorithm extends EmscriptenEmbindInstance 
 - [x] markdown - don't render links inside code snippets.
 - [x] add missing types automatically using ts api - compile and check errors about missing imports 
 - [x] fix types: Mat.zeros(src.rows, src.cols, cv.CV_8UC3): any should return Mat

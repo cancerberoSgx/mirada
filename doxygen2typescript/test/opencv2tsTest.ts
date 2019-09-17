@@ -5,7 +5,7 @@ import { opencv2ts, Doxygen2tsOptions } from '../src'
 
 test('opencv2ts', async t => {
   const o : Doxygen2tsOptions= {
-    opencvBuildFolder: '../../opencv/build_js',
+    opencvBuildFolder: '../../../build_js/build_js',
     tsOutputFolder: 'tmp/src/opencv',
     // jsonTypes: true,
     // xmlTypes: true,
@@ -45,7 +45,7 @@ test('opencv2ts', async t => {
 
 const testTs = `
 import { deepEqual, ok } from 'assert';
-import * as Jimp from 'jimp';
+import Jimp from 'jimp';
 import { getGlobal } from 'misc-utils-of-mine-generic';
 import { resolve } from 'path';
 import { Mat, Point } from './opencv';

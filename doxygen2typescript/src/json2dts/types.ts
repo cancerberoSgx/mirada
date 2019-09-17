@@ -1,6 +1,5 @@
 import { JSONValue } from 'misc-utils-of-mine-generic'
 
-
 export interface ParseOptions {
   node: JSONValue
   nodeName: string

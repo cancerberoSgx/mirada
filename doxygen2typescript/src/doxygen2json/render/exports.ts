@@ -1,11 +1,12 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { notSame, notSameNotFalsy, unique, dedup } from 'misc-utils-of-mine-generic';
+import { notSame, notSameNotFalsy, unique, dedup, asArray } from 'misc-utils-of-mine-generic';
 import { basename, join } from 'path';
 import { ls } from 'shelljs';
 import { getTypeReferencesByDefinitionOrigin, Project } from 'ts-simple-ast-extra';
 import { Doxygen2tsOptions } from '../doxygen2ts';
 import { renderImportHacks } from './exportsHacks';
 import { withoutTypeScriptExtension } from '../opencv2ts';
+import { TypeGuards, MethodDeclaration, PropertyDeclaration } from 'ts-morph';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
   if (!o.onlyFix) {
@@ -73,20 +74,21 @@ function fixMissingExtends(o: Doxygen2tsOptions) {
   })
 }
 
-function fixMissingImportNames(o: Doxygen2tsOptions) {
-  const missingExtends = {
-    'CascadeClassifier': 'Mat'
-  }
-  Object.keys(missingExtends).forEach(k => {
-    const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
-      .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
-    writeFileSync(join(o.tsOutputFolder, k + '.ts'), s)
-  })
-}
+// function fixMissingImportNames(o: Doxygen2tsOptions) {
+//   const missingExtends = {
+//     'CascadeClassifier': 'Mat'
+//   }
+//   Object.keys(missingExtends).forEach(k => {
+//     const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
+//       .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
+//     writeFileSync(join(o.tsOutputFolder, k + '.ts'), s)
+//   })
+// }
 
 function fixClasses(o: Doxygen2tsOptions) {
   const removeMembers = {
-    'MatExpr': 'size'
+    'MatExpr': 'size',
+    'Mat': ['isSubmatrix', 'at', 'assignTo'],
   }
   const p = new Project()
   Object.keys(removeMembers).forEach(k => {
@@ -95,11 +97,18 @@ function fixClasses(o: Doxygen2tsOptions) {
     if (!c) {
       return console.error(`Expected to find class ${k}`);
     }
-    const m = c.getMember(removeMembers[k])
-    if (!m) {
-      return console.error(`Expected to find member ${removeMembers[k]} in class ${k}`);
-    }
-    m.remove()
+    asArray(removeMembers[k])
+      .forEach(name => {
+        const members = c.getMembers()
+          .filter(n => TypeGuards.isMethodDeclaration(n) || TypeGuards.isPropertyDeclaration(n))
+          .filter((n: MethodDeclaration | PropertyDeclaration) => n.getName() === name)
+        if (!members.length) {
+          return console.error(`Expected to find member ${name} in class ${k}`);
+        }
+        members.forEach(m => {
+          m.remove()
+        })
+      })
     writeFileSync(join(o.tsOutputFolder, k + '.ts'), f.getFullText())
   })
 }

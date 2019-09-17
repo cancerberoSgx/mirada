@@ -137,7 +137,15 @@ function getType(s: Element, prefix = 'type'): linkedTextType {
   // examples of with and without ref: 
   // <type><ref refid="d1/d10/classcv_1_1MatExpr" kindref="compound">MatExpr</ref>  </type> 
   // <type>int</type>
+  // <type>std::vector&lt; <ref refid="dc/d84/group__core__basic_1ga11d95de507098e90bad732b9345402e8" kindref="member">Rect</ref> &gt; &amp;</type>       
+      // <type>const std::vector&lt; int &gt; &amp;</type>
   var ref = Q1(`${prefix}>ref`, s)
+  if(text(`${prefix}`, s, ``).trim().startsWith('std::vector')) {
+    //TODO: do this better
+    return {
+      name: `Vector<any>`
+    }
+  }
   return {
     name: (ref ? ref.textContent : '' || text(`${prefix}`, s, ``)).trim() || undefined,
     ref: ref && { ...attrs<refTextType>(ref, ['refid', 'kindref']), text: (ref.textContent || '').trim() }

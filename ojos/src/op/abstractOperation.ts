@@ -1,7 +1,7 @@
 import { del, isMat, isSize, Mat } from 'mirada'
 import { array, checkThrow, RemoveProperties } from 'misc-utils-of-mine-generic'
 import { toSize } from '../util'
-import { ImageOperation, OperationExecBaseOptions, WithChannels, WithKSize } from './types'
+import { ImageOperation, OperationExecBaseOptions, WithChannels, WithKSize, OperationExecParams } from './types'
 
 export type MandatoryDst<T extends OperationExecBaseOptions> = RemoveProperties<T, 'dst'> & { dst: Mat }
 
@@ -27,7 +27,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
 
   protected abstract _exec(o: MandatoryDst<T>): void
 
-  exec(...o_: [T] | ((T[keyof T])[])) {
+  exec(...o_: OperationExecParams<T>): Mat{
     const o = this.resolveOptionsObject(...o_)
     const options = this.checkOptions(o)
     this.checkInPlaceBefore(options)
@@ -44,7 +44,7 @@ export abstract class AbstractOperation<T extends OperationExecBaseOptions> impl
     return options.dst!
   }
 
-  protected resolveOptionsObject(...o: [T] | ((T[keyof T])[])) {
+  resolveOptionsObject(...o: OperationExecParams<T>): T|undefined {
     if (!o || !o.length || !o[0]) {
       return undefined
     }

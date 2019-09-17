@@ -6,7 +6,7 @@
     "sourceMap": true,
     "outDir": "./dist", 
     "rootDir": ".",
-    "declaration": true,
+    "declaration": true
   },
   "include": ["src", "test"]
 }

@@ -32,8 +32,12 @@ export interface ImageOperation<T extends OperationExecBaseOptions> {
    */
   optionsOrder?: (keyof T)[]
 
-  exec(...o_: [T] | ((T[keyof T])[])): Mat
+  exec(...o_: OperationExecParams<T>): Mat
+
+  resolveOptionsObject(...o: OperationExecParams<T>): T|undefined 
 }
+
+export type OperationExecParams<T extends OperationExecBaseOptions> = [T] | [Mat, ...(T[keyof T])[]]
 
 export interface OperationExecBaseOptions {
   /**
@@ -54,6 +58,9 @@ export interface WithBorderType {
 }
 
 export interface WithBorderValue {
+  /**
+   * The color of the border.
+   */
   borderValue?: Scalar
 }
 
@@ -69,6 +76,27 @@ export interface WithKSize {
    * Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.
    */
   ksize: SizeRepresentation
+}
+
+export interface WithKernel extends WithKernelAnchor {
+  /**
+   * Structuring element. It can be created using getStructuringElement.
+   */
+  kernel: Mat
+}
+
+export interface WithKernelAnchor {
+  /**
+   * Anchor position with the kernel. Negative values mean that the anchor is at the kernel center
+   */
+  anchor?: Point
+}
+
+export interface WithDDepth {
+    /**
+   * the output image dept. (-1 to use src.depth()).
+   */
+  ddepth?: number
 }
 
 export interface WithChannels {

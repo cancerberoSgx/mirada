@@ -1,14 +1,23 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, HoughLinesP, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave } from '../src'
+import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, HoughLinesP, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave, Filter2D } from '../src'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
 import { LineSegment } from '../src/op/types'
-import { loadMirada } from './testUtil'
+import { loadMirada, write } from './testUtil'
 
 test.before(loadMirada)
 
 test.todo('options in constructor and exec() overrides')
+
+test('Filter2D', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  const dst = new Filter2D().exec({src, dst: src,  kernel: cv.getStructuringElement(cv.MORPH_RECT, {width: 3, height: 1}) } )
+  t.true(src === dst)
+  // write(toRgba(src), 'tmp-warp.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/hFilter2D.png'), await toRgba(src), true), 0)
+  del(src)
+})
 
 test('houghLinesP', async t => {
   const src = await fromFile('test/assets/shape.jpg')
@@ -16,7 +25,6 @@ test('houghLinesP', async t => {
   new HoughLinesP().exec({ src, dst: src, lines, rho: 1, theta: 3.14 / 180, threshold: 2, minLineLength: 0, maxLineGap: 0 })
   const o = cv.Mat.zeros(src.rows, src.cols, src.type())
   lines.forEach(l => cv.line(o, l.pt1, l.pt2, scalarColor('red')))
-  // write(toRgba(o), 'tmp-warp.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/shapeHoughLinesP.png'), await toRgba(o), true), 0)
   del(src, o)
 })
@@ -50,7 +58,7 @@ test('roi inPlace', async t => {
 
 test('pyrDown inPlace', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = new Pyr().exec({ src, dst: src })
+  const dst = new Pyr().exec({ src, dst: src , type: 'down'})
   t.true(src === dst)
   t.deepEqual(compareL2(await File.fromFile('test/assets/hPyrDown.png'), await toRgba(src), true), 0)
   del(src)
@@ -90,7 +98,7 @@ test.todo('bitwise xor')
 
 test('threshold', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  new Threshold().exec({ src, dst: src, maxval: 200, thresh: 177, type: cv.THRESH_BINARY })
+  new Threshold().exec({ src, dst: src, maxval: 200, thresh: 177, thresholdType: cv.THRESH_BINARY })
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaThreshold.png'), src, true), 0)
 })
 

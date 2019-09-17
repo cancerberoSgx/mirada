@@ -161,7 +161,7 @@ export class File {
     }
     return t
   }
-  
+
   public static fileType(a: ArrayBuffer) {
     var t = fileType(a)
     if (!t) {

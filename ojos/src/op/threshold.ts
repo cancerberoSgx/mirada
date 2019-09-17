@@ -17,7 +17,7 @@ export interface ThresholdConcreteOptions {
   /**
    * thresholding type (see ThresholdTypes).
    */
-  type: ThresholdTypes
+  thresholdType: ThresholdTypes
 }
 
 /**
@@ -28,7 +28,7 @@ export class Threshold extends AbstractOperation<ThresholdOptions> {
   description = 'Applies fixed-level thresholding to a multiple-channel array. The function is typically used to get a bi-level (binary) image out of a grayscale image or for removing a noise, that is, filtering out pixels with too small or too large values. There are several types of thresholding supported by the function. They are determined by type parameter.'
   sameSizeAndType = true
   protected _exec(o: ThresholdOptions) {
-    cv.threshold(o.src, o.dst!, o.thresh, o.maxval, o.type)
+    cv.threshold(o.src, o.dst!, o.thresh, o.maxval, o.thresholdType)
   }
 }
 

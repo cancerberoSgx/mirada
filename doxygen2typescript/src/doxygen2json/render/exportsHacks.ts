@@ -128,7 +128,7 @@ export declare function getInheritedInstanceCount(...a: any[]): any
 export declare function getLiveInheritedInstances(...a: any[]): any
 export declare function flushPendingDeletes(...a: any[]): any
 export declare function setDelayFunction(...a: any[]): any
-declare class EmscriptenEmbindInstance {
+export declare class EmscriptenEmbindInstance {
   isAliasOf(...a: any[]): any
   clone(...a: any[]): any
   delete(...a: any[]): any
@@ -213,6 +213,8 @@ export declare class Mat_ extends Vector<Mat> {
   public shortPtr(i: any, j: any): any
   public ushortPtr(i: any, j: any): any
   public intPtr(i: any, j: any): any
+  public ucharAt(i:any): any  
+  public charAt(i:any): any  
   public floatPtr(i: any, j: any): any
   public doublePtr(i: any, j: any): any
   public intPtr(i: any, j: any): any

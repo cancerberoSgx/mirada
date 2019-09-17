@@ -54,19 +54,11 @@ See [mirada-cli project page](../mirada-cli).
 
 ## TODO
 
-- [ ] - mat.at() method not defined - only mat.ucharAt  / mat.charAt  
-- [ ] mirada tyoes: cp.assignTo is not a functionr
-- [ ] m.isSubmatrix is not supported in js
 - [ ] docs - usage- - tuts - getting starterd
 - [ ] integrate the new videoCapturer and replace/remove the old one src/browser/videoCapture.ts
 - [x] browser tests
-- [ ] document std::Vector (http://www.cplusplus.com/reference/vector/vector/)
-- [x] cv.CLAHE typings 
 - [x] canvas codec loaded in browser bu default
 - [x] canvas codec support svg image input
-- [x]   Vector<T> extends EmscriptenEmbindInstance       export declare class Algorithm extends EmscriptenEmbindInstance 
-- [x] aMat.row(r).setTo(new cv.Scalar(r))  should work- this could work in hacks.ts export type  InputArray = Mat|Scalar 
-- [x] mat.isDeleted and m.isAliasOf are not in the types.  clone  isDeleted  deleteLater 
 - [x] move tool and commands to another project
 - [x] the morphing with slide effect but against two different videos ? (like obama and trump speeches and come
   from one to the other and back again with the slider) - see http://overengineer.net/enabling-cors-for-html5-video-element-screenshots

@@ -3,7 +3,6 @@ import { Project, getProperties, tsMorph as tsm } from 'ts-simple-ast-extra'
 import { resolve } from 'path';
 import { writeFileSync } from 'fs';
 import { exec } from 'shelljs';
-import { FunctionDeclaration, SignatureDeclaration, Identifier } from 'typescript';
 
 test('getProperties of cv global', async t => {
   const p = new Project({ tsConfigFilePath: 'tmp/tsconfig.json', addFilesFromTsConfig: true, manipulationSettings: {}, })
