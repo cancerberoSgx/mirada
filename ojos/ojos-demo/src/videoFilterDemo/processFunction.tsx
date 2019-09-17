@@ -1,6 +1,6 @@
 import { del, Mat, noArray, toRgba } from 'mirada'
 import { array, Fn } from 'misc-utils-of-mine-generic'
-import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, randomScalarColor, ReplaceColor, Threshold, WarpPerspective } from 'ojos'
+import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, randomScalarColor, ReplaceColor, Threshold, WarpPerspective, Cartoonize } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 
@@ -34,8 +34,8 @@ const edge = new Edge()
 const replaceColor = new ReplaceColor()
 const canny = new Canny()
 const math = new Math_()
+const cartoonize = new Cartoonize()
 const colors = array(10).map(randomScalarColor)
-
 let prev: Mat = null as any
 export let processFunction = function(this: Managers) {
   if (!this.c.streaming) {
@@ -81,10 +81,17 @@ export let processFunction = function(this: Managers) {
     else if (name === ToolNames.histEqualization && state.histEqualization.active) {
       histEqualization.exec({ ...state.histEqualization, src: dst, dst })
     }
+
     else if (name === ToolNames.warpPerspective && state.warpPerspective.active) {
       dst.copyTo(cp, noArray())
       warpPerspective.exec({ ...state.warpPerspective, size: dst.size(), src: cp, dst: cp, ...state.warpPerspective.drawPoints ? { drawPoints: colors } : {} })
       toRgba(cp, dst)
+    }
+        else if (name === ToolNames.cartoonize && state.cartoonize.active) {
+    //  dst.copyTo(cp, noArray())
+      cartoonize.exec({ ...state.cartoonize, src: dst, dst })
+      // cartoonize.exec({ ...state.cartoonize, src: dst, dst: cp })
+      // toRgba(cp, dst)
     }
     else if (name === ToolNames.edge && state.edge.active) {
       dst.copyTo(cp, noArray())

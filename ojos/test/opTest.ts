@@ -1,33 +1,41 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, InRange, Pyr, ReplaceColor, Roi, scalarColor } from '../src'
+import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave } from '../src'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
-import { loadMirada, write } from './testUtil'
+import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
 test.todo('options in constructor and exec() overrides')
 
-test('cartoonize', async t => {
+test('warp', async t => {
+  const src = await fromFile('test/assets/h.jpg')
+  const dst = src.clone()
+  new Wave().exec({ src: dst, dst, type: 'vertical', amplitude: 70, frequency: 1 / 128 })
+  t.false(src === dst)
+  // write(toRgba(dst), 'tmp-warp.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/hWave.png'), await toRgba(dst), true), 0)
+  del(src, dst)
+})
+
+test('cartoonize inPlace', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
   const dst = new Cartoonize().exec({ src, dst: src })
   t.true(src === dst)
-  write(toRgba(dst), 'tmprrr.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCartoonize.png'), await toRgba(src), true), 0)
   del(src)
 })
 
-test('roi', async t => {
+test('roi inPlace', async t => {
   const src = await fromFile('test/assets/h.jpg')
   const dst = new Roi().exec({ src, dst: src, expr: new cv.Rect(20, 60, 40, 80) })
   t.true(src === dst)
-  // write(toRgba(dst), 'tmprrr.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hRoi.png'), await toRgba(src), true), 0)
   del(src)
 })
 
-test('pyrDown', async t => {
+test('pyrDown inPlace', async t => {
   const src = await fromFile('test/assets/h.jpg')
   const dst = new Pyr().exec({ src, dst: src })
   t.true(src === dst)
@@ -36,7 +44,7 @@ test('pyrDown', async t => {
 })
 test.todo('pyrUp')
 
-test('inRange', async t => {
+test('inRange inPlace', async t => {
   const src = await fromFile('test/assets/h.jpg')
   new InRange().exec({ src, dst: src, lowerb: scalarColor('#00661100'), upperb: scalarColor('#ffeeeeff') })
   t.deepEqual(compareL2(await File.fromFile('test/assets/hInRange.png'), await toRgba(src), true), 0)

@@ -1,5 +1,5 @@
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
-import { AddWeightOptions, Bitwise, BitwiseOptions, CannyOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, WarpPerspective, WarpPerspectiveOptions } from 'ojos'
+import { AddWeightOptions, Bitwise, BitwiseOptions, CannyOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, WarpPerspective, WarpPerspectiveOptions, Cartoonize, CartoonizeOptions } from 'ojos'
 
 
 export enum ToolNames {
@@ -14,7 +14,8 @@ export enum ToolNames {
   warpPerspective = 'warpPerspective',
   edge = 'edge',
   bitwise = 'bitwise',
-  addWeighted = 'addWeighted'
+  addWeighted = 'addWeighted',
+  cartoonize = 'cartoonize'
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -42,6 +43,7 @@ export interface StateTools {
   edge: ToolProps<EdgeOptions>;
   bitwise: ToolProps<BitwiseOptions>;
   addWeighted: ToolProps<AddWeightOptions>;
+  cartoonize: ToolProps<CartoonizeOptions>;
 }
 
 let _state: State
@@ -107,10 +109,14 @@ export const getState: () => State = () => {
       histEqualization: {
         description: new HistEqualization().description,
         name: ToolNames.histEqualization,
-        mode: 'CLAHE',
+        type: 'CLAHE',
         clipLimit: 1,
-        tileGridSize: new cv.Size(40, 40),
+        size: new cv.Size(40, 40),
         channels: true
+      },
+      cartoonize: {
+        description: new Cartoonize().description,
+        name: ToolNames.cartoonize,
       },
       morphologyEx: {
         description: new MorphologyEx().description,

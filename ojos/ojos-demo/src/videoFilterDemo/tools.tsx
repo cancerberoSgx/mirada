@@ -1,4 +1,4 @@
-import { Scalar } from 'mirada'
+import { Scalar, Size } from 'mirada'
 import { enumKeys, tryTo } from 'misc-utils-of-mine-generic'
 import { MorphTypesEnum } from 'ojos'
 import * as React from 'react'
@@ -138,16 +138,16 @@ export const tools = () => ({
       <label className="enable">
         <input type="checkbox" checked={this.state.histEqualization.active} onChange={e => this.setState2({ 'histEqualization.active': e.currentTarget.checked })} />
         histEqualization</label>
-      <label>mode
-        <select onChange={e => this.setState2({ 'histEqualization.mode': name })}>
-          {['histEqualization', 'CLAHE'].map(name => <option selected={name === this.state.histEqualization.mode} value={name}>{name}</option>)}
+      <label>type
+        <select onChange={e => this.setState2({ 'histEqualization.type': name })}>
+          {['histEqualization', 'CLAHE'].map(name => <option selected={name === this.state.histEqualization.type} value={name}>{name}</option>)}
         </select>
       </label>
       <label>clipLimit
           <input min="1" max="255" step="1" type="number" value={this.state.histEqualization.clipLimit} onChange={e => this.setState2({ 'histEqualization.clipLimit': e.currentTarget.valueAsNumber })} />
       </label>
-      <label>tileGridSize
-           <Point value={sizeToPoint(this.state.histEqualization.tileGridSize!)} onChange={p => this.setState2({ 'histEqualization.tileGridSize': pointToSize(p) })} />
+      <label>size
+           <Point value={sizeToPoint(this.state.histEqualization.size!)} onChange={p => this.setState2({ 'histEqualization.size': pointToSize(p) })} />
       </label>
     </>;
   },
@@ -157,7 +157,7 @@ export const tools = () => ({
         <input type="checkbox" checked={this.state.gaussianBlur.active} onChange={e => this.setState2({ 'gaussianBlur.active': e.currentTarget.checked })} />
         gaussianBlur</label>
       <label>ksize
-          <Point value={{ x: this.state.gaussianBlur.ksize.width, y: this.state.gaussianBlur.ksize.height }} onChange={p => this.setState2({ 'gaussianBlur.ksize': { width: p.x, height: p.y } })} />
+          <Point value={{ x: (this.state.gaussianBlur.ksize as Size).width, y: (this.state.gaussianBlur.ksize as Size).height }} onChange={p => this.setState2({ 'gaussianBlur.ksize': { width: p.x, height: p.y } })} />
       </label>
       <label>sigma
           <Point value={{ x: this.state.gaussianBlur.sigmaX, y: this.state.gaussianBlur.sigmaY! }} onChange={p => this.setState2({ 'gaussianBlur.sigmaX': p.x, 'gaussianBlur.sigmaY': p.y })} />
@@ -181,6 +181,13 @@ export const tools = () => ({
       <label>beta
           <input step="2" type="number" value={this.state.convertTo.beta} onChange={e => this.setState2({ 'convertTo.beta': e.currentTarget.valueAsNumber })} />
       </label>
+    </>;
+  },
+  [ToolNames.cartoonize](this: Controls) {
+    return <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.cartoonize.active} onChange={e => this.setState2({ 'cartoonize.active': e.currentTarget.checked })} />
+        cartoonize</label>
     </>;
   },
   [ToolNames.addWeighted](this: Controls) {

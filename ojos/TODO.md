@@ -2,12 +2,12 @@
 - [ ] operation option default values (specially for required options)
 - [ ] video codecs ? (do we need other interface or adapt current Codec one ? should that be on magica itself? )
 - [ ] npm run check-ops - green and implement TODOs
-- [x] toRgba
 - [ ] sepFilter2D
+- [ ] op cornerHarris 
+- [ ] op image registration https://www.geeksforgeeks.org/image-registration-using-opencv-python/
+- [ ] op cv.inpaint https://www.geeksforgeeks.org/image-inpainting-using-opencv/
 - [ ] filter2D
-- [x] cartoonize https://www.geeksforgeeks.org/cartooning-an-image-using-opencv-python/
 - [ ] image warping : https://subscription.packtpub.com/book/application_development/9781785283932/1/ch01lvl1sec16/image-warping
-- [x] roi
 - [ ] fillPoly 
 - [ ] magica codec
 - [ ] svg codec (R/W) based on svg-converter (browser and node.js)
@@ -16,22 +16,29 @@
   - [ ] support for existing operations (npm run check-ops)
   - [ ] script stmt support
 - [ ] browser test - copy from mirada
-- [x] scripts: json string input
 - [ ] scripts: support multi line ops statements with \
-- [x] scripts: stmt-map support option values with comma test 
 - [ ] scripts  command name case insensitive
 - [ ] travis
+- [ ] umd build and browser package.json field (like in mirada)
+- [ ] using findCountours - hughLines / circles / etc - build shapes svgs ?
 - [ ] API for time-aware video filters (like demo's addWeighted filter)
   - [ ] should we use cv types like ArrayofArray or matVector ? 
   - [ ] support n previous frames - not just last one. 
   - [ ] concrete implementations for "time-scan" video effects like in https://hackaday.io/project/10581/logs
      - [ ] delays defined by input kernel / mat like there. 
+- [x] op wave horizontal
+  - [ ] wave vertical and both
 - [x] cv.cvtColor
 - [x] pyrDown / pyrUp 
 - [x] scripts: run() - based on Operation options - src and dst are names
 - [x] scripts: statement syntax : `GaussianBlur lenna out1 ksize: 7, sigmaX: 2.2`
 - [x] scripts : template support 
+- [x] scripts: json string input
+- [x] scripts: stmt-map support option values with comma test 
 - [x] scripts template async rendering
+- [x] cartoonize https://www.geeksforgeeks.org/cartooning-an-image-using-opencv-python/
+- [x] toRgba
+- [x] roi
 - [x] script run command by command - dont render the entire script, but operation by operation so template can evaluate dynamic data  
 - [x] animations - easing
 - [x] decide what we do with commands - remove it ?  - REMOVED
@@ -62,6 +69,7 @@
 - [ ] on mouse over effects - affecting only cursor close region
 - [x] operations requiring a second mat that is the previous frame 
   - [x] addWeighted smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
+  - [ ] tut: accumulateWeighted convertScaleAbs - use it instead of demo current addWeigted https://www.geeksforgeeks.org/background-subtraction-in-an-image-using-concept-of-running-average/
 - [ ] add face detection even without framework.
 - [ ] add shift-cam-thing object tracking even without framework.
 
