@@ -37,6 +37,7 @@
     "ava": "^2.3.0",
     "file-type": "^12.3.0",
     "jimp": "^0.8.2",
+    "magica": "file:../../magica",
     "markdown-toc": "^1.2.0",
     "mirada": "file:../mirada",
     "ts-morph": "^3.1.3",
@@ -54,7 +55,7 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "mirada": "0.0.14"
+    "mirada": "0.0.15"
   },
   "repository": {
     "type": "git",

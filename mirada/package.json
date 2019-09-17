@@ -1,6 +1,6 @@
 {
   "name": "mirada",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Node.js and Browser high level OpenCv API. Based on OpenCv.js and  distributed as npm package with support for TypeScript and  easy APIs for server and browser.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",

@@ -78,7 +78,7 @@ export class File {
   /**
    * Writes this image on given file path, encoded in given format (or inferred form current name).
    */
-  async write(path: string = this.name, format = this.getExtension()) {
+  async write(path: string = this.name, format = getFileExtension(path)|| this.getExtension()) {
     const a = await this.asArrayBuffer(format)
     writeFile(path, new Uint8ClampedArray(a))
     return this
