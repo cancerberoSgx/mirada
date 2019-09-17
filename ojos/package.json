@@ -38,7 +38,7 @@
     "file-type": "^12.3.0",
     "jimp": "^0.8.2",
     "markdown-toc": "^1.2.0",
-    "mirada": "0.0.13",
+    "mirada": "0.0.14",
     "ts-morph": "^3.1.3",
     "ts-node": "^8.3.0",
     "ts-refactor": "0.0.9",
@@ -54,7 +54,7 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "mirada": "0.0.13"
+    "mirada": "0.0.14"
   },
   "repository": {
     "type": "git",

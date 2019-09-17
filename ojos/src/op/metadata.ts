@@ -1,5 +1,5 @@
 
-import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions, ToRgba, ToRgbaOptions, Roi, RoiOptions, Cartoonize, CartoonizeOptions, Wave, WaveOptions, HoughLinesP, HoughLinesPOptions } from '.' 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions, ToRgba, ToRgbaOptions, Roi, RoiOptions, Cartoonize, CartoonizeOptions, Wave, WaveOptions, HoughLinesP, HoughLinesPOptions, Filter2D, Filter2DOptions } from '.' 
 
 interface Base {
   name: string
@@ -50,7 +50,8 @@ export const operationClasses = () => ({
   Roi: Roi,
   Cartoonize: Cartoonize,
   Wave: Wave,
-  HoughLinesP: HoughLinesP
+  HoughLinesP: HoughLinesP,
+  Filter2D: Filter2D
 })
 
 export interface OperationOptions {
@@ -82,7 +83,8 @@ export interface OperationOptions {
   Roi: RoiOptions,
   Cartoonize: CartoonizeOptions,
   Wave: WaveOptions,
-  HoughLinesP: HoughLinesPOptions
+  HoughLinesP: HoughLinesPOptions,
+  Filter2D: Filter2DOptions
 }
 
 export enum OperationNames {
@@ -114,7 +116,8 @@ export enum OperationNames {
   Roi = 'Roi',
   Cartoonize = 'Cartoonize',
   Wave = 'Wave',
-  HoughLinesP = 'HoughLinesP'
+  HoughLinesP = 'HoughLinesP',
+  Filter2D = 'Filter2D'
 }
 
 let metadata: OperationMetadata[] = null as any
@@ -324,22 +327,6 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
-            name: "ddepth",
-            signature: "ddepth?: number",
-            type: "number",
-            typeUnion: [],
-            description: "the output image dept. (-1 to use src.depth()).",
-            optional: true
-          }, 
-          {
-            name: "anchor",
-            signature: "anchor?: Point",
-            type: "Point",
-            typeUnion: [],
-            description: "anchor point; default value Point(-1,-1) means that the anchor is at the kernel center",
-            optional: true
-          }, 
-          {
             name: "normalize",
             signature: "normalize?: boolean",
             type: "boolean",
@@ -362,6 +349,22 @@ export function getOperationMetadata() {
             typeUnion: [],
             description: "Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.",
             optional: false
+          }, 
+          {
+            name: "anchor",
+            signature: "anchor?: Point",
+            type: "Point",
+            typeUnion: [],
+            description: "Anchor position with the kernel. Negative values mean that the anchor is at the kernel center",
+            optional: true
+          }, 
+          {
+            name: "ddepth",
+            signature: "ddepth?: number",
+            type: "number",
+            typeUnion: [],
+            description: "the output image dept. (-1 to use src.depth()).",
+            optional: true
           }
         ]
       },
@@ -568,14 +571,6 @@ export function getOperationMetadata() {
             optional: false
           }, 
           {
-            name: "ddepth",
-            signature: "ddepth?: number",
-            type: "number",
-            typeUnion: [],
-            description: "Desired depth of the destination image. Combinations:\n  ```\n  input           output\n  CV_8U\t          -1/CV_16S/CV_32F/CV_64F\n  CV_16U/CV_16S\t  -1/CV_32F/CV_64F\n  CV_32F\t        -1/CV_32F/CV_64F\n  CV_64F\t        -1/CV_64F",
-            optional: true
-          }, 
-          {
             name: "dx",
             signature: "dx?: number",
             type: "number",
@@ -589,14 +584,6 @@ export function getOperationMetadata() {
             type: "number",
             typeUnion: [],
             description: "Applies only for Scharr and Sobel (and are mandatory in that case)",
-            optional: true
-          }, 
-          {
-            name: "ksize",
-            signature: "ksize?: number",
-            type: "number",
-            typeUnion: [],
-            description: "Aperture size used to compute the second-derivative filters. See getDerivKernels for details. The size must be positive and odd. applies only for Sobel and Laplacian",
             optional: true
           }, 
           {
@@ -624,11 +611,27 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
+            name: "ksize",
+            signature: "ksize: SizeRepresentation",
+            type: "SizeRepresentation",
+            typeUnion: [],
+            description: "Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.",
+            optional: false
+          }, 
+          {
             name: "channels",
             signature: "channels?: true | number[]",
             type: "true | number[]",
             typeUnion: ["true","number[]"],
             description: "If true then all channels will be processed independently and then joined to build the result. The only\nexception is when there are 4 channels and in this case, if channels===true, the last 4th channel will be\nomitted (alpha). If an array of numbers is given then those channels will be processed only. If not given\nthen the operation will behave normally, processing as single channel image.",
+            optional: true
+          }, 
+          {
+            name: "ddepth",
+            signature: "ddepth?: number",
+            type: "number",
+            typeUnion: [],
+            description: "the output image dept. (-1 to use src.depth()).",
             optional: true
           }
         ]
@@ -1064,20 +1067,20 @@ export function getOperationMetadata() {
             optional: true
           }, 
           {
-            name: "ksize",
-            signature: "ksize: number",
-            type: "number",
-            typeUnion: [],
-            description: "",
-            optional: false
-          }, 
-          {
             name: "borderType",
             signature: "borderType?: BorderTypes",
             type: "BorderTypes",
             typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
             description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
             optional: true
+          }, 
+          {
+            name: "ksize",
+            signature: "ksize: SizeRepresentation",
+            type: "SizeRepresentation",
+            typeUnion: [],
+            description: "Transformation (blurring) kernel size. In general only odd numbers greater than 2 are accepted.",
+            optional: false
           }
         ]
       },
@@ -1115,22 +1118,6 @@ export function getOperationMetadata() {
             optional: false
           }, 
           {
-            name: "kernel",
-            signature: "kernel: Mat",
-            type: "Mat",
-            typeUnion: [],
-            description: "Structuring element. It can be created using getStructuringElement.",
-            optional: false
-          }, 
-          {
-            name: "anchor",
-            signature: "anchor?: Point",
-            type: "Point",
-            typeUnion: [],
-            description: "Anchor position with the kernel. Negative values mean that the anchor is at the kernel center",
-            optional: true
-          }, 
-          {
             name: "iterations",
             signature: "iterations?: number",
             type: "number",
@@ -1151,7 +1138,23 @@ export function getOperationMetadata() {
             signature: "borderValue?: Scalar",
             type: "Scalar",
             typeUnion: [],
-            description: "",
+            description: "The color of the border.",
+            optional: true
+          }, 
+          {
+            name: "kernel",
+            signature: "kernel: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Structuring element. It can be created using getStructuringElement.",
+            optional: false
+          }, 
+          {
+            name: "anchor",
+            signature: "anchor?: Point",
+            type: "Point",
+            typeUnion: [],
+            description: "Anchor position with the kernel. Negative values mean that the anchor is at the kernel center",
             optional: true
           }
         ]
@@ -1273,7 +1276,7 @@ export function getOperationMetadata() {
         noInPlace: false,
         sameSizeAndType: true,
         validChannels: undefined,
-        optionsOrder: undefined,        
+        optionsOrder: ["src","dst","thresh","maxval","thresholdType"],        
         options: [
           {
             name: "src",
@@ -1308,8 +1311,8 @@ export function getOperationMetadata() {
             optional: false
           }, 
           {
-            name: "type",
-            signature: "type: ThresholdTypes",
+            name: "thresholdType",
+            signature: "thresholdType: ThresholdTypes",
             type: "ThresholdTypes",
             typeUnion: ["THRESH_BINARY","THRESH_BINARY_INV","THRESH_TRUNC","THRESH_TOZERO","THRESH_TOZERO_INV","THRESH_MASK","THRESH_OTSU","THRESH_TRIANGLE"],
             description: "thresholding type (see ThresholdTypes).",
@@ -1395,7 +1398,7 @@ export function getOperationMetadata() {
             signature: "borderValue?: Scalar",
             type: "Scalar",
             typeUnion: [],
-            description: "",
+            description: "The color of the border.",
             optional: true
           }
         ]
@@ -1478,7 +1481,7 @@ export function getOperationMetadata() {
             signature: "borderValue?: Scalar",
             type: "Scalar",
             typeUnion: [],
-            description: "",
+            description: "The color of the border.",
             optional: true
           }
         ]
@@ -1603,7 +1606,7 @@ export function getOperationMetadata() {
         noInPlace: false,
         sameSizeAndType: false,
         validChannels: undefined,
-        optionsOrder: ["src","dst"],        
+        optionsOrder: ["src","dst","expr"],        
         options: [
           {
             name: "src",
@@ -1884,6 +1887,73 @@ export function getOperationMetadata() {
             type: "number",
             typeUnion: [],
             description: "",
+            optional: true
+          }
+        ]
+      },
+      
+      {
+        name: "Filter2D",
+        description: "Convolves an image with the kernel. The function applies an arbitrary linear filter to an image. In-place operation is supported. When the aperture is partially outside the image, the function interpolates outlier pixel values according to the specified border mode",
+        noInPlace: false,
+        sameSizeAndType: true,
+        validChannels: undefined,
+        optionsOrder: undefined,        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }, 
+          {
+            name: "delta",
+            signature: "delta?: number",
+            type: "number",
+            typeUnion: [],
+            description: "optional value added to the filtered pixels before storing them in dst.",
+            optional: true
+          }, 
+          {
+            name: "borderType",
+            signature: "borderType?: BorderTypes",
+            type: "BorderTypes",
+            typeUnion: ["BORDER_CONSTANT","BORDER_REPLICATE","BORDER_REFLECT","BORDER_WRAP","BORDER_REFLECT_101","BORDER_TRANSPARENT","BORDER_REFLECT101","BORDER_DEFAULT","BORDER_ISOLATED"],
+            description: "border mode used to extrapolate pixels outside of the image, see [BorderTypes].",
+            optional: true
+          }, 
+          {
+            name: "kernel",
+            signature: "kernel: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Structuring element. It can be created using getStructuringElement.",
+            optional: false
+          }, 
+          {
+            name: "ddepth",
+            signature: "ddepth?: number",
+            type: "number",
+            typeUnion: [],
+            description: "the output image dept. (-1 to use src.depth()).",
+            optional: true
+          }, 
+          {
+            name: "anchor",
+            signature: "anchor?: Point",
+            type: "Point",
+            typeUnion: [],
+            description: "Anchor position with the kernel. Negative values mean that the anchor is at the kernel center",
             optional: true
           }
         ]

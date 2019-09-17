@@ -7,6 +7,7 @@ test.before(loadMirada)
 
 test('chain', async t => {
   const f2 = new Chain(await fromFile('test/assets/lenna.jpg'))
+  .mode('array')
   .roi(new cv.Rect(100, 100, 100, 80))
   .toRgba()
   .asFile()

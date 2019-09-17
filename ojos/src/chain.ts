@@ -6,10 +6,15 @@ type Params<T extends OperationExecBaseOptions> =  [RemoveProperties<T,'src'|'ds
 
 
 export class Chain {
-  mode: 'map'|'array'
+  protected _mode: 'map'|'array'
   constructor(protected mat: Mat = new cv.Mat()) {
-    this.mode='map'//='map'|'array'
+    this._mode='map'//='map'|'array'
   }
+
+mode(mode: 'map'|'array') {
+  this._mode=mode
+  return this
+}
 
   filter2D(...args: Params<Filter2DOptions>) {
     // // const p = new Filter2D({src: this.mat, dst: this.mat, ...o})
@@ -31,17 +36,17 @@ export class Chain {
 
   private handle(args: Params<ToRgbaOptions>, Class : any) {
     const p = new Class();
-    if(args.length===1) {
+    if(this._mode==='map') {
       Object.assign(args[0], {src: this.mat, dst: this.mat })
     }else {
       args=[this.mat, this.mat, ...args as any]
     }
+    // console.log(args);
       const options = p.resolveOptionsObject(...args );
       if (!options) {
       throw new Error('Invalid properties given for ' + p.name + ' which were ' + jsonStringifyWithMat(args));
     }
-    console.log(options);
-    
+    // console.log(options);
     p.exec(options);
       return this;
   }
