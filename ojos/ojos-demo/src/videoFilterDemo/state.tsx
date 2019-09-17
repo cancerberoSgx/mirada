@@ -1,5 +1,5 @@
 import { RemoveProperties } from 'misc-utils-of-mine-generic'
-import { AddWeightOptions, Bitwise, BitwiseOptions, CannyOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, WarpPerspective, WarpPerspectiveOptions, Cartoonize, CartoonizeOptions } from 'ojos'
+import { AddWeightOptions, Bitwise, BitwiseOptions, CannyOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, MorphologyEx, MorphologyExOptions, OperationExecBaseOptions, ReplaceColorOptions, Threshold, ThresholdOptions, WarpPerspective, WarpPerspectiveOptions, Cartoonize, CartoonizeOptions, HoughLinesPOptions, HoughLinesP, scalarColor } from 'ojos'
 
 
 export enum ToolNames {
@@ -15,7 +15,8 @@ export enum ToolNames {
   edge = 'edge',
   bitwise = 'bitwise',
   addWeighted = 'addWeighted',
-  cartoonize = 'cartoonize'
+  cartoonize = 'cartoonize',
+  houghLinesP = 'houghLinesP',
 }
 
 type ToolProps<T extends OperationExecBaseOptions> = RemoveProperties<T, keyof OperationExecBaseOptions> & {
@@ -44,6 +45,7 @@ export interface StateTools {
   bitwise: ToolProps<BitwiseOptions>;
   addWeighted: ToolProps<AddWeightOptions>;
   cartoonize: ToolProps<CartoonizeOptions>;
+  houghLinesP: ToolProps<HoughLinesPOptions>;
 }
 
 let _state: State
@@ -117,6 +119,15 @@ export const getState: () => State = () => {
       cartoonize: {
         description: new Cartoonize().description,
         name: ToolNames.cartoonize,
+      },    
+      houghLinesP: {
+        description: new HoughLinesP().description,
+        name: ToolNames.houghLinesP,
+        lines: [], 
+        rho: 1, 
+        theta: 3.14 / 180, 
+        threshold:1,
+        color: scalarColor('red')
       },
       morphologyEx: {
         description: new MorphologyEx().description,

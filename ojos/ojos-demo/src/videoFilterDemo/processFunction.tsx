@@ -1,6 +1,6 @@
 import { del, Mat, noArray, toRgba } from 'mirada'
 import { array, Fn } from 'misc-utils-of-mine-generic'
-import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, randomScalarColor, ReplaceColor, Threshold, WarpPerspective, Cartoonize } from 'ojos'
+import { Bitwise, Canny, ConvertTo, Edge, GaussianBlur, HistEqualization, Math as Math_, MorphologyEx, randomScalarColor, ReplaceColor, Threshold, WarpPerspective, Cartoonize, HoughLinesP } from 'ojos'
 import { getManagers, Managers } from './start'
 import { getState, ToolNames } from "./state"
 
@@ -35,6 +35,7 @@ const replaceColor = new ReplaceColor()
 const canny = new Canny()
 const math = new Math_()
 const cartoonize = new Cartoonize()
+const houghLinesP = new HoughLinesP()
 const colors = array(10).map(randomScalarColor)
 let prev: Mat = null as any
 export let processFunction = function(this: Managers) {
@@ -88,10 +89,10 @@ export let processFunction = function(this: Managers) {
       toRgba(cp, dst)
     }
         else if (name === ToolNames.cartoonize && state.cartoonize.active) {
-    //  dst.copyTo(cp, noArray())
       cartoonize.exec({ ...state.cartoonize, src: dst, dst })
-      // cartoonize.exec({ ...state.cartoonize, src: dst, dst: cp })
-      // toRgba(cp, dst)
+    }
+        else if (name === ToolNames.houghLinesP && state.houghLinesP.active) {
+      houghLinesP.exec({ ...state.houghLinesP, src: dst, dst, lines: [] })
     }
     else if (name === ToolNames.edge && state.edge.active) {
       dst.copyTo(cp, noArray())

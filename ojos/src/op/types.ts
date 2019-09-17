@@ -113,3 +113,7 @@ export interface WithCenter {
   center: Point
 }
 
+export interface LineSegment {
+  pt1: Point
+  pt2: Point
+}

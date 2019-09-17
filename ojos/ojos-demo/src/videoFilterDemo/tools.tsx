@@ -189,6 +189,13 @@ export const tools = () => ({
         <input type="checkbox" checked={this.state.cartoonize.active} onChange={e => this.setState2({ 'cartoonize.active': e.currentTarget.checked })} />
         cartoonize</label>
     </>;
+  },  
+  [ToolNames.houghLinesP](this: Controls) {
+    return <>
+      <label className="enable">
+        <input type="checkbox" checked={this.state.houghLinesP.active} onChange={e => this.setState2({ 'houghLinesP.active': e.currentTarget.checked })} />
+        houghLinesP</label>
+    </>;
   },
   [ToolNames.addWeighted](this: Controls) {
     return <>

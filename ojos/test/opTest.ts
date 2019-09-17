@@ -1,20 +1,33 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave } from '../src'
+import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, HoughLinesP, InRange, Pyr, ReplaceColor, Roi, scalarColor, Wave } from '../src'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
+import { LineSegment } from '../src/op/types'
 import { loadMirada } from './testUtil'
 
 test.before(loadMirada)
 
 test.todo('options in constructor and exec() overrides')
 
+test('houghLinesP', async t => {
+  const src = await fromFile('test/assets/shape.jpg')
+  const lines: LineSegment[] = []
+  new HoughLinesP().exec({ src, dst: src, lines, rho: 1, theta: 3.14 / 180, threshold: 2, minLineLength: 0, maxLineGap: 0 })
+  const o = cv.Mat.zeros(src.rows, src.cols, src.type())
+  lines.forEach(l => cv.line(o, l.pt1, l.pt2, scalarColor('red')))
+  // write(toRgba(o), 'tmp-warp.png')
+  t.deepEqual(compareL2(await File.fromFile('test/assets/shapeHoughLinesP.png'), await toRgba(o), true), 0)
+  del(src, o)
+})
+
+test.todo('houghLinesP ,color')
+
 test('warp', async t => {
   const src = await fromFile('test/assets/h.jpg')
   const dst = src.clone()
   new Wave().exec({ src: dst, dst, type: 'vertical', amplitude: 70, frequency: 1 / 128 })
   t.false(src === dst)
-  // write(toRgba(dst), 'tmp-warp.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hWave.png'), await toRgba(dst), true), 0)
   del(src, dst)
 })

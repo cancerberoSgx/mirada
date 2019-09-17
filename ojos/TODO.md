@@ -7,7 +7,8 @@
 - [ ] op image registration https://www.geeksforgeeks.org/image-registration-using-opencv-python/
 - [ ] op cv.inpaint https://www.geeksforgeeks.org/image-inpainting-using-opencv/
 - [ ] filter2D
-- [ ] image warping : https://subscription.packtpub.com/book/application_development/9781785283932/1/ch01lvl1sec16/image-warping
+- [x] HoughLinesP 
+- [ ] abstractOperation.mightBeModified - some cv. operations like HoughLinesP might modify src img, so if mightBeModified===true abstract should clone src
 - [ ] fillPoly 
 - [ ] magica codec
 - [ ] svg codec (R/W) based on svg-converter (browser and node.js)
@@ -66,6 +67,7 @@
   - [ ] assume users are responsible of triggering them manually - by name
 - [ ] record video https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element and download it.
 - [ ] take a screenshot and download it
+- [ ] record video as gif another button - stores frames - configurable framerate - on stop uses magica to create anim gif
 - [ ] on mouse over effects - affecting only cursor close region
 - [x] operations requiring a second mat that is the previous frame 
   - [x] addWeighted smooth movements - less impact of changes in lights - get the mean between this frame and previous ? (use addWeight)
