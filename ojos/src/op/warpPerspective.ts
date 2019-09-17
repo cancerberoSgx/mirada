@@ -1,4 +1,4 @@
-import { DecompTypes, del, Scalar, Size } from 'mirada'
+import { DecompTypes, del, Scalar } from 'mirada'
 import { array } from 'misc-utils-of-mine-generic'
 import { randomScalarColor } from '../color'
 import { AbstractOperation } from './abstractOperation'

@@ -1,4 +1,4 @@
-import { SolvePnPMethod, ColorConversionCodes } from 'mirada'
+import { SolvePnPMethod } from 'mirada'
 
 let t: SolvePnPMethod
 

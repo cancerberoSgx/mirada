@@ -1,4 +1,4 @@
-import { del, Size } from 'mirada'
+import { del } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
 import { OperationExecBaseOptions, WithChannels, WithSize } from './types'
 

@@ -1,6 +1,6 @@
 import test from 'ava'
 import { compareL2, del, File, fromFile, toRgba } from 'mirada'
-import { Bitwise, FloodFill, FloodFillOptions, InRange, ReplaceColor, ConvertTo, scalarColor, AdaptiveThreshold, Pyr, Roi, Cartoonize } from '../src'
+import { AdaptiveThreshold, Bitwise, Cartoonize, ConvertTo, FloodFill, FloodFillOptions, InRange, Pyr, ReplaceColor, Roi, scalarColor } from '../src'
 import { Math } from '../src/op/math'
 import { Threshold } from '../src/op/threshold'
 import { loadMirada, write } from './testUtil'
@@ -8,10 +8,11 @@ import { loadMirada, write } from './testUtil'
 test.before(loadMirada)
 
 test.todo('options in constructor and exec() overrides')
-test.only('cartoonize', async t => {
+
+test('cartoonize', async t => {
   const src = await fromFile('test/assets/lenna.jpg')
-  const dst = new Cartoonize().exec({src, dst: src})
-  t.true(src===dst)
+  const dst = new Cartoonize().exec({ src, dst: src })
+  t.true(src === dst)
   write(toRgba(dst), 'tmprrr.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/lennaCartoonize.png'), await toRgba(src), true), 0)
   del(src)
@@ -19,8 +20,8 @@ test.only('cartoonize', async t => {
 
 test('roi', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = new Roi().exec({src, dst: src, expr: new cv.Rect(20,60,40,80)})
-  t.true(src===dst)
+  const dst = new Roi().exec({ src, dst: src, expr: new cv.Rect(20, 60, 40, 80) })
+  t.true(src === dst)
   // write(toRgba(dst), 'tmprrr.png')
   t.deepEqual(compareL2(await File.fromFile('test/assets/hRoi.png'), await toRgba(src), true), 0)
   del(src)
@@ -28,8 +29,8 @@ test('roi', async t => {
 
 test('pyrDown', async t => {
   const src = await fromFile('test/assets/h.jpg')
-  const dst = new Pyr().exec({src, dst: src})
-  t.true(src===dst)
+  const dst = new Pyr().exec({ src, dst: src })
+  t.true(src === dst)
   t.deepEqual(compareL2(await File.fromFile('test/assets/hPyrDown.png'), await toRgba(src), true), 0)
   del(src)
 })

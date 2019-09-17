@@ -1,6 +1,5 @@
-import { Size } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithCenter, WithColor, WithLineType, WithThickness, WithSize } from './types'
+import { OperationExecBaseOptions, WithCenter, WithColor, WithLineType, WithSize, WithThickness } from './types'
 
 export interface EllipseOptions extends OperationExecBaseOptions, EllipseConcreteOptions {
 

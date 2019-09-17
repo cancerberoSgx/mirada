@@ -5,6 +5,7 @@
 - [x] toRgba
 - [ ] sepFilter2D
 - [ ] filter2D
+- [x] cartoonize https://www.geeksforgeeks.org/cartooning-an-image-using-opencv-python/
 - [ ] image warping : https://subscription.packtpub.com/book/application_development/9781785283932/1/ch01lvl1sec16/image-warping
 - [x] roi
 - [ ] fillPoly 

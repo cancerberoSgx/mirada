@@ -1,5 +1,5 @@
 
-import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions, ToRgba, ToRgbaOptions, Roi, RoiOptions } from '.' 
+import { AdaptiveThreshold, AdaptiveThresholdOptions, BilateralFilter, BilateralFilterOptions, Bitwise, BitwiseOptions, BoxFilter, BoxFilterOptions, Canny, CannyOptions, Circle, CircleOptions, ConvertTo, ConvertToOptions, Edge, EdgeOptions, Ellipse, EllipseOptions, FloodFill, FloodFillOptions, GaussianBlur, GaussianBlurOptions, HistEqualization, HistEqualizationOptions, InRange, InRangeOptions, Line, LineOptions, Math, MathOptions, MedianBlur, MedianBlurOptions, MorphologyEx, MorphologyExOptions, Rectangle, RectangleOptions, ReplaceColor, ReplaceColorOptions, Threshold, ThresholdOptions, WarpAffine, WarpAffineOptions, WarpPerspective, WarpPerspectiveOptions, CvtColor, CvtColorOptions, Pyr, PyrOptions, ToRgba, ToRgbaOptions, Roi, RoiOptions, Cartoonize, CartoonizeOptions } from '.' 
 
 interface Base {
   name: string
@@ -47,7 +47,8 @@ export const operationClasses = () => ({
   CvtColor: CvtColor,
   Pyr: Pyr,
   ToRgba: ToRgba,
-  Roi: Roi
+  Roi: Roi,
+  Cartoonize: Cartoonize
 })
 
 export interface OperationOptions {
@@ -76,7 +77,8 @@ export interface OperationOptions {
   CvtColor: CvtColorOptions,
   Pyr: PyrOptions,
   ToRgba: ToRgbaOptions,
-  Roi: RoiOptions
+  Roi: RoiOptions,
+  Cartoonize: CartoonizeOptions
 }
 
 export enum OperationNames {
@@ -105,7 +107,8 @@ export enum OperationNames {
   CvtColor = 'CvtColor',
   Pyr = 'Pyr',
   ToRgba = 'ToRgba',
-  Roi = 'Roi'
+  Roi = 'Roi',
+  Cartoonize = 'Cartoonize'
 }
 
 let metadata: OperationMetadata[] = null as any
@@ -1619,6 +1622,49 @@ export function getOperationMetadata() {
             typeUnion: [],
             description: "",
             optional: false
+          }
+        ]
+      },
+      
+      {
+        name: "Cartoonize",
+        description: "convert an image into a cartoon-like image",
+        noInPlace: false,
+        sameSizeAndType: false,
+        validChannels: undefined,
+        optionsOrder: ["src","dst"],        
+        options: [
+          {
+            name: "src",
+            signature: "src: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Input image.",
+            optional: false
+          }, 
+          {
+            name: "dst",
+            signature: "dst?: Mat",
+            type: "Mat",
+            typeUnion: [],
+            description: "Output image. If not given it will be created. Note that you can give [src] as output image in which case the input image will be written.",
+            optional: true
+          }, 
+          {
+            name: "downsampleCount",
+            signature: "downsampleCount?: number",
+            type: "number",
+            typeUnion: [],
+            description: "",
+            optional: true
+          }, 
+          {
+            name: "bilateralCount",
+            signature: "bilateralCount?: number",
+            type: "number",
+            typeUnion: [],
+            description: "",
+            optional: true
           }
         ]
       }

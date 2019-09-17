@@ -1,13 +1,13 @@
-import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType, WithSize } from './types'
 import { toRgba } from 'mirada'
+import { AbstractOperation } from './abstractOperation'
+import { OperationExecBaseOptions } from './types'
 
 export interface ToRgbaOptions extends OperationExecBaseOptions, ToRgbaConcreteOptions {
 
 }
 
 interface ToRgbaConcreteOptions {
- 
+
 }
 
 /**
@@ -18,7 +18,7 @@ export class ToRgba extends AbstractOperation<ToRgbaOptions> {
   description = `Changes image type to 4 channel RGBA. This is often necessary to render in HTML canvas.`
   optionsOrder = ['src', 'dst'] as (keyof ToRgbaOptions)[]
   protected _exec(o: ToRgbaOptions) {
-      toRgba(o.src, o.dst)
+    toRgba(o.src, o.dst)
   }
 }
 

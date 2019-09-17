@@ -1,6 +1,6 @@
+import { del, Rect } from 'mirada'
 import { AbstractOperation } from './abstractOperation'
-import { OperationExecBaseOptions, WithBorderType, WithSize } from './types'
-import { Rect, del } from 'mirada'
+import { OperationExecBaseOptions } from './types'
 
 export interface RoiOptions extends OperationExecBaseOptions, RoiConcreteOptions {
 
@@ -18,9 +18,9 @@ export class Roi extends AbstractOperation<RoiOptions> {
   description = `Return an image which has a src sub region defined by in given rectangle expression`
   optionsOrder = ['src', 'dst'] as (keyof RoiOptions)[]
   protected _exec(o: RoiOptions) {
-      const m = o.src.roi(  o.expr)
-      m.copyTo(o.dst!)
-      del(m)
+    const m = o.src.roi(o.expr)
+    m.copyTo(o.dst!)
+    del(m)
   }
 }
 
