@@ -6,9 +6,10 @@ import { Msg, ResponseMsg } from "./types"
 
 interface ServerOptions {
   listen: ListenOptions
+  debug?:boolean
 }
 
-export class OjosServer {
+export class BackEyesServer {
   protected server: Server = null as any
   protected cons: any = {}
 

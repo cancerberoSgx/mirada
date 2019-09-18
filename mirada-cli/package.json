@@ -40,11 +40,13 @@
   },
   "dependencies": {
     "glob": "^7.1.4",
+    "gui": "github:yue/node-gui",
+    "imgui": "^1.0.10",
     "minimist": "^1.2.0",
     "mirada": "0.0.9",
-    "ojos": "0.0.5",
     "misc-utils-of-mine-generic": "^0.2.29",
     "oboe": "^2.1.4",
+    "ojos": "0.0.5",
     "shelljs": "^0.8.3"
   },
   "repository": {

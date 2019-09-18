@@ -4,7 +4,7 @@ import { promises } from 'fs'
 import { fromNow } from 'hrtime-now'
 import { connect } from 'net'
 import { loadLibraries } from '../src/loadLibraries'
-import { OjosServer } from '../src/server'
+import { BackEyesServer } from '../src/server'
 import { FsOperation, FsResult } from '../src/types'
 
 const { readFile } = promises
@@ -12,7 +12,7 @@ const { readFile } = promises
 test.cb('ok1', t => {
   fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)).then(() => {
     test2(t)
-    const s = new OjosServer({ listen: { port: 9988, readableAll: true, writableAll: true } })
+    const s = new BackEyesServer({ listen: { port: 9988, readableAll: true, writableAll: true } })
     s.start()
   })
 })

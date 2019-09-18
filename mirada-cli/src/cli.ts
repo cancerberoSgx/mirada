@@ -5,7 +5,6 @@ import { installFormatProxy, JimpCodec, loadFormatProxies, loadOpencv } from 'mi
 import { evaluate, tryTo } from 'misc-utils-of-mine-generic'
 import oboe from 'oboe'
 import { Readable } from 'stream'
-// import { commands } from './commands'
 import { printHelp, renderHelpCommand, renderHelpGeneral } from './help'
 import { Options } from './types'
 
@@ -32,10 +31,8 @@ export async function cli(options: Options) {
     readJson(options)
   }
   else {
-    // console.log((options as any)._);
     const cmds = (options as any)._.map((s: string) => {
       const o = tryTo(() => evaluate(s), undefined)
-      // "{name:'grabCut', in:'test/assets/lenna.jpg', rect:{x:100,y:90,w:79,h:80}, out:'tmp.png'}"
       if (o === undefined) {
         fail(`Error evaluating command "${s}"`)
       }

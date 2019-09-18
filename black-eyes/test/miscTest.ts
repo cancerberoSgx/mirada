@@ -1,15 +1,11 @@
 import test from 'ava'
-import { promises } from 'fs'
 import { fromNow } from 'hrtime-now'
 import { OperationNames } from 'ojos'
 import { loadLibraries } from '../src/loadLibraries'
 import { ojosRun } from '../src/ojos'
 
-const { readFile } = promises
-
 test.before(async () => await fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)))
 test('run', async t => {
-
   const r = await ojosRun({
     src: [{ path: 'test/assets/lenna.jpg' }],
     ops: [
