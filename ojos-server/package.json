@@ -1,0 +1,47 @@
+{
+  "name": "black-eyes",
+  "version": "0.0.1",
+  "description": "Daemon like server for ojos operation scripts - kind of performance research on server side performant IPC and data serialization",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": "bin/ojos-server.js",
+  "scripts": {
+    "clean": "rm -rf dist docs",
+    "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
+    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "lint": " npm run organizeImports && npm run format",
+    "prepare": " npm run generate-commands && npm run build ",
+    "build": "npm run clean && npx tsc",
+    "all": "npm run clean   && npm run lint && npm run build && npm test  "
+  },
+  "keywords": [
+    "typescript",
+    "opencv.js",
+    "opencv"
+  ],
+  "author": "Sebastián Gurin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/msgpack-lite": "^0.1.6",
+    "@types/node": "^12.7.3",
+    "ava": "^2.3.0",
+    "ts-node": "^8.3.0",
+    "ts-refactor": "0.0.9",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "mirada": "../mirada",
+    "misc-utils-of-mine-generic": "^0.2.29",
+    "msgpack-lite": "^0.1.26",
+    "ojos": "../ojos"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancerberoSgx/mirada.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/mirada"
+  }
+}

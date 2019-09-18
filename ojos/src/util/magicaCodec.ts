@@ -25,7 +25,7 @@ export class MagicaCodec implements FormatCodec {
       throw new Error('Could not create Magica File from given buffer ')
     }
     // console.log(  await f.asRGBAImageData());
-    
+
     return await f.asRGBAImageData()
   }
 

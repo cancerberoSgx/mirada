@@ -1,7 +1,7 @@
 import test, { ExecutionContext } from 'ava'
-import { File as MagicaFile, imageCompare, magickLoaded, run } from 'magica'
-import { compareL2, File, fromFile, ImageData, loadOpencv, toRgba } from 'mirada'
-import { Ellipse, MagicaCodec, scalarColor, CvtColor } from '../src'
+import { File as MagicaFile, magickLoaded, run } from 'magica'
+import { compareL2, File, fromFile, ImageData, loadOpencv } from 'mirada'
+import { Ellipse, MagicaCodec, scalarColor } from '../src'
 
 test.before(async () => {
   await magickLoaded
@@ -22,21 +22,21 @@ test('webp', async t => {
 })
 
 test('psd', async t => {
-  await doTest(t, 'test/assets/bridge.psd',  'test/assets/bridgeMagica.psd')
+  await doTest(t, 'test/assets/bridge.psd', 'test/assets/bridgeMagica.psd')
 })
 
 test('gif', async t => {
   await doTest(t, 'test/assets/input.gif', 'test/assets/inputMagica.gif')
 })
 
-async function doTest(t:ExecutionContext, name1:string , name3?: string) {
+async function doTest(t: ExecutionContext, name1: string, name3?: string) {
   const f = await File.fromFile(name1)
   const dst = new Ellipse().exec({
-    src: f.asMat(), 
-    dst: f.asMat(), 
+    src: f.asMat(),
+    dst: f.asMat(),
     angle: 33,
-    size: { width: 22, height: 11 }, 
-    center: { x: 14, y: 14 }, 
+    size: { width: 22, height: 11 },
+    center: { x: 14, y: 14 },
     color: scalarColor('red')
   })
   t.true(dst === f.asMat())
