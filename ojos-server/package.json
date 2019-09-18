@@ -31,11 +31,13 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "@msgpack/msgpack": "^1.9.0",
+    "hrtime-now": "^1.0.6",
+    "magica": "file:../../magica",
     "minimist": "^1.2.0",
     "mirada": "../mirada",
     "misc-utils-of-mine-generic": "^0.2.29",
-    "msgpack-lite": "^0.1.26",
-    "ojos": "../ojos"
+    "ojos": "file:../ojos"
   },
   "repository": {
     "type": "git",

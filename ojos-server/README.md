@@ -1,72 +1,38 @@
-Command line tool to invoke high level opencv operations and effects 
+## black-eyes
 
- * uses mirada opencv.js API
- * uses magica (ImageMagick wasm port) to handle input and output formats
+High performance server for image processing using mirada-ojos (opencv) and magica (ImageMagick). 
+
+ * Node.s server app able to runs both as http or unix socket
+ * supports generic filesystem API to reference files
+ * a common common API for both [ojos]() (opencv) and [magica]() (ImageMagick) w(ebassembly ports)
+ * operation composition script-like language
+ * template support.
+ * API signatures, validation and documentation automatically generated from types
+ * uses msgpack for data-serialization
+ * timings, cpu and memory usage monitoring.
+
+## Motivation
+
+These two wasm ports are acceptably fast and low oevrheaded with the exception of initial startup time. Since in CLI apps this needs to happen each time it has huge impact. The idea is for me to take the oportunity to learn / implement background like server which that handle commands from other thin clients (other CLIs or web pages) . Since th the libraries don't need to reload on each command will give me the opportuninty to run commands faster, and better measure performance.
 
 ## install
 
-npm install -g mirada-cli
+npm install -g black-eyes
 
 
 ## Usage
 
 YBD
 
-
-## We want:
-
-
-
-
-Initial ideas:
-
-```sh 
-# execute two commands given as JS literal object (notice the file named tmp.mat)
-ojos "name:'grabCut', in:'../imgs/foo.png', rect:'{x:100,y:90,w:79,h:80}', out:'tmp.mat'" \\
-     "name:'toRgba', in:'tmp.mat', out:'out/foo.gif'"
-
-# execute commands defined in file removeBg17.json.ejs evaluated as a template with context given in --variables
-ojos --commands removeBg17.json.ejs \\
-     --variables "bg:'#ffeeee', replaceWith:'rgba(222,122,211,128)'"
-
-# Same as before but variables read from stdin and commands file fetched from url
-cat vars.json | ojos --commands https://app.com/imgproc/features/people22
-
-# daemon mode
-mkpipe ./tmp/pipe1
-ojos --listen ./tmp/pipe1 
-
-# in another terminal, listen for output - after a sequence of commands ends it writes info about the output:
-cat someCommands.json > ./tmp/pipe1
-
-# in another terminal / user commands can be written as json:
-cat someCommands.json > ./tmp/pipe1
-
-```
-
+ 
 ## TODO
 
-- [ ] mirada my-config.json
-- [ ] mirada my-config.js  module.exports = {x:10,y:20,width:120,height:100,format:'jpg'}
-- [ ] mirada "command:'grab-cut',x:10,y:20,width:120,height:100,format:'jpg',output:'outFolder',input:'imgs/*raw.webp'"
-- [ ] interactive:
-   * calling without arguments will inquire the user for everything, starting with mandatory args like command and input, then command mandatory args, and last optional arguments like output, format, etc. When all mandatory args are filled,the user is able to skip the optional args inquiry and execute the operation with default values for them.
-   * If calling with some arguments but some mandatory args are not provided it will ask for those, and then ask for optionals. When all mandatory args are filled,the user is able to skip the optional args inquiry and execute the operation with default values for them.
-
-
-
-## Old ideas - obsolete
-
-### usage
-
-If --output is given and there is only one output file it will write it in a file named --output:
-mirada --command grab-cut --x 10 --y 20 --width 123 --height 100 --format gif --output ../img_nobg.gif --input ../img.png
-
-If --output is given and there are multiple output files it will write output files in folder --output creating it if necessary:
-mirada --command grab-cut --x 10 --y 20 --width 123 --height 100 --format gif --output outfolder --input "imgs/*raw.webp"
-
-If --replace is given then it will replace input files :
-mirada --command grab-cut --x 10 --y 20 --width 123 --height 100 --replace "imgs/*raw.webp"
-
-If no --output given it will create new files with same name and a suffix at the same input file location:
-mirada --command grab-cut --x 10 --y 20 --width 123 --height 100 --format png  "imgs/*raw.webp"
+- [ ] serialization async using streams
+- [ ] solution to overcome msgpack size limitation 2^32 = 1024 bytes for images
+- [ ] server connection clean up
+- [ ] server cluster
+- [ ] other FS impl - like google driver for fb 
+- [ ] a known global medium for identifying where the server is listening on this machine
+- [ ] generate manual from oos metadata
+- [ ] generate JSON schema form ojos metadata
+- [ ] sample web page client and sample CLI client

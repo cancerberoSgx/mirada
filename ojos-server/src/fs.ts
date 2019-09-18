@@ -12,6 +12,10 @@ export interface FsResource {
   content:Uint8ClampedArray 
 }
 
+export interface FsResult extends ResponseMsg {
+  file?: FsResource
+}
+
 export interface Fs extends  OperationHandler<FsOperation>{
   write(f:FsResource):Promise<void>
   read(name:string):Promise<FsResource|undefined>
@@ -64,9 +68,7 @@ class FsImpl implements Fs{
     }
   }
 }
-interface FsResult extends ResponseMsg {
-  file?: FsResource
-}
+
 let _fs:Fs=null as any
 export function getFs():Fs {
 if(!_fs) {
