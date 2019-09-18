@@ -1,20 +1,20 @@
-import test, {ExecutionContext, CbExecutionContext} from 'ava'
+import { decode, encode } from '@msgpack/msgpack'
+import test, { CbExecutionContext } from 'ava'
+import { promises } from 'fs'
+import { fromNow } from 'hrtime-now'
+import { connect } from 'net'
+import { loadLibraries } from '../src/loadLibraries'
+import { OjosServer } from '../src/server'
+import { FsOperation, FsResult } from '../src/types'
 
-import { OjosServer } from '../src/server';
-import { connect } from 'net';
-import {  decodeAsync, decode, encode   } from '@msgpack/msgpack'
-import { promises, mkdirSync } from 'fs';
-import {fromNow} from 'hrtime-now'
-import { FsResult, FsOperation } from '../src/types';
-import { loadLibraries } from '../src/loadLibraries';
 const { readFile } = promises
 
 test.cb('ok1', t => {
-fromNow( loadLibraries, t=>console.log(`Lading libraries took ${t}`)).then(()=>{
-test2(t)
-const s = new OjosServer({ listen: { port: 9988, readableAll: true, writableAll: true } })
-  s.start()
-})
+  fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)).then(() => {
+    test2(t)
+    const s = new OjosServer({ listen: { port: 9988, readableAll: true, writableAll: true } })
+    s.start()
+  })
 })
 
 function test2(t: CbExecutionContext) {
@@ -26,30 +26,30 @@ function test2(t: CbExecutionContext) {
           name: 'lenna.jpg',
           content: new Uint8ClampedArray(await readFile('test/assets/shape.jpg'))
         }
-      };
+      }
       socket.on("data", async (data) => {
         const res = decode(data) as FsResult
         // console.log('response 1', res);
-        t.true(res.file ? res.file.name==='lenna.jpg':true)
-      });
-      socket.write(encode(d));
-    });
-  }, 2000);
+        t.true(res.file ? res.file.name === 'lenna.jpg' : true)
+      })
+      socket.write(encode(d))
+    })
+  }, 2000)
   setTimeout(() => {
     const socket = connect({ port: 9988, readable: true, writable: true }, () => {
       socket.on("data", async (data) => {
         const res = decode(data) as FsResult
         // console.log('response2', res);
-       t.true(res.file ? res.file.name==='lenna.jpg':true)
-       if(res.file && res.file.name==='lenna.jpg'){
-        t.end()
-       }
-      });
+        t.true(res.file ? res.file.name === 'lenna.jpg' : true)
+        if (res.file && res.file.name === 'lenna.jpg') {
+          t.end()
+        }
+      })
       const d: FsOperation = {
         name: 'readFile',
         fileName: 'lenna.jpg'
-      };
-      socket.write(encode(d));
-    });
-  }, 4000);
+      }
+      socket.write(encode(d))
+    })
+  }, 4000)
 }

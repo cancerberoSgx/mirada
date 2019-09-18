@@ -1,17 +1,17 @@
-import { Msg, ResponseMsg, OperationHandler } from './types'
+import { Msg, OperationHandler, ResponseMsg } from './types'
 
-const ops:{[a:string]:OperationHandler} = {}
+const ops: { [a: string]: OperationHandler } = {}
 
-export function registerOperation<T extends Msg>(name:string, handler:OperationHandler<T>) {
-ops[name] = handler
+export function registerOperation<T extends Msg>(name: string, handler: OperationHandler<T>) {
+  ops[name] = handler
 }
 
-export async function handleOp(o:Msg):Promise<ResponseMsg>{
+export async function handleOp(o: Msg): Promise<ResponseMsg> {
   const h = ops[o.name]
-  if(!h){
+  if (!h) {
     return {
       ...o,
-      error: 'Operation handler not found for '+o.name
+      error: 'Operation handler not found for ' + o.name
     }
   }
   return await h.handle(o)
