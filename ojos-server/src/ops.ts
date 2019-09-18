@@ -1,4 +1,4 @@
-import { FsResource } from './fs'
+import { Msg, ResponseMsg, OperationHandler } from './types'
 
 const ops:{[a:string]:OperationHandler} = {}
 
@@ -15,16 +15,4 @@ export async function handleOp(o:Msg):Promise<ResponseMsg>{
     }
   }
   return await h.handle(o)
-}
-
-export interface OperationHandler<T extends Msg = Msg>{
-handle(payload:T):Promise<ResponseMsg>
-}
-
-export interface ResponseMsg extends Msg{
-  error?: string
-}
-
-export interface Msg {
-  name:string
 }

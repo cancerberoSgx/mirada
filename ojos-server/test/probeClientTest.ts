@@ -4,11 +4,9 @@ import { OjosServer } from '../src/server';
 import { connect } from 'net';
 import {  decodeAsync, decode, encode   } from '@msgpack/msgpack'
 import { promises, mkdirSync } from 'fs';
-import {magickLoaded, File as MagicaFile, run } from 'magica'
-import {loadOpencv} from 'mirada'
-import {MagicaCodec} from 'ojos'
-import { FsOperation, FsResult } from '../src/fs';
 import {fromNow} from 'hrtime-now'
+import { FsResult, FsOperation } from '../src/types';
+import { loadLibraries } from '../src/loadLibraries';
 const { readFile } = promises
 
 test.cb('ok1', t => {
@@ -19,16 +17,6 @@ const s = new OjosServer({ listen: { port: 9988, readableAll: true, writableAll:
 })
 })
 
-async function loadLibraries() {
-  await magickLoaded;
-  const Magica = {
-    fromArrayBuffer: MagicaFile.fromArrayBuffer,
-    fromRGBAImageData: async (data: ImageData) => MagicaFile.fromRGBAImageData(data as any),
-    run
-  };
-  await loadOpencv({ formatProxies: [() => new MagicaCodec(Magica)] });
-}
-
 function test2(t: CbExecutionContext) {
   setTimeout(async () => {
     const socket = connect({ port: 9988, readable: true, writable: true }, async () => {
@@ -36,7 +24,7 @@ function test2(t: CbExecutionContext) {
         name: 'writeFile',
         file: {
           name: 'lenna.jpg',
-          content: new Uint8ClampedArray(await readFile('../ojos/test/assets/shape.jpg'))
+          content: new Uint8ClampedArray(await readFile('test/assets/shape.jpg'))
         }
       };
       socket.on("data", async (data) => {

@@ -1,6 +1,7 @@
 import { createServer, Server, ListenOptions, Socket } from 'net';
 import {  decodeAsync, decode, encode   } from '@msgpack/msgpack'
-import { handleOp, Msg, ResponseMsg } from './ops';
+import { handleOp } from './ops';
+import { Msg, ResponseMsg } from "./types";
 import { getFs } from './fs';
 
 interface ServerOptions {
@@ -8,8 +9,8 @@ interface ServerOptions {
 }
 
 export class OjosServer {
-  server: Server = null as any
-  cons: any = {}
+  protected server: Server = null as any
+  protected cons: any = {}
 
   constructor(protected options: ServerOptions) {
     this.handleServerCreate = this.handleServerCreate.bind(this)

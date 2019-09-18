@@ -1,32 +1,11 @@
 import { promises, mkdirSync } from 'fs';
 import { join } from 'path';
-import { registerOperation, OperationHandler,   ResponseMsg, Msg } from './ops';
+import { registerOperation} from './ops';
+import { ResponseMsg, Msg, Fs, FsResource, FsOperation, FsResult } from "./types";
 const {writeFile, readFile} = promises
 
 interface FsOptions {
   folder:string
-}
-
-export interface FsResource {
-  name:string
-  content:Uint8ClampedArray 
-}
-
-export interface FsResult extends ResponseMsg {
-  file?: FsResource
-}
-
-export interface Fs extends  OperationHandler<FsOperation>{
-  write(f:FsResource):Promise<void>
-  read(name:string):Promise<FsResource|undefined>
-  handle(p:FsOperation):Promise<FsResult>
-  name:string
-}
-
-export interface FsOperation extends Msg {
-  file?: FsResource
-  fileName?:string
-  name:'writeFile'|'readFile'
 }
 
 class FsImpl implements Fs{
