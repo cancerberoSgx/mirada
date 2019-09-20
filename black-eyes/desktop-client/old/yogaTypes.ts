@@ -9,7 +9,7 @@
 //   marginauto?: Edge
 //   marginpercent?: Partial<ValuedEdges<number>>
 //   flexwrap?: FlexWrap
-//   flexdirection?: FlexDirection
+//   flexDirection?: flexDirection
 //   direction?: Direction
 //   flexbasis?: number
 //   flexbasispercent?: number
@@ -20,7 +20,7 @@
 //   // border?: {} number      //TODO          
 //   display?: Display
 //   flex?: number
-//   flexgrow?: number
+//   flexGrow?: number
 //   flexshrink?: number
 //   height?: number| string
 //   justifycontent?: JustifyContent
@@ -56,7 +56,7 @@
 
 // type Align = 'auto' | 'baseline' | 'center' | 'flex-end' | 'flex-start' | 'space-around' | 'space-between' | 'stretch'
 
-// type FlexDirection = 'column' | 'column-reverse' | 'count' | 'row' | 'row-reverse'
+// type flexDirection = 'column' | 'column-reverse' | 'count' | 'row' | 'row-reverse'
 
 // type Direction = 'inherit' | 'ltr' | 'rtl'
 
@@ -254,7 +254,7 @@
 // //         | typeof ALIGN_SPACE_BETWEEN
 // //         | typeof ALIGN_STRETCH;
 
-// //     type YogaFlexDirection =
+// //     type YogaflexDirection =
 // //         | typeof FLEX_DIRECTION_COLUMN
 // //         | typeof FLEX_DIRECTION_COLUMN_REVERSE
 // //         | typeof FLEX_DIRECTION_COUNT
@@ -331,8 +331,8 @@
 // //         getComputedWidth(): number;
 // //         getDisplay(): YogaDisplay;
 // //         getFlexBasis(): number;
-// //         getFlexDirection(): YogaFlexDirection;
-// //         getFlexGrow(): number;
+// //         getflexDirection(): YogaflexDirection;
+// //         getflexGrow(): number;
 // //         getFlexShrink(): number;
 // //         getFlexWrap(): YogaFlexWrap;
 // //         getHeight(): Value;
@@ -362,8 +362,8 @@
 // //         setFlex(flex: number): void;
 // //         setFlexBasis(flexBasis: number | string): void;
 // //         setFlexBasisPercent(flexBasis: number): void;
-// //         setFlexDirection(flexDirection: YogaFlexDirection): void;
-// //         setFlexGrow(flexGrow: number): void;
+// //         setflexDirection(flexDirection: YogaflexDirection): void;
+// //         setflexGrow(flexGrow: number): void;
 // //         setFlexShrink(flexShrink: number): void;
 // //         setFlexWrap(flexWrap: YogaFlexWrap): void;
 // //         setHeight(height: number | string): void;

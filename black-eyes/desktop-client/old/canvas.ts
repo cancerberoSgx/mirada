@@ -12,7 +12,7 @@
 // win.setContentSize({ width: 600, height: 600 })
 // const content = gui.Container.create()
 // content.setBackgroundColor('#FFF')
-// content.setStyle({ flexgrow: 1 })
+// content.setStyle({ flexGrow: 1 })
 // win.setContentView(content)
 // content.onDraw = (self, painter, dirty) => {
 //   painter.drawCanvasFromRect(canvas, dirty, dirty)

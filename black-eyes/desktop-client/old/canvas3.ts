@@ -54,12 +54,12 @@
 //   protected createWindow() {
 //     this.content = gui.Container.create()
 //     this.content.setBackgroundColor('#FFF')
-//     this.content.setStyle({ flexgrow: 1 , flex: 1, flexDirection: 'column'})
+//     this.content.setStyle({ flexGrow: 1 , flex: 1, flexDirection: 'column'})
 //     this.menuPanel=gui.Container.create()
 //     this.menuPanel.setStyle({width: '100%', flex: 0,height: 40, flexDirection: 'row'})
 //     this.menuPanel.setBackgroundColor('gray')
 //     this.bodyPanel=gui.Container.create()
-//     this.bodyPanel.setStyle({width: '100%', flex: 1, height: '100%',flexgrow: 1, flexDirection: 'row'})
+//     this.bodyPanel.setStyle({width: '100%', flex: 1, height: '100%',flexGrow: 1, flexDirection: 'row'})
 // this.content.addChildView(this.menuPanel)
 // this.content.addChildView(this.bodyPanel)
 
@@ -72,7 +72,7 @@
 
 //   protected createCanvas() {
 // this.canvasPanel = gui.Container.create()
-//   this.canvasPanel.setStyle({flex: 1, flexgrow: 1, width: '100%', height:'100%', flexDirection: 'column'})
+//   this.canvasPanel.setStyle({flex: 1, flexGrow: 1, width: '100%', height:'100%', flexDirection: 'column'})
 //   this.bodyPanel.addChildView(this.canvasPanel)
 //   // this.canvasPanel.setStyle({})
 //     const imgSize = { width: 400, height: 400 }

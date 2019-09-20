@@ -1,24 +1,52 @@
-import { readFileSync } from 'fs'
+import { readFileSync, appendFileSync } from 'fs'
+import { mainSync, File } from 'magica'
+import { basename } from 'path'
 
 export interface State {
   working?: string
   image: string
+  currentBuffer: ArrayBufferView
   imageBuffer: ArrayBufferView
+  magicaBuffer: ArrayBufferView
+  time: number
 }
 
-export function getInitialState(): State {
+export   function getInitialState(): State {
   return {
-    working: 'si si ',
-    image: 'test/assets/lenna.jpg',
-    imageBuffer: readFileSync('test/assets/lenna.jpg')
+   ... buildBuffers('test/assets/lenna.jpg'),
+   time: 0
   }
 }
 
-const state = getInitialState()
+let state:State = null as any
 export function getState() {
   return state
 }
-
+export function _setState(s:State) {
+  state=s
+}
 export function setState(s: Partial<State>) {
   Object.assign(state, s || {})
+}
+
+export  function buildBuffers(image:string) {
+  try {
+    const s  ={ 
+    image,
+    currentBuffer: new Uint8ClampedArray(readFileSync(image)),
+    imageBuffer: new Uint8ClampedArray(readFileSync(image))
+    }
+   const result = mainSync({
+    command: ['convert', basename(image), 'output.miff'],
+    inputFiles: [new File(basename(image), s.imageBuffer)] 
+  });
+  return {...s, magicaBuffer: result.outputFiles[0].content}
+  } catch (error) {
+    console.error(error);
+    return state
+  }
+}
+
+export function log(s:string){
+  appendFileSync('tmp.txt', s)
 }

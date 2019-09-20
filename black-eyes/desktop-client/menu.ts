@@ -1,7 +1,7 @@
 import * as gui from 'gui'
 
 export class Menu {
-  protected menu: gui.MenuBar
+  menu: gui.MenuBar
 
   constructor() {
     const menus: gui.MenuItemOptions[] = []

@@ -59,6 +59,95 @@
 //         static notifyValueChange(column: number, row: number): void;
 //     }
 
+//     /**
+//      * This class implements the signal/slot pattern, which is used as event type.
+//      * 
+//      * Yue uses the signal/slot pattern for the event system, each event is a signal that can be connected by multiple slots, 
+//      * and event handlers are slots that can connect to multiple signals.
+//      * 
+//      * In Yue each signal is an instance of Signal class, while slot is just a function.
+//      * 
+//      * ```
+//      * const {app} = require('gui')
+//      * app.onReady.connect(() => console.log('on ready'))
+//      * ```
+//      * 
+//      * It is also possible to connect a slot to a signal by assignment, which is a shorthand of calling connect.
+//      * 
+//      * ```
+//      * app.onReady = () => console.log('on ready')
+//      * ```
+//      */ 
+//     export class Signal<Slot extends (...args: any)=>any> {
+//       /**
+//        * Connect slot to the signal, and return an ID that can be used to disconnect it.
+//        * 
+//        * The signature of slot must match the event's type.
+//        */
+//       connect(slot: Slot): number;
+//       /**
+//        * Disconnect the id from the signal.
+//        */
+//       disconnect(id:number): void;
+//       /**
+//        * Disconnect all slots in the signal.
+//        */
+//       disconnectAll():void
+//       /**
+//        * Return true if there is no slot connected to the signal.
+//        */
+//       isEmpty():boolean
+//     }
+
+//     // type EventMember<Slot extends (...args: any)=>any> = Slot | Signal<Slot>
+
+//     export class BrowserOptions {
+//         /**
+//          * Whether the browser can show devtools, default is false.
+//          * 
+//          * Depending on platform, the option to show devtools is usually in the context menu, so you should also enable builtin context menu when using this option.
+//          * 
+//          * Currently this option is not working on Windows.
+//          */
+//         devtools?: boolean
+//         /**
+//          * Whether to use builtin context menu, default is false.
+//          * 
+//          * On macOS due to the limitation of system APIs, right-clicking certain elements would still popup a menu with Services items.
+//          */
+//         contextMenu?: boolean
+//         /**
+//          * macOS and Linux only. Whether file access is allowed from file URLs, default is false.
+//          * 
+//          * By default, when something is loaded in using a file URI, cross origin requests to other file resources are not allowed. This setting allows you to change that behaviour, so that it would be possible to do a XMLHttpRequest of a local file, for example.
+//          */
+//         allowFileAccessFromFiles?: boolean
+//         /**
+//          * Linux only. Whether to enable hardware acceleration, default is true.
+//          */
+//         hardwareAcceleration?: boolean
+//     }
+
+//     export class Browser extends View {
+//         static create(options: BrowserOptions): Browser
+//         /**
+//          * Load the URL
+//          */
+//         loadURL(url:string):void
+//         /**
+//          * Set the webpage contents and base URL.
+//          * @param html The string to use as the contents of the webpage.
+//          * @param baseurl A URL used to resolve relative URLs within the document.
+//          */
+//         loadHTML(html: string, baseurl: string): void
+//         /**
+//          * Add a native binding to web page with name.
+//          * 
+//          * The func will be called with automatically converted arguments.
+//          */
+//         addBinding(name:string, func: (...args: any[])=>any): void
+//     }
+
 //     export class View {
 //         protected constructor();
 //         cancelDrag(): void;
@@ -91,7 +180,7 @@
 //         onMouseEnter(self: this, event: MouseEvent): void;
 //         onMouseLeave(self: this, event: MouseEvent): void;
 //         onMouseMove(self: this, event: MouseEvent): void;
-//         onMouseUp(self: this, event: MouseEvent): void;
+//         onMouseUp: Signal<(self: this, event: MouseEvent)=> void> //| ((self: this, event: MouseEvent)=> void) 
 //         onSizeChanged(self: this): void;
 //         registerDraggedTypes(types: ClipboardDataType[]): void;
 //         releaseCapture(): void;
@@ -124,6 +213,7 @@
 //         hasBoarder(): boolean;
 //         isChecked(): boolean;
 //         onClick(self: this): void;
+//         //  onClick: Signal<(self: this, event: MouseEvent)=> void> 
 //         setButtonStyle(style: ButtonStyle): void;
 //         setChecked(isChecked: boolean): void;
 //         setHasBoarder(hasBoarder: boolean): void;
@@ -324,7 +414,7 @@
 //     export class Menu extends MenuBase {
 //         protected constructor();
 //         popup(): void;
-//         static create(items: MenuItem[]): Menu;
+//         static create(items: MenuItemOptions[]): Menu;
 //     }
 
 //     export class MenuBar extends MenuBase {
@@ -530,7 +620,7 @@
 //     }
 
 //     export class Window {
-//         static create(options?: WindowOptions): Window;
+//         static create(options: WindowOptions): Window;
 //         protected constructor();
 //         activate(): void;
 //         addChildWindow(window: Window): void;
@@ -768,66 +858,60 @@
 //      * https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc
 //      */
 //     export interface StyleProperties {
-
-//         heightauto?: boolean
-//         heightpercent?: number
-//         marginauto?: Edge
-//         marginpercent?: Partial<ValuedEdges<number>>
-//         flexwrap?: FlexWrap
-//         flexdirection?: FlexDirection
+      
+//         heightAuto?: boolean
+//         heightPercent?: number
+//         marginAuto?: Edge
+//         marginPercent?: Partial<ValuedEdges<number>>
+//         flexWrap?: FlexWrap
+//         flexDirection?: FlexDirection
 //         direction?: Direction
-//         flexbasis?: number
-//         flexbasispercent?: number
-//         aligncontent?: Align
-//         alignitems?: Align
-//         alignself?: Align
-//         aspectratio?: number
-
+//         flexBasis?: number
+//         flexBasisPercent?: number
+//         alignContent?: Align
+//         alignItems?: Align
+//         alignSelf?: Align
+//         aspectRatio?: number
+        
 //         border?: Partial<ValuedEdges<string | number>>
-//         bordertop?: number|string
-//         borderright?: number|string
-//         borderbottom?: number|string
-//         borderleft?: number|string        
+//         borderTop?: number|string
+//         borderRight?: number|string
+//         borderBottom?: number|string
+//         borderLeft?: number|string        
 
 //         display?: Display
 //         flex?: number
-//         flexgrow?: number
-//         flexshrink?: number
+//         flexGrow?: number
+//         flexShrink?: number
 //         height?: number| string
-//         justifycontent?: JustifyContent
+//         justifyContent?: JustifyContent
 
 //         margin?: Partial<ValuedEdges<string | number>>
-//         margintop?: number|string
-//         marginright?: number|string
-//         marginbottom?: number|string
-//         marginleft?: number|string
+//         marginTop?: number|string
+//         marginRight?: number|string
+//         marginBottom?: number|string
+//         marginLeft?: number|string
 
-//         maxheight?: number | string
-//         maxheightpercent?: number
-//         maxwidth?: number | string
-//         maxwidthpercent?: number
-//         minheight?: number | string
-//         minheightpercent?: number
-//         minwidth?: number | string
-//         minwidthpercent?: number
+//         maxHeight?: number | string
+//         maxHeightPercent?: number
+//         maxWidth?: number | string
+//         maxWidthPercent?: number
+//         minHeight?: number | string
+//         minHeightPercent?: number
+//         minWidth?: number | string
+//         minWidthPercent?: number
 //         overflow?: Overflow
 
 //         padding?: Partial<ValuedEdges<number>>
-//         paddingtop?:number|string
-//         paddingleft?:number|string
-//         paddingright?:number|string
-//         paddingbottom?:number|string
-//         // flexpadding?: Partial<ValuedEdges<number>>
-//         // paddingpercent?: Partial<ValuedEdges<number>>
-
-//         // position?: ValuedEdges<string | number>
-//         // positionpercent?: string
-//         // positiontype?: PositionType
+//         paddingTop?:number|string
+//         paddingLeft?:number|string
+//         paddingRight?:number|string
+//         paddingBottom?:number|string
 //         position?: PositionType
 
 //         width?: number| string
-//         // widthauto?: boolean
-//         // widthpercent?: number
+//         widthAuto?: boolean
+//         widthPercent?: number
 //         bottom?: number | string
 //         right?: number | string
 //     }

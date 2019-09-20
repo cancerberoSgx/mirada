@@ -34,7 +34,7 @@
 //   protected createWindow() {
 //     this.content = gui.Container.create()
 //     this.content.setBackgroundColor('#FFF')
-//     this.content.setStyle({ flexgrow: 1 })
+//     this.content.setStyle({ flexGrow: 1 })
 
 //     this.win = gui.Window.create({})
 //     this.win.setContentView(this.content)
