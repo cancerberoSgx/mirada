@@ -1,7 +1,5 @@
 import test from 'ava'
-import { fromNow } from 'hrtime-now'
 import { OperationNames } from 'ojos'
-import { loadLibraries } from '../src/loadLibraries'
 import { ojosRun } from '../src/ojos'
 
 // test.before(async () => await fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)))

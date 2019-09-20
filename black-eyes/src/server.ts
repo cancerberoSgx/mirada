@@ -6,7 +6,7 @@ import { Msg, ResponseMsg } from "./types"
 
 interface ServerOptions {
   listen: ListenOptions
-  debug?:boolean
+  debug?: boolean
 }
 
 export class BackEyesServer {

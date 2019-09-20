@@ -36,20 +36,20 @@ export async function ojosRun<T extends LibOperation[]>(options: LibRunOptions<T
 
 
 async function buildRunOptions<T extends LibOperation[]>(o: OjosRunOptions<T>): Promise<RunOptions> {
-  return {    
-...o,
+  return {
+    ...o,
     src: await serial(asArray(o.src).map(f => async () => {
       return { ...f, mat: await fromFile(f.path), name: f.name || f.path }
     })),
-    ops: o.ops.map(op => ({      
-...op,
+    ops: o.ops.map(op => ({
+      ...op,
       src: op.src.find(f => f)!,
-      dst: op.dst.find(f => f)    
-})).map(op => ({      
-...op,
+      dst: op.dst.find(f => f)
+    })).map(op => ({
+      ...op,
       src: op.src.name || op.src.path,
-      dst: op.dst ? op.dst.name || op.dst.path : 'todoDst.png'    
-}))
+      dst: op.dst ? op.dst.name || op.dst.path : 'todoDst.png'
+    }))
   }
 }
 

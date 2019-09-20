@@ -1,29 +1,26 @@
 
-import { App1 } from './app';
 import { flat } from 'misc-utils-of-mine-generic'
-import { Handlers } from './libWorker';
 // import { spawn, Thread, Worker } from "threads"
-import { loadLibraries } from '../src/loadLibraries';
-import { mainSync, File } from 'magica';
-import { writeFileSync, readFileSync } from 'fs';
-import { basename } from 'path';
+import { loadLibraries } from '../src/loadLibraries'
+import { App1 } from './app'
+import { Handlers } from './libWorker'
 
 if (typeof Array.prototype.flat === 'undefined') {
-  Array.prototype.flat = function (this: any[]) {
+  Array.prototype.flat = function(this: any[]) {
     return flat(this)
   }
 }
 
 export let handlers: Handlers
 
-export let app:App1
+export let app: App1
 
 async function main() {
   // const w = new Worker("./libWorker")
   // handlers = await spawn(w)  as any
-  console.log('Loading libraries...');
+  console.log('Loading libraries...')
   await loadLibraries()
-  console.log('Starting App...');
+  console.log('Starting App...')
   app = new App1()
   app.render()
   app.start()

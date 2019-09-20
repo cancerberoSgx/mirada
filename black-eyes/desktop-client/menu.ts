@@ -1,9 +1,9 @@
 import * as gui from 'gui'
 
 export class Menu {
-  // accountsMenu: any
-  menu: gui.MenuBar
-  constructor( ) {
+  protected menu: gui.MenuBar
+
+  constructor() {
     const menus: gui.MenuItemOptions[] = []
     menus.push({
       label: 'productName',
@@ -23,36 +23,38 @@ export class Menu {
         {
           label: 'Collect Garbage',
           accelerator: 'CmdOrCtrl+Shift+G',
-          onClick() { 
-            },
+          onClick() {
+          },
         },
         { type: 'separator' },
         {
           label: 'Quit',
           accelerator: 'CmdOrCtrl+Q',
-          onClick() { 'Menu'},
+          onClick() { 
+            gui.MessageLoop.quit()
+          },
         },
       ],
     })
 
     // macOS specific app menus.
     if (process.platform === 'darwin') {
-      menus[0].submenu!.splice(menus[0].submenu!.length - 2, 0,                              { type: 'separator' },                              { role: 'hide' },                              { role: 'hide-others' },                              { type: 'separator' })
+      menus[0].submenu!.splice(menus[0].submenu!.length - 2, 0, { type: 'separator' }, { role: 'hide' }, { role: 'hide-others' }, { type: 'separator' })
     }
 
     // Edit menu.
-    // menus.push({
-    //   label: 'Edit',
-    //   submenu: [
-    //     { role: 'undo' },
-    //     { role: 'redo' },
-    //     { type: 'separator' },
-    //     { role: 'cut' },
-    //     { role: 'copy' },
-    //     { role: 'paste' },
-    //     { role: 'select-all' },
-    //   ],
-    // })
+    menus.push({
+      label: 'Edit',
+      submenu: [
+        { role: 'undo' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'select-all' },
+      ],
+    })
 
     // this.accountsMenu = gui.Menu.create([      {        type: 'separator'       }    ])
     // for (let i = 0; i < 3; ++i)
@@ -68,15 +70,15 @@ export class Menu {
       label: 'Window',
       role: 'window',
       submenu: [
-        // {
-        //   label: 'New Window',
-        //   accelerator: 'CmdOrCtrl+Shift+N',
-        //   onClick(){}
-        // },
+        {
+          label: 'New Window',
+          accelerator: 'CmdOrCtrl+Shift+N',
+          onClick(){}
+        },
         {
           label: 'Close Window',
           accelerator: 'CmdOrCtrl+W',
-          onClick: ()=>{
+          onClick: () => {
             gui.MessageLoop.quit()
           }
         },
@@ -86,14 +88,5 @@ export class Menu {
     // Create the native menu.
     this.menu = gui.MenuBar.create(menus)
   }
-  
-  // addAccount( i:any, account:any) {
-  //   const item = gui.MenuItem.create({
-  //     label: account.name,
-  //     accelerator: `CmdOrCtrl+${i + 1}`,
-  //     onClick: ()=>{}//this.selectAccount.bind(this, win, account)
-  //   })
-  //   this.accountsMenu.insert(item, i)
-  // }
-   
+ 
 }

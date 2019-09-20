@@ -768,7 +768,7 @@
 //      * https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc
 //      */
 //     export interface StyleProperties {
-      
+
 //         heightauto?: boolean
 //         heightpercent?: number
 //         marginauto?: Edge
@@ -782,7 +782,7 @@
 //         alignitems?: Align
 //         alignself?: Align
 //         aspectratio?: number
-        
+
 //         border?: Partial<ValuedEdges<string | number>>
 //         bordertop?: number|string
 //         borderright?: number|string

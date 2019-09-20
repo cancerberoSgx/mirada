@@ -8,8 +8,8 @@
   "scripts": {
     "clean": "rm -rf dist docs tmp_server_fs working_tmp",
     "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
-    "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
-    "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
+    "format": "npx ts-refactor format \"desktop-client/**/*.ts*\" \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
+    "organizeImports": "npx ts-refactor organizeImports \"desktop-client/**/*.ts*\" \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
     "prepare": "npm run build ",
     "build": "npm run clean && npx tsc",

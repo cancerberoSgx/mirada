@@ -1,5 +1,4 @@
-import { Window } from 'gui';
-import { readFileSync } from 'fs';
+import { readFileSync } from 'fs'
 
 export interface State {
   working?: string
@@ -15,12 +14,11 @@ export function getInitialState(): State {
   }
 }
 
-const state = getInitialState();
+const state = getInitialState()
 export function getState() {
   return state
 }
 
-/** to be override by subclasses to update UI. Must call super !*/
 export function setState(s: Partial<State>) {
-  Object.assign(state, s || {});
+  Object.assign(state, s || {})
 }

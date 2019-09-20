@@ -22,7 +22,7 @@
 //     this.start()
 //   }
 //   start() {
-   
+
 //     this.win.center()
 //     this.win.activate()
 //     if (!(process.versions as any).yode) {

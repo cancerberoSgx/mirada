@@ -1,12 +1,12 @@
-import { BackEyesServer } from './server'
 import { fromNow } from 'hrtime-now'
 import { loadLibraries } from './loadLibraries'
+import { BackEyesServer } from './server'
 
 export interface Options {
   help?: boolean
   debug?: boolean
   port?: string
-  path?:string
+  path?: string
 }
 
 export async function cli(options: Options) {
@@ -15,12 +15,12 @@ export async function cli(options: Options) {
     printHelp(options.help)
     process.exit(0)
   }
-  if(!options.path&&!options.port){
+  if (!options.path && !options.port) {
     fail('One of path or port must be given')
   }
-  options.debug && console.log('Loading...');
+  options.debug && console.log('Loading...')
   options.debug && await fromNow(loadLibraries, t => console.log(`Libraries loaded in ${t}`))
-  const server = new BackEyesServer({listen: {path:options.path, port: parseInt(options.port!)}, debug: options.debug||false})
+  const server = new BackEyesServer({ listen: { path: options.path, port: parseInt(options.port!) }, debug: options.debug || false })
   server.start()
 }
 

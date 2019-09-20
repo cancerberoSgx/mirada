@@ -1,21 +1,21 @@
 
+import { run } from 'magica'
 import { expose } from "threads/worker"
 import { loadLibraries } from '../src/loadLibraries'
-import { run } from 'magica'
 
-async function test(){
-  const r = await run({script: 'identify rose:'})
+async function test() {
+  const r = await run({ script: 'identify rose:' })
   return r.stdout
 }
-async function test2(name:string, content: ArrayBuffer, output:string){
-   await run({script: `convert ${name} -rotate 33 ${output}`}) 
+async function test2(name: string, content: ArrayBuffer, output: string) {
+  await run({ script: `convert ${name} -rotate 33 ${output}` })
 }
-async function test3(name:string, content: ArrayBuffer, output:string){
-   return cv.getBuildInformation()
+async function test3(name: string, content: ArrayBuffer, output: string) {
+  return cv.getBuildInformation()
 }
-const handlers = {loadLibraries, test, test2, test3}
+const handlers = { loadLibraries, test, test2, test3 }
 export type Handlers = typeof handlers
-expose(handlers )
+expose(handlers)
 
 
 // interface Op<A, B, N extends string> {
@@ -72,7 +72,7 @@ expose(handlers )
   //   loadLibs: loadLibs.fn
   // }
   // console.log('returning');
-  
+
   // return loadLibs.fn
 // }
 

@@ -1,22 +1,21 @@
 import * as gui from 'gui'
-import { SideBar } from './sideBar'
-import { AbstractComponent, StateComponent } from './abstractComponent'
-import { StatusBar } from './statusBar'
-import { Menu } from './menu'
-import { State } from './state'
+import { StateComponent } from './abstractComponent'
 import { Canvas } from './canvas'
-import { handlers } from './main'
-type RP ='image'
+import { Menu } from './menu'
+import { SideBar } from './sideBar'
+import { State } from './state'
+import { StatusBar } from './statusBar'
+type RP = 'image'
 
 export class App1 extends StateComponent {
 
   protected win: gui.Window = null as any
   protected content: gui.Container = null as any
-  canvas: Canvas= null as any
+  canvas: Canvas = null as any
   protected menuPanel: gui.Container = null as any
   protected bodyPanel: gui.Container = null as any
   protected sideBar: gui.Container = null as any
-  protected  relevantProperties:RP[] = ['image' ]  
+  protected relevantProperties: RP[] = ['image']
   protected menu: gui.Container = null as any
 
   render() {
@@ -25,7 +24,7 @@ export class App1 extends StateComponent {
     this.menuPanel.addChildView(this.menu)
     this.sideBar = new SideBar({ win: this.win }).render()
     this.bodyPanel.addChildView(this.sideBar)
-    this.canvas = new Canvas({ win: this.win })    
+    this.canvas = new Canvas({ win: this.win })
     this.bodyPanel.addChildView(this.canvas.render())
     const menubar = new Menu()
     if (process.platform !== 'darwin') {
@@ -61,15 +60,15 @@ export class App1 extends StateComponent {
     this.win.setTitleVisible(true)
     this.win.setTitle('Hello there!')
     this.win.setContentView(this.content)
-    this.win.onClose = function () { gui.MessageLoop.quit() }
+    this.win.onClose = function() { gui.MessageLoop.quit() }
     this.win.setContentSize({ width: 600, height: 600 })
   }
 
-protected stateChanged(names: RP[], s:Partial<State>) {
-  if(names.includes('image')&&s['image']){
-  this.win.setTitle(s['image']);
-  } 
-  } 
+  protected stateChanged(names: RP[], s: Partial<State>) {
+    if (names.includes('image') && s['image']) {
+      this.win.setTitle(s['image'])
+    }
+  }
 }
 
 export interface CommonProps {
@@ -90,17 +89,4 @@ export interface CommonProps {
 //     // 
 //     // throw new Error('Method not implemented.');
 //   }
-// }
-
-// class MyPanel extends gui.Container {
-//   //@ts-ign ore
-// constructor(){
-//   super()
-// //instantiate children, pass data, declare layout rules, here,
-// }
-// someEventHandlers(){
-//   console.log(this.getBounds());
-  
-// // this.perhapsAccessingChildrenOrParent()
-// }
-// }
+// } 

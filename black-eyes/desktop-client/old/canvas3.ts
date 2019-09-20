@@ -81,7 +81,7 @@
 //     this.canvas.getPainter().drawImage(this.image, {x: 0, y: 0, ...imgSize })
 //     this.bodyPanel.onDraw = (self, painter, dirty) => {
 //       console.log(this.canvasPanel.getBounds());
-      
+
 //       painter.drawCanvasFromRect(this.canvas, dirty, this.canvasPanel.getBounds())
 //     }
 //   }
