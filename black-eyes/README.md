@@ -36,3 +36,6 @@ YBD
 - [ ] generate manual from oos metadata
 - [ ] generate JSON schema form ojos metadata
 - [ ] sample web page client and sample CLI client
+
+
+[] -- idea - deskktop app node-gui - webview . navegate internate with warp perspective and others! - implement try bar https://github.com/yue/wey/blob/master/lib/view/notification-center.js

@@ -1,24 +1,23 @@
 import { dirname } from 'path'
 import { basename } from 'misc-utils-of-mine-generic'
-import { AbstractComponent } from "./abstractComponent";
+import { AbstractComponent, StateComponent } from "./abstractComponent";
 import * as gui from 'gui'
 
 interface CP {
-  win: gui.Window;
+  win: gui.Window
 }
 
 // interface CS extends CP {
 // }
-export class SideBar extends AbstractComponent<CP> {
+export class SideBar extends StateComponent<CP> {
   view: gui.Container = null as any;
   open: gui.Button = null as any;
   save: gui.Button = null as any;
   filename = '';
   folder = '';
   
-  constructor(p: CP) {
-    super(p);
-    if (process.platform == 'darwin') {
+render(){
+if (process.platform == 'darwin') {
       const v = gui.Vibrant.create();
       // this.view = gui.Vibrant.create()
       v.setBlendingMode('behind-window');
@@ -38,7 +37,8 @@ export class SideBar extends AbstractComponent<CP> {
     this.getopen();
     this.getSave();
     // this.bodyPanel.addChildView(this.view)
-  }
+    return this.view
+}
 
   private getSave() {
     this.save = gui.Button.create('Save');

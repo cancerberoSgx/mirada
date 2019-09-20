@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2017",
     "module": "commonjs",
     "lib": ["esnext", "dom"], 
     "strict": true, 
@@ -9,6 +9,8 @@
     "outDir": "./dist", 
     "rootDir": ".",
     "declaration": true,
+    "strictFunctionTypes": false,
+    "noStrictGenericChecks": true
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "desktop-client"]
 }

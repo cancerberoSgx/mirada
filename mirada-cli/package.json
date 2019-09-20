@@ -46,7 +46,7 @@
     "mirada": "0.0.9",
     "misc-utils-of-mine-generic": "^0.2.29",
     "oboe": "^2.1.4",
-    "ojos": "0.0.5",
+    "ojos": "file:../ojos",
     "shelljs": "^0.8.3"
   },
   "repository": {

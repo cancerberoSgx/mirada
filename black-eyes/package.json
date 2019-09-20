@@ -11,7 +11,7 @@
     "format": "npx ts-refactor format \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
     "organizeImports": "npx ts-refactor organizeImports \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
-    "prepare": " npm run generate-commands && npm run build ",
+    "prepare": "npm run build ",
     "build": "npm run clean && npx tsc",
     "all": "npm run clean   && npm run lint && npm run build && npm test  "
   },
@@ -38,8 +38,10 @@
     "magica": "file:../../magica",
     "minimist": "^1.2.0",
     "mirada": "../mirada",
+    "gui": "^0.6.3",
     "misc-utils-of-mine-generic": "^0.2.29",
-    "ojos": "file:../ojos"
+    "ojos": "file:../ojos",
+    "threads": "^1.0.0-beta.6"
   },
   "repository": {
     "type": "git",

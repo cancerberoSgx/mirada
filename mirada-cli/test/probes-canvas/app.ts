@@ -1,38 +1,36 @@
 // inheritance from natives - but i need to use mixing 
 import * as gui from 'gui'
 import { SideBar } from './sideBar'
-import { AbstractComponent } from './abstractComponent'
+import { AbstractComponent, StateComponent } from './abstractComponent'
 
 interface P {
   image: string
   working?: string
 }
 
-interface S extends P {
-}
-
-class App1 extends AbstractComponent<P, S>{
+export class App1 extends StateComponent {
   protected win: gui.Window = null as any
   protected content: gui.Container = null as any
   protected canvas: gui.Canvas = null as any
   protected image: gui.Image = null as any
-  protected menu: gui.MenuBar = null as any
+  // protected menu: gui.MenuBar = null as any
   protected menuPanel: gui.Container = null as any
   protected bodyPanel: gui.Container = null as any
   protected canvasPanel: gui.Container = null as any
-  protected sideBar: SideBar = null as any
+  protected sideBar: gui.Container = null as any
+  menu: gui.Container= null as any
 
   render() {
-    this.createWindow()
-    this.createSidebar()
-    this.createCanvas()
-    this.createMenu()
+    this.createWindow() 
+    this.menu = new Menu().render()
+    this.menuPanel.addChildView(this.menu)
+     this.sideBar = new SideBar({ win: this.win }).render()
+    this.bodyPanel.addChildView(this.sideBar)
+    this.createCanvas() 
+
     this.start()
-  }
-  
-  createMenu() {
-    // throw new Error('Method not implemented.');
-  }
+    return this.content
+  } 
 
   start() {
     this.win.center()
@@ -67,7 +65,7 @@ class App1 extends AbstractComponent<P, S>{
     this.bodyPanel.addChildView(this.canvasPanel)
     const imgSize = { width: 400, height: 400 }
     this.canvas = gui.Canvas.create(imgSize, 1)
-    this.image = gui.Image.createFromPath(this.props.image)
+    this.image = gui.Image.createFromPath(this.state.image)
     this.canvas.getPainter().drawImage(this.image, { x: 0, y: 0, ...imgSize })
     this.bodyPanel.onDraw = (self, painter, dirty) => {
       painter.drawCanvasFromRect(this.canvas, dirty, this.canvasPanel.getBounds())
@@ -75,27 +73,28 @@ class App1 extends AbstractComponent<P, S>{
   }
 
   protected createSidebar() {
-    this.sideBar = new SideBar({ win: this.win })
-    this.bodyPanel.addChildView(this.sideBar.view)
+   
   }
 }
 
-new App1({ image: 'test/assets/lenna.jpg', working: 'Loading libraries' }).render()
 
 interface CP {
   win: gui.Window;
 }
 
-export class Menu extends AbstractComponent<CP> {
+export class Menu extends StateComponent<CP> {
   view: gui.Container = null as any;
-  open: gui.Button = null as any;
-  save: gui.Button = null as any;
-  filename = '';
-  folder = '';
-  constructor(p: CP) {
-    super(p)
+  relevantState=['warning']
+  warning: gui.Label = null as any
+  render(){
     this.view = gui.Container.create()
-    this.view.setStyle({width: '100%'})
-    // this.working = gui.Label.create(this.state.)
+    this.view.setStyle({width: '100%', minheight: 44, flex: 1})
+    this.view.setBackgroundColor('#ed2266')
+    console.log(this.state.working);
+    
+    this.warning = gui.Label.create(this.state.working||'')
+    // var b = gui.Button
+    this.view.addChildView(this.warning)
+    return this.view
   }
 }

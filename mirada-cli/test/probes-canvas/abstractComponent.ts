@@ -1,61 +1,47 @@
 import * as gui from 'gui'
+import { State, getState } from './state';
+import { objectKeys } from 'misc-utils-of-mine-generic';
 
-export class AbstractComponent<AP = {}, AS extends AP = AP> {
+
+export abstract class VeryAbstractComponent<AP = {}, AS = {}> {
   state: AS;
   props: AP;
-  constructor(p: AP) {
-    this.props = p;
+
+  constructor(p?: AP) {
+    this.props = p||{} as AP;
     this.state = { ...p as any };
     this.view = null as any;
   }
-  /** to be overriden by subclasses to update UI */
+
+  abstract render(): gui.View
+
+  /** to be override by subclasses to update UI. Must call super !*/
   setState(s: Partial<AS>) {
     Object.assign(this.state, s || {});
   }
+  
   view: gui.Container;
 }
 
+export abstract class AbstractComponent<AP = {}, AS extends AP = AP> extends VeryAbstractComponent<AP, AS> {
+}
 
- // class 
-// type BaseConstructor<T = Base > = new (...args: any[]) => T;
-// export function MixFeature<BaseType extends BaseConstructor>(TheBase: BaseType) {
-//     abstract class Mixed extends TheBase implements Feature {
-//         featureMethod() {
-//             // re-usable code that uses method() call
-//             this.method();
-//         }
-//     }
-//     return Mixed;
-// }
-// class Implementation extends MixFeature(Base) {
-//     method() {
-//     }
-// }
-// type Constructor<T = {}> = new (...args: any[]) => T
-// function AbstractComponent3<TBase extends Constructor>(Base: TBase) {
-//   return class AbstractComponffnt3<AP = {}, AS extends AP = AP> extends Base {
-//     state: AS = null as any
-//     props: AP = null as any
-//     constructor(...a: any[]) {
-//       super(...args)
-//     //   this.props = args[0]
-//     //   this.state = args[0]
-//     }
-//     setState(s: Partial<AS>) { }
-//   }
-// }
-// type Constructor<T = {}> = new (...args: any[]) => T;
-// function Timestamped<TBase extends Constructor>(Base: TBase) {
-//   return class extends Base {
-//     timestamp = Date.now();
-//   };
-// }
-// interface Component<AP = {}, AS extends AP = AP>{
-//   state: AS
-//   props: AP
-//   // constructor(p: AP) {
-//   //   this.props = p
-//   //   this.state = { ...p as any }
-//   // }
-//   setState(s: Partial<AS>) { }
-// }
+
+export abstract class StateComponent<AP = {}, AS extends State = State> extends VeryAbstractComponent<AP, AS>{
+
+  relevantProperties: (keyof State)[] = []
+
+  constructor(p?:AP){
+    super(p)
+    this.state = getState() as any
+  }
+
+  setState(s: Partial<AS>) {
+    objectKeys(s).forEach(name => this.statePropertyChanged(name, s[name]!, this.state[name]))
+    super.setState(s)
+  }
+
+  statePropertyChanged<T extends keyof AS>(name: Extract<T, string>, newValue: AS[T], oldValue: AS[T]): void{
+
+  }
+}

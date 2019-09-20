@@ -4,7 +4,7 @@ import { OperationNames } from 'ojos'
 import { loadLibraries } from '../src/loadLibraries'
 import { ojosRun } from '../src/ojos'
 
-test.before(async () => await fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)))
+// test.before(async () => await fromNow(loadLibraries, t => console.log(`Lading libraries took ${t}`)))
 test('run', async t => {
   const r = await ojosRun({
     src: [{ path: 'test/assets/lenna.jpg' }],
