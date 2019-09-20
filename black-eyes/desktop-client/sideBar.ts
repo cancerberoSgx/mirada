@@ -1,6 +1,6 @@
 import * as gui from 'gui'
-import { File, mainSync } from 'magica'
-import { int, sleep} from 'misc-utils-of-mine-generic'
+import { File, mainSync, knownSupportedReadWriteImageFormats } from 'magica'
+import { int, sleep } from 'misc-utils-of-mine-generic'
 import { basename, dirname } from 'path'
 import { StateComponent } from "./abstractComponent"
 import { buildBuffers, log } from './state'
@@ -14,168 +14,83 @@ export class SideBar extends StateComponent<CP> {
   protected open: gui.Button = null as any;
   protected save: gui.Button = null as any;
   protected test: gui.Button = null as any;
+  protected options: gui.Browser = null as any;
 
   render() {
-    // if (process.platform == 'darwin') {
-    //   const v = gui.Vibrant.create()
-    //   v.setBlendingMode('behind-window')
-    //   v.setMaterial('dark')
-    //   this.view = v
-    // }
-    // else {
-      this.view = gui.Container.create()
-    // }
+    this.view = gui.Container.create()
     this.view.setStyle({
       width: 160, height: '100%', flexDirection: 'column', alignContent: "baseline"
     })
-
-    this.getOpen()
-    this.getSave()
-    this.getTest()
+    this.getOptions()
     this.view.setStyle({
       width: this.view.getPreferredSize().width
     })
     return this.view
   }
 
-  protected getSave() {
-    this.save = gui.Button.create('Save')
-    this.save.setStyle({ maxWidth: 80 })
-    this.save.onClick= () => {
-      const dialog = gui.FileSaveDialog.create()
-      dialog.setFolder(dirname(this.state.image))
-      dialog.setFilename(basename(this.state.image))
-      if (dialog.runForWindow(this.props.win)) {
-      }
+  handleOpen(): void {
+    const dialog = gui.FileOpenDialog.create()
+    dialog.setOptions(gui.FileDialog.optionShowHidden)
+    dialog.setFilters([
+      { description: 'Images', extensions: knownSupportedReadWriteImageFormats },
+    ])
+    if (dialog.runForWindow(this.props.win)) {
+      this.setState(buildBuffers(dialog.getResult()))
     }
-    this.view.addChildView(this.save)
   }
 
-  protected getOpen() {
-    this.open = gui.Button.create('Open')
-    this.open.setStyle({ maxWidth: 80 })
-    this.open.onClick = () => {
-      const dialog = gui.FileOpenDialog.create()
-      dialog.setOptions(gui.FileDialog.optionShowHidden)
-      dialog.setFilters([
-        { description: 'Images', extensions: ['jpg', 'png', 'gif', 'webp'] },
-      ])
-      if (dialog.runForWindow(this.props.win)) {
-        this.setState(buildBuffers(dialog.getResult()))
-      }
-    }
-    this.view.addChildView(this.open)
+  protected getOptions() {
+    this.options = gui.Browser.create({})
+    this.options.setStyle({ width: '100%', height: '100%', flex: 1 })
+    this.options.setBindingName('app1')
+    this.options.addBinding('handleRotate', value => this.handleRotate(value))
+    this.options.addBinding('handleOpen', value => this.handleOpen())
+    this.options.addBinding('handleResize', (width, height) => this.handleResize(width, height))
+    this.view.addChildView(this.options)
+    this.renderOptions()
   }
 
-  protected getTest() {
-    var rotateSlider = gui.Slider.create()
-    rotateSlider.setRange(0, 360)
-    rotateSlider.setStep(1)
-    rotateSlider.setStyle({
-       width: '100%'
-    })
-    rotateSlider.onValueChange=()=>{
-      this.rotate(rotateSlider.getValue())
-    }
-    this.view.addChildView(rotateSlider)
-    var test = gui.Button.create('Test')
-    test.setStyle({width: '100%'})
-    // test.onMouseUp=()=>this.test3()
-   test.onClick = ()=>this.test3()
-    this.view.addChildView(test)
-
-   const b = gui.Browser.create({})
-  b.setStyle({width: '100%',height: '100%', flex: 1})
-  // b.loadURL('https://libyue.com/docs/latest/js/api/browser.html')
-  b.loadHTML(this.getHtml(), 'http://localhost')
-  b.addBinding('onChange1', value=>this.rotate(value))
-    this.view.addChildView(b)
-//  var test2 = gui.Button.create('Test2')
-    // test2.setStyle({width: '100%'})
-    // this.view.addChildView(test2)
-    // test.onClick=()=>this.test3()
-//     test.onClick =   () => {
-
-// // console.log(!!gui.app);
-
-// // gui.MessageLoop.postTask(()=>{
-// //   //  this.setState()
-// //         this.rotate()
-// // }) 
-// new Promise(resolve=>setTimeout(resolve, 1000)).then(()=>{
-//     this.test2()
-// })
-//       sleep(500).then(()=>{
-//     this.test2() 
-// })
-//       // })
-
-//       // await sleep(1000)
-//   //     setTimeout(() => {
-//   // console.log(!!gui.app);
-//   //   console.log('ses');
-//   //   this.test2()
-    
-//   //     }, 1222);
-
-//         setTimeout(() => {
-//     this.test2()
-//       }, 1222);
-
-//     }
+  protected renderOptions() {
+    const html =  `
+    <button onClick="app1.handleOpen()">Open</button><br/>
+    <button onClick="app1.handleSave()">Save</button><br/>
+    Rotate:<br/>
+    <input type="range" value="22" onChange="app1.handleRotate(this.value)" min="0" max="360"/>
+    Width:<br/>
+    <input step="20" type="number" value="${this.state.imageSize.width}" onChange="app1.handleResize(this.value, undefined)" />
+    Height:<br/>
+    <input step="10" type="number" value="${this.state.imageSize.height}" onChange="app1.handleResize(undefined, this.value)" />
+    `
+    this.options.loadHTML(html, 'http://localhost')
   }
 
-  private getHtml() {
-    return `
-Rotate:<br/>
-<input type="range" value="22"/>
-<script>
-document.querySelector('input').addEventListener('change', e=>onChange1(e.currentTarget.value))
-</script>
-  `;
-  }
-
-async test3(){
-  // this.test2()
-            log('1');  
-  await sleep(500)
-  this.test2()
-            // log('2'); 
-
-}
-private test2(){
-//         sleep(500).then(()=>{
-//            console.log('s2222');  
-// })
-        const w = gui.Window.create({frame: true, showTrafficLights: true})
-      w.setAlwaysOnTop(true)
-      w.setContentSize({width: 200, height: 200})
-      w.setTitle('jejjeeje')
-      // this.props.win.addChildWindow(w)
-      const p = gui.Container.create()
-      p.setStyle({ flexGrow: 1, flex: 1, flexDirection: 'column' })
-      const l = gui.Label.create('hello')
-      
-      p.setStyle({flex: 1})
-      p.addChildView(l)
-      w.setContentView(p)
-      // w.setVisible(true)
-      w.center()
-      w.activate() 
-}
-  private rotate(value=int(0,  360)) {
-    // gui.MessageLoop
-    // this.setState({ working: 'Processing' });
+  protected handleRotate(value = int(0, 360)) {
     try {
       const result = mainSync({
-        command: ['convert', 'output.miff', '-rotate', value+'', `output_${basename(this.state.image)}`],
+        command: ['convert', 'output.miff', '-rotate', value + '', `output.png`],
         inputFiles: [new File('output.miff', this.state.magicaBuffer)],
-        // debug: true
       });
-      this.setState({ 
-        currentBuffer: result.outputFiles[0].content, 
-      working: undefined, 
-      time: result.times?result.times.total :0
+      this.setState({
+        currentBuffer: result.outputFiles[0].content,
+        working: undefined,
+        time: result.times ? result.times.total : 0
+      });
+    }
+    catch (error) {
+      console.error(error);
+      this.setState({ working: undefined });
+    }
+  }
+  protected handleResize(width: number, height: number) {
+    try {
+      const result = mainSync({
+        command: ['convert', 'output.miff', '-scale', `!${width||this.state.imageSize.width}x${height||this.state.imageSize.height}`, `output.png`],
+        inputFiles: [new File('output.miff', this.state.magicaBuffer)],
+      });
+      this.setState({
+        currentBuffer: result.outputFiles[0].content,
+        working: undefined,
+        time: result.times ? result.times.total : 0
       });
     }
     catch (error) {

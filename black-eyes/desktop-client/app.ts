@@ -48,13 +48,13 @@ export class App1 extends StateComponent {
 
   protected createWindow() {
     this.content = gui.Container.create()
-    // this.content.setBackgroundColor('#FFF')
+    this.content.setBackgroundColor('#ffffff')
     this.content.setStyle({ flexGrow: 1, flex: 1, flexDirection: 'column' })
     this.menuPanel = gui.Container.create()
     this.menuPanel.setStyle({ width: '100%', flex: 0, height: 40, flexDirection: 'row' })
-    // this.menuPanel.setBackgroundColor('gray')
     this.bodyPanel = gui.Container.create()
     this.bodyPanel.setStyle({ width: '100%', flex: 1, height: '100%', flexGrow: 1, flexDirection: 'row' })
+    this.bodyPanel.setBackgroundColor('#ffffff')
     this.content.addChildView(this.menuPanel)
     this.content.addChildView(this.bodyPanel)
     this.win = gui.Window.create({})
