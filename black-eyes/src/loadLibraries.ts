@@ -1,6 +1,4 @@
-import { File as MagicaFile, magickLoaded, run } from 'magica'
-import { ImageData, loadOpencv } from 'mirada'
-import { MagicaCodec } from 'ojos'
+import { magickLoaded } from 'magica'
 
 export async function loadLibraries() {
   try {

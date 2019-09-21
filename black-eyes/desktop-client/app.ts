@@ -5,13 +5,13 @@ import { Menu } from './menu'
 import { SideBar } from './sideBar'
 import { State } from './state'
 import { StatusBar } from './statusBar'
+
 type RP = 'image'
 
-export class App1 extends StateComponent {
-
+export class App1 extends StateComponent<{}> {
   protected win: gui.Window = null as any
   protected content: gui.Container = null as any
-  canvas: Canvas = null as any
+  protected canvas: Canvas = null as any
   protected menuPanel: gui.Container = null as any
   protected bodyPanel: gui.Container = null as any
   protected sideBar: gui.Container = null as any
@@ -20,7 +20,7 @@ export class App1 extends StateComponent {
 
   render() {
     this.createWindow()
-    this.menu = new StatusBar().render()
+    this.menu = new StatusBar({ win: this.win}).render()
     this.menuPanel.addChildView(this.menu)
     this.sideBar = new SideBar({ win: this.win }).render()
     this.bodyPanel.addChildView(this.sideBar)
@@ -40,8 +40,12 @@ export class App1 extends StateComponent {
     this.win.center()
     this.win.activate()
     if (!process.versions.yode) {
-      (process as any).guiStarted=true
+      try {
       gui.MessageLoop.run()
+      } catch (error) {
+        console.log('Main Error', error)
+        process.exit(1)        
+      }
       process.exit(0)
     }
   }
@@ -71,23 +75,3 @@ export class App1 extends StateComponent {
     }
   }
 }
-
-export interface CommonProps {
-  win: gui.Window;
-}
-
-// export class Loop {
-//   timer: NodeJS.Timeout=null as any
-//   start() {
-//     this.timer = setInterval(()=>{
-//       gui.MessageLoop.postTask(()=>this.handler()) 
-//     }, 1000)
-//   }
-//   stop(){
-//     clearInterval(this.timer)
-//   }
-//   handler(): void {
-//     // 
-//     // throw new Error('Method not implemented.');
-//   }
-// } 

@@ -146,6 +146,13 @@
 //          * The func will be called with automatically converted arguments.
 //          */
 //         addBinding(name:string, func: (...args: any[])=>any): void
+//         /**
+//          * Set the name of object which would have the native bindings.
+//          * 
+//          * By default native bindings are added to the window object, by calling this API, 
+//          * native bindings will be added to the window[name] object.
+//          */
+//         setBindingName(name:string):void
 //     }
 
 //     export class View {
@@ -858,7 +865,7 @@
 //      * https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc
 //      */
 //     export interface StyleProperties {
-      
+
 //         heightAuto?: boolean
 //         heightPercent?: number
 //         marginAuto?: Edge
@@ -872,7 +879,7 @@
 //         alignItems?: Align
 //         alignSelf?: Align
 //         aspectRatio?: number
-        
+
 //         border?: Partial<ValuedEdges<string | number>>
 //         borderTop?: number|string
 //         borderRight?: number|string

@@ -8,30 +8,37 @@ export class Menu {
     menus.push({
       label: 'productName',
       submenu: [
-        {
-          label: 'Reload',
-          accelerator: 'CmdOrCtrl+Shift+R',
-          onClick() {
-          },
-        },
-        { type: 'separator' },
-        {
-          label: 'Disconnect',
-          onClick() {
-          }
-        },
+        // {
+        //   label: 'Reload',
+        //   accelerator: 'CmdOrCtrl+Shift+R',
+        //   onClick() {
+        //   },
+        // },
+        // { type: 'separator' },
+        // {
+        //   label: 'Disconnect',
+        //   onClick() {
+        //   }
+        // },
         {
           label: 'Collect Garbage',
           accelerator: 'CmdOrCtrl+Shift+G',
           onClick() {
+            try {              
+  if (global.gc) {global.gc();}
+            } catch (error) {
+              console.error(error);
+            }
+            // process.resourceUsage().
           },
         },
         { type: 'separator' },
         {
           label: 'Quit',
           accelerator: 'CmdOrCtrl+Q',
-          onClick() { 
+          onClick() {
             gui.MessageLoop.quit()
+            process.exit(0)
           },
         },
       ],
@@ -39,7 +46,8 @@ export class Menu {
 
     // macOS specific app menus.
     if (process.platform === 'darwin') {
-      menus[0].submenu!.splice(menus[0].submenu!.length - 2, 0, { type: 'separator' }, { role: 'hide' }, { role: 'hide-others' }, { type: 'separator' })
+      menus[0].submenu!.splice(menus[0].submenu!.length - 2, 0, 
+      { type: 'separator' }, { role: 'hide' }, { role: 'hide-others' }, { type: 'separator' })
     }
 
     // Edit menu.
@@ -56,16 +64,6 @@ export class Menu {
       ],
     })
 
-    // this.accountsMenu = gui.Menu.create([      {        type: 'separator'       }    ])
-    // for (let i = 0; i < 3; ++i)
-    //   this.addAccount( i, 'asd')
-    // for (const service of [{name:'12'},{ name: '2'}]) {
-    //   this.accountsMenu.append(gui.MenuItem.create({
-    //     label: 'Login to ' + service.name,
-    //     onClick: ()=>{},
-    //   }))
-    // }
-    // menus.push({label: 'Accounts', submenu: this.accountsMenu})
     menus.push({
       label: 'Window',
       role: 'window',
@@ -73,7 +71,7 @@ export class Menu {
         {
           label: 'New Window',
           accelerator: 'CmdOrCtrl+Shift+N',
-          onClick(){}
+          onClick() { }
         },
         {
           label: 'Close Window',
@@ -85,8 +83,6 @@ export class Menu {
       ],
     })
 
-    // Create the native menu.
     this.menu = gui.MenuBar.create(menus)
   }
- 
 }

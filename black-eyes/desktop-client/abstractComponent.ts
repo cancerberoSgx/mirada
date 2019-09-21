@@ -21,12 +21,26 @@ export abstract class VeryAbstractComponent<AP = {}, AS = {}> {
 export abstract class AbstractComponent<AP = {}, AS extends AP = AP> extends VeryAbstractComponent<AP, AS> {
 }
 
+export interface CommonProps {
+  win: gui.Window;
+}
 
-export abstract class StateComponent<AP = {}, AS extends State = State, RS extends keyof Partial<AS> = keyof Partial<AS>> extends VeryAbstractComponent<AP, AS>{
+export abstract class StateComponent<AP = CommonProps, AS extends State = State, RS extends keyof Partial<AS> = keyof Partial<AS>> extends VeryAbstractComponent<AP, AS>{
+
+  protected static stateListeners: StateComponent[] = []
+
+  protected static setState(s: Partial<State>) {
+    StateComponent.stateListeners.forEach(l => {
+      const names = objectKeys(s).filter(n => l.relevantProperties.includes(n))
+      const filtered = arrayToObject(names, a => (s as any)[a])
+      l.stateChanged(names, filtered as any)
+    })
+    setState(s)
+  }
 
   protected relevantProperties: RS[] = []
 
-  constructor(p?: AP) {
+  constructor(p: AP) {
     super(p)
     this.state = getState() as any
     StateComponent.stateListeners.push(this as any)
@@ -40,13 +54,4 @@ export abstract class StateComponent<AP = {}, AS extends State = State, RS exten
 
   }
 
-  protected static stateListeners: StateComponent[] = []
-  protected static setState(s: Partial<State>) {
-    StateComponent.stateListeners.forEach(l => {
-      const names = objectKeys(s).filter(n => l.relevantProperties.includes(n))
-      const filtered = arrayToObject(names, a => (s as any)[a])
-      l.stateChanged(names, filtered as any)
-    })
-    setState(s)
-  }
 }

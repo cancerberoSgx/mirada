@@ -1,9 +1,8 @@
 import { readFileSync } from 'fs'
 import * as gui from 'gui'
+import { File, mainSync } from 'magica'
 import { StateComponent } from "./abstractComponent"
 import { State } from './state'
-import { mainSync, File } from 'magica'
-import { basename } from 'path'
 
 interface CP {
   win: gui.Window
@@ -25,17 +24,21 @@ export class Canvas extends StateComponent<CP> {
     this.view.setBackgroundColor('#ffffff')
     this.canvasContainer = gui.Container.create()
     this.canvasContainer.setBackgroundColor('#ffffff')
-    this.canvasContainer.onMouseMove=(self, event)=>{
+    this.canvasContainer.onMouseMove = (self, event) => {
+      // console.log('handleOnMouseMove2', this.state.options.onMouseMove);
+      if (!this.state.options.onMouseMove) {
+        return
+      }
       const command = `convert output.miff -matte -virtual-pixel transparent -distort Barrel '-0.4 0.7 0.2 0.5 ${event.positionInView.x} ${event.positionInView.y}' output.jpg`
       const result = mainSync({
         command,
         inputFiles: [new File('output.miff', this.state.magicaBuffer)],
-      });
+      })
       this.setState({
         currentBuffer: result.outputFiles[0].content,
         working: undefined,
         time: result.times ? result.times.total : 0
-      });
+      })
     }
     this.view.setContentView(this.canvasContainer)
     this.drawImage(readFileSync(this.state.image))
