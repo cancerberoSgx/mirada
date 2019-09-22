@@ -1,6 +1,8 @@
 import { commands } from './commands'
 import { State } from './state'
 import { buildBuffers } from './imageUtil'
+import { realpathSync } from 'fs';
+import { join } from 'path';
 
 let state: State = null as any
 
@@ -17,8 +19,8 @@ export function setState(s: Partial<State>) {
 }
 
 export function getInitialState(): State {
-  return {
-    ...buildBuffers('test/assets/lenna.jpg'),
+  return { 
+    ...buildBuffers(realpathSync(join(__dirname, 'lenna.jpg')) ),
     time: 0,
     working: 'Processing...',
     options: {

@@ -8,7 +8,10 @@
 /tsconfig.json
 /declarations.d.ts
 *.tgz
+/black-eyes*
 package
+*.zip
+out
 test
 typescript-ast-query-editor
 formatCodeSettings.json

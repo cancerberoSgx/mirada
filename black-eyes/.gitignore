@@ -4,6 +4,9 @@ dist
 docs
 .DS_Store
 *.tgz
+*.zip
+/black-eyes*
+out
 .nyc_output
 coverage
 typescript-ast-query-editor/src/queryAst/tsLibraries

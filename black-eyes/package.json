@@ -2,17 +2,17 @@
   "name": "black-eyes",
   "version": "0.0.1",
   "description": "Daemon like server for ojos operation scripts - kind of performance research on server side performant IPC and data serialization",
-  "main": "dist/desktop-client/main.js",
   "types": "dist/src/index.d.ts",
-  "bin": "dist/desktop-client/main.js",
+  "bin": "bin/ojos-server.js",
+  "main": "dist/desktop-client/main.js",
   "scripts": {
     "clean": "rm -rf dist docs tmp_server_fs working_tmp",
     "test": "npm run build && npx ava --serial --concurrency 1 --config ava.config.js",
     "format": "npx ts-refactor format \"desktop-client/**/*.ts*\" \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk",
     "organizeImports": "npx ts-refactor organizeImports \"desktop-client/**/*.ts*\" \"src/**/*.ts*\" \"test/**/*.ts*\" ./formatCodeSettings.json --tsConfigPath ./tsconfig.json --dontAsk ",
     "lint": " npm run organizeImports && npm run format",
-    "prepare": "npm run build ",
-    "build": "npm run clean && npx tsc",
+    "build": "npm run clean && npx tsc && npm run copy",
+    "copy": "cp desktop-client/lenna.jpg dist/desktop-client/",
     "all": "npm run clean   && npm run lint && npm run build && npm test  "
   },
   "keywords": [
