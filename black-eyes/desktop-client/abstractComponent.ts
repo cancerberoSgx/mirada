@@ -1,9 +1,10 @@
 import * as gui from 'gui'
 import { arrayToObject, objectKeys } from 'misc-utils-of-mine-generic'
-import { getState, setState, State } from './state'
+import { State } from './state'
+import { getState, setState } from "./store";
 
 
-export abstract class VeryAbstractComponent<AP = {}, AS = {}> {
+export abstract class AbstractComponent<AP = {}, AS = {}> {
   protected state: AS;
   protected props: AP;
   protected view: gui.View;
@@ -18,14 +19,11 @@ export abstract class VeryAbstractComponent<AP = {}, AS = {}> {
   abstract render(): gui.View
 }
 
-export abstract class AbstractComponent<AP = {}, AS extends AP = AP> extends VeryAbstractComponent<AP, AS> {
-}
-
 export interface CommonProps {
   win: gui.Window;
 }
 
-export abstract class StateComponent<AP = CommonProps, AS extends State = State, RS extends keyof Partial<AS> = keyof Partial<AS>> extends VeryAbstractComponent<AP, AS>{
+export abstract class StateComponent<AP = CommonProps, AS extends State = State, RS extends keyof Partial<AS> = keyof Partial<AS>> extends AbstractComponent<AP, AS>{
 
   protected static stateListeners: StateComponent[] = []
 

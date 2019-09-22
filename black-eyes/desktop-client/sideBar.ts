@@ -16,6 +16,7 @@ export class SideBar extends StateComponent {
     })
     this.options = new Options({ win: this.props.win })
     this.view.addChildView(this.options.render())
+    this.view.setBackgroundColor('#ededed')
     this.view.setStyle({
       width: this.view.getPreferredSize().width
     })

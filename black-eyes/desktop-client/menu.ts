@@ -6,7 +6,7 @@ export class Menu {
   constructor() {
     const menus: gui.MenuItemOptions[] = []
     menus.push({
-      label: 'productName',
+      label: 'File',
       submenu: [
         // {
         //   label: 'Reload',
@@ -78,6 +78,7 @@ export class Menu {
           accelerator: 'CmdOrCtrl+W',
           onClick: () => {
             gui.MessageLoop.quit()
+            process.exit(0)
           }
         },
       ],

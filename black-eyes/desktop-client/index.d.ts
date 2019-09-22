@@ -78,7 +78,7 @@
 //      * app.onReady = () => console.log('on ready')
 //      * ```
 //      */ 
-//     export class Signal<Slot extends (...args: any)=>any> {
+//     export class Signal<Slot extends (...args: any) => any> {
 //       /**
 //        * Connect slot to the signal, and return an ID that can be used to disconnect it.
 //        * 
@@ -99,8 +99,56 @@
 //       isEmpty():boolean
 //     }
 
-//     // type EventMember<Slot extends (...args: any)=>any> = Slot | Signal<Slot>
+//     /**
+//      * Response to custom protocol requests.
+//      * 
+//      * This class can not be used to create instances, you must use its sub-classes instead.
+//      */
+//     export class ProtocolJob {
 
+//     }
+
+//     /**
+//      * Use string as response to custom protocol requests.
+//      */
+//     export class ProtocolStringJob extends ProtocolJob {
+//         /**
+//          * Create a [ProtocolStringJob] with mimetype and content.
+//          */
+//         static create(mimetype: string, content: string): ProtocolStringJob
+//     }
+    
+//     /**
+//      * Read file to serve custom protocol requests.
+//      */
+//     export class ProtocolFileJob extends ProtocolJob {
+//         /**
+//          * Create a ProtocolFileJob with path to a local file.
+//          */
+//         static create(path:string): ProtocolFileJob
+//     }
+
+//     /**
+//      * Read asar archives to serve custom protocol requests.
+//      * 
+//      * The asar format is a simple extensive archive format, information of it can be found at https://github.com/electron/asar.
+//      * 
+//      * As an experimental feature, Yue supports reading from encrypted asar archives, which has not been a standard feature of asar yet but will probably be in future. More about this can be found at https://github.com/yue/muban.
+//      */
+//     export class ProtocolAsarJob extends ProtocolJob {
+//         /**
+//          * Create a ProtocolAsarJob with path to a file inside an asar archive.
+//          */
+//         static create(asar: string, path: string): ProtocolAsarJob
+//         /**
+//          * Set the key and iv used to read from an encrypted asar archive, return false when the key and iv are not 16 bytes length.
+//          * 
+//          * The encrypted asar archives use AES128 ECB algorithm for encryption, with PKCS#7 padding.
+//          */
+//         setDecipher(key:string, iv:string): boolean
+
+//     }
+    
 //     export class BrowserOptions {
 //         /**
 //          * Whether the browser can show devtools, default is false.
@@ -128,8 +176,43 @@
 //         hardwareAcceleration?: boolean
 //     }
 
+//     /**
+//      * Using Browser requires relatively new operating systems, for macOS the minimum version required is 10.10, for Linux it 
+//      * is required to install the webkit2gtk library with at least version 2.8.
+//      * 
+//      * On Linux due to poor support of hardware acceleration, the browser may fail to show anything, when that happens you can set 
+//      * WEBKIT_DISABLE_COMPOSITING_MODE environment variable to disable hardware acceleration.
+//      */
 //     export class Browser extends View {
+//         /**
+//          * Create a new browser view.
+//          */
 //         static create(options: BrowserOptions): Browser
+//         /**
+//          * Register a custom protocol with scheme and handler.
+//          * 
+//          * When the browser sends a request with scheme, the handler will be called with handler(url), and the handler must return an instance of class that inherits from ProtocolJob.
+//          * 
+//          * The handler is guaranteed to be called in the main thread.
+//          * 
+//          * Example: 
+//          * 
+//          * ```js
+//          * // Register wey:// protocol to work around CROS problem with file:// protocol.
+//          * gui.Browser.registerProtocol('wey', (u) => {
+//          *   const r = url.parse(u)
+//          *   if (r.host !== 'file')
+//          *      return gui.ProtocolStringJob.create('text/plain', 'Unsupported type')
+//          *   const query = querystring.parse(r.query)
+//          *   return gui.ProtocolFileJob.create(query.path)
+//          * })
+//          * ```
+//          */
+//         static registerProtocol(scheme: string, handler: (url: string) => ProtocolJob): boolean
+//         /**
+//          * Unregister the custom protocol with scheme.
+//          */
+//         static unregisterProtocol(scheme: string): void
 //         /**
 //          * Load the URL
 //          */
@@ -141,67 +224,366 @@
 //          */
 //         loadHTML(html: string, baseurl: string): void
 //         /**
+//          * Return current URL.
+//          */ 
+//         getURL(): string
+//         /**
+//          * Return the title of document.
+//          */
+//         getTitle(): string
+//         /**
+//          * Change browser's user agent.
+//          * 
+//          * On Windows, due to Internet Explorer's limitations, calling SetUserAgent would change all web pages' user agents in current process.
+//          */
+//         setUserAgent(userAgent: string): void
+//         /**
+//          * Evaluate code in browser and get the evaluated result.
+//          * 
+//          * The callback will be called with callback(success, result), the result argument is a generic value that created from the result of code.
+//          * 
+//          * Note that due to limitations of system toolkits, the execution may fail if the result of code can not be fully converted to JSON.
+//          */
+//         executeJavaScript<T extends any = any>(code: string, callback: (success: boolean, result: T)=>void): void
+//         /**
+//          * Navigate to the back item in the back-forward list. 
+//          */
+//         goBack(): void
+//         /**
+//          * Return whether there is a back item in the back-forward list that can be navigated to.
+//          */
+//         canGoBack(): boolean
+//         /**
+//          * Navigate to the forward item in the back-forward list.
+//          */
+//         goForward(): void
+//         /**
+//          * Return whether there is a forward item in the back-forward list that can be navigated to.
+//          */
+//         canGoForward(): boolean
+//         /**
+//          * Reload current page.
+//          */
+//         reload(): void
+//         /**
+//          * Stop loading all resources on the current page.
+//          */
+//         stop(): void
+//         /**
+//          * Return whether current page is loading content.
+//          */
+//         isLoading(): boolean
+//         /**
 //          * Add a native binding to web page with name.
 //          * 
 //          * The func will be called with automatically converted arguments.
 //          */
-//         addBinding(name:string, func: (...args: any[])=>any): void
+//         addBinding(name:string, func: (...args: any[]) => any): void
+//         /**
+//          * Add a raw handler to web page with name.
+//          * 
+//          * The func will be called with a list of arguments passed from JavaScript.
+//          */
+//         addRawBinding(name:string, func: (...args: any[]) => any): void
 //         /**
 //          * Set the name of object which would have the native bindings.
 //          * 
 //          * By default native bindings are added to the window object, by calling this API, 
 //          * native bindings will be added to the window[name] object.
 //          */
-//         setBindingName(name:string):void
+//         setBindingName(name:string): void
+//         /**
+//          * Remove the native binding with name.
+//          */
+//         removeBinding(name: string): void
 //     }
 
+//     /**
+//      * Provides methods to receive and change various style properties.
+//      */
 //     export class View {
 //         protected constructor();
+//         /**
+//          * Cancel current drag session if the view is being used as drag source.
+//          */
 //         cancelDrag(): void;
+//         /**
+//          * Like [doDragWithOptions] but do not set drag image.
+//          */
 //         doDrag(data: ClipboardData[], operations: DragOperation): number;
+//         /**
+//          * Start a drag session.
+//          * 
+//          * The return value is a DragOperation indicating the result of dragging.
+//          * 
+//          * This method should only be called in the on_mouse_down event, when user starts to drag the cursor.
+//          * 
+//          * This method is blocking that it does not return until the drag session is finished or cancelled. During the call a nested UI message loop will run and other events will still be emitted.
+//          * 
+//          * Note that on macOS certain views may have IsMouseDownCanMoveWindow defaulting to true, which will prevent drag session to start. Make sure to call SetMouseDownCanMoveWindow(false) for drag sources.
+//          * @param data  An array of [ClipboardData] that will be passed to drop target.
+//          * @param operations  Must be one or more of [DragOperation] masks, indicates which drag operations are supported.
+//          */
 //         doDragWithOptions(data: ClipboardData[], operations: DragOperation, options: DragOptions): number;
+//         /**
+//          * Move the keyboard focus to the view.
+//          */
 //         focus(): void;
+//         /**
+//          * Return the position and size of the view, relative to its parent.
+//          */
 //         getBounds(): RectF;
+//         /**
+//          * Return string representation of the view's layout.
+//          */
 //         getComputedLayout(): string;
+//         /**
+//          * Return the minimum size needed to show the view.
+//          */
 //         getMinimumSize(): SizeF;
+//         /**
+//          * Return parent view.
+//          */
 //         getParent(): View;
+//         /**
+//          * Return the window that the view belongs to.
+//          */
 //         getWindow(): Window;
+//         /**
+//          * Called when user drags the cursor over the view for the first time.
+//          * 
+//          * A DragOperation should be returned, indicating which dragging operation the destination will perform when cursor is released.
+//          * 
+//          * This delegate will not be called if the view has not registered dragged types, or if the dragged data does not belong to the registered type.
+//          * 
+//          * On Linux the dragged data is not yet available when this is called, you should usually only read data in the handle_drop delegate.
+//          */
 //         handleDragEnter(self: this, info: DraggingInfo, point: PointF): DragOperation;
+//         /**
+//          * Called when user moves the cursor over the view while dragging.
+//          * 
+//          * A DragOperation should be returned, indicating which dragging operation the destination will perform when cursor is released.
+//          * 
+//          * If this delegate is not implemented, the return value of previous handle_drag_enter call will be returned.
+//          * 
+//          * This delegate is usually used when implementing a custom view with multiple dropping areas, you only need to implement handle_drag_enter for simple tasks.
+//          * 
+//          * On Linux the dragged data is not yet available when this is called, you should usually only read data in the handle_drop delegate. 
+//          */
 //         handleDragUpdate(self: this, info: DraggingInfo, point: PointF): DragOperation;
+//         /**
+//          * Called when user releases the dragged data on the view.
+//          * 
+//          * Returning true will inform the drag source that the data has been accepted with the drag operation returned by previous handle_drag_enter or handle_drag_update call.
+//          * 
+//          * If the drag operation is Move, the drag source may also take actions to "remove" the data on its side.
+//          * 
+//          * Returning false will inform the drag source that the drag has been cancelled, and operating system may display some visual effects. 
+//          */
 //         handleDrop(self: this, info: DraggingInfo, point: PointF): boolean;
+//         /**
+//          * Return whether the view has mouse capture.
+//          */
 //         hasCapture(): boolean;
+//         /**
+//          * Return whether the view has keyboard focus.
+//          */
 //         hasFocus(): boolean;
+//         /**
+//          * Return whether the view is being used as drag source.
+//          */
 //         isDragging(): boolean;
+//         /**
+//          * Return whether the view is enabled.
+//          */
 //         isEnabled(): boolean;
+//         /**
+//          * Return whether the view can be focused on.
+//          */
 //         isFocusable(): boolean;
+//         /**
+//          * Return whether dragging the view would move the window.
+//          */
 //         isMouseDownCanMoveWindow(): boolean;
+//         /**
+//          * Return whether the view is visible.
+//          */
 //         isVisible(): boolean;
+//         /**
+//          * Make the view re-recalculate its layout.
+//          */
 //         layout(): void;
+//         /**
+//          * Return offset from view
+//          */
 //         offsetFromView(view: View): Vector2dF;
+//         /**
+//          * Return offset from the window that owns the view.
+//          */
 //         offsetFromWindow(): Vector2dF;
-//         onCaptureLost(self: this): void;
-//         onDragLeave(self: this, info: DraggingInfo): void;
-//         onKeyDown(self: this, event: KeyEvent): void;
-//         onKeyUp(self: this, event: KeyEvent): void;
-//         onMouseDown(self: this, event: MouseEvent): void;
-//         onMouseEnter(self: this, event: MouseEvent): void;
-//         onMouseLeave(self: this, event: MouseEvent): void;
-//         onMouseMove(self: this, event: MouseEvent): void;
-//         onMouseUp: Signal<(self: this, event: MouseEvent)=> void> //| ((self: this, event: MouseEvent)=> void) 
-//         onSizeChanged(self: this): void;
+//         /**
+//          * Emitted when the mouse capture on view has been released.
+//          */
+//         onCaptureLost: Signal<(self: this)=> void> | ((self: this)=> void) 
+//         // onCaptureLost(self: this): void;
+//         /**
+//          * Emitted when cursor leaves the view while dragging. 
+//          * 
+//          * This event will also be emitted before the handle_drop event when user drops the data on the view.
+//          */
+//         onDragLeave: Signal<(self: this, event: DraggingInfo)=> void> | ((self: this, event: DraggingInfo)=> void) 
+//         // onDragLeave(self: this, info: DraggingInfo): void;
+//         /**
+//          * Emitted when pressing keyboard.
+//          */
+//         onKeyDown: Signal<(self: this, event: KeyEvent)=> boolean|void> | ((self: this, event: KeyEvent)=> boolean|void) 
+//         // onKeyDown(self: this, event: KeyEvent): boolean|void;
+//         /**
+//          * Emitted when releasing keyboard.
+//          */
+//         onKeyUp: Signal<(self: this, event: KeyEvent)=> boolean|void> | ((self: this, event: KeyEvent)=> boolean|void) 
+//         // onKeyUp(self: this, event: KeyEvent): boolean|void;
+//         /**
+//          * Emitted when pressing mouse buttons.
+//          */
+//         onMouseDown: Signal<(self: this, event: MouseEvent)=> boolean|void> | ((self: this, event: MouseEvent)=> boolean|void) 
+//         // onMouseDown(self: this, event: MouseEvent): boolean|void;
+//         /**
+//          * Emitted when mouse enters the view.
+//          */
+//         onMouseEnter: Signal<(self: this, event: MouseEvent)=> boolean|void> | ((self: this, event: MouseEvent)=> boolean|void) 
+//         // onMouseEnter(self: this, event: MouseEvent): boolean|void;
+//         /**
+//          * Emitted when mouse leaves the view.
+//          */
+//         onMouseLeave: Signal<(self: this, event: MouseEvent)=> boolean|void> | ((self: this, event: MouseEvent)=> boolean|void) 
+//         // onMouseLeave(self: this, event: MouseEvent): boolean|void;
+//         /**
+//          * Emitted when user moves mouse in the view.
+//          */
+//         onMouseMove: Signal<(self: this, event: MouseEvent)=> boolean|void> | ((self: this, event: MouseEvent)=> boolean|void) 
+//         // onMouseMove(self: this, event: MouseEvent): boolean|void;
+//         /**
+//          * Emitted when releasing mouse buttons.
+//          */
+//         onMouseUp: Signal<(self: this, event: MouseEvent)=> boolean|void> | ((self: this, event: MouseEvent)=> boolean|void) 
+//         // onMouseUp(self: this, event: MouseEvent): void;
+//         /**
+//          * Emitted when the view's size has been changed.
+//          */
+//          onSizeChanged: Signal<(self: this)=> void> | ((self: this)=> void) 
+//         // onSizeChanged(self: this): void;
+//         /**
+//          * Make the view a drag destination that accepets types.
+//          */
 //         registerDraggedTypes(types: ClipboardDataType[]): void;
+//         /**
+//          * Release mouse capture if the view has mouse capture.
+//          */
 //         releaseCapture(): void;
+//         /**
+//          * Schedule to repaint the whole view.
+//          */
 //         schedulePaint(): void;
+//         /**
+//          * Schedule to repaint the rect area in view.
+//          */
 //         schedulePaintRect(rect: RectF): void;
+//         /**
+//          * Change the background color of the view.
+//          */
 //         setBackgroundColor(color: ColorArg): void;
+//         /**
+//          * Set mouse capture to the view.
+//          */
 //         setCapture(): void;
+//         /**
+//          * Change the color used for drawing text in the view.
+//          * 
+//          * This methods only works for Views that display text, like Label or Entry.
+//          */
 //         setColor(color: ColorArg): void;
+//         /**
+//          * Set the cursor to show when hovering the view.
+//          * 
+//          * On Linux, setting cursor would force the view to own its own GDK window. For certain views like Label, this may have remove the view's background color.
+//          */
 //         setCursor(cursor: Cursor): void;
+//         /**
+//          * Set whether the view is enabled.
+//          * 
+//          * The enabled state of each view is not affected by its parent, disabling a container-like view does not have any effect.
+//          */
 //         setEnabled(isEnabled: boolean): void;
+//         /**
+//          * Set whether the view can be focused on.
+//          */
 //         setFocusable(isFocusable: boolean): void;
+//         /**
+//          * Change the font used for drawing text in the view.
+//          * 
+//          * This methods only works for Views that display text, like Label or Entry.
+//          */
 //         setFont(font: Font): void;
+//         /**
+//          * Set whether dragging mouse would move the window.
+//          * 
+//          * For most platforms this method only works for frameless windows, having this feature may also prevent mouse events to happen.
+//          * 
+//          * On macOS the Container view has this feature turned on by default. To turn this feature on for the view, the view's parent view must also has this feature turned on.
+//          * 
+//          * On Windows the view with this feature will be treated as titlebar, e.g. double-clicking would maximize the window, right-clicking may show the system menu.
+//          */
 //         setMouseDownCanMoveWindow(can: boolean): void;
+//         /**
+//          * Change the styles of the view. 
+//          * 
+//          * ## Layout system
+//          * 
+//          * Yue uses Facebook [Yoga](https://facebook.github.io/yoga/) as layout engine, which provides Flexbox style layout system.
+//          * 
+//          * Yue does not support CSS itself, it only uses the concept of Flexbox for layout, and you have to manually set style for each View.
+//          * 
+//          * ```js
+//          * view.setStyle({flexDirection: 'column', flex: 1})
+//          * ```
+//          * 
+//          * It should be noted that not all CSS properties are supported, and there is no plan for support of tables, floats, or similar CSS concepts.
+//          * 
+//          * ## View and Container
+//          * 
+//          * In Yue all widgets are inherited from the virtual class View, which represents a leaf node in the layout system. The Container is a View that can have multiple child Views, in the layout system the child Views of Container are treated as child nodes.
+//          * 
+//          * There are Views that can have content view like Group or Scroll, but their content views are treated as root nodes in layout system, instead of being child nodes of their parents.
+//          * 
+//          * Following code is an example of list view.
+//          * 
+//          * ```js
+//          * const listView = gui.Scroll.create()
+//          * const contentView = gui.Container.create()
+//          * contentView.setStyle({flexDirection: 'column'})
+//          * for (let i = 0; i < 100; ++i) {
+//          *   const item = gui.Label.create(String(i))
+//          *   const g = Math.floor(155 / 100 * i + 100)
+//          *   item.setBackgroundColor(gui.Color.rgb(100, g, 100))
+//          *   contentView.addChildView(item)
+//          * }
+//          * listView.setContentSize(contentView.getPreferredSize())
+//          * listView.setContentView(contentView)
+//          * ```
+//          * 
+//          * ## Style properties
+//          * 
+//          * For a complete list of supported style properties, it is recommended to read the [documentation of Yoga](https://yogalayout.com/docs).
+//          * 
+//          * Yoga style properties mapping in this library are defined in [/nativeui/util/yoga_util.cc](https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc).
+//          * 
+//          * @param styles A key-value dictionary that defines the name and value of the style properties, key must be string, and value must be either string or number.
+//          */
 //         setStyle(styles: StyleProperties): void; 
+//         /**
+//          * Show/Hide the view.
+//          */
 //         setVisible(isVisible: boolean): void;
 //     }
 
@@ -219,8 +601,8 @@
 //         getTitle(): string;
 //         hasBoarder(): boolean;
 //         isChecked(): boolean;
-//         onClick(self: this): void;
-//         //  onClick: Signal<(self: this, event: MouseEvent)=> void> 
+//         // onClick(self: this): void;
+//         onClick: Signal<(self: this)=> void> | ((self: this) => void)
 //         setButtonStyle(style: ButtonStyle): void;
 //         setChecked(isChecked: boolean): void;
 //         setHasBoarder(hasBoarder: boolean): void;
@@ -273,7 +655,14 @@
 //         getPreferredHeightForWidth(width: number): number;
 //         getPreferredSize(): SizeF;
 //         getPreferredWidthForHeight(height: number): number;
-//         onDraw(self: this, painter: Painter, dirty: RectF): void;
+//         /**
+//          * Emitted when button the operating system or application requests to draw a portion of the view.
+//          * @param self 
+//          * @param painter The drawing context of the view.
+//          * @param dirty  The area in the view to draw on.
+//          */
+//         onDraw:  Signal<(self: this, painter: Painter, dirty: RectF)=>void> | ((self: this, painter: Painter, dirty: RectF)=>void)
+//         // onDraw(self: this, painter: Painter, dirty: RectF): void;
 //         removeChildView(view: View): void;
 //     }
 
@@ -494,15 +883,26 @@
 //         setValue(percent: number): void;
 //     }
 
-//     export class Scroll extends View {
-//         static create(): Scroll;
+//     /**
+//      * The Scroll view can show an arbitrary content view inside it.
+//      * 
+//      * When the content is larger than the Scroll view, scrollbars will be optionally showed. When the content view is smaller then the Scroll view, the content view will be resized to the size of the Scroll view.
+//      */
+//     export class Scroll<T extends boolean = false> extends View {
+//         static create<T extends boolean = false>(): Scroll;
 //         protected constructor();
 //         getContentSize(): SizeF;
 //         getContentView(view: View): void;
 //         getScrollbarPolicy(): [ScrollPolicy, ScrollPolicy];
+//         /**
+//          * MacOS only. Return whether overlay scrolling is used.
+//          */
 //         isOverlayScrollbar(): boolean;
 //         setContentSize(size: SizeF): void;
 //         setContentView(view: View): void;
+//         /**
+//          * MacOS only. Set whether to use overlay scrolling.
+//          */
 //         setOverlayScrollbar(overlay: boolean): void;
 //         setScrollbarPolicy(hPolicy: ScrollPolicy, vPolicy: ScrollPolicy): void;
 //     }
@@ -617,8 +1017,8 @@
 //         "behind-window" |
 //         "within-window";
 
-//     export class Vibrant extends Container {
-//         static create(): Vibrant;
+//     export class Vibrant<T extends boolean = false> extends Container {
+//         static create<T extends boolean = false>(): Vibrant;
 //         protected constructor();
 //         getBlendingMode(): VibrantBlendingMode;
 //         getMaterial(): VibrantMaterial;
@@ -689,12 +1089,35 @@
 //     }
 
 //     export type Accelerator = string;
+
 //     export type AppThemeColor = "text" | "disabled-text";
 
 //     export interface BrowserOptions {
+//        /**
+//         * MacOS and Linux only. Whether file access is allowed from file URLs, default is false.
+//         * 
+//         * By default, when something is loaded in using a file URI, cross origin requests to other file resources are not allowed. 
+//         * 
+//         * This setting allows you to change that behaviour, so that it would be possible to do a XMLHttpRequest of a local file, for example.
+//         */
 //         allowFileAccessFromFiles?: boolean;
+//         /**
+//          * Whether to use builtin context menu, default is false.
+//          * 
+//          * On macOS due to the limitation of system APIs, right-clicking certain elements would still popup a menu with Services items.
+//          */
 //         contextMenu?: boolean;
+//         /**
+//          * Whether the browser can show devtools, default is false. 
+//          * 
+//          * Depending on platform, the option to show devtools is usually in the context menu, so you should also enable builtin context menu when using this option. 
+//          * 
+//          * Currently this option is not working on Windows.
+//         */
 //         devtools?: boolean;
+//         /**
+//          * Linux only. Whether to enable hardware acceleration, default is true.
+//          */
 //         hardwareAcceleration?: boolean;
 //     }
 
@@ -861,15 +1284,50 @@
 //     }
 
 //     /**
-//      * Yoga style properties. Name mapping deifned here
-//      * https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc
+//      * ## Layout system
+//      * 
+//      * Yue uses Facebook [Yoga](https://facebook.github.io/yoga/) as layout engine, which provides Flexbox style layout system.
+//      * 
+//      * Yue does not support CSS itself, it only uses the concept of Flexbox for layout, and you have to manually set style for each View.
+//      * 
+//      * ```js
+//      * view.setStyle({flexDirection: 'column', flex: 1})
+//      * ```
+//      * 
+//      * It should be noted that not all CSS properties are supported, and there is no plan for support of tables, floats, or similar CSS concepts.
+//      * 
+//      * ## View and Container
+//      * In Yue all widgets are inherited from the virtual class View, which represents a leaf node in the layout system. The Container is a View that can have multiple child Views, in the layout system the child Views of Container are treated as child nodes.
+//      * 
+//      * There are Views that can have content view like Group or Scroll, but their content views are treated as root nodes in layout system, instead of being child nodes of their parents.
+//      * 
+//      * Following code is an example of list view.
+//      * 
+//      * ```js
+//      * const listView = gui.Scroll.create()
+//      * const contentView = gui.Container.create()
+//      * contentView.setStyle({flexDirection: 'column'})
+//      * for (let i = 0; i < 100; ++i) {
+//      *   const item = gui.Label.create(String(i))
+//      *   const g = Math.floor(155 / 100 * i + 100)
+//      *   item.setBackgroundColor(gui.Color.rgb(100, g, 100))
+//      *   contentView.addChildView(item)
+//      * }
+//      * listView.setContentSize(contentView.getPreferredSize())
+//      * listView.setContentView(contentView)
+//      * ```
+//      * 
+//      * ## Style properties
+//      * 
+//      * For a complete list of supported style properties, it is recommended to read the [documentation of Yoga](https://yogalayout.com/docs).
+//      * 
+//      * Yoga style properties mapping in this library are defined in [/nativeui/util/yoga_util.cc](https://github.com/yue/yue/blob/master/nativeui/util/yoga_util.cc).
 //      */
 //     export interface StyleProperties {
-
+      
 //         heightAuto?: boolean
 //         heightPercent?: number
 //         marginAuto?: Edge
-//         marginPercent?: Partial<ValuedEdges<number>>
 //         flexWrap?: FlexWrap
 //         flexDirection?: FlexDirection
 //         direction?: Direction
@@ -880,7 +1338,7 @@
 //         alignSelf?: Align
 //         aspectRatio?: number
 
-//         border?: Partial<ValuedEdges<string | number>>
+//         border?: number|string
 //         borderTop?: number|string
 //         borderRight?: number|string
 //         borderBottom?: number|string
@@ -893,7 +1351,7 @@
 //         height?: number| string
 //         justifyContent?: JustifyContent
 
-//         margin?: Partial<ValuedEdges<string | number>>
+//         margin?: number|string
 //         marginTop?: number|string
 //         marginRight?: number|string
 //         marginBottom?: number|string
@@ -909,7 +1367,8 @@
 //         minWidthPercent?: number
 //         overflow?: Overflow
 
-//         padding?: Partial<ValuedEdges<number>>
+//         padding?: number|string
+//         // padding?: Partial<ValuedEdges<number>>
 //         paddingTop?:number|string
 //         paddingLeft?:number|string
 //         paddingRight?:number|string
@@ -922,11 +1381,7 @@
 //         bottom?: number | string
 //         right?: number | string
 //     }
-
-//     type ValuedEdges<V> = {
-//       [edge in Edge]: V;
-//     }
-
+ 
 //     type JustifyContent = 'center' | 'flex-end' | 'flex-start' | 'space-around' | 'space-between' | 'space-evenly'
 
 //     type Align = 'auto' | 'baseline' | 'center' | 'flex-end' | 'flex-start' | 'space-around' | 'space-between' | 'stretch'
