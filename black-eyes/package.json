@@ -13,7 +13,8 @@
     "lint": " npm run organizeImports && npm run format",
     "build": "npm run clean && npx tsc && npm run copy",
     "copy": "cp desktop-client/lenna.jpg dist/desktop-client/",
-    "all": "npm run clean   && npm run lint && npm run build && npm test  "
+    "all": "npm run clean   && npm run lint && npm run build && npm test  ",
+    "package": "rm -rf asar dist out misc-utils-of-mine-generic *.zip && npm run build && cp -r node_modules/asar node_modules/misc-utils-of-mine-generic . && npx yackage --app-dir $PWD --platform linux dist  out &&  npx yackage --app-dir $PWD  dist  out && rm -rf misc-utils-of-mine-generic asar "
   },
   "keywords": [
     "typescript",
@@ -22,6 +23,7 @@
     "imageMagick",
     "image processing"
   ],
+  "files": ["asar", "misc-utils-of-mine-generic", "dist"],
   "author": "Sebastián Gurin",
   "license": "MIT",
   "devDependencies": {

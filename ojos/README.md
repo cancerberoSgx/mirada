@@ -13,7 +13,7 @@
 
 ## Demos
 
- * [Video filter demo](https://cancerberosgx.github.io/demos/ojos-demo/videoFilterDemo.html). 
+ * [Video filter demo](https://cancerberosgx.github.io/demos/ojos-demo). 
    * Filter camera output with opencv operations real time. 
    * Apply / configure multiple operations at the same time and observe how frames per second and memory consumption is affected. 
    * Visually compose operation sequences to archive custom filters, animations.

@@ -1,41 +1,46 @@
-## black-eyes
+Big collection of miscellaneous utilities, compatible with browser and node.js
 
-High performance server for image processing using mirada-ojos (opencv) and magica (ImageMagick). 
+These should work on all es5 compatible environments, Browse and node.js and even others like rhino, etc, since are pure JavaScript.
 
- * Node.s server app able to runs both as http or unix socket
- * supports generic filesystem API to reference files
- * a common common API for both [ojos]() (opencv) and [magica]() (ImageMagick) w(ebassembly ports)
- * operation composition script-like language
- * template support.
- * API signatures, validation and documentation automatically generated from types
- * uses msgpack for data-serialization
- * timings, cpu and memory usage monitoring.
+## API
 
-## Motivation
+ [API](api/README.md)
 
-These two wasm ports are acceptably fast and low oevrheaded with the exception of initial startup time. Since in CLI apps this needs to happen each time it has huge impact. The idea is for me to take the oportunity to learn / implement background like server which that handle commands from other thin clients (other CLIs or web pages) . Since th the libraries don't need to reload on each command will give me the opportuninty to run commands faster, and better measure performance.
-
-## install
-
-npm install -g black-eyes
-
-
-## Usage
-
-YBD
-
- 
 ## TODO
-
-- [ ] serialization async using streams
-- [ ] solution to overcome msgpack size limitation 2^32 = 1024 bytes for images
-- [ ] server connection clean up
-- [ ] server cluster
-- [ ] other FS impl - like google driver for fb 
-- [ ] a known global medium for identifying where the server is listening on this machine
-- [ ] generate manual from oos metadata
-- [ ] generate JSON schema form ojos metadata
-- [ ] sample web page client and sample CLI client
+- [ ] string/boxes : drawBox({pos: Point, lines:String[], padding: {top,right,bottom,left}})
+- [ ] test visitJson
+  - [ ] impl findJson, filterJson 
+- [x] test tree.ts
+- [x] objectToArray
+- [x] Deferred test
 
 
-[] -- idea - deskktop app node-gui - webview . navegate internate with warp perspective and others! - implement try bar https://github.com/yue/wey/blob/master/lib/view/notification-center.js
+
+<!-- 
+  ### ideas
+
+
+// an operation OP is expensive and we want to print: `${OP(a) && OP(a).foo || '' }` - we need to create a variable in order to not call it twice
+// solution : a function get which : `${get(OP(a), 'foo')||'' }`
+// useful if nested: `${get(OP(a), 'foo', 'bar', 'name')||'' }`
+// for particular falsy (we do want to print 0 and false): `${get(OP(a), 'foo', 'bar', v=>v===undefined?'':v)}` (will print empty string only for undefined not for all falsy)
+ -->
+
+<!-- 
+// function prop<T,S>(o:T, p:keyof T, map: S|((k:keyof T)=>S)):S {
+//   var v = o[p]
+// }
+
+// function valueOf<T, P extends keyof T, D>(t:T,p:P, def:D, pred?: (v: T[P])=>boolean):T[P]|D {
+// return (pred?pred(t[p]) : true ) 
+// }
+// an operation OP is expensive and we want to print: `${OP(a) && OP(a).foo || '' }` - we need to create a variable in order to not call it twice
+// solution : a function get which : `${get(OP(a), 'foo')||'' }`
+// useful if nested: `${get(OP(a), 'foo', 'bar', 'name')||'' }`
+// for particular falsy (we do want to print 0 and false): `${get(OP(a), 'foo', 'bar', v=>v===undefined?'':v)}` (will print empty string only for undefined not for all falsy)
+
+// var a: {name:B}[]
+
+// a.map(b=>b.name)   vs: a.map(P('name'))n 
+
+// a.map(a=>a.name||'asd')  vs a.map(P('name', 'asd'))  -->

@@ -1,5 +1,5 @@
 import { flat } from 'misc-utils-of-mine-generic'
-import { spawn } from 'threads'
+// import { spawn } from 'threads'
 import { loadLibraries } from '../src/loadLibraries'
 import { App1 } from './app'
 import { getInitialState, _setState } from "./store"
@@ -21,12 +21,12 @@ async function main() {
 }
 main().catch(console.error)
 
-async function main2() {
-  const w = new Worker("./libWorker")
-  const handlers = await spawn(w)
-  await handlers.loadLibraries()
-  console.log('res', await handlers.test())
-  console.log('res', await handlers.test3())
-  w.terminate()
-}
-// main2().catch(console.error)
+// async function main2() {
+//   const w = new Worker("./libWorker")
+//   const handlers = await spawn(w)
+//   await handlers.loadLibraries()
+//   console.log('res', await handlers.test())
+//   console.log('res', await handlers.test3())
+//   w.terminate()
+// }
+// // main2().catch(console.error)
