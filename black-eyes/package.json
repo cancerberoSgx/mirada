@@ -39,7 +39,7 @@
     "@msgpack/msgpack": "^1.9.0",
     "hrtime-now": "^1.0.6",
     "magica": "file:../../magica",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "mirada": "../mirada",
     "gui": "^0.6.3",
     "misc-utils-of-mine-generic": "^0.2.29",
