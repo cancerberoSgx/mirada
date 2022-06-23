@@ -40,7 +40,7 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "misc-utils-of-mine-generic": "^0.2.32",
     "shelljs": "^0.8.3",
     "ts-simple-ast-extra": "^0.3.11"
