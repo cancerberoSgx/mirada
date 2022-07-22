@@ -35,7 +35,7 @@
     "@types/node": "^12.7.5",
     "@types/tinycolor2": "^1.4.2",
     "ava": "^2.3.0",
-    "file-type": "^12.3.0",
+    "file-type": "^16.5.4",
     "jimp": "^0.8.2",
     "magica": "file:../../magica",
     "markdown-toc": "^1.2.0",
