@@ -6,6 +6,10 @@ export interface CompoundDef extends Described {
   compoundname: string
   kind: DoxCompoundKind
   title?: string
+  /** direct base classes (doxygen <basecompoundref>), in declaration order. TS only supports single inheritance, so renderers should use the first entry. */
+  basecompoundref: compoundRefType[]
+  /** direct known subclasses (doxygen <derivedcompoundref>). Currently informational only - nothing renders from this. */
+  derivedcompoundref: compoundRefType[]
 }
 
 export interface PublicType extends Described {

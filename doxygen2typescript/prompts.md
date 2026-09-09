@@ -110,3 +110,44 @@ So the fix isn't "add namespaces," it's **make the flat identifier correct**, an
 
 ---
 
+# typings package
+currently doxygen2typescript generates all opencv typings definitions in a tmp folder. I want to create a project with all these definitions so other typescript users can npm install it. Basically they can use opencv.js in their projects and have everything typed using this typings project
+
+What do you recommend ? (don't write code, just answer)
+
+A.
+
+## Key finding first
+
+You've essentially already half-built this. `mirada/src/types/opencv/` in this same repo is doxygen2typescript's output from an earlier run, hand-patched with `_hacks.ts` and wired up via `_types.ts`/`index.ts` into a `CV` type + a global `cv` declaration — then compiled and shipped as part of the published `mirada` npm package. That pattern already works and is the right shape to reuse. But it's stale: diffing it against a fresh `tmp/` run, mirada is missing newer API surface (`core_quaternion`, `DualQuat`, `GraphicalCodeDetector`, `Image2BlobParams`, `imgproc_colormap`, `imgproc_motion`, `imgproc_segmentation`, …) that only exists in current opencv. That staleness is itself the core argument for what you're proposing.
+
+## Recommendation
+
+**Extract the types into their own standalone package, decoupled from `mirada`'s runtime wrapper, and make `mirada` depend on it instead of carrying its own copy.**
+
+1. **New package, types-only, no runtime code.** Something like `opencv-ts-types` (avoid a name that collides with `@types/opencv*` on npm — worth a quick registry check before you commit to one). `mirada` is an opinionated high-level API (format conversion, browser helpers, image loading); this new package's only job is "if you have opencv.js running, here's its shape." Keeping it minimal maximizes who can use it — including non-mirada users who just load `opencv.js` directly.
+
+2. **Ship compiled `.d.ts`, not raw generated `.ts`.** This is already on your own TODO list for a reason: consumers shouldn't compile your generated source as part of their build (different tsconfig strictness, wasted build time, ~1000s of lines of generated code re-typechecked per install). Compile once at publish time, ship declarations only.
+
+3. **Support both consumption styles**, since opencv.js users are split between them:
+   - ambient global (`declare global { var cv: CV }`) for `<script>`-tag / `cv.onRuntimeInitialized` usage — this is what mirada already does.
+   - module augmentation for `declare module "opencv.js" { ... }` (the actual npm package name OpenCV publishes for the compiled runtime) so `import cv from 'opencv.js'` is typed automatically the moment both packages are installed, no manual wiring. This is much better DX and I'd prioritize it over the global-only approach mirada currently has.
+
+4. **Keep the generated/manual split, exactly like `_hacks.ts` today.** The doxygen output alone isn't fully sound (your own TODO list: missing `.delete()`/`.isDeleted`, `InputArray` unions, generic `Vector<T>`, enum name collisions, etc.). Don't let hand fixes live inside the regenerated folder — mirada's `_hacks.ts` + `_types.ts` + `index.ts` merge pattern is proven, keep it, just move it into the new package.
+
+5. **Version against opencv releases, not `master`.** Since doxygen2typescript filters types by `bindings.cpp` — i.e. the exact set of exposed classes depends on *how* opencv.js was compiled (which modules, `--simd`, etc.) — a types package is inherently tied to one build configuration. Publish from tagged opencv releases (e.g. `4.10.0`), encode that in your package version (major/minor tracks the opencv version), and document which build flags were used. Pick the configuration matching OpenCV's own official prebuilt `opencv.js` (what most consumers actually use) as your canonical target rather than your own local `--build_wasm --simd` build, so the types match what people install from npm/CDN, not just what you personally compile.
+
+6. **Automate the whole regeneration→publish pipeline, on a schedule or on new opencv tags.** This is exactly what the Docker setup we just built gets you 90% of the way to — add a final `tsc`-to-`.d.ts` step and an npm publish step, wrap it in a GitHub Actions workflow, trigger it manually or cron/on-tag. Right now this whole thing is a manual local process that's already visibly drifted out of date once (mirada's copy); automation is what prevents that from recurring.
+
+7. **Gate publish on a compile smoke test.** Before publishing, typecheck a small fixture file that exercises the generated types against a mocked/real `cv` — same idea as your existing `mirada` test suite. Generation bugs (there have been several per your TODO list) should fail CI, not ship silently to npm.
+
+8. **Then fold `mirada` back onto it**: replace `mirada/src/types/opencv/*` with a dependency on the new package, so there's one source of truth instead of two copies that can drift apart again.
+
+
+p2
+
+forget about fixing mirada for a moment, I want to have a child test typescript project that renders some opencv.js examples calling some functions. The real objective, besides seeing it working, is to check if the types generated by doxygen2typescript in tmp actually work ok and how it the ts user experience with those typings.
+
+Questions:
+how can we pack all the geenerated typings in a separate project that ts users can npm install them to have opencv types ? 
+

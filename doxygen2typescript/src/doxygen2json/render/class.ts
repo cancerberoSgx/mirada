@@ -1,14 +1,15 @@
 import { CompoundDef, Member } from '../doxygenTypes'
 import { renderEnum } from "./enums"
-import { getCompoundDefName, isValidId, renderParam , renderType} from './general'
+import { getBaseClassNames, getCompoundDefName, isValidId, renderParam , renderType} from './general'
 import { toJsDoc, jsdocFunction } from "./jsdoc"
 import { Options } from './main'
 
 export function renderCompoundClass(def: CompoundDef, options: Options) {
   const className = getCompoundDefName(def)
+  const [baseClassName] = getBaseClassNames(def)
   return `
 ${toJsDoc({ node: def })}
-export declare class ${className} {
+export declare class ${className}${baseClassName ? ` extends ${baseClassName}` : ''} {
 ${options.isOpenCv ? '' : def.publicTypes.filter(t => t.kind === 'enum').map(f => renderEnum(f, def, options)).join('\n\n')}
 ${def.publicAttribs.filter(validAttr).map(f => renderAttr(f, def, options)).join('\n\n')}
 ${def.publicFuncs.filter(validMethod).map(f => renderMethod(f, def, options)).join('\n\n')}

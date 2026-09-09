@@ -77,9 +77,13 @@ execute this script
 - [ ] detaileddescription formula - render to svg and embed ? or to a more readable format ? 
 - [ ] support invalid type names like char * using a name map. 
 - [ ] document std::Vector (http://www.cplusplus.com/reference/vector/vector/)
-- [ ] class inheritancegraph - Mat_ extends Mat_
+- [x] class inheritancegraph - render real `extends` from doxygen's own `<basecompoundref>` (general.ts#getBaseClassNames), instead of only the 3 classes hand-listed in exportsHacks.ts#fixMissingExtends. That manual map still exists, but now only for the classes where the JS/embind runtime shape has no equivalent in the real C++ hierarchy (Algorithm, Mat, MatExpr); see test/renderInheritanceTest.ts.
   - [x] currently examples fail with " Property 'delete' does not exist on type 'Mat'." probably because of missing parent methods
-- [ ] class compounds enums names prefix broken. (ex AgastFeatureDetector.AGAST_7_12s becomes AgastFeatureDetector_AGAST_7_12s)
+- [x] C++ builtin types (int, bool, uchar, size_t, double, ...) are now mapped to their TS equivalent at render time (general.ts#cppPrimitiveToTsType), instead of being emitted verbatim and patched afterwards by fixMissingImports guessing from a "no exported member" compiler diagnostic.
+- [x] renderImportHacks() (_hacks.ts) is now type-checked by a real test (test/exportsHacksTest.ts) instead of only ever being compiled as a side effect of a full opencv.js build - it already caught one real bug (`double` used as a bare, invalid TS type in the CLAHE hack).
+- [x] getBindingsCppCompoundRefs now reports (`unmatched`, plus a `debug` warning) any bindings.cpp-registered class/function/constant that doesn't match a doxygen node, instead of silently vanishing from the generated types (test/parseBindingsCppUnmatchedTest.ts).
+- [ ] class compounds enums names prefix broken. (ex AgastFeatureDetector.AGAST_7_12s becomes AgastFeatureDetector_AGAST_7_12s) - likely the same root cause as the point above (a class/enum whose bindings.cpp-registered name doesn't literally match its doxygen `<name>`, e.g. because it's namespace-prefixed); needs a real opencv build to confirm and fix, since neither a full bindings.cpp nor doxygen's real `index.xml` were available to verify against in this environment.
+- [ ] use the literal bindings.cpp registration string (already parsed in parseBindingsCpp.ts, currently only used to *locate* the matching doxygen node) as the emitted TS identifier for classes/functions/constants, instead of re-deriving it from doxygen's `compoundname` leaf - this is what actually guarantees collision-free names (opencv.js's runtime names are unique by construction) and would let `exportsHacks.ts#canRenderFileNamed`'s file blacklist be removed. Deferred for the same reason as the point above: needs a real opencv build + full bindings.cpp to verify safely rather than landing unverified.
 - [ ] rename src/doxygen2json to 2ts 
 - [ ] verify that type alias (enums) are exposed 
 - [ ] build the whole workflow: git clone, python --build-docs, node test so we verify the typings generation works mechanically

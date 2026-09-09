@@ -1,7 +1,7 @@
 import { objectKeys, unique, notSame, notSameNotFalsy } from 'misc-utils-of-mine-generic'
 import { attrs, Q, Q1, text, findAncestor } from '../dom/domUtil'
 import { loadXmlDom } from "../dom/jsdom"
-import { CompoundDef, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
+import { CompoundDef, compoundRefType, Described, Descriptions, DoxBool, DoxCompoundKind, DoxMemberKind, DoxProtectionKind, DoxSectionKind, DoxVirtualKind, linkedTextType, Location, Member, Param, PublicType, refTextType } from './doxygenTypes'
 
 interface Options {
   xml: string;
@@ -23,10 +23,9 @@ export function parseDoxygen(options: Options): CompoundDef[] {
     compoundname: text('compoundname', c).trim(),
     title: text('title', c).trim(),
 
-    derivedcompoundref: Q('derivedcompoundref', c).map(d => ({
-      ...attrs<{ refid: DoxBool, prot: DoxProtectionKind, virt: DoxVirtualKind }>(d, ['refid', 'prot', 'virt']),
-      text: d.textContent
-    })),
+    derivedcompoundref: Q('derivedcompoundref', c).map(getCompoundRef),
+
+    basecompoundref: Q('basecompoundref', c).map(getCompoundRef),
 
     // Heads up - the design based on kind="public-type", kind="public-attrib", etc is wrong since here also compounddef kind="group" are also considered and they don't have sectiondef kind="public-type" but just directly sectiondef kind="enum"
     // TODO: we should change these names and eal directly with enum or concrete public types.
@@ -44,6 +43,13 @@ export function parseDoxygen(options: Options): CompoundDef[] {
 
   } as CompoundDef))
   return r
+}
+
+function getCompoundRef(d: Element): compoundRefType {
+  return {
+    ...attrs<{ refid: string, prot: DoxProtectionKind, virt: DoxVirtualKind }>(d, ['refid', 'prot', 'virt']),
+    text: d.textContent
+  }
 }
 
 function getParams(s: Element): Param[] {

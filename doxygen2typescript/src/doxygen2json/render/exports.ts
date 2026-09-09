@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { notSame, notSameNotFalsy, unique, dedup, asArray } from 'misc-utils-of-mine-generic';
 import { basename, join } from 'path';
 import { ls } from 'shelljs';
@@ -7,6 +7,7 @@ import { Doxygen2tsOptions } from '../doxygen2ts';
 import { renderImportHacks } from './exportsHacks';
 import { withoutTypeScriptExtension } from '../opencv2ts';
 import { TypeGuards, MethodDeclaration, PropertyDeclaration } from 'ts-morph';
+import { cppPrimitiveToTsType } from './general';
 
 export function writeIndexTs(o: Doxygen2tsOptions) {
   if (!o.onlyFix) {
@@ -61,6 +62,14 @@ ${content}
   writeFileSync(join(o.tsOutputFolder, f), s)
 }
 
+/**
+ * renderCompoundClass (class.ts) now renders `extends` straight from doxygen's own <basecompoundref>
+ * for every class that has a real C++ base - so this map only needs to cover the handful of classes
+ * where the JS/embind runtime shape doesn't match the C++ hierarchy at all: Algorithm, Mat and MatExpr
+ * have no C++ base class, but the generated .d.ts still wants them to extend a JS-only helper type.
+ * If a class already got a real `extends` from doxygen data, it's left alone - these two sources should
+ * never both apply to the same class.
+ */
 function fixMissingExtends(o: Doxygen2tsOptions) {
   const missingExtends = {
     'Mat': 'Mat_',
@@ -69,9 +78,15 @@ function fixMissingExtends(o: Doxygen2tsOptions) {
     'Algorithm': 'EmscriptenEmbindInstance'
   }
   Object.keys(missingExtends).forEach(k => {
-    const s = readFileSync(join(o.tsOutputFolder, k + '.ts')).toString()
-      .replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`)
-    writeFileSync(join(o.tsOutputFolder, k + '.ts'), s)
+    const file = join(o.tsOutputFolder, k + '.ts')
+    if (!existsSync(file)) {
+      return
+    }
+    const s = readFileSync(file).toString()
+    if (s.includes(`export declare class ${k} extends`)) {
+      return // already has a real base class rendered from doxygen data, don't stack another one on top
+    }
+    writeFileSync(file, s.replace(`export declare class ${k}`, `export declare class ${k} extends ${missingExtends[k]}`))
   })
 }
 
@@ -154,12 +169,12 @@ function fixJsDocs(o: Doxygen2tsOptions) {
     })
 }
 
+/**
+ * Fallback for whatever is still unresolved after rendering: renderType (general.ts) already maps every
+ * known C++ builtin (int, bool, uchar, size_t, ...) to its TS equivalent at render time via
+ * cppPrimitiveToTsType, so a name reaching here is something genuinely unmodeled (a real missing type),
+ * not a primitive the renderer failed to recognize - it's a last resort, not the primary mechanism.
+ */
 function missingImportType(t: string) {
-  if (['int', 'double', 'float'].includes(t)) {
-    return 'number'
-  } else if (['bool'].includes(t)) {
-    return 'boolean'
-  } else {
-    return 'any'
-  }
+  return cppPrimitiveToTsType[t] || 'any'
 }
