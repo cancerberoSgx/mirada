@@ -7,6 +7,8 @@ import { Doxygen2tsOptionsBase } from './doxygen2ts';
 
 export interface GetBindingsCppCompoundRefsOptions extends Doxygen2tsOptionsBase {
   opencvBuildFolder: string
+  opencvDocBuildFolder?: string
+
 }
 
 interface RefsResult<T extends Ref> {
@@ -54,9 +56,12 @@ export function parseBindingsCpp(code: string) {
 }
 
 export function getBindingsCppCompoundRefs(o: GetBindingsCppCompoundRefsOptions): RefsResult<Ref> {
-  const bindingsPath = join(o.opencvBuildFolder, 'modules/js/bindings.cpp')
+  // const bindingsPath = join(o.opencvBuildFolder, 'modules/js/bindings.cpp')
+  const bindingsPath = join(o.opencvBuildFolder, 'modules/js_bindings_generator/gen/bindings.cpp')
+  // build_js/modules/js_bindings_generator/gen/bindings.cpp
+
   var parsed = parseBindingsCpp(readFileSync(bindingsPath).toString())
-  const index = join(o.opencvBuildFolder, 'doc/doxygen/xml/index.xml')
+  const index = join(o.opencvDocBuildFolder||o.opencvBuildFolder, 'doc/doxygen/xml/index.xml')
   loadXmlDom(readFileSync(index).toString())
   const fn = (a: string[]) => a.map(c => Q('name').filter(s => s.textContent === c)).flat().filter(notUndefined).map(b => ({
     name: b.textContent,
@@ -74,7 +79,7 @@ export function getBindingsCppCompoundFiles(o: GetBindingsCppCompoundRefsOptions
   var parsed = getBindingsCppCompoundRefs(o)
   const fn = (r: Ref[]) => r.map(ref => ({
     ...ref,
-    filePath: join(o.opencvBuildFolder, 'doc/doxygen/xml/', ref.indexCompound.getAttribute('refid') + '.xml')
+    filePath: join(o.opencvDocBuildFolder||o.opencvBuildFolder, 'doc/doxygen/xml/', ref.indexCompound.getAttribute('refid') + '.xml')
   }))
     .filter(notUndefined)
     .filter((n, i, a) => i === a.findIndex(a => a.filePath === n.filePath && a.name === n.name))

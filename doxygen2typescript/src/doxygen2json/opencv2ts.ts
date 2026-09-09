@@ -24,7 +24,7 @@ export function opencv2ts(o: Doxygen2tsOptions) {
       console.warn('WARNING id or refid null for ' + c.name)
       return
     }
-    const xmlFile = join(o.opencvBuildFolder, 'doc/doxygen/xml', id + '.xml')
+    const xmlFile = join(o.opencvDocBuildFolder || o.opencvBuildFolder, 'doc/doxygen/xml', id + '.xml')
     var r = parseDoxygen({ xml: readFileSync(xmlFile).toString() })
     buildDts({
       defs: r,

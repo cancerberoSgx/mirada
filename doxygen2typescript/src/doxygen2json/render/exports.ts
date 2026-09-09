@@ -65,7 +65,7 @@ function fixMissingExtends(o: Doxygen2tsOptions) {
   const missingExtends = {
     'Mat': 'Mat_',
     'MatExpr': 'Mat',
-    'CascadeClassifier': 'Mat',
+    // 'CascadeClassifier': 'Mat',
     'Algorithm': 'EmscriptenEmbindInstance'
   }
   Object.keys(missingExtends).forEach(k => {
@@ -135,7 +135,9 @@ ${readFileSync(o.tsOutputFolder + '/_hacks.ts').toString()}\n\n
 ${missing.map(t => `export type ${t} = ${missingImportType(t)}`).join('\n')}
 `.trim()
   )
-  const missingImports = [{ file: 'CascadeClassifier', name: 'Mat' }]
+  const missingImports: any[] = [
+    // { file: 'CascadeClassifier', name: 'Mat' }
+  ]
   missingImports.forEach(f => {
     const s = readFileSync(join(o.tsOutputFolder, f.file + '.ts')).toString()
       .replace(`} from './_types'`, `, ${f.name}} from './_types'`)

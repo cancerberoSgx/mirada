@@ -30,6 +30,46 @@ opencv2ts({
 })
 ```
 
+
+## detail instructions
+
+install doxygen git
+
+### install emscripten
+
+```sh
+git clone https://github.com/emscripten-core/emsdk.git emsdk
+cd emsdk
+./emsdk install latest
+./emsdk activate latest
+source ./emsdk_env.sh
+cd ..
+```
+
+
+
+### compile opencv.js
+```sh
+git clone https://github.com/opencv/opencv.git
+cd opencv
+emcmake python platforms/js/build_js.py build_js --build_wasm --simd
+cd ..
+```
+
+### compile docs
+
+```sh
+cd opencv
+# make sure doc/Doxyfile.in GENERATE_XML           = YES
+mkdir -p build && cd build
+cmake -DBUILD_DOCS=ON ..
+make -j$(nproc) doxygen
+cd ..
+```
+
+execute this script
+
+
 ## TODO - Status - Progress - Roadmap
 - [ ] don't expose all class members but only those declared in bindings.cpp
 - [ ] generate .d.ts instead of .ts

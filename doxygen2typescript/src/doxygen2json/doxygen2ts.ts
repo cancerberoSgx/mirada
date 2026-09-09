@@ -14,6 +14,7 @@ import { buildDts } from './render/main'
 export interface Doxygen2tsOptions extends Doxygen2tsOptionsBase {
   onlyFix?: boolean;
   opencvBuildFolder: string
+  opencvDocBuildFolder?: string
   tsOutputFolder: string
   jsonTypes?: boolean
   xmlTypes?: boolean
