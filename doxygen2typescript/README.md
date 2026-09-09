@@ -131,11 +131,3 @@ RUN apt-get update -y
 RUN apt-get install -y doxygen
 ```
 
-
-
-# prompts
-in this project doxygen2typescript, I want to being able to run it as a CLI "bin" in package.json, with the arguments used in src/test.ts, something like 
-
-doxygen2typescript --opencvBuildFolder foo --opencvDocBuildFolder bar --tsOutputFolder tmp
-
-Can you implement the cli in src/cli.ts and the .js that calls it in bin folder?

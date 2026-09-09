@@ -1,0 +1,24 @@
+services:
+  doxygen2typescript:
+    build:
+      context: .
+      args:
+        DOXYGEN2TYPESCRIPT_REPO: ${DOXYGEN2TYPESCRIPT_REPO:-https://github.com/cancerberoSgx/mirada.git}
+        DOXYGEN2TYPESCRIPT_REF: ${DOXYGEN2TYPESCRIPT_REF:-master}
+    image: doxygen2typescript:latest
+    environment:
+      OPENCV_REPO: ${OPENCV_REPO:-https://github.com/opencv/opencv.git}
+      OPENCV_REF: ${OPENCV_REF:-master}
+      FORCE_REBUILD_OPENCVJS: ${FORCE_REBUILD_OPENCVJS:-0}
+      FORCE_REBUILD_DOCS: ${FORCE_REBUILD_DOCS:-0}
+      TS_OUTPUT_SUBDIR: ${TS_OUTPUT_SUBDIR:-ts}
+    volumes:
+      # opencv checkout + both build folders survive across runs here, so
+      # re-running (e.g. after only editing doxygen2typescript) skips
+      # re-cloning/recompiling opencv unless FORCE_REBUILD_* is set.
+      - opencv-cache:/work/opencv
+      # generated .ts files land here, directly on the host.
+      - ./output:/output
+
+volumes:
+  opencv-cache:
