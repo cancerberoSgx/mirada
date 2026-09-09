@@ -4,6 +4,9 @@
   "description": "Generates TypeScript type declarations from doxygen xml output particularly to genereate opencv.js types",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "bin": {
+    "doxygen2typescript": "bin/doxygen2typescript.js"
+  },
   "private": true,
   "scripts": {
     "clean": "rm -rf dist docs",
